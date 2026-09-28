@@ -1,9 +1,9 @@
-Station,Region / Climate,Completeness (2017-2025),Dose Rate Present,Mean Dose (nSv/h),Mean Gross (CPM),Std Gross (CPM),NOAA Airport ASOS,Geologic / Radon Setting
-"Birmingham, AL",Southeast (Humid Subtropical),"91.5% (72,197 hrs)",100.0%,53.8,3633.0,1013.6,KBHM,Appalachian foothills / valley karst; frequent convective rain
-"Washington, DC",Mid-Atlantic (Temperate),"92.2% (72,706 hrs)",98.4%,31.3,1943.8,551.9,KDCA,"Fall line / coastal plain; moderate radon, distinct 4 seasons"
-"San Diego, CA",West Coast (Mediterranean/Arid),"94.3% (74,415 hrs)",100.0%,99.5,6908.3,561.8,KSAN,"Coastal marine layer; low rainfall, high baseline stability"
-"Dallas, TX",Southern Plains (Subtropical),"80.6% (63,581 hrs)",100.0%,39.9,2885.8,571.5,KDFW,Blackland prairie; severe frontal thunderstorms & convective storms
-"Tampa, FL",Gulf Coast / FL (Humid Subtropical),"82.9% (65,424 hrs)",93.9%,31.0,2046.5,474.2,KTPA,Coastal plain / phosphate geology; intense summer convective showers
-"Montgomery, AL",Southeast (Gulf Coastal Plain),"87.6% (69,093 hrs)",99.9%,49.6,3705.7,721.9,KMGM,Subtropical maritime; strong rain washout events
-"Chicago, IL",Midwest (Humid Continental),"74.2% (58,508 hrs)",91.8%,50.4,2666.0,803.6,KORD,Lake Michigan lake-effect; winter snow/freeze vs summer rain
-"Austin, TX",Central Texas (Subtropical/Semi-arid),"74.4% (58,718 hrs)",96.1%,44.7,2684.8,944.8,KAUS,Balcones fault / Edwards aquifer limestone; intense convective storms
+Station,Region / Climate,Total Expected Hours,Unique Records,Duplicate Timestamps,Completeness (%),Dose Rate Present (%),Effective Dose Coverage (%),Complete 8-Channel Records,Complete Channel (%),Clean Gross Mean (CPM),Clean Gross Median (CPM),Clean Gross Std (CPM),Mean Dose (nSv/h),Median Dose (nSv/h),R02 Fraction (%),R03 Fraction (%),R05 Fraction (%),NOAA ASOS Station,EPA Radon Zone
+"Birmingham, AL",Southeast (Humid Subtropical (Cfa)),78888,72192,5,91.51,99.99,91.51,67516,93.52,3884.5,3808.0,348.4,53.8,53.0,51.2,28.4,4.2,KBHM,"Zone 2 (Moderate, 2-4 pCi/L; Jefferson County, AL)"
+"Washington, DC",Mid-Atlantic (Temperate Maritime/Continental (Cfa)),78888,72701,5,92.16,98.35,90.64,68649,94.43,2058.5,1996.0,294.0,31.3,30.0,51.3,26.4,4.3,KDCA,"Zone 3 (Low, <2 pCi/L; District of Columbia)"
+"San Diego, CA",West Coast (Mediterranean / Semi-arid (CSa/BSk)),78888,74409,6,94.32,99.98,94.3,74356,99.93,6913.3,6812.0,530.9,99.5,101.0,49.8,28.2,4.3,KSAN,"Zone 3 (Low, <2 pCi/L; San Diego County, CA)"
+"Dallas, TX",Southern Plains (Subtropical Continental (Cfa)),78888,63575,6,80.59,100.0,80.59,62311,98.01,2944.3,2859.0,401.1,39.9,39.0,48.2,29.3,4.6,KDFW,"Zone 3 (Low, <2 pCi/L; Dallas County, TX)"
+"Tampa, FL",Gulf Coast / FL (Humid Subtropical (Cfa)),78888,65418,6,82.93,93.95,77.91,64382,98.42,2079.5,2174.0,400.0,31.0,31.0,41.5,28.5,5.2,KTPA,"Zone 3 (Low, <2 pCi/L; Hillsborough County, FL)"
+"Montgomery, AL",Southeast (Humid Subtropical (Cfa)),78888,69088,5,87.58,99.95,87.53,67279,97.38,3805.4,3742.0,395.0,49.6,49.0,49.2,27.7,4.4,KMGM,"Zone 3 (Low, <2 pCi/L; Montgomery County, AL)"
+"Chicago, IL",Midwest (Humid Continental (Dfa)),78888,58503,5,74.16,91.79,68.07,58005,99.15,2688.9,2458.0,768.0,50.4,45.0,47.6,28.5,4.8,KORD,"Zone 2 (Moderate, 2-4 pCi/L; Cook County, IL)"
+"Austin, TX",Central Texas (Subtropical / Semi-arid transition (Cfa)),78888,58713,5,74.43,96.08,71.51,52913,90.12,2979.1,2892.0,337.3,44.7,43.0,46.3,28.8,4.9,KAUS,"Zone 3 (Low, <2 pCi/L; Travis County, TX)"

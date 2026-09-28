@@ -1,6 +1,8 @@
 # Data Download Log
 
-| Date Retrieved | Station | URL | File Name | File Hash / Size | Notes |
+> Full 64-character SHA-256 hashes are recorded in [`data/raw/MANIFEST.sha256`](file:///Users/o/Projects/radnet-anomaly-detection/data/raw/MANIFEST.sha256).
+
+| Date Retrieved | Station | URL | File Name | SHA256 Prefix (Size) | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | 2026-09-28 | AL: BIRMINGHAM | https://radnet.epa.gov/cdx-radnet-rest/api/rest/csv/2026/fixed/AL/BIRMINGHAM | AL_BIRMINGHAM_2026.csv | SHA256: 7bf59b42... (600 KB) | 2026 YTD hourly near-real-time observations |
 | 2026-09-28 | All Stations (EPA Page) | https://www.epa.gov/radnet/radnet-csv-file-downloads | radnet_csv_file_downloads.html | SHA256: ebb63049... (146 KB) | RadNet official CSV downloads index page with all stations, start dates, and ZIP/CSV links |
