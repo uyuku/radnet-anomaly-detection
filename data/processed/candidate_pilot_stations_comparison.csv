@@ -1,0 +1,9 @@
+Station,Region / Climate,Completeness (2017-2025),Dose Rate Present,Mean Dose (nSv/h),Mean Gross (CPM),Std Gross (CPM),NOAA Airport ASOS,Geologic / Radon Setting
+"Birmingham, AL",Southeast (Humid Subtropical),"91.5% (72,197 hrs)",100.0%,53.8,3633.0,1013.6,KBHM,Appalachian foothills / valley karst; frequent convective rain
+"Washington, DC",Mid-Atlantic (Temperate),"92.2% (72,706 hrs)",98.4%,31.3,1943.8,551.9,KDCA,"Fall line / coastal plain; moderate radon, distinct 4 seasons"
+"San Diego, CA",West Coast (Mediterranean/Arid),"94.3% (74,415 hrs)",100.0%,99.5,6908.3,561.8,KSAN,"Coastal marine layer; low rainfall, high baseline stability"
+"Dallas, TX",Southern Plains (Subtropical),"80.6% (63,581 hrs)",100.0%,39.9,2885.8,571.5,KDFW,Blackland prairie; severe frontal thunderstorms & convective storms
+"Tampa, FL",Gulf Coast / FL (Humid Subtropical),"82.9% (65,424 hrs)",93.9%,31.0,2046.5,474.2,KTPA,Coastal plain / phosphate geology; intense summer convective showers
+"Montgomery, AL",Southeast (Gulf Coastal Plain),"87.6% (69,093 hrs)",99.9%,49.6,3705.7,721.9,KMGM,Subtropical maritime; strong rain washout events
+"Chicago, IL",Midwest (Humid Continental),"74.2% (58,508 hrs)",91.8%,50.4,2666.0,803.6,KORD,Lake Michigan lake-effect; winter snow/freeze vs summer rain
+"Austin, TX",Central Texas (Subtropical/Semi-arid),"74.4% (58,718 hrs)",96.1%,44.7,2684.8,944.8,KAUS,Balcones fault / Edwards aquifer limestone; intense convective storms

@@ -1,0 +1,66 @@
+# RadNet Weather-Aware Anomaly Detection Configuration
+# Fixed random seed for reproducibility across splits, modeling, and injections
+random_seed: 42
+
+paths:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  configs_dir: "configs"
+
+gamma_channels:
+  R01: { name: "gamma_1", min_kev: 0, max_kev: 100, note: "Sub-100 keV noise discriminator (omitted in CSVs)" }
+  R02: { name: "gamma_2", min_kev: 101, max_kev: 200 }
+  R03: { name: "gamma_3", min_kev: 201, max_kev: 400, note: "Contains Pb-214 (352 keV) and I-131 (364 keV)" }
+  R04: { name: "gamma_4", min_kev: 401, max_kev: 600 }
+  R05: { name: "gamma_5", min_kev: 601, max_kev: 800, note: "Contains Bi-214 (609 keV) and Cs-137 (662 keV)" }
+  R06: { name: "gamma_6", min_kev: 801, max_kev: 1000 }
+  R07: { name: "gamma_7", min_kev: 1001, max_kev: 1400, note: "Contains Bi-214 (1120 keV)" }
+  R08: { name: "gamma_8", min_kev: 1401, max_kev: 1800, note: "Contains Bi-214 (1764 keV)" }
+  R09: { name: "gamma_9", min_kev: 1801, max_kev: 2200 }
+
+pilot_stations:
+  - id: "AL_BIRMINGHAM"
+    name: "Birmingham, AL"
+    state: "AL"
+    region: "Southeast"
+    climate: "Humid Subtropical (Cfa)"
+    exposure_start: "2016-07-05"
+    noaa_station_id: "72228013876"
+    noaa_call_sign: "KBHM"
+    noaa_name: "Birmingham-Shuttlesworth International Airport"
+  - id: "DC_WASHINGTON"
+    name: "Washington, DC"
+    state: "DC"
+    region: "Mid-Atlantic"
+    climate: "Temperate Maritime/Continental (Cfa)"
+    exposure_start: "2016-09-22"
+    noaa_station_id: "72405013743"
+    noaa_call_sign: "KDCA"
+    noaa_name: "Ronald Reagan Washington National Airport"
+  - id: "CA_SAN_DIEGO"
+    name: "San Diego, CA"
+    state: "CA"
+    region: "West Coast"
+    climate: "Mediterranean / Semi-arid (CSa/BSk)"
+    exposure_start: "2016-09-22"
+    noaa_station_id: "72290023188"
+    noaa_call_sign: "KSAN"
+    noaa_name: "San Diego International Airport"
+  - id: "TX_DALLAS"
+    name: "Dallas, TX"
+    state: "TX"
+    region: "Southern Plains"
+    climate: "Subtropical Continental (Cfa)"
+    exposure_start: "2016-07-01"
+    noaa_station_id: "72259003927"
+    noaa_call_sign: "KDFW"
+    noaa_name: "Dallas/Fort Worth International Airport"
+  - id: "FL_TAMPA"
+    name: "Tampa, FL"
+    state: "FL"
+    region: "Gulf Coast / Florida"
+    climate: "Humid Subtropical (Cfa)"
+    exposure_start: "2016-08-15"
+    noaa_station_id: "72211012842"
+    noaa_call_sign: "KTPA"
+    noaa_name: "Tampa International Airport"

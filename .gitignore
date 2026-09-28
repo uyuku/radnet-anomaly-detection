@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Raw data (kept locally in data/raw/, logged in DATA_LOG.md)
+data/raw/*
+!data/raw/.gitkeep
+
+# Ignore large intermediate or parquet caches if created later
+data/processed/*.parquet
+data/processed/*.feather
+
+# OS
+.DS_Store
