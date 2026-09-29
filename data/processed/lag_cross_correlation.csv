@@ -1,0 +1,126 @@
+Station,Station_ID,Lag_Hours,Corr_Precip_GrossCPM,Corr_Precip_DoseRate
+"Birmingham, AL",al_birmingham,-12,-0.0096,-0.0001
+"Birmingham, AL",al_birmingham,-11,-0.0102,0.0001
+"Birmingham, AL",al_birmingham,-10,-0.0093,0.004
+"Birmingham, AL",al_birmingham,-9,-0.0101,0.0044
+"Birmingham, AL",al_birmingham,-8,-0.0105,0.0087
+"Birmingham, AL",al_birmingham,-7,-0.0078,0.0144
+"Birmingham, AL",al_birmingham,-6,-0.0041,0.0221
+"Birmingham, AL",al_birmingham,-5,0.0039,0.0367
+"Birmingham, AL",al_birmingham,-4,0.0153,0.0562
+"Birmingham, AL",al_birmingham,-3,0.0324,0.0815
+"Birmingham, AL",al_birmingham,-2,0.056,0.1115
+"Birmingham, AL",al_birmingham,-1,0.1111,0.177
+"Birmingham, AL",al_birmingham,0,0.2212,0.302
+"Birmingham, AL",al_birmingham,1,0.2446,0.352
+"Birmingham, AL",al_birmingham,2,0.1634,0.2772
+"Birmingham, AL",al_birmingham,3,0.0904,0.196
+"Birmingham, AL",al_birmingham,4,0.0469,0.1446
+"Birmingham, AL",al_birmingham,5,0.0199,0.1089
+"Birmingham, AL",al_birmingham,6,-0.0015,0.0821
+"Birmingham, AL",al_birmingham,7,-0.0113,0.0678
+"Birmingham, AL",al_birmingham,8,-0.0183,0.0543
+"Birmingham, AL",al_birmingham,9,-0.021,0.048
+"Birmingham, AL",al_birmingham,10,-0.0213,0.0424
+"Birmingham, AL",al_birmingham,11,-0.0207,0.0377
+"Birmingham, AL",al_birmingham,12,-0.0197,0.0349
+"Washington, DC",dc_washington,-12,0.0127,0.0104
+"Washington, DC",dc_washington,-11,0.0177,0.0131
+"Washington, DC",dc_washington,-10,0.0214,0.0143
+"Washington, DC",dc_washington,-9,0.0253,0.0161
+"Washington, DC",dc_washington,-8,0.0294,0.0216
+"Washington, DC",dc_washington,-7,0.033,0.0277
+"Washington, DC",dc_washington,-6,0.0393,0.0342
+"Washington, DC",dc_washington,-5,0.0486,0.0419
+"Washington, DC",dc_washington,-4,0.059,0.0504
+"Washington, DC",dc_washington,-3,0.0742,0.0631
+"Washington, DC",dc_washington,-2,0.0979,0.0815
+"Washington, DC",dc_washington,-1,0.1562,0.1243
+"Washington, DC",dc_washington,0,0.2945,0.2312
+"Washington, DC",dc_washington,1,0.3021,0.2598
+"Washington, DC",dc_washington,2,0.205,0.2009
+"Washington, DC",dc_washington,3,0.1378,0.1513
+"Washington, DC",dc_washington,4,0.0981,0.1139
+"Washington, DC",dc_washington,5,0.0709,0.0828
+"Washington, DC",dc_washington,6,0.0504,0.0633
+"Washington, DC",dc_washington,7,0.0407,0.052
+"Washington, DC",dc_washington,8,0.0344,0.0468
+"Washington, DC",dc_washington,9,0.0282,0.0412
+"Washington, DC",dc_washington,10,0.0225,0.0345
+"Washington, DC",dc_washington,11,0.0184,0.0306
+"Washington, DC",dc_washington,12,0.0153,0.028
+"San Diego, CA",ca_san_diego,-12,-0.0672,-0.0478
+"San Diego, CA",ca_san_diego,-11,-0.0698,-0.0495
+"San Diego, CA",ca_san_diego,-10,-0.0721,-0.0505
+"San Diego, CA",ca_san_diego,-9,-0.0732,-0.0519
+"San Diego, CA",ca_san_diego,-8,-0.0746,-0.0525
+"San Diego, CA",ca_san_diego,-7,-0.077,-0.0542
+"San Diego, CA",ca_san_diego,-6,-0.0794,-0.0547
+"San Diego, CA",ca_san_diego,-5,-0.0811,-0.0541
+"San Diego, CA",ca_san_diego,-4,-0.0823,-0.0525
+"San Diego, CA",ca_san_diego,-3,-0.0838,-0.0521
+"San Diego, CA",ca_san_diego,-2,-0.0858,-0.0494
+"San Diego, CA",ca_san_diego,-1,-0.0874,-0.0445
+"San Diego, CA",ca_san_diego,0,-0.0884,-0.0408
+"San Diego, CA",ca_san_diego,1,-0.0929,-0.0429
+"San Diego, CA",ca_san_diego,2,-0.1022,-0.054
+"San Diego, CA",ca_san_diego,3,-0.1091,-0.0661
+"San Diego, CA",ca_san_diego,4,-0.1136,-0.0743
+"San Diego, CA",ca_san_diego,5,-0.1167,-0.0811
+"San Diego, CA",ca_san_diego,6,-0.1195,-0.085
+"San Diego, CA",ca_san_diego,7,-0.1212,-0.0893
+"San Diego, CA",ca_san_diego,8,-0.1216,-0.0912
+"San Diego, CA",ca_san_diego,9,-0.1213,-0.0917
+"San Diego, CA",ca_san_diego,10,-0.1208,-0.0913
+"San Diego, CA",ca_san_diego,11,-0.12,-0.0894
+"San Diego, CA",ca_san_diego,12,-0.1196,-0.0902
+"Dallas, TX",tx_dallas,-12,0.0055,0.0148
+"Dallas, TX",tx_dallas,-11,0.0126,0.0238
+"Dallas, TX",tx_dallas,-10,0.0172,0.0304
+"Dallas, TX",tx_dallas,-9,0.0183,0.0312
+"Dallas, TX",tx_dallas,-8,0.0208,0.0355
+"Dallas, TX",tx_dallas,-7,0.0221,0.0382
+"Dallas, TX",tx_dallas,-6,0.0303,0.0502
+"Dallas, TX",tx_dallas,-5,0.0393,0.0637
+"Dallas, TX",tx_dallas,-4,0.0473,0.0753
+"Dallas, TX",tx_dallas,-3,0.0672,0.1034
+"Dallas, TX",tx_dallas,-2,0.0931,0.1384
+"Dallas, TX",tx_dallas,-1,0.1367,0.1937
+"Dallas, TX",tx_dallas,0,0.2258,0.3053
+"Dallas, TX",tx_dallas,1,0.2925,0.3974
+"Dallas, TX",tx_dallas,2,0.2579,0.3745
+"Dallas, TX",tx_dallas,3,0.1924,0.298
+"Dallas, TX",tx_dallas,4,0.1342,0.2214
+"Dallas, TX",tx_dallas,5,0.0891,0.1602
+"Dallas, TX",tx_dallas,6,0.0605,0.1195
+"Dallas, TX",tx_dallas,7,0.0452,0.0914
+"Dallas, TX",tx_dallas,8,0.037,0.0747
+"Dallas, TX",tx_dallas,9,0.027,0.0598
+"Dallas, TX",tx_dallas,10,0.023,0.0522
+"Dallas, TX",tx_dallas,11,0.0205,0.0486
+"Dallas, TX",tx_dallas,12,0.0154,0.0429
+"Tampa, FL",fl_tampa,-12,0.0119,0.0077
+"Tampa, FL",fl_tampa,-11,0.0121,0.0075
+"Tampa, FL",fl_tampa,-10,0.0125,0.0072
+"Tampa, FL",fl_tampa,-9,0.0121,0.0072
+"Tampa, FL",fl_tampa,-8,0.0096,0.0056
+"Tampa, FL",fl_tampa,-7,0.0061,0.0034
+"Tampa, FL",fl_tampa,-6,0.0028,0.0041
+"Tampa, FL",fl_tampa,-5,-0.0018,0.0038
+"Tampa, FL",fl_tampa,-4,-0.0052,0.004
+"Tampa, FL",fl_tampa,-3,-0.0051,0.0069
+"Tampa, FL",fl_tampa,-2,-0.0014,0.0127
+"Tampa, FL",fl_tampa,-1,0.0119,0.0273
+"Tampa, FL",fl_tampa,0,0.045,0.0617
+"Tampa, FL",fl_tampa,1,0.0528,0.0748
+"Tampa, FL",fl_tampa,2,0.0288,0.0542
+"Tampa, FL",fl_tampa,3,0.0089,0.0347
+"Tampa, FL",fl_tampa,4,-0.0023,0.0204
+"Tampa, FL",fl_tampa,5,-0.0065,0.0112
+"Tampa, FL",fl_tampa,6,-0.0052,0.0089
+"Tampa, FL",fl_tampa,7,-0.0019,0.0091
+"Tampa, FL",fl_tampa,8,0.0014,0.0122
+"Tampa, FL",fl_tampa,9,0.0054,0.0117
+"Tampa, FL",fl_tampa,10,0.0087,0.0111
+"Tampa, FL",fl_tampa,11,0.0109,0.0094
+"Tampa, FL",fl_tampa,12,0.0099,0.0079

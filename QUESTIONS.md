@@ -33,27 +33,39 @@ This file tracks parameters and questions that are not yet known from data or ci
 2. **RadNet Timestamp Convention & Grid Alignment**:
    - **Resolution**: RadNet reports `SAMPLE COLLECTION TIME` at :50–:55 UTC (end of sampling hour). NOAA routine METAR observations report at :50–:55 UTC. Rounding both to nearest UTC hour (`dt.round('h')`) yields perfect contemporaneous alignment. Cross-correlation between precipitation depth and gross CPM peaks at lag 0 ($r = 0.22$) and lag +1 ($r = 0.25$), confirming zero physical lag.
 3. **Air Filter Replacement Schedule**:
-   - **Resolution**: Empirically characterized in San Diego (summer 2024 control window) using 3-hour drops ($<-450\text{ CPM}$). Mean filter change interval is 3.3 days (median 3.0 days) with an average step drop of 731.6 CPM ([`filter_cycle_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/filter_cycle_summary.csv)), matching EPA RadNet's twice-weekly filter replacement operational schedule.
+   - **Resolution**: Characterized across 4 pilot stations over 4 operational years (2021–2024; 211–247 step drops per station) in [`multi_station_filter_cycle_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/multi_station_filter_cycle_summary.csv). Median change interval is 3.96 to 4.29 days (mean 4.6 to 5.1 days) with step drops averaging 359 to 669 CPM, confirming EPA's documented routine operational schedule of collecting filters "once or twice a week" (EPA RadNet Air Data, https://www.epa.gov/radnet/radnet-air-data).
 4. **Diurnal Radon Cycle Modeling**:
    - **Resolution**: Modeled on verified dry periods (preceding 24h precipitation = 0 mm) across 43,000–62,000 dry hours per station ([`diurnal_cycle_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/diurnal_cycle_summary.csv)). Amplitude ranges from 6.6% (San Diego) to 12.1% (Tampa) of gross CPM. Peak consistently occurs at 06:00–07:00 local time (nocturnal temperature inversion trapping soil radon), with trough at 17:00–20:00 local time (solar convective boundary layer mixing).
-5. **Rain Washout Event Confirmation (Gate 1 Requirement)**:
-   - **Resolution**: Confirmed empirically across all 5 pilot stations ([`reports/figures/`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/)). Convective and frontal rain events produce massive +128% to +184% surges in gross count rate and more than double dose rate, accompanied by immediate simultaneous spikes in Bi-214 (R05, R07, R08) and Pb-214 (R03) channels, followed by rapid decay matching the ~20–30 min radon progeny half-life.
+5. **Urban Monitor Coordinates & Distance to Airport**:
+   - **Resolution**: Birmingham RadNet monitor is officially identified at the North Birmingham NCore ambient monitoring site (AQS Site ID `01-073-0023`, 33.5530°N, -86.8147°W), exactly 5.8 km west-southwest of NOAA KBHM. For the remaining stations, EPA NAREL does not publish public GPS coordinates as a matter of program security/administrative policy; monitors are located in urban municipal network sites (within 5–20 km of airport ASOS).
+6. **Rain Washout Surge Distribution (Phase 3 Parameter Calibration)**:
+   - **Resolution**: Evaluated across all 15,602 synchronous rain hours (2017–2025) in [`rain_washout_surge_distribution.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rain_washout_surge_distribution.csv). Median surge across all rain is +6.8% (+179 CPM), 90th percentile is +41.4% (+1,109 CPM), 95th percentile is +56.5% (+1,546 CPM), and 99th percentile is +97.9% (+2,542 CPM). For heavy rain (>5 mm/h), median surge is +14.0% and 95th percentile is +81.3% (reaching up to +196.8% in severe thunderstorms).
 
 ---
 
-## Active Open Questions for Phase 2 & Later
+## Resolved in Phase 2
 
-1. **Fixed-Threshold Baseline Formulation (Phase 2)**:
-   - Question: What explicit mathematical rule defines the current-practice fixed-threshold alarm for RadNet monitors?
-   - Candidates to evaluate in Phase 2:
-     - Absolute dose rate threshold (e.g. standard EPA public trigger or $k \times \text{mean}$).
-     - Sigma threshold over baseline (e.g., $\mu_{\text{dry}} + 3\sigma_{\text{dry}}$ or $\mu_{\text{dry}} + 5\sigma_{\text{dry}}$).
-     - Moving-average baseline with fixed offset ($N$-day rolling mean $+ k\sigma$).
-   - Plan for Phase 2: Implement explicit parameter sweeps in `src/evaluate_baseline.py` and quantify the exact false alarm rate per station-year and the fraction of false alarms coinciding with rain.
-2. **Operational Ground-Truth Definition for Radon Washout (Phase 3)**:
-   - Question: How to formalize non-circular ground truth for the `radon_washout` class given that real-world RadNet data has no external labels?
-   - Plan for Phase 3: Define physical criteria combining verified NOAA rain onset, characteristic rise time, and Bi-214/Pb-214 radioactive decay kinetics, noting limitations transparently in `DECISIONS.md`.
-3. **Urban Monitor vs. Airport Coordinates Sensitivity**:
-   - Question: Does spatial separation between urban ambient air monitoring stations and airport ASOS introduce measurable precipitation onset delays in summer convective thunderstorms vs. winter synoptic fronts?
-   - Plan for Phase 2/3: Compare cross-correlation lags between convective summer events (e.g. Tampa/Birmingham afternoon storms) and stratiform winter events.
+1. **Fixed-Threshold Baseline Formulation & False Alarm Rates**:
+   - **Resolution**: Evaluated three rule families (Global Gross CPM Sigma, Rolling 7-Day CPM Sigma, Global Dose Rate Sigma) for $k \in \{3.0, 4.0, 5.0\}$ across 324,550 synchronous hours ([`baseline_threshold_evaluation.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/baseline_threshold_evaluation.csv)).
+   - **Key Finding**: At standard $3\sigma$ thresholds, the fixed-threshold system triggers **50 to 74 alarm episodes per station-year** in rainy climates (Birmingham, DC, Dallas).
+   - **Rain Coincidence**: In Washington DC, **86.7% to 97.2%** of rolling CPM alarm episodes coincide with rain within 3 hours. In Birmingham and Dallas, **62.8% to 91.5%** of alarms coincide with rain. This rigorously demonstrates the operational vulnerability of fixed-threshold monitoring to rain-induced false alarms.
+
+---
+
+## Active Open Questions for Phase 3 & Later
+
+1. **Synthetic Fission-Product Injection Parametrization (Phase 3 Gate)**:
+   - Question: What exact mathematical function families and parameter bounds should govern synthetic fission-product plumes (Cs-137, I-131)?
+   - Parameters to ground before Gate 3:
+     - Onset shape: Step function, linear ramp, or Gaussian plume arrival.
+     - Duration / Persistence: Bounded by filter replacement interval (median 4.0 days).
+     - Peak amplitude relative to background: Calibrated against the empirical rain surge distribution (e.g., 25th to 95th percentile: +200 to +1,500 CPM above baseline).
+     - Spectral energy distribution: Channel R03 (I-131, 364.5 keV photopeak + Compton) and Channel R05 (Cs-137, 661.7 keV photopeak + Compton) relative weightings.
+2. **Hard-Case Set: Rain-Coincident Fission Plumes**:
+   - Question: What fraction of synthetic injections should be placed during verified rain hours to evaluate discrimination when washout and fission products co-occur?
+   - Plan for Phase 3: Allocate a dedicated 30% test subset of injections during verified precipitation events.
+3. **Operational Ground-Truth Definition for Radon Washout**:
+   - Question: How to define non-circular ground truth for natural radon washout given that real data lacks external labels?
+   - Plan for Phase 3: Use an explicit physical filter combining verified NOAA rain ($P_{1\text{h}} > 0$), synchronous R03/R05 rise, and subsequent exponential decay consistent with $T_{1/2} \le 30\text{ min}$.
+
 

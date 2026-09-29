@@ -1,0 +1,5 @@
+Station,Analysis_Window,Drop_Threshold_CPM,Detected_Step_Drops,Plausible_Operational_Intervals,Mean_Interval_Days,Median_Interval_Days,Mean_Step_Drop_CPM
+"San Diego, CA",2021-2024,-450.0,233,194,4.75,3.98,669.3
+"Dallas, TX",2021-2024,-300.0,232,196,4.9,4.04,476.7
+"Birmingham, AL",2021-2024,-300.0,247,217,5.14,4.29,461.7
+"Washington, DC",2021-2024,-250.0,211,173,4.6,3.96,359.3

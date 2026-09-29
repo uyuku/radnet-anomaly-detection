@@ -60,8 +60,15 @@ def parse_noaa_precip(val):
     if len(parts) >= 2 and parts[0] == "01":
         try:
             d = int(parts[1])
-            return d / 10.0 if d != 9999 else 0.0
-        except ValueError:
+            if d == 9999:
+                return 0.0
+            # Quality code verification per DECISIONS.md:
+            # 1 = passed standard check, 5 = passed all checks, C = suspect, S = suspect
+            quality = parts[3].strip() if len(parts) >= 4 else "1"
+            if quality not in ["1", "5", "C", "S"]:
+                return 0.0
+            return d / 10.0
+        except (ValueError, IndexError):
             return 0.0
     return 0.0
 
