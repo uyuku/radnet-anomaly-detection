@@ -12,6 +12,7 @@ data/raw/*
 # Ignore large intermediate or parquet caches if created later
 data/processed/*.parquet
 data/processed/*.feather
+data/processed/*.csv.gz
 
 # OS
 .DS_Store

@@ -46,3 +46,18 @@ Format:
 - **2026-09-28 | Weather data source: NOAA NCEI Global-Hourly (ISD/LCD ASOS)**
   - **Reason**: Official, verified hourly weather observations with UTC timestamps, hourly liquid precipitation depth (AA1), sea level pressure (SLP), temperature (TMP), and dew point (DEW).
   - **Citation**: NOAA National Centers for Environmental Information (NCEI) Integrated Surface Database (ISD) / Global Hourly Data. https://www.ncei.noaa.gov/data/global-hourly/
+
+---
+
+### Phase 1: Merge and Exploration Decisions
+
+- **2026-09-29 | NOAA Global-Hourly `AA1` liquid precipitation parsing policy**
+  - **Reason**: NOAA ISD encodes precipitation in the repeatable `AA1` section formatted as `AA1_1,AA1_2,AA1_3,AA1_4` representing `period_quantity,depth_dimension,condition_code,quality_code`. To ensure clean pairing with RadNet 1-hour counts, records are filtered to standard 1-hour intervals (`period == 1`) with accepted quality codes (`1`, `5`, `C`, `S`). Depths (tenths of mm) are converted to mm. Over 90%–96% of airport AA1 records represent standard 1-hour periods.
+  - **Citation**: NOAA Federal Climate Complex (2018). *Integrated Surface Database (ISD) Format Document*, Data Version 8, NOAA NCEI.
+- **2026-09-29 | Hourly temporal grid alignment policy (`dt.round('h')`)**
+  - **Reason**: RadNet observations report collection times typically between :50 and :55 UTC. NOAA routine airport METAR surface observations are likewise transmitted between :50 and :55 UTC. Rounding both datasets to the nearest UTC hour (`dt.round('h')`) aligns contemporaneous observations into identical hour bins with zero artificial lag distortion. Cross-correlation between precipitation and count rate peaks at lag 0 ($r = 0.22$) and lag +1 ($r = 0.25$).
+- **2026-09-29 | Verified dry day definition for baseline modeling**
+  - **Reason**: To isolate true background diurnal cycles and avoid contamination from residual radon progeny washout, dry periods are strictly defined as hours where both the current hour's precipitation is 0.0 mm and the rolling preceding 24-hour precipitation sum is 0.0 mm.
+- **2026-09-29 | Filter replacement detection criteria**
+  - **Reason**: Operational particulate air filters accumulate dust and long-lived nuclides over several days before being physically replaced by technicians. This produces a gradual multi-day upward drift terminated by an abrupt step drop. Step drops are identified during dry weather by a 3-hour gross CPM drop exceeding 450 CPM (`gross_cpm.diff(3) < -450`), clustered with a 24-hour refractory window. Evaluated in San Diego, this yields an empirical mean replacement interval of 3.3 days (median 3.0 days) with an average drop of 731.6 CPM, matching EPA RadNet's twice-weekly filter change schedule.
+

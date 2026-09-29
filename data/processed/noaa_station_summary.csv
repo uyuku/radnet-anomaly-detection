@@ -1,0 +1,6 @@
+Station,City,Total Obs (2017-2025),AA1 Present (%),1-Hour Period Ratio (%),Total Rain Hours,Mean Annual Precip (mm),SLP Completeness (%),TMP Completeness (%)
+KBHM,"Birmingham, AL",100335,85.77,96.29,11274,5081.8,75.49,96.5
+KDCA,"Washington, DC",126012,76.36,89.94,16786,6035.2,79.82,96.41
+KDFW,"Dallas, TX",117667,74.24,91.98,9202,4692.5,85.5,97.21
+KSAN,"San Diego, CA",112085,72.84,94.34,4160,1003.8,80.92,97.08
+KTPA,"Tampa, FL",118572,72.9,91.38,11117,7257.1,84.51,97.14
