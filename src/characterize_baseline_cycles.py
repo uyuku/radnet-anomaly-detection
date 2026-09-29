@@ -32,10 +32,11 @@ def analyze_diurnal_cycles():
         df = pd.read_csv(csv_file)
         df["dt"] = pd.to_datetime(df["utc_hour"])
 
-        # Identify dry periods: 24h rolling precipitation == 0
+        # Identify dry periods: 24h rolling precipitation == 0 on continuous grid
         df["precip_24h"] = df["precip_1h_mm"].rolling(24, min_periods=12).sum()
-        dry_mask = (df["precip_24h"] == 0.0) & (df["precip_1h_mm"] == 0.0) & df["has_radnet_obs"]
+        dry_mask = (df["precip_24h"] == 0.0) & (df["precip_1h_mm"] == 0.0) & df["has_radnet_obs"] & df["rad_complete_channels"]
         dry_df = df.loc[dry_mask].copy()
+
 
         # Local solar hour
         dry_df["local_hour"] = (dry_df["dt"].dt.hour + st["tz_offset"]) % 24

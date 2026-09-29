@@ -1,6 +1,6 @@
 Station,Dry Hours Analyzed,Mean Dry Gross (CPM),Diurnal Amplitude (CPM),Diurnal Amplitude (%),Peak Local Hour,Trough Local Hour,Mean Dry Dose (nSv/h),Dose Amplitude (nSv/h)
-"Birmingham, AL",43819,3887.5,289.5,7.45,07:00,18:00,52.9,1.7
-"Washington, DC",43094,2030.7,143.8,7.08,07:00,20:00,30.8,1.0
-"San Diego, CA",62762,6954.0,457.1,6.57,06:00,17:00,100.5,2.9
-"Dallas, TX",47542,2920.6,300.2,10.28,07:00,19:00,39.4,1.2
-"Tampa, FL",43712,2081.9,252.4,12.12,07:00,19:00,30.9,1.5
+"Birmingham, AL",43833,3887.6,289.3,7.44,07:00,18:00,52.9,1.7
+"Washington, DC",43132,2031.0,143.0,7.04,07:00,20:00,30.8,1.0
+"San Diego, CA",62821,6953.6,457.0,6.57,06:00,17:00,100.5,2.9
+"Dallas, TX",47557,2920.6,300.2,10.28,07:00,19:00,39.4,1.2
+"Tampa, FL",43730,2081.9,251.7,12.09,07:00,18:00,30.9,1.5

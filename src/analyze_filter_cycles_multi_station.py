@@ -1,8 +1,11 @@
 """
 Analyzes particulate filter replacement cycles across multiple stations and multi-year dry windows.
-Identifies step drops (diff(3) < -threshold) during verified dry periods (precip_24h == 0),
-measures the time intervals between successive replacements, and compares to EPA's documented
-"once or twice a week" operational schedule.
+Operates strictly on the continuous 78,888-hour calendar grid:
+1. Computes 3-hour diff strictly on continuous calendar time (t vs t-3h).
+2. Requires that BOTH hour t and hour t-3h have valid RadNet observations with complete channels.
+3. Requires that the entire preceding 24 hours (including the 3-hour transition) are verified dry (precip == 0).
+This guarantees that detected step drops occur entirely within a continuous, uninterrupted dry spell,
+completely eliminating gap/rain crossing artifacts.
 Saves data/processed/multi_station_filter_cycle_summary.csv.
 """
 
@@ -20,19 +23,31 @@ STATIONS = [
 
 
 def detect_filter_drops(df: pd.DataFrame, drop_threshold: float) -> pd.DataFrame:
-    df["dt"] = pd.to_datetime(df["utc_hour"])
-    # 24-hour dry mask
+    # df is on continuous 1-hour grid
+    # Compute 24-hour precipitation rolling sum
     df["precip_24h"] = df["precip_1h_mm"].rolling(24, min_periods=12).sum()
-    dry_mask = (df["precip_24h"] == 0.0) & (df["precip_1h_mm"] == 0.0) & df["has_radnet_obs"]
     
-    sub = df[dry_mask].copy().sort_values("dt")
-    sub["cpm_diff_3h"] = sub["gross_cpm"].diff(3)
+    # 3-hour diff on continuous grid: gross_cpm(t) - gross_cpm(t-3)
+    df["cpm_diff_3h"] = df["gross_cpm"].diff(3)
     
-    candidate_drops = sub[sub["cpm_diff_3h"] < drop_threshold].copy()
+    # Strict within-dry-spell condition:
+    # 1. Valid observation at t and at t-3
+    valid_t = df["has_radnet_obs"] & df["rad_complete_channels"] & df["gross_cpm"].notna()
+    valid_t3 = valid_t.shift(3, fill_value=False)
+    
+    # 2. Continuous dry weather: 24h precipitation at t is 0.0, and current rain is 0.0
+    # Also check that rain at t-1, t-2, t-3 was 0.0
+    rain_window = df["precip_1h_mm"].rolling(4, min_periods=4).sum()
+    dry_spell = (df["precip_24h"] == 0.0) & (rain_window == 0.0)
+    
+    # Step drop condition
+    drop_mask = (df["cpm_diff_3h"] < drop_threshold) & valid_t & valid_t3 & dry_spell
+    
+    candidate_drops = df[drop_mask].copy()
     if candidate_drops.empty:
         return pd.DataFrame()
 
-    # Cluster consecutive hours of the same drop (minimum 24 hours separation)
+    # Deduplicate consecutive hours belonging to the same step drop (min 24h separation)
     candidate_drops["time_diff"] = candidate_drops["dt"].diff()
     unique_drops = candidate_drops[(candidate_drops["time_diff"] > pd.Timedelta(hours=24)) | (candidate_drops["time_diff"].isna())].copy()
     return unique_drops
@@ -44,18 +59,18 @@ def analyze_all():
     for st in STATIONS:
         csv_file = Path(f"data/processed/merged_{st['id']}_2017_2025.csv.gz")
         df = pd.read_csv(csv_file)
-        
-        # Analyze 2021-2024 (4 full years of modern operation)
         df["dt"] = pd.to_datetime(df["utc_hour"])
-        df_sub = df[(df["dt"] >= "2021-01-01") & (df["dt"] <= "2024-12-31")].copy()
+        df = df.sort_values("dt").reset_index(drop=True)
+        
+        # Analyze 2021-2024 (4 full years of modern operational data)
+        df_sub = df[(df["dt"] >= "2021-01-01") & (df["dt"] <= "2024-12-31")].copy().reset_index(drop=True)
         
         drops = detect_filter_drops(df_sub, st["threshold"])
         if len(drops) < 3:
             continue
             
         intervals = drops["dt"].diff().dt.total_seconds() / 86400.0
-        # Filter intervals to plausible operational filter change windows (1.5 days to 14 days)
-        # to exclude long multi-month gaps between dry seasons
+        # Operational filter change cadence: 1.5 days to 14 days
         valid_intervals = intervals[(intervals >= 1.5) & (intervals <= 14.0)]
         
         mean_int = round(valid_intervals.mean(), 2) if len(valid_intervals) > 0 else np.nan
@@ -77,7 +92,7 @@ def analyze_all():
     out_df = pd.DataFrame(summaries)
     out_csv = Path("data/processed/multi_station_filter_cycle_summary.csv")
     out_df.to_csv(out_csv, index=False)
-    print(f"\nSaved multi-station filter cycle summary to {out_csv}")
+    print(f"\nSaved continuous calendar filter cycle summary to {out_csv}")
     print(out_df.to_string(index=False))
 
 

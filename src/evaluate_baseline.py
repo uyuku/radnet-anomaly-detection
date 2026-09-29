@@ -1,13 +1,16 @@
 """
 Phase 2: Evaluates fixed-threshold baseline alarm systems on RadNet data (2017-2025).
+Operates strictly on the continuous 78,888-hour calendar grid so that rolling windows
+and lag/diff operations represent exact calendar time, not row indices.
+
 Implements explicit threshold rules recorded in DECISIONS.md:
-1. Global Dry Sigma: Threshold = mu_dry + k * sigma_dry (k = 3.0, 4.0, 5.0)
-2. Rolling 7-day Sigma: Threshold(t) = rolling_mean_168h(t) + k * sigma_dry (k = 3.0, 4.0, 5.0)
-3. Dose Rate Sigma: Threshold = mu_dose_dry + k * sigma_dose_dry (k = 3.0, 4.0, 5.0)
+1. Global Gross CPM Sigma: Threshold = mu_dry + k * sigma_dry (k = 3.0, 4.0, 5.0)
+2. Rolling 7-day CPM Sigma: Threshold(t) = rolling_mean_168h(t) + k * sigma_dry (k = 3.0, 4.0, 5.0)
+3. Global Dose Rate Sigma: Threshold = mu_dose_dry + k * sigma_dose_dry (k = 3.0, 4.0, 5.0)
 
 Quantifies:
 - Alarm hours per station-year
-- Discrete alarm episodes per station-year
+- Discrete alarm episodes per station-year (clustered on continuous calendar grid)
 - Rain coincidence rate (P_1h > 0, P_3h > 0, P_6h > 0)
 - Dry alarm rate (P_24h == 0)
 - Mean episode duration (hours)
@@ -35,39 +38,29 @@ STATIONS = [
 HOURS_PER_YEAR = 8760.0
 
 
-def cluster_into_episodes(alarm_series: pd.Series, time_series: pd.Series) -> int:
-    """
-    Counts discrete alarm episodes (runs of consecutive alarm hours separated by >= 1 normal hour).
-    """
-    if not alarm_series.any():
-        return 0
-    # An episode starts when alarm is True and previous was False (or start of series)
-    is_alarm = alarm_series.astype(int)
-    starts = (is_alarm == 1) & (is_alarm.shift(1, fill_value=0) == 0)
-    return int(starts.sum())
-
-
 def evaluate_thresholds():
     all_results = []
     station_dfs = {}
 
-    # 1. Load data, compute baselines and rolling features
+    # 1. Load data, compute baselines and rolling features on continuous calendar grid
     for st in STATIONS:
         csv_file = Path(f"data/processed/merged_{st['id']}_2017_2025.csv.gz")
         df = pd.read_csv(csv_file)
         df["dt"] = pd.to_datetime(df["utc_hour"])
-        
-        # Valid synchronous records
-        valid = df[df["has_radnet_obs"] & df["has_weather_obs"] & df["rad_complete_channels"]].copy().sort_values("dt")
-        
-        # Precipitation rolling sums for coincidence evaluation
-        valid["precip_3h"] = valid["precip_1h_mm"].rolling(3, min_periods=1).sum()
-        valid["precip_6h"] = valid["precip_1h_mm"].rolling(6, min_periods=1).sum()
-        valid["precip_24h"] = valid["precip_1h_mm"].rolling(24, min_periods=12).sum()
+        # Ensure strict hourly chronological order
+        df = df.sort_values("dt").reset_index(drop=True)
 
-        # Dry mask (24h rain == 0)
-        dry_mask = (valid["precip_24h"] == 0.0) & (valid["precip_1h_mm"] == 0.0)
-        dry_df = valid[dry_mask]
+        # Compute calendar-time rolling sums on full 78,888-hour grid BEFORE any filtering
+        df["precip_3h"] = df["precip_1h_mm"].rolling(3, min_periods=1).sum()
+        df["precip_6h"] = df["precip_1h_mm"].rolling(6, min_periods=1).sum()
+        df["precip_24h"] = df["precip_1h_mm"].rolling(24, min_periods=12).sum()
+
+        # Valid observation mask
+        valid_obs_mask = df["has_radnet_obs"] & df["has_weather_obs"] & df["rad_complete_channels"]
+
+        # Dry mask on continuous grid (24h rain == 0 and current rain == 0)
+        dry_mask = (df["precip_24h"] == 0.0) & (df["precip_1h_mm"] == 0.0) & valid_obs_mask
+        dry_df = df[dry_mask]
 
         mu_cpm = dry_df["gross_cpm"].mean()
         sigma_cpm = dry_df["gross_cpm"].std()
@@ -75,21 +68,25 @@ def evaluate_thresholds():
         mu_dose = dry_df["dose_rate_nsvh"].mean()
         sigma_dose = dry_df["dose_rate_nsvh"].std()
 
-        # Rolling 168h (7-day) baseline
-        valid["rolling_cpm_168h"] = valid["gross_cpm"].rolling(168, min_periods=48).mean()
-        # Fall back to global mean where rolling is NaN
-        valid["rolling_cpm_168h"] = valid["rolling_cpm_168h"].fillna(mu_cpm)
+        # Rolling 168h (7-day calendar window) on continuous grid
+        df["rolling_cpm_168h"] = df["gross_cpm"].rolling(168, min_periods=48).mean()
+        # Fill remaining gaps with station dry mean
+        df["rolling_cpm_168h"] = df["rolling_cpm_168h"].fillna(mu_cpm)
+
+        valid_count = int(valid_obs_mask.sum())
+        years_covered = valid_count / HOURS_PER_YEAR
 
         station_dfs[st["id"]] = {
-            "df": valid,
+            "df": df,
+            "valid_obs_mask": valid_obs_mask,
             "name": st["name"],
             "color": st["color"],
             "mu_cpm": mu_cpm,
             "sigma_cpm": sigma_cpm,
             "mu_dose": mu_dose,
             "sigma_dose": sigma_dose,
-            "total_hours": len(valid),
-            "years_covered": len(valid) / HOURS_PER_YEAR,
+            "valid_count": valid_count,
+            "years_covered": years_covered,
         }
 
     # 2. Define Rules to evaluate
@@ -113,31 +110,35 @@ def evaluate_thresholds():
         for st in STATIONS:
             s_info = station_dfs[st["id"]]
             df = s_info["df"]
+            valid_mask = s_info["valid_obs_mask"]
             n_years = s_info["years_covered"]
 
-            # Compute threshold
+            # Compute threshold and alarm on continuous grid
             if family == "Global Gross CPM Sigma":
                 threshold = s_info["mu_cpm"] + k * s_info["sigma_cpm"]
-                is_alarm = df["gross_cpm"] > threshold
+                is_alarm = valid_mask & (df["gross_cpm"] > threshold)
                 thresh_desc = f"{threshold:.1f} CPM ({k}s over {s_info['mu_cpm']:.1f})"
             elif family == "Rolling 7-Day CPM Sigma":
                 threshold = df["rolling_cpm_168h"] + k * s_info["sigma_cpm"]
-                is_alarm = df["gross_cpm"] > threshold
+                is_alarm = valid_mask & (df["gross_cpm"] > threshold)
                 thresh_desc = f"Rolling 168h + {k}s ({k*s_info['sigma_cpm']:.1f} CPM)"
             elif family == "Global Dose Rate Sigma":
                 threshold = s_info["mu_dose"] + k * s_info["sigma_dose"]
-                is_alarm = df["dose_rate_nsvh"] > threshold
+                is_alarm = valid_mask & (df["dose_rate_nsvh"] > threshold)
                 thresh_desc = f"{threshold:.1f} nSv/h ({k}s over {s_info['mu_dose']:.1f})"
 
+            # Discrete episode clustering on continuous calendar grid:
+            # An episode starts when is_alarm is True at t, and was False (or gap) at t-1 hour
+            prev_alarm = is_alarm.shift(1, fill_value=False)
+            episode_starts = is_alarm & (~prev_alarm)
+            alarm_episodes = int(episode_starts.sum())
             alarm_hours = int(is_alarm.sum())
-            alarm_episodes = cluster_into_episodes(is_alarm, df["dt"])
 
             alarm_hours_per_year = round(alarm_hours / n_years, 2)
             episodes_per_year = round(alarm_episodes / n_years, 2)
 
             if alarm_hours > 0:
                 alarm_df = df[is_alarm]
-                # Coincidence fractions
                 rain_1h_frac = round((alarm_df["precip_1h_mm"] > 0.0).mean() * 100.0, 2)
                 rain_3h_frac = round((alarm_df["precip_3h"] > 0.0).mean() * 100.0, 2)
                 rain_6h_frac = round((alarm_df["precip_6h"] > 0.0).mean() * 100.0, 2)
@@ -172,10 +173,10 @@ def evaluate_thresholds():
     res_df = pd.DataFrame(all_results)
     out_csv = Path("data/processed/baseline_threshold_evaluation.csv")
     res_df.to_csv(out_csv, index=False)
-    print(f"Saved baseline evaluation table to {out_csv}")
+    print(f"Saved continuous calendar baseline evaluation table to {out_csv}")
 
-    # 3. Print high-level summary table across stations for 3-sigma vs 5-sigma
-    print("\n=== Baseline Fixed-Threshold Performance (Episodes / Year & Rain Coincidence) ===")
+    # 3. Print high-level summary table across stations
+    print("\n=== Baseline Fixed-Threshold Performance (Continuous Calendar Grid) ===")
     summary_view = res_df[["Rule_Family", "Multiplier_k", "Station", "Episodes_Per_Year", "Coincident_Rain_3h_Pct", "Coincident_Rain_6h_Pct", "Dry_Weather_Alarms_Pct"]]
     print(summary_view.to_string(index=False))
 
@@ -183,18 +184,16 @@ def evaluate_thresholds():
     # Figure 1: Episodes per Year by Rule and Station (Bar Chart)
     fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 
-    # Panel A: Episodes / Year across Rules for 3-Sigma
     sub_3s = res_df[res_df["Multiplier_k"] == 3.0]
     piv_3s = sub_3s.pivot(index="Station", columns="Rule_Family", values="Episodes_Per_Year")
     piv_3s.plot(kind="bar", ax=axes[0], colormap="viridis", width=0.8, edgecolor="black")
-    axes[0].set_title("A. Annual Alarm Episodes at 3-Sigma Threshold\n(Mean Dry + 3*Sigma)", fontsize=11, fontweight="bold")
+    axes[0].set_title("A. Annual Alarm Episodes at 3-Sigma Threshold\n(Continuous Calendar Grid)", fontsize=11, fontweight="bold")
     axes[0].set_ylabel("Discrete Alarm Episodes / Year", fontsize=10, fontweight="bold")
     axes[0].set_xlabel("")
     axes[0].grid(True, linestyle="--", alpha=0.5, axis="y")
     axes[0].legend(fontsize=8, loc="upper right")
     axes[0].tick_params(axis="x", rotation=30)
 
-    # Panel B: Coincidence with Rain (3h proximate rain) at 3-Sigma
     piv_rain = sub_3s.pivot(index="Station", columns="Rule_Family", values="Coincident_Rain_3h_Pct")
     piv_rain.plot(kind="bar", ax=axes[1], colormap="plasma", width=0.8, edgecolor="black")
     axes[1].set_title("B. Fraction of Alarms Coinciding with Rain (3h Window)\n(Empirical Demonstration of False Alarms Caused by Washout)", fontsize=11, fontweight="bold")

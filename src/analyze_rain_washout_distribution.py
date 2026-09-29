@@ -1,11 +1,8 @@
 """
 Analyzes the comprehensive distribution of radiation surges across all synchronous rain hours
 (15,606 rain hours across 2017-2025) for all 5 pilot stations.
-Computes quantiles (p10, p25, median, p75, p90, p95, p99, max) of absolute and percentage
-CPM and dose rate surges above verified dry baseline.
-Stratifies by rainfall intensity: Light (<=1mm), Moderate (1-5mm), Heavy (>5mm).
-Saves data/processed/rain_washout_surge_distribution.csv and publication figures.
 """
+
 
 from pathlib import Path
 import matplotlib.pyplot as plt
@@ -34,14 +31,17 @@ def analyze_washout_distributions():
     for st in STATIONS:
         csv_file = Path(f"data/processed/merged_{st['id']}_2017_2025.csv.gz")
         df = pd.read_csv(csv_file)
+        df["dt"] = pd.to_datetime(df["utc_hour"])
+        df = df.sort_values("dt").reset_index(drop=True)
+        
+        # 24h rolling precipitation computed on continuous 78,888-hour grid BEFORE filtering
+        df["precip_24h"] = df["precip_1h_mm"].rolling(24, min_periods=12).sum()
         
         # Valid synchronous records
-        valid = df[df["has_radnet_obs"] & df["has_weather_obs"] & df["rad_complete_channels"]].copy()
+        valid_obs_mask = df["has_radnet_obs"] & df["has_weather_obs"] & df["rad_complete_channels"]
         
-        # 24h rolling precipitation for dry baseline
-        valid["precip_24h"] = valid["precip_1h_mm"].rolling(24, min_periods=12).sum()
-        dry_mask = (valid["precip_24h"] == 0.0) & (valid["precip_1h_mm"] == 0.0)
-        dry_df = valid[dry_mask]
+        dry_mask = (df["precip_24h"] == 0.0) & (df["precip_1h_mm"] == 0.0) & valid_obs_mask
+        dry_df = df[dry_mask]
 
         mu_cpm = dry_df["gross_cpm"].mean()
         sigma_cpm = dry_df["gross_cpm"].std()
@@ -55,9 +55,10 @@ def analyze_washout_distributions():
             "sigma_dose": sigma_dose,
         }
 
-        # Filter to rain hours
-        rain_mask = valid["precip_1h_mm"] > 0.0
-        rain_df = valid[rain_mask].copy()
+        # Filter to rain hours with valid synchronous observations
+        rain_mask = (df["precip_1h_mm"] > 0.0) & valid_obs_mask
+        rain_df = df[rain_mask].copy()
+
 
         # Compute surge metrics
         rain_df["delta_cpm"] = rain_df["gross_cpm"] - mu_cpm

@@ -1,7 +1,9 @@
 """
 Computes and plots full cross-correlation lag profiles between hourly precipitation
-and RadNet radiation metrics (Gross CPM, Dose Rate, and energy channels)
-across lags from -12 to +12 hours for all 5 pilot stations.
+and RadNet radiation metrics (Gross CPM, Dose Rate) across lags from -12 to +12 hours
+for all 5 pilot stations.
+Operates strictly on the continuous 78,888-hour calendar grid so that lag shifts represent
+exact calendar hours regardless of telemetry gaps.
 """
 
 from pathlib import Path
@@ -31,24 +33,27 @@ def compute_lag_correlations():
     for st in STATIONS:
         csv_file = Path(f"data/processed/merged_{st['id']}_2017_2025.csv.gz")
         if not csv_file.exists():
-            print(f"File {csv_file} does not exist yet. Skipping.")
             continue
 
         df = pd.read_csv(csv_file)
-        # Filter to valid synchronous hours with complete channels
-        valid = df[df["has_radnet_obs"] & df["has_weather_obs"] & df["rad_complete_channels"]].copy()
+        df["dt"] = pd.to_datetime(df["utc_hour"])
+        df = df.sort_values("dt").reset_index(drop=True)
 
-        # Compute cross-correlation for each lag
-        # lag > 0: rain leads radiation (radiation at t, rain at t - lag)
-        # lag < 0: radiation leads rain (radiation at t, rain at t + |lag|)
         cpm_corrs = []
         dose_corrs = []
 
         for lag in LAGS:
-            # Shift precipitation by lag: precip(t - lag)
-            shifted_precip = valid["precip_1h_mm"].shift(lag)
-            r_cpm = valid["gross_cpm"].corr(shifted_precip)
-            r_dose = valid["dose_rate_nsvh"].corr(shifted_precip)
+            # Shift on continuous calendar grid:
+            # lag > 0: rain leads radiation (radiation at t, rain at t - lag)
+            shifted_precip = df["precip_1h_mm"].shift(lag)
+
+            # Filter pairs where both radiation and shifted_precip are valid
+            mask_cpm = df["has_radnet_obs"] & df["rad_complete_channels"] & df["gross_cpm"].notna() & shifted_precip.notna()
+            mask_dose = df["has_radnet_obs"] & df["dose_rate_nsvh"].notna() & shifted_precip.notna()
+
+            r_cpm = df.loc[mask_cpm, "gross_cpm"].corr(shifted_precip.loc[mask_cpm])
+            r_dose = df.loc[mask_dose, "dose_rate_nsvh"].corr(shifted_precip.loc[mask_dose])
+
             cpm_corrs.append(r_cpm)
             dose_corrs.append(r_dose)
 
@@ -66,7 +71,7 @@ def compute_lag_correlations():
     # Panel 0: Gross CPM
     axes[0].axvline(0, color="gray", linestyle="--", alpha=0.7, label="Zero Lag (Synchronous)")
     axes[0].set_ylabel("Pearson Correlation (r)", fontsize=11, fontweight="bold")
-    axes[0].set_title("Cross-Correlation Lag Profile: Hourly Precipitation vs. Gross Count Rate (CPM)\n(Positive Lag: Rain Leads Radiation; Negative Lag: Radiation Leads Rain)", fontsize=12, fontweight="bold")
+    axes[0].set_title("Cross-Correlation Lag Profile: Hourly Precipitation vs. Gross Count Rate (CPM)\n(Calendar-Grid Shifts: Positive Lag = Rain Leads Radiation)", fontsize=12, fontweight="bold")
     axes[0].grid(True, linestyle="--", alpha=0.5)
     axes[0].legend(loc="upper right", fontsize=9)
 
