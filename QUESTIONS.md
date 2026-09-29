@@ -52,24 +52,41 @@ This file tracks parameters and questions that are not yet known from data or ci
 
 ---
 
-## Active Open Questions for Phase 3 & Later
+## Resolved in Phase 3
+
+1. **Synthetic Fission-Product Injection Parametrization & Disjointness**:
+   - **Resolution**: Implemented in [`src/synthetic_injection.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/synthetic_injection.py) and verified in [`synthetic_injection_catalog.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/synthetic_injection_catalog.csv).
+   - **Disjoint Families**:
+     - *Shapes*: Train = Linear Ramp (rise 1–4h) and Step arrival (instant); Test = Sigmoidal ($\tau \in [0.8, 1.8]$h) and Exponential inflow ($\tau \in [1.0, 2.5]$h).
+     - *Durations*: Train = 6 to 24 hours; Test = 28 to 72 hours (bounded by empirical 4-day filter replacement).
+     - *Magnitudes*: Train = Band A [250, 600] CPM and Band C [1400, 2500] CPM; Test = Band B [700, 1200] CPM (interpolation band).
+     - *Nuclides*: Train = balanced mix ($f_{\text{Cs}} \in [0.30, 0.70]$); Test = pure Cs-137 ($f_{\text{Cs}} \ge 0.85$, N=98) and pure I-131 ($f_{\text{Cs}} \le 0.15$, N=102).
+2. **Physical NaI(Tl) Spectrometry Allocations**:
+   - **Resolution**: Grounded in Knoll (2010) and Vieira et al. (2019):
+     - Cs-137 (661.7 keV): R05 photopeak 45%, R02 20%, R03 15%, R04 20%, R06–R09 = 0.0%.
+     - I-131 (364.5 keV): R03 photopeak 65%, R02 25%, R04 5%, R05 5%, R06–R09 = 0.0%.
+     - Radon Washout Contrast: Natural Bi-214 progeny emit strong gamma lines at 1120 keV (R07) and 1764 keV (R08), carrying ~5.4% of counts during rain. In pure fission plumes, R07 and R08 are strictly 0.0%.
+3. **Dedicated Hard-Case Set: Rain-Coincident Fission Plumes**:
+   - **Resolution**: Exactly 30% of test injections (12 per station, 60 total across network) are forced to start during verified active rain ($P_{1\text{h}} > 0$). Time-series visualization in [`reports/figures/synthetic_injection_hard_case_rain.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_hard_case_rain.png) demonstrates detection challenges and post-rain persistence.
+4. **Operational Ground-Truth Definition for Natural Radon Washout**:
+   - **Resolution**: Operational heuristic rule: an hour is labeled `radon_washout` if $P_{3\text{h}} > 0\text{ mm}$ and gross CPM exceeds dry baseline by $>2\sigma$ ($x(t) > \mu_{\text{dry}} + 2\sigma_{\text{dry}}$) on complete-channel records. Documented as an explicit methodological limitation in `DECISIONS.md`.
+
+---
+
+## Active Open Questions for Phase 4 & Later
 
 1. **Monitor Site Coordinates for DC, San Diego, Dallas, and Tampa**:
    - Question: What are the exact AQS site IDs and GPS coordinates for the RadNet monitors in Washington DC, San Diego, Dallas, and Tampa?
    - Plan: Search annual ambient monitoring network plans for DOEE (DC), SDAPCD (San Diego), TCEQ (Dallas), and EPC (Hillsborough/Tampa) to locate co-located RadNet samplers, similar to Birmingham's North Birmingham NCore site.
-2. **Synthetic Fission-Product Injection Parametrization (Phase 3 Gate)**:
-   - Question: What exact mathematical function families and parameter bounds should govern synthetic fission-product plumes (Cs-137, I-131)?
-   - Parameters grounded from Phase 1 and Phase 2:
-     - Onset shape: Step function, linear ramp, or Gaussian plume arrival.
-     - Duration / Persistence: Bounded by filter replacement interval (median 4.0 days; mean 4.8–5.5 days).
-     - Peak amplitude relative to background: Calibrated against the empirical rain surge distribution (e.g., 25th to 95th percentile: +200 to +1,500 CPM above baseline).
-     - Spectral energy distribution: Channel R03 (I-131, 364.5 keV photopeak + Compton) and Channel R05 (Cs-137, 661.7 keV photopeak + Compton) relative weightings.
-3. **Hard-Case Set: Rain-Coincident Fission Plumes**:
-   - Question: What fraction of synthetic injections should be placed during verified rain hours to evaluate discrimination when washout and fission products co-occur?
-   - Plan for Phase 3: Allocate a dedicated 30% test subset of injections during verified precipitation events.
-4. **Operational Ground-Truth Definition for Radon Washout**:
-   - Question: How to define non-circular ground truth for natural radon washout given that real data lacks external labels?
-   - Plan for Phase 3: Use an explicit physical filter combining verified NOAA rain ($P_{1\text{h}} > 0$), synchronous R03/R05 rise, and subsequent exponential decay consistent with $T_{1/2} \le 30\text{ min}$.
+2. **Phase 4 Feature Engineering Architecture**:
+   - Question: What exact feature set provides optimal discrimination while preventing temporal leakage?
+   - Candidate Features:
+     - Multi-scale weather features: $P_{1\text{h}}, P_{3\text{h}}, P_{6\text{h}}, P_{24\text{h}}$, pressure trends ($\Delta P_{\text{slp}} / 3\text{h}$), dew point depression.
+     - Spectrometric channel ratios: $(R03 + R05) / R02$, $R05 / R03$, and the high-energy ratio $(R07 + R08) / \text{Gross CPM}$ (the definitive radon progeny signature).
+     - Temporal decay features: 3h backward difference, rolling variance, ratio to 168h rolling mean.
+3. **Model Family & Class Imbalance Handling for Phase 4**:
+   - Question: Given high class imbalance (~96% normal, ~2% washout, ~2% fission), how should gradient boosting (LightGBM / XGBoost) be loss-weighted or calibrated (e.g., focal loss, class weights, or post-hoc threshold tuning)?
+
 
 
 

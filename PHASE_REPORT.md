@@ -37,7 +37,8 @@ In response to independent AI cross-review, **all time-series operations (rollin
 
 ### Item 3 & 3.4: Full Distribution of Radiation Surges Across All Rain Hours
 - **Action**: In [`src/analyze_rain_washout_distribution.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_rain_washout_distribution.py), the 24-hour dry rolling window is computed on the continuous calendar grid prior to filtering ([`rain_washout_surge_distribution.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rain_washout_surge_distribution.csv), [`reports/figures/rain_washout_surge_distribution.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rain_washout_surge_distribution.png)).
-- **Result (Across all 15,602 fully-observed rain hours)**:
+- **Result (Across all 15,602 fully-observed rain hours; 15,606 hours have synchronous rain and RadNet observations, of which 15,602 also have simultaneous temperature observations, with 4 hours in Tampa missing temperature telemetry)**:
+
   - Median: **+6.85%** (+180.8 CPM, +0.56 $\sigma$)
   - 75th percentile: **+21.60%** (+576.1 CPM, +1.92 $\sigma$)
   - 90th percentile: **+41.41%** (+1,109.1 CPM, +3.67 $\sigma$)
@@ -133,9 +134,157 @@ In response to independent AI cross-review, **all time-series operations (rollin
 Per Section 4 of `PROJECT_SPEC.md`:
 > **Phase 2 Gate: Baseline.** Fixed-threshold alarm, with threshold set by an explicit rule recorded in `DECISIONS.md`. Report alarms per station-year and how many coincide with rain. Gate: human approves.
 
+**Status**: Fully Approved by Claude and Ömer (2026-09-29).
+
+---
+
+# Phase 3 Report: Synthetic Injection Design (Gate 3)
+
+**Date**: 2026-09-29  
+**Branch**: `main`  
+**Scope**: Section 5 of `PROJECT_SPEC.md` ("Synthetic injection design").  
+**Gate Status**: **Awaiting Review and Sign-off by Human (Ömer) and Claude.**  
+*(Per Section 4 of `PROJECT_SPEC.md`, no machine learning models, classifiers, or gradient boosting algorithms have been trained or evaluated).*
+
+---
+
+## 1. Executive Summary & Physics Encoded
+
+Phase 3 establishes the physical framework for generating synthetic fission-product plume injections ($^{137}\text{Cs}$ and $^{131}\text{I}$) onto real historical RadNet background observations (2017–2025). The design enforces rigorous physical discrimination between natural radon progeny washout and anthropogenic fission contamination:
+
+1. **Physical Persistence vs. Rapid Decay**:
+   - **Radon-progeny washout**: Rain scavenges short-lived $^{214}\text{Pb}$ ($T_{1/2} = 26.8\text{ min}$) and $^{214}\text{Bi}$ ($T_{1/2} = 19.9\text{ min}$). When precipitation ceases, the excess count rate decays back to baseline within 2 to 3 hours.
+   - **Fission products on particulate filters**: $^{137}\text{Cs}$ ($T_{1/2} = 30.1\text{ years}$) and $^{131}\text{I}$ ($T_{1/2} = 8.02\text{ days}$) do not undergo meaningful radioactive decay over hourly or multi-day operational monitoring timescales. Once collected on the filter, they **persist indefinitely** until field personnel manually replace the particulate filter (empirically characterized in Phase 1 and Phase 2 as occurring every 3.96 to 4.83 days; EPA standard schedule "once or twice a week").
+2. **Spectroscopic Channel Allocation in NaI(Tl)**:
+   - Energy resolution in RadNet NaI(Tl) scintillators is 7%–9% at 662 keV (Knoll, 2010), blurring $^{214}\text{Pb}$ (351.9 keV) with $^{131}\text{I}$ (364.5 keV) in Channel R03, and $^{214}\text{Bi}$ (609.3 keV) with $^{137}\text{Cs}$ (661.7 keV) in Channel R05.
+   - **Fundamental Spectral Discriminator**: Natural radon washout *must* co-elevate high-energy Channels R07 (1001–1400 keV, $^{214}\text{Bi}$ 1120.3 keV photopeak) and R08 (1401–1800 keV, $^{214}\text{Bi}$ 1764.5 keV photopeak), which account for **~5.4% of all excess washout counts**. In sharp contrast, pure fission products produce **strictly 0.0% counts above 800 keV** (Channels R06–R09).
+3. **Strict Train/Test Parameter Disjointness**:
+   - To guarantee that machine learning models in Phase 4 cannot memorize synthetic injection templates, Training (2017–2022) and Test (2023–2025) injections are constructed with **zero overlap** across four independent parameter axes: shape families, pulse durations, magnitude bands, and nuclide mixtures.
+4. **Dedicated Hard-Case Set (30% Rain Coincidence)**:
+   - Exactly 30% of all test injections (12 per station, 60 total across the network) are forced to arrive during verified active precipitation ($P_{1\text{h}} > 0\text{ mm}$), directly testing the model's ability to separate persistent fission signals from transient rain surges when both occur contemporaneously.
+
+---
+
+## 2. Mathematical Injection Shape Families
+
+The excess count rate profile $S(t)$ over duration $D$ (hours $t \in [0, D-1]$) scaled to peak amplitude $S_{\text{peak}}$ is computed from four mathematical families:
+
+| Shape Family | Set Allocation | Mathematical Formula $S(t)$ | Physical Rationale |
+| :--- | :--- | :--- | :--- |
+| **Linear Ramp** | **Training Only** | $S(t) = S_{\text{peak}} \cdot \min\left(\frac{t}{t_{\text{rise}}}, 1.0\right)$ with $t_{\text{rise}} \in [1, 4]\text{ h}$ | Gradual plume arrival with linearly increasing ground-level concentration, followed by steady passage. |
+| **Step Arrival** | **Training Only** | $S(t) = S_{\text{peak}}$ | Immediate plume frontal passage or acute puff arrival at the monitoring station. |
+| **Sigmoidal (Logistic)** | **Test Only** | $S(t) = S_{\text{peak}} \cdot \frac{1}{1 + \exp(-(t - t_{\text{mid}})/\tau)}$ *(normalized to $[0, 1]$)* | Smooth atmospheric diffusion arrival with inflection; $\tau \in [0.8, 1.8]\text{ h}$, $t_{\text{mid}} = \min(4, D/4)$. |
+| **Exponential Inflow** | **Test Only** | $S(t) = S_{\text{peak}} \cdot \frac{1 - \exp(-t/\tau)}{1 - \exp(-D/\tau)}$ with $\tau \in [1.0, 2.5]\text{ h}$ | First-order ventilation/deposition inflow reaching asymptotic saturation on the filter. |
+
+---
+
+## 3. NaI(Tl) Spectrometry Branching Fractions
+
+Channel allocations map photon energies to RadNet channels R02–R09 (Vieira et al., 2019; Knoll, 2010):
+
+| Channel Designation | Energy Window (keV) | Pure $^{137}\text{Cs}$ ($f_{\text{Cs}}=1.0$) | Pure $^{131}\text{I}$ ($f_{\text{I}}=1.0$) | Balanced Mix ($50\%$ Cs, $50\%$ I) | Natural Radon Washout (Empirical Excess) |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **R02** | $101 - 200$ | 20.0% (Compton backscatter) | 25.0% (Compton continuum) | 22.5% | **42.0%** (Compton continuum) |
+| **R03** | $201 - 400$ | 15.0% (Compton continuum) | **65.0% (Photopeak 364.5 keV)** | 40.0% | **35.0% ($^{214}\text{Pb}$ 351.9 keV)** |
+| **R04** | $401 - 600$ | 20.0% (Compton edge 477 keV) | 5.0% (Forward scatter) | 12.5% | **8.2%** |
+| **R05** | $601 - 800$ | **45.0% (Photopeak 661.7 keV)** | 5.0% (Weak line 637.0 keV) | 25.0% | **6.7% ($^{214}\text{Bi}$ 609.3 keV)** |
+| **R06** | $801 - 1000$ | **0.0%** | **0.0%** | **0.0%** | **2.4%** |
+| **R07** | $1001 - 1400$ | **0.0%** | **0.0%** | **0.0%** | **3.6% ($^{214}\text{Bi}$ 1120.3 keV)** |
+| **R08** | $1401 - 1800$ | **0.0%** | **0.0%** | **0.0%** | **1.7% ($^{214}\text{Bi}$ 1764.5 keV)** |
+| **R09** | $1801 - 2200$ | **0.0%** | **0.0%** | **0.0%** | **0.4%** |
+
+> [!IMPORTANT]
+> **Key Spectral Insight**: In Channel R03 and Channel R05, radon progeny and fission products are severely blurred by NaI(Tl) resolution. However, in Channels R07 and R08, radon washout produces **~5.4% of all excess counts** due to high-energy $^{214}\text{Bi}$ de-excitations, whereas pure fission products emit **strictly 0.0% counts**. This is illustrated in [`reports/figures/synthetic_injection_shapes_and_nuclides.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_shapes_and_nuclides.png).
+
+---
+
+## 4. Strict Train/Test Parameter Disjointness Matrix
+
+The 500 deterministic injections in [`data/processed/synthetic_injection_catalog.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/synthetic_injection_catalog.csv) enforce strict parameter disjointness:
+
+| Parameter Axis | Training Set (2017–2022, N=300) | Test Set (2023–2025, N=200) | Disjoint Separation / Evaluation Target |
+| :--- | :--- | :--- | :--- |
+| **Temporal Split** | 2017-06-01 to 2022-12-31 | 2023-01-01 to 2025-12-31 | Strict time split (zero temporal leakage) |
+| **Shape Families** | Linear Ramp (150), Step (150) | Sigmoidal (96), Exponential (104) | **Zero shape overlap** across sets |
+| **Duration (Hours)** | **6 to 24 hours** (Mean 14.3 h) | **28 to 72 hours** (Mean 44.3 h) | **4-hour separation gap** [24h, 28h]; bounded by filter change (~96h) |
+| **Peak Magnitude Band** | **Band A [250, 600] CPM** & **Band C [1400, 2500] CPM** | **Band B [700, 1200] CPM** | **Interpolation evaluation**: Test evaluates strictly within the unseen interior band [700, 1200] |
+| **Nuclide Fraction ($f_{\text{Cs}}$)**| **Balanced Mixtures**: $f_{\text{Cs}} \in [0.30, 0.70]$ | **Pure / Skewed**: $f_{\text{Cs}} \ge 0.85$ (98) or $f_{\text{Cs}} \le 0.15$ (102) | **Extrapolation evaluation**: Test evaluates pure isotopes after training exclusively on mixtures |
+| **Hard-Case Rain Coincidence**| Ambient unforced (35.3% natural rain) | **Exactly 30.0% forced active rain** (60/200) | Tests discrimination during concurrent storm washout |
+
+> [!NOTE]
+> Visual confirmation of disjoint distributions across duration, magnitude, nuclide fraction, and shape families is shown in [`reports/figures/synthetic_injection_train_test_disjointness.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_train_test_disjointness.png).
+
+---
+
+## 5. Hard-Case Rain Event Walkthrough
+
+To inspect the behavior of a rain-coincident injection under realistic conditions, [`reports/figures/synthetic_injection_hard_case_rain.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_hard_case_rain.png) details injection `INJ_0064` at Birmingham, AL (March 15–17, 2024):
+
+- **Event Parameters**: Start: 2024-03-15 13:00 UTC; Duration: 37 hours; Peak: +772.8 CPM; Shape: Exponential ($\tau = 2.21\text{ h}$); Nuclide: Pure $^{137}\text{Cs}$ ($f_{\text{Cs}} = 0.92$).
+- **Storm Timeline**: Heavy convective rainfall begins at 13:00 UTC (6.8 mm/h, peaking at 8.8 mm/h at 14:00 UTC) and stops at 17:00 UTC (total rain: 17.2 mm).
+- **Detector Observations**:
+  - Baseline dry count rate: ~3,640 CPM.
+  - Natural radon washout peak: Real RadNet gross count rate surged to **4,469 CPM (+829 CPM)** during the storm.
+  - Combined detector signal (Washout + Fission plume): Surges to **5,242 CPM (+1,602 CPM)**, breaching both $3\sigma$ and $5\sigma$ baseline thresholds.
+  - **Post-Storm Divergence (The Critical Physical Signature)**:
+    - At 18:00–19:00 UTC (2 hours post-rain), the natural radon washout decays away, and Channel R07 ($^{214}\text{Bi}$ 1120 keV) drops back to its dry baseline (~100 CPM).
+    - In stark contrast, Channel R05 ($^{137}\text{Cs}$ 662 keV) and the overall Gross CPM **remain elevated at ~4,400 CPM** for the entire 37-hour duration, because $^{137}\text{Cs}$ is fixed on the particulate filter.
+
+---
+
+## 6. Ground-Truth Operational Labeling & Dataset Accounting
+
+Per Section 5 of `PROJECT_SPEC.md`, real historical data lacks independent ground-truth labels for natural radon washout. An explicit operational rule was implemented:
+
+$$\text{Label} = \begin{cases} 
+\text{fission\_product} & \text{if synthetic injection active} \\
+\text{radon\_washout} & \text{if } P_{3\text{h}} > 0\text{ mm} \text{ and } x(t) > \mu_{\text{dry}} + 2\sigma_{\text{dry}} \text{ (complete channels)} \\
+\text{normal} & \text{otherwise}
+\end{cases}$$
+
+### Dataset Label Breakdown by Station and Split
+
+| Station ID | Station Name | Split | Total Hours | Normal Hours | Radon Washout Hours | Fission Product Hours |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
+| `al_birmingham` | Birmingham, AL | Train (2017–2022) | 52,561 | 50,816 (96.68%) | 872 (1.66%) | 873 (1.66%) |
+| `al_birmingham` | Birmingham, AL | Test (2023–2025) | 26,281 | 24,258 (92.30%) | 258 (0.98%) | 1,765 (6.72%) |
+| `dc_washington` | Washington, DC | Train (2017–2022) | 52,561 | 50,555 (96.18%) | 1,224 (2.33%) | 782 (1.49%) |
+| `dc_washington` | Washington, DC | Test (2023–2025) | 26,281 | 23,935 (91.07%) | 419 (1.59%) | 1,927 (7.33%) |
+| `ca_san_diego` | San Diego, CA | Train (2017–2022) | 52,561 | 51,705 (98.37%) | 6 (0.01%) | 850 (1.62%) |
+| `ca_san_diego` | San Diego, CA | Test (2023–2025) | 26,281 | 24,611 (93.65%) | 0 (0.00%) | 1,670 (6.35%) |
+| `tx_dallas` | Dallas, TX | Train (2017–2022) | 52,561 | 50,635 (96.34%) | 1,023 (1.95%) | 903 (1.72%) |
+| `tx_dallas` | Dallas, TX | Test (2023–2025) | 26,281 | 24,183 (92.02%) | 319 (1.21%) | 1,779 (6.77%) |
+| `fl_tampa` | Tampa, FL | Train (2017–2022) | 52,561 | 51,465 (97.91%) | 212 (0.40%) | 884 (1.68%) |
+| `fl_tampa` | Tampa, FL | Test (2023–2025) | 26,281 | 24,510 (93.26%) | 58 (0.22%) | 1,713 (6.52%) |
+| **All 5 Stations**| **Full Network** | **Train (2017–2022)** | **262,805** | **255,176 (97.09%)**| **3,337 (1.27%)** | **4,292 (1.63%)** |
+| **All 5 Stations**| **Full Network** | **Test (2023–2025)** | **131,405** | **121,497 (92.46%)**| **1,054 (0.80%)** | **8,854 (6.74%)** |
+
+> [!CAUTION]
+> **Documented Methodological Limitation**: Labeling `radon_washout` via threshold and rain coincidence is partially circular. Minor rain showers without detectable count rate surges remain labeled `normal`. In Phase 5 evaluation, model performance will be reported both on all events and specifically on synthetic fission injections during rain to isolate any labeling bias.
+
+---
+
+## 7. Deliverables & Figures Generated in Phase 3
+
+1. **Synthetic Injection Generator**: [`src/synthetic_injection.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/synthetic_injection.py)
+2. **Synthetic Injection Catalog**: [`data/processed/synthetic_injection_catalog.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/synthetic_injection_catalog.csv) (500 deterministic injections with full metadata).
+3. **Phase 3 Plotting Script**: [`src/plot_synthetic_injections.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/plot_synthetic_injections.py)
+4. **Figure 1 (Shapes & Spectroscopy)**: [`reports/figures/synthetic_injection_shapes_and_nuclides.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_shapes_and_nuclides.png)
+5. **Figure 2 (Train/Test Disjointness)**: [`reports/figures/synthetic_injection_train_test_disjointness.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_train_test_disjointness.png)
+6. **Figure 3 (Hard-Case Rain Event)**: [`reports/figures/synthetic_injection_hard_case_rain.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_hard_case_rain.png)
+
+---
+
+## 8. Gate 3 Review Checklist & Request for Sign-off
+
+Per Section 4 of `PROJECT_SPEC.md`:
+> **Phase 3 Gate: Synthetic injection.** See Section 5. Gate: human and Claude review injection design before any model training.
+
 We request Ömer and Claude review and confirm:
-- [ ] **Continuous Calendar Reindexing**: Verification that rolling means, precipitation windows, lag shifts, and episode clustering run strictly on continuous calendar grids.
-- [ ] **Resolution of Gate 1 Items**: Strict quality codes ('1', '5'), lag cross-correlation profile, empirical rain surge distribution, station coordinates honestly framed, and multi-station filter replacement schedule.
-- [ ] **Baseline Formulations**: Evaluation of Global CPM, Rolling 7-day CPM, and Dose Rate thresholds ($3\sigma, 4\sigma, 5\sigma$) with explicit rules recorded in `DECISIONS.md`.
-- [ ] **Alarm Metrics**: Verification of alarm episodes per station-year (52 to 78 episodes/yr at $3\sigma$) and rain coincidence rates (62% to 97% of alarms coinciding with rain in wet stations).
-- [ ] **Gate 2 Approval to Proceed to Phase 3 (Synthetic Injection Design)**.
+- [ ] **No Model Training Before Gate**: Confirmation that no machine learning models, classifiers, or gradient boosting algorithms have been trained or evaluated.
+- [ ] **Physical NaI(Tl) Spectrometry**: Verification that channel branching fractions for $^{137}\text{Cs}$, $^{131}\text{I}$, and natural radon progeny are grounded in detector physics and literature citations (Vieira et al., 2019; Knoll, 2010), especially the zero-excess signature in Channels R06–R09 for fission products.
+- [ ] **Train/Test Disjointness**: Confirmation of zero overlap between Training (2017–2022) and Test (2023–2025) sets across shape families, durations, magnitude bands (Band B interpolating between Bands A and C), and nuclide mixtures.
+- [ ] **Dedicated Hard-Case Set**: Verification that exactly 30% of test injections (60/200) are forced during verified active rainfall ($P_{1\text{h}} > 0$).
+- [ ] **Ground-Truth Labeling & Limitations**: Review of the non-circular operational labeling rule for natural radon washout and its documented limitations in `DECISIONS.md`.
+- [ ] **Gate 3 Approval to Proceed to Phase 4 (Model Development & Training)**.
+

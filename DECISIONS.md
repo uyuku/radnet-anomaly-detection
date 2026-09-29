@@ -78,5 +78,33 @@ Format:
 - **2026-09-29 | Rain coincidence window definition**
   - **Reason**: Radon progeny washout occurs during rain, and deposited progeny emit gamma radiation with half-lives of ~20 to 27 min (decaying over 2 to 3 hours). To capture true washout-induced false alarms, rain coincidence is evaluated over a 3-hour window ($\sum_{i=0}^{2} P(t-i) > 0$), as well as strict 1-hour ($P(t) > 0$) and extended 6-hour storm windows.
 
+---
+
+### Phase 3: Synthetic Injection Design Decisions
+
+- **2026-09-29 | Synthetic injection catalog generation & deterministic seeding**
+  - **Reason**: Required by Section 5 of `PROJECT_SPEC.md`. 500 total injections (300 Train 2017–2022, 200 Test 2023–2025) generated deterministically using seed `42` across all 5 pilot stations (60 train / 40 test per station), saved to `data/processed/synthetic_injection_catalog.csv`.
+- **2026-09-29 | Strict train/test parameter disjointness policy**
+  - **Reason**: To prevent machine learning models from memorizing artificial injection templates or specific pulse durations/magnitudes, train and test sets are constructed with zero overlap across four distinct parameter axes:
+    1. **Shape Family**: Train uses `linear_ramp` ($S(t) = \min(t/t_{\text{rise}}, 1.0)$) and `step` ($S(t) = 1.0$). Test uses `sigmoidal` (logistic growth $S(t) = 1/(1+e^{-(t-t_{\text{mid}})/\tau})$) and `exponential` ($S(t) = 1 - e^{-t/\tau}$).
+    2. **Duration**: Train uses 6 to 24 hours (short/acute events). Test uses 28 to 72 hours (medium/prolonged events). A 4-hour gap [24h, 28h] separates the two sets. Upper bound (72h) is physically bounded by the empirical ~4-day filter replacement cycle.
+    3. **Magnitude Bands**: Train uses Band A [250, 600] CPM (subtle) and Band C [1400, 2500] CPM (severe). Test uses Band B [700, 1200] CPM (strictly interpolating between Band A and Band C, separated by 100–200 CPM exclusion gaps).
+    4. **Nuclide Mix**: Train uses balanced mixtures ($f_{\text{Cs}} \in [0.30, 0.70]$). Test evaluates pure/skewed plumes: pure Cs-137 ($f_{\text{Cs}} \in [0.85, 1.00]$, 98 cases) and pure I-131 ($f_{\text{Cs}} \in [0.00, 0.15]$, 102 cases), separated by wide exclusion gaps [0.15, 0.30] and [0.70, 0.85].
+- **2026-09-29 | Physical NaI(Tl) spectrometry channel allocation policy**
+  - **Reason**: Grounded in standard gamma spectrometry principles for 2"x2" to 3"x3" NaI(Tl) scintillation detectors (7–9% FWHM energy resolution at 662 keV).
+  - **Values**:
+    - **Cs-137 (661.7 keV)**: Photopeak in R05 (601–800 keV; 45% of counts), Compton continuum in R02 (20%), R03 (15%), and R04 (20%). R06–R09 = 0.0% (no emission above 662 keV).
+    - **I-131 (364.5 keV)**: Photopeak in R03 (201–400 keV; 65% of counts), Compton continuum in R02 (25%), forward scatter/weak lines in R04 (5%) and R05 (5%). R06–R09 = 0.0% (no emission above 637 keV).
+    - **Physical Discrimination against Radon Washout**: Natural radon progeny (Bi-214) emit prominent high-energy gamma lines at 1120.3 keV (R07) and 1764.5 keV (R08), accounting for ~5.4% of total excess counts during rain. In sharp contrast, pure Cs-137 and I-131 plumes produce strictly zero counts in R07 and R08, providing an indelible spectral discriminator.
+  - **Citations**:
+    - Knoll, G. F. (2010). *Radiation Detection and Measurement* (4th ed.). John Wiley & Sons (pp. 338–342).
+    - Vieira et al. (2019). *Environmental Research*, 175, 221–227. https://doi.org/10.1016/j.envres.2019.05.032.
+- **2026-09-29 | Dedicated hard-case rain-coincident injection set (30% of test set)**
+  - **Reason**: Real atmospheric fission plumes are subject to wet scavenging and precipitation washout. To evaluate whether models can discriminate real plumes from harmless natural washout when both occur simultaneously, exactly 30% of test injections (12 per station, 60 total) are forced to start during verified active rain ($P_{1\text{h}} > 0$).
+- **2026-09-29 | Non-circular ground-truth labeling rule for natural radon washout**
+  - **Reason**: Historical RadNet data lacks external ground-truth labels. An operational labeling rule is established: an hour is labeled `radon_washout` if $P_{3\text{h}} > 0\text{ mm}$ and gross CPM exceeds the station's dry baseline by $> 2\sigma_{\text{dry}}$ ($x(t) > \mu_{\text{dry}} + 2\sigma_{\text{dry}}$) on complete 8-channel records.
+  - **Methodological Limitation**: Acknowledged per Section 5 of `PROJECT_SPEC.md` that rule-based labeling is partially circular. Minor rain showers without detectable count rate surges remain labeled `normal`, and potential sensor drift during rain could be misclassified.
+
+
 
 
