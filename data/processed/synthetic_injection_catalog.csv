@@ -1,501 +1,451 @@
-injection_id,split,station_id,station_name,start_utc,end_utc,start_index,duration_hours,shape_family,rise_param,magnitude_band,peak_cpm,fraction_cs137,fraction_i131,is_hard_case_rain,environment
-INJ_0001,train,al_birmingham,"Birmingham, AL",2021-05-04 14:00:00,2021-05-04 22:00:00,38030,9,linear_ramp,3.32,Band_A_Low,336.9,0.38,0.62,True,ambient_train
-INJ_0002,train,al_birmingham,"Birmingham, AL",2020-10-01 22:00:00,2020-10-02 10:00:00,32878,13,step,0.0,Band_A_Low,349.5,0.31,0.69,False,ambient_train
-INJ_0003,train,al_birmingham,"Birmingham, AL",2022-02-05 14:00:00,2022-02-06 00:00:00,44678,11,step,0.0,Band_A_Low,261.3,0.53,0.47,False,ambient_train
-INJ_0004,train,al_birmingham,"Birmingham, AL",2018-08-19 16:00:00,2018-08-20 02:00:00,14296,11,step,0.0,Band_A_Low,376.6,0.43,0.57,False,ambient_train
-INJ_0005,train,al_birmingham,"Birmingham, AL",2017-10-05 18:00:00,2017-10-06 07:00:00,6666,14,linear_ramp,1.67,Band_A_Low,579.6,0.31,0.69,False,ambient_train
-INJ_0006,train,al_birmingham,"Birmingham, AL",2017-06-14 22:00:00,2017-06-15 13:00:00,3958,16,linear_ramp,3.8,Band_A_Low,344.9,0.48,0.52,False,ambient_train
-INJ_0007,train,al_birmingham,"Birmingham, AL",2017-06-05 15:00:00,2017-06-06 09:00:00,3735,19,linear_ramp,1.55,Band_A_Low,585.7,0.54,0.46,True,ambient_train
-INJ_0008,train,al_birmingham,"Birmingham, AL",2019-07-17 20:00:00,2019-07-18 13:00:00,22268,18,step,0.0,Band_A_Low,322.0,0.44,0.56,False,ambient_train
-INJ_0009,train,al_birmingham,"Birmingham, AL",2021-11-24 13:00:00,2021-11-25 09:00:00,42925,21,step,0.0,Band_C_High,2368.8,0.42,0.58,False,ambient_train
-INJ_0010,train,al_birmingham,"Birmingham, AL",2021-11-17 20:00:00,2021-11-18 04:00:00,42764,9,linear_ramp,1.26,Band_C_High,2272.4,0.45,0.55,False,ambient_train
-INJ_0011,train,al_birmingham,"Birmingham, AL",2022-02-24 02:00:00,2022-02-25 01:00:00,45122,24,step,0.0,Band_C_High,2019.7,0.42,0.58,True,ambient_train
-INJ_0012,train,al_birmingham,"Birmingham, AL",2021-08-24 23:00:00,2021-08-25 19:00:00,40727,21,step,0.0,Band_C_High,1745.6,0.67,0.33,False,ambient_train
-INJ_0013,train,al_birmingham,"Birmingham, AL",2018-05-11 00:00:00,2018-05-11 13:00:00,11880,14,linear_ramp,1.7,Band_A_Low,347.2,0.6,0.4,False,ambient_train
-INJ_0014,train,al_birmingham,"Birmingham, AL",2022-04-14 07:00:00,2022-04-14 13:00:00,46303,7,linear_ramp,1.82,Band_C_High,1507.1,0.47,0.53,True,ambient_train
-INJ_0015,train,al_birmingham,"Birmingham, AL",2017-06-11 20:00:00,2017-06-12 04:00:00,3884,9,step,0.0,Band_A_Low,377.2,0.44,0.56,False,ambient_train
-INJ_0016,train,al_birmingham,"Birmingham, AL",2022-07-26 22:00:00,2022-07-27 10:00:00,48790,13,linear_ramp,1.21,Band_C_High,2045.0,0.46,0.54,False,ambient_train
-INJ_0017,train,al_birmingham,"Birmingham, AL",2022-12-20 22:00:00,2022-12-21 09:00:00,52318,12,step,0.0,Band_A_Low,491.6,0.56,0.44,False,ambient_train
-INJ_0018,train,al_birmingham,"Birmingham, AL",2017-10-08 00:00:00,2017-10-08 14:00:00,6720,15,linear_ramp,3.9,Band_A_Low,345.0,0.5,0.5,True,ambient_train
-INJ_0019,train,al_birmingham,"Birmingham, AL",2017-10-02 09:00:00,2017-10-03 02:00:00,6585,18,linear_ramp,1.99,Band_A_Low,544.5,0.57,0.43,False,ambient_train
-INJ_0020,train,al_birmingham,"Birmingham, AL",2017-06-09 14:00:00,2017-06-10 04:00:00,3830,15,linear_ramp,3.85,Band_C_High,1741.1,0.44,0.56,False,ambient_train
-INJ_0021,train,al_birmingham,"Birmingham, AL",2018-05-11 08:00:00,2018-05-11 21:00:00,11888,14,step,0.0,Band_C_High,2202.0,0.45,0.55,False,ambient_train
-INJ_0022,train,al_birmingham,"Birmingham, AL",2017-09-05 23:00:00,2017-09-06 15:00:00,5951,17,step,0.0,Band_A_Low,457.7,0.57,0.43,True,ambient_train
-INJ_0023,train,al_birmingham,"Birmingham, AL",2020-10-12 01:00:00,2020-10-13 00:00:00,33121,24,linear_ramp,3.77,Band_C_High,1764.2,0.47,0.53,False,ambient_train
-INJ_0024,train,al_birmingham,"Birmingham, AL",2018-04-16 23:00:00,2018-04-17 17:00:00,11303,19,step,0.0,Band_C_High,1403.9,0.66,0.34,False,ambient_train
-INJ_0025,train,al_birmingham,"Birmingham, AL",2021-06-04 12:00:00,2021-06-05 04:00:00,38772,17,linear_ramp,2.28,Band_C_High,1635.2,0.44,0.56,False,ambient_train
-INJ_0026,train,al_birmingham,"Birmingham, AL",2022-11-09 13:00:00,2022-11-10 01:00:00,51325,13,step,0.0,Band_A_Low,505.5,0.58,0.42,False,ambient_train
-INJ_0027,train,al_birmingham,"Birmingham, AL",2018-04-15 22:00:00,2018-04-16 03:00:00,11278,6,step,0.0,Band_A_Low,311.6,0.49,0.51,True,ambient_train
-INJ_0028,train,al_birmingham,"Birmingham, AL",2019-09-07 09:00:00,2019-09-08 02:00:00,23505,18,step,0.0,Band_C_High,1477.6,0.33,0.67,False,ambient_train
-INJ_0029,train,al_birmingham,"Birmingham, AL",2019-06-06 16:00:00,2019-06-07 00:00:00,21280,9,linear_ramp,1.46,Band_A_Low,565.3,0.35,0.65,True,ambient_train
-INJ_0030,train,al_birmingham,"Birmingham, AL",2021-11-14 11:00:00,2021-11-14 23:00:00,42683,13,linear_ramp,1.95,Band_A_Low,449.1,0.48,0.52,False,ambient_train
-INJ_0031,train,al_birmingham,"Birmingham, AL",2017-07-15 05:00:00,2017-07-15 13:00:00,4685,9,step,0.0,Band_A_Low,271.9,0.45,0.55,False,ambient_train
-INJ_0032,train,al_birmingham,"Birmingham, AL",2018-09-17 21:00:00,2018-09-18 06:00:00,14997,10,step,0.0,Band_C_High,2048.7,0.36,0.64,False,ambient_train
-INJ_0033,train,al_birmingham,"Birmingham, AL",2018-12-28 22:00:00,2018-12-29 10:00:00,17446,13,step,0.0,Band_C_High,1696.7,0.32,0.68,False,ambient_train
-INJ_0034,train,al_birmingham,"Birmingham, AL",2018-04-27 20:00:00,2018-04-28 17:00:00,11564,22,linear_ramp,1.43,Band_A_Low,320.9,0.37,0.63,False,ambient_train
-INJ_0035,train,al_birmingham,"Birmingham, AL",2019-11-23 05:00:00,2019-11-23 15:00:00,25349,11,linear_ramp,3.39,Band_A_Low,342.5,0.53,0.47,True,ambient_train
-INJ_0036,train,al_birmingham,"Birmingham, AL",2021-06-19 20:00:00,2021-06-20 14:00:00,39140,19,linear_ramp,3.34,Band_A_Low,345.9,0.4,0.6,True,ambient_train
-INJ_0037,train,al_birmingham,"Birmingham, AL",2022-08-23 03:00:00,2022-08-23 14:00:00,49443,12,step,0.0,Band_A_Low,403.1,0.32,0.68,True,ambient_train
-INJ_0038,train,al_birmingham,"Birmingham, AL",2022-04-09 20:00:00,2022-04-10 18:00:00,46196,23,linear_ramp,3.77,Band_C_High,1527.5,0.52,0.48,False,ambient_train
-INJ_0039,train,al_birmingham,"Birmingham, AL",2021-03-07 22:00:00,2021-03-08 03:00:00,36646,6,linear_ramp,1.25,Band_A_Low,304.7,0.32,0.68,False,ambient_train
-INJ_0040,train,al_birmingham,"Birmingham, AL",2018-03-03 18:00:00,2018-03-04 02:00:00,10242,9,step,0.0,Band_C_High,2476.6,0.6,0.4,False,ambient_train
-INJ_0041,train,al_birmingham,"Birmingham, AL",2018-11-27 15:00:00,2018-11-28 07:00:00,16695,17,linear_ramp,2.69,Band_A_Low,285.0,0.34,0.66,False,ambient_train
-INJ_0042,train,al_birmingham,"Birmingham, AL",2017-07-21 22:00:00,2017-07-22 09:00:00,4846,12,step,0.0,Band_C_High,1860.6,0.34,0.66,False,ambient_train
-INJ_0043,train,al_birmingham,"Birmingham, AL",2018-02-12 03:00:00,2018-02-12 23:00:00,9771,21,step,0.0,Band_A_Low,455.3,0.61,0.39,True,ambient_train
-INJ_0044,train,al_birmingham,"Birmingham, AL",2018-04-09 13:00:00,2018-04-10 07:00:00,11125,19,linear_ramp,3.47,Band_A_Low,550.7,0.67,0.33,False,ambient_train
-INJ_0045,train,al_birmingham,"Birmingham, AL",2018-09-21 08:00:00,2018-09-21 20:00:00,15080,13,step,0.0,Band_C_High,1803.2,0.52,0.48,False,ambient_train
-INJ_0046,train,al_birmingham,"Birmingham, AL",2019-03-10 20:00:00,2019-03-11 04:00:00,19172,9,linear_ramp,2.81,Band_C_High,2054.1,0.57,0.43,False,ambient_train
-INJ_0047,train,al_birmingham,"Birmingham, AL",2017-07-09 07:00:00,2017-07-09 15:00:00,4543,9,linear_ramp,3.78,Band_C_High,2318.9,0.47,0.53,False,ambient_train
-INJ_0048,train,al_birmingham,"Birmingham, AL",2017-08-27 00:00:00,2017-08-27 07:00:00,5712,8,step,0.0,Band_C_High,1825.0,0.59,0.41,False,ambient_train
-INJ_0049,train,al_birmingham,"Birmingham, AL",2018-05-04 07:00:00,2018-05-04 23:00:00,11719,17,linear_ramp,1.82,Band_A_Low,345.6,0.63,0.37,False,ambient_train
-INJ_0050,train,al_birmingham,"Birmingham, AL",2022-07-28 05:00:00,2022-07-28 13:00:00,48821,9,linear_ramp,2.12,Band_C_High,2100.0,0.39,0.61,False,ambient_train
-INJ_0051,train,al_birmingham,"Birmingham, AL",2017-08-03 17:00:00,2017-08-04 10:00:00,5153,18,linear_ramp,4.0,Band_A_Low,413.2,0.56,0.44,False,ambient_train
-INJ_0052,train,al_birmingham,"Birmingham, AL",2018-12-05 17:00:00,2018-12-05 23:00:00,16889,7,step,0.0,Band_C_High,2322.3,0.58,0.42,False,ambient_train
-INJ_0053,train,al_birmingham,"Birmingham, AL",2019-01-28 10:00:00,2019-01-29 01:00:00,18178,16,step,0.0,Band_A_Low,494.9,0.65,0.35,False,ambient_train
-INJ_0054,train,al_birmingham,"Birmingham, AL",2017-07-31 06:00:00,2017-07-31 14:00:00,5070,9,linear_ramp,2.91,Band_C_High,1503.4,0.44,0.56,False,ambient_train
-INJ_0055,train,al_birmingham,"Birmingham, AL",2018-12-04 10:00:00,2018-12-05 05:00:00,16858,20,linear_ramp,3.89,Band_C_High,2022.3,0.47,0.53,False,ambient_train
-INJ_0056,train,al_birmingham,"Birmingham, AL",2017-08-14 15:00:00,2017-08-15 08:00:00,5415,18,step,0.0,Band_C_High,1997.2,0.62,0.38,True,ambient_train
-INJ_0057,train,al_birmingham,"Birmingham, AL",2018-09-29 16:00:00,2018-09-30 12:00:00,15280,21,linear_ramp,1.71,Band_C_High,1528.2,0.59,0.41,False,ambient_train
-INJ_0058,train,al_birmingham,"Birmingham, AL",2022-11-24 18:00:00,2022-11-25 14:00:00,51690,21,step,0.0,Band_A_Low,561.1,0.49,0.51,True,ambient_train
-INJ_0059,train,al_birmingham,"Birmingham, AL",2019-12-21 16:00:00,2019-12-22 15:00:00,26032,24,step,0.0,Band_C_High,1510.7,0.55,0.45,True,ambient_train
-INJ_0060,train,al_birmingham,"Birmingham, AL",2021-06-21 20:00:00,2021-06-22 13:00:00,39188,18,step,0.0,Band_C_High,2236.9,0.58,0.42,True,ambient_train
-INJ_0061,test,al_birmingham,"Birmingham, AL",2023-01-25 06:00:00,2023-01-26 21:00:00,53166,40,sigmoidal,1.29,Band_B_Mid (Interpolation),775.8,0.13,0.87,True,hard_case_rain_coincident
-INJ_0062,test,al_birmingham,"Birmingham, AL",2023-12-25 10:00:00,2023-12-27 23:00:00,61186,62,exponential,2.27,Band_B_Mid (Interpolation),1064.4,0.07,0.93,True,hard_case_rain_coincident
-INJ_0063,test,al_birmingham,"Birmingham, AL",2025-03-24 06:00:00,2025-03-26 23:00:00,72102,66,exponential,1.63,Band_B_Mid (Interpolation),843.4,0.13,0.87,True,hard_case_rain_coincident
-INJ_0064,test,al_birmingham,"Birmingham, AL",2024-03-15 13:00:00,2024-03-17 01:00:00,63133,37,exponential,2.21,Band_B_Mid (Interpolation),772.8,0.92,0.08,True,hard_case_rain_coincident
-INJ_0065,test,al_birmingham,"Birmingham, AL",2024-03-15 14:00:00,2024-03-17 20:00:00,63134,55,exponential,2.27,Band_B_Mid (Interpolation),1195.2,0.9,0.1,True,hard_case_rain_coincident
-INJ_0066,test,al_birmingham,"Birmingham, AL",2023-02-15 09:00:00,2023-02-16 12:00:00,53673,28,sigmoidal,1.34,Band_B_Mid (Interpolation),1129.2,0.09,0.91,True,hard_case_rain_coincident
-INJ_0067,test,al_birmingham,"Birmingham, AL",2024-07-24 19:00:00,2024-07-27 08:00:00,66283,62,sigmoidal,1.31,Band_B_Mid (Interpolation),843.1,0.92,0.08,True,hard_case_rain_coincident
-INJ_0068,test,al_birmingham,"Birmingham, AL",2024-05-10 03:00:00,2024-05-11 10:00:00,64467,32,sigmoidal,0.95,Band_B_Mid (Interpolation),1125.6,0.96,0.04,True,hard_case_rain_coincident
-INJ_0069,test,al_birmingham,"Birmingham, AL",2025-02-09 11:00:00,2025-02-11 16:00:00,71075,54,sigmoidal,1.35,Band_B_Mid (Interpolation),1169.1,0.92,0.08,True,hard_case_rain_coincident
-INJ_0070,test,al_birmingham,"Birmingham, AL",2024-07-29 00:00:00,2024-07-31 02:00:00,66384,51,sigmoidal,1.21,Band_B_Mid (Interpolation),965.8,0.97,0.03,True,hard_case_rain_coincident
-INJ_0071,test,al_birmingham,"Birmingham, AL",2025-05-10 06:00:00,2025-05-13 04:00:00,73230,71,sigmoidal,1.11,Band_B_Mid (Interpolation),1051.4,0.13,0.87,True,hard_case_rain_coincident
-INJ_0072,test,al_birmingham,"Birmingham, AL",2025-07-05 00:00:00,2025-07-06 17:00:00,74568,42,sigmoidal,1.61,Band_B_Mid (Interpolation),946.9,0.88,0.12,True,hard_case_rain_coincident
-INJ_0073,test,al_birmingham,"Birmingham, AL",2024-03-11 19:00:00,2024-03-13 15:00:00,63043,45,sigmoidal,0.85,Band_B_Mid (Interpolation),1028.2,0.99,0.01,False,standard_test_dry
-INJ_0074,test,al_birmingham,"Birmingham, AL",2023-12-08 17:00:00,2023-12-10 00:00:00,60785,32,exponential,2.05,Band_B_Mid (Interpolation),1125.2,0.97,0.03,True,standard_test_dry
-INJ_0075,test,al_birmingham,"Birmingham, AL",2025-06-01 09:00:00,2025-06-03 09:00:00,73761,49,exponential,1.62,Band_B_Mid (Interpolation),1152.6,0.09,0.91,False,standard_test_dry
-INJ_0076,test,al_birmingham,"Birmingham, AL",2025-01-20 04:00:00,2025-01-22 14:00:00,70588,59,exponential,1.61,Band_B_Mid (Interpolation),793.4,0.99,0.01,False,standard_test_dry
-INJ_0077,test,al_birmingham,"Birmingham, AL",2024-04-19 10:00:00,2024-04-21 16:00:00,63970,55,exponential,1.77,Band_B_Mid (Interpolation),908.3,0.91,0.09,True,standard_test_dry
-INJ_0078,test,al_birmingham,"Birmingham, AL",2023-12-01 08:00:00,2023-12-02 16:00:00,60608,33,exponential,1.77,Band_B_Mid (Interpolation),816.4,0.97,0.03,True,standard_test_dry
-INJ_0079,test,al_birmingham,"Birmingham, AL",2025-08-02 13:00:00,2025-08-05 04:00:00,75253,64,exponential,1.48,Band_B_Mid (Interpolation),925.9,0.97,0.03,True,standard_test_dry
-INJ_0080,test,al_birmingham,"Birmingham, AL",2024-03-07 19:00:00,2024-03-08 22:00:00,62947,28,sigmoidal,0.9,Band_B_Mid (Interpolation),887.3,0.93,0.07,True,standard_test_dry
-INJ_0081,test,al_birmingham,"Birmingham, AL",2025-08-07 21:00:00,2025-08-10 20:00:00,75381,72,exponential,2.49,Band_B_Mid (Interpolation),907.6,0.95,0.05,False,standard_test_dry
-INJ_0082,test,al_birmingham,"Birmingham, AL",2024-11-03 16:00:00,2024-11-05 19:00:00,68728,52,sigmoidal,1.04,Band_B_Mid (Interpolation),972.4,0.99,0.01,True,standard_test_dry
-INJ_0083,test,al_birmingham,"Birmingham, AL",2023-09-29 19:00:00,2023-10-02 17:00:00,59107,71,sigmoidal,1.3,Band_B_Mid (Interpolation),1012.4,0.06,0.94,False,standard_test_dry
-INJ_0084,test,al_birmingham,"Birmingham, AL",2023-03-05 08:00:00,2023-03-07 02:00:00,54104,43,exponential,2.32,Band_B_Mid (Interpolation),912.9,0.98,0.02,False,standard_test_dry
-INJ_0085,test,al_birmingham,"Birmingham, AL",2025-08-07 19:00:00,2025-08-09 05:00:00,75379,35,sigmoidal,1.23,Band_B_Mid (Interpolation),855.9,0.91,0.09,False,standard_test_dry
-INJ_0086,test,al_birmingham,"Birmingham, AL",2023-12-20 07:00:00,2023-12-21 20:00:00,61063,38,sigmoidal,0.93,Band_B_Mid (Interpolation),803.0,0.93,0.07,False,standard_test_dry
-INJ_0087,test,al_birmingham,"Birmingham, AL",2025-01-02 12:00:00,2025-01-04 00:00:00,70164,37,sigmoidal,1.72,Band_B_Mid (Interpolation),1127.3,0.93,0.07,False,standard_test_dry
-INJ_0088,test,al_birmingham,"Birmingham, AL",2023-03-24 02:00:00,2023-03-25 08:00:00,54554,31,exponential,2.31,Band_B_Mid (Interpolation),917.2,0.07,0.93,True,standard_test_dry
-INJ_0089,test,al_birmingham,"Birmingham, AL",2025-07-17 01:00:00,2025-07-18 13:00:00,74857,37,sigmoidal,1.42,Band_B_Mid (Interpolation),815.8,0.02,0.98,False,standard_test_dry
-INJ_0090,test,al_birmingham,"Birmingham, AL",2025-08-20 01:00:00,2025-08-22 20:00:00,75673,68,sigmoidal,0.99,Band_B_Mid (Interpolation),1040.2,0.15,0.85,True,standard_test_dry
-INJ_0091,test,al_birmingham,"Birmingham, AL",2023-02-11 03:00:00,2023-02-13 07:00:00,53571,53,exponential,2.16,Band_B_Mid (Interpolation),1102.9,0.1,0.9,True,standard_test_dry
-INJ_0092,test,al_birmingham,"Birmingham, AL",2023-02-11 11:00:00,2023-02-13 04:00:00,53579,42,exponential,2.26,Band_B_Mid (Interpolation),1122.7,0.87,0.13,True,standard_test_dry
-INJ_0093,test,al_birmingham,"Birmingham, AL",2023-12-22 02:00:00,2023-12-23 14:00:00,61106,37,exponential,2.1,Band_B_Mid (Interpolation),1121.8,0.13,0.87,False,standard_test_dry
-INJ_0094,test,al_birmingham,"Birmingham, AL",2024-05-09 04:00:00,2024-05-11 22:00:00,64444,67,exponential,2.35,Band_B_Mid (Interpolation),718.5,0.96,0.04,True,standard_test_dry
-INJ_0095,test,al_birmingham,"Birmingham, AL",2024-08-23 12:00:00,2024-08-26 03:00:00,66996,64,exponential,1.62,Band_B_Mid (Interpolation),896.1,0.9,0.1,False,standard_test_dry
-INJ_0096,test,al_birmingham,"Birmingham, AL",2024-10-10 08:00:00,2024-10-12 05:00:00,68144,46,sigmoidal,1.33,Band_B_Mid (Interpolation),993.9,0.86,0.14,False,standard_test_dry
-INJ_0097,test,al_birmingham,"Birmingham, AL",2023-08-03 09:00:00,2023-08-04 18:00:00,57729,34,sigmoidal,1.28,Band_B_Mid (Interpolation),1024.0,0.0,1.0,True,standard_test_dry
-INJ_0098,test,al_birmingham,"Birmingham, AL",2024-05-02 11:00:00,2024-05-03 20:00:00,64283,34,exponential,1.06,Band_B_Mid (Interpolation),1026.6,0.02,0.98,False,standard_test_dry
-INJ_0099,test,al_birmingham,"Birmingham, AL",2023-11-08 23:00:00,2023-11-10 10:00:00,60071,36,sigmoidal,1.42,Band_B_Mid (Interpolation),839.7,0.9,0.1,False,standard_test_dry
-INJ_0100,test,al_birmingham,"Birmingham, AL",2025-07-27 15:00:00,2025-07-29 12:00:00,75111,46,exponential,1.68,Band_B_Mid (Interpolation),956.9,0.13,0.87,True,standard_test_dry
-INJ_0101,train,dc_washington,"Washington, DC",2020-03-28 18:00:00,2020-03-28 23:00:00,28386,6,linear_ramp,2.31,Band_C_High,1847.1,0.45,0.55,False,ambient_train
-INJ_0102,train,dc_washington,"Washington, DC",2019-08-30 20:00:00,2019-08-31 16:00:00,23324,21,step,0.0,Band_A_Low,543.6,0.43,0.57,False,ambient_train
-INJ_0103,train,dc_washington,"Washington, DC",2020-05-08 13:00:00,2020-05-08 18:00:00,29365,6,linear_ramp,3.71,Band_A_Low,445.2,0.57,0.43,False,ambient_train
-INJ_0104,train,dc_washington,"Washington, DC",2019-09-16 17:00:00,2019-09-17 14:00:00,23729,22,linear_ramp,2.26,Band_A_Low,500.3,0.32,0.68,False,ambient_train
-INJ_0105,train,dc_washington,"Washington, DC",2019-11-28 20:00:00,2019-11-29 08:00:00,25484,13,linear_ramp,1.72,Band_C_High,2488.8,0.43,0.57,False,ambient_train
-INJ_0106,train,dc_washington,"Washington, DC",2019-05-17 13:00:00,2019-05-17 22:00:00,20797,10,step,0.0,Band_A_Low,269.2,0.34,0.66,False,ambient_train
-INJ_0107,train,dc_washington,"Washington, DC",2022-05-12 15:00:00,2022-05-13 03:00:00,46983,13,linear_ramp,3.51,Band_C_High,2422.6,0.35,0.65,False,ambient_train
-INJ_0108,train,dc_washington,"Washington, DC",2019-08-11 14:00:00,2019-08-12 08:00:00,22862,19,linear_ramp,2.2,Band_C_High,2275.3,0.6,0.4,False,ambient_train
-INJ_0109,train,dc_washington,"Washington, DC",2019-03-05 14:00:00,2019-03-06 03:00:00,19046,14,step,0.0,Band_A_Low,274.8,0.5,0.5,False,ambient_train
-INJ_0110,train,dc_washington,"Washington, DC",2018-07-12 00:00:00,2018-07-12 19:00:00,13368,20,linear_ramp,2.77,Band_C_High,1866.9,0.56,0.44,False,ambient_train
-INJ_0111,train,dc_washington,"Washington, DC",2019-03-04 21:00:00,2019-03-05 18:00:00,19029,22,linear_ramp,2.15,Band_A_Low,261.5,0.7,0.3,False,ambient_train
-INJ_0112,train,dc_washington,"Washington, DC",2018-03-26 22:00:00,2018-03-27 05:00:00,10798,8,linear_ramp,3.09,Band_C_High,2031.1,0.65,0.35,False,ambient_train
-INJ_0113,train,dc_washington,"Washington, DC",2021-10-09 10:00:00,2021-10-10 02:00:00,41818,17,step,0.0,Band_A_Low,270.0,0.56,0.44,False,ambient_train
-INJ_0114,train,dc_washington,"Washington, DC",2021-03-18 03:00:00,2021-03-18 11:00:00,36891,9,step,0.0,Band_C_High,2422.2,0.35,0.65,True,ambient_train
-INJ_0115,train,dc_washington,"Washington, DC",2019-05-04 03:00:00,2019-05-04 18:00:00,20475,16,step,0.0,Band_C_High,1975.1,0.63,0.37,False,ambient_train
-INJ_0116,train,dc_washington,"Washington, DC",2020-10-08 21:00:00,2020-10-09 04:00:00,33045,8,step,0.0,Band_C_High,2022.8,0.42,0.58,False,ambient_train
-INJ_0117,train,dc_washington,"Washington, DC",2018-09-27 06:00:00,2018-09-27 13:00:00,15222,8,linear_ramp,1.52,Band_C_High,2419.3,0.33,0.67,False,ambient_train
-INJ_0118,train,dc_washington,"Washington, DC",2017-12-15 13:00:00,2017-12-15 21:00:00,8365,9,linear_ramp,2.3,Band_C_High,1790.1,0.39,0.61,True,ambient_train
-INJ_0119,train,dc_washington,"Washington, DC",2018-04-11 01:00:00,2018-04-11 12:00:00,11161,12,linear_ramp,3.96,Band_C_High,2066.9,0.42,0.58,False,ambient_train
-INJ_0120,train,dc_washington,"Washington, DC",2020-11-26 23:00:00,2020-11-27 05:00:00,34223,7,linear_ramp,1.55,Band_A_Low,293.9,0.4,0.6,False,ambient_train
-INJ_0121,train,dc_washington,"Washington, DC",2020-04-02 04:00:00,2020-04-03 02:00:00,28492,23,linear_ramp,2.84,Band_A_Low,312.0,0.62,0.38,False,ambient_train
-INJ_0122,train,dc_washington,"Washington, DC",2018-05-11 12:00:00,2018-05-12 11:00:00,11892,24,step,0.0,Band_A_Low,376.2,0.56,0.44,False,ambient_train
-INJ_0123,train,dc_washington,"Washington, DC",2017-11-28 09:00:00,2017-11-29 06:00:00,7953,22,linear_ramp,1.63,Band_A_Low,511.2,0.65,0.35,False,ambient_train
-INJ_0124,train,dc_washington,"Washington, DC",2019-02-22 04:00:00,2019-02-22 15:00:00,18772,12,linear_ramp,1.13,Band_C_High,2039.0,0.3,0.7,True,ambient_train
-INJ_0125,train,dc_washington,"Washington, DC",2018-03-16 06:00:00,2018-03-16 21:00:00,10542,16,linear_ramp,1.09,Band_A_Low,315.0,0.66,0.34,False,ambient_train
-INJ_0126,train,dc_washington,"Washington, DC",2022-03-25 10:00:00,2022-03-25 20:00:00,45826,11,linear_ramp,3.28,Band_A_Low,378.1,0.49,0.51,False,ambient_train
-INJ_0127,train,dc_washington,"Washington, DC",2018-09-22 16:00:00,2018-09-23 06:00:00,15112,15,step,0.0,Band_A_Low,363.9,0.52,0.48,False,ambient_train
-INJ_0128,train,dc_washington,"Washington, DC",2020-09-20 11:00:00,2020-09-20 16:00:00,32603,6,step,0.0,Band_C_High,1722.2,0.62,0.38,False,ambient_train
-INJ_0129,train,dc_washington,"Washington, DC",2020-11-28 00:00:00,2020-11-28 16:00:00,34248,17,linear_ramp,2.4,Band_C_High,1995.7,0.57,0.43,False,ambient_train
-INJ_0130,train,dc_washington,"Washington, DC",2020-06-01 09:00:00,2020-06-02 01:00:00,29937,17,step,0.0,Band_A_Low,326.9,0.49,0.51,False,ambient_train
-INJ_0131,train,dc_washington,"Washington, DC",2020-04-19 21:00:00,2020-04-20 04:00:00,28917,8,step,0.0,Band_C_High,1965.8,0.61,0.39,False,ambient_train
-INJ_0132,train,dc_washington,"Washington, DC",2019-03-30 05:00:00,2019-03-30 14:00:00,19637,10,step,0.0,Band_C_High,2412.5,0.61,0.39,False,ambient_train
-INJ_0133,train,dc_washington,"Washington, DC",2022-08-16 22:00:00,2022-08-17 07:00:00,49294,10,step,0.0,Band_C_High,2464.5,0.65,0.35,False,ambient_train
-INJ_0134,train,dc_washington,"Washington, DC",2018-11-04 17:00:00,2018-11-04 23:00:00,16145,7,step,0.0,Band_A_Low,375.5,0.52,0.48,False,ambient_train
-INJ_0135,train,dc_washington,"Washington, DC",2021-06-05 22:00:00,2021-06-06 09:00:00,38806,12,linear_ramp,2.8,Band_C_High,2201.5,0.66,0.34,False,ambient_train
-INJ_0136,train,dc_washington,"Washington, DC",2017-06-19 06:00:00,2017-06-19 14:00:00,4062,9,linear_ramp,2.74,Band_C_High,2044.4,0.54,0.46,False,ambient_train
-INJ_0137,train,dc_washington,"Washington, DC",2021-08-28 20:00:00,2021-08-29 11:00:00,40820,16,linear_ramp,2.25,Band_A_Low,582.4,0.59,0.41,False,ambient_train
-INJ_0138,train,dc_washington,"Washington, DC",2021-07-07 14:00:00,2021-07-08 06:00:00,39566,17,step,0.0,Band_A_Low,469.5,0.41,0.59,False,ambient_train
-INJ_0139,train,dc_washington,"Washington, DC",2020-06-13 10:00:00,2020-06-13 21:00:00,30226,12,step,0.0,Band_A_Low,464.7,0.66,0.34,False,ambient_train
-INJ_0140,train,dc_washington,"Washington, DC",2020-05-06 03:00:00,2020-05-06 18:00:00,29307,16,linear_ramp,1.36,Band_C_High,1803.8,0.64,0.36,True,ambient_train
-INJ_0141,train,dc_washington,"Washington, DC",2020-11-27 21:00:00,2020-11-28 05:00:00,34245,9,linear_ramp,3.53,Band_C_High,1957.8,0.49,0.51,False,ambient_train
-INJ_0142,train,dc_washington,"Washington, DC",2020-08-18 13:00:00,2020-08-18 20:00:00,31813,8,step,0.0,Band_C_High,2039.8,0.69,0.31,False,ambient_train
-INJ_0143,train,dc_washington,"Washington, DC",2018-09-07 20:00:00,2018-09-08 09:00:00,14756,14,linear_ramp,3.33,Band_C_High,2024.2,0.63,0.37,True,ambient_train
-INJ_0144,train,dc_washington,"Washington, DC",2018-11-25 03:00:00,2018-11-25 18:00:00,16635,16,step,0.0,Band_C_High,1953.1,0.59,0.41,False,ambient_train
-INJ_0145,train,dc_washington,"Washington, DC",2020-06-24 06:00:00,2020-06-25 02:00:00,30486,21,step,0.0,Band_A_Low,389.4,0.6,0.4,False,ambient_train
-INJ_0146,train,dc_washington,"Washington, DC",2019-12-24 18:00:00,2019-12-25 02:00:00,26106,9,step,0.0,Band_C_High,2340.6,0.35,0.65,False,ambient_train
-INJ_0147,train,dc_washington,"Washington, DC",2017-11-25 20:00:00,2017-11-26 13:00:00,7892,18,linear_ramp,3.83,Band_A_Low,297.4,0.42,0.58,False,ambient_train
-INJ_0148,train,dc_washington,"Washington, DC",2019-01-17 09:00:00,2019-01-17 14:00:00,17913,6,linear_ramp,1.43,Band_C_High,1631.6,0.39,0.61,False,ambient_train
-INJ_0149,train,dc_washington,"Washington, DC",2022-07-27 17:00:00,2022-07-28 09:00:00,48809,17,step,0.0,Band_C_High,1555.0,0.65,0.35,False,ambient_train
-INJ_0150,train,dc_washington,"Washington, DC",2020-10-17 06:00:00,2020-10-17 11:00:00,33246,6,linear_ramp,3.23,Band_C_High,1478.1,0.38,0.62,False,ambient_train
-INJ_0151,train,dc_washington,"Washington, DC",2019-12-25 00:00:00,2019-12-25 23:00:00,26112,24,step,0.0,Band_A_Low,507.6,0.31,0.69,False,ambient_train
-INJ_0152,train,dc_washington,"Washington, DC",2022-01-03 21:00:00,2022-01-04 11:00:00,43893,15,step,0.0,Band_A_Low,563.4,0.44,0.56,False,ambient_train
-INJ_0153,train,dc_washington,"Washington, DC",2018-09-06 22:00:00,2018-09-07 20:00:00,14734,23,step,0.0,Band_A_Low,524.0,0.64,0.36,False,ambient_train
-INJ_0154,train,dc_washington,"Washington, DC",2021-07-10 07:00:00,2021-07-10 13:00:00,39631,7,linear_ramp,3.24,Band_A_Low,541.7,0.49,0.51,False,ambient_train
-INJ_0155,train,dc_washington,"Washington, DC",2021-09-24 00:00:00,2021-09-24 16:00:00,41448,17,linear_ramp,2.51,Band_C_High,1677.7,0.45,0.55,False,ambient_train
-INJ_0156,train,dc_washington,"Washington, DC",2020-08-18 19:00:00,2020-08-19 04:00:00,31819,10,step,0.0,Band_A_Low,534.7,0.39,0.61,False,ambient_train
-INJ_0157,train,dc_washington,"Washington, DC",2019-05-18 16:00:00,2019-05-19 02:00:00,20824,11,step,0.0,Band_C_High,2436.9,0.57,0.43,False,ambient_train
-INJ_0158,train,dc_washington,"Washington, DC",2019-03-04 19:00:00,2019-03-05 08:00:00,19027,14,step,0.0,Band_C_High,1568.3,0.66,0.34,False,ambient_train
-INJ_0159,train,dc_washington,"Washington, DC",2022-03-11 13:00:00,2022-03-11 20:00:00,45493,8,linear_ramp,3.21,Band_C_High,2313.6,0.38,0.62,False,ambient_train
-INJ_0160,train,dc_washington,"Washington, DC",2019-06-03 17:00:00,2019-06-04 10:00:00,21209,18,step,0.0,Band_C_High,2464.2,0.4,0.6,False,ambient_train
-INJ_0161,test,dc_washington,"Washington, DC",2024-08-08 10:00:00,2024-08-11 02:00:00,66634,65,sigmoidal,0.82,Band_B_Mid (Interpolation),966.6,0.13,0.87,True,hard_case_rain_coincident
-INJ_0162,test,dc_washington,"Washington, DC",2024-05-15 10:00:00,2024-05-17 15:00:00,64594,54,exponential,1.34,Band_B_Mid (Interpolation),1091.7,0.08,0.92,True,hard_case_rain_coincident
-INJ_0163,test,dc_washington,"Washington, DC",2024-11-11 02:00:00,2024-11-13 21:00:00,68906,68,sigmoidal,1.12,Band_B_Mid (Interpolation),912.0,0.13,0.87,True,hard_case_rain_coincident
-INJ_0164,test,dc_washington,"Washington, DC",2024-11-20 03:00:00,2024-11-22 12:00:00,69123,58,exponential,1.65,Band_B_Mid (Interpolation),772.8,0.01,0.99,True,hard_case_rain_coincident
-INJ_0165,test,dc_washington,"Washington, DC",2024-05-10 14:00:00,2024-05-12 16:00:00,64478,51,exponential,2.1,Band_B_Mid (Interpolation),764.0,0.12,0.88,True,hard_case_rain_coincident
-INJ_0166,test,dc_washington,"Washington, DC",2025-02-12 03:00:00,2025-02-13 09:00:00,71139,31,exponential,2.4,Band_B_Mid (Interpolation),1114.9,0.06,0.94,True,hard_case_rain_coincident
-INJ_0167,test,dc_washington,"Washington, DC",2024-03-02 13:00:00,2024-03-04 12:00:00,62821,48,sigmoidal,0.88,Band_B_Mid (Interpolation),722.7,0.86,0.14,True,hard_case_rain_coincident
-INJ_0168,test,dc_washington,"Washington, DC",2024-03-23 05:00:00,2024-03-24 16:00:00,63317,36,exponential,1.93,Band_B_Mid (Interpolation),1151.9,0.91,0.09,True,hard_case_rain_coincident
-INJ_0169,test,dc_washington,"Washington, DC",2025-04-12 05:00:00,2025-04-14 10:00:00,72557,54,exponential,1.39,Band_B_Mid (Interpolation),1059.2,0.92,0.08,True,hard_case_rain_coincident
-INJ_0170,test,dc_washington,"Washington, DC",2024-04-19 20:00:00,2024-04-21 20:00:00,63980,49,exponential,1.83,Band_B_Mid (Interpolation),761.7,0.05,0.95,True,hard_case_rain_coincident
-INJ_0171,test,dc_washington,"Washington, DC",2024-07-12 15:00:00,2024-07-15 01:00:00,65991,59,exponential,1.49,Band_B_Mid (Interpolation),1078.7,0.99,0.01,True,hard_case_rain_coincident
-INJ_0172,test,dc_washington,"Washington, DC",2023-01-19 13:00:00,2023-01-22 11:00:00,53029,71,exponential,1.97,Band_B_Mid (Interpolation),729.3,0.07,0.93,True,hard_case_rain_coincident
-INJ_0173,test,dc_washington,"Washington, DC",2024-04-10 10:00:00,2024-04-11 22:00:00,63754,37,sigmoidal,1.25,Band_B_Mid (Interpolation),1142.4,0.9,0.1,False,standard_test_dry
-INJ_0174,test,dc_washington,"Washington, DC",2024-02-04 12:00:00,2024-02-05 19:00:00,62172,32,exponential,1.35,Band_B_Mid (Interpolation),911.2,0.95,0.05,False,standard_test_dry
-INJ_0175,test,dc_washington,"Washington, DC",2025-07-29 17:00:00,2025-08-01 05:00:00,75161,61,sigmoidal,0.95,Band_B_Mid (Interpolation),777.9,0.08,0.92,True,standard_test_dry
-INJ_0176,test,dc_washington,"Washington, DC",2024-06-02 07:00:00,2024-06-03 11:00:00,65023,29,sigmoidal,1.34,Band_B_Mid (Interpolation),828.5,0.02,0.98,True,standard_test_dry
-INJ_0177,test,dc_washington,"Washington, DC",2023-10-24 22:00:00,2023-10-26 22:00:00,59710,49,sigmoidal,1.3,Band_B_Mid (Interpolation),1053.2,0.93,0.07,False,standard_test_dry
-INJ_0178,test,dc_washington,"Washington, DC",2023-10-07 07:00:00,2023-10-08 15:00:00,59287,33,exponential,2.43,Band_B_Mid (Interpolation),714.0,1.0,0.0,True,standard_test_dry
-INJ_0179,test,dc_washington,"Washington, DC",2024-12-02 04:00:00,2024-12-05 02:00:00,69412,71,sigmoidal,1.28,Band_B_Mid (Interpolation),1091.4,0.94,0.06,False,standard_test_dry
-INJ_0180,test,dc_washington,"Washington, DC",2023-05-27 09:00:00,2023-05-29 12:00:00,56097,52,exponential,1.34,Band_B_Mid (Interpolation),748.3,0.88,0.12,True,standard_test_dry
-INJ_0181,test,dc_washington,"Washington, DC",2025-04-21 04:00:00,2025-04-23 17:00:00,72772,62,sigmoidal,0.95,Band_B_Mid (Interpolation),898.5,0.11,0.89,False,standard_test_dry
-INJ_0182,test,dc_washington,"Washington, DC",2023-05-26 15:00:00,2023-05-29 13:00:00,56079,71,sigmoidal,1.5,Band_B_Mid (Interpolation),901.3,0.89,0.11,True,standard_test_dry
-INJ_0183,test,dc_washington,"Washington, DC",2024-10-10 13:00:00,2024-10-12 14:00:00,68149,50,sigmoidal,1.24,Band_B_Mid (Interpolation),740.6,0.13,0.87,False,standard_test_dry
-INJ_0184,test,dc_washington,"Washington, DC",2024-01-22 03:00:00,2024-01-23 16:00:00,61851,38,exponential,2.05,Band_B_Mid (Interpolation),751.5,0.06,0.94,False,standard_test_dry
-INJ_0185,test,dc_washington,"Washington, DC",2024-01-02 00:00:00,2024-01-04 13:00:00,61368,62,sigmoidal,0.93,Band_B_Mid (Interpolation),716.1,0.13,0.87,False,standard_test_dry
-INJ_0186,test,dc_washington,"Washington, DC",2023-11-17 00:00:00,2023-11-18 22:00:00,60264,47,sigmoidal,1.4,Band_B_Mid (Interpolation),1006.1,0.85,0.15,True,standard_test_dry
-INJ_0187,test,dc_washington,"Washington, DC",2024-10-10 22:00:00,2024-10-12 08:00:00,68158,35,exponential,2.32,Band_B_Mid (Interpolation),1033.8,0.92,0.08,False,standard_test_dry
-INJ_0188,test,dc_washington,"Washington, DC",2024-01-31 23:00:00,2024-02-03 03:00:00,62087,53,exponential,1.04,Band_B_Mid (Interpolation),1093.2,0.91,0.09,True,standard_test_dry
-INJ_0189,test,dc_washington,"Washington, DC",2024-05-02 19:00:00,2024-05-04 03:00:00,64291,33,exponential,1.64,Band_B_Mid (Interpolation),1059.4,0.88,0.12,False,standard_test_dry
-INJ_0190,test,dc_washington,"Washington, DC",2024-11-10 20:00:00,2024-11-12 16:00:00,68900,45,exponential,2.38,Band_B_Mid (Interpolation),977.9,0.03,0.97,True,standard_test_dry
-INJ_0191,test,dc_washington,"Washington, DC",2024-08-28 12:00:00,2024-08-31 06:00:00,67116,67,exponential,1.48,Band_B_Mid (Interpolation),1163.9,0.11,0.89,True,standard_test_dry
-INJ_0192,test,dc_washington,"Washington, DC",2023-06-25 14:00:00,2023-06-28 04:00:00,56798,63,sigmoidal,1.47,Band_B_Mid (Interpolation),947.4,0.14,0.86,True,standard_test_dry
-INJ_0193,test,dc_washington,"Washington, DC",2025-07-11 23:00:00,2025-07-14 00:00:00,74735,50,exponential,1.64,Band_B_Mid (Interpolation),725.4,0.95,0.05,True,standard_test_dry
-INJ_0194,test,dc_washington,"Washington, DC",2024-05-30 18:00:00,2024-06-02 07:00:00,64962,62,sigmoidal,1.0,Band_B_Mid (Interpolation),802.2,0.13,0.87,False,standard_test_dry
-INJ_0195,test,dc_washington,"Washington, DC",2025-04-25 16:00:00,2025-04-28 06:00:00,72880,63,exponential,2.03,Band_B_Mid (Interpolation),1184.5,0.95,0.05,True,standard_test_dry
-INJ_0196,test,dc_washington,"Washington, DC",2023-01-05 16:00:00,2023-01-08 08:00:00,52696,65,exponential,2.36,Band_B_Mid (Interpolation),879.4,0.14,0.86,False,standard_test_dry
-INJ_0197,test,dc_washington,"Washington, DC",2024-03-30 11:00:00,2024-04-01 01:00:00,63491,39,exponential,1.84,Band_B_Mid (Interpolation),817.2,0.94,0.06,True,standard_test_dry
-INJ_0198,test,dc_washington,"Washington, DC",2024-04-14 22:00:00,2024-04-17 11:00:00,63862,62,sigmoidal,1.31,Band_B_Mid (Interpolation),739.3,0.85,0.15,True,standard_test_dry
-INJ_0199,test,dc_washington,"Washington, DC",2023-02-06 02:00:00,2023-02-07 20:00:00,53450,43,sigmoidal,1.65,Band_B_Mid (Interpolation),738.3,0.88,0.12,False,standard_test_dry
-INJ_0200,test,dc_washington,"Washington, DC",2023-08-14 16:00:00,2023-08-16 03:00:00,58000,36,sigmoidal,1.33,Band_B_Mid (Interpolation),1028.5,0.15,0.85,True,standard_test_dry
-INJ_0201,train,ca_san_diego,"San Diego, CA",2017-10-21 20:00:00,2017-10-22 01:00:00,7052,6,step,0.0,Band_C_High,1579.8,0.52,0.48,False,ambient_train
-INJ_0202,train,ca_san_diego,"San Diego, CA",2020-10-22 09:00:00,2020-10-23 06:00:00,33369,22,step,0.0,Band_C_High,1553.9,0.3,0.7,False,ambient_train
-INJ_0203,train,ca_san_diego,"San Diego, CA",2021-08-28 19:00:00,2021-08-29 02:00:00,40819,8,step,0.0,Band_C_High,1584.6,0.61,0.39,False,ambient_train
-INJ_0204,train,ca_san_diego,"San Diego, CA",2019-04-06 13:00:00,2019-04-06 18:00:00,19813,6,step,0.0,Band_A_Low,498.4,0.64,0.36,False,ambient_train
-INJ_0205,train,ca_san_diego,"San Diego, CA",2021-08-06 11:00:00,2021-08-07 06:00:00,40283,20,linear_ramp,3.18,Band_C_High,2038.9,0.33,0.67,False,ambient_train
-INJ_0206,train,ca_san_diego,"San Diego, CA",2021-11-21 09:00:00,2021-11-22 03:00:00,42849,19,linear_ramp,1.25,Band_A_Low,440.6,0.69,0.31,False,ambient_train
-INJ_0207,train,ca_san_diego,"San Diego, CA",2021-11-26 12:00:00,2021-11-26 22:00:00,42972,11,step,0.0,Band_C_High,2217.1,0.4,0.6,False,ambient_train
-INJ_0208,train,ca_san_diego,"San Diego, CA",2022-06-25 08:00:00,2022-06-25 13:00:00,48032,6,step,0.0,Band_A_Low,370.0,0.3,0.7,False,ambient_train
-INJ_0209,train,ca_san_diego,"San Diego, CA",2017-06-30 06:00:00,2017-07-01 00:00:00,4326,19,step,0.0,Band_C_High,1927.9,0.57,0.43,False,ambient_train
-INJ_0210,train,ca_san_diego,"San Diego, CA",2022-05-13 06:00:00,2022-05-13 11:00:00,46998,6,linear_ramp,1.98,Band_A_Low,497.5,0.66,0.34,False,ambient_train
-INJ_0211,train,ca_san_diego,"San Diego, CA",2018-11-29 17:00:00,2018-11-30 16:00:00,16745,24,step,0.0,Band_C_High,1656.5,0.33,0.67,True,ambient_train
-INJ_0212,train,ca_san_diego,"San Diego, CA",2022-10-28 21:00:00,2022-10-29 18:00:00,51045,22,linear_ramp,1.5,Band_A_Low,413.5,0.65,0.35,False,ambient_train
-INJ_0213,train,ca_san_diego,"San Diego, CA",2018-07-20 15:00:00,2018-07-20 23:00:00,13575,9,linear_ramp,2.24,Band_A_Low,333.5,0.67,0.33,False,ambient_train
-INJ_0214,train,ca_san_diego,"San Diego, CA",2021-01-30 00:00:00,2021-01-30 18:00:00,35760,19,linear_ramp,1.21,Band_A_Low,267.7,0.53,0.47,True,ambient_train
-INJ_0215,train,ca_san_diego,"San Diego, CA",2017-12-24 18:00:00,2017-12-25 03:00:00,8586,10,step,0.0,Band_A_Low,365.9,0.34,0.66,False,ambient_train
-INJ_0216,train,ca_san_diego,"San Diego, CA",2020-09-26 06:00:00,2020-09-27 04:00:00,32742,23,step,0.0,Band_A_Low,297.5,0.63,0.37,False,ambient_train
-INJ_0217,train,ca_san_diego,"San Diego, CA",2020-03-24 18:00:00,2020-03-25 02:00:00,28290,9,linear_ramp,2.06,Band_C_High,2317.1,0.39,0.61,False,ambient_train
-INJ_0218,train,ca_san_diego,"San Diego, CA",2022-11-15 04:00:00,2022-11-15 21:00:00,51460,18,step,0.0,Band_C_High,2153.5,0.36,0.64,False,ambient_train
-INJ_0219,train,ca_san_diego,"San Diego, CA",2018-07-29 18:00:00,2018-07-30 01:00:00,13794,8,linear_ramp,2.46,Band_A_Low,481.7,0.33,0.67,False,ambient_train
-INJ_0220,train,ca_san_diego,"San Diego, CA",2021-01-22 10:00:00,2021-01-23 08:00:00,35578,23,step,0.0,Band_C_High,2339.9,0.66,0.34,True,ambient_train
-INJ_0221,train,ca_san_diego,"San Diego, CA",2021-03-05 22:00:00,2021-03-06 03:00:00,36598,6,linear_ramp,3.22,Band_A_Low,257.2,0.37,0.63,False,ambient_train
-INJ_0222,train,ca_san_diego,"San Diego, CA",2021-10-15 22:00:00,2021-10-16 19:00:00,41974,22,step,0.0,Band_C_High,1939.0,0.53,0.47,False,ambient_train
-INJ_0223,train,ca_san_diego,"San Diego, CA",2021-09-11 09:00:00,2021-09-12 02:00:00,41145,18,linear_ramp,2.68,Band_A_Low,594.5,0.67,0.33,False,ambient_train
-INJ_0224,train,ca_san_diego,"San Diego, CA",2022-05-02 00:00:00,2022-05-02 06:00:00,46728,7,linear_ramp,1.62,Band_A_Low,543.9,0.51,0.49,False,ambient_train
-INJ_0225,train,ca_san_diego,"San Diego, CA",2019-10-12 18:00:00,2019-10-13 02:00:00,24354,9,step,0.0,Band_A_Low,278.7,0.66,0.34,False,ambient_train
-INJ_0226,train,ca_san_diego,"San Diego, CA",2018-05-18 09:00:00,2018-05-18 16:00:00,12057,8,step,0.0,Band_A_Low,270.0,0.62,0.38,False,ambient_train
-INJ_0227,train,ca_san_diego,"San Diego, CA",2021-09-06 02:00:00,2021-09-06 08:00:00,41018,7,step,0.0,Band_A_Low,272.2,0.39,0.61,False,ambient_train
-INJ_0228,train,ca_san_diego,"San Diego, CA",2020-04-16 23:00:00,2020-04-17 14:00:00,28847,16,step,0.0,Band_C_High,1556.0,0.32,0.68,False,ambient_train
-INJ_0229,train,ca_san_diego,"San Diego, CA",2018-02-27 12:00:00,2018-02-27 18:00:00,10140,7,linear_ramp,3.65,Band_A_Low,522.7,0.58,0.42,True,ambient_train
-INJ_0230,train,ca_san_diego,"San Diego, CA",2020-09-02 09:00:00,2020-09-02 17:00:00,32169,9,step,0.0,Band_A_Low,292.6,0.46,0.54,False,ambient_train
-INJ_0231,train,ca_san_diego,"San Diego, CA",2018-12-21 05:00:00,2018-12-21 16:00:00,17261,12,linear_ramp,2.85,Band_A_Low,449.6,0.38,0.62,False,ambient_train
-INJ_0232,train,ca_san_diego,"San Diego, CA",2020-01-02 01:00:00,2020-01-03 00:00:00,26305,24,step,0.0,Band_C_High,1539.9,0.65,0.35,False,ambient_train
-INJ_0233,train,ca_san_diego,"San Diego, CA",2018-12-29 09:00:00,2018-12-29 17:00:00,17457,9,linear_ramp,3.71,Band_C_High,1856.9,0.36,0.64,False,ambient_train
-INJ_0234,train,ca_san_diego,"San Diego, CA",2018-07-09 03:00:00,2018-07-09 08:00:00,13299,6,step,0.0,Band_C_High,2427.4,0.41,0.59,False,ambient_train
-INJ_0235,train,ca_san_diego,"San Diego, CA",2018-05-20 05:00:00,2018-05-20 20:00:00,12101,16,step,0.0,Band_C_High,1864.4,0.64,0.36,False,ambient_train
-INJ_0236,train,ca_san_diego,"San Diego, CA",2018-11-09 06:00:00,2018-11-10 04:00:00,16254,23,step,0.0,Band_A_Low,330.4,0.33,0.67,False,ambient_train
-INJ_0237,train,ca_san_diego,"San Diego, CA",2020-08-25 01:00:00,2020-08-25 14:00:00,31969,14,linear_ramp,3.23,Band_C_High,2241.0,0.34,0.66,False,ambient_train
-INJ_0238,train,ca_san_diego,"San Diego, CA",2022-03-14 14:00:00,2022-03-15 11:00:00,45566,22,linear_ramp,3.25,Band_C_High,1984.4,0.68,0.32,False,ambient_train
-INJ_0239,train,ca_san_diego,"San Diego, CA",2019-06-13 20:00:00,2019-06-14 14:00:00,21452,19,linear_ramp,1.36,Band_C_High,1583.1,0.44,0.56,False,ambient_train
-INJ_0240,train,ca_san_diego,"San Diego, CA",2022-05-18 04:00:00,2022-05-18 13:00:00,47116,10,linear_ramp,3.79,Band_A_Low,271.8,0.68,0.32,False,ambient_train
-INJ_0241,train,ca_san_diego,"San Diego, CA",2019-04-24 20:00:00,2019-04-25 07:00:00,20252,12,step,0.0,Band_A_Low,311.1,0.56,0.44,False,ambient_train
-INJ_0242,train,ca_san_diego,"San Diego, CA",2017-06-11 19:00:00,2017-06-12 17:00:00,3883,23,step,0.0,Band_A_Low,292.3,0.48,0.52,False,ambient_train
-INJ_0243,train,ca_san_diego,"San Diego, CA",2021-02-15 20:00:00,2021-02-16 16:00:00,36164,21,linear_ramp,3.82,Band_A_Low,587.9,0.7,0.3,True,ambient_train
-INJ_0244,train,ca_san_diego,"San Diego, CA",2019-05-28 01:00:00,2019-05-28 15:00:00,21049,15,step,0.0,Band_C_High,2428.6,0.66,0.34,False,ambient_train
-INJ_0245,train,ca_san_diego,"San Diego, CA",2020-02-02 22:00:00,2020-02-03 12:00:00,27070,15,linear_ramp,2.38,Band_A_Low,483.4,0.4,0.6,False,ambient_train
-INJ_0246,train,ca_san_diego,"San Diego, CA",2021-11-21 05:00:00,2021-11-21 17:00:00,42845,13,step,0.0,Band_A_Low,439.1,0.46,0.54,False,ambient_train
-INJ_0247,train,ca_san_diego,"San Diego, CA",2019-01-13 20:00:00,2019-01-14 15:00:00,17828,20,linear_ramp,2.4,Band_C_High,2182.1,0.39,0.61,False,ambient_train
-INJ_0248,train,ca_san_diego,"San Diego, CA",2021-04-03 02:00:00,2021-04-04 00:00:00,37274,23,linear_ramp,1.69,Band_A_Low,409.9,0.41,0.59,False,ambient_train
-INJ_0249,train,ca_san_diego,"San Diego, CA",2018-10-28 16:00:00,2018-10-29 12:00:00,15976,21,linear_ramp,2.44,Band_A_Low,322.3,0.64,0.36,False,ambient_train
-INJ_0250,train,ca_san_diego,"San Diego, CA",2021-08-30 04:00:00,2021-08-30 11:00:00,40852,8,step,0.0,Band_C_High,1624.8,0.51,0.49,False,ambient_train
-INJ_0251,train,ca_san_diego,"San Diego, CA",2021-01-20 11:00:00,2021-01-21 07:00:00,35531,21,step,0.0,Band_A_Low,474.8,0.64,0.36,False,ambient_train
-INJ_0252,train,ca_san_diego,"San Diego, CA",2022-10-23 10:00:00,2022-10-24 02:00:00,50914,17,linear_ramp,1.92,Band_A_Low,462.1,0.48,0.52,True,ambient_train
-INJ_0253,train,ca_san_diego,"San Diego, CA",2019-05-27 04:00:00,2019-05-27 09:00:00,21028,6,linear_ramp,3.25,Band_C_High,1502.6,0.4,0.6,True,ambient_train
-INJ_0254,train,ca_san_diego,"San Diego, CA",2020-07-19 14:00:00,2020-07-20 10:00:00,31094,21,step,0.0,Band_A_Low,430.1,0.59,0.41,False,ambient_train
-INJ_0255,train,ca_san_diego,"San Diego, CA",2021-03-04 06:00:00,2021-03-04 17:00:00,36558,12,step,0.0,Band_A_Low,474.1,0.56,0.44,False,ambient_train
-INJ_0256,train,ca_san_diego,"San Diego, CA",2019-10-08 17:00:00,2019-10-09 07:00:00,24257,15,linear_ramp,1.7,Band_A_Low,550.4,0.42,0.58,False,ambient_train
-INJ_0257,train,ca_san_diego,"San Diego, CA",2021-05-15 08:00:00,2021-05-15 15:00:00,38288,8,step,0.0,Band_A_Low,497.0,0.51,0.49,False,ambient_train
-INJ_0258,train,ca_san_diego,"San Diego, CA",2021-09-10 14:00:00,2021-09-11 11:00:00,41126,22,step,0.0,Band_C_High,1831.2,0.31,0.69,False,ambient_train
-INJ_0259,train,ca_san_diego,"San Diego, CA",2020-08-30 01:00:00,2020-08-30 07:00:00,32089,7,linear_ramp,3.57,Band_A_Low,588.8,0.39,0.61,False,ambient_train
-INJ_0260,train,ca_san_diego,"San Diego, CA",2020-01-12 05:00:00,2020-01-12 14:00:00,26549,10,linear_ramp,2.17,Band_A_Low,437.5,0.67,0.33,False,ambient_train
-INJ_0261,test,ca_san_diego,"San Diego, CA",2023-03-23 04:00:00,2023-03-24 10:00:00,54532,31,sigmoidal,1.74,Band_B_Mid (Interpolation),976.3,0.11,0.89,True,hard_case_rain_coincident
-INJ_0262,test,ca_san_diego,"San Diego, CA",2024-01-21 00:00:00,2024-01-23 21:00:00,61824,70,sigmoidal,1.02,Band_B_Mid (Interpolation),752.4,0.06,0.94,True,hard_case_rain_coincident
-INJ_0263,test,ca_san_diego,"San Diego, CA",2024-01-03 17:00:00,2024-01-05 13:00:00,61409,45,sigmoidal,1.65,Band_B_Mid (Interpolation),877.3,0.12,0.88,True,hard_case_rain_coincident
-INJ_0264,test,ca_san_diego,"San Diego, CA",2025-03-15 00:00:00,2025-03-17 18:00:00,71880,67,exponential,1.1,Band_B_Mid (Interpolation),931.3,0.98,0.02,True,hard_case_rain_coincident
-INJ_0265,test,ca_san_diego,"San Diego, CA",2024-03-23 21:00:00,2024-03-25 01:00:00,63333,29,exponential,1.43,Band_B_Mid (Interpolation),1086.9,0.13,0.87,True,hard_case_rain_coincident
-INJ_0266,test,ca_san_diego,"San Diego, CA",2024-01-04 00:00:00,2024-01-05 12:00:00,61416,37,exponential,1.78,Band_B_Mid (Interpolation),1032.6,0.08,0.92,True,hard_case_rain_coincident
-INJ_0267,test,ca_san_diego,"San Diego, CA",2024-11-24 07:00:00,2024-11-26 04:00:00,69223,46,exponential,1.65,Band_B_Mid (Interpolation),1012.5,0.88,0.12,True,hard_case_rain_coincident
-INJ_0268,test,ca_san_diego,"San Diego, CA",2023-02-14 04:00:00,2023-02-15 23:00:00,53644,44,sigmoidal,1.12,Band_B_Mid (Interpolation),1017.1,0.09,0.91,True,hard_case_rain_coincident
-INJ_0269,test,ca_san_diego,"San Diego, CA",2025-05-13 11:00:00,2025-05-15 19:00:00,73307,57,sigmoidal,1.46,Band_B_Mid (Interpolation),807.0,0.97,0.03,True,hard_case_rain_coincident
-INJ_0270,test,ca_san_diego,"San Diego, CA",2025-03-06 03:00:00,2025-03-08 01:00:00,71667,47,exponential,1.9,Band_B_Mid (Interpolation),1145.8,0.98,0.02,True,hard_case_rain_coincident
-INJ_0271,test,ca_san_diego,"San Diego, CA",2024-03-04 16:00:00,2024-03-05 20:00:00,62872,29,exponential,2.34,Band_B_Mid (Interpolation),1104.9,0.94,0.06,True,hard_case_rain_coincident
-INJ_0272,test,ca_san_diego,"San Diego, CA",2025-01-27 09:00:00,2025-01-29 23:00:00,70761,63,exponential,1.3,Band_B_Mid (Interpolation),816.3,0.12,0.88,True,hard_case_rain_coincident
-INJ_0273,test,ca_san_diego,"San Diego, CA",2024-04-04 17:00:00,2024-04-05 22:00:00,63617,30,sigmoidal,0.94,Band_B_Mid (Interpolation),708.5,0.96,0.04,True,standard_test_dry
-INJ_0274,test,ca_san_diego,"San Diego, CA",2024-07-02 16:00:00,2024-07-04 02:00:00,65752,35,sigmoidal,0.86,Band_B_Mid (Interpolation),1135.8,0.04,0.96,False,standard_test_dry
-INJ_0275,test,ca_san_diego,"San Diego, CA",2023-10-30 02:00:00,2023-10-31 05:00:00,59834,28,exponential,1.76,Band_B_Mid (Interpolation),1116.8,0.97,0.03,False,standard_test_dry
-INJ_0276,test,ca_san_diego,"San Diego, CA",2024-05-03 04:00:00,2024-05-05 22:00:00,64300,67,exponential,2.02,Band_B_Mid (Interpolation),985.8,0.94,0.06,True,standard_test_dry
-INJ_0277,test,ca_san_diego,"San Diego, CA",2025-04-05 23:00:00,2025-04-07 02:00:00,72407,28,sigmoidal,1.11,Band_B_Mid (Interpolation),991.3,0.07,0.93,False,standard_test_dry
-INJ_0278,test,ca_san_diego,"San Diego, CA",2024-05-04 04:00:00,2024-05-05 11:00:00,64324,32,sigmoidal,1.07,Band_B_Mid (Interpolation),898.8,0.85,0.15,True,standard_test_dry
-INJ_0279,test,ca_san_diego,"San Diego, CA",2023-11-18 19:00:00,2023-11-20 07:00:00,60307,37,sigmoidal,1.34,Band_B_Mid (Interpolation),1034.9,0.99,0.01,False,standard_test_dry
-INJ_0280,test,ca_san_diego,"San Diego, CA",2023-06-20 11:00:00,2023-06-22 21:00:00,56675,59,sigmoidal,0.87,Band_B_Mid (Interpolation),909.9,0.1,0.9,False,standard_test_dry
-INJ_0281,test,ca_san_diego,"San Diego, CA",2024-12-04 22:00:00,2024-12-07 00:00:00,69478,51,sigmoidal,1.49,Band_B_Mid (Interpolation),700.5,0.87,0.13,False,standard_test_dry
-INJ_0282,test,ca_san_diego,"San Diego, CA",2024-08-31 14:00:00,2024-09-01 19:00:00,67190,30,sigmoidal,1.06,Band_B_Mid (Interpolation),1129.4,0.98,0.02,False,standard_test_dry
-INJ_0283,test,ca_san_diego,"San Diego, CA",2023-06-04 16:00:00,2023-06-06 09:00:00,56296,42,exponential,1.55,Band_B_Mid (Interpolation),1110.1,0.88,0.12,False,standard_test_dry
-INJ_0284,test,ca_san_diego,"San Diego, CA",2024-08-05 19:00:00,2024-08-07 02:00:00,66571,32,exponential,1.8,Band_B_Mid (Interpolation),1170.0,0.08,0.92,False,standard_test_dry
-INJ_0285,test,ca_san_diego,"San Diego, CA",2024-10-14 23:00:00,2024-10-16 05:00:00,68255,31,exponential,1.39,Band_B_Mid (Interpolation),971.6,0.87,0.13,False,standard_test_dry
-INJ_0286,test,ca_san_diego,"San Diego, CA",2023-05-03 15:00:00,2023-05-05 01:00:00,55527,35,exponential,1.58,Band_B_Mid (Interpolation),971.4,0.86,0.14,True,standard_test_dry
-INJ_0287,test,ca_san_diego,"San Diego, CA",2024-10-12 14:00:00,2024-10-15 06:00:00,68198,65,exponential,1.88,Band_B_Mid (Interpolation),931.6,0.89,0.11,False,standard_test_dry
-INJ_0288,test,ca_san_diego,"San Diego, CA",2023-05-17 12:00:00,2023-05-19 16:00:00,55860,53,exponential,2.04,Band_B_Mid (Interpolation),884.8,0.1,0.9,False,standard_test_dry
-INJ_0289,test,ca_san_diego,"San Diego, CA",2024-06-09 03:00:00,2024-06-10 22:00:00,65187,44,exponential,1.85,Band_B_Mid (Interpolation),858.5,0.12,0.88,False,standard_test_dry
-INJ_0290,test,ca_san_diego,"San Diego, CA",2024-01-11 01:00:00,2024-01-12 22:00:00,61585,46,sigmoidal,1.49,Band_B_Mid (Interpolation),870.9,0.15,0.85,True,standard_test_dry
-INJ_0291,test,ca_san_diego,"San Diego, CA",2024-07-08 02:00:00,2024-07-10 18:00:00,65882,65,sigmoidal,1.48,Band_B_Mid (Interpolation),995.2,0.09,0.91,False,standard_test_dry
-INJ_0292,test,ca_san_diego,"San Diego, CA",2024-05-12 15:00:00,2024-05-13 21:00:00,64527,31,exponential,1.96,Band_B_Mid (Interpolation),843.8,0.09,0.91,False,standard_test_dry
-INJ_0293,test,ca_san_diego,"San Diego, CA",2024-07-26 09:00:00,2024-07-28 19:00:00,66321,59,sigmoidal,1.62,Band_B_Mid (Interpolation),818.0,0.07,0.93,False,standard_test_dry
-INJ_0294,test,ca_san_diego,"San Diego, CA",2025-01-24 09:00:00,2025-01-26 17:00:00,70689,57,sigmoidal,1.37,Band_B_Mid (Interpolation),1039.7,0.05,0.95,True,standard_test_dry
-INJ_0295,test,ca_san_diego,"San Diego, CA",2023-09-05 03:00:00,2023-09-07 05:00:00,58515,51,exponential,2.15,Band_B_Mid (Interpolation),767.3,0.04,0.96,False,standard_test_dry
-INJ_0296,test,ca_san_diego,"San Diego, CA",2025-05-23 14:00:00,2025-05-25 13:00:00,73550,48,sigmoidal,1.11,Band_B_Mid (Interpolation),727.4,0.07,0.93,False,standard_test_dry
-INJ_0297,test,ca_san_diego,"San Diego, CA",2025-07-06 08:00:00,2025-07-07 16:00:00,74600,33,sigmoidal,0.84,Band_B_Mid (Interpolation),721.0,0.05,0.95,False,standard_test_dry
-INJ_0298,test,ca_san_diego,"San Diego, CA",2024-12-21 06:00:00,2024-12-22 23:00:00,69870,42,exponential,2.08,Band_B_Mid (Interpolation),739.2,0.98,0.02,False,standard_test_dry
-INJ_0299,test,ca_san_diego,"San Diego, CA",2023-10-08 02:00:00,2023-10-09 13:00:00,59306,36,sigmoidal,1.65,Band_B_Mid (Interpolation),1192.0,0.97,0.03,False,standard_test_dry
-INJ_0300,test,ca_san_diego,"San Diego, CA",2023-06-20 20:00:00,2023-06-23 12:00:00,56684,65,sigmoidal,1.14,Band_B_Mid (Interpolation),1007.1,0.05,0.95,False,standard_test_dry
-INJ_0301,train,tx_dallas,"Dallas, TX",2020-01-11 22:00:00,2020-01-12 08:00:00,26542,11,step,0.0,Band_C_High,2382.4,0.58,0.42,False,ambient_train
-INJ_0302,train,tx_dallas,"Dallas, TX",2018-02-28 17:00:00,2018-03-01 12:00:00,10169,20,step,0.0,Band_C_High,1826.0,0.5,0.5,True,ambient_train
-INJ_0303,train,tx_dallas,"Dallas, TX",2019-06-21 06:00:00,2019-06-21 17:00:00,21630,12,step,0.0,Band_C_High,1567.1,0.41,0.59,False,ambient_train
-INJ_0304,train,tx_dallas,"Dallas, TX",2017-09-29 00:00:00,2017-09-29 13:00:00,6504,14,linear_ramp,3.78,Band_C_High,2227.5,0.38,0.62,True,ambient_train
-INJ_0305,train,tx_dallas,"Dallas, TX",2022-01-30 21:00:00,2022-01-31 10:00:00,44541,14,step,0.0,Band_A_Low,296.6,0.35,0.65,False,ambient_train
-INJ_0306,train,tx_dallas,"Dallas, TX",2020-09-24 12:00:00,2020-09-24 22:00:00,32700,11,step,0.0,Band_A_Low,260.1,0.41,0.59,False,ambient_train
-INJ_0307,train,tx_dallas,"Dallas, TX",2021-08-10 21:00:00,2021-08-11 06:00:00,40389,10,linear_ramp,3.04,Band_C_High,1497.3,0.53,0.47,False,ambient_train
-INJ_0308,train,tx_dallas,"Dallas, TX",2022-12-06 09:00:00,2022-12-07 05:00:00,51969,21,linear_ramp,2.39,Band_A_Low,269.3,0.58,0.42,False,ambient_train
-INJ_0309,train,tx_dallas,"Dallas, TX",2021-10-26 11:00:00,2021-10-27 05:00:00,42227,19,step,0.0,Band_A_Low,543.2,0.65,0.35,False,ambient_train
-INJ_0310,train,tx_dallas,"Dallas, TX",2020-11-04 11:00:00,2020-11-04 17:00:00,33683,7,step,0.0,Band_A_Low,323.8,0.64,0.36,False,ambient_train
-INJ_0311,train,tx_dallas,"Dallas, TX",2019-06-29 03:00:00,2019-06-29 21:00:00,21819,19,step,0.0,Band_C_High,1650.3,0.42,0.58,False,ambient_train
-INJ_0312,train,tx_dallas,"Dallas, TX",2019-12-03 02:00:00,2019-12-03 12:00:00,25586,11,step,0.0,Band_C_High,1731.9,0.4,0.6,False,ambient_train
-INJ_0313,train,tx_dallas,"Dallas, TX",2020-04-02 03:00:00,2020-04-03 01:00:00,28491,23,step,0.0,Band_A_Low,415.7,0.47,0.53,False,ambient_train
-INJ_0314,train,tx_dallas,"Dallas, TX",2020-02-06 13:00:00,2020-02-06 21:00:00,27157,9,linear_ramp,3.66,Band_A_Low,454.6,0.6,0.4,False,ambient_train
-INJ_0315,train,tx_dallas,"Dallas, TX",2017-06-23 11:00:00,2017-06-24 08:00:00,4163,22,step,0.0,Band_C_High,2442.4,0.33,0.67,True,ambient_train
-INJ_0316,train,tx_dallas,"Dallas, TX",2021-12-31 14:00:00,2022-01-01 10:00:00,43814,21,linear_ramp,2.68,Band_C_High,1975.0,0.52,0.48,True,ambient_train
-INJ_0317,train,tx_dallas,"Dallas, TX",2020-03-28 07:00:00,2020-03-29 05:00:00,28375,23,step,0.0,Band_A_Low,420.2,0.68,0.32,True,ambient_train
-INJ_0318,train,tx_dallas,"Dallas, TX",2020-09-05 22:00:00,2020-09-06 17:00:00,32254,20,linear_ramp,3.18,Band_A_Low,415.2,0.54,0.46,True,ambient_train
-INJ_0319,train,tx_dallas,"Dallas, TX",2019-02-07 16:00:00,2019-02-07 23:00:00,18424,8,linear_ramp,1.3,Band_C_High,1514.3,0.35,0.65,False,ambient_train
-INJ_0320,train,tx_dallas,"Dallas, TX",2019-09-11 10:00:00,2019-09-11 22:00:00,23602,13,linear_ramp,1.82,Band_C_High,2440.8,0.38,0.62,False,ambient_train
-INJ_0321,train,tx_dallas,"Dallas, TX",2018-12-14 00:00:00,2018-12-14 23:00:00,17088,24,step,0.0,Band_A_Low,371.3,0.51,0.49,True,ambient_train
-INJ_0322,train,tx_dallas,"Dallas, TX",2022-12-15 20:00:00,2022-12-16 01:00:00,52196,6,step,0.0,Band_C_High,1934.5,0.64,0.36,False,ambient_train
-INJ_0323,train,tx_dallas,"Dallas, TX",2018-12-10 08:00:00,2018-12-10 19:00:00,17000,12,step,0.0,Band_C_High,2034.9,0.4,0.6,False,ambient_train
-INJ_0324,train,tx_dallas,"Dallas, TX",2018-04-21 06:00:00,2018-04-22 05:00:00,11406,24,linear_ramp,3.54,Band_C_High,1547.2,0.65,0.35,True,ambient_train
-INJ_0325,train,tx_dallas,"Dallas, TX",2021-11-08 02:00:00,2021-11-08 14:00:00,42530,13,linear_ramp,1.48,Band_C_High,2030.6,0.4,0.6,False,ambient_train
-INJ_0326,train,tx_dallas,"Dallas, TX",2021-07-26 12:00:00,2021-07-27 03:00:00,40020,16,linear_ramp,3.67,Band_C_High,1877.4,0.57,0.43,False,ambient_train
-INJ_0327,train,tx_dallas,"Dallas, TX",2019-05-08 22:00:00,2019-05-09 06:00:00,20590,9,step,0.0,Band_C_High,1485.6,0.52,0.48,False,ambient_train
-INJ_0328,train,tx_dallas,"Dallas, TX",2021-08-02 07:00:00,2021-08-02 16:00:00,40183,10,step,0.0,Band_C_High,2070.5,0.33,0.67,True,ambient_train
-INJ_0329,train,tx_dallas,"Dallas, TX",2022-06-26 19:00:00,2022-06-27 17:00:00,48067,23,step,0.0,Band_C_High,1408.8,0.69,0.31,False,ambient_train
-INJ_0330,train,tx_dallas,"Dallas, TX",2021-07-10 02:00:00,2021-07-10 19:00:00,39626,18,step,0.0,Band_C_High,1867.0,0.68,0.32,False,ambient_train
-INJ_0331,train,tx_dallas,"Dallas, TX",2019-08-18 17:00:00,2019-08-19 05:00:00,23033,13,linear_ramp,3.0,Band_C_High,2197.8,0.68,0.32,False,ambient_train
-INJ_0332,train,tx_dallas,"Dallas, TX",2018-02-27 07:00:00,2018-02-27 23:00:00,10135,17,linear_ramp,2.08,Band_A_Low,435.6,0.4,0.6,True,ambient_train
-INJ_0333,train,tx_dallas,"Dallas, TX",2020-05-15 01:00:00,2020-05-15 06:00:00,29521,6,linear_ramp,3.46,Band_A_Low,376.6,0.58,0.42,False,ambient_train
-INJ_0334,train,tx_dallas,"Dallas, TX",2021-06-05 23:00:00,2021-06-06 12:00:00,38807,14,step,0.0,Band_C_High,1773.7,0.69,0.31,True,ambient_train
-INJ_0335,train,tx_dallas,"Dallas, TX",2021-10-05 03:00:00,2021-10-05 17:00:00,41715,15,step,0.0,Band_C_High,1436.8,0.49,0.51,False,ambient_train
-INJ_0336,train,tx_dallas,"Dallas, TX",2022-06-29 02:00:00,2022-06-30 00:00:00,48122,23,linear_ramp,2.6,Band_A_Low,511.0,0.46,0.54,False,ambient_train
-INJ_0337,train,tx_dallas,"Dallas, TX",2022-03-16 16:00:00,2022-03-17 07:00:00,45616,16,step,0.0,Band_A_Low,502.1,0.54,0.46,False,ambient_train
-INJ_0338,train,tx_dallas,"Dallas, TX",2017-09-28 05:00:00,2017-09-28 10:00:00,6485,6,linear_ramp,1.79,Band_C_High,1961.6,0.34,0.66,False,ambient_train
-INJ_0339,train,tx_dallas,"Dallas, TX",2022-09-29 21:00:00,2022-09-30 05:00:00,50349,9,linear_ramp,3.88,Band_C_High,2002.5,0.32,0.68,False,ambient_train
-INJ_0340,train,tx_dallas,"Dallas, TX",2022-02-18 01:00:00,2022-02-18 08:00:00,44977,8,linear_ramp,1.54,Band_A_Low,536.7,0.48,0.52,False,ambient_train
-INJ_0341,train,tx_dallas,"Dallas, TX",2021-08-28 19:00:00,2021-08-29 05:00:00,40819,11,step,0.0,Band_C_High,2166.7,0.68,0.32,False,ambient_train
-INJ_0342,train,tx_dallas,"Dallas, TX",2018-01-14 06:00:00,2018-01-15 05:00:00,9078,24,linear_ramp,3.46,Band_A_Low,405.4,0.47,0.53,False,ambient_train
-INJ_0343,train,tx_dallas,"Dallas, TX",2018-10-13 22:00:00,2018-10-14 05:00:00,15622,8,step,0.0,Band_C_High,1947.7,0.58,0.42,False,ambient_train
-INJ_0344,train,tx_dallas,"Dallas, TX",2021-10-14 09:00:00,2021-10-15 06:00:00,41937,22,step,0.0,Band_A_Low,476.4,0.48,0.52,False,ambient_train
-INJ_0345,train,tx_dallas,"Dallas, TX",2021-07-25 05:00:00,2021-07-26 01:00:00,39989,21,linear_ramp,3.48,Band_A_Low,567.6,0.39,0.61,False,ambient_train
-INJ_0346,train,tx_dallas,"Dallas, TX",2017-08-01 22:00:00,2017-08-02 15:00:00,5110,18,linear_ramp,3.35,Band_A_Low,266.3,0.63,0.37,True,ambient_train
-INJ_0347,train,tx_dallas,"Dallas, TX",2018-03-24 13:00:00,2018-03-24 21:00:00,10741,9,linear_ramp,3.14,Band_C_High,1606.7,0.53,0.47,False,ambient_train
-INJ_0348,train,tx_dallas,"Dallas, TX",2021-11-20 23:00:00,2021-11-21 14:00:00,42839,16,step,0.0,Band_C_High,2199.8,0.67,0.33,False,ambient_train
-INJ_0349,train,tx_dallas,"Dallas, TX",2018-05-01 02:00:00,2018-05-01 23:00:00,11642,22,linear_ramp,3.1,Band_A_Low,576.9,0.66,0.34,False,ambient_train
-INJ_0350,train,tx_dallas,"Dallas, TX",2020-11-28 11:00:00,2020-11-29 04:00:00,34259,18,linear_ramp,3.0,Band_C_High,1557.3,0.65,0.35,True,ambient_train
-INJ_0351,train,tx_dallas,"Dallas, TX",2018-09-08 09:00:00,2018-09-08 18:00:00,14769,10,step,0.0,Band_A_Low,481.8,0.64,0.36,True,ambient_train
-INJ_0352,train,tx_dallas,"Dallas, TX",2020-06-29 07:00:00,2020-06-29 13:00:00,30607,7,linear_ramp,1.5,Band_C_High,1648.4,0.54,0.46,False,ambient_train
-INJ_0353,train,tx_dallas,"Dallas, TX",2019-01-26 01:00:00,2019-01-26 08:00:00,18121,8,linear_ramp,3.9,Band_A_Low,423.8,0.51,0.49,False,ambient_train
-INJ_0354,train,tx_dallas,"Dallas, TX",2020-08-14 09:00:00,2020-08-14 19:00:00,31713,11,step,0.0,Band_C_High,1574.9,0.46,0.54,False,ambient_train
-INJ_0355,train,tx_dallas,"Dallas, TX",2022-05-05 07:00:00,2022-05-06 05:00:00,46807,23,linear_ramp,1.93,Band_A_Low,569.9,0.61,0.39,True,ambient_train
-INJ_0356,train,tx_dallas,"Dallas, TX",2021-11-22 01:00:00,2021-11-22 19:00:00,42865,19,linear_ramp,2.69,Band_C_High,2106.7,0.36,0.64,False,ambient_train
-INJ_0357,train,tx_dallas,"Dallas, TX",2020-05-13 15:00:00,2020-05-14 04:00:00,29487,14,step,0.0,Band_A_Low,292.4,0.42,0.58,False,ambient_train
-INJ_0358,train,tx_dallas,"Dallas, TX",2020-11-01 06:00:00,2020-11-02 04:00:00,33606,23,step,0.0,Band_A_Low,551.0,0.58,0.42,False,ambient_train
-INJ_0359,train,tx_dallas,"Dallas, TX",2019-11-26 07:00:00,2019-11-27 03:00:00,25423,21,linear_ramp,2.09,Band_A_Low,386.8,0.58,0.42,False,ambient_train
-INJ_0360,train,tx_dallas,"Dallas, TX",2019-07-15 23:00:00,2019-07-16 06:00:00,22223,8,step,0.0,Band_C_High,2054.2,0.49,0.51,False,ambient_train
-INJ_0361,test,tx_dallas,"Dallas, TX",2024-03-08 02:00:00,2024-03-09 18:00:00,62954,41,exponential,1.92,Band_B_Mid (Interpolation),952.8,0.14,0.86,True,hard_case_rain_coincident
-INJ_0362,test,tx_dallas,"Dallas, TX",2023-04-20 19:00:00,2023-04-23 14:00:00,55219,68,sigmoidal,1.13,Band_B_Mid (Interpolation),795.5,0.14,0.86,True,hard_case_rain_coincident
-INJ_0363,test,tx_dallas,"Dallas, TX",2024-09-02 02:00:00,2024-09-04 04:00:00,67226,51,exponential,2.29,Band_B_Mid (Interpolation),1180.4,0.13,0.87,True,hard_case_rain_coincident
-INJ_0364,test,tx_dallas,"Dallas, TX",2024-05-12 22:00:00,2024-05-14 05:00:00,64534,32,sigmoidal,1.1,Band_B_Mid (Interpolation),833.9,0.99,0.01,True,hard_case_rain_coincident
-INJ_0365,test,tx_dallas,"Dallas, TX",2023-06-21 21:00:00,2023-06-24 20:00:00,56709,72,sigmoidal,1.68,Band_B_Mid (Interpolation),887.6,0.01,0.99,True,hard_case_rain_coincident
-INJ_0366,test,tx_dallas,"Dallas, TX",2024-01-08 19:00:00,2024-01-11 10:00:00,61531,64,exponential,2.35,Band_B_Mid (Interpolation),922.5,0.99,0.01,True,hard_case_rain_coincident
-INJ_0367,test,tx_dallas,"Dallas, TX",2024-05-12 03:00:00,2024-05-15 01:00:00,64515,71,sigmoidal,1.37,Band_B_Mid (Interpolation),966.3,0.85,0.15,True,hard_case_rain_coincident
-INJ_0368,test,tx_dallas,"Dallas, TX",2023-03-03 03:00:00,2023-03-06 02:00:00,54051,72,sigmoidal,1.79,Band_B_Mid (Interpolation),866.7,0.07,0.93,True,hard_case_rain_coincident
-INJ_0369,test,tx_dallas,"Dallas, TX",2024-09-02 01:00:00,2024-09-04 01:00:00,67225,49,sigmoidal,1.28,Band_B_Mid (Interpolation),1084.2,0.98,0.02,True,hard_case_rain_coincident
-INJ_0370,test,tx_dallas,"Dallas, TX",2024-01-22 14:00:00,2024-01-23 23:00:00,61862,34,sigmoidal,1.21,Band_B_Mid (Interpolation),896.3,0.14,0.86,True,hard_case_rain_coincident
-INJ_0371,test,tx_dallas,"Dallas, TX",2024-04-16 14:00:00,2024-04-18 07:00:00,63902,42,sigmoidal,0.91,Band_B_Mid (Interpolation),1119.8,0.87,0.13,True,hard_case_rain_coincident
-INJ_0372,test,tx_dallas,"Dallas, TX",2023-05-19 23:00:00,2023-05-21 11:00:00,55919,37,sigmoidal,1.68,Band_B_Mid (Interpolation),959.0,0.08,0.92,True,hard_case_rain_coincident
-INJ_0373,test,tx_dallas,"Dallas, TX",2024-10-27 11:00:00,2024-10-28 15:00:00,68555,29,sigmoidal,1.47,Band_B_Mid (Interpolation),897.3,0.1,0.9,False,standard_test_dry
-INJ_0374,test,tx_dallas,"Dallas, TX",2023-04-30 10:00:00,2023-05-01 15:00:00,55450,30,exponential,1.19,Band_B_Mid (Interpolation),1000.7,1.0,0.0,False,standard_test_dry
-INJ_0375,test,tx_dallas,"Dallas, TX",2024-12-06 07:00:00,2024-12-07 11:00:00,69511,29,exponential,2.02,Band_B_Mid (Interpolation),1188.3,0.97,0.03,False,standard_test_dry
-INJ_0376,test,tx_dallas,"Dallas, TX",2023-02-12 23:00:00,2023-02-15 03:00:00,53615,53,exponential,1.52,Band_B_Mid (Interpolation),1065.8,0.87,0.13,True,standard_test_dry
-INJ_0377,test,tx_dallas,"Dallas, TX",2023-10-14 06:00:00,2023-10-16 23:00:00,59454,66,sigmoidal,1.08,Band_B_Mid (Interpolation),751.2,0.86,0.14,False,standard_test_dry
-INJ_0378,test,tx_dallas,"Dallas, TX",2024-10-27 03:00:00,2024-10-29 22:00:00,68547,68,exponential,2.5,Band_B_Mid (Interpolation),1156.9,0.02,0.98,False,standard_test_dry
-INJ_0379,test,tx_dallas,"Dallas, TX",2024-03-29 19:00:00,2024-03-31 03:00:00,63475,33,exponential,1.91,Band_B_Mid (Interpolation),1084.1,0.01,0.99,False,standard_test_dry
-INJ_0380,test,tx_dallas,"Dallas, TX",2024-10-29 04:00:00,2024-10-30 21:00:00,68596,42,sigmoidal,1.54,Band_B_Mid (Interpolation),750.2,0.03,0.97,False,standard_test_dry
-INJ_0381,test,tx_dallas,"Dallas, TX",2024-04-16 10:00:00,2024-04-18 09:00:00,63898,48,sigmoidal,1.31,Band_B_Mid (Interpolation),1187.8,0.0,1.0,True,standard_test_dry
-INJ_0382,test,tx_dallas,"Dallas, TX",2023-08-04 02:00:00,2023-08-06 18:00:00,57746,65,exponential,1.95,Band_B_Mid (Interpolation),1004.3,0.1,0.9,False,standard_test_dry
-INJ_0383,test,tx_dallas,"Dallas, TX",2024-11-22 00:00:00,2024-11-24 14:00:00,69168,63,sigmoidal,0.93,Band_B_Mid (Interpolation),1160.7,0.94,0.06,False,standard_test_dry
-INJ_0384,test,tx_dallas,"Dallas, TX",2024-12-30 02:00:00,2024-12-31 19:00:00,70082,42,sigmoidal,1.04,Band_B_Mid (Interpolation),1124.9,0.08,0.92,False,standard_test_dry
-INJ_0385,test,tx_dallas,"Dallas, TX",2023-01-14 09:00:00,2023-01-16 05:00:00,52905,45,sigmoidal,1.12,Band_B_Mid (Interpolation),1116.3,0.95,0.05,False,standard_test_dry
-INJ_0386,test,tx_dallas,"Dallas, TX",2023-06-02 06:00:00,2023-06-05 05:00:00,56238,72,exponential,2.42,Band_B_Mid (Interpolation),1120.5,0.09,0.91,False,standard_test_dry
-INJ_0387,test,tx_dallas,"Dallas, TX",2023-09-23 09:00:00,2023-09-24 22:00:00,58953,38,exponential,1.14,Band_B_Mid (Interpolation),961.6,0.92,0.08,False,standard_test_dry
-INJ_0388,test,tx_dallas,"Dallas, TX",2023-05-23 13:00:00,2023-05-25 10:00:00,56005,46,exponential,1.8,Band_B_Mid (Interpolation),1013.8,0.93,0.07,True,standard_test_dry
-INJ_0389,test,tx_dallas,"Dallas, TX",2024-05-02 01:00:00,2024-05-03 15:00:00,64273,39,sigmoidal,0.97,Band_B_Mid (Interpolation),729.6,0.98,0.02,True,standard_test_dry
-INJ_0390,test,tx_dallas,"Dallas, TX",2023-05-30 20:00:00,2023-06-02 14:00:00,56180,67,sigmoidal,0.93,Band_B_Mid (Interpolation),924.9,0.05,0.95,True,standard_test_dry
-INJ_0391,test,tx_dallas,"Dallas, TX",2024-11-03 20:00:00,2024-11-06 11:00:00,68732,64,sigmoidal,1.11,Band_B_Mid (Interpolation),998.8,0.99,0.01,True,standard_test_dry
-INJ_0392,test,tx_dallas,"Dallas, TX",2023-07-31 00:00:00,2023-08-01 19:00:00,57648,44,exponential,1.62,Band_B_Mid (Interpolation),1075.0,0.02,0.98,False,standard_test_dry
-INJ_0393,test,tx_dallas,"Dallas, TX",2023-05-19 10:00:00,2023-05-22 09:00:00,55906,72,exponential,1.03,Band_B_Mid (Interpolation),1077.0,0.98,0.02,True,standard_test_dry
-INJ_0394,test,tx_dallas,"Dallas, TX",2023-06-10 09:00:00,2023-06-13 05:00:00,56433,69,sigmoidal,1.51,Band_B_Mid (Interpolation),1130.8,0.07,0.93,True,standard_test_dry
-INJ_0395,test,tx_dallas,"Dallas, TX",2023-06-03 11:00:00,2023-06-06 04:00:00,56267,66,exponential,1.87,Band_B_Mid (Interpolation),971.5,0.05,0.95,False,standard_test_dry
-INJ_0396,test,tx_dallas,"Dallas, TX",2024-04-28 07:00:00,2024-04-30 05:00:00,64183,47,exponential,1.82,Band_B_Mid (Interpolation),875.0,0.1,0.9,True,standard_test_dry
-INJ_0397,test,tx_dallas,"Dallas, TX",2023-01-26 15:00:00,2023-01-27 20:00:00,53199,30,exponential,1.91,Band_B_Mid (Interpolation),869.2,0.99,0.01,False,standard_test_dry
-INJ_0398,test,tx_dallas,"Dallas, TX",2024-01-19 07:00:00,2024-01-21 07:00:00,61783,49,exponential,1.88,Band_B_Mid (Interpolation),897.0,0.01,0.99,False,standard_test_dry
-INJ_0399,test,tx_dallas,"Dallas, TX",2023-03-05 15:00:00,2023-03-08 02:00:00,54111,60,sigmoidal,1.47,Band_B_Mid (Interpolation),1189.0,0.9,0.1,False,standard_test_dry
-INJ_0400,test,tx_dallas,"Dallas, TX",2024-10-30 21:00:00,2024-11-01 14:00:00,68637,42,exponential,1.62,Band_B_Mid (Interpolation),1006.6,0.09,0.91,False,standard_test_dry
-INJ_0401,train,fl_tampa,"Tampa, FL",2017-12-09 09:00:00,2017-12-10 04:00:00,8217,20,step,0.0,Band_A_Low,350.2,0.7,0.3,True,ambient_train
-INJ_0402,train,fl_tampa,"Tampa, FL",2020-01-26 19:00:00,2020-01-27 02:00:00,26899,8,step,0.0,Band_A_Low,297.4,0.62,0.38,False,ambient_train
-INJ_0403,train,fl_tampa,"Tampa, FL",2021-06-10 09:00:00,2021-06-11 01:00:00,38913,17,linear_ramp,3.46,Band_A_Low,338.5,0.33,0.67,False,ambient_train
-INJ_0404,train,fl_tampa,"Tampa, FL",2019-03-12 03:00:00,2019-03-12 21:00:00,19203,19,step,0.0,Band_A_Low,375.2,0.53,0.47,False,ambient_train
-INJ_0405,train,fl_tampa,"Tampa, FL",2021-07-31 15:00:00,2021-08-01 11:00:00,40143,21,step,0.0,Band_C_High,2197.6,0.61,0.39,False,ambient_train
-INJ_0406,train,fl_tampa,"Tampa, FL",2019-02-27 14:00:00,2019-02-28 11:00:00,18902,22,linear_ramp,1.26,Band_A_Low,401.6,0.47,0.53,True,ambient_train
-INJ_0407,train,fl_tampa,"Tampa, FL",2020-09-29 00:00:00,2020-09-29 14:00:00,32808,15,linear_ramp,3.87,Band_A_Low,304.4,0.66,0.34,False,ambient_train
-INJ_0408,train,fl_tampa,"Tampa, FL",2017-07-25 22:00:00,2017-07-26 07:00:00,4942,10,step,0.0,Band_A_Low,372.8,0.37,0.63,False,ambient_train
-INJ_0409,train,fl_tampa,"Tampa, FL",2021-02-03 09:00:00,2021-02-03 17:00:00,35865,9,linear_ramp,2.68,Band_A_Low,352.5,0.57,0.43,False,ambient_train
-INJ_0410,train,fl_tampa,"Tampa, FL",2018-08-13 19:00:00,2018-08-14 00:00:00,14155,6,linear_ramp,3.91,Band_C_High,1581.6,0.35,0.65,False,ambient_train
-INJ_0411,train,fl_tampa,"Tampa, FL",2021-08-30 20:00:00,2021-08-31 09:00:00,40868,14,linear_ramp,3.89,Band_C_High,2291.9,0.7,0.3,False,ambient_train
-INJ_0412,train,fl_tampa,"Tampa, FL",2021-12-29 04:00:00,2021-12-29 20:00:00,43756,17,linear_ramp,3.71,Band_A_Low,337.1,0.45,0.55,False,ambient_train
-INJ_0413,train,fl_tampa,"Tampa, FL",2018-09-14 21:00:00,2018-09-15 16:00:00,14925,20,step,0.0,Band_C_High,1846.5,0.4,0.6,False,ambient_train
-INJ_0414,train,fl_tampa,"Tampa, FL",2019-11-23 03:00:00,2019-11-23 23:00:00,25347,21,step,0.0,Band_C_High,2354.7,0.64,0.36,False,ambient_train
-INJ_0415,train,fl_tampa,"Tampa, FL",2019-02-24 16:00:00,2019-02-25 09:00:00,18832,18,step,0.0,Band_C_High,2338.1,0.31,0.69,True,ambient_train
-INJ_0416,train,fl_tampa,"Tampa, FL",2021-06-01 15:00:00,2021-06-02 10:00:00,38703,20,step,0.0,Band_C_High,2424.7,0.35,0.65,False,ambient_train
-INJ_0417,train,fl_tampa,"Tampa, FL",2022-08-31 14:00:00,2022-08-31 22:00:00,49646,9,linear_ramp,1.09,Band_A_Low,270.5,0.33,0.67,False,ambient_train
-INJ_0418,train,fl_tampa,"Tampa, FL",2021-09-11 08:00:00,2021-09-11 17:00:00,41144,10,step,0.0,Band_A_Low,297.2,0.56,0.44,False,ambient_train
-INJ_0419,train,fl_tampa,"Tampa, FL",2021-05-05 22:00:00,2021-05-06 05:00:00,38062,8,linear_ramp,1.69,Band_C_High,2067.5,0.57,0.43,False,ambient_train
-INJ_0420,train,fl_tampa,"Tampa, FL",2020-05-03 16:00:00,2020-05-03 21:00:00,29248,6,linear_ramp,1.26,Band_A_Low,398.1,0.63,0.37,False,ambient_train
-INJ_0421,train,fl_tampa,"Tampa, FL",2021-01-17 12:00:00,2021-01-18 10:00:00,35460,23,step,0.0,Band_C_High,2115.9,0.38,0.62,False,ambient_train
-INJ_0422,train,fl_tampa,"Tampa, FL",2020-10-07 23:00:00,2020-10-08 17:00:00,33023,19,step,0.0,Band_C_High,1584.6,0.59,0.41,False,ambient_train
-INJ_0423,train,fl_tampa,"Tampa, FL",2019-02-15 10:00:00,2019-02-15 22:00:00,18610,13,linear_ramp,1.19,Band_C_High,2091.3,0.42,0.58,False,ambient_train
-INJ_0424,train,fl_tampa,"Tampa, FL",2022-12-12 09:00:00,2022-12-12 14:00:00,52113,6,step,0.0,Band_C_High,2484.2,0.53,0.47,False,ambient_train
-INJ_0425,train,fl_tampa,"Tampa, FL",2019-12-21 16:00:00,2019-12-22 09:00:00,26032,18,linear_ramp,3.15,Band_A_Low,330.3,0.63,0.37,True,ambient_train
-INJ_0426,train,fl_tampa,"Tampa, FL",2019-03-13 08:00:00,2019-03-13 18:00:00,19232,11,linear_ramp,2.46,Band_C_High,1416.4,0.67,0.33,False,ambient_train
-INJ_0427,train,fl_tampa,"Tampa, FL",2017-10-24 08:00:00,2017-10-24 13:00:00,7112,6,linear_ramp,1.2,Band_C_High,2466.3,0.31,0.69,False,ambient_train
-INJ_0428,train,fl_tampa,"Tampa, FL",2021-07-12 14:00:00,2021-07-13 04:00:00,39686,15,linear_ramp,1.1,Band_C_High,2440.6,0.59,0.41,True,ambient_train
-INJ_0429,train,fl_tampa,"Tampa, FL",2020-04-14 01:00:00,2020-04-14 23:00:00,28777,23,linear_ramp,1.6,Band_A_Low,561.3,0.7,0.3,False,ambient_train
-INJ_0430,train,fl_tampa,"Tampa, FL",2019-06-10 16:00:00,2019-06-11 04:00:00,21376,13,step,0.0,Band_A_Low,332.8,0.67,0.33,True,ambient_train
-INJ_0431,train,fl_tampa,"Tampa, FL",2022-12-05 15:00:00,2022-12-06 06:00:00,51951,16,step,0.0,Band_C_High,2423.1,0.65,0.35,False,ambient_train
-INJ_0432,train,fl_tampa,"Tampa, FL",2018-07-16 00:00:00,2018-07-16 10:00:00,13464,11,linear_ramp,3.22,Band_C_High,2112.2,0.57,0.43,True,ambient_train
-INJ_0433,train,fl_tampa,"Tampa, FL",2022-05-12 03:00:00,2022-05-12 22:00:00,46971,20,linear_ramp,3.88,Band_C_High,2342.8,0.67,0.33,False,ambient_train
-INJ_0434,train,fl_tampa,"Tampa, FL",2020-10-13 04:00:00,2020-10-13 14:00:00,33148,11,linear_ramp,1.11,Band_A_Low,263.5,0.32,0.68,False,ambient_train
-INJ_0435,train,fl_tampa,"Tampa, FL",2022-07-01 22:00:00,2022-07-02 10:00:00,48190,13,step,0.0,Band_A_Low,574.3,0.38,0.62,False,ambient_train
-INJ_0436,train,fl_tampa,"Tampa, FL",2018-05-23 08:00:00,2018-05-23 22:00:00,12176,15,linear_ramp,2.62,Band_C_High,1688.6,0.57,0.43,False,ambient_train
-INJ_0437,train,fl_tampa,"Tampa, FL",2019-02-25 18:00:00,2019-02-26 16:00:00,18858,23,step,0.0,Band_A_Low,448.4,0.5,0.5,False,ambient_train
-INJ_0438,train,fl_tampa,"Tampa, FL",2019-05-02 11:00:00,2019-05-02 19:00:00,20435,9,linear_ramp,2.7,Band_C_High,2480.1,0.37,0.63,False,ambient_train
-INJ_0439,train,fl_tampa,"Tampa, FL",2021-08-01 18:00:00,2021-08-02 07:00:00,40170,14,linear_ramp,2.16,Band_C_High,2186.5,0.43,0.57,False,ambient_train
-INJ_0440,train,fl_tampa,"Tampa, FL",2020-01-06 16:00:00,2020-01-07 05:00:00,26416,14,step,0.0,Band_C_High,1403.6,0.4,0.6,False,ambient_train
-INJ_0441,train,fl_tampa,"Tampa, FL",2020-03-15 00:00:00,2020-03-15 23:00:00,28056,24,linear_ramp,1.57,Band_C_High,2281.0,0.32,0.68,False,ambient_train
-INJ_0442,train,fl_tampa,"Tampa, FL",2020-04-21 20:00:00,2020-04-22 19:00:00,28964,24,step,0.0,Band_A_Low,358.3,0.55,0.45,False,ambient_train
-INJ_0443,train,fl_tampa,"Tampa, FL",2017-06-21 23:00:00,2017-06-22 04:00:00,4127,6,linear_ramp,3.67,Band_A_Low,313.9,0.42,0.58,False,ambient_train
-INJ_0444,train,fl_tampa,"Tampa, FL",2022-11-17 12:00:00,2022-11-17 23:00:00,51516,12,step,0.0,Band_C_High,1768.8,0.45,0.55,False,ambient_train
-INJ_0445,train,fl_tampa,"Tampa, FL",2018-04-07 09:00:00,2018-04-08 06:00:00,11073,22,linear_ramp,3.33,Band_C_High,2127.6,0.46,0.54,True,ambient_train
-INJ_0446,train,fl_tampa,"Tampa, FL",2018-03-25 11:00:00,2018-03-25 19:00:00,10763,9,step,0.0,Band_C_High,1460.3,0.48,0.52,False,ambient_train
-INJ_0447,train,fl_tampa,"Tampa, FL",2019-05-17 19:00:00,2019-05-18 05:00:00,20803,11,linear_ramp,3.21,Band_C_High,2288.2,0.31,0.69,False,ambient_train
-INJ_0448,train,fl_tampa,"Tampa, FL",2019-05-11 19:00:00,2019-05-12 09:00:00,20659,15,linear_ramp,1.07,Band_A_Low,419.6,0.64,0.36,False,ambient_train
-INJ_0449,train,fl_tampa,"Tampa, FL",2021-03-11 22:00:00,2021-03-12 10:00:00,36742,13,step,0.0,Band_C_High,1553.8,0.42,0.58,False,ambient_train
-INJ_0450,train,fl_tampa,"Tampa, FL",2017-06-23 12:00:00,2017-06-24 08:00:00,4164,21,step,0.0,Band_A_Low,250.2,0.53,0.47,True,ambient_train
-INJ_0451,train,fl_tampa,"Tampa, FL",2022-03-17 18:00:00,2022-03-18 02:00:00,45642,9,linear_ramp,1.89,Band_C_High,1817.9,0.64,0.36,False,ambient_train
-INJ_0452,train,fl_tampa,"Tampa, FL",2018-09-15 21:00:00,2018-09-16 04:00:00,14949,8,step,0.0,Band_A_Low,326.8,0.67,0.33,False,ambient_train
-INJ_0453,train,fl_tampa,"Tampa, FL",2018-02-09 09:00:00,2018-02-09 22:00:00,9705,14,step,0.0,Band_A_Low,369.9,0.6,0.4,False,ambient_train
-INJ_0454,train,fl_tampa,"Tampa, FL",2022-09-02 21:00:00,2022-09-03 11:00:00,49701,15,linear_ramp,3.43,Band_C_High,1627.0,0.35,0.65,True,ambient_train
-INJ_0455,train,fl_tampa,"Tampa, FL",2021-09-14 02:00:00,2021-09-14 18:00:00,41210,17,linear_ramp,1.83,Band_C_High,2421.8,0.41,0.59,True,ambient_train
-INJ_0456,train,fl_tampa,"Tampa, FL",2021-10-06 23:00:00,2021-10-07 05:00:00,41759,7,step,0.0,Band_A_Low,292.5,0.55,0.45,False,ambient_train
-INJ_0457,train,fl_tampa,"Tampa, FL",2020-03-23 13:00:00,2020-03-24 08:00:00,28261,20,linear_ramp,3.26,Band_C_High,2186.8,0.4,0.6,False,ambient_train
-INJ_0458,train,fl_tampa,"Tampa, FL",2022-09-04 01:00:00,2022-09-04 21:00:00,49729,21,linear_ramp,2.6,Band_C_High,1407.5,0.4,0.6,False,ambient_train
-INJ_0459,train,fl_tampa,"Tampa, FL",2021-01-23 00:00:00,2021-01-23 09:00:00,35592,10,step,0.0,Band_C_High,1477.4,0.54,0.46,False,ambient_train
-INJ_0460,train,fl_tampa,"Tampa, FL",2020-05-10 23:00:00,2020-05-11 21:00:00,29423,23,step,0.0,Band_A_Low,479.0,0.56,0.44,False,ambient_train
-INJ_0461,test,fl_tampa,"Tampa, FL",2024-08-15 20:00:00,2024-08-18 06:00:00,66812,59,exponential,1.42,Band_B_Mid (Interpolation),857.5,0.9,0.1,True,hard_case_rain_coincident
-INJ_0462,test,fl_tampa,"Tampa, FL",2024-11-04 22:00:00,2024-11-06 11:00:00,68758,38,exponential,1.69,Band_B_Mid (Interpolation),704.7,0.85,0.15,True,hard_case_rain_coincident
-INJ_0463,test,fl_tampa,"Tampa, FL",2023-12-25 12:00:00,2023-12-28 00:00:00,61188,61,sigmoidal,1.08,Band_B_Mid (Interpolation),1146.6,0.01,0.99,True,hard_case_rain_coincident
-INJ_0464,test,fl_tampa,"Tampa, FL",2023-12-16 13:00:00,2023-12-18 10:00:00,60973,46,sigmoidal,1.13,Band_B_Mid (Interpolation),743.6,0.0,1.0,True,hard_case_rain_coincident
-INJ_0465,test,fl_tampa,"Tampa, FL",2025-01-19 14:00:00,2025-01-21 12:00:00,70574,47,exponential,2.22,Band_B_Mid (Interpolation),1048.9,0.96,0.04,True,hard_case_rain_coincident
-INJ_0466,test,fl_tampa,"Tampa, FL",2023-07-21 02:00:00,2023-07-23 11:00:00,57410,58,sigmoidal,1.42,Band_B_Mid (Interpolation),785.0,0.92,0.08,True,hard_case_rain_coincident
-INJ_0467,test,fl_tampa,"Tampa, FL",2025-02-24 10:00:00,2025-02-26 12:00:00,71434,51,sigmoidal,1.18,Band_B_Mid (Interpolation),814.8,0.11,0.89,True,hard_case_rain_coincident
-INJ_0468,test,fl_tampa,"Tampa, FL",2024-06-11 21:00:00,2024-06-13 04:00:00,65253,32,sigmoidal,1.5,Band_B_Mid (Interpolation),1198.8,0.05,0.95,True,hard_case_rain_coincident
-INJ_0469,test,fl_tampa,"Tampa, FL",2024-01-26 01:00:00,2024-01-27 23:00:00,61945,47,exponential,1.98,Band_B_Mid (Interpolation),881.3,0.92,0.08,True,hard_case_rain_coincident
-INJ_0470,test,fl_tampa,"Tampa, FL",2025-02-24 18:00:00,2025-02-26 10:00:00,71442,41,exponential,1.71,Band_B_Mid (Interpolation),833.2,0.92,0.08,True,hard_case_rain_coincident
-INJ_0471,test,fl_tampa,"Tampa, FL",2023-08-20 22:00:00,2023-08-22 19:00:00,58150,46,exponential,1.47,Band_B_Mid (Interpolation),925.3,0.08,0.92,True,hard_case_rain_coincident
-INJ_0472,test,fl_tampa,"Tampa, FL",2024-02-05 16:00:00,2024-02-08 10:00:00,62200,67,exponential,1.87,Band_B_Mid (Interpolation),1075.6,0.86,0.14,True,hard_case_rain_coincident
-INJ_0473,test,fl_tampa,"Tampa, FL",2023-10-07 18:00:00,2023-10-09 04:00:00,59298,35,exponential,2.39,Band_B_Mid (Interpolation),877.8,0.95,0.05,False,standard_test_dry
-INJ_0474,test,fl_tampa,"Tampa, FL",2023-03-08 04:00:00,2023-03-10 19:00:00,54172,64,sigmoidal,1.1,Band_B_Mid (Interpolation),713.2,0.98,0.02,False,standard_test_dry
-INJ_0475,test,fl_tampa,"Tampa, FL",2023-12-14 18:00:00,2023-12-16 01:00:00,60930,32,sigmoidal,1.12,Band_B_Mid (Interpolation),942.4,0.01,0.99,False,standard_test_dry
-INJ_0476,test,fl_tampa,"Tampa, FL",2024-11-17 15:00:00,2024-11-19 01:00:00,69063,35,exponential,1.16,Band_B_Mid (Interpolation),1141.5,0.02,0.98,False,standard_test_dry
-INJ_0477,test,fl_tampa,"Tampa, FL",2023-07-17 19:00:00,2023-07-19 09:00:00,57331,39,exponential,1.43,Band_B_Mid (Interpolation),870.9,0.12,0.88,True,standard_test_dry
-INJ_0478,test,fl_tampa,"Tampa, FL",2024-11-14 01:00:00,2024-11-16 22:00:00,68977,70,exponential,1.67,Band_B_Mid (Interpolation),1007.2,0.89,0.11,False,standard_test_dry
-INJ_0479,test,fl_tampa,"Tampa, FL",2024-02-16 14:00:00,2024-02-18 02:00:00,62462,37,exponential,2.43,Band_B_Mid (Interpolation),936.6,0.02,0.98,True,standard_test_dry
-INJ_0480,test,fl_tampa,"Tampa, FL",2023-05-18 18:00:00,2023-05-20 11:00:00,55890,42,exponential,2.49,Band_B_Mid (Interpolation),1163.5,0.04,0.96,False,standard_test_dry
-INJ_0481,test,fl_tampa,"Tampa, FL",2023-04-05 12:00:00,2023-04-07 13:00:00,54852,50,sigmoidal,1.35,Band_B_Mid (Interpolation),944.8,0.02,0.98,False,standard_test_dry
-INJ_0482,test,fl_tampa,"Tampa, FL",2024-11-18 06:00:00,2024-11-19 17:00:00,69078,36,exponential,1.36,Band_B_Mid (Interpolation),732.9,0.98,0.02,False,standard_test_dry
-INJ_0483,test,fl_tampa,"Tampa, FL",2023-10-28 02:00:00,2023-10-30 09:00:00,59786,56,sigmoidal,1.1,Band_B_Mid (Interpolation),1020.7,0.98,0.02,False,standard_test_dry
-INJ_0484,test,fl_tampa,"Tampa, FL",2024-02-12 00:00:00,2024-02-13 04:00:00,62352,29,sigmoidal,1.11,Band_B_Mid (Interpolation),825.6,0.86,0.14,True,standard_test_dry
-INJ_0485,test,fl_tampa,"Tampa, FL",2024-08-15 17:00:00,2024-08-17 12:00:00,66809,44,exponential,1.2,Band_B_Mid (Interpolation),753.9,0.09,0.91,True,standard_test_dry
-INJ_0486,test,fl_tampa,"Tampa, FL",2024-10-26 14:00:00,2024-10-27 21:00:00,68534,32,sigmoidal,0.89,Band_B_Mid (Interpolation),919.6,0.09,0.91,False,standard_test_dry
-INJ_0487,test,fl_tampa,"Tampa, FL",2023-05-27 16:00:00,2023-05-29 09:00:00,56104,42,exponential,1.53,Band_B_Mid (Interpolation),1171.5,0.11,0.89,False,standard_test_dry
-INJ_0488,test,fl_tampa,"Tampa, FL",2023-05-08 14:00:00,2023-05-10 13:00:00,55646,48,exponential,1.93,Band_B_Mid (Interpolation),714.7,0.02,0.98,False,standard_test_dry
-INJ_0489,test,fl_tampa,"Tampa, FL",2023-05-20 09:00:00,2023-05-21 21:00:00,55929,37,exponential,1.91,Band_B_Mid (Interpolation),1180.8,0.99,0.01,True,standard_test_dry
-INJ_0490,test,fl_tampa,"Tampa, FL",2023-12-23 21:00:00,2023-12-26 00:00:00,61149,52,sigmoidal,1.66,Band_B_Mid (Interpolation),822.2,0.01,0.99,True,standard_test_dry
-INJ_0491,test,fl_tampa,"Tampa, FL",2024-04-13 10:00:00,2024-04-16 00:00:00,63826,63,sigmoidal,1.45,Band_B_Mid (Interpolation),930.4,0.85,0.15,False,standard_test_dry
-INJ_0492,test,fl_tampa,"Tampa, FL",2023-11-06 04:00:00,2023-11-09 01:00:00,60004,70,exponential,2.46,Band_B_Mid (Interpolation),1149.2,0.9,0.1,False,standard_test_dry
-INJ_0493,test,fl_tampa,"Tampa, FL",2024-12-07 18:00:00,2024-12-09 04:00:00,69546,35,exponential,1.61,Band_B_Mid (Interpolation),1088.3,0.13,0.87,False,standard_test_dry
-INJ_0494,test,fl_tampa,"Tampa, FL",2024-10-26 12:00:00,2024-10-27 22:00:00,68532,35,exponential,1.38,Band_B_Mid (Interpolation),1141.8,0.89,0.11,False,standard_test_dry
-INJ_0495,test,fl_tampa,"Tampa, FL",2023-08-29 13:00:00,2023-08-30 16:00:00,58357,28,sigmoidal,1.0,Band_B_Mid (Interpolation),775.8,0.04,0.96,True,standard_test_dry
-INJ_0496,test,fl_tampa,"Tampa, FL",2025-04-06 15:00:00,2025-04-08 01:00:00,72423,35,sigmoidal,1.42,Band_B_Mid (Interpolation),917.6,0.06,0.94,False,standard_test_dry
-INJ_0497,test,fl_tampa,"Tampa, FL",2024-05-23 21:00:00,2024-05-25 22:00:00,64797,50,exponential,1.48,Band_B_Mid (Interpolation),1037.0,0.14,0.86,False,standard_test_dry
-INJ_0498,test,fl_tampa,"Tampa, FL",2023-01-23 14:00:00,2023-01-26 13:00:00,53126,72,sigmoidal,1.52,Band_B_Mid (Interpolation),1190.1,0.1,0.9,True,standard_test_dry
-INJ_0499,test,fl_tampa,"Tampa, FL",2024-11-25 00:00:00,2024-11-27 06:00:00,69240,55,exponential,1.72,Band_B_Mid (Interpolation),866.2,0.08,0.92,False,standard_test_dry
-INJ_0500,test,fl_tampa,"Tampa, FL",2023-05-03 04:00:00,2023-05-05 02:00:00,55516,47,exponential,1.89,Band_B_Mid (Interpolation),884.5,0.12,0.88,False,standard_test_dry
+injection_id,split,station_id,station_name,start_utc,end_utc,start_index,t_passage_hours,t_retention_hours,duration_hours,shape_family,rise_param,magnitude_band,peak_cpm,fraction_cs137,fraction_i131,fraction_co60,fraction_cs134,k_dose,is_hard_case_rain,environment
+INJ_0001,train,al_birmingham,"Birmingham, AL",2018-12-14 19:00:00,2018-12-15 20:00:00,17107,7,19,26,linear_ramp,2.44,Band_C_High,2058.2,0.42,0.25,0.18,0.15,0.01485,True,train_rain_coincident
+INJ_0002,train,al_birmingham,"Birmingham, AL",2021-01-22 08:00:00,2021-01-23 03:00:00,35576,9,11,20,linear_ramp,1.81,Band_C_High,1876.6,0.5,0.23,0.17,0.1,0.01507,True,train_rain_coincident
+INJ_0003,train,al_birmingham,"Birmingham, AL",2018-12-30 05:00:00,2018-12-31 04:00:00,17477,5,19,24,linear_ramp,2.8,Band_C_High,2122.7,0.45,0.31,0.24,0.0,0.01788,True,train_rain_coincident
+INJ_0004,train,al_birmingham,"Birmingham, AL",2022-07-31 01:00:00,2022-07-31 18:00:00,48889,12,6,18,step,0.0,Band_A_Low,449.8,0.3,0.3,0.13,0.27,0.01769,True,train_rain_coincident
+INJ_0005,train,al_birmingham,"Birmingham, AL",2021-03-18 04:00:00,2021-03-18 22:00:00,36892,4,15,19,step,0.0,Band_C_High,2435.4,0.31,0.31,0.23,0.15,0.01323,True,train_rain_coincident
+INJ_0006,train,al_birmingham,"Birmingham, AL",2019-12-22 12:00:00,2019-12-23 08:00:00,26052,9,12,21,step,0.0,Band_C_High,2162.5,0.46,0.21,0.2,0.13,0.01379,True,train_rain_coincident
+INJ_0007,train,al_birmingham,"Birmingham, AL",2017-01-21 13:00:00,2017-01-22 15:00:00,493,11,16,27,linear_ramp,3.12,Band_C_High,2054.3,0.42,0.32,0.14,0.12,0.01853,True,train_rain_coincident
+INJ_0008,train,al_birmingham,"Birmingham, AL",2019-08-26 19:00:00,2019-08-28 04:00:00,23227,14,20,34,linear_ramp,2.98,Band_C_High,2002.4,0.46,0.29,0.2,0.05,0.01712,True,train_rain_coincident
+INJ_0009,train,al_birmingham,"Birmingham, AL",2020-01-13 23:00:00,2020-01-15 03:00:00,26591,12,17,29,step,0.0,Band_C_High,1489.8,0.31,0.25,0.12,0.32,0.01536,True,train_rain_coincident
+INJ_0010,train,al_birmingham,"Birmingham, AL",2020-12-14 02:00:00,2020-12-15 06:00:00,34634,11,18,29,linear_ramp,2.3,Band_C_High,1948.0,0.41,0.34,0.13,0.12,0.01685,True,train_rain_coincident
+INJ_0011,train,al_birmingham,"Birmingham, AL",2018-01-22 19:00:00,2018-01-23 19:00:00,9283,11,14,25,linear_ramp,2.95,Band_C_High,1843.6,0.34,0.28,0.13,0.25,0.01533,True,train_rain_coincident
+INJ_0012,train,al_birmingham,"Birmingham, AL",2018-03-06 12:00:00,2018-03-07 15:00:00,10308,8,20,28,step,0.0,Band_A_Low,546.2,0.43,0.35,0.22,0.0,0.0167,True,train_rain_coincident
+INJ_0013,train,al_birmingham,"Birmingham, AL",2018-05-30 14:00:00,2018-05-31 07:00:00,12350,11,7,18,linear_ramp,2.54,Band_A_Low,403.5,0.45,0.3,0.23,0.02,0.01565,True,train_rain_coincident
+INJ_0014,train,al_birmingham,"Birmingham, AL",2018-09-10 17:00:00,2018-09-11 13:00:00,14825,6,15,21,step,0.0,Band_A_Low,323.7,0.42,0.33,0.21,0.04,0.01777,True,train_rain_coincident
+INJ_0015,train,al_birmingham,"Birmingham, AL",2021-01-01 06:00:00,2021-01-02 01:00:00,35070,11,9,20,step,0.0,Band_C_High,1597.7,0.35,0.39,0.13,0.13,0.01595,True,train_rain_coincident
+INJ_0016,train,al_birmingham,"Birmingham, AL",2021-02-02 05:00:00,2021-02-02 22:00:00,35837,6,12,18,step,0.0,Band_C_High,1539.1,0.45,0.36,0.16,0.03,0.01835,False,train_strictly_dry
+INJ_0017,train,al_birmingham,"Birmingham, AL",2021-07-15 05:00:00,2021-07-16 01:00:00,39749,14,7,21,linear_ramp,1.23,Band_C_High,2237.4,0.35,0.27,0.13,0.25,0.01534,False,train_strictly_dry
+INJ_0018,train,al_birmingham,"Birmingham, AL",2020-01-07 08:00:00,2020-01-08 05:00:00,26432,13,9,22,step,0.0,Band_A_Low,305.0,0.48,0.29,0.15,0.08,0.01953,False,train_strictly_dry
+INJ_0019,train,al_birmingham,"Birmingham, AL",2018-05-06 00:00:00,2018-05-07 03:00:00,11760,11,17,28,linear_ramp,3.15,Band_A_Low,409.8,0.44,0.22,0.2,0.14,0.01555,False,train_strictly_dry
+INJ_0020,train,al_birmingham,"Birmingham, AL",2018-03-23 21:00:00,2018-03-24 16:00:00,10725,4,16,20,step,0.0,Band_A_Low,364.3,0.38,0.29,0.23,0.1,0.01695,False,train_strictly_dry
+INJ_0021,train,al_birmingham,"Birmingham, AL",2017-10-04 02:00:00,2017-10-05 04:00:00,6626,12,15,27,step,0.0,Band_A_Low,465.9,0.41,0.27,0.14,0.18,0.0142,False,train_strictly_dry
+INJ_0022,train,al_birmingham,"Birmingham, AL",2017-12-16 06:00:00,2017-12-17 05:00:00,8382,4,20,24,linear_ramp,2.42,Band_C_High,1858.4,0.46,0.28,0.14,0.12,0.02,False,train_strictly_dry
+INJ_0023,train,al_birmingham,"Birmingham, AL",2019-05-25 13:00:00,2019-05-26 15:00:00,20989,13,14,27,step,0.0,Band_A_Low,550.1,0.46,0.25,0.18,0.11,0.01442,False,train_strictly_dry
+INJ_0024,train,al_birmingham,"Birmingham, AL",2021-05-18 03:00:00,2021-05-19 02:00:00,38355,11,13,24,linear_ramp,2.49,Band_C_High,1808.8,0.49,0.29,0.22,0.0,0.012,False,train_strictly_dry
+INJ_0025,train,al_birmingham,"Birmingham, AL",2022-03-14 09:00:00,2022-03-14 21:00:00,45561,5,8,13,step,0.0,Band_C_High,2388.2,0.36,0.39,0.22,0.03,0.01574,False,train_strictly_dry
+INJ_0026,train,al_birmingham,"Birmingham, AL",2022-04-27 20:00:00,2022-04-28 10:00:00,46628,7,8,15,step,0.0,Band_A_Low,544.0,0.32,0.28,0.16,0.24,0.01617,False,train_strictly_dry
+INJ_0027,train,al_birmingham,"Birmingham, AL",2021-01-30 14:00:00,2021-01-31 02:00:00,35774,6,7,13,step,0.0,Band_A_Low,323.5,0.33,0.33,0.24,0.1,0.0122,False,train_strictly_dry
+INJ_0028,train,al_birmingham,"Birmingham, AL",2022-04-04 00:00:00,2022-04-05 01:00:00,46056,14,12,26,linear_ramp,2.77,Band_A_Low,351.8,0.42,0.36,0.17,0.05,0.01617,False,train_strictly_dry
+INJ_0029,train,al_birmingham,"Birmingham, AL",2017-08-01 19:00:00,2017-08-02 16:00:00,5107,8,14,22,linear_ramp,2.61,Band_C_High,1831.4,0.44,0.31,0.17,0.08,0.01433,False,train_strictly_dry
+INJ_0030,train,al_birmingham,"Birmingham, AL",2017-09-29 16:00:00,2017-09-30 15:00:00,6520,6,18,24,step,0.0,Band_A_Low,569.5,0.41,0.3,0.22,0.07,0.01917,False,train_strictly_dry
+INJ_0031,train,al_birmingham,"Birmingham, AL",2020-11-01 17:00:00,2020-11-02 04:00:00,33617,6,6,12,step,0.0,Band_A_Low,423.7,0.44,0.3,0.12,0.14,0.01559,False,train_strictly_dry
+INJ_0032,train,al_birmingham,"Birmingham, AL",2017-03-20 13:00:00,2017-03-21 11:00:00,1885,9,14,23,linear_ramp,3.23,Band_A_Low,566.5,0.35,0.39,0.11,0.15,0.01703,False,train_strictly_dry
+INJ_0033,train,al_birmingham,"Birmingham, AL",2017-05-27 11:00:00,2017-05-28 05:00:00,3515,5,14,19,step,0.0,Band_A_Low,314.7,0.35,0.25,0.13,0.27,0.01441,False,train_strictly_dry
+INJ_0034,train,al_birmingham,"Birmingham, AL",2017-04-14 07:00:00,2017-04-15 00:00:00,2479,4,14,18,step,0.0,Band_A_Low,272.8,0.32,0.23,0.23,0.22,0.01666,False,train_strictly_dry
+INJ_0035,train,al_birmingham,"Birmingham, AL",2022-01-22 11:00:00,2022-01-23 13:00:00,44339,13,14,27,step,0.0,Band_A_Low,386.9,0.36,0.32,0.18,0.14,0.01205,False,train_strictly_dry
+INJ_0036,train,al_birmingham,"Birmingham, AL",2020-02-15 20:00:00,2020-02-16 10:00:00,27380,7,8,15,linear_ramp,3.64,Band_A_Low,574.2,0.31,0.24,0.21,0.24,0.0156,False,train_strictly_dry
+INJ_0037,train,al_birmingham,"Birmingham, AL",2018-04-18 16:00:00,2018-04-19 23:00:00,11344,12,20,32,step,0.0,Band_A_Low,254.8,0.48,0.28,0.13,0.11,0.02,False,train_strictly_dry
+INJ_0038,train,al_birmingham,"Birmingham, AL",2017-01-09 12:00:00,2017-01-10 07:00:00,204,11,9,20,linear_ramp,3.74,Band_C_High,1699.2,0.46,0.31,0.22,0.01,0.01622,False,train_strictly_dry
+INJ_0039,train,al_birmingham,"Birmingham, AL",2018-07-27 06:00:00,2018-07-28 13:00:00,13734,13,19,32,linear_ramp,3.36,Band_C_High,2186.8,0.4,0.33,0.19,0.08,0.01399,False,train_strictly_dry
+INJ_0040,train,al_birmingham,"Birmingham, AL",2022-03-21 14:00:00,2022-03-22 19:00:00,45734,12,18,30,step,0.0,Band_A_Low,266.8,0.46,0.28,0.12,0.14,0.01225,False,train_strictly_dry
+INJ_0041,train,al_birmingham,"Birmingham, AL",2017-11-26 12:00:00,2017-11-27 14:00:00,7908,9,18,27,linear_ramp,2.61,Band_A_Low,442.5,0.43,0.36,0.17,0.04,0.02,False,train_strictly_dry
+INJ_0042,train,al_birmingham,"Birmingham, AL",2017-09-15 06:00:00,2017-09-15 23:00:00,6174,4,14,18,step,0.0,Band_C_High,2496.8,0.46,0.35,0.17,0.02,0.01773,False,train_strictly_dry
+INJ_0043,train,al_birmingham,"Birmingham, AL",2018-10-22 06:00:00,2018-10-23 00:00:00,15822,4,15,19,step,0.0,Band_C_High,2024.5,0.46,0.3,0.21,0.03,0.01542,False,train_strictly_dry
+INJ_0044,train,al_birmingham,"Birmingham, AL",2019-01-22 08:00:00,2019-01-22 22:00:00,18032,7,8,15,step,0.0,Band_A_Low,294.6,0.32,0.23,0.21,0.24,0.01798,False,train_strictly_dry
+INJ_0045,train,al_birmingham,"Birmingham, AL",2022-06-30 20:00:00,2022-07-01 16:00:00,48164,8,13,21,step,0.0,Band_A_Low,365.3,0.37,0.22,0.19,0.22,0.01743,False,train_strictly_dry
+INJ_0046,train,al_birmingham,"Birmingham, AL",2021-06-16 22:00:00,2021-06-17 07:00:00,39070,4,6,10,linear_ramp,2.3,Band_A_Low,330.9,0.49,0.32,0.1,0.09,0.01477,False,train_strictly_dry
+INJ_0047,train,al_birmingham,"Birmingham, AL",2020-09-03 04:00:00,2020-09-04 01:00:00,32188,7,15,22,linear_ramp,2.3,Band_A_Low,356.8,0.37,0.21,0.14,0.28,0.01773,False,train_strictly_dry
+INJ_0048,train,al_birmingham,"Birmingham, AL",2020-09-26 12:00:00,2020-09-27 05:00:00,32748,7,11,18,linear_ramp,2.85,Band_C_High,2218.1,0.47,0.2,0.15,0.18,0.01878,False,train_strictly_dry
+INJ_0049,train,al_birmingham,"Birmingham, AL",2021-11-19 06:00:00,2021-11-20 01:00:00,42798,4,16,20,step,0.0,Band_C_High,2366.3,0.38,0.28,0.17,0.17,0.01349,False,train_strictly_dry
+INJ_0050,train,al_birmingham,"Birmingham, AL",2019-08-13 05:00:00,2019-08-14 06:00:00,22901,9,17,26,linear_ramp,3.75,Band_A_Low,348.7,0.45,0.22,0.24,0.09,0.01764,False,train_strictly_dry
+INJ_0051,test,al_birmingham,"Birmingham, AL",2023-01-29 21:00:00,2023-02-01 21:00:00,53277,15,58,73,sigmoidal,1.37,Band_B_Mid (Interpolation),1123.4,0.5,0.0,0.5,0.0,0.01838,True,test_standard_rain_onset
+INJ_0052,test,al_birmingham,"Birmingham, AL",2025-03-24 13:00:00,2025-03-26 23:00:00,72109,18,41,59,exponential,1.36,Band_B_Mid (Interpolation),776.2,0.9,0.05,0.05,0.0,0.01814,True,test_standard_rain_onset
+INJ_0053,test,al_birmingham,"Birmingham, AL",2025-07-18 20:00:00,2025-07-20 18:00:00,74900,10,37,47,exponential,1.73,Band_B_Mid (Interpolation),757.6,0.9,0.05,0.05,0.0,0.01788,True,test_standard_rain_onset
+INJ_0054,test,al_birmingham,"Birmingham, AL",2025-05-17 10:00:00,2025-05-19 11:00:00,73402,19,31,50,sigmoidal,1.44,Band_B_Mid (Interpolation),1176.6,0.05,0.05,0.9,0.0,0.01805,True,test_standard_rain_onset
+INJ_0055,test,al_birmingham,"Birmingham, AL",2024-11-01 06:00:00,2024-11-03 07:00:00,68670,12,38,50,exponential,1.82,Band_B_Mid (Interpolation),1177.9,0.9,0.05,0.05,0.0,0.01716,True,test_standard_rain_onset
+INJ_0056,test,al_birmingham,"Birmingham, AL",2024-03-01 14:00:00,2024-03-04 08:00:00,62798,16,51,67,sigmoidal,1.61,Band_B_Mid (Interpolation),876.8,0.5,0.0,0.5,0.0,0.01643,True,test_standard_rain_onset
+INJ_0057,test,al_birmingham,"Birmingham, AL",2024-05-10 03:00:00,2024-05-12 09:00:00,64467,14,41,55,exponential,2.18,Band_B_Mid (Interpolation),905.1,0.9,0.05,0.05,0.0,0.01342,True,test_standard_rain_onset
+INJ_0058,test,al_birmingham,"Birmingham, AL",2025-06-17 21:00:00,2025-06-19 13:00:00,74157,14,27,41,exponential,1.9,Band_B_Mid (Interpolation),840.4,0.05,0.05,0.9,0.0,0.01428,True,test_standard_rain_onset
+INJ_0059,test,al_birmingham,"Birmingham, AL",2024-01-19 04:00:00,2024-01-21 01:00:00,61780,19,27,46,sigmoidal,1.12,Band_B_Mid (Interpolation),917.2,0.05,0.05,0.9,0.0,0.01756,True,test_standard_rain_onset
+INJ_0060,test,al_birmingham,"Birmingham, AL",2025-05-25 03:00:00,2025-05-27 15:00:00,73587,17,44,61,sigmoidal,1.2,Band_B_Mid (Interpolation),989.8,0.05,0.05,0.9,0.0,0.01491,True,test_standard_rain_onset
+INJ_0061,test,al_birmingham,"Birmingham, AL",2024-10-24 00:00:00,2024-10-26 17:00:00,68472,19,47,66,exponential,1.84,Band_B_Mid (Interpolation),1069.0,0.05,0.9,0.05,0.0,0.01732,False,test_standard_strictly_dry
+INJ_0062,test,al_birmingham,"Birmingham, AL",2024-08-04 01:00:00,2024-08-06 14:00:00,66529,16,46,62,exponential,2.43,Band_B_Mid (Interpolation),1145.7,0.05,0.9,0.05,0.0,0.01816,False,test_standard_strictly_dry
+INJ_0063,test,al_birmingham,"Birmingham, AL",2025-02-28 18:00:00,2025-03-02 12:00:00,71538,11,32,43,exponential,1.66,Band_B_Mid (Interpolation),880.0,0.05,0.05,0.9,0.0,0.02,False,test_standard_strictly_dry
+INJ_0064,test,al_birmingham,"Birmingham, AL",2024-10-07 04:00:00,2024-10-09 23:00:00,68068,16,52,68,sigmoidal,1.25,Band_B_Mid (Interpolation),812.6,0.5,0.0,0.5,0.0,0.01407,False,test_standard_strictly_dry
+INJ_0065,test,al_birmingham,"Birmingham, AL",2024-09-10 02:00:00,2024-09-11 21:00:00,67418,16,28,44,exponential,1.8,Band_B_Mid (Interpolation),809.3,0.05,0.9,0.05,0.0,0.01689,False,test_standard_strictly_dry
+INJ_0066,test,al_birmingham,"Birmingham, AL",2023-05-01 16:00:00,2023-05-03 18:00:00,55480,14,37,51,sigmoidal,0.8,Band_B_Mid (Interpolation),985.1,0.9,0.05,0.05,0.0,0.01327,False,test_standard_strictly_dry
+INJ_0067,test,al_birmingham,"Birmingham, AL",2024-06-12 10:00:00,2024-06-14 09:00:00,65266,15,33,48,exponential,1.06,Band_B_Mid (Interpolation),1142.9,0.05,0.05,0.9,0.0,0.01515,False,test_standard_strictly_dry
+INJ_0068,test,al_birmingham,"Birmingham, AL",2024-08-10 12:00:00,2024-08-13 01:00:00,66684,17,45,62,exponential,2.03,Band_B_Mid (Interpolation),838.3,0.9,0.05,0.05,0.0,0.01468,False,test_standard_strictly_dry
+INJ_0069,test,al_birmingham,"Birmingham, AL",2023-10-28 07:00:00,2023-10-30 10:00:00,59791,12,40,52,exponential,2.03,Band_B_Mid (Interpolation),837.2,0.5,0.0,0.5,0.0,0.01811,False,test_standard_strictly_dry
+INJ_0070,test,al_birmingham,"Birmingham, AL",2024-07-17 22:00:00,2024-07-19 21:00:00,66118,13,35,48,exponential,1.49,Band_B_Mid (Interpolation),1027.0,0.05,0.9,0.05,0.0,0.01822,False,test_standard_strictly_dry
+INJ_0071,test,al_birmingham,"Birmingham, AL",2024-12-09 07:00:00,2024-12-09 19:00:00,69583,5,8,13,sigmoidal,1.4,Band_A_Low (Stress Test),305.0,0.5,0.0,0.5,0.0,0.01601,True,test_stress_hard_case_rain
+INJ_0072,test,al_birmingham,"Birmingham, AL",2023-03-02 21:00:00,2023-03-03 07:00:00,54045,7,4,11,sigmoidal,0.82,Band_A_Low (Stress Test),296.3,0.5,0.0,0.5,0.0,0.0199,True,test_stress_hard_case_rain
+INJ_0073,test,al_birmingham,"Birmingham, AL",2024-11-11 15:00:00,2024-11-12 03:00:00,68919,5,8,13,sigmoidal,1.33,Band_A_Low (Stress Test),353.0,0.9,0.05,0.05,0.0,0.01477,True,test_stress_hard_case_rain
+INJ_0074,test,al_birmingham,"Birmingham, AL",2024-11-05 15:00:00,2024-11-06 05:00:00,68775,8,7,15,exponential,1.19,Band_A_Low (Stress Test),570.2,0.9,0.05,0.05,0.0,0.01588,True,test_stress_hard_case_rain
+INJ_0075,test,al_birmingham,"Birmingham, AL",2025-03-20 06:00:00,2025-03-20 15:00:00,72006,4,6,10,sigmoidal,1.19,Band_A_Low (Stress Test),345.9,0.05,0.9,0.05,0.0,0.01468,True,test_stress_hard_case_rain
+INJ_0076,test,al_birmingham,"Birmingham, AL",2025-05-12 08:00:00,2025-05-12 21:00:00,73280,8,6,14,sigmoidal,0.79,Band_A_Low (Stress Test),275.9,0.5,0.0,0.5,0.0,0.01742,True,test_stress_hard_case_rain
+INJ_0077,test,al_birmingham,"Birmingham, AL",2025-01-06 07:00:00,2025-01-06 18:00:00,70255,4,8,12,exponential,1.48,Band_A_Low (Stress Test),522.9,0.9,0.05,0.05,0.0,0.01748,True,test_stress_hard_case_rain
+INJ_0078,test,al_birmingham,"Birmingham, AL",2023-01-08 15:00:00,2023-01-09 06:00:00,52767,7,9,16,sigmoidal,1.26,Band_A_Low (Stress Test),403.2,0.05,0.9,0.05,0.0,0.01542,True,test_stress_hard_case_rain
+INJ_0079,test,al_birmingham,"Birmingham, AL",2023-05-24 04:00:00,2023-05-24 19:00:00,56020,6,10,16,exponential,1.54,Band_A_Low (Stress Test),451.2,0.9,0.05,0.05,0.0,0.01644,True,test_stress_hard_case_rain
+INJ_0080,test,al_birmingham,"Birmingham, AL",2023-12-10 08:00:00,2023-12-10 18:00:00,60824,6,5,11,exponential,1.3,Band_A_Low (Stress Test),310.7,0.9,0.05,0.05,0.0,0.01639,True,test_stress_hard_case_rain
+INJ_0081,test,al_birmingham,"Birmingham, AL",2024-04-24 02:00:00,2024-04-24 11:00:00,64082,6,4,10,sigmoidal,1.25,Band_A_Low (Stress Test),282.2,0.05,0.9,0.05,0.0,0.01343,False,test_stress_strictly_dry
+INJ_0082,test,al_birmingham,"Birmingham, AL",2023-09-12 06:00:00,2023-09-12 23:00:00,58686,7,11,18,exponential,0.84,Band_A_Low (Stress Test),522.2,0.5,0.0,0.5,0.0,0.0144,False,test_stress_strictly_dry
+INJ_0083,test,al_birmingham,"Birmingham, AL",2025-08-19 18:00:00,2025-08-20 09:00:00,75666,8,8,16,sigmoidal,1.09,Band_A_Low (Stress Test),402.7,0.05,0.05,0.9,0.0,0.01998,False,test_stress_strictly_dry
+INJ_0084,test,al_birmingham,"Birmingham, AL",2023-07-31 23:00:00,2023-08-01 09:00:00,57671,5,6,11,sigmoidal,1.1,Band_A_Low (Stress Test),517.9,0.05,0.9,0.05,0.0,0.01544,False,test_stress_strictly_dry
+INJ_0085,test,al_birmingham,"Birmingham, AL",2023-03-07 04:00:00,2023-03-07 17:00:00,54148,4,10,14,sigmoidal,0.88,Band_A_Low (Stress Test),421.8,0.5,0.0,0.5,0.0,0.01852,False,test_stress_strictly_dry
+INJ_0086,test,al_birmingham,"Birmingham, AL",2024-09-17 12:00:00,2024-09-18 06:00:00,67596,8,11,19,exponential,1.17,Band_A_Low (Stress Test),261.1,0.9,0.05,0.05,0.0,0.01472,False,test_stress_strictly_dry
+INJ_0087,test,al_birmingham,"Birmingham, AL",2023-05-19 02:00:00,2023-05-19 14:00:00,55898,3,10,13,exponential,1.03,Band_A_Low (Stress Test),512.1,0.5,0.0,0.5,0.0,0.01733,False,test_stress_strictly_dry
+INJ_0088,test,al_birmingham,"Birmingham, AL",2025-07-06 10:00:00,2025-07-07 03:00:00,74602,8,10,18,sigmoidal,0.73,Band_A_Low (Stress Test),305.2,0.5,0.0,0.5,0.0,0.01598,False,test_stress_strictly_dry
+INJ_0089,test,al_birmingham,"Birmingham, AL",2025-04-17 20:00:00,2025-04-18 07:00:00,72692,3,9,12,sigmoidal,0.71,Band_A_Low (Stress Test),275.8,0.05,0.9,0.05,0.0,0.01828,False,test_stress_strictly_dry
+INJ_0090,test,al_birmingham,"Birmingham, AL",2023-07-28 01:00:00,2023-07-28 11:00:00,57577,3,8,11,sigmoidal,1.24,Band_A_Low (Stress Test),370.0,0.05,0.9,0.05,0.0,0.01535,False,test_stress_strictly_dry
+INJ_0091,train,dc_washington,"Washington, DC",2020-07-21 01:00:00,2020-07-21 21:00:00,31129,5,16,21,step,0.0,Band_A_Low,437.8,0.39,0.34,0.13,0.14,0.01511,True,train_rain_coincident
+INJ_0092,train,dc_washington,"Washington, DC",2021-01-31 20:00:00,2021-02-02 01:00:00,35804,10,20,30,linear_ramp,3.35,Band_A_Low,440.0,0.48,0.33,0.19,0.0,0.01253,True,train_rain_coincident
+INJ_0093,train,dc_washington,"Washington, DC",2021-08-20 13:00:00,2021-08-21 08:00:00,40621,8,12,20,linear_ramp,3.32,Band_C_High,1789.5,0.37,0.24,0.14,0.25,0.01264,True,train_rain_coincident
+INJ_0094,train,dc_washington,"Washington, DC",2020-08-29 06:00:00,2020-08-30 01:00:00,32070,6,14,20,linear_ramp,1.11,Band_C_High,1945.5,0.38,0.31,0.22,0.09,0.0197,True,train_rain_coincident
+INJ_0095,train,dc_washington,"Washington, DC",2017-05-25 04:00:00,2017-05-25 23:00:00,3460,11,9,20,linear_ramp,2.66,Band_C_High,1870.2,0.5,0.33,0.15,0.02,0.0131,True,train_rain_coincident
+INJ_0096,train,dc_washington,"Washington, DC",2019-03-21 22:00:00,2019-03-22 18:00:00,19438,10,11,21,linear_ramp,1.05,Band_C_High,2137.8,0.39,0.32,0.15,0.14,0.01426,True,train_rain_coincident
+INJ_0097,train,dc_washington,"Washington, DC",2020-04-24 10:00:00,2020-04-25 10:00:00,29026,9,16,25,linear_ramp,3.14,Band_A_Low,575.7,0.43,0.35,0.22,0.0,0.01438,True,train_rain_coincident
+INJ_0098,train,dc_washington,"Washington, DC",2018-03-20 16:00:00,2018-03-21 13:00:00,10648,11,11,22,linear_ramp,3.48,Band_A_Low,252.9,0.32,0.4,0.11,0.17,0.01543,True,train_rain_coincident
+INJ_0099,train,dc_washington,"Washington, DC",2019-06-19 00:00:00,2019-06-20 06:00:00,21576,14,17,31,step,0.0,Band_A_Low,314.5,0.35,0.27,0.14,0.24,0.016,True,train_rain_coincident
+INJ_0100,train,dc_washington,"Washington, DC",2020-05-22 14:00:00,2020-05-23 11:00:00,29702,11,11,22,step,0.0,Band_C_High,1454.3,0.44,0.22,0.17,0.17,0.01883,True,train_rain_coincident
+INJ_0101,train,dc_washington,"Washington, DC",2019-05-12 01:00:00,2019-05-12 19:00:00,20665,6,13,19,linear_ramp,2.04,Band_C_High,1411.5,0.36,0.36,0.15,0.13,0.0158,True,train_rain_coincident
+INJ_0102,train,dc_washington,"Washington, DC",2018-02-10 21:00:00,2018-02-11 18:00:00,9741,14,8,22,step,0.0,Band_A_Low,594.1,0.37,0.22,0.18,0.23,0.01685,True,train_rain_coincident
+INJ_0103,train,dc_washington,"Washington, DC",2017-04-06 13:00:00,2017-04-07 01:00:00,2293,4,9,13,step,0.0,Band_A_Low,460.1,0.36,0.36,0.18,0.1,0.01326,True,train_rain_coincident
+INJ_0104,train,dc_washington,"Washington, DC",2021-01-03 12:00:00,2021-01-04 07:00:00,35124,7,13,20,linear_ramp,3.68,Band_C_High,1818.7,0.32,0.24,0.16,0.28,0.0177,True,train_rain_coincident
+INJ_0105,train,dc_washington,"Washington, DC",2020-09-26 05:00:00,2020-09-27 03:00:00,32741,6,17,23,linear_ramp,3.24,Band_A_Low,287.2,0.45,0.25,0.22,0.08,0.01411,True,train_rain_coincident
+INJ_0106,train,dc_washington,"Washington, DC",2022-03-28 08:00:00,2022-03-29 14:00:00,45896,11,20,31,step,0.0,Band_C_High,1968.5,0.44,0.24,0.23,0.09,0.01655,False,train_strictly_dry
+INJ_0107,train,dc_washington,"Washington, DC",2021-06-28 17:00:00,2021-06-29 15:00:00,39353,5,18,23,linear_ramp,1.11,Band_C_High,2483.2,0.48,0.34,0.18,0.0,0.01658,False,train_strictly_dry
+INJ_0108,train,dc_washington,"Washington, DC",2018-07-07 18:00:00,2018-07-08 11:00:00,13266,7,11,18,step,0.0,Band_A_Low,344.0,0.49,0.32,0.19,0.0,0.01696,False,train_strictly_dry
+INJ_0109,train,dc_washington,"Washington, DC",2019-08-12 17:00:00,2019-08-13 10:00:00,22889,5,13,18,linear_ramp,3.87,Band_A_Low,553.5,0.35,0.31,0.2,0.14,0.01883,False,train_strictly_dry
+INJ_0110,train,dc_washington,"Washington, DC",2017-07-13 17:00:00,2017-07-14 08:00:00,4649,6,10,16,linear_ramp,1.36,Band_A_Low,469.3,0.42,0.27,0.22,0.09,0.01526,False,train_strictly_dry
+INJ_0111,train,dc_washington,"Washington, DC",2019-04-22 12:00:00,2019-04-23 01:00:00,20196,7,7,14,step,0.0,Band_A_Low,488.8,0.43,0.27,0.25,0.05,0.01839,False,train_strictly_dry
+INJ_0112,train,dc_washington,"Washington, DC",2018-04-07 09:00:00,2018-04-08 14:00:00,11073,13,17,30,step,0.0,Band_A_Low,331.3,0.46,0.29,0.19,0.06,0.01294,False,train_strictly_dry
+INJ_0113,train,dc_washington,"Washington, DC",2020-12-12 11:00:00,2020-12-12 20:00:00,34595,4,6,10,step,0.0,Band_A_Low,551.6,0.38,0.27,0.19,0.16,0.01543,False,train_strictly_dry
+INJ_0114,train,dc_washington,"Washington, DC",2017-06-09 19:00:00,2017-06-10 17:00:00,3835,7,16,23,step,0.0,Band_C_High,2195.0,0.32,0.22,0.23,0.23,0.01749,False,train_strictly_dry
+INJ_0115,train,dc_washington,"Washington, DC",2018-03-15 22:00:00,2018-03-16 15:00:00,10534,4,14,18,step,0.0,Band_A_Low,314.3,0.4,0.24,0.18,0.18,0.0185,False,train_strictly_dry
+INJ_0116,train,dc_washington,"Washington, DC",2018-08-29 10:00:00,2018-08-30 08:00:00,14530,4,19,23,linear_ramp,3.42,Band_A_Low,496.0,0.38,0.31,0.24,0.07,0.01859,False,train_strictly_dry
+INJ_0117,train,dc_washington,"Washington, DC",2019-08-03 18:00:00,2019-08-04 13:00:00,22674,4,16,20,step,0.0,Band_C_High,1869.4,0.4,0.35,0.13,0.12,0.01515,False,train_strictly_dry
+INJ_0118,train,dc_washington,"Washington, DC",2019-02-28 07:00:00,2019-02-28 19:00:00,18919,7,6,13,step,0.0,Band_C_High,1902.9,0.41,0.35,0.14,0.1,0.01571,False,train_strictly_dry
+INJ_0119,train,dc_washington,"Washington, DC",2018-11-28 01:00:00,2018-11-28 23:00:00,16705,14,9,23,linear_ramp,3.46,Band_C_High,1485.9,0.36,0.3,0.11,0.23,0.01829,False,train_strictly_dry
+INJ_0120,train,dc_washington,"Washington, DC",2021-05-23 11:00:00,2021-05-24 03:00:00,38483,5,12,17,step,0.0,Band_C_High,1862.0,0.43,0.35,0.1,0.12,0.01862,False,train_strictly_dry
+INJ_0121,train,dc_washington,"Washington, DC",2021-01-13 08:00:00,2021-01-14 04:00:00,35360,9,12,21,step,0.0,Band_A_Low,325.2,0.46,0.32,0.1,0.12,0.01676,False,train_strictly_dry
+INJ_0122,train,dc_washington,"Washington, DC",2020-06-10 13:00:00,2020-06-11 02:00:00,30157,4,10,14,linear_ramp,1.94,Band_C_High,2014.5,0.31,0.28,0.15,0.26,0.01804,False,train_strictly_dry
+INJ_0123,train,dc_washington,"Washington, DC",2021-05-02 06:00:00,2021-05-03 02:00:00,37974,12,9,21,step,0.0,Band_A_Low,402.3,0.4,0.38,0.19,0.03,0.01753,False,train_strictly_dry
+INJ_0124,train,dc_washington,"Washington, DC",2018-12-25 13:00:00,2018-12-26 09:00:00,17365,7,14,21,step,0.0,Band_C_High,1614.9,0.38,0.33,0.11,0.18,0.01559,False,train_strictly_dry
+INJ_0125,train,dc_washington,"Washington, DC",2020-10-08 17:00:00,2020-10-09 18:00:00,33041,8,18,26,step,0.0,Band_A_Low,326.6,0.34,0.37,0.13,0.16,0.0144,False,train_strictly_dry
+INJ_0126,train,dc_washington,"Washington, DC",2018-08-25 00:00:00,2018-08-25 21:00:00,14424,9,13,22,step,0.0,Band_C_High,1849.5,0.47,0.23,0.19,0.11,0.01667,False,train_strictly_dry
+INJ_0127,train,dc_washington,"Washington, DC",2017-11-16 20:00:00,2017-11-18 00:00:00,7676,10,19,29,step,0.0,Band_C_High,1556.1,0.43,0.36,0.11,0.1,0.0166,False,train_strictly_dry
+INJ_0128,train,dc_washington,"Washington, DC",2020-10-14 06:00:00,2020-10-15 04:00:00,33174,7,16,23,step,0.0,Band_A_Low,448.4,0.34,0.24,0.22,0.2,0.01695,False,train_strictly_dry
+INJ_0129,train,dc_washington,"Washington, DC",2021-08-03 22:00:00,2021-08-04 18:00:00,40222,7,14,21,linear_ramp,1.78,Band_A_Low,449.7,0.48,0.27,0.25,0.0,0.01632,False,train_strictly_dry
+INJ_0130,train,dc_washington,"Washington, DC",2017-01-27 12:00:00,2017-01-28 03:00:00,636,10,6,16,step,0.0,Band_C_High,2171.0,0.33,0.38,0.14,0.15,0.01825,False,train_strictly_dry
+INJ_0131,train,dc_washington,"Washington, DC",2022-06-17 15:00:00,2022-06-18 08:00:00,47847,7,11,18,linear_ramp,3.4,Band_C_High,1565.1,0.45,0.3,0.24,0.01,0.01791,False,train_strictly_dry
+INJ_0132,train,dc_washington,"Washington, DC",2017-08-02 16:00:00,2017-08-03 11:00:00,5128,7,13,20,linear_ramp,3.6,Band_C_High,2462.2,0.32,0.23,0.21,0.24,0.01753,False,train_strictly_dry
+INJ_0133,train,dc_washington,"Washington, DC",2019-10-09 22:00:00,2019-10-10 16:00:00,24286,11,8,19,linear_ramp,1.12,Band_C_High,2109.7,0.32,0.29,0.18,0.21,0.02,False,train_strictly_dry
+INJ_0134,train,dc_washington,"Washington, DC",2018-01-10 06:00:00,2018-01-11 04:00:00,8982,12,11,23,step,0.0,Band_C_High,2024.0,0.41,0.21,0.2,0.18,0.02,False,train_strictly_dry
+INJ_0135,train,dc_washington,"Washington, DC",2020-11-09 17:00:00,2020-11-10 13:00:00,33809,7,14,21,step,0.0,Band_A_Low,334.5,0.31,0.23,0.13,0.33,0.01388,False,train_strictly_dry
+INJ_0136,train,dc_washington,"Washington, DC",2018-05-12 03:00:00,2018-05-12 18:00:00,11907,5,11,16,linear_ramp,2.06,Band_A_Low,412.9,0.37,0.28,0.1,0.25,0.01645,False,train_strictly_dry
+INJ_0137,train,dc_washington,"Washington, DC",2020-09-05 18:00:00,2020-09-06 12:00:00,32250,12,7,19,linear_ramp,2.06,Band_C_High,2439.9,0.38,0.34,0.23,0.05,0.01817,False,train_strictly_dry
+INJ_0138,train,dc_washington,"Washington, DC",2021-07-06 03:00:00,2021-07-06 17:00:00,39531,7,8,15,linear_ramp,1.52,Band_C_High,1834.8,0.46,0.35,0.11,0.08,0.01635,False,train_strictly_dry
+INJ_0139,train,dc_washington,"Washington, DC",2018-10-18 07:00:00,2018-10-19 11:00:00,15727,9,20,29,linear_ramp,1.06,Band_A_Low,457.1,0.32,0.28,0.25,0.15,0.01869,False,train_strictly_dry
+INJ_0140,train,dc_washington,"Washington, DC",2021-07-13 03:00:00,2021-07-13 16:00:00,39699,4,10,14,step,0.0,Band_A_Low,557.2,0.42,0.33,0.25,0.0,0.01609,False,train_strictly_dry
+INJ_0141,test,dc_washington,"Washington, DC",2023-05-13 21:00:00,2023-05-15 15:00:00,55773,11,32,43,exponential,2.41,Band_B_Mid (Interpolation),1005.2,0.05,0.05,0.9,0.0,0.0153,True,test_standard_rain_onset
+INJ_0142,test,dc_washington,"Washington, DC",2024-03-06 19:00:00,2024-03-08 20:00:00,62923,17,33,50,exponential,1.74,Band_B_Mid (Interpolation),1090.4,0.5,0.0,0.5,0.0,0.01817,True,test_standard_rain_onset
+INJ_0143,test,dc_washington,"Washington, DC",2024-03-28 04:00:00,2024-03-31 02:00:00,63436,19,52,71,sigmoidal,1.59,Band_B_Mid (Interpolation),1172.3,0.05,0.05,0.9,0.0,0.01687,True,test_standard_rain_onset
+INJ_0144,test,dc_washington,"Washington, DC",2025-01-01 00:00:00,2025-01-03 11:00:00,70128,20,40,60,exponential,2.3,Band_B_Mid (Interpolation),912.3,0.05,0.05,0.9,0.0,0.01409,True,test_standard_rain_onset
+INJ_0145,test,dc_washington,"Washington, DC",2025-04-07 09:00:00,2025-04-09 23:00:00,72441,10,53,63,exponential,1.13,Band_B_Mid (Interpolation),1142.6,0.05,0.05,0.9,0.0,0.01629,True,test_standard_rain_onset
+INJ_0146,test,dc_washington,"Washington, DC",2023-12-18 07:00:00,2023-12-20 21:00:00,61015,16,47,63,exponential,1.6,Band_B_Mid (Interpolation),905.4,0.9,0.05,0.05,0.0,0.01448,True,test_standard_rain_onset
+INJ_0147,test,dc_washington,"Washington, DC",2023-11-22 04:00:00,2023-11-24 01:00:00,60388,18,28,46,exponential,1.44,Band_B_Mid (Interpolation),1040.9,0.05,0.9,0.05,0.0,0.02,True,test_standard_rain_onset
+INJ_0148,test,dc_washington,"Washington, DC",2025-07-13 17:00:00,2025-07-15 15:00:00,74777,16,31,47,sigmoidal,1.38,Band_B_Mid (Interpolation),1007.7,0.9,0.05,0.05,0.0,0.01612,True,test_standard_rain_onset
+INJ_0149,test,dc_washington,"Washington, DC",2024-04-03 00:00:00,2024-04-04 17:00:00,63576,13,29,42,exponential,1.05,Band_B_Mid (Interpolation),797.4,0.9,0.05,0.05,0.0,0.02,True,test_standard_rain_onset
+INJ_0150,test,dc_washington,"Washington, DC",2023-06-28 00:00:00,2023-06-29 21:00:00,56856,14,32,46,exponential,1.23,Band_B_Mid (Interpolation),868.2,0.5,0.0,0.5,0.0,0.01632,True,test_standard_rain_onset
+INJ_0151,test,dc_washington,"Washington, DC",2025-05-10 14:00:00,2025-05-12 09:00:00,73238,14,30,44,exponential,2.44,Band_B_Mid (Interpolation),1178.5,0.05,0.05,0.9,0.0,0.01504,False,test_standard_strictly_dry
+INJ_0152,test,dc_washington,"Washington, DC",2025-08-11 06:00:00,2025-08-12 20:00:00,75462,10,29,39,exponential,2.02,Band_B_Mid (Interpolation),705.4,0.05,0.9,0.05,0.0,0.01616,False,test_standard_strictly_dry
+INJ_0153,test,dc_washington,"Washington, DC",2025-08-03 04:00:00,2025-08-05 21:00:00,75268,14,52,66,sigmoidal,1.27,Band_B_Mid (Interpolation),766.5,0.9,0.05,0.05,0.0,0.01538,False,test_standard_strictly_dry
+INJ_0154,test,dc_washington,"Washington, DC",2023-09-15 09:00:00,2023-09-17 09:00:00,58761,13,36,49,sigmoidal,1.57,Band_B_Mid (Interpolation),1152.0,0.05,0.9,0.05,0.0,0.0179,False,test_standard_strictly_dry
+INJ_0155,test,dc_washington,"Washington, DC",2025-04-17 13:00:00,2025-04-19 15:00:00,72685,19,32,51,exponential,1.23,Band_B_Mid (Interpolation),947.5,0.9,0.05,0.05,0.0,0.01856,False,test_standard_strictly_dry
+INJ_0156,test,dc_washington,"Washington, DC",2023-10-10 06:00:00,2023-10-12 11:00:00,59358,19,35,54,exponential,1.79,Band_B_Mid (Interpolation),776.9,0.9,0.05,0.05,0.0,0.0143,False,test_standard_strictly_dry
+INJ_0157,test,dc_washington,"Washington, DC",2023-05-25 16:00:00,2023-05-28 11:00:00,56056,19,49,68,sigmoidal,1.74,Band_B_Mid (Interpolation),905.7,0.5,0.0,0.5,0.0,0.01292,False,test_standard_strictly_dry
+INJ_0158,test,dc_washington,"Washington, DC",2023-08-01 19:00:00,2023-08-03 18:00:00,57691,12,36,48,exponential,1.46,Band_B_Mid (Interpolation),1140.6,0.05,0.05,0.9,0.0,0.01417,False,test_standard_strictly_dry
+INJ_0159,test,dc_washington,"Washington, DC",2024-09-11 23:00:00,2024-09-14 18:00:00,67463,18,50,68,exponential,1.56,Band_B_Mid (Interpolation),869.5,0.05,0.05,0.9,0.0,0.012,False,test_standard_strictly_dry
+INJ_0160,test,dc_washington,"Washington, DC",2024-05-30 20:00:00,2024-06-02 12:00:00,64964,13,52,65,exponential,1.92,Band_B_Mid (Interpolation),1016.3,0.05,0.05,0.9,0.0,0.0157,False,test_standard_strictly_dry
+INJ_0161,test,dc_washington,"Washington, DC",2025-05-21 15:00:00,2025-05-22 04:00:00,73503,8,6,14,sigmoidal,1.37,Band_A_Low (Stress Test),592.7,0.5,0.0,0.5,0.0,0.01736,True,test_stress_hard_case_rain
+INJ_0162,test,dc_washington,"Washington, DC",2024-08-03 23:00:00,2024-08-04 10:00:00,66527,8,4,12,exponential,1.11,Band_A_Low (Stress Test),269.5,0.05,0.05,0.9,0.0,0.01575,True,test_stress_hard_case_rain
+INJ_0163,test,dc_washington,"Washington, DC",2024-12-16 09:00:00,2024-12-17 01:00:00,69753,8,9,17,exponential,0.87,Band_A_Low (Stress Test),520.2,0.9,0.05,0.05,0.0,0.01615,True,test_stress_hard_case_rain
+INJ_0164,test,dc_washington,"Washington, DC",2024-07-13 13:00:00,2024-07-13 20:00:00,66013,3,5,8,sigmoidal,0.95,Band_A_Low (Stress Test),370.5,0.9,0.05,0.05,0.0,0.01578,True,test_stress_hard_case_rain
+INJ_0165,test,dc_washington,"Washington, DC",2024-09-24 23:00:00,2024-09-25 07:00:00,67775,4,5,9,exponential,1.64,Band_A_Low (Stress Test),468.4,0.05,0.05,0.9,0.0,0.01718,True,test_stress_hard_case_rain
+INJ_0166,test,dc_washington,"Washington, DC",2025-04-26 06:00:00,2025-04-26 18:00:00,72894,7,6,13,sigmoidal,1.15,Band_A_Low (Stress Test),304.7,0.9,0.05,0.05,0.0,0.01494,True,test_stress_hard_case_rain
+INJ_0167,test,dc_washington,"Washington, DC",2023-06-21 22:00:00,2023-06-22 11:00:00,56710,4,10,14,sigmoidal,0.78,Band_A_Low (Stress Test),376.8,0.5,0.0,0.5,0.0,0.01886,True,test_stress_hard_case_rain
+INJ_0168,test,dc_washington,"Washington, DC",2023-09-23 19:00:00,2023-09-24 04:00:00,58963,6,4,10,exponential,1.32,Band_A_Low (Stress Test),523.5,0.5,0.0,0.5,0.0,0.01808,True,test_stress_hard_case_rain
+INJ_0169,test,dc_washington,"Washington, DC",2023-04-29 00:00:00,2023-04-29 06:00:00,55416,3,4,7,sigmoidal,0.78,Band_A_Low (Stress Test),440.3,0.9,0.05,0.05,0.0,0.01482,True,test_stress_hard_case_rain
+INJ_0170,test,dc_washington,"Washington, DC",2024-07-22 17:00:00,2024-07-23 06:00:00,66233,6,8,14,exponential,1.43,Band_A_Low (Stress Test),532.5,0.5,0.0,0.5,0.0,0.01826,True,test_stress_hard_case_rain
+INJ_0171,test,dc_washington,"Washington, DC",2024-12-02 05:00:00,2024-12-02 18:00:00,69413,6,8,14,exponential,1.55,Band_A_Low (Stress Test),386.6,0.05,0.9,0.05,0.0,0.01522,False,test_stress_strictly_dry
+INJ_0172,test,dc_washington,"Washington, DC",2023-06-02 17:00:00,2023-06-03 03:00:00,56249,3,8,11,exponential,1.56,Band_A_Low (Stress Test),270.9,0.05,0.05,0.9,0.0,0.0146,False,test_stress_strictly_dry
+INJ_0173,test,dc_washington,"Washington, DC",2024-04-14 04:00:00,2024-04-14 17:00:00,63844,5,9,14,exponential,1.7,Band_A_Low (Stress Test),474.3,0.9,0.05,0.05,0.0,0.0152,False,test_stress_strictly_dry
+INJ_0174,test,dc_washington,"Washington, DC",2024-12-27 11:00:00,2024-12-28 01:00:00,70019,8,7,15,exponential,1.22,Band_A_Low (Stress Test),351.5,0.9,0.05,0.05,0.0,0.01625,False,test_stress_strictly_dry
+INJ_0175,test,dc_washington,"Washington, DC",2024-10-25 01:00:00,2024-10-25 16:00:00,68497,7,9,16,exponential,1.77,Band_A_Low (Stress Test),254.5,0.05,0.9,0.05,0.0,0.01564,False,test_stress_strictly_dry
+INJ_0176,test,dc_washington,"Washington, DC",2023-10-29 04:00:00,2023-10-29 13:00:00,59812,6,4,10,exponential,1.42,Band_A_Low (Stress Test),394.1,0.05,0.05,0.9,0.0,0.01453,False,test_stress_strictly_dry
+INJ_0177,test,dc_washington,"Washington, DC",2024-06-15 17:00:00,2024-06-16 08:00:00,65345,5,11,16,exponential,1.0,Band_A_Low (Stress Test),253.8,0.5,0.0,0.5,0.0,0.0168,False,test_stress_strictly_dry
+INJ_0178,test,dc_washington,"Washington, DC",2024-10-09 10:00:00,2024-10-10 00:00:00,68122,4,11,15,sigmoidal,0.64,Band_A_Low (Stress Test),475.1,0.5,0.0,0.5,0.0,0.01211,False,test_stress_strictly_dry
+INJ_0179,test,dc_washington,"Washington, DC",2023-10-25 22:00:00,2023-10-26 10:00:00,59734,7,6,13,exponential,1.44,Band_A_Low (Stress Test),456.1,0.05,0.9,0.05,0.0,0.01287,False,test_stress_strictly_dry
+INJ_0180,test,dc_washington,"Washington, DC",2024-03-18 17:00:00,2024-03-19 05:00:00,63209,5,8,13,exponential,1.43,Band_A_Low (Stress Test),302.7,0.5,0.0,0.5,0.0,0.014,False,test_stress_strictly_dry
+INJ_0181,train,ca_san_diego,"San Diego, CA",2021-01-29 11:00:00,2021-01-30 00:00:00,35747,6,8,14,step,0.0,Band_A_Low,502.2,0.4,0.28,0.22,0.1,0.02,True,train_rain_coincident
+INJ_0182,train,ca_san_diego,"San Diego, CA",2018-01-10 02:00:00,2018-01-11 08:00:00,8978,11,20,31,step,0.0,Band_A_Low,341.8,0.48,0.36,0.13,0.03,0.0179,True,train_rain_coincident
+INJ_0183,train,ca_san_diego,"San Diego, CA",2021-01-24 00:00:00,2021-01-24 22:00:00,35616,10,13,23,linear_ramp,3.83,Band_A_Low,551.1,0.48,0.21,0.25,0.06,0.0176,True,train_rain_coincident
+INJ_0184,train,ca_san_diego,"San Diego, CA",2021-03-03 19:00:00,2021-03-05 01:00:00,36547,14,17,31,linear_ramp,2.8,Band_A_Low,330.0,0.31,0.37,0.2,0.12,0.01704,True,train_rain_coincident
+INJ_0185,train,ca_san_diego,"San Diego, CA",2019-12-07 23:00:00,2019-12-08 23:00:00,25703,11,14,25,step,0.0,Band_C_High,1975.7,0.33,0.25,0.12,0.3,0.01451,True,train_rain_coincident
+INJ_0186,train,ca_san_diego,"San Diego, CA",2021-12-14 21:00:00,2021-12-15 20:00:00,43413,7,17,24,linear_ramp,1.32,Band_A_Low,559.0,0.33,0.33,0.12,0.22,0.01428,True,train_rain_coincident
+INJ_0187,train,ca_san_diego,"San Diego, CA",2019-11-28 19:00:00,2019-11-30 00:00:00,25483,11,19,30,step,0.0,Band_C_High,2442.1,0.42,0.38,0.2,0.0,0.01439,True,train_rain_coincident
+INJ_0188,train,ca_san_diego,"San Diego, CA",2017-01-13 03:00:00,2017-01-13 21:00:00,291,11,8,19,linear_ramp,1.09,Band_C_High,1434.3,0.43,0.24,0.24,0.09,0.01744,True,train_rain_coincident
+INJ_0189,train,ca_san_diego,"San Diego, CA",2017-01-21 02:00:00,2017-01-21 20:00:00,482,8,11,19,linear_ramp,2.14,Band_A_Low,289.9,0.48,0.29,0.23,0.0,0.0174,True,train_rain_coincident
+INJ_0190,train,ca_san_diego,"San Diego, CA",2022-01-18 06:00:00,2022-01-18 16:00:00,44238,4,7,11,linear_ramp,2.1,Band_C_High,2201.5,0.38,0.31,0.19,0.12,0.01364,True,train_rain_coincident
+INJ_0191,train,ca_san_diego,"San Diego, CA",2022-11-02 15:00:00,2022-11-03 20:00:00,51159,12,18,30,linear_ramp,3.4,Band_C_High,2305.2,0.49,0.3,0.11,0.1,0.01581,True,train_rain_coincident
+INJ_0192,train,ca_san_diego,"San Diego, CA",2019-02-04 16:00:00,2019-02-05 07:00:00,18352,10,6,16,step,0.0,Band_C_High,2052.4,0.44,0.31,0.12,0.13,0.0171,True,train_rain_coincident
+INJ_0193,train,ca_san_diego,"San Diego, CA",2020-04-10 09:00:00,2020-04-11 02:00:00,28689,8,10,18,linear_ramp,1.23,Band_A_Low,369.6,0.45,0.36,0.14,0.05,0.01395,True,train_rain_coincident
+INJ_0194,train,ca_san_diego,"San Diego, CA",2018-11-29 12:00:00,2018-11-30 08:00:00,16740,13,8,21,linear_ramp,3.52,Band_C_High,1716.5,0.39,0.26,0.2,0.15,0.0164,True,train_rain_coincident
+INJ_0195,train,ca_san_diego,"San Diego, CA",2022-03-29 06:00:00,2022-03-30 01:00:00,45918,10,10,20,step,0.0,Band_A_Low,301.3,0.49,0.2,0.13,0.18,0.01685,True,train_rain_coincident
+INJ_0196,train,ca_san_diego,"San Diego, CA",2017-12-04 15:00:00,2017-12-05 06:00:00,8103,6,10,16,step,0.0,Band_C_High,1710.9,0.36,0.36,0.23,0.05,0.01446,False,train_strictly_dry
+INJ_0197,train,ca_san_diego,"San Diego, CA",2020-02-24 15:00:00,2020-02-25 10:00:00,27591,5,15,20,step,0.0,Band_C_High,1713.4,0.43,0.34,0.19,0.04,0.01561,False,train_strictly_dry
+INJ_0198,train,ca_san_diego,"San Diego, CA",2022-10-10 14:00:00,2022-10-11 04:00:00,50606,5,10,15,step,0.0,Band_A_Low,557.2,0.38,0.2,0.24,0.18,0.01711,False,train_strictly_dry
+INJ_0199,train,ca_san_diego,"San Diego, CA",2018-11-16 19:00:00,2018-11-17 10:00:00,16435,10,6,16,step,0.0,Band_C_High,1486.3,0.32,0.36,0.16,0.16,0.01637,False,train_strictly_dry
+INJ_0200,train,ca_san_diego,"San Diego, CA",2020-05-14 23:00:00,2020-05-15 19:00:00,29519,11,10,21,linear_ramp,3.47,Band_A_Low,368.7,0.41,0.39,0.13,0.07,0.01706,False,train_strictly_dry
+INJ_0201,train,ca_san_diego,"San Diego, CA",2020-03-31 20:00:00,2020-04-01 18:00:00,28460,9,14,23,step,0.0,Band_C_High,2111.1,0.37,0.23,0.19,0.21,0.01938,False,train_strictly_dry
+INJ_0202,train,ca_san_diego,"San Diego, CA",2019-03-14 13:00:00,2019-03-15 05:00:00,19261,10,7,17,step,0.0,Band_A_Low,449.7,0.37,0.33,0.24,0.06,0.01518,False,train_strictly_dry
+INJ_0203,train,ca_san_diego,"San Diego, CA",2018-05-08 17:00:00,2018-05-09 13:00:00,11825,14,7,21,linear_ramp,1.67,Band_A_Low,457.6,0.45,0.27,0.12,0.16,0.01676,False,train_strictly_dry
+INJ_0204,train,ca_san_diego,"San Diego, CA",2021-03-19 07:00:00,2021-03-20 00:00:00,36919,11,7,18,linear_ramp,3.08,Band_A_Low,574.0,0.47,0.33,0.13,0.07,0.01857,False,train_strictly_dry
+INJ_0205,train,ca_san_diego,"San Diego, CA",2021-12-03 11:00:00,2021-12-04 10:00:00,43139,10,14,24,linear_ramp,1.12,Band_C_High,2022.8,0.47,0.34,0.19,0.0,0.01544,False,train_strictly_dry
+INJ_0206,train,ca_san_diego,"San Diego, CA",2018-08-01 15:00:00,2018-08-02 06:00:00,13863,8,8,16,linear_ramp,2.84,Band_A_Low,513.1,0.45,0.32,0.23,0.0,0.01615,False,train_strictly_dry
+INJ_0207,train,ca_san_diego,"San Diego, CA",2020-07-26 18:00:00,2020-07-27 05:00:00,31266,6,6,12,step,0.0,Band_C_High,2443.5,0.43,0.34,0.23,0.0,0.01827,False,train_strictly_dry
+INJ_0208,train,ca_san_diego,"San Diego, CA",2017-07-16 11:00:00,2017-07-17 07:00:00,4715,4,17,21,linear_ramp,1.19,Band_C_High,1756.0,0.39,0.29,0.17,0.15,0.01633,False,train_strictly_dry
+INJ_0209,train,ca_san_diego,"San Diego, CA",2022-05-29 08:00:00,2022-05-30 06:00:00,47384,13,10,23,step,0.0,Band_C_High,1409.5,0.41,0.2,0.19,0.2,0.01465,False,train_strictly_dry
+INJ_0210,train,ca_san_diego,"San Diego, CA",2022-12-10 10:00:00,2022-12-11 10:00:00,52066,6,19,25,linear_ramp,3.31,Band_C_High,1670.8,0.38,0.24,0.13,0.25,0.012,False,train_strictly_dry
+INJ_0211,train,ca_san_diego,"San Diego, CA",2017-03-26 07:00:00,2017-03-26 21:00:00,2023,9,6,15,step,0.0,Band_C_High,1941.1,0.33,0.31,0.18,0.18,0.01282,False,train_strictly_dry
+INJ_0212,train,ca_san_diego,"San Diego, CA",2021-10-03 06:00:00,2021-10-03 19:00:00,41670,4,10,14,linear_ramp,1.95,Band_C_High,2126.3,0.4,0.27,0.17,0.16,0.02,False,train_strictly_dry
+INJ_0213,train,ca_san_diego,"San Diego, CA",2021-08-08 17:00:00,2021-08-09 23:00:00,40337,13,18,31,step,0.0,Band_A_Low,472.1,0.38,0.33,0.22,0.07,0.01382,False,train_strictly_dry
+INJ_0214,train,ca_san_diego,"San Diego, CA",2022-12-14 20:00:00,2022-12-15 15:00:00,52172,4,16,20,linear_ramp,3.54,Band_A_Low,594.8,0.34,0.39,0.11,0.16,0.01686,False,train_strictly_dry
+INJ_0215,train,ca_san_diego,"San Diego, CA",2020-08-07 01:00:00,2020-08-07 22:00:00,31537,10,12,22,step,0.0,Band_A_Low,530.4,0.4,0.24,0.15,0.21,0.01677,False,train_strictly_dry
+INJ_0216,train,ca_san_diego,"San Diego, CA",2022-08-19 19:00:00,2022-08-20 17:00:00,49363,13,10,23,linear_ramp,3.74,Band_C_High,1522.0,0.5,0.26,0.19,0.05,0.01375,False,train_strictly_dry
+INJ_0217,train,ca_san_diego,"San Diego, CA",2018-08-19 18:00:00,2018-08-20 10:00:00,14298,9,8,17,step,0.0,Band_C_High,1535.6,0.3,0.2,0.14,0.36,0.01363,False,train_strictly_dry
+INJ_0218,train,ca_san_diego,"San Diego, CA",2019-03-10 17:00:00,2019-03-11 15:00:00,19169,14,9,23,step,0.0,Band_A_Low,490.3,0.3,0.24,0.23,0.23,0.01736,False,train_strictly_dry
+INJ_0219,train,ca_san_diego,"San Diego, CA",2021-07-05 15:00:00,2021-07-06 13:00:00,39519,11,12,23,step,0.0,Band_C_High,1639.0,0.31,0.37,0.14,0.18,0.01503,False,train_strictly_dry
+INJ_0220,train,ca_san_diego,"San Diego, CA",2017-09-14 11:00:00,2017-09-15 07:00:00,6155,14,7,21,step,0.0,Band_C_High,2232.2,0.41,0.23,0.12,0.24,0.01328,False,train_strictly_dry
+INJ_0221,train,ca_san_diego,"San Diego, CA",2017-08-15 15:00:00,2017-08-16 13:00:00,5439,8,15,23,step,0.0,Band_C_High,1840.8,0.37,0.37,0.22,0.04,0.01648,False,train_strictly_dry
+INJ_0222,train,ca_san_diego,"San Diego, CA",2020-04-26 06:00:00,2020-04-26 21:00:00,29070,10,6,16,step,0.0,Band_C_High,2150.2,0.4,0.36,0.15,0.09,0.01553,False,train_strictly_dry
+INJ_0223,train,ca_san_diego,"San Diego, CA",2019-08-22 22:00:00,2019-08-23 17:00:00,23134,12,8,20,linear_ramp,1.92,Band_A_Low,387.2,0.47,0.38,0.12,0.03,0.01496,False,train_strictly_dry
+INJ_0224,train,ca_san_diego,"San Diego, CA",2019-01-04 07:00:00,2019-01-05 11:00:00,17599,13,16,29,step,0.0,Band_C_High,1500.4,0.46,0.3,0.24,0.0,0.01346,False,train_strictly_dry
+INJ_0225,train,ca_san_diego,"San Diego, CA",2019-10-24 19:00:00,2019-10-25 15:00:00,24643,9,12,21,step,0.0,Band_A_Low,438.5,0.35,0.32,0.14,0.19,0.01845,False,train_strictly_dry
+INJ_0226,train,ca_san_diego,"San Diego, CA",2021-05-15 10:00:00,2021-05-16 02:00:00,38290,9,8,17,linear_ramp,1.39,Band_A_Low,463.6,0.35,0.4,0.19,0.06,0.01664,False,train_strictly_dry
+INJ_0227,train,ca_san_diego,"San Diego, CA",2017-07-02 03:00:00,2017-07-03 02:00:00,4371,8,16,24,linear_ramp,2.05,Band_C_High,1684.4,0.43,0.27,0.22,0.08,0.01778,False,train_strictly_dry
+INJ_0228,train,ca_san_diego,"San Diego, CA",2021-06-03 14:00:00,2021-06-04 12:00:00,38750,7,16,23,step,0.0,Band_C_High,2249.4,0.45,0.36,0.16,0.03,0.01772,False,train_strictly_dry
+INJ_0229,train,ca_san_diego,"San Diego, CA",2018-09-06 22:00:00,2018-09-08 00:00:00,14734,14,13,27,linear_ramp,3.72,Band_A_Low,398.7,0.38,0.29,0.18,0.15,0.015,False,train_strictly_dry
+INJ_0230,train,ca_san_diego,"San Diego, CA",2018-03-09 10:00:00,2018-03-09 21:00:00,10378,6,6,12,step,0.0,Band_A_Low,495.0,0.48,0.3,0.22,0.0,0.02,False,train_strictly_dry
+INJ_0231,test,ca_san_diego,"San Diego, CA",2023-12-30 17:00:00,2024-01-02 15:00:00,61313,12,59,71,sigmoidal,0.81,Band_B_Mid (Interpolation),1194.7,0.5,0.0,0.5,0.0,0.01326,True,test_standard_rain_onset
+INJ_0232,test,ca_san_diego,"San Diego, CA",2025-03-15 01:00:00,2025-03-17 09:00:00,71881,17,40,57,exponential,1.56,Band_B_Mid (Interpolation),897.4,0.05,0.05,0.9,0.0,0.01634,True,test_standard_rain_onset
+INJ_0233,test,ca_san_diego,"San Diego, CA",2023-03-01 15:00:00,2023-03-04 13:00:00,54015,18,53,71,exponential,1.46,Band_B_Mid (Interpolation),1193.1,0.5,0.0,0.5,0.0,0.01513,True,test_standard_rain_onset
+INJ_0234,test,ca_san_diego,"San Diego, CA",2024-03-07 04:00:00,2024-03-09 14:00:00,62932,20,39,59,sigmoidal,0.91,Band_B_Mid (Interpolation),977.4,0.05,0.9,0.05,0.0,0.01388,True,test_standard_rain_onset
+INJ_0235,test,ca_san_diego,"San Diego, CA",2023-01-05 20:00:00,2023-01-07 23:00:00,52700,19,33,52,sigmoidal,1.52,Band_B_Mid (Interpolation),979.1,0.5,0.0,0.5,0.0,0.01362,True,test_standard_rain_onset
+INJ_0236,test,ca_san_diego,"San Diego, CA",2024-02-01 22:00:00,2024-02-04 01:00:00,62110,20,32,52,sigmoidal,0.99,Band_B_Mid (Interpolation),940.5,0.05,0.05,0.9,0.0,0.01264,True,test_standard_rain_onset
+INJ_0237,test,ca_san_diego,"San Diego, CA",2023-01-01 09:00:00,2023-01-03 02:00:00,52593,15,27,42,exponential,2.16,Band_B_Mid (Interpolation),1154.0,0.5,0.0,0.5,0.0,0.012,True,test_standard_rain_onset
+INJ_0238,test,ca_san_diego,"San Diego, CA",2024-01-22 16:00:00,2024-01-25 16:00:00,61864,15,58,73,sigmoidal,1.34,Band_B_Mid (Interpolation),779.3,0.9,0.05,0.05,0.0,0.01563,True,test_standard_rain_onset
+INJ_0239,test,ca_san_diego,"San Diego, CA",2025-03-06 04:00:00,2025-03-08 08:00:00,71668,13,40,53,sigmoidal,1.27,Band_B_Mid (Interpolation),792.0,0.05,0.05,0.9,0.0,0.01492,True,test_standard_rain_onset
+INJ_0240,test,ca_san_diego,"San Diego, CA",2023-02-13 06:00:00,2023-02-14 17:00:00,53622,12,24,36,exponential,2.17,Band_B_Mid (Interpolation),780.3,0.5,0.0,0.5,0.0,0.01256,True,test_standard_rain_onset
+INJ_0241,test,ca_san_diego,"San Diego, CA",2025-07-27 02:00:00,2025-07-29 01:00:00,75098,18,30,48,sigmoidal,1.1,Band_B_Mid (Interpolation),1156.0,0.5,0.0,0.5,0.0,0.01716,False,test_standard_strictly_dry
+INJ_0242,test,ca_san_diego,"San Diego, CA",2023-07-11 14:00:00,2023-07-14 16:00:00,57182,17,58,75,exponential,2.03,Band_B_Mid (Interpolation),774.1,0.05,0.9,0.05,0.0,0.01452,False,test_standard_strictly_dry
+INJ_0243,test,ca_san_diego,"San Diego, CA",2025-06-01 00:00:00,2025-06-03 19:00:00,73752,12,56,68,sigmoidal,0.93,Band_B_Mid (Interpolation),758.9,0.05,0.9,0.05,0.0,0.01453,False,test_standard_strictly_dry
+INJ_0244,test,ca_san_diego,"San Diego, CA",2024-01-16 14:00:00,2024-01-18 10:00:00,61718,12,33,45,sigmoidal,0.95,Band_B_Mid (Interpolation),791.3,0.5,0.0,0.5,0.0,0.01671,False,test_standard_strictly_dry
+INJ_0245,test,ca_san_diego,"San Diego, CA",2024-11-07 10:00:00,2024-11-10 11:00:00,68818,17,57,74,exponential,2.2,Band_B_Mid (Interpolation),801.1,0.05,0.9,0.05,0.0,0.01685,False,test_standard_strictly_dry
+INJ_0246,test,ca_san_diego,"San Diego, CA",2024-08-18 10:00:00,2024-08-20 09:00:00,66874,20,28,48,exponential,1.96,Band_B_Mid (Interpolation),1017.8,0.05,0.05,0.9,0.0,0.0198,False,test_standard_strictly_dry
+INJ_0247,test,ca_san_diego,"San Diego, CA",2025-02-16 17:00:00,2025-02-19 03:00:00,71249,10,49,59,sigmoidal,1.56,Band_B_Mid (Interpolation),799.5,0.05,0.9,0.05,0.0,0.01392,False,test_standard_strictly_dry
+INJ_0248,test,ca_san_diego,"San Diego, CA",2023-05-08 16:00:00,2023-05-10 18:00:00,55648,19,32,51,sigmoidal,1.12,Band_B_Mid (Interpolation),1166.6,0.9,0.05,0.05,0.0,0.01465,False,test_standard_strictly_dry
+INJ_0249,test,ca_san_diego,"San Diego, CA",2023-04-27 13:00:00,2023-04-29 16:00:00,55381,12,40,52,sigmoidal,1.27,Band_B_Mid (Interpolation),928.1,0.5,0.0,0.5,0.0,0.015,False,test_standard_strictly_dry
+INJ_0250,test,ca_san_diego,"San Diego, CA",2023-05-30 12:00:00,2023-06-02 00:00:00,56172,20,41,61,exponential,1.1,Band_B_Mid (Interpolation),880.3,0.5,0.0,0.5,0.0,0.01745,False,test_standard_strictly_dry
+INJ_0251,test,ca_san_diego,"San Diego, CA",2023-03-21 15:00:00,2023-03-22 03:00:00,54495,3,10,13,sigmoidal,0.97,Band_A_Low (Stress Test),456.5,0.9,0.05,0.05,0.0,0.01858,True,test_stress_hard_case_rain
+INJ_0252,test,ca_san_diego,"San Diego, CA",2023-03-29 23:00:00,2023-03-30 13:00:00,54695,8,7,15,sigmoidal,1.2,Band_A_Low (Stress Test),362.7,0.05,0.9,0.05,0.0,0.01647,True,test_stress_hard_case_rain
+INJ_0253,test,ca_san_diego,"San Diego, CA",2024-02-08 09:00:00,2024-02-08 23:00:00,62265,6,9,15,exponential,1.31,Band_A_Low (Stress Test),313.4,0.05,0.9,0.05,0.0,0.01661,True,test_stress_hard_case_rain
+INJ_0254,test,ca_san_diego,"San Diego, CA",2023-01-16 04:00:00,2023-01-16 15:00:00,52948,8,4,12,sigmoidal,1.29,Band_A_Low (Stress Test),591.5,0.5,0.0,0.5,0.0,0.01736,True,test_stress_hard_case_rain
+INJ_0255,test,ca_san_diego,"San Diego, CA",2023-03-11 10:00:00,2023-03-11 22:00:00,54250,8,5,13,sigmoidal,0.81,Band_A_Low (Stress Test),555.5,0.9,0.05,0.05,0.0,0.01933,True,test_stress_hard_case_rain
+INJ_0256,test,ca_san_diego,"San Diego, CA",2023-12-22 09:00:00,2023-12-22 18:00:00,61113,3,7,10,sigmoidal,1.34,Band_A_Low (Stress Test),565.3,0.05,0.9,0.05,0.0,0.01619,True,test_stress_hard_case_rain
+INJ_0257,test,ca_san_diego,"San Diego, CA",2023-03-15 08:00:00,2023-03-15 17:00:00,54344,4,6,10,exponential,1.61,Band_A_Low (Stress Test),331.5,0.5,0.0,0.5,0.0,0.01692,True,test_stress_hard_case_rain
+INJ_0258,test,ca_san_diego,"San Diego, CA",2023-02-26 06:00:00,2023-02-26 15:00:00,53934,4,6,10,sigmoidal,0.61,Band_A_Low (Stress Test),399.1,0.05,0.9,0.05,0.0,0.0182,True,test_stress_hard_case_rain
+INJ_0259,test,ca_san_diego,"San Diego, CA",2023-11-30 05:00:00,2023-11-30 18:00:00,60581,3,11,14,sigmoidal,0.72,Band_A_Low (Stress Test),314.3,0.05,0.9,0.05,0.0,0.01586,True,test_stress_hard_case_rain
+INJ_0260,test,ca_san_diego,"San Diego, CA",2023-01-20 04:00:00,2023-01-20 11:00:00,53044,3,5,8,exponential,0.86,Band_A_Low (Stress Test),507.9,0.9,0.05,0.05,0.0,0.01994,True,test_stress_hard_case_rain
+INJ_0261,test,ca_san_diego,"San Diego, CA",2024-12-18 05:00:00,2024-12-18 16:00:00,69797,7,5,12,exponential,1.41,Band_A_Low (Stress Test),429.8,0.05,0.9,0.05,0.0,0.01471,False,test_stress_strictly_dry
+INJ_0262,test,ca_san_diego,"San Diego, CA",2025-07-16 19:00:00,2025-07-17 06:00:00,74851,6,6,12,exponential,1.77,Band_A_Low (Stress Test),579.8,0.5,0.0,0.5,0.0,0.01638,False,test_stress_strictly_dry
+INJ_0263,test,ca_san_diego,"San Diego, CA",2024-09-29 03:00:00,2024-09-29 13:00:00,67875,5,6,11,sigmoidal,0.66,Band_A_Low (Stress Test),419.6,0.9,0.05,0.05,0.0,0.0192,False,test_stress_strictly_dry
+INJ_0264,test,ca_san_diego,"San Diego, CA",2025-04-25 03:00:00,2025-04-25 19:00:00,72867,7,10,17,sigmoidal,0.92,Band_A_Low (Stress Test),299.6,0.9,0.05,0.05,0.0,0.01765,False,test_stress_strictly_dry
+INJ_0265,test,ca_san_diego,"San Diego, CA",2024-01-13 18:00:00,2024-01-14 06:00:00,61650,7,6,13,exponential,1.36,Band_A_Low (Stress Test),587.3,0.05,0.05,0.9,0.0,0.01576,False,test_stress_strictly_dry
+INJ_0266,test,ca_san_diego,"San Diego, CA",2023-07-19 11:00:00,2023-07-19 22:00:00,57371,4,8,12,exponential,1.24,Band_A_Low (Stress Test),406.4,0.5,0.0,0.5,0.0,0.01459,False,test_stress_strictly_dry
+INJ_0267,test,ca_san_diego,"San Diego, CA",2023-12-19 17:00:00,2023-12-20 06:00:00,61049,3,11,14,sigmoidal,0.68,Band_A_Low (Stress Test),332.7,0.05,0.9,0.05,0.0,0.01677,False,test_stress_strictly_dry
+INJ_0268,test,ca_san_diego,"San Diego, CA",2023-08-04 19:00:00,2023-08-05 04:00:00,57763,4,6,10,sigmoidal,0.79,Band_A_Low (Stress Test),384.4,0.05,0.05,0.9,0.0,0.01632,False,test_stress_strictly_dry
+INJ_0269,test,ca_san_diego,"San Diego, CA",2023-12-04 07:00:00,2023-12-04 15:00:00,60679,5,4,9,exponential,1.05,Band_A_Low (Stress Test),478.9,0.9,0.05,0.05,0.0,0.01959,False,test_stress_strictly_dry
+INJ_0270,test,ca_san_diego,"San Diego, CA",2024-10-14 10:00:00,2024-10-14 23:00:00,68242,5,9,14,sigmoidal,0.67,Band_A_Low (Stress Test),530.9,0.5,0.0,0.5,0.0,0.01654,False,test_stress_strictly_dry
+INJ_0271,train,tx_dallas,"Dallas, TX",2020-03-04 15:00:00,2020-03-05 04:00:00,27807,5,9,14,step,0.0,Band_A_Low,458.0,0.44,0.28,0.23,0.05,0.01903,True,train_rain_coincident
+INJ_0272,train,tx_dallas,"Dallas, TX",2021-06-01 01:00:00,2021-06-01 22:00:00,38689,12,10,22,linear_ramp,1.57,Band_C_High,1511.8,0.5,0.3,0.2,0.0,0.01554,True,train_rain_coincident
+INJ_0273,train,tx_dallas,"Dallas, TX",2017-06-03 11:00:00,2017-06-03 21:00:00,3683,4,7,11,step,0.0,Band_A_Low,587.6,0.43,0.28,0.19,0.1,0.01706,True,train_rain_coincident
+INJ_0274,train,tx_dallas,"Dallas, TX",2018-03-27 22:00:00,2018-03-28 15:00:00,10822,7,11,18,linear_ramp,2.15,Band_A_Low,313.1,0.47,0.35,0.14,0.04,0.0158,True,train_rain_coincident
+INJ_0275,train,tx_dallas,"Dallas, TX",2020-09-10 03:00:00,2020-09-11 01:00:00,32355,6,17,23,linear_ramp,1.68,Band_C_High,1504.7,0.36,0.38,0.19,0.07,0.01538,True,train_rain_coincident
+INJ_0276,train,tx_dallas,"Dallas, TX",2022-03-22 00:00:00,2022-03-23 03:00:00,45744,14,14,28,step,0.0,Band_C_High,1896.6,0.42,0.21,0.19,0.18,0.01599,True,train_rain_coincident
+INJ_0277,train,tx_dallas,"Dallas, TX",2019-12-10 10:00:00,2019-12-11 08:00:00,25762,13,10,23,linear_ramp,1.48,Band_A_Low,361.5,0.36,0.2,0.2,0.24,0.01261,True,train_rain_coincident
+INJ_0278,train,tx_dallas,"Dallas, TX",2022-12-13 15:00:00,2022-12-14 16:00:00,52143,10,16,26,step,0.0,Band_A_Low,590.7,0.48,0.26,0.25,0.01,0.01829,True,train_rain_coincident
+INJ_0279,train,tx_dallas,"Dallas, TX",2018-09-29 14:00:00,2018-09-30 10:00:00,15278,8,13,21,linear_ramp,3.12,Band_C_High,2267.6,0.32,0.3,0.22,0.16,0.01644,True,train_rain_coincident
+INJ_0280,train,tx_dallas,"Dallas, TX",2017-01-16 03:00:00,2017-01-16 20:00:00,363,11,7,18,step,0.0,Band_A_Low,316.6,0.45,0.35,0.16,0.04,0.01744,True,train_rain_coincident
+INJ_0281,train,tx_dallas,"Dallas, TX",2018-10-19 10:00:00,2018-10-20 08:00:00,15754,11,12,23,linear_ramp,2.93,Band_C_High,1945.9,0.4,0.28,0.17,0.15,0.01834,True,train_rain_coincident
+INJ_0282,train,tx_dallas,"Dallas, TX",2021-03-25 10:00:00,2021-03-26 10:00:00,37066,10,15,25,step,0.0,Band_C_High,1715.8,0.3,0.32,0.1,0.28,0.0136,True,train_rain_coincident
+INJ_0283,train,tx_dallas,"Dallas, TX",2020-04-29 05:00:00,2020-04-30 02:00:00,29141,7,15,22,step,0.0,Band_C_High,2323.0,0.44,0.22,0.12,0.22,0.01833,True,train_rain_coincident
+INJ_0284,train,tx_dallas,"Dallas, TX",2019-06-16 23:00:00,2019-06-17 19:00:00,21527,6,15,21,step,0.0,Band_C_High,2002.6,0.37,0.38,0.13,0.12,0.01645,True,train_rain_coincident
+INJ_0285,train,tx_dallas,"Dallas, TX",2018-12-08 01:00:00,2018-12-08 20:00:00,16945,7,13,20,linear_ramp,1.38,Band_C_High,2036.9,0.4,0.29,0.25,0.06,0.01724,True,train_rain_coincident
+INJ_0286,train,tx_dallas,"Dallas, TX",2021-12-25 09:00:00,2021-12-25 21:00:00,43665,6,7,13,step,0.0,Band_C_High,2275.1,0.35,0.28,0.11,0.26,0.01614,False,train_strictly_dry
+INJ_0287,train,tx_dallas,"Dallas, TX",2021-11-17 12:00:00,2021-11-18 16:00:00,42756,14,15,29,step,0.0,Band_A_Low,299.1,0.38,0.36,0.22,0.04,0.01358,False,train_strictly_dry
+INJ_0288,train,tx_dallas,"Dallas, TX",2018-01-12 06:00:00,2018-01-13 04:00:00,9030,4,19,23,step,0.0,Band_C_High,1467.9,0.46,0.3,0.19,0.05,0.01219,False,train_strictly_dry
+INJ_0289,train,tx_dallas,"Dallas, TX",2019-09-14 16:00:00,2019-09-15 17:00:00,23680,14,12,26,step,0.0,Band_A_Low,532.9,0.37,0.33,0.19,0.11,0.01682,False,train_strictly_dry
+INJ_0290,train,tx_dallas,"Dallas, TX",2019-11-19 17:00:00,2019-11-20 14:00:00,25265,13,9,22,linear_ramp,2.93,Band_A_Low,464.0,0.49,0.28,0.23,0.0,0.01792,False,train_strictly_dry
+INJ_0291,train,tx_dallas,"Dallas, TX",2019-01-20 17:00:00,2019-01-21 06:00:00,17993,5,9,14,linear_ramp,1.66,Band_C_High,2430.9,0.34,0.22,0.18,0.26,0.01637,False,train_strictly_dry
+INJ_0292,train,tx_dallas,"Dallas, TX",2017-09-04 11:00:00,2017-09-05 00:00:00,5915,8,6,14,step,0.0,Band_A_Low,433.0,0.4,0.33,0.15,0.12,0.01512,False,train_strictly_dry
+INJ_0293,train,tx_dallas,"Dallas, TX",2019-04-04 05:00:00,2019-04-05 06:00:00,19757,8,18,26,step,0.0,Band_C_High,1802.9,0.38,0.2,0.11,0.31,0.01496,False,train_strictly_dry
+INJ_0294,train,tx_dallas,"Dallas, TX",2018-10-29 10:00:00,2018-10-30 04:00:00,15994,5,14,19,step,0.0,Band_C_High,1915.6,0.35,0.36,0.2,0.09,0.01587,False,train_strictly_dry
+INJ_0295,train,tx_dallas,"Dallas, TX",2020-05-06 22:00:00,2020-05-07 16:00:00,29326,4,15,19,step,0.0,Band_A_Low,450.4,0.48,0.33,0.13,0.06,0.01449,False,train_strictly_dry
+INJ_0296,train,tx_dallas,"Dallas, TX",2019-12-27 13:00:00,2019-12-28 04:00:00,26173,10,6,16,linear_ramp,2.16,Band_A_Low,271.3,0.3,0.38,0.14,0.18,0.01327,False,train_strictly_dry
+INJ_0297,train,tx_dallas,"Dallas, TX",2022-06-13 14:00:00,2022-06-14 10:00:00,47750,9,12,21,step,0.0,Band_C_High,1463.3,0.43,0.34,0.14,0.09,0.01436,False,train_strictly_dry
+INJ_0298,train,tx_dallas,"Dallas, TX",2019-01-17 09:00:00,2019-01-18 13:00:00,17913,13,16,29,linear_ramp,3.45,Band_A_Low,377.5,0.43,0.4,0.17,0.0,0.01728,False,train_strictly_dry
+INJ_0299,train,tx_dallas,"Dallas, TX",2017-03-25 17:00:00,2017-03-26 12:00:00,2009,13,7,20,linear_ramp,1.26,Band_C_High,1710.0,0.43,0.24,0.18,0.15,0.01732,False,train_strictly_dry
+INJ_0300,train,tx_dallas,"Dallas, TX",2020-07-18 22:00:00,2020-07-19 15:00:00,31078,9,9,18,step,0.0,Band_C_High,1853.6,0.46,0.31,0.23,0.0,0.01562,False,train_strictly_dry
+INJ_0301,train,tx_dallas,"Dallas, TX",2018-03-04 05:00:00,2018-03-04 21:00:00,10253,7,10,17,linear_ramp,3.99,Band_A_Low,321.2,0.31,0.37,0.1,0.22,0.01614,False,train_strictly_dry
+INJ_0302,train,tx_dallas,"Dallas, TX",2020-09-17 16:00:00,2020-09-18 12:00:00,32536,12,9,21,linear_ramp,3.99,Band_C_High,2216.8,0.37,0.21,0.11,0.31,0.01344,False,train_strictly_dry
+INJ_0303,train,tx_dallas,"Dallas, TX",2022-06-29 18:00:00,2022-07-01 00:00:00,48138,11,20,31,linear_ramp,3.66,Band_A_Low,576.8,0.4,0.33,0.12,0.15,0.017,False,train_strictly_dry
+INJ_0304,train,tx_dallas,"Dallas, TX",2019-08-24 10:00:00,2019-08-24 20:00:00,23170,5,6,11,linear_ramp,3.65,Band_C_High,1672.0,0.47,0.27,0.23,0.03,0.01864,False,train_strictly_dry
+INJ_0305,train,tx_dallas,"Dallas, TX",2021-07-10 04:00:00,2021-07-10 21:00:00,39628,12,6,18,step,0.0,Band_C_High,2147.1,0.32,0.3,0.21,0.17,0.01688,False,train_strictly_dry
+INJ_0306,train,tx_dallas,"Dallas, TX",2017-11-18 02:00:00,2017-11-18 19:00:00,7706,10,8,18,linear_ramp,1.24,Band_C_High,1833.6,0.48,0.24,0.16,0.12,0.01612,False,train_strictly_dry
+INJ_0307,train,tx_dallas,"Dallas, TX",2021-03-30 04:00:00,2021-03-31 05:00:00,37180,6,20,26,step,0.0,Band_A_Low,414.4,0.48,0.27,0.18,0.07,0.01605,False,train_strictly_dry
+INJ_0308,train,tx_dallas,"Dallas, TX",2019-06-08 02:00:00,2019-06-08 19:00:00,21314,4,14,18,step,0.0,Band_A_Low,466.3,0.34,0.31,0.17,0.18,0.0165,False,train_strictly_dry
+INJ_0309,train,tx_dallas,"Dallas, TX",2022-09-27 21:00:00,2022-09-28 23:00:00,50301,14,13,27,step,0.0,Band_C_High,2089.2,0.46,0.22,0.19,0.13,0.01796,False,train_strictly_dry
+INJ_0310,train,tx_dallas,"Dallas, TX",2017-11-05 23:00:00,2017-11-06 12:00:00,7415,8,6,14,linear_ramp,1.72,Band_A_Low,566.9,0.38,0.29,0.15,0.18,0.01718,False,train_strictly_dry
+INJ_0311,train,tx_dallas,"Dallas, TX",2020-02-25 15:00:00,2020-02-26 12:00:00,27615,9,13,22,step,0.0,Band_C_High,1746.8,0.36,0.31,0.19,0.14,0.0191,False,train_strictly_dry
+INJ_0312,train,tx_dallas,"Dallas, TX",2020-01-15 06:00:00,2020-01-16 02:00:00,26622,12,9,21,linear_ramp,3.05,Band_C_High,2167.4,0.42,0.25,0.11,0.22,0.0125,False,train_strictly_dry
+INJ_0313,train,tx_dallas,"Dallas, TX",2019-01-24 20:00:00,2019-01-25 15:00:00,18092,9,11,20,step,0.0,Band_C_High,1867.4,0.38,0.26,0.21,0.15,0.01531,False,train_strictly_dry
+INJ_0314,train,tx_dallas,"Dallas, TX",2022-01-30 20:00:00,2022-01-31 18:00:00,44540,9,14,23,step,0.0,Band_A_Low,484.8,0.37,0.21,0.22,0.2,0.01854,False,train_strictly_dry
+INJ_0315,train,tx_dallas,"Dallas, TX",2020-05-27 23:00:00,2020-05-28 22:00:00,29831,8,16,24,step,0.0,Band_A_Low,353.9,0.38,0.39,0.15,0.08,0.01731,False,train_strictly_dry
+INJ_0316,train,tx_dallas,"Dallas, TX",2018-08-25 21:00:00,2018-08-26 18:00:00,14445,12,10,22,step,0.0,Band_C_High,2300.3,0.42,0.26,0.15,0.17,0.01457,False,train_strictly_dry
+INJ_0317,train,tx_dallas,"Dallas, TX",2020-08-23 15:00:00,2020-08-24 07:00:00,31935,8,9,17,step,0.0,Band_C_High,1994.8,0.4,0.33,0.24,0.03,0.01867,False,train_strictly_dry
+INJ_0318,train,tx_dallas,"Dallas, TX",2018-11-29 23:00:00,2018-11-30 14:00:00,16751,9,7,16,step,0.0,Band_C_High,1472.4,0.38,0.34,0.11,0.17,0.01425,False,train_strictly_dry
+INJ_0319,train,tx_dallas,"Dallas, TX",2019-01-10 05:00:00,2019-01-11 08:00:00,17741,13,15,28,step,0.0,Band_C_High,2098.8,0.46,0.24,0.18,0.12,0.01915,False,train_strictly_dry
+INJ_0320,train,tx_dallas,"Dallas, TX",2021-03-06 14:00:00,2021-03-07 10:00:00,36614,9,12,21,linear_ramp,2.66,Band_C_High,1433.9,0.31,0.26,0.12,0.31,0.01717,False,train_strictly_dry
+INJ_0321,test,tx_dallas,"Dallas, TX",2024-08-03 09:00:00,2024-08-05 05:00:00,66513,13,32,45,exponential,1.14,Band_B_Mid (Interpolation),1118.0,0.9,0.05,0.05,0.0,0.01796,True,test_standard_rain_onset
+INJ_0322,test,tx_dallas,"Dallas, TX",2024-03-07 17:00:00,2024-03-09 22:00:00,62945,14,40,54,exponential,2.47,Band_B_Mid (Interpolation),991.1,0.5,0.0,0.5,0.0,0.0143,True,test_standard_rain_onset
+INJ_0323,test,tx_dallas,"Dallas, TX",2024-01-22 07:00:00,2024-01-24 20:00:00,61855,19,43,62,exponential,2.31,Band_B_Mid (Interpolation),853.8,0.05,0.9,0.05,0.0,0.01524,True,test_standard_rain_onset
+INJ_0324,test,tx_dallas,"Dallas, TX",2023-02-08 03:00:00,2023-02-11 03:00:00,53499,18,55,73,sigmoidal,1.49,Band_B_Mid (Interpolation),1031.5,0.05,0.05,0.9,0.0,0.01347,True,test_standard_rain_onset
+INJ_0325,test,tx_dallas,"Dallas, TX",2023-05-14 07:00:00,2023-05-16 06:00:00,55783,12,36,48,exponential,2.25,Band_B_Mid (Interpolation),1154.5,0.05,0.9,0.05,0.0,0.01479,True,test_standard_rain_onset
+INJ_0326,test,tx_dallas,"Dallas, TX",2024-04-20 12:00:00,2024-04-23 03:00:00,63996,17,47,64,exponential,1.43,Band_B_Mid (Interpolation),965.4,0.9,0.05,0.05,0.0,0.01463,True,test_standard_rain_onset
+INJ_0327,test,tx_dallas,"Dallas, TX",2023-12-24 08:00:00,2023-12-26 03:00:00,61160,12,32,44,sigmoidal,1.4,Band_B_Mid (Interpolation),797.4,0.5,0.0,0.5,0.0,0.01272,True,test_standard_rain_onset
+INJ_0328,test,tx_dallas,"Dallas, TX",2023-05-19 21:00:00,2023-05-22 19:00:00,55917,12,59,71,exponential,1.08,Band_B_Mid (Interpolation),855.9,0.5,0.0,0.5,0.0,0.012,True,test_standard_rain_onset
+INJ_0329,test,tx_dallas,"Dallas, TX",2023-10-24 04:00:00,2023-10-26 04:00:00,59692,15,34,49,sigmoidal,1.27,Band_B_Mid (Interpolation),1019.3,0.05,0.05,0.9,0.0,0.01588,True,test_standard_rain_onset
+INJ_0330,test,tx_dallas,"Dallas, TX",2024-05-16 21:00:00,2024-05-19 02:00:00,64629,20,34,54,exponential,1.37,Band_B_Mid (Interpolation),841.3,0.05,0.05,0.9,0.0,0.0162,True,test_standard_rain_onset
+INJ_0331,test,tx_dallas,"Dallas, TX",2023-12-09 22:00:00,2023-12-12 07:00:00,60814,12,46,58,exponential,2.22,Band_B_Mid (Interpolation),976.5,0.05,0.9,0.05,0.0,0.01554,False,test_standard_strictly_dry
+INJ_0332,test,tx_dallas,"Dallas, TX",2024-10-02 04:00:00,2024-10-04 18:00:00,67948,17,46,63,sigmoidal,1.61,Band_B_Mid (Interpolation),741.9,0.5,0.0,0.5,0.0,0.01312,False,test_standard_strictly_dry
+INJ_0333,test,tx_dallas,"Dallas, TX",2023-11-06 21:00:00,2023-11-08 10:00:00,60021,11,27,38,sigmoidal,1.56,Band_B_Mid (Interpolation),899.7,0.5,0.0,0.5,0.0,0.01569,False,test_standard_strictly_dry
+INJ_0334,test,tx_dallas,"Dallas, TX",2024-07-13 22:00:00,2024-07-15 20:00:00,66022,19,28,47,exponential,1.14,Band_B_Mid (Interpolation),1089.3,0.05,0.9,0.05,0.0,0.01641,False,test_standard_strictly_dry
+INJ_0335,test,tx_dallas,"Dallas, TX",2024-06-26 04:00:00,2024-06-28 01:00:00,65596,14,32,46,sigmoidal,1.44,Band_B_Mid (Interpolation),790.9,0.5,0.0,0.5,0.0,0.01351,False,test_standard_strictly_dry
+INJ_0336,test,tx_dallas,"Dallas, TX",2023-10-15 18:00:00,2023-10-17 21:00:00,59490,11,41,52,exponential,1.11,Band_B_Mid (Interpolation),1043.4,0.5,0.0,0.5,0.0,0.01268,False,test_standard_strictly_dry
+INJ_0337,test,tx_dallas,"Dallas, TX",2023-04-06 21:00:00,2023-04-09 08:00:00,54885,13,47,60,exponential,2.01,Band_B_Mid (Interpolation),1144.2,0.5,0.0,0.5,0.0,0.01873,False,test_standard_strictly_dry
+INJ_0338,test,tx_dallas,"Dallas, TX",2023-04-17 13:00:00,2023-04-20 03:00:00,55141,19,44,63,sigmoidal,1.13,Band_B_Mid (Interpolation),721.3,0.9,0.05,0.05,0.0,0.01872,False,test_standard_strictly_dry
+INJ_0339,test,tx_dallas,"Dallas, TX",2023-02-18 13:00:00,2023-02-21 01:00:00,53749,18,43,61,sigmoidal,1.19,Band_B_Mid (Interpolation),1155.9,0.9,0.05,0.05,0.0,0.01605,False,test_standard_strictly_dry
+INJ_0340,test,tx_dallas,"Dallas, TX",2024-10-18 14:00:00,2024-10-21 11:00:00,68342,16,54,70,exponential,1.51,Band_B_Mid (Interpolation),871.0,0.5,0.0,0.5,0.0,0.01468,False,test_standard_strictly_dry
+INJ_0341,test,tx_dallas,"Dallas, TX",2023-02-14 11:00:00,2023-02-14 23:00:00,53651,4,9,13,sigmoidal,0.79,Band_A_Low (Stress Test),453.3,0.9,0.05,0.05,0.0,0.01661,True,test_stress_hard_case_rain
+INJ_0342,test,tx_dallas,"Dallas, TX",2023-03-03 01:00:00,2023-03-03 17:00:00,54049,7,10,17,exponential,1.19,Band_A_Low (Stress Test),560.1,0.9,0.05,0.05,0.0,0.0171,True,test_stress_hard_case_rain
+INJ_0343,test,tx_dallas,"Dallas, TX",2023-04-26 08:00:00,2023-04-26 14:00:00,55352,3,4,7,sigmoidal,1.38,Band_A_Low (Stress Test),511.2,0.5,0.0,0.5,0.0,0.01632,True,test_stress_hard_case_rain
+INJ_0344,test,tx_dallas,"Dallas, TX",2024-12-26 17:00:00,2024-12-27 07:00:00,70001,7,8,15,sigmoidal,0.99,Band_A_Low (Stress Test),385.3,0.9,0.05,0.05,0.0,0.01678,True,test_stress_hard_case_rain
+INJ_0345,test,tx_dallas,"Dallas, TX",2024-09-03 20:00:00,2024-09-04 12:00:00,67268,6,11,17,sigmoidal,1.29,Band_A_Low (Stress Test),414.5,0.9,0.05,0.05,0.0,0.01854,True,test_stress_hard_case_rain
+INJ_0346,test,tx_dallas,"Dallas, TX",2023-05-11 00:00:00,2023-05-11 16:00:00,55704,6,11,17,sigmoidal,1.08,Band_A_Low (Stress Test),453.4,0.05,0.05,0.9,0.0,0.01639,True,test_stress_hard_case_rain
+INJ_0347,test,tx_dallas,"Dallas, TX",2024-04-16 15:00:00,2024-04-17 05:00:00,63903,4,11,15,exponential,1.71,Band_A_Low (Stress Test),588.3,0.9,0.05,0.05,0.0,0.01867,True,test_stress_hard_case_rain
+INJ_0348,test,tx_dallas,"Dallas, TX",2024-02-11 12:00:00,2024-02-12 03:00:00,62340,7,9,16,exponential,1.54,Band_A_Low (Stress Test),519.5,0.05,0.9,0.05,0.0,0.01658,True,test_stress_hard_case_rain
+INJ_0349,test,tx_dallas,"Dallas, TX",2025-01-09 19:00:00,2025-01-10 05:00:00,70339,4,7,11,exponential,1.75,Band_A_Low (Stress Test),365.0,0.05,0.9,0.05,0.0,0.01275,True,test_stress_hard_case_rain
+INJ_0350,test,tx_dallas,"Dallas, TX",2024-11-08 23:00:00,2024-11-09 12:00:00,68855,8,6,14,exponential,1.71,Band_A_Low (Stress Test),274.2,0.05,0.9,0.05,0.0,0.01493,True,test_stress_hard_case_rain
+INJ_0351,test,tx_dallas,"Dallas, TX",2023-09-18 16:00:00,2023-09-19 07:00:00,58840,6,10,16,sigmoidal,1.1,Band_A_Low (Stress Test),389.5,0.5,0.0,0.5,0.0,0.01834,False,test_stress_strictly_dry
+INJ_0352,test,tx_dallas,"Dallas, TX",2024-12-07 00:00:00,2024-12-07 13:00:00,69528,6,8,14,sigmoidal,1.01,Band_A_Low (Stress Test),340.3,0.5,0.0,0.5,0.0,0.01596,False,test_stress_strictly_dry
+INJ_0353,test,tx_dallas,"Dallas, TX",2023-01-20 03:00:00,2023-01-20 10:00:00,53043,4,4,8,sigmoidal,1.03,Band_A_Low (Stress Test),317.2,0.9,0.05,0.05,0.0,0.01956,False,test_stress_strictly_dry
+INJ_0354,test,tx_dallas,"Dallas, TX",2023-04-22 09:00:00,2023-04-22 19:00:00,55257,3,8,11,sigmoidal,1.31,Band_A_Low (Stress Test),334.5,0.9,0.05,0.05,0.0,0.01588,False,test_stress_strictly_dry
+INJ_0355,test,tx_dallas,"Dallas, TX",2024-02-07 00:00:00,2024-02-07 14:00:00,62232,6,9,15,sigmoidal,1.0,Band_A_Low (Stress Test),412.5,0.05,0.05,0.9,0.0,0.01303,False,test_stress_strictly_dry
+INJ_0356,test,tx_dallas,"Dallas, TX",2024-01-29 11:00:00,2024-01-30 01:00:00,62027,7,8,15,sigmoidal,1.15,Band_A_Low (Stress Test),357.6,0.05,0.9,0.05,0.0,0.01524,False,test_stress_strictly_dry
+INJ_0357,test,tx_dallas,"Dallas, TX",2023-05-03 11:00:00,2023-05-04 04:00:00,55523,7,11,18,exponential,1.8,Band_A_Low (Stress Test),483.7,0.9,0.05,0.05,0.0,0.01337,False,test_stress_strictly_dry
+INJ_0358,test,tx_dallas,"Dallas, TX",2025-02-01 00:00:00,2025-02-01 13:00:00,70872,6,8,14,sigmoidal,0.76,Band_A_Low (Stress Test),597.8,0.05,0.9,0.05,0.0,0.01564,False,test_stress_strictly_dry
+INJ_0359,test,tx_dallas,"Dallas, TX",2024-02-16 16:00:00,2024-02-17 06:00:00,62464,6,9,15,exponential,1.06,Band_A_Low (Stress Test),327.6,0.5,0.0,0.5,0.0,0.01569,False,test_stress_strictly_dry
+INJ_0360,test,tx_dallas,"Dallas, TX",2023-10-04 11:00:00,2023-10-05 00:00:00,59219,7,7,14,sigmoidal,1.14,Band_A_Low (Stress Test),543.9,0.9,0.05,0.05,0.0,0.012,False,test_stress_strictly_dry
+INJ_0361,train,fl_tampa,"Tampa, FL",2022-07-16 22:00:00,2022-07-17 21:00:00,48550,13,11,24,linear_ramp,2.04,Band_A_Low,496.0,0.45,0.35,0.12,0.08,0.01674,True,train_rain_coincident
+INJ_0362,train,fl_tampa,"Tampa, FL",2020-04-24 21:00:00,2020-04-25 23:00:00,29037,14,13,27,linear_ramp,1.91,Band_A_Low,404.3,0.48,0.27,0.22,0.03,0.01749,True,train_rain_coincident
+INJ_0363,train,fl_tampa,"Tampa, FL",2022-06-11 21:00:00,2022-06-12 20:00:00,47709,8,16,24,step,0.0,Band_C_High,1489.2,0.4,0.26,0.24,0.1,0.01554,True,train_rain_coincident
+INJ_0364,train,fl_tampa,"Tampa, FL",2022-11-16 07:00:00,2022-11-17 01:00:00,51487,11,8,19,linear_ramp,3.63,Band_A_Low,472.2,0.45,0.22,0.14,0.19,0.01578,True,train_rain_coincident
+INJ_0365,train,fl_tampa,"Tampa, FL",2020-08-18 18:00:00,2020-08-19 13:00:00,31818,11,9,20,step,0.0,Band_C_High,1754.5,0.36,0.39,0.25,0.0,0.01347,True,train_rain_coincident
+INJ_0366,train,fl_tampa,"Tampa, FL",2019-08-15 06:00:00,2019-08-16 05:00:00,22950,4,20,24,linear_ramp,2.94,Band_A_Low,326.1,0.4,0.37,0.23,0.0,0.01701,True,train_rain_coincident
+INJ_0367,train,fl_tampa,"Tampa, FL",2017-07-29 15:00:00,2017-07-30 09:00:00,5031,12,7,19,step,0.0,Band_C_High,2003.1,0.36,0.28,0.12,0.24,0.01553,True,train_rain_coincident
+INJ_0368,train,fl_tampa,"Tampa, FL",2019-12-18 00:00:00,2019-12-18 19:00:00,25944,4,16,20,linear_ramp,3.55,Band_A_Low,293.8,0.47,0.23,0.24,0.06,0.01338,True,train_rain_coincident
+INJ_0369,train,fl_tampa,"Tampa, FL",2017-09-01 23:00:00,2017-09-03 02:00:00,5855,13,15,28,step,0.0,Band_A_Low,592.0,0.49,0.33,0.18,0.0,0.01328,True,train_rain_coincident
+INJ_0370,train,fl_tampa,"Tampa, FL",2021-06-25 22:00:00,2021-06-26 14:00:00,39286,9,8,17,step,0.0,Band_A_Low,295.2,0.38,0.38,0.18,0.06,0.01968,True,train_rain_coincident
+INJ_0371,train,fl_tampa,"Tampa, FL",2022-09-29 01:00:00,2022-09-30 00:00:00,50329,5,19,24,step,0.0,Band_C_High,1403.6,0.45,0.33,0.22,0.0,0.01865,True,train_rain_coincident
+INJ_0372,train,fl_tampa,"Tampa, FL",2017-08-24 00:00:00,2017-08-25 04:00:00,5640,11,18,29,linear_ramp,1.17,Band_A_Low,576.3,0.38,0.26,0.18,0.18,0.01659,True,train_rain_coincident
+INJ_0373,train,fl_tampa,"Tampa, FL",2018-08-11 18:00:00,2018-08-12 16:00:00,14106,8,15,23,step,0.0,Band_C_High,1879.5,0.46,0.23,0.2,0.11,0.02,True,train_rain_coincident
+INJ_0374,train,fl_tampa,"Tampa, FL",2021-02-07 12:00:00,2021-02-08 02:00:00,35964,6,9,15,step,0.0,Band_C_High,2303.7,0.36,0.32,0.14,0.18,0.01475,True,train_rain_coincident
+INJ_0375,train,fl_tampa,"Tampa, FL",2018-07-24 15:00:00,2018-07-25 11:00:00,13671,8,13,21,linear_ramp,3.18,Band_A_Low,585.9,0.34,0.27,0.11,0.28,0.01465,True,train_rain_coincident
+INJ_0376,train,fl_tampa,"Tampa, FL",2021-08-22 15:00:00,2021-08-23 19:00:00,40671,10,19,29,step,0.0,Band_A_Low,268.3,0.33,0.32,0.18,0.17,0.0152,False,train_strictly_dry
+INJ_0377,train,fl_tampa,"Tampa, FL",2018-12-29 11:00:00,2018-12-30 08:00:00,17459,7,15,22,linear_ramp,1.63,Band_A_Low,583.1,0.49,0.23,0.17,0.11,0.01684,False,train_strictly_dry
+INJ_0378,train,fl_tampa,"Tampa, FL",2019-05-27 05:00:00,2019-05-28 01:00:00,21029,10,11,21,step,0.0,Band_A_Low,458.5,0.46,0.22,0.21,0.11,0.01502,False,train_strictly_dry
+INJ_0379,train,fl_tampa,"Tampa, FL",2021-03-23 17:00:00,2021-03-25 02:00:00,37025,14,20,34,step,0.0,Band_C_High,2022.5,0.38,0.35,0.17,0.1,0.01728,False,train_strictly_dry
+INJ_0380,train,fl_tampa,"Tampa, FL",2019-03-31 05:00:00,2019-04-01 02:00:00,19661,4,18,22,step,0.0,Band_C_High,2151.4,0.32,0.25,0.12,0.31,0.01594,False,train_strictly_dry
+INJ_0381,train,fl_tampa,"Tampa, FL",2022-12-13 12:00:00,2022-12-14 11:00:00,52140,12,12,24,step,0.0,Band_C_High,2115.1,0.47,0.36,0.17,0.0,0.01411,False,train_strictly_dry
+INJ_0382,train,fl_tampa,"Tampa, FL",2020-06-17 23:00:00,2020-06-18 19:00:00,30335,4,17,21,linear_ramp,3.77,Band_C_High,1563.4,0.31,0.29,0.23,0.17,0.0121,False,train_strictly_dry
+INJ_0383,train,fl_tampa,"Tampa, FL",2020-10-17 23:00:00,2020-10-18 23:00:00,33263,6,19,25,linear_ramp,3.11,Band_C_High,2494.9,0.42,0.35,0.15,0.08,0.01682,False,train_strictly_dry
+INJ_0384,train,fl_tampa,"Tampa, FL",2020-05-14 12:00:00,2020-05-15 07:00:00,29508,6,14,20,linear_ramp,2.25,Band_C_High,1589.6,0.44,0.24,0.16,0.16,0.01459,False,train_strictly_dry
+INJ_0385,train,fl_tampa,"Tampa, FL",2018-11-06 14:00:00,2018-11-07 07:00:00,16190,5,13,18,linear_ramp,3.18,Band_C_High,1828.0,0.49,0.33,0.14,0.04,0.01752,False,train_strictly_dry
+INJ_0386,train,fl_tampa,"Tampa, FL",2020-01-30 03:00:00,2020-01-30 23:00:00,26979,8,13,21,linear_ramp,1.26,Band_C_High,2347.9,0.38,0.32,0.18,0.12,0.01572,False,train_strictly_dry
+INJ_0387,train,fl_tampa,"Tampa, FL",2021-11-26 14:00:00,2021-11-27 18:00:00,42974,13,16,29,linear_ramp,3.02,Band_A_Low,558.8,0.37,0.24,0.13,0.26,0.01412,False,train_strictly_dry
+INJ_0388,train,fl_tampa,"Tampa, FL",2022-03-15 00:00:00,2022-03-15 19:00:00,45576,7,13,20,linear_ramp,1.93,Band_C_High,2226.3,0.31,0.31,0.23,0.15,0.019,False,train_strictly_dry
+INJ_0389,train,fl_tampa,"Tampa, FL",2020-10-06 18:00:00,2020-10-07 07:00:00,32994,6,8,14,linear_ramp,2.14,Band_C_High,1825.4,0.33,0.24,0.2,0.23,0.01781,False,train_strictly_dry
+INJ_0390,train,fl_tampa,"Tampa, FL",2022-03-01 20:00:00,2022-03-02 19:00:00,45260,10,14,24,step,0.0,Band_C_High,2280.1,0.48,0.32,0.13,0.07,0.01482,False,train_strictly_dry
+INJ_0391,train,fl_tampa,"Tampa, FL",2017-08-21 00:00:00,2017-08-21 16:00:00,5568,10,7,17,linear_ramp,1.16,Band_A_Low,251.9,0.38,0.39,0.23,0.0,0.0182,False,train_strictly_dry
+INJ_0392,train,fl_tampa,"Tampa, FL",2019-05-08 22:00:00,2019-05-09 10:00:00,20590,6,7,13,linear_ramp,2.19,Band_A_Low,512.8,0.35,0.28,0.1,0.27,0.01724,False,train_strictly_dry
+INJ_0393,train,fl_tampa,"Tampa, FL",2021-02-20 22:00:00,2021-02-21 14:00:00,36286,5,12,17,step,0.0,Band_A_Low,389.0,0.4,0.2,0.19,0.21,0.01672,False,train_strictly_dry
+INJ_0394,train,fl_tampa,"Tampa, FL",2021-01-07 05:00:00,2021-01-08 03:00:00,35213,10,13,23,step,0.0,Band_A_Low,318.4,0.44,0.33,0.23,0.0,0.01596,False,train_strictly_dry
+INJ_0395,train,fl_tampa,"Tampa, FL",2020-05-20 21:00:00,2020-05-21 21:00:00,29661,12,13,25,step,0.0,Band_C_High,1580.8,0.48,0.28,0.12,0.12,0.01917,False,train_strictly_dry
+INJ_0396,train,fl_tampa,"Tampa, FL",2018-10-06 09:00:00,2018-10-07 12:00:00,15441,14,14,28,step,0.0,Band_A_Low,395.4,0.38,0.24,0.19,0.19,0.0164,False,train_strictly_dry
+INJ_0397,train,fl_tampa,"Tampa, FL",2022-04-24 12:00:00,2022-04-25 08:00:00,46548,13,8,21,step,0.0,Band_C_High,2430.7,0.47,0.3,0.23,0.0,0.01546,False,train_strictly_dry
+INJ_0398,train,fl_tampa,"Tampa, FL",2022-01-01 22:00:00,2022-01-02 08:00:00,43846,5,6,11,step,0.0,Band_C_High,2254.9,0.32,0.33,0.17,0.18,0.01646,False,train_strictly_dry
+INJ_0399,train,fl_tampa,"Tampa, FL",2017-02-28 12:00:00,2017-03-01 13:00:00,1404,14,12,26,linear_ramp,3.49,Band_A_Low,314.3,0.41,0.25,0.24,0.1,0.01599,False,train_strictly_dry
+INJ_0400,train,fl_tampa,"Tampa, FL",2020-10-09 14:00:00,2020-10-10 06:00:00,33062,6,11,17,linear_ramp,2.09,Band_C_High,1504.3,0.49,0.27,0.24,0.0,0.0151,False,train_strictly_dry
+INJ_0401,train,fl_tampa,"Tampa, FL",2019-04-07 13:00:00,2019-04-08 18:00:00,19837,13,17,30,step,0.0,Band_C_High,2430.3,0.49,0.33,0.15,0.03,0.01804,False,train_strictly_dry
+INJ_0402,train,fl_tampa,"Tampa, FL",2017-12-04 03:00:00,2017-12-04 19:00:00,8091,10,7,17,step,0.0,Band_C_High,1436.7,0.45,0.25,0.24,0.06,0.0162,False,train_strictly_dry
+INJ_0403,train,fl_tampa,"Tampa, FL",2019-02-19 18:00:00,2019-02-20 20:00:00,18714,10,17,27,linear_ramp,1.01,Band_C_High,2292.8,0.44,0.28,0.18,0.1,0.01608,False,train_strictly_dry
+INJ_0404,train,fl_tampa,"Tampa, FL",2018-04-06 11:00:00,2018-04-07 16:00:00,11051,10,20,30,step,0.0,Band_A_Low,584.8,0.36,0.37,0.18,0.09,0.01358,False,train_strictly_dry
+INJ_0405,train,fl_tampa,"Tampa, FL",2019-03-06 20:00:00,2019-03-07 19:00:00,19076,9,15,24,linear_ramp,3.54,Band_C_High,1694.3,0.33,0.34,0.21,0.12,0.01576,False,train_strictly_dry
+INJ_0406,train,fl_tampa,"Tampa, FL",2018-02-15 11:00:00,2018-02-16 10:00:00,9851,5,19,24,step,0.0,Band_C_High,2341.9,0.32,0.21,0.12,0.35,0.017,False,train_strictly_dry
+INJ_0407,train,fl_tampa,"Tampa, FL",2020-03-19 19:00:00,2020-03-20 15:00:00,28171,10,11,21,linear_ramp,3.67,Band_C_High,1631.1,0.43,0.37,0.14,0.06,0.01557,False,train_strictly_dry
+INJ_0408,train,fl_tampa,"Tampa, FL",2019-03-16 02:00:00,2019-03-17 04:00:00,19298,14,13,27,step,0.0,Band_C_High,1861.3,0.37,0.28,0.22,0.13,0.01395,False,train_strictly_dry
+INJ_0409,train,fl_tampa,"Tampa, FL",2017-04-12 01:00:00,2017-04-12 17:00:00,2425,5,12,17,step,0.0,Band_A_Low,323.3,0.31,0.23,0.2,0.26,0.01507,False,train_strictly_dry
+INJ_0410,train,fl_tampa,"Tampa, FL",2021-10-07 10:00:00,2021-10-08 04:00:00,41770,6,13,19,step,0.0,Band_C_High,1974.8,0.47,0.32,0.15,0.06,0.0173,False,train_strictly_dry
+INJ_0411,test,fl_tampa,"Tampa, FL",2024-06-16 01:00:00,2024-06-17 14:00:00,65353,10,28,38,sigmoidal,0.85,Band_B_Mid (Interpolation),1183.2,0.5,0.0,0.5,0.0,0.01621,True,test_standard_rain_onset
+INJ_0412,test,fl_tampa,"Tampa, FL",2024-09-14 16:00:00,2024-09-16 18:00:00,67528,18,33,51,sigmoidal,1.77,Band_B_Mid (Interpolation),1008.3,0.05,0.9,0.05,0.0,0.01406,True,test_standard_rain_onset
+INJ_0413,test,fl_tampa,"Tampa, FL",2023-12-25 15:00:00,2023-12-27 07:00:00,61191,10,31,41,sigmoidal,0.81,Band_B_Mid (Interpolation),1132.9,0.05,0.05,0.9,0.0,0.01558,True,test_standard_rain_onset
+INJ_0414,test,fl_tampa,"Tampa, FL",2025-02-24 20:00:00,2025-02-27 04:00:00,71444,11,46,57,exponential,1.04,Band_B_Mid (Interpolation),736.7,0.9,0.05,0.05,0.0,0.0158,True,test_standard_rain_onset
+INJ_0415,test,fl_tampa,"Tampa, FL",2023-09-20 20:00:00,2023-09-23 07:00:00,58892,18,42,60,sigmoidal,1.72,Band_B_Mid (Interpolation),1163.2,0.9,0.05,0.05,0.0,0.01472,True,test_standard_rain_onset
+INJ_0416,test,fl_tampa,"Tampa, FL",2023-12-10 22:00:00,2023-12-13 12:00:00,60838,12,51,63,sigmoidal,1.25,Band_B_Mid (Interpolation),739.1,0.05,0.05,0.9,0.0,0.01707,True,test_standard_rain_onset
+INJ_0417,test,fl_tampa,"Tampa, FL",2024-12-31 17:00:00,2025-01-03 22:00:00,70121,20,58,78,exponential,1.39,Band_B_Mid (Interpolation),869.7,0.9,0.05,0.05,0.0,0.01668,True,test_standard_rain_onset
+INJ_0418,test,fl_tampa,"Tampa, FL",2024-04-04 02:00:00,2024-04-07 06:00:00,63602,19,58,77,exponential,1.41,Band_B_Mid (Interpolation),1196.7,0.9,0.05,0.05,0.0,0.01776,True,test_standard_rain_onset
+INJ_0419,test,fl_tampa,"Tampa, FL",2023-12-16 19:00:00,2023-12-18 09:00:00,60979,15,24,39,exponential,1.89,Band_B_Mid (Interpolation),1006.7,0.05,0.05,0.9,0.0,0.01666,True,test_standard_rain_onset
+INJ_0420,test,fl_tampa,"Tampa, FL",2024-06-03 23:00:00,2024-06-06 22:00:00,65063,17,55,72,sigmoidal,1.71,Band_B_Mid (Interpolation),966.7,0.05,0.9,0.05,0.0,0.01645,True,test_standard_rain_onset
+INJ_0421,test,fl_tampa,"Tampa, FL",2023-12-05 01:00:00,2023-12-08 01:00:00,60697,20,53,73,sigmoidal,1.74,Band_B_Mid (Interpolation),1163.8,0.5,0.0,0.5,0.0,0.01705,False,test_standard_strictly_dry
+INJ_0422,test,fl_tampa,"Tampa, FL",2023-07-12 21:00:00,2023-07-14 10:00:00,57213,13,25,38,exponential,2.45,Band_B_Mid (Interpolation),1005.3,0.05,0.05,0.9,0.0,0.01794,False,test_standard_strictly_dry
+INJ_0423,test,fl_tampa,"Tampa, FL",2023-10-17 15:00:00,2023-10-20 01:00:00,59535,15,44,59,exponential,2.47,Band_B_Mid (Interpolation),801.6,0.9,0.05,0.05,0.0,0.01376,False,test_standard_strictly_dry
+INJ_0424,test,fl_tampa,"Tampa, FL",2023-02-25 09:00:00,2023-02-26 22:00:00,53913,13,25,38,exponential,1.08,Band_B_Mid (Interpolation),704.2,0.5,0.0,0.5,0.0,0.01524,False,test_standard_strictly_dry
+INJ_0425,test,fl_tampa,"Tampa, FL",2023-10-24 04:00:00,2023-10-27 07:00:00,59692,19,57,76,sigmoidal,1.25,Band_B_Mid (Interpolation),1193.5,0.05,0.9,0.05,0.0,0.0142,False,test_standard_strictly_dry
+INJ_0426,test,fl_tampa,"Tampa, FL",2024-10-25 20:00:00,2024-10-27 17:00:00,68516,12,34,46,sigmoidal,1.71,Band_B_Mid (Interpolation),783.0,0.05,0.05,0.9,0.0,0.01501,False,test_standard_strictly_dry
+INJ_0427,test,fl_tampa,"Tampa, FL",2023-01-30 07:00:00,2023-02-01 09:00:00,53287,20,31,51,exponential,2.46,Band_B_Mid (Interpolation),907.5,0.5,0.0,0.5,0.0,0.01642,False,test_standard_strictly_dry
+INJ_0428,test,fl_tampa,"Tampa, FL",2023-11-06 09:00:00,2023-11-08 10:00:00,60009,13,37,50,sigmoidal,1.48,Band_B_Mid (Interpolation),923.5,0.9,0.05,0.05,0.0,0.01579,False,test_standard_strictly_dry
+INJ_0429,test,fl_tampa,"Tampa, FL",2023-10-31 16:00:00,2023-11-02 09:00:00,59872,13,29,42,sigmoidal,1.08,Band_B_Mid (Interpolation),1164.7,0.05,0.05,0.9,0.0,0.01705,False,test_standard_strictly_dry
+INJ_0430,test,fl_tampa,"Tampa, FL",2023-03-26 19:00:00,2023-03-28 17:00:00,54619,20,27,47,sigmoidal,0.94,Band_B_Mid (Interpolation),775.0,0.05,0.05,0.9,0.0,0.0153,False,test_standard_strictly_dry
+INJ_0431,test,fl_tampa,"Tampa, FL",2024-01-10 01:00:00,2024-01-10 12:00:00,61561,4,8,12,exponential,0.97,Band_A_Low (Stress Test),590.3,0.05,0.9,0.05,0.0,0.01425,True,test_stress_hard_case_rain
+INJ_0432,test,fl_tampa,"Tampa, FL",2024-07-05 20:00:00,2024-07-06 12:00:00,65828,6,11,17,exponential,1.67,Band_A_Low (Stress Test),458.2,0.05,0.9,0.05,0.0,0.01683,True,test_stress_hard_case_rain
+INJ_0433,test,fl_tampa,"Tampa, FL",2023-09-15 20:00:00,2023-09-16 04:00:00,58772,3,6,9,exponential,1.22,Band_A_Low (Stress Test),267.2,0.5,0.0,0.5,0.0,0.01577,True,test_stress_hard_case_rain
+INJ_0434,test,fl_tampa,"Tampa, FL",2024-06-11 20:00:00,2024-06-12 10:00:00,65252,8,7,15,sigmoidal,0.89,Band_A_Low (Stress Test),432.0,0.05,0.9,0.05,0.0,0.01523,True,test_stress_hard_case_rain
+INJ_0435,test,fl_tampa,"Tampa, FL",2023-05-20 21:00:00,2023-05-21 05:00:00,55941,3,6,9,exponential,1.57,Band_A_Low (Stress Test),590.7,0.05,0.05,0.9,0.0,0.01686,True,test_stress_hard_case_rain
+INJ_0436,test,fl_tampa,"Tampa, FL",2024-08-14 15:00:00,2024-08-15 03:00:00,66783,3,10,13,sigmoidal,0.91,Band_A_Low (Stress Test),441.4,0.9,0.05,0.05,0.0,0.01545,True,test_stress_hard_case_rain
+INJ_0437,test,fl_tampa,"Tampa, FL",2023-06-21 14:00:00,2023-06-22 06:00:00,56702,8,9,17,sigmoidal,1.34,Band_A_Low (Stress Test),422.5,0.9,0.05,0.05,0.0,0.01698,True,test_stress_hard_case_rain
+INJ_0438,test,fl_tampa,"Tampa, FL",2023-08-30 15:00:00,2023-08-31 01:00:00,58383,7,4,11,sigmoidal,0.86,Band_A_Low (Stress Test),582.1,0.5,0.0,0.5,0.0,0.01348,True,test_stress_hard_case_rain
+INJ_0439,test,fl_tampa,"Tampa, FL",2023-01-05 14:00:00,2023-01-06 03:00:00,52694,4,10,14,sigmoidal,0.71,Band_A_Low (Stress Test),277.0,0.5,0.0,0.5,0.0,0.01692,True,test_stress_hard_case_rain
+INJ_0440,test,fl_tampa,"Tampa, FL",2024-02-18 00:00:00,2024-02-18 13:00:00,62496,4,10,14,sigmoidal,1.05,Band_A_Low (Stress Test),513.9,0.05,0.05,0.9,0.0,0.01504,True,test_stress_hard_case_rain
+INJ_0441,test,fl_tampa,"Tampa, FL",2025-02-21 10:00:00,2025-02-22 03:00:00,71362,8,10,18,exponential,0.86,Band_A_Low (Stress Test),386.1,0.5,0.0,0.5,0.0,0.01777,False,test_stress_strictly_dry
+INJ_0442,test,fl_tampa,"Tampa, FL",2025-03-02 05:00:00,2025-03-02 18:00:00,71573,7,7,14,exponential,1.5,Band_A_Low (Stress Test),592.7,0.9,0.05,0.05,0.0,0.01513,False,test_stress_strictly_dry
+INJ_0443,test,fl_tampa,"Tampa, FL",2023-02-07 15:00:00,2023-02-08 05:00:00,53487,8,7,15,exponential,1.79,Band_A_Low (Stress Test),440.7,0.9,0.05,0.05,0.0,0.01788,False,test_stress_strictly_dry
+INJ_0444,test,fl_tampa,"Tampa, FL",2025-03-19 10:00:00,2025-03-19 23:00:00,71986,8,6,14,sigmoidal,1.36,Band_A_Low (Stress Test),338.9,0.05,0.9,0.05,0.0,0.01649,False,test_stress_strictly_dry
+INJ_0445,test,fl_tampa,"Tampa, FL",2024-04-17 02:00:00,2024-04-17 16:00:00,63914,8,7,15,exponential,0.94,Band_A_Low (Stress Test),375.3,0.05,0.9,0.05,0.0,0.01664,False,test_stress_strictly_dry
+INJ_0446,test,fl_tampa,"Tampa, FL",2025-05-01 09:00:00,2025-05-01 23:00:00,73017,6,9,15,exponential,1.32,Band_A_Low (Stress Test),507.3,0.05,0.05,0.9,0.0,0.01327,False,test_stress_strictly_dry
+INJ_0447,test,fl_tampa,"Tampa, FL",2023-03-08 21:00:00,2023-03-09 11:00:00,54189,8,7,15,sigmoidal,1.25,Band_A_Low (Stress Test),255.7,0.05,0.9,0.05,0.0,0.01731,False,test_stress_strictly_dry
+INJ_0448,test,fl_tampa,"Tampa, FL",2023-06-25 03:00:00,2023-06-25 19:00:00,56787,8,9,17,exponential,1.24,Band_A_Low (Stress Test),599.0,0.05,0.9,0.05,0.0,0.01648,False,test_stress_strictly_dry
+INJ_0449,test,fl_tampa,"Tampa, FL",2023-05-16 05:00:00,2023-05-16 18:00:00,55829,4,10,14,sigmoidal,1.23,Band_A_Low (Stress Test),411.6,0.05,0.9,0.05,0.0,0.01251,False,test_stress_strictly_dry
+INJ_0450,test,fl_tampa,"Tampa, FL",2025-03-25 03:00:00,2025-03-25 18:00:00,72123,7,9,16,exponential,0.87,Band_A_Low (Stress Test),561.2,0.5,0.0,0.5,0.0,0.01562,False,test_stress_strictly_dry

@@ -1,0 +1,11 @@
+Station_ID,Station_Name,Split,Total_Hours,Normal_Hours,Washout_Hours,Fission_Hours,Unobserved_Hours
+al_birmingham,"Birmingham, AL",train,52584,40697,848,1107,9932
+al_birmingham,"Birmingham, AL",test,26304,22773,274,1366,1891
+dc_washington,"Washington, DC",train,52584,43390,1196,1034,6964
+dc_washington,"Washington, DC",test,26304,20495,433,1338,4038
+ca_san_diego,"San Diego, CA",train,52584,47810,6,1041,3727
+ca_san_diego,"San Diego, CA",test,26304,23573,0,1391,1340
+tx_dallas,"Dallas, TX",train,52584,44344,1009,1039,6192
+tx_dallas,"Dallas, TX",test,26304,13808,266,1404,10826
+fl_tampa,"Tampa, FL",train,52584,43099,207,1112,8166
+fl_tampa,"Tampa, FL",test,26304,18060,67,1380,6797

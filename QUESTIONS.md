@@ -52,24 +52,22 @@ This file tracks parameters and questions that are not yet known from data or ci
 
 ---
 
-## Resolved in Phase 3
+## Resolved in Phase 3 (Revised & Grounded)
 
-1. **Synthetic Fission-Product Injection Parametrization & Disjointness**:
+1. **Synthetic Injection Parametrization, Multi-Nuclide Inventory & Non-Overlap**:
    - **Resolution**: Implemented in [`src/synthetic_injection.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/synthetic_injection.py) and verified in [`synthetic_injection_catalog.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/synthetic_injection_catalog.csv).
-   - **Disjoint Families**:
-     - *Shapes*: Train = Linear Ramp (rise 1–4h) and Step arrival (instant); Test = Sigmoidal ($\tau \in [0.8, 1.8]$h) and Exponential inflow ($\tau \in [1.0, 2.5]$h).
-     - *Durations*: Train = 6 to 24 hours; Test = 28 to 72 hours (bounded by empirical 4-day filter replacement).
-     - *Magnitudes*: Train = Band A [250, 600] CPM and Band C [1400, 2500] CPM; Test = Band B [700, 1200] CPM (interpolation band).
-     - *Nuclides*: Train = balanced mix ($f_{\text{Cs}} \in [0.30, 0.70]$); Test = pure Cs-137 ($f_{\text{Cs}} \ge 0.85$, N=98) and pure I-131 ($f_{\text{Cs}} \le 0.15$, N=102).
-2. **Physical NaI(Tl) Spectrometry Allocations**:
-   - **Resolution**: Grounded in Knoll (2010) and Vieira et al. (2019):
-     - Cs-137 (661.7 keV): R05 photopeak 45%, R02 20%, R03 15%, R04 20%, R06–R09 = 0.0%.
-     - I-131 (364.5 keV): R03 photopeak 65%, R02 25%, R04 5%, R05 5%, R06–R09 = 0.0%.
-     - Radon Washout Contrast: Natural Bi-214 progeny emit strong gamma lines at 1120 keV (R07) and 1764 keV (R08), carrying ~5.4% of counts during rain. In pure fission plumes, R07 and R08 are strictly 0.0%.
-3. **Dedicated Hard-Case Set: Rain-Coincident Fission Plumes**:
-   - **Resolution**: Exactly 30% of test injections (12 per station, 60 total across network) are forced to start during verified active rain ($P_{1\text{h}} > 0$). Time-series visualization in [`reports/figures/synthetic_injection_hard_case_rain.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_hard_case_rain.png) demonstrates detection challenges and post-rain persistence.
+   - **Multi-Nuclide Inventory**: Includes $^{137}\text{Cs}$ (662 keV), $^{131}\text{I}$ (365 keV), $^{60}\text{Co}$ (1173 & 1332 keV in R07!), and $^{134}\text{Cs}$ (605, 796, 802, 1365 keV). Co-60 directly emits 28% of its counts into R07, completely eliminating the artificial classifier shortcut where R07 was assumed unique to radon washout.
+   - **Randomized Spectral Perturbation**: Each injection applies $\pm 10\%$ relative Gaussian perturbation per channel around nominal response, preventing the model from memorizing fixed channel ratios.
+   - **Ambient Dose Rate Injection**: Injects $\Delta \text{Dose} = k_{\text{dose}} \cdot \Delta \text{Gross CPM}$ ($k_{\text{dose}} \sim 0.016\text{ nSv/h per CPM}$), allowing the baseline "Global Dose Rate" rule to detect injected plumes fairly.
+   - **Filter Accumulation & Replacement**: Models continuous particulate build-up during plume passage ($T_{\text{passage}}$), retention plateau with $^{131}\text{I}$ decay ($\lambda = 0.00360\text{ h}^{-1}$) until filter replacement, and termination at filter replacement ($D = T_{\text{passage}} + T_{\text{retention}}$).
+   - **Zero Overlaps**: 48-hour buffer enforced between injections. Exactly 0 overlapping injection pairs across 450 total injections.
+   - **Hard-Regime Stress Test**: Test set includes 100 short plumes (8–20h) with subtle magnitudes (Band A [250, 600] CPM) during active rain, directly testing where discrimination breaks.
+2. **Empirical Washout Gamma Energy Spectrum Grounding**:
+   - **Resolution**: Scripted in [`src/analyze_washout_spectrum.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_washout_spectrum.py) across 5,479 verified substantial rain hours across all 5 pilot stations ([`rain_washout_spectral_shares.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rain_washout_spectral_shares.csv)): R02: 43.96%, R03: 32.37%, R04: 9.04%, R05: 5.91%, R06: 2.43%, R07: 3.81%, R08: 1.54%, R09: 0.94% (R07+R08 = 5.34%).
+3. **Headline Evaluation Metric Policy**:
+   - **Resolution**: Primary headline metric adopted is **false alarms per station-year at a fixed detection probability for injected fission events** on **unmodified background data**. The three-class breakdown is retained as an auxiliary diagnostic, preventing circularity from impacting the project's core claim.
 4. **Operational Ground-Truth Definition for Natural Radon Washout**:
-   - **Resolution**: Operational heuristic rule: an hour is labeled `radon_washout` if $P_{3\text{h}} > 0\text{ mm}$ and gross CPM exceeds dry baseline by $>2\sigma$ ($x(t) > \mu_{\text{dry}} + 2\sigma_{\text{dry}}$) on complete-channel records. Documented as an explicit methodological limitation in `DECISIONS.md`.
+   - **Resolution**: Operational heuristic rule: an hour is labeled `radon_washout` if $P_{3\text{h}} > 0\text{ mm}$ and gross CPM exceeds dry baseline by $>2\sigma$ ($x(t) > \mu_{\text{dry}} + 2\sigma_{\text{dry}}$) on complete-channel records. Documented as an explicit methodological limitation in `DECISIONS.md`. Missing data explicitly labeled `unobserved` (59,873 hours across network).
 
 ---
 
