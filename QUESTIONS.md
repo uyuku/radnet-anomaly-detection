@@ -52,18 +52,24 @@ This file tracks parameters and questions that are not yet known from data or ci
 
 ---
 
-## Resolved in Phase 3 (Revised & Grounded - Second Pass)
+## Resolved in Phase 3 (Final Revision - Training Freeze)
 
 1. **Synthetic Injection Parametrization, Multi-Nuclide Inventory & Non-Overlap**:
    - **Resolution**: Implemented in [`src/synthetic_injection.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/synthetic_injection.py) and verified in [`synthetic_injection_catalog.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/synthetic_injection_catalog.csv).
-   - **Operational Release Scenarios**: 5 scenarios structured across reactor fission (Cs-137 + Cs-134 + I-131; Fukushima core ratio, Masson et al. 2011), pure legacy sources (Cs-137), pure radiopharmaceuticals (I-131), orphan industrial activation sources (Co-60; photopeaks at 1173 & 1332 keV in R07), and mixed core excursions.
-   - **Broad Continuous Spectral Sampling**: Photopeak and Compton continuum fractions drawn continuously per injection via Dirichlet distributions, with high-energy scatter floors varying across 0.5% to 3.5%, preventing models from memorizing rigid channel ratios.
+   - **100% Filter Drop Synchronization**: All 450 of 450 injections (100.0%) end at an empirically detected real physical filter replacement step drop (`truncated_by_filter_change = True`), completely eliminating synthetic-only drop cliffs. Candidate windows with intermediate drops are rejected. Injection onset cadence (`hours_since_last_detected_drop`, median 84.0h, IQR [40.2h, 176.8h]) matches natural normal baseline operational cycles (median 97.0h, IQR [41.0h, 226.0h]).
+   - **Exact 20.0% Scenario Balance Across All Environments**: All 6 environments (`train_strictly_dry`, `train_rain_coincident`, `test_standard_strictly_dry`, `test_standard_rain`, `test_stress_strictly_dry`, `test_stress_rain`) have exactly 20.0% of each of the 5 operational scenarios (90 total per scenario across the network), completely eliminating confounding between scenario mix and weather state.
+   - **Cs-134 Lines in Channel R07**: Fresh reactor fission (`fission_reactor_fukushima`) incorporates $^{134}\text{Cs}$ high-energy lines (1168 & 1365 keV in R07 via $p_{\text{R07, Cs134}} \sim \mathcal{U}[0.025, 0.055]$), yielding an R07+R08 high-energy share (Mean = 4.54%, IQR = [3.65%, 5.42%]) that directly overlaps the empirical radon washout distribution (ratio-of-sums 5.58% [5.52%, 5.65%], IQR [4.04%, 7.21%]).
+   - **Broad Continuous Spectral Sampling**: Photopeak and Compton continuum fractions drawn continuously per injection via Dirichlet distributions, with high-energy scatter floors varying across 0.5% to 3.5%, preventing models from memorizing rigid channel ratios. All 8 sampled shares (`share_r02` through `share_r09`) are preserved directly in the catalog.
    - **Traceable Empirical Dose Rate Injection**: Injects $\Delta \text{Dose} = k_{\text{dose}} \cdot \Delta \text{Gross CPM}$ calibrated directly in [`src/calibrate_dose_coupling.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/calibrate_dose_coupling.py) to station-specific empirical rain regressions ($k_{\text{dose}} \in [0.0119, 0.0239]\text{ nSv/h per CPM}$). Dual assumptions documented: photon energy dependence vs unified empirical range; identical dose-to-gross ratio between classes by construction.
-   - **Filter Accumulation & Real Step-Drop Synchronization**: Plume passage accumulates particulates; retention decays $^{131}\text{I}$ ($\lambda = 0.00360\text{ h}^{-1}$). Candidate windows checked against the Gate 2 dry 3h step detector: windows with filter drops during inflow are rejected; windows with drops during retention are truncated at that exact hour, synchronizing synthetic clearing with real physical background filter replacements (43 injections truncated).
-   - **Zero Overlaps**: Strict buffers enforced between injections. Exactly 0 overlapping pairs across 450 total catalog injections.
-   - **Hard-Regime Stress Test**: Test set includes 100 subtle plumes (Band A [250, 600] CPM, 8–20h duration), with 50 forced into rain onsets where the rising plume is directly immersed inside the natural radon washout surge.
+   - **Filter Accumulation & Clearing Physics**: Plume passage accumulates particulates; retention decays $^{131}\text{I}$ ($\lambda = 0.00360\text{ h}^{-1}$). Particulate excess drops to zero synchronously with the real background filter step drop on the station.
+   - **Zero Overlaps & Strict 48h Buffer**: Enforced across all branches; exactly 0 buffer violations (<48h) across all 450 injections.
+   - **Exact Realized Duration Ranges**: Documented as 10–35h (`train_strictly_dry`), 25–94h (`train_rain_coincident`), 36–75h (`test_standard_strictly_dry`), 38–164h (`test_standard_rain`), 8–20h (`test_stress_strictly_dry`), 28–140h (`test_stress_rain`).
+   - **Hard-Regime Stress Test**: Test set includes 100 subtle plumes (Band A [250, 600] CPM), with 50 forced into rain onsets where the rising plume is directly immersed inside the natural radon washout surge.
 2. **Empirical Washout Gamma Energy Spectrum Grounding**:
-   - **Resolution**: Scripted in [`src/analyze_washout_spectrum.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_washout_spectrum.py) across 5,485 verified substantial rain hours (>100 CPM excess) on the continuous calendar grid ([`rain_washout_spectral_shares.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rain_washout_spectral_shares.csv)): Pooled shares: R02: 43.95%, R03: 32.34%, R04: 9.05%, R05: 5.92%, R06: 2.43%, R07: 3.81%, R08: 1.54%, R09: 0.96% (R07+R08 = 5.35%). Tampa's elevated R02 (61.81%) explained by limestone/sand low terrestrial background and detector calibration differences.
+   - **Resolution**: Scripted in [`src/analyze_washout_spectrum.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_washout_spectrum.py) across 5,485 verified substantial rain hours (>100 CPM excess, $P_{\text{1h}} \ge 1.0\text{ mm/h}$) on continuous calendar grids ([`rain_washout_spectral_shares.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rain_washout_spectral_shares.csv)).
+   - **Ratio-of-Sums Formulation**: Pooled network ratio of sums: R02: 42.31%, R03: 33.73%, R04: 9.16%, R05: 6.04%, R06: 2.48%, R07: 3.87%, R08: 1.72%, R09: 0.70%.
+   - **R07+R08 High-Energy Ratio of Sums**: **5.58%** with 1,000-draw bootstrap 95% CI of **[5.52%, 5.65%]**. Pooled hour-level percentiles: 5th: -3.34%, 25th: 4.04%, 50th: 5.64%, 75th: 7.21%, 95th: 13.45%.
+   - **Tampa Baseline Framing**: Tampa exhibits lower baseline channel counts across all lower-energy channels (Tampa dry mean R02 is 882.7 CPM against 1,980.4 CPM in Birmingham; dry gross mean is 2,081.8 CPM in Tampa vs 3,887.3 CPM in Birmingham, traceable to `candidate_pilot_stations_comparison.csv` and empirical dry hours). Causal geological/detector hypotheses moved to Open Questions below.
 3. **Headline Evaluation Metric Policy**:
    - **Resolution**: Primary headline metric adopted is **false alarms per station-year at a fixed detection probability for injected fission events** on **unmodified background data** using verified observed hours as the denominator ($N_{\text{obs}} / 8,766$).
 4. **Operational Ground-Truth Definition for Natural Radon Washout**:
@@ -84,7 +90,7 @@ This file tracks parameters and questions that are not yet known from data or ci
      2. Radiation + spectral features (Channel energy ratios, R07+R08 high-energy share, photopeak ratios).
      3. Radiation + spectral + weather fusion (Precipitation depth, multi-scale rain history, pressure tendencies, humidity).
 3. **Leave-One-Station-Out (LOSO) Cross-Validation**:
-   - Policy: Validate model generalization across climate regimes by holding out San Diego (which exhibits negative rain-radiation correlation due to coastal marine layer inversions) as the external unseen evaluation site.
+   - Policy: Validate model generalization across climate regimes by holding out San Diego (which exhibits an empirical negative rain-radiation correlation, $r = -0.06$ to $-0.13$) as the external unseen evaluation site.
 4. **Stratified Performance Breakdown (Phase 5 Policy)**:
    - Policy: Report detection probability broken down separately by:
      - Environmental regime: strictly dry vs rain onset.
@@ -92,6 +98,18 @@ This file tracks parameters and questions that are not yet known from data or ci
      - Duration regime: standard retention (36–80h) vs short hard-regime stress plumes (8–20h).
 5. **Detector Response Sensitivity Sweep (Phase 5 Policy)**:
    - Plan: Run a sensitivity sweep varying the photopeak-to-total ratio over $\pm 30\%$ to prove that models trained on synthetic spectra generalize across variations in detector crystal dimensions and down-scatter continua.
+6. **Physical Mechanisms Governing Low Baseline Counts and Shifted Spectral Ratios in Tampa (Open Research Question)**:
+   - *Observation*: In `candidate_pilot_stations_comparison.csv` and empirical dry baseline records, Tampa displays substantially lower gross background counts (2,081.8 CPM vs 3,887.3 CPM in Birmingham; dry R02 882.7 CPM vs 1,980.4 CPM) and an elevated R02 washout share (ratio of sums 53.49% vs 40.96% in Birmingham).
+   - *Open Hypotheses for Further Investigation*:
+     (a) Terrestrial lithology: Florida's quartz sand, phosphorite, and carbonate platform may contain lower natural concentrations of primordial thorium, uranium, and potassium than the Appalachian Paleozoic formations surrounding Birmingham.
+     (b) Hardware / instrumentation: Differing PMT bias voltage, gain stabilization, crystal housing, or lower-level discriminator (LLD) thresholds between stationary monitor deployment batches.
+     (c) Washout droplet microphysics: Subtropical maritime convective rain scavenging mechanisms differing from continental convective systems.
+7. **Physical Mechanisms Governing Negative Rain-Radiation Correlation in San Diego (Open Research Question)**:
+   - *Observation*: San Diego exhibits an empirical negative cross-correlation ($r = -0.06$ to $-0.13$) between hourly precipitation and gross gamma CPM, with only 5 hours exceeding $+2\sigma$ during rain over 2017–2025.
+   - *Open Hypotheses for Further Investigation*:
+     (a) Pacific marine layer advection: Coastal Southern California precipitation is frequently associated with Pacific marine air masses depleted of terrestrial radon progeny relative to continental air.
+     (b) Aerosol scavenging dynamics: Precipitation clearing existing ambient aerosols from the surface layer without replenishing short-lived radon progeny from local soil exhalation.
+     (c) Local topography and coastal microclimate at KSAN (San Diego International Airport / Lindbergh Field).
 
 
 

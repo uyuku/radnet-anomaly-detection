@@ -1,11 +1,11 @@
 Station_ID,Station_Name,Split,Total_Hours,Normal_Hours,Washout_Hours,Fission_Hours,Unobserved_Hours
-al_birmingham,"Birmingham, AL",train,52584,40817,876,959,9932
-al_birmingham,"Birmingham, AL",test,26304,22855,277,1281,1891
-dc_washington,"Washington, DC",train,52584,43429,1187,1004,6964
-dc_washington,"Washington, DC",test,26304,20512,421,1333,4038
-ca_san_diego,"San Diego, CA",train,52584,47880,5,972,3727
-ca_san_diego,"San Diego, CA",test,26304,23536,0,1428,1340
-tx_dallas,"Dallas, TX",train,52584,44278,1041,1073,6192
-tx_dallas,"Dallas, TX",test,26304,13901,311,1266,10826
-fl_tampa,"Tampa, FL",train,52584,43221,211,986,8166
-fl_tampa,"Tampa, FL",test,26304,18196,68,1243,6797
+al_birmingham,"Birmingham, AL",train,52584,40216,869,1573,9926
+al_birmingham,"Birmingham, AL",test,26304,22032,263,2128,1881
+dc_washington,"Washington, DC",train,52584,43025,1189,1412,6958
+dc_washington,"Washington, DC",test,26304,19879,406,1995,4024
+ca_san_diego,"San Diego, CA",train,52584,47348,4,1509,3723
+ca_san_diego,"San Diego, CA",test,26304,23002,0,1979,1323
+tx_dallas,"Dallas, TX",train,52584,43972,1032,1390,6190
+tx_dallas,"Dallas, TX",test,26304,13355,324,1805,10820
+fl_tampa,"Tampa, FL",train,52584,42831,213,1376,8164
+fl_tampa,"Tampa, FL",test,26304,17342,53,2126,6783
