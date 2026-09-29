@@ -1,0 +1,2 @@
+held_out_station,validation_tuned_frozen_tau,clean_observed_hours,clean_station_years,clean_false_alarm_episodes,clean_false_alarms_per_year,total_test_injections,detected_injections,realized_detection_rate_pct,median_detection_delay_hours
+ca_san_diego,0.99,24964,2.85,0,0.0,40,27,67.5,6.0

@@ -31,6 +31,29 @@ TIER_1_FEATURES = [
     "dose_to_gross_ratio",
 ]
 
+WEATHER_FEATURES = [
+    "precip_1h_mm",
+    "precip_3h_mm",
+    "precip_6h_mm",
+    "precip_24h_mm",
+    "is_raining",
+    "rain_recent_3h",
+    "rain_recent_6h",
+    "rain_recent_24h",
+    "hours_since_rain",
+    "pressure_hpa",
+    "pressure_diff_3h",
+    "pressure_diff_24h",
+    "temp_c",
+    "dewpoint_c",
+    "rel_humidity_pct",
+]
+
+TIER_1B_FEATURES = TIER_1_FEATURES + WEATHER_FEATURES + [
+    "washout_expected_ratio",
+    "dry_excess_interaction",
+]
+
 TIER_2_FEATURES = TIER_1_FEATURES + [
     "share_r02",
     "share_r03",
@@ -52,35 +75,27 @@ TIER_2_FEATURES = TIER_1_FEATURES + [
     "diff_share_r07_3h",
 ]
 
-TIER_3_FEATURES = TIER_2_FEATURES + [
-    "precip_1h_mm",
-    "precip_3h_mm",
-    "precip_6h_mm",
-    "precip_24h_mm",
-    "is_raining",
-    "rain_recent_3h",
-    "rain_recent_6h",
-    "rain_recent_24h",
-    "hours_since_rain",
-    "pressure_hpa",
-    "pressure_diff_3h",
-    "pressure_diff_24h",
-    "temp_c",
-    "dewpoint_c",
-    "rel_humidity_pct",
+TIER_3_FEATURES = TIER_2_FEATURES + WEATHER_FEATURES + [
     "rain_high_energy_interaction",
     "dry_excess_interaction",
     "washout_expected_ratio",
 ]
 
-# Empirical dry baseline parameters per station from Phase 2 evaluation
-STATION_DRY_BASELINES = {
-    "al_birmingham": {"mu": 3887.3, "sigma": 348.4, "mu_dose": 53.8, "sigma_dose": 3.8},
-    "dc_washington": {"mu": 2058.5, "sigma": 294.0, "mu_dose": 31.3, "sigma_dose": 3.2},
-    "ca_san_diego":  {"mu": 6913.3, "sigma": 530.9, "mu_dose": 99.5, "sigma_dose": 6.8},
-    "tx_dallas":     {"mu": 2944.3, "sigma": 401.1, "mu_dose": 39.9, "sigma_dose": 4.1},
-    "fl_tampa":      {"mu": 2081.8, "sigma": 400.0, "mu_dose": 31.0, "sigma_dose": 3.5},
-}
+# Load training-only dry baselines (2017-2022) to prevent any test leakage
+import json
+
+_BASELINES_FILE = Path(__file__).resolve().parent.parent / "data" / "processed" / "station_dry_baselines_train_only.json"
+if _BASELINES_FILE.exists():
+    with open(_BASELINES_FILE, "r") as _f:
+        STATION_DRY_BASELINES = json.load(_f)
+else:
+    STATION_DRY_BASELINES = {
+        "al_birmingham": {"mu": 3873.5, "sigma": 306.5, "mu_dose": 51.8, "sigma_dose": 2.8},
+        "dc_washington": {"mu": 2072.1, "sigma": 252.1, "mu_dose": 31.7, "sigma_dose": 5.5},
+        "ca_san_diego":  {"mu": 6984.9, "sigma": 457.9, "mu_dose": 103.9, "sigma_dose": 4.1},
+        "tx_dallas":     {"mu": 2966.6, "sigma": 327.4, "mu_dose": 39.7, "sigma_dose": 2.3},
+        "fl_tampa":      {"mu": 2277.5, "sigma": 237.9, "mu_dose": 30.6, "sigma_dose": 6.1},
+    }
 
 
 def compute_features_for_series(df_input: pd.DataFrame, station_id: str, use_injected: bool = True) -> pd.DataFrame:

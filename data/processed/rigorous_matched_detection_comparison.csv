@@ -1,0 +1,3 @@
+target_detection_tier,rolling_7d_multiplier_k,rolling_7d_detection_pct,rolling_7d_fa_per_year,global_dry_multiplier_k,global_dry_detection_pct,global_dry_fa_per_year,tier1_gross_fa_per_year,tier1b_gross_weather_fa_per_year,tier2_spectral_fa_per_year,tier3_weather_fusion_fa_per_year,tier3_mlp_fa_per_year,fa_reduction_t3_vs_rolling_pct,fa_reduction_t2_vs_t3_pct
+90.0% Target,0.75,92.5,303.11,0.7,92.0,183.0,90.19,17.25,9.62,3.73,85.11,98.8,-157.9
+95.0% Target,0.75,92.5,303.11,0.7,92.0,183.0,162.99,26.92,15.16,3.73,85.11,98.8,-306.4

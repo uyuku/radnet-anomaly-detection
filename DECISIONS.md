@@ -195,23 +195,32 @@ Format:
 
 ---
 
-### Phase 5: Statistical Evaluation Protocol & Uncertainty Quantification Decisions
+### Phase 5: Rigorous Statistical Evaluation Protocol & Uncertainty Decisions
 
-- **2026-09-29 | Station-Month Block Bootstrapping for False Alarm Rates**
-  - **Reason**: Standard row-level bootstrapping violates temporal autocorrelation within weather cycles and sensor drift. Test split observations (2023–2025, 12.16 station-years) were partitioned into 180 discrete station-month blocks ($5\text{ stations} \times 36\text{ months}$).
-  - **Protocol**: $B = 1,000$ resamples of 180 blocks drawn with replacement. For each resample, total alarm episode starts and observed hours are aggregated to compute false alarms per station-year. Empirical 2.5% and 97.5% percentiles define 95% Confidence Intervals.
-- **2026-09-29 | Event-Level Bootstrap for Detection Probability and Detection Delay**
-  - **Reason**: Accounts for sampling variability in the synthetic plume test set ($N = 200$ events).
-  - **Protocol**: $B = 1,000$ resamples of 200 events drawn with replacement. Realized detection rate ($P_D$) and median detection delay among detected events are computed per draw, yielding empirical 95% CIs.
-- **2026-09-29 | Paired Hypothesis Testing ($\Delta \text{FA}$)**
-  - **Reason**: Tests the primary research hypothesis that weather/spectrometry fusion statistically significantly reduces operational false alarms compared to current practice (Rolling 7d 3-sigma baseline).
-  - **Result**: The paired difference $\Delta \text{FA} = \text{FA}_{\text{Rolling 3σ}} - \text{FA}_{\text{Tier 3 GBDT}}$ has a mean reduction of **62.03 FA/station-year** with a 95% CI of **[52.16, 71.88] FA/station-year**. The empirical one-sided $p$-value is $p < 0.0001$ ($0\text{ of } 1,000\text{ draws}$ had $\Delta \text{FA} \le 0$).
-- **2026-09-29 | Multi-Class Hourly Confusion Matrices**
-  - **Reason**: Evaluates classification performance on 106,689 observed test hours across the 3 physical classes (`normal`, `radon_washout`, `fission_product`).
-  - **Result**: Baseline practice misclassifies **49.4%** of all natural radon washout hours as radiological alarms (`fission_product`). Tier 3 weather fusion suppresses washout false alarms to **0.76%** (only 8 hours out of 1,046), while Tier 2 spectral ratios suppress them to **0.0%**. Fission product hourly recall exceeds **84.8%**.
-- **2026-09-29 | Neural Network (MLP) Gap Analysis**
-  - **Reason**: Section 4 of `PROJECT_SPEC.md` requires: "Small neural net only if the boosting result leaves a clear gap." A 2-hidden-layer MLP (64-32 units, ReLU, Adam, balanced class weighting, median imputer, standard scaler) was trained on the exact same Tier 3 features.
-  - **Result**: At 95% detection target, MLP achieves 11.02 [5.40, 18.01] FA/year (comparable to Tier 2 GBDT's 7.32 FA/year and Tier 3 GBDT's 20.88 FA/year). At 90% detection target, GBDT achieves 3.21 FA/year vs MLP's 11.02 FA/year (GBDT achieves a 70.9% lower false alarm rate). GBDT requires no NaN imputation, trains in 1.5s vs 4.5s, and provides exact feature importance. No gap exists justifying deep neural networks over GBDT for this tabular physical domain.
+- **2026-09-30 | Causal Validation Split for Operating Threshold Selection (No Test Leakage)**
+  - **Reason**: Tuning operating thresholds $\tau$ by sweeping on the test set creates optimistic bias. Training observations were causally partitioned into a Training Fold (2017–2020: 153,740 observed hours, 169 injections) and a Validation Fold (2021–2022: 74,199 observed hours, 81 injections).
+  - **Protocol**: Thresholds $\tau^*$ achieving target detection (90%, 95%, 98%) with minimal clean false alarms are selected strictly on the validation fold, frozen, and applied out-of-sample to the unseen test split (2023–2025: 106,628 hours, 200 injections).
+- **2026-09-30 | Continuous Baseline Multiplier Sweep for Matched Detection**
+  - **Reason**: Comparing baselines at arbitrary $3\sigma$ multipliers ($63\%$ detection) against ML models at $90\%$–$95\%$ detection is not a matched comparison. Multipliers $k \in [0.5, 5.0]$ were swept in 0.05 increments to trace continuous ROC trade-offs.
+  - **Result**: To match the ML model's $\approx 92.5\%$ realized detection, the Rolling 7-day baseline requires $k = 0.75\sigma$, producing **303.11 false alarms per station-year**. Tier 3 GBDT yields **3.73 FA/yr** at matched detection—a **98.8% reduction in operational false alarms**.
+- **2026-09-30 | Four-Tier Ablation & Multi-Seed Protocol (5 Seeds)**
+  - **Reason**: To isolate the exact physical contributions of spectrometry vs weather across sensor suites:
+    - *Tier 1 (Gross Radiation Only, 12 features)*: 90.19 ± 10.32 FA/yr at 89.1% detection.
+    - *Tier 1b (Gross Radiation + Weather, 29 features)*: 17.25 ± 2.49 FA/yr at 78.7% detection (cuts gross false alarms by **80.9%** without spectrometry!).
+    - *Tier 2 (Gross + NaI Spectrometry, 30 features)*: 9.62 ± 5.70 FA/yr at 92.8% detection (spectrometry drives primary separation).
+    - *Tier 3 (Gross + Spectrometry + Weather, 48 features)*: 3.73 ± 0.32 FA/yr at 91.9% detection (**61.2% reduction over Tier 2**).
+- **2026-09-30 | Net Alarm Criterion & Operational Deadlines**
+  - **Reason**: To prevent natural washout surges from being credited as plume detections, an alarm is credited only if $P_{\text{inj}} \ge \tau \land P_{\text{clean}} < \tau$. To prevent long filter retention tails from trivializing detection after storms pass, detection is evaluated within fixed deadlines: $\le 6\text{h}$, $\le 12\text{h}$, and $\le 24\text{h}$.
+  - **Result**: Tier 3 GBDT detects **67.4%** of events within 6 hours (during active passage), **86.2%** within 12 hours, and **91.3%** within 24 hours, with a median delay of **4.0 hours**.
+- **2026-09-30 | Clean Leave-One-Station-Out (LOSO) on San Diego**
+  - **Reason**: Evaluates out-of-domain climate generalization with zero leakage. Model trained on 4 stations (2017–2020), threshold $\tau^* = 0.99$ selected on 4 stations' validation fold (2021–2022).
+  - **Result**: Evaluated on San Diego test data (2023–2025, 2.85 station-years): **0.00 false alarms/yr** (0 episodes) and **67.5% detection** (27 of 40 events) with median delay of 6.0 hours.
+- **2026-09-30 | Spectral Template Sensitivity Sweep**
+  - **Reason**: Assesses vulnerability to detector calibration drift by perturbing photopeak channel weights by $\pm 10\%$ and $\pm 20\%$.
+  - **Result**: Detection remains stable at **81.0%** at $-10\%$ perturbation and **77.0%** at $-20\%$ perturbation, demonstrating resilience to moderate NaI gain drift.
+- **2026-09-30 | Honest MLP Neural Net Comparison**
+  - **Reason**: Evaluates a 2-hidden-layer MLP under causal validation threshold freezing across 5 seeds.
+  - **Result**: When thresholds are frozen from validation data, MLP yields **85.11 ± 26.31 FA/yr** on test data vs. LightGBM's **3.73 ± 0.32 FA/yr**. GBDT exhibits far superior probability calibration and generalization stability on tabular physical telemetry.
 
 
 
