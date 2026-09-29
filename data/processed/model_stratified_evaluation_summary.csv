@@ -1,0 +1,17 @@
+group_category,group_value,n_events,tier1_det_rate_pct,tier2_det_rate_pct,tier3_det_rate_pct,tier3_median_delay_hours
+environment,test_standard_rain,50,100.0,100.0,100.0,5.0
+environment,test_standard_strictly_dry,50,100.0,100.0,100.0,4.0
+environment,test_stress_rain,50,94.0,92.0,92.0,3.0
+environment,test_stress_strictly_dry,50,86.0,88.0,90.0,2.0
+nuclide_scenario,activation_orphan_co60,40,97.5,95.0,97.5,4.0
+nuclide_scenario,fission_pure_cs137,40,97.5,100.0,100.0,2.5
+nuclide_scenario,fission_pure_i131,40,92.5,82.5,82.5,6.0
+nuclide_scenario,fission_reactor_fukushima,40,95.0,100.0,100.0,3.0
+nuclide_scenario,mixed_fission_activation,40,92.5,97.5,97.5,3.0
+magnitude_band,Band_A_Low (Stress Test),100,90.0,90.0,91.0,2.0
+magnitude_band,Band_B_Mid,100,100.0,100.0,100.0,4.0
+station_name,"Birmingham, AL",40,95.0,95.0,95.0,4.0
+station_name,"Dallas, TX",40,100.0,95.0,97.5,3.0
+station_name,"San Diego, CA",40,90.0,90.0,90.0,3.0
+station_name,"Tampa, FL",40,97.5,95.0,95.0,3.0
+station_name,"Washington, DC",40,92.5,100.0,100.0,3.0
