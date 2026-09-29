@@ -52,38 +52,46 @@ This file tracks parameters and questions that are not yet known from data or ci
 
 ---
 
-## Resolved in Phase 3 (Revised & Grounded)
+## Resolved in Phase 3 (Revised & Grounded - Second Pass)
 
 1. **Synthetic Injection Parametrization, Multi-Nuclide Inventory & Non-Overlap**:
    - **Resolution**: Implemented in [`src/synthetic_injection.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/synthetic_injection.py) and verified in [`synthetic_injection_catalog.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/synthetic_injection_catalog.csv).
-   - **Multi-Nuclide Inventory**: Includes $^{137}\text{Cs}$ (662 keV), $^{131}\text{I}$ (365 keV), $^{60}\text{Co}$ (1173 & 1332 keV in R07!), and $^{134}\text{Cs}$ (605, 796, 802, 1365 keV). Co-60 directly emits 28% of its counts into R07, completely eliminating the artificial classifier shortcut where R07 was assumed unique to radon washout.
-   - **Randomized Spectral Perturbation**: Each injection applies $\pm 10\%$ relative Gaussian perturbation per channel around nominal response, preventing the model from memorizing fixed channel ratios.
-   - **Ambient Dose Rate Injection**: Injects $\Delta \text{Dose} = k_{\text{dose}} \cdot \Delta \text{Gross CPM}$ ($k_{\text{dose}} \sim 0.016\text{ nSv/h per CPM}$), allowing the baseline "Global Dose Rate" rule to detect injected plumes fairly.
-   - **Filter Accumulation & Replacement**: Models continuous particulate build-up during plume passage ($T_{\text{passage}}$), retention plateau with $^{131}\text{I}$ decay ($\lambda = 0.00360\text{ h}^{-1}$) until filter replacement, and termination at filter replacement ($D = T_{\text{passage}} + T_{\text{retention}}$).
-   - **Zero Overlaps**: 48-hour buffer enforced between injections. Exactly 0 overlapping injection pairs across 450 total injections.
-   - **Hard-Regime Stress Test**: Test set includes 100 short plumes (8–20h) with subtle magnitudes (Band A [250, 600] CPM) during active rain, directly testing where discrimination breaks.
+   - **Operational Release Scenarios**: 5 scenarios structured across reactor fission (Cs-137 + Cs-134 + I-131; Fukushima core ratio, Masson et al. 2011), pure legacy sources (Cs-137), pure radiopharmaceuticals (I-131), orphan industrial activation sources (Co-60; photopeaks at 1173 & 1332 keV in R07), and mixed core excursions.
+   - **Broad Continuous Spectral Sampling**: Photopeak and Compton continuum fractions drawn continuously per injection via Dirichlet distributions, with high-energy scatter floors varying across 0.5% to 3.5%, preventing models from memorizing rigid channel ratios.
+   - **Traceable Empirical Dose Rate Injection**: Injects $\Delta \text{Dose} = k_{\text{dose}} \cdot \Delta \text{Gross CPM}$ calibrated directly in [`src/calibrate_dose_coupling.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/calibrate_dose_coupling.py) to station-specific empirical rain regressions ($k_{\text{dose}} \in [0.0119, 0.0239]\text{ nSv/h per CPM}$). Dual assumptions documented: photon energy dependence vs unified empirical range; identical dose-to-gross ratio between classes by construction.
+   - **Filter Accumulation & Real Step-Drop Synchronization**: Plume passage accumulates particulates; retention decays $^{131}\text{I}$ ($\lambda = 0.00360\text{ h}^{-1}$). Candidate windows checked against the Gate 2 dry 3h step detector: windows with filter drops during inflow are rejected; windows with drops during retention are truncated at that exact hour, synchronizing synthetic clearing with real physical background filter replacements (43 injections truncated).
+   - **Zero Overlaps**: Strict buffers enforced between injections. Exactly 0 overlapping pairs across 450 total catalog injections.
+   - **Hard-Regime Stress Test**: Test set includes 100 subtle plumes (Band A [250, 600] CPM, 8–20h duration), with 50 forced into rain onsets where the rising plume is directly immersed inside the natural radon washout surge.
 2. **Empirical Washout Gamma Energy Spectrum Grounding**:
-   - **Resolution**: Scripted in [`src/analyze_washout_spectrum.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_washout_spectrum.py) across 5,479 verified substantial rain hours across all 5 pilot stations ([`rain_washout_spectral_shares.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rain_washout_spectral_shares.csv)): R02: 43.96%, R03: 32.37%, R04: 9.04%, R05: 5.91%, R06: 2.43%, R07: 3.81%, R08: 1.54%, R09: 0.94% (R07+R08 = 5.34%).
+   - **Resolution**: Scripted in [`src/analyze_washout_spectrum.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_washout_spectrum.py) across 5,485 verified substantial rain hours (>100 CPM excess) on the continuous calendar grid ([`rain_washout_spectral_shares.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rain_washout_spectral_shares.csv)): Pooled shares: R02: 43.95%, R03: 32.34%, R04: 9.05%, R05: 5.92%, R06: 2.43%, R07: 3.81%, R08: 1.54%, R09: 0.96% (R07+R08 = 5.35%). Tampa's elevated R02 (61.81%) explained by limestone/sand low terrestrial background and detector calibration differences.
 3. **Headline Evaluation Metric Policy**:
-   - **Resolution**: Primary headline metric adopted is **false alarms per station-year at a fixed detection probability for injected fission events** on **unmodified background data**. The three-class breakdown is retained as an auxiliary diagnostic, preventing circularity from impacting the project's core claim.
+   - **Resolution**: Primary headline metric adopted is **false alarms per station-year at a fixed detection probability for injected fission events** on **unmodified background data** using verified observed hours as the denominator ($N_{\text{obs}} / 8,766$).
 4. **Operational Ground-Truth Definition for Natural Radon Washout**:
    - **Resolution**: Operational heuristic rule: an hour is labeled `radon_washout` if $P_{3\text{h}} > 0\text{ mm}$ and gross CPM exceeds dry baseline by $>2\sigma$ ($x(t) > \mu_{\text{dry}} + 2\sigma_{\text{dry}}$) on complete-channel records. Documented as an explicit methodological limitation in `DECISIONS.md`. Missing data explicitly labeled `unobserved` (59,873 hours across network).
 
 ---
 
-## Active Open Questions for Phase 4 & Later
+## Active Open Questions & Architectural Policies for Phase 4 & Phase 5
 
-1. **Monitor Site Coordinates for DC, San Diego, Dallas, and Tampa**:
-   - Question: What are the exact AQS site IDs and GPS coordinates for the RadNet monitors in Washington DC, San Diego, Dallas, and Tampa?
-   - Plan: Search annual ambient monitoring network plans for DOEE (DC), SDAPCD (San Diego), TCEQ (Dallas), and EPC (Hillsborough/Tampa) to locate co-located RadNet samplers, similar to Birmingham's North Birmingham NCore site.
-2. **Phase 4 Feature Engineering Architecture**:
-   - Question: What exact feature set provides optimal discrimination while preventing temporal leakage?
-   - Candidate Features:
-     - Multi-scale weather features: $P_{1\text{h}}, P_{3\text{h}}, P_{6\text{h}}, P_{24\text{h}}$, pressure trends ($\Delta P_{\text{slp}} / 3\text{h}$), dew point depression.
-     - Spectrometric channel ratios: $(R03 + R05) / R02$, $R05 / R03$, and the high-energy ratio $(R07 + R08) / \text{Gross CPM}$ (the definitive radon progeny signature).
-     - Temporal decay features: 3h backward difference, rolling variance, ratio to 168h rolling mean.
-3. **Model Family & Class Imbalance Handling for Phase 4**:
-   - Question: Given high class imbalance (~96% normal, ~2% washout, ~2% fission), how should gradient boosting (LightGBM / XGBoost) be loss-weighted or calibrated (e.g., focal loss, class weights, or post-hoc threshold tuning)?
+1. **Dual-Series Dataset Pipeline Architecture (Phase 4 Policy)**:
+   - Policy: Build two distinct series per station and split:
+     - *Clean Background Series*: Clean unmodified observations used strictly for baseline feature computation and counting operational false alarms per station-year.
+     - *Injected Series*: Synthetic injections applied to the continuous series before computing feature representations (e.g. 168h rolling statistics), used strictly for evaluating detection probability and time-to-alarm.
+2. **Feature Ablation Hierarchy (Phase 5 Policy)**:
+   - Question: What is the exact marginal detection gain provided by weather fusion over pure radiation features?
+   - Plan: Implement a 3-tier feature ablation:
+     1. Gross radiation features only (Gross CPM, rolling means, differences).
+     2. Radiation + spectral features (Channel energy ratios, R07+R08 high-energy share, photopeak ratios).
+     3. Radiation + spectral + weather fusion (Precipitation depth, multi-scale rain history, pressure tendencies, humidity).
+3. **Leave-One-Station-Out (LOSO) Cross-Validation**:
+   - Policy: Validate model generalization across climate regimes by holding out San Diego (which exhibits negative rain-radiation correlation due to coastal marine layer inversions) as the external unseen evaluation site.
+4. **Stratified Performance Breakdown (Phase 5 Policy)**:
+   - Policy: Report detection probability broken down separately by:
+     - Environmental regime: strictly dry vs rain onset.
+     - Release scenario: fission products (Cs-137, Cs-134, I-131) vs orphan activation sources (Co-60) vs mixed excursions.
+     - Duration regime: standard retention (36–80h) vs short hard-regime stress plumes (8–20h).
+5. **Detector Response Sensitivity Sweep (Phase 5 Policy)**:
+   - Plan: Run a sensitivity sweep varying the photopeak-to-total ratio over $\pm 30\%$ to prove that models trained on synthetic spectra generalize across variations in detector crystal dimensions and down-scatter continua.
 
 
 

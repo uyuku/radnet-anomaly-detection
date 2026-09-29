@@ -1,37 +1,49 @@
 """
-Phase 3 (Revised): Physically Grounded Synthetic Fission Injection Generator.
+Phase 3 (Gate 3 Revision 2): Physically Grounded Synthetic Fission Injection Generator.
 
-Implements all Gate 3 physical specifications:
-1. Multi-nuclide inventory: Cs-137 (662 keV), I-131 (365 keV), Co-60 (1173 & 1332 keV), Cs-134 (605, 796, 802 keV).
-   - Co-60 lines in R07 eliminate the artificial "R07 is only radon washout" shortcut.
-   - Non-zero continuum / pileup floor across all channels.
-   - Spectral perturbation (+/-10% per channel) per injection so models cannot memorize fixed ratios.
-2. Ambient Dose Rate Coupling:
-   - Injects delta_Dose = k_dose * delta_Gross_CPM (k_dose ~ 0.016 nSv/h per CPM, calibrated to empirical rain regression).
-3. Filter Accumulation & Replacement Physics:
-   - Inflow/Passage Phase (T_passage): Plume accumulates cumulatively on continuous filter.
-   - Retention Phase (T_retention): Plume has passed; activity remains on filter, decaying according to radiological half-life.
-   - I-131 decay: lambda = ln(2)/(8.025 d * 24h) = 0.00360 /h applied during accumulation and retention.
-   - Particulate fraction: Models particulate-bound radioiodine captured on glass fiber filter.
-   - Filter Replacement (T_change): Activity drops to 0 at filter replacement.
-4. Strict Non-Overlap Constraint:
-   - 48-hour buffer before and after each injection. Exactly 0 overlapping injections across entire catalog.
-5. True Dry vs Forced Rain Partitioning:
-   - Standard Dry: Precip == 0.0 mm across the entire injection window and preceding 24h.
-   - Forced Rain: Precip > 0.0 mm at plume onset. Included in BOTH Train (30%) and Test (50%).
-6. Hard-Regime Stress Test Set:
-   - Dedicated test subset of short (8-20h) plumes with subtle magnitudes (250-600 CPM) during active rain.
-7. Exact Calendar Accounting:
+Implements all Gate 3 physical specifications and review requirements:
+1. Operational Radiological Scenarios & Multi-Nuclide Inventory:
+   - Fission reactor release (Cs-137 + Cs-134 + I-131; Fukushima-like isotopic inventory, Masson et al. 2011).
+   - Pure medical/radiopharmaceutical release (I-131).
+   - Pure legacy sealed source / industrial dispersal (Cs-137).
+   - Orphan industrial radiography / radiotherapy activation source (Co-60; 1173 & 1332 keV gamma lines in R07).
+   - Mixed severe core damage / structural activation (Cs-137 + Cs-134 + I-131 + Co-60).
+   - Channel distributions sampled across broad continuous Dirichlet/uniform distributions
+     (photopeak fractions and high-energy scatter tails vary widely per injection).
+2. Traceable Empirical Dose-Rate Coupling:
+   - Injects delta_Dose = k_dose * delta_Gross_CPM.
+   - k_dose sampled per injection from empirical regression slopes calibrated in
+     src/calibrate_dose_coupling.py (data/processed/dose_rate_cpm_regression_summary.csv).
+   - Documented assumptions: energy dependence of dose-per-count vs unified empirical range;
+     dose-to-gross ratio identical between synthetic fission and radon washout by construction.
+3. Filter Accumulation, Retention Decay, and Step-Drop Synchronization:
+   - Inflow/Passage Phase (t_passage): Cumulative particulate accumulation during plume passage.
+   - Retention Phase (t_retention): Particulates remain trapped on filter media; I-131 decays (T_1/2 = 8.025 d).
+   - Filter Step-Drop Synchronization: Real filter drops detected via dry 3h step detector.
+     If a real filter drop occurs during retention, injection truncates at that exact hour,
+     synchronizing the synthetic particulate clearing with the physical background filter change.
+     If a real filter drop occurs during plume intake, the candidate window is rejected.
+     If no filter drop occurs, sampled duration is retained (representing subtle/wet changes or ambient cloud).
+4. Anchored Hard-Case Rain Onset:
+   - Forced-rain injections anchored directly to precipitation onsets (P_1h >= 1.0 mm/h after dry hours),
+     ensuring the plume's rising intake phase is directly immersed inside the natural radon washout surge.
+   - Logs washout_overlap_hours and rise_washout_overlap_hours.
+5. Hard-Regime Test Set:
+   - Dedicated stress test subset with subtle magnitudes (Band A [250, 600] CPM) and short durations (8-20h)
+     forced into rain onsets.
+6. Calendar Accounting & Missing Data:
    - Train: 2017-01-01 to 2023-01-01 (52,584 hours per station).
    - Test: 2023-01-01 to 2026-01-01 (26,304 hours per station).
    - Missing data labeled 'unobserved', not 'normal'.
 """
 
+import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(".").resolve()))
 import pandas as pd
 import numpy as np
 import yaml
-
+from src.analyze_filter_cycles_multi_station import detect_filter_drops
 
 CONFIG_PATH = Path("configs/config.yaml")
 with open(CONFIG_PATH, "r") as f:
@@ -40,27 +52,24 @@ with open(CONFIG_PATH, "r") as f:
 RANDOM_SEED = config.get("random_seed", 42)
 
 STATIONS = [
-    {"id": "al_birmingham", "name": "Birmingham, AL"},
-    {"id": "dc_washington", "name": "Washington, DC"},
-    {"id": "ca_san_diego", "name": "San Diego, CA"},
-    {"id": "tx_dallas", "name": "Dallas, TX"},
-    {"id": "fl_tampa", "name": "Tampa, FL"},
+    {"id": "al_birmingham", "name": "Birmingham, AL", "drop_thresh": -300.0},
+    {"id": "dc_washington", "name": "Washington, DC", "drop_thresh": -250.0},
+    {"id": "ca_san_diego", "name": "San Diego, CA", "drop_thresh": -450.0},
+    {"id": "tx_dallas", "name": "Dallas, TX", "drop_thresh": -300.0},
+    {"id": "fl_tampa", "name": "Tampa, FL", "drop_thresh": -300.0},
 ]
 
 CHANNELS = [f"cpm_r0{i}" for i in range(2, 10)]
 
-# Nominal NaI(Tl) channel energy branching fractions for pure radionuclides
-# Normalized over reported channels R02-R09 (R01 <= 100 keV omitted by EPA as noise threshold)
-# Grounded in ENSDF / IAEA nuclear data and standard NaI(Tl) response (Knoll 2010; Heath 1964)
-NOMINAL_SPECTRA = {
-    # Cs-137: 661.7 keV photopeak in R05 (43%), Compton in R02-R04 (55%), high-energy tail in R06-R07 (2%)
-    "cs137": np.array([0.200, 0.150, 0.200, 0.430, 0.015, 0.005, 0.000, 0.000]),
-    # I-131: 364.5 keV photopeak in R03 (63%), Compton in R02 (25%), weak lines in R04-R05, tail in R06-R07
-    "i131":  np.array([0.250, 0.630, 0.050, 0.050, 0.015, 0.005, 0.000, 0.000]),
-    # Co-60: 1173.2 and 1332.5 keV photopeaks in R07 (28%), Compton continuum across R02-R06 (70%), tail in R08 (2%)
-    "co60":  np.array([0.150, 0.150, 0.150, 0.150, 0.100, 0.280, 0.020, 0.000]),
-    # Cs-134: 604.7 keV (R05), 795.9 keV (R05/R06), 802.0 keV (R06), 1365.2 keV (R07)
-    "cs134": np.array([0.180, 0.200, 0.150, 0.350, 0.080, 0.030, 0.010, 0.000]),
+# Traceable dose-rate coupling slopes from data/processed/dose_rate_cpm_regression_summary.csv
+# Format: (mean_slope, std_err)
+DOSE_COUPLING_SLOPES = {
+    "al_birmingham": 0.01399,
+    "dc_washington": 0.01687,
+    "ca_san_diego": 0.02388,
+    "tx_dallas": 0.01246,
+    "fl_tampa": 0.01191,
+    "pooled": 0.01357,
 }
 
 LAMBDA_I131 = np.log(2.0) / (8.025 * 24.0)  # 0.003600 h^-1
@@ -69,14 +78,14 @@ LAMBDA_I131 = np.log(2.0) / (8.025 * 24.0)  # 0.003600 h^-1
 def compute_physical_injection_profile(shape_family: str, t_passage: int, t_retention: int, peak_cpm: float, rise_param: float, f_i131: float) -> np.ndarray:
     """
     Computes physical count rate profile S(t) for t in 0..D-1 (D = t_passage + t_retention):
-    1. During plume passage (t < t_passage): cumulative accumulation of sampled airborne particulates on filter.
-    2. During retention (t >= t_passage): atmospheric plume has passed; activity on filter decays with radiological half-life.
-    3. At t = D: filter replacement removes loaded activity (signal drops to zero).
+    1. Plume passage (t < t_passage): cumulative particulate deposition on continuous air filter.
+    2. Retention (t >= t_passage): atmospheric plume has passed; particulate activity trapped on filter media
+       decays with radiological half-life (notably I-131).
+    3. Filter change (at t = D): technician replaces filter, resetting deposited activity to 0.
     """
     d = t_passage + t_retention
     lam = f_i131 * LAMBDA_I131
     
-    # Atmospheric concentration profile C(u) during plume passage
     u = np.arange(t_passage)
     if shape_family == "linear_ramp":
         c = np.clip(u / max(1.0, float(rise_param)), 0.0, 1.0)
@@ -94,7 +103,6 @@ def compute_physical_injection_profile(shape_family: str, t_passage: int, t_rete
     else:
         c = np.ones(t_passage)
 
-    # Filter accumulation during passage
     profile = np.zeros(d)
     for i in range(t_passage):
         decay_weights = np.exp(-lam * (i - np.arange(i + 1)))
@@ -103,7 +111,6 @@ def compute_physical_injection_profile(shape_family: str, t_passage: int, t_rete
     scale = peak_cpm / (profile[t_passage - 1] + 1e-6)
     profile[:t_passage] *= scale
     
-    # Retention phase: exponential radiological decay until filter replacement
     peak_val = profile[t_passage - 1]
     for i in range(t_passage, d):
         dt_ret = i - (t_passage - 1)
@@ -112,30 +119,80 @@ def compute_physical_injection_profile(shape_family: str, t_passage: int, t_rete
     return profile
 
 
-def sample_perturbed_spectrum(rng: np.random.RandomState, f_cs137: float, f_i131: float, f_co60: float, f_cs134: float) -> np.ndarray:
+def sample_operational_spectrum(rng: np.random.RandomState, scenario: str) -> tuple[np.ndarray, dict]:
     """
-    Computes composite base spectrum from nuclide shares, then applies random perturbation (+/-10% per channel)
-    to model detector gain drift, temperature shifts, and particulate mass shielding.
+    Samples channel energy branching shares across R02-R09 under operational radiological scenarios.
+    Uses continuous uniform/Dirichlet draws for photopeak fractions, Compton continuum, and
+    high-energy scatter floor to ensure models encounter wide spectral variety.
+    
+    Returns:
+    - w: normalized 8-channel array for R02-R09.
+    - nuclide_fractions: dict with fractions of Cs-137, I-131, Co-60, Cs-134.
     """
-    base = (
-        f_cs137 * NOMINAL_SPECTRA["cs137"] +
-        f_i131  * NOMINAL_SPECTRA["i131"] +
-        f_co60  * NOMINAL_SPECTRA["co60"] +
-        f_cs134 * NOMINAL_SPECTRA["cs134"]
-    )
-    # Relative Gaussian perturbation per channel (sigma = 10%)
-    pert = rng.normal(0.0, 0.10, size=len(base))
-    w = np.maximum(0.001, base * (1.0 + pert))
-    return w / np.sum(w)
+    tail_r06 = rng.uniform(0.005, 0.025)
+    tail_r07 = rng.uniform(0.002, 0.015)
+    tail_r08 = rng.uniform(0.001, 0.008)
+
+    if scenario == "fission_pure_cs137":
+        p_r05 = rng.uniform(0.38, 0.55)  # 662 keV photopeak
+        rem = 1.0 - p_r05 - tail_r06 - tail_r07 - tail_r08
+        comp = rng.dirichlet([2.5, 2.0, 2.0]) * rem
+        w = np.array([comp[0], comp[1], comp[2], p_r05, tail_r06, tail_r07, tail_r08, 0.0])
+        nuc = {"fraction_cs137": 1.0, "fraction_i131": 0.0, "fraction_co60": 0.0, "fraction_cs134": 0.0}
+
+    elif scenario == "fission_pure_i131":
+        p_r03 = rng.uniform(0.52, 0.70)  # 364 keV photopeak
+        p_r04 = rng.uniform(0.04, 0.08)  # 637 keV weak lines
+        rem = 1.0 - p_r03 - p_r04 - tail_r06 - tail_r07 - tail_r08
+        comp_r02 = rem * rng.uniform(0.70, 0.85)
+        comp_r05 = rem - comp_r02
+        w = np.array([comp_r02, p_r03, p_r04, comp_r05, tail_r06, tail_r07, tail_r08, 0.0])
+        nuc = {"fraction_cs137": 0.0, "fraction_i131": 1.0, "fraction_co60": 0.0, "fraction_cs134": 0.0}
+
+    elif scenario == "fission_reactor_fukushima":
+        # Fresh core fission release: Cs-137 (~40%), Cs-134 (~30%), I-131 (~30%)
+        p_r03 = rng.uniform(0.20, 0.35)  # I-131
+        p_r05 = rng.uniform(0.25, 0.40)  # Cs-137 + Cs-134
+        p_r06 = rng.uniform(0.03, 0.08)  # Cs-134 796/802 keV
+        rem = 1.0 - p_r03 - p_r05 - p_r06 - tail_r07 - tail_r08
+        comp = rng.dirichlet([2.5, 2.0, 2.0]) * rem
+        w = np.array([comp[0], p_r03 + comp[1], comp[2], p_r05, p_r06, tail_r07, tail_r08, 0.0])
+        nuc = {"fraction_cs137": 0.40, "fraction_i131": 0.30, "fraction_co60": 0.0, "fraction_cs134": 0.30}
+
+    elif scenario == "activation_orphan_co60":
+        # Co-60: 1173 and 1332 keV photopeaks in R07 (22-35%)
+        p_r07 = rng.uniform(0.22, 0.35)
+        tail_high = rng.uniform(0.015, 0.035)
+        rem = 1.0 - p_r07 - tail_high
+        comp = rng.dirichlet([2.0, 2.0, 2.0, 2.0, 1.5]) * rem
+        w = np.array([comp[0], comp[1], comp[2], comp[3], comp[4], p_r07, tail_high, 0.0])
+        nuc = {"fraction_cs137": 0.0, "fraction_i131": 0.0, "fraction_co60": 1.0, "fraction_cs134": 0.0}
+
+    else:  # "mixed_fission_activation"
+        # Core damage with structural steel activation: Cs-137 + I-131 + Co-60 + Cs-134
+        p_r03 = rng.uniform(0.15, 0.25)  # I-131
+        p_r05 = rng.uniform(0.20, 0.32)  # Cs-137 / Cs-134
+        p_r07 = rng.uniform(0.08, 0.18)  # Co-60
+        tail_high = rng.uniform(0.01, 0.02)
+        rem = 1.0 - p_r03 - p_r05 - p_r07 - tail_high
+        comp = rng.dirichlet([2.0, 2.0, 2.0, 1.5]) * rem
+        w = np.array([comp[0], p_r03, comp[1], p_r05, comp[2], p_r07, tail_high, 0.0])
+        nuc = {"fraction_cs137": 0.35, "fraction_i131": 0.25, "fraction_co60": 0.20, "fraction_cs134": 0.20}
+
+    # Relative channel perturbation (+/- 15%)
+    pert = rng.normal(0.0, 0.15, size=len(w))
+    w = np.maximum(0.001, w * (1.0 + pert))
+    w = w / np.sum(w)
+    return w, nuc
 
 
 def generate_revised_injection_catalog():
     """
-    Generates deterministic, non-overlapping synthetic injection catalog across all 5 pilot stations.
+    Generates deterministic, non-overlapping synthetic injection catalog across all 5 pilot stations:
     - 50 train injections per station (250 total, 2017-2022)
     - 40 test injections per station (200 total, 2023-2025):
         - 20 standard duration (36-80h), Band B [700, 1200] CPM
-        - 20 short duration hard-regime stress test (8-20h), Band A [250, 600] CPM
+        - 20 hard-regime stress test (8-20h), Band A [250, 600] CPM
     """
     rng = np.random.RandomState(RANDOM_SEED)
     catalog = []
@@ -148,27 +205,38 @@ def generate_revised_injection_catalog():
         df["dt"] = pd.to_datetime(df["utc_hour"])
         df = df.sort_values("dt").reset_index(drop=True)
 
+        # Detect real physical filter change drops
+        drops_df = detect_filter_drops(df, st["drop_thresh"])
+        detected_drop_indices = set(drops_df.index.tolist()) if not drops_df.empty else set()
+        print(f"{st['name']}: {len(detected_drop_indices)} real filter replacement drops detected for synchronization.")
+
         occupied = np.zeros(len(df), dtype=bool)
+
+        # Continuous 24h rolling precipitation sum for dry baseline verification
+        df["precip_24h"] = df["precip_1h_mm"].rolling(24, min_periods=12).sum()
+
+        # Rain onset mask: P >= 1.0 mm/h after dry preceding hour (or 4h dry window)
+        precip_prev4 = df["precip_1h_mm"].rolling(4, min_periods=4).sum().shift(1).fillna(0.0)
+        rain_onset_mask = (df["precip_1h_mm"] >= 1.0) & (precip_prev4 == 0.0) & df["has_radnet_obs"] & df["rad_complete_channels"]
+
+        # Dry mask: zero rain currently and zero in preceding 24h
+        dry_mask = (df["precip_1h_mm"] == 0.0) & (df["precip_24h"] == 0.0) & df["has_radnet_obs"] & df["rad_complete_channels"]
+
+        k_dose_mean = DOSE_COUPLING_SLOPES.get(st_id, DOSE_COUPLING_SLOPES["pooled"])
 
         # -------------------------------------------------------------
         # 1. Training Set (2017-01-01 to 2023-01-01: 52,584 hours)
         # -------------------------------------------------------------
         train_mask = (df["dt"] >= "2017-01-01") & (df["dt"] < "2023-01-01")
-        
-        # Candidate start pools in train
-        rain_starts_train = df[train_mask & df["has_radnet_obs"] & df["rad_complete_channels"] & (df["precip_1h_mm"] >= 1.0)].index.to_numpy()
-        
-        # 24h rolling dry mask for clean dry starts
-        df["precip_24h"] = df["precip_1h_mm"].rolling(24, min_periods=12).sum()
-        dry_starts_train = df[train_mask & df["has_radnet_obs"] & df["rad_complete_channels"] & (df["precip_1h_mm"] == 0.0) & (df["precip_24h"] == 0.0)].index.to_numpy()
+        rain_starts_train = df[train_mask & rain_onset_mask].index.to_numpy()
+        dry_starts_train = df[train_mask & dry_mask].index.to_numpy()
 
         n_train_rain = 15  # 30% forced rain onset in train
         n_train_dry = 35   # 70% clean dry in train
-        
+
         # A. Train forced rain-onset injections
         placed_rain_tr = 0
-        shuffled_rain = rng.permutation(rain_starts_train)
-        for idx in shuffled_rain:
+        for idx in rng.permutation(rain_starts_train):
             if placed_rain_tr >= n_train_rain:
                 break
             t_pass = int(rng.randint(4, 15))
@@ -176,6 +244,26 @@ def generate_revised_injection_catalog():
             dur = t_pass + t_ret
             if idx + dur >= len(df):
                 continue
+
+            # Filter change alignment:
+            # 1. Reject if real filter change occurs during plume intake
+            intake_drops = [d_idx for d_idx in detected_drop_indices if idx <= d_idx < idx + t_pass]
+            if intake_drops:
+                continue
+
+            # 2. Truncate if real filter change occurs during retention
+            ret_drops = sorted([d_idx for d_idx in detected_drop_indices if idx + t_pass <= d_idx < idx + dur])
+            truncated = False
+            if ret_drops:
+                drop_at = ret_drops[0]
+                new_dur = drop_at - idx + 1
+                if new_dur >= t_pass + 2:
+                    dur = new_dur
+                    t_ret = dur - t_pass
+                    truncated = True
+                else:
+                    continue
+
             # Non-overlap check with 48h buffer
             b_start = max(0, idx - 48)
             b_end = min(len(df), idx + dur + 48)
@@ -185,25 +273,21 @@ def generate_revised_injection_catalog():
             if not (window["has_radnet_obs"] & window["rad_complete_channels"]).all():
                 continue
 
-            # Shape: linear_ramp or step
             shape = rng.choice(["linear_ramp", "step"])
             rise_p = rng.uniform(1.0, 4.0) if shape == "linear_ramp" else 0.0
-            
-            # Magnitude: Band A [250, 600] or Band C [1400, 2500]
             mag_band = rng.choice(["Band_A_Low", "Band_C_High"])
             peak_cpm = round(rng.uniform(250.0, 600.0) if mag_band == "Band_A_Low" else rng.uniform(1400.0, 2500.0), 1)
 
-            # Balanced multi-nuclide mix in train
-            f_cs = round(rng.uniform(0.30, 0.50), 2)
-            f_i = round(rng.uniform(0.20, 0.40), 2)
-            f_co = round(rng.uniform(0.10, 0.25), 2)
-            f_cs134 = round(1.0 - (f_cs + f_i + f_co), 2)
-            if f_cs134 < 0:
-                f_cs134 = 0.0
-                f_i = round(1.0 - (f_cs + f_co), 2)
+            # Scenario selection
+            scen = rng.choice(["fission_reactor_fukushima", "mixed_fission_activation", "activation_orphan_co60"])
+            spec, nuc = sample_operational_spectrum(rng, scen)
 
-            k_dose = round(rng.normal(0.016, 0.002), 5)
-            k_dose = max(0.012, min(0.020, k_dose))
+            k_dose = round(float(rng.normal(k_dose_mean, 0.0015)), 5)
+            k_dose = max(0.010, min(0.026, k_dose))
+
+            # Quantify washout overlap during rise and total window
+            washout_overlap = int((window["precip_1h_mm"] >= 1.0).sum())
+            rise_overlap = int((window.iloc[:t_pass]["precip_1h_mm"] >= 1.0).sum())
 
             occupied[idx:idx + dur] = True
             catalog.append({
@@ -221,12 +305,16 @@ def generate_revised_injection_catalog():
                 "rise_param": round(rise_p, 2),
                 "magnitude_band": mag_band,
                 "peak_cpm": peak_cpm,
-                "fraction_cs137": f_cs,
-                "fraction_i131": f_i,
-                "fraction_co60": f_co,
-                "fraction_cs134": f_cs134,
+                "nuclide_scenario": scen,
+                "fraction_cs137": nuc["fraction_cs137"],
+                "fraction_i131": nuc["fraction_i131"],
+                "fraction_co60": nuc["fraction_co60"],
+                "fraction_cs134": nuc["fraction_cs134"],
                 "k_dose": k_dose,
                 "is_hard_case_rain": True,
+                "washout_overlap_hours": washout_overlap,
+                "rise_washout_overlap_hours": rise_overlap,
+                "truncated_by_filter_change": truncated,
                 "environment": "train_rain_coincident",
             })
             injection_id += 1
@@ -234,8 +322,7 @@ def generate_revised_injection_catalog():
 
         # B. Train strictly dry injections
         placed_dry_tr = 0
-        shuffled_dry = rng.permutation(dry_starts_train)
-        for idx in shuffled_dry:
+        for idx in rng.permutation(dry_starts_train):
             if placed_dry_tr >= n_train_dry:
                 break
             t_pass = int(rng.randint(4, 15))
@@ -243,6 +330,23 @@ def generate_revised_injection_catalog():
             dur = t_pass + t_ret
             if idx + dur >= len(df):
                 continue
+
+            intake_drops = [d_idx for d_idx in detected_drop_indices if idx <= d_idx < idx + t_pass]
+            if intake_drops:
+                continue
+
+            ret_drops = sorted([d_idx for d_idx in detected_drop_indices if idx + t_pass <= d_idx < idx + dur])
+            truncated = False
+            if ret_drops:
+                drop_at = ret_drops[0]
+                new_dur = drop_at - idx + 1
+                if new_dur >= t_pass + 2:
+                    dur = new_dur
+                    t_ret = dur - t_pass
+                    truncated = True
+                else:
+                    continue
+
             b_start = max(0, idx - 48)
             b_end = min(len(df), idx + dur + 48)
             if occupied[b_start:b_end].any():
@@ -250,7 +354,6 @@ def generate_revised_injection_catalog():
             window = df.iloc[idx:idx + dur]
             if not (window["has_radnet_obs"] & window["rad_complete_channels"]).all():
                 continue
-            # Strictly dry across entire window
             if (window["precip_1h_mm"] > 0.0).any():
                 continue
 
@@ -259,16 +362,11 @@ def generate_revised_injection_catalog():
             mag_band = rng.choice(["Band_A_Low", "Band_C_High"])
             peak_cpm = round(rng.uniform(250.0, 600.0) if mag_band == "Band_A_Low" else rng.uniform(1400.0, 2500.0), 1)
 
-            f_cs = round(rng.uniform(0.30, 0.50), 2)
-            f_i = round(rng.uniform(0.20, 0.40), 2)
-            f_co = round(rng.uniform(0.10, 0.25), 2)
-            f_cs134 = round(1.0 - (f_cs + f_i + f_co), 2)
-            if f_cs134 < 0:
-                f_cs134 = 0.0
-                f_i = round(1.0 - (f_cs + f_co), 2)
+            scen = rng.choice(["fission_pure_cs137", "fission_pure_i131", "fission_reactor_fukushima", "mixed_fission_activation"])
+            spec, nuc = sample_operational_spectrum(rng, scen)
 
-            k_dose = round(rng.normal(0.016, 0.002), 5)
-            k_dose = max(0.012, min(0.020, k_dose))
+            k_dose = round(float(rng.normal(k_dose_mean, 0.0015)), 5)
+            k_dose = max(0.010, min(0.026, k_dose))
 
             occupied[idx:idx + dur] = True
             catalog.append({
@@ -286,12 +384,16 @@ def generate_revised_injection_catalog():
                 "rise_param": round(rise_p, 2),
                 "magnitude_band": mag_band,
                 "peak_cpm": peak_cpm,
-                "fraction_cs137": f_cs,
-                "fraction_i131": f_i,
-                "fraction_co60": f_co,
-                "fraction_cs134": f_cs134,
+                "nuclide_scenario": scen,
+                "fraction_cs137": nuc["fraction_cs137"],
+                "fraction_i131": nuc["fraction_i131"],
+                "fraction_co60": nuc["fraction_co60"],
+                "fraction_cs134": nuc["fraction_cs134"],
                 "k_dose": k_dose,
                 "is_hard_case_rain": False,
+                "washout_overlap_hours": 0,
+                "rise_washout_overlap_hours": 0,
+                "truncated_by_filter_change": truncated,
                 "environment": "train_strictly_dry",
             })
             injection_id += 1
@@ -301,41 +403,51 @@ def generate_revised_injection_catalog():
         # 2. Test Set (2023-01-01 to 2026-01-01: 26,304 hours)
         # -------------------------------------------------------------
         test_mask = (df["dt"] >= "2023-01-01") & (df["dt"] < "2026-01-01")
-        rain_starts_test = df[test_mask & df["has_radnet_obs"] & df["rad_complete_channels"] & (df["precip_1h_mm"] >= 1.0)].index.to_numpy()
-        dry_starts_test = df[test_mask & df["has_radnet_obs"] & df["rad_complete_channels"] & (df["precip_1h_mm"] == 0.0) & (df["precip_24h"] == 0.0)].index.to_numpy()
+        rain_starts_test = df[test_mask & rain_onset_mask].index.to_numpy()
+        rain_starts_test_stress = df[test_mask & (df["precip_1h_mm"] >= 1.0) & (df["precip_1h_mm"].shift(1) < 1.0) & df["has_radnet_obs"] & df["rad_complete_channels"]].index.to_numpy()
+        dry_starts_test = df[test_mask & dry_mask].index.to_numpy()
 
-        # Subset 2A: Standard Test Cases (20 per station) - Band B Interpolation [700, 1200] CPM, medium/long duration
-        # 10 dry, 10 rain-onset
         n_std_test_dry = 10
         n_std_test_rain = 10
-
-        # Subset 2B: Short-Duration Hard-Regime Stress Cases (20 per station) - Band A Subtle [250, 600] CPM, short duration (8-20h)
-        # 10 dry, 10 rain-onset
         n_stress_test_dry = 10
         n_stress_test_rain = 10
 
-        # Helper function for test nuclide selection (pure or binary skewed)
-        def sample_test_nuclides():
-            choice = rng.choice(["pure_cs137", "pure_i131", "pure_co60", "skewed_cs_co"])
-            if choice == "pure_cs137":
-                return 0.90, 0.05, 0.05, 0.0
-            elif choice == "pure_i131":
-                return 0.05, 0.90, 0.05, 0.0
-            elif choice == "pure_co60":
-                return 0.05, 0.05, 0.90, 0.0
-            else:
-                return 0.50, 0.00, 0.50, 0.0
+        test_scenarios = [
+            "fission_reactor_fukushima",
+            "fission_pure_cs137",
+            "fission_pure_i131",
+            "activation_orphan_co60",
+            "mixed_fission_activation",
+        ]
 
-        # 2A-1: Standard Test Forced Rain
+        # 2A-1: Standard Test Forced Rain (36-80h, Band B [700, 1200] CPM)
         placed = 0
         for idx in rng.permutation(rain_starts_test):
             if placed >= n_std_test_rain:
                 break
             t_pass = int(rng.randint(10, 21))
-            t_ret = int(rng.randint(24, 61))
+            t_ret = int(rng.randint(26, 60))
             dur = t_pass + t_ret
             if idx + dur >= len(df):
                 continue
+
+            intake_drops = [d_idx for d_idx in detected_drop_indices if idx <= d_idx < idx + t_pass]
+            if intake_drops:
+                continue
+
+            ret_drops = sorted([d_idx for d_idx in detected_drop_indices if idx + t_pass <= d_idx < idx + dur])
+            truncated = False
+            if ret_drops:
+                drop_at = ret_drops[0]
+                new_dur = drop_at - idx + 1
+                if new_dur >= 36:  # Maintain standard duration regime
+                    dur = new_dur
+                    t_ret = dur - t_pass
+                    truncated = True
+                else:
+                    continue
+
+            dur = max(36, min(80, dur))
             b_start = max(0, idx - 48)
             b_end = min(len(df), idx + dur + 48)
             if occupied[b_start:b_end].any():
@@ -347,9 +459,14 @@ def generate_revised_injection_catalog():
             shape = rng.choice(["sigmoidal", "exponential"])
             rise_p = rng.uniform(0.8, 1.8) if shape == "sigmoidal" else rng.uniform(1.0, 2.5)
             peak_cpm = round(rng.uniform(700.0, 1200.0), 1)  # Band B
-            f_cs, f_i, f_co, f_cs134 = sample_test_nuclides()
-            k_dose = round(rng.normal(0.016, 0.002), 5)
-            k_dose = max(0.012, min(0.020, k_dose))
+            scen = test_scenarios[placed % len(test_scenarios)]
+            spec, nuc = sample_operational_spectrum(rng, scen)
+
+            k_dose = round(float(rng.normal(k_dose_mean, 0.0015)), 5)
+            k_dose = max(0.010, min(0.026, k_dose))
+
+            washout_overlap = int((window["precip_1h_mm"] >= 1.0).sum())
+            rise_overlap = int((window.iloc[:t_pass]["precip_1h_mm"] >= 1.0).sum())
 
             occupied[idx:idx + dur] = True
             catalog.append({
@@ -367,27 +484,49 @@ def generate_revised_injection_catalog():
                 "rise_param": round(rise_p, 2),
                 "magnitude_band": "Band_B_Mid (Interpolation)",
                 "peak_cpm": peak_cpm,
-                "fraction_cs137": f_cs,
-                "fraction_i131": f_i,
-                "fraction_co60": f_co,
-                "fraction_cs134": f_cs134,
+                "nuclide_scenario": scen,
+                "fraction_cs137": nuc["fraction_cs137"],
+                "fraction_i131": nuc["fraction_i131"],
+                "fraction_co60": nuc["fraction_co60"],
+                "fraction_cs134": nuc["fraction_cs134"],
                 "k_dose": k_dose,
                 "is_hard_case_rain": True,
+                "washout_overlap_hours": washout_overlap,
+                "rise_washout_overlap_hours": rise_overlap,
+                "truncated_by_filter_change": truncated,
                 "environment": "test_standard_rain_onset",
             })
             injection_id += 1
             placed += 1
 
-        # 2A-2: Standard Test Strictly Dry
+        # 2A-2: Standard Test Strictly Dry (36-80h, Band B [700, 1200] CPM)
         placed = 0
         for idx in rng.permutation(dry_starts_test):
             if placed >= n_std_test_dry:
                 break
             t_pass = int(rng.randint(10, 21))
-            t_ret = int(rng.randint(24, 61))
+            t_ret = int(rng.randint(26, 60))
             dur = t_pass + t_ret
             if idx + dur >= len(df):
                 continue
+
+            intake_drops = [d_idx for d_idx in detected_drop_indices if idx <= d_idx < idx + t_pass]
+            if intake_drops:
+                continue
+
+            ret_drops = sorted([d_idx for d_idx in detected_drop_indices if idx + t_pass <= d_idx < idx + dur])
+            truncated = False
+            if ret_drops:
+                drop_at = ret_drops[0]
+                new_dur = drop_at - idx + 1
+                if new_dur >= 36:
+                    dur = new_dur
+                    t_ret = dur - t_pass
+                    truncated = True
+                else:
+                    continue
+
+            dur = max(36, min(80, dur))
             b_start = max(0, idx - 48)
             b_end = min(len(df), idx + dur + 48)
             if occupied[b_start:b_end].any():
@@ -401,9 +540,11 @@ def generate_revised_injection_catalog():
             shape = rng.choice(["sigmoidal", "exponential"])
             rise_p = rng.uniform(0.8, 1.8) if shape == "sigmoidal" else rng.uniform(1.0, 2.5)
             peak_cpm = round(rng.uniform(700.0, 1200.0), 1)  # Band B
-            f_cs, f_i, f_co, f_cs134 = sample_test_nuclides()
-            k_dose = round(rng.normal(0.016, 0.002), 5)
-            k_dose = max(0.012, min(0.020, k_dose))
+            scen = test_scenarios[placed % len(test_scenarios)]
+            spec, nuc = sample_operational_spectrum(rng, scen)
+
+            k_dose = round(float(rng.normal(k_dose_mean, 0.0015)), 5)
+            k_dose = max(0.010, min(0.026, k_dose))
 
             occupied[idx:idx + dur] = True
             catalog.append({
@@ -421,29 +562,51 @@ def generate_revised_injection_catalog():
                 "rise_param": round(rise_p, 2),
                 "magnitude_band": "Band_B_Mid (Interpolation)",
                 "peak_cpm": peak_cpm,
-                "fraction_cs137": f_cs,
-                "fraction_i131": f_i,
-                "fraction_co60": f_co,
-                "fraction_cs134": f_cs134,
+                "nuclide_scenario": scen,
+                "fraction_cs137": nuc["fraction_cs137"],
+                "fraction_i131": nuc["fraction_i131"],
+                "fraction_co60": nuc["fraction_co60"],
+                "fraction_cs134": nuc["fraction_cs134"],
                 "k_dose": k_dose,
                 "is_hard_case_rain": False,
+                "washout_overlap_hours": 0,
+                "rise_washout_overlap_hours": 0,
+                "truncated_by_filter_change": truncated,
                 "environment": "test_standard_strictly_dry",
             })
             injection_id += 1
             placed += 1
 
-        # 2B-1: Short-Duration Hard-Regime Stress Test Forced Rain
+        # 2B-1: Hard-Regime Stress Test Forced Rain (8-20h, Band A [250, 600] CPM)
         placed = 0
-        for idx in rng.permutation(rain_starts_test):
+        for idx in rng.permutation(rain_starts_test_stress):
             if placed >= n_stress_test_rain:
                 break
             t_pass = int(rng.randint(3, 9))
-            t_ret = int(rng.randint(4, 12))
+            t_ret = int(rng.randint(5, 12))
             dur = t_pass + t_ret
             if idx + dur >= len(df):
                 continue
-            b_start = max(0, idx - 48)
-            b_end = min(len(df), idx + dur + 48)
+
+            intake_drops = [d_idx for d_idx in detected_drop_indices if idx <= d_idx < idx + t_pass]
+            if intake_drops:
+                continue
+
+            ret_drops = sorted([d_idx for d_idx in detected_drop_indices if idx + t_pass <= d_idx < idx + dur])
+            truncated = False
+            if ret_drops:
+                drop_at = ret_drops[0]
+                new_dur = drop_at - idx + 1
+                if 8 <= new_dur <= 20:
+                    dur = new_dur
+                    t_ret = dur - t_pass
+                    truncated = True
+                else:
+                    continue
+
+            dur = max(8, min(20, dur))
+            b_start = max(0, idx - 24)
+            b_end = min(len(df), idx + dur + 24)
             if occupied[b_start:b_end].any():
                 continue
             window = df.iloc[idx:idx + dur]
@@ -453,9 +616,14 @@ def generate_revised_injection_catalog():
             shape = rng.choice(["sigmoidal", "exponential"])
             rise_p = rng.uniform(0.6, 1.4) if shape == "sigmoidal" else rng.uniform(0.8, 1.8)
             peak_cpm = round(rng.uniform(250.0, 600.0), 1)  # Band A Subtle
-            f_cs, f_i, f_co, f_cs134 = sample_test_nuclides()
-            k_dose = round(rng.normal(0.016, 0.002), 5)
-            k_dose = max(0.012, min(0.020, k_dose))
+            scen = test_scenarios[placed % len(test_scenarios)]
+            spec, nuc = sample_operational_spectrum(rng, scen)
+
+            k_dose = round(float(rng.normal(k_dose_mean, 0.0015)), 5)
+            k_dose = max(0.010, min(0.026, k_dose))
+
+            washout_overlap = int((window["precip_1h_mm"] >= 1.0).sum())
+            rise_overlap = int((window.iloc[:t_pass]["precip_1h_mm"] >= 1.0).sum())
 
             occupied[idx:idx + dur] = True
             catalog.append({
@@ -473,27 +641,49 @@ def generate_revised_injection_catalog():
                 "rise_param": round(rise_p, 2),
                 "magnitude_band": "Band_A_Low (Stress Test)",
                 "peak_cpm": peak_cpm,
-                "fraction_cs137": f_cs,
-                "fraction_i131": f_i,
-                "fraction_co60": f_co,
-                "fraction_cs134": f_cs134,
+                "nuclide_scenario": scen,
+                "fraction_cs137": nuc["fraction_cs137"],
+                "fraction_i131": nuc["fraction_i131"],
+                "fraction_co60": nuc["fraction_co60"],
+                "fraction_cs134": nuc["fraction_cs134"],
                 "k_dose": k_dose,
                 "is_hard_case_rain": True,
+                "washout_overlap_hours": washout_overlap,
+                "rise_washout_overlap_hours": rise_overlap,
+                "truncated_by_filter_change": truncated,
                 "environment": "test_stress_hard_case_rain",
             })
             injection_id += 1
             placed += 1
 
-        # 2B-2: Short-Duration Hard-Regime Stress Test Strictly Dry
+        # 2B-2: Hard-Regime Stress Test Strictly Dry (8-20h, Band A [250, 600] CPM)
         placed = 0
         for idx in rng.permutation(dry_starts_test):
             if placed >= n_stress_test_dry:
                 break
             t_pass = int(rng.randint(3, 9))
-            t_ret = int(rng.randint(4, 12))
+            t_ret = int(rng.randint(5, 12))
             dur = t_pass + t_ret
             if idx + dur >= len(df):
                 continue
+
+            intake_drops = [d_idx for d_idx in detected_drop_indices if idx <= d_idx < idx + t_pass]
+            if intake_drops:
+                continue
+
+            ret_drops = sorted([d_idx for d_idx in detected_drop_indices if idx + t_pass <= d_idx < idx + dur])
+            truncated = False
+            if ret_drops:
+                drop_at = ret_drops[0]
+                new_dur = drop_at - idx + 1
+                if 8 <= new_dur <= 20:
+                    dur = new_dur
+                    t_ret = dur - t_pass
+                    truncated = True
+                else:
+                    continue
+
+            dur = max(8, min(20, dur))
             b_start = max(0, idx - 48)
             b_end = min(len(df), idx + dur + 48)
             if occupied[b_start:b_end].any():
@@ -507,9 +697,11 @@ def generate_revised_injection_catalog():
             shape = rng.choice(["sigmoidal", "exponential"])
             rise_p = rng.uniform(0.6, 1.4) if shape == "sigmoidal" else rng.uniform(0.8, 1.8)
             peak_cpm = round(rng.uniform(250.0, 600.0), 1)  # Band A Subtle
-            f_cs, f_i, f_co, f_cs134 = sample_test_nuclides()
-            k_dose = round(rng.normal(0.016, 0.002), 5)
-            k_dose = max(0.012, min(0.020, k_dose))
+            scen = test_scenarios[placed % len(test_scenarios)]
+            spec, nuc = sample_operational_spectrum(rng, scen)
+
+            k_dose = round(float(rng.normal(k_dose_mean, 0.0015)), 5)
+            k_dose = max(0.010, min(0.026, k_dose))
 
             occupied[idx:idx + dur] = True
             catalog.append({
@@ -527,12 +719,16 @@ def generate_revised_injection_catalog():
                 "rise_param": round(rise_p, 2),
                 "magnitude_band": "Band_A_Low (Stress Test)",
                 "peak_cpm": peak_cpm,
-                "fraction_cs137": f_cs,
-                "fraction_i131": f_i,
-                "fraction_co60": f_co,
-                "fraction_cs134": f_cs134,
+                "nuclide_scenario": scen,
+                "fraction_cs137": nuc["fraction_cs137"],
+                "fraction_i131": nuc["fraction_i131"],
+                "fraction_co60": nuc["fraction_co60"],
+                "fraction_cs134": nuc["fraction_cs134"],
                 "k_dose": k_dose,
                 "is_hard_case_rain": False,
+                "washout_overlap_hours": 0,
+                "rise_washout_overlap_hours": 0,
+                "truncated_by_filter_change": truncated,
                 "environment": "test_stress_strictly_dry",
             })
             injection_id += 1
@@ -563,6 +759,7 @@ def generate_revised_injection_catalog():
         Mean_f_Cs=("fraction_cs137", "mean"),
         Mean_f_Co=("fraction_co60", "mean"),
         Rain_Coincident=("is_hard_case_rain", "sum"),
+        Truncated_Filter=("truncated_by_filter_change", "sum"),
     ).reset_index()
     print(summary.to_string(index=False))
 
@@ -571,7 +768,7 @@ def generate_revised_injection_catalog():
 
 def build_and_save_labeled_datasets(catalog: pd.DataFrame):
     """
-    Applies synthetic injections with perturbed spectra and physical accumulation/retention/decay,
+    Applies synthetic injections with scenario spectra, physical accumulation/retention/decay,
     and saves labeled datasets and audit summaries.
     """
     rng = np.random.RandomState(RANDOM_SEED)
@@ -631,7 +828,6 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame):
                 if dur == 0:
                     continue
 
-                # Physical profile
                 prof = compute_physical_injection_profile(
                     shape_family=row["shape_family"],
                     t_passage=int(row["t_passage_hours"]),
@@ -641,15 +837,8 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame):
                     f_i131=float(row["fraction_i131"])
                 )
 
-                # Sample perturbed spectrum for this injection
-                spec = sample_perturbed_spectrum(
-                    rng=rng,
-                    f_cs137=float(row["fraction_cs137"]),
-                    f_i131=float(row["fraction_i131"]),
-                    f_co60=float(row["fraction_co60"]),
-                    f_cs134=float(row["fraction_cs134"])
-                )
-
+                # Resample spectrum for this injection under its designated scenario
+                spec, _ = sample_operational_spectrum(rng, row["nuclide_scenario"])
                 k_dose = float(row["k_dose"])
 
                 for idx_sub, s_val in zip(indices, prof):

@@ -46,12 +46,16 @@ def analyze_washout_spectrum():
         st_id = st["id"]
         csv_file = Path(f"data/processed/merged_{st_id}_2017_2025.csv.gz")
         df = pd.read_csv(csv_file)
+        df["dt"] = pd.to_datetime(df["utc_hour"])
+        df = df.sort_values("dt").reset_index(drop=True)
+        
+        # Continuous calendar grid operation: compute precip_24h before any row filtering
+        df["precip_24h"] = df["precip_1h_mm"].rolling(24, min_periods=12).sum()
         
         valid = df["has_radnet_obs"] & df["rad_complete_channels"]
         df_valid = df[valid].copy()
         
         # Dry baseline: current rain == 0 and preceding 24h rain == 0
-        df_valid["precip_24h"] = df_valid["precip_1h_mm"].rolling(24, min_periods=12).sum()
         dry = (df_valid["precip_1h_mm"] == 0.0) & (df_valid["precip_24h"] == 0.0)
         dry_means = df_valid.loc[dry, CHANNELS].mean()
 

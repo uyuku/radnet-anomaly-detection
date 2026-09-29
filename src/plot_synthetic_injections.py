@@ -1,11 +1,14 @@
 """
-Phase 3 Plotting Script (Revised): Visualizing Physically Grounded Synthetic Injections,
-NaI(Tl) Multi-Nuclide Spectroscopy, Parameter Disjointness, and Rain-Coincident Hard-Case Signatures.
-
-Generates:
-1. reports/figures/synthetic_injection_shapes_and_nuclides.png
-2. reports/figures/synthetic_injection_train_test_disjointness.png
-3. reports/figures/synthetic_injection_hard_case_rain.png
+Generates publication-quality figures for Phase 3 (Synthetic Injection Design):
+1. reports/figures/synthetic_injection_shapes_and_nuclides.png:
+   - Panel A: Filter accumulation inflow, retention plateau, radiological decay, and filter change drop.
+   - Panel B: NaI(Tl) channel energy shares comparing Cs-137, I-131, Co-60, Cs-134, and empirical radon washout.
+2. reports/figures/synthetic_injection_train_test_disjointness.png:
+   - Four-panel validation of injection durations, peak magnitudes, operational nuclide scenarios, and environmental regimes.
+3. reports/figures/synthetic_injection_hard_case_rain.png:
+   - Event timeline of INJ_0054 in Birmingham, AL during a severe convective storm (16.8 mm/h rain),
+     demonstrating concurrent rain onset, simultaneous elevation of R07 by Bi-214 and Co-60,
+     calibrated dose-rate response, and post-storm particulate filter retention.
 """
 
 from pathlib import Path
@@ -14,38 +17,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-# Plot styling
-plt.style.use("seaborn-v0_8-whitegrid" if "seaborn-v0_8-whitegrid" in plt.style.available else "default")
-plt.rcParams.update({
-    "font.family": "sans-serif",
-    "font.size": 11,
-    "axes.titlesize": 13,
-    "axes.labelsize": 11,
-    "xtick.labelsize": 10,
-    "ytick.labelsize": 10,
-    "figure.titlesize": 15,
-})
-
-CATALOG_PATH = Path("data/processed/synthetic_injection_catalog.csv")
-WASHOUT_SHARES_PATH = Path("data/processed/rain_washout_spectral_shares.csv")
 FIGURES_DIR = Path("reports/figures")
 FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 
+CATALOG_PATH = Path("data/processed/synthetic_injection_catalog.csv")
+WASHOUT_SHARES_PATH = Path("data/processed/rain_washout_spectral_shares.csv")
+
 
 def plot_shapes_and_nuclides():
-    """Figure 1: Physical accumulation/retention profiles and NaI(Tl) multi-nuclide spectrometry."""
+    """Figure 1: Physical Filter Accumulation Profiles & Multi-Nuclide Spectroscopy."""
     fig, axes = plt.subplots(1, 2, figsize=(15, 6))
 
-    # Panel A: Physical Profile S(t)
+    # Panel A: Physical Filter Profile S(t)
     ax1 = axes[0]
     t_pass = 14
     t_ret = 36
     d = t_pass + t_ret
     t = np.arange(d)
-
-    # Inflow profiles
-    # Train: linear ramp
     u = np.arange(t_pass)
+
+    # Train: linear ramp arrival
     c_ramp = np.clip(u / 3.0, 0.0, 1.0)
     acc_ramp = np.cumsum(c_ramp)
     acc_ramp = acc_ramp / acc_ramp[-1]
@@ -89,16 +80,14 @@ def plot_shapes_and_nuclides():
     ax1.plot(t, prof_sig, color="#ff7f0e", linestyle="-", linewidth=2.5, label="Sigmoidal Inflow + Plateau (Test, Cs-137)")
     ax1.plot(t, prof_exp, color="#9467bd", linestyle="-", linewidth=2.5, label="Exp Inflow + I-131 Decay (-12% over 36h) (Test)")
 
-    # Mark plume passage vs retention vs filter change
     ax1.axvline(t_pass, color="gray", linestyle="-.", alpha=0.7)
     ax1.text(t_pass / 2, 0.15, "Plume Passage Phase\n(Cumulative Inflow)", ha="center", fontsize=9.5, fontweight="bold",
              bbox=dict(boxstyle="round,pad=0.2", facecolor="#e8f5e9", edgecolor="#2ca02c", alpha=0.8))
     ax1.text(t_pass + t_ret / 2, 0.15, "Retention Phase\n(Plateau / Radiological Decay)", ha="center", fontsize=9.5, fontweight="bold",
              bbox=dict(boxstyle="round,pad=0.2", facecolor="#fff3e0", edgecolor="#ff7f0e", alpha=0.8))
     
-    # Filter change drop indicator
-    ax1.annotate("Filter Replaced:\nActivity drops to 0",
-                 xy=(d - 1, 1.0), xytext=(d - 10, 0.65),
+    ax1.annotate("Filter Replaced:\nActivity resets to 0",
+                 xy=(d - 1, 1.0), xytext=(d - 12, 0.65),
                  arrowprops=dict(facecolor="red", shrink=0.08, width=1.5, headwidth=6),
                  fontsize=9.5, fontweight="bold",
                  bbox=dict(boxstyle="round,pad=0.3", facecolor="#ffebee", edgecolor="red"))
@@ -108,20 +97,21 @@ def plot_shapes_and_nuclides():
     ax1.set_ylabel("Normalized Filter Excess Signal")
     ax1.set_xlim(0, d + 2)
     ax1.set_ylim(-0.05, 1.25)
-    ax1.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#cccccc", fontsize=9.5)
+    ax1.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#cccccc", fontsize=9.0)
 
     # Panel B: NaI(Tl) Multi-Nuclide Energy Allocations
     ax2 = axes[1]
     channels = ["R02\n101-200", "R03\n201-400", "R04\n401-600", "R05\n601-800", "R06\n801-1000", "R07\n1001-1400", "R08\n1401-1800", "R09\n1801-2200"]
     x = np.arange(len(channels))
-    width = 0.20
+    width = 0.16
 
-    # Radionuclide spectra (nominal)
+    # Radionuclide spectra (operational approximations)
     w_cs137 = [20.0, 15.0, 20.0, 43.0, 1.5, 0.5, 0.0, 0.0]
     w_i131 =  [25.0, 63.0, 5.0,  5.0,  1.5, 0.5, 0.0, 0.0]
     w_co60 =  [15.0, 15.0, 15.0, 15.0, 10.0, 28.0, 2.0, 0.0]
+    w_cs134 = [18.0, 20.0, 15.0, 35.0, 8.0,  3.0, 1.0, 0.0]
 
-    # Empirical pooled washout shares from data/processed/rain_washout_spectral_shares.csv
+    # Empirical pooled washout shares
     df_wash = pd.read_csv(WASHOUT_SHARES_PATH)
     pooled = df_wash[df_wash["Scope"].str.contains("Pooled")].iloc[0]
     w_washout = [
@@ -135,26 +125,27 @@ def plot_shapes_and_nuclides():
         pooled["cpm_r09_mean_pct"],
     ]
 
-    rects1 = ax2.bar(x - 1.5 * width, w_cs137, width, label="Cs-137 (662 keV photopeak in R05)", color="#d62728", alpha=0.9)
-    rects2 = ax2.bar(x - 0.5 * width, w_i131,  width, label="I-131 (365 keV photopeak in R03)", color="#ff7f0e", alpha=0.9)
-    rects3 = ax2.bar(x + 0.5 * width, w_co60,  width, label="Co-60 (1173 & 1332 keV in R07!)", color="#9467bd", alpha=0.9)
-    rects4 = ax2.bar(x + 1.5 * width, w_washout, width, label="Natural Radon Washout (Empirical, N=5,479h)", color="#1f77b4", alpha=0.9)
+    rects1 = ax2.bar(x - 2.0 * width, w_cs137, width, label="Cs-137 (662 keV photopeak in R05)", color="#d62728", alpha=0.9)
+    rects2 = ax2.bar(x - 1.0 * width, w_i131,  width, label="I-131 (365 keV photopeak in R03)", color="#ff7f0e", alpha=0.9)
+    rects3 = ax2.bar(x,               w_cs134, width, label="Cs-134 (605, 796, 802 keV in R05/R06)", color="#2ca02c", alpha=0.9)
+    rects4 = ax2.bar(x + 1.0 * width, w_co60,  width, label="Co-60 (1173 & 1332 keV in R07!)", color="#9467bd", alpha=0.9)
+    rects5 = ax2.bar(x + 2.0 * width, w_washout, width, label=f"Radon Washout (Empirical 5-Stn Mean, R07+R08={pooled['r07_plus_r08_mean_pct']}%)", color="#1f77b4", alpha=0.9)
 
-    ax2.set_title("Panel B: NaI(Tl) Multi-Nuclide Energy Allocations (% of Excess)\n(Co-60 Photopeaks in R07 Eliminate Artificial Zero Shortcut)", fontweight="bold")
-    ax2.set_xlabel("RadNet Gamma Channel and Energy Boundary (keV)")
-    ax2.set_ylabel("Share of Excess Plume Counts (%)")
+    ax2.set_title("Panel B: Gamma Channel Branching Shares (% of Excess Counts)\n(Empirical Washout vs. Anthropogenic Fission & Activation Isotopes)", fontweight="bold")
+    ax2.set_xlabel("RadNet Energy Channel (keV Window)")
+    ax2.set_ylabel("Share of Excess Net Gross Counts (%)")
     ax2.set_xticks(x)
-    ax2.set_xticklabels(channels)
+    ax2.set_xticklabels(channels, fontsize=8.5)
     ax2.set_ylim(0, 75)
 
     # Highlight R07
     rect_box = patches.Rectangle((4.5, 0), 1.0, 72, linewidth=1.5, edgecolor="purple", facecolor="purple", alpha=0.08, linestyle="--")
     ax2.add_patch(rect_box)
     ax2.text(5.0, 62, "Channel R07 (1001-1400 keV):\nCo-60 = 28.0% (Photopeaks!)\nWashout = 3.8% (Bi-214)\nR07 > 0 is NOT unique to rain!",
-             ha="center", va="top", color="#4a148c", fontsize=9.0, fontweight="bold",
+             ha="center", va="top", color="#4a148c", fontsize=8.5, fontweight="bold",
              bbox=dict(boxstyle="round,pad=0.3", facecolor="#f3e5f5", edgecolor="purple", alpha=0.9))
 
-    ax2.legend(loc="upper right", frameon=True, facecolor="white", edgecolor="#cccccc", fontsize=9.0)
+    ax2.legend(loc="upper right", frameon=True, facecolor="white", edgecolor="#cccccc", fontsize=8.5)
 
     plt.tight_layout()
     out_file = FIGURES_DIR / "synthetic_injection_shapes_and_nuclides.png"
@@ -198,16 +189,26 @@ def plot_train_test_disjointness():
     ax2.set_ylabel("Number of Injections")
     ax2.legend(loc="upper right", frameon=True, facecolor="white")
 
-    # Panel C: Nuclide Fractions
+    # Panel C: Operational Nuclide Scenarios
     ax3 = axes[1, 0]
-    bins_f = np.linspace(0.0, 1.0, 25)
-    ax3.hist(train_df["fraction_cs137"], bins=bins_f, color="#1f77b4", alpha=0.7, label="Train Multi-Nuclide Balanced Mixes", edgecolor="black")
-    ax3.hist(test_df[test_df["fraction_cs137"] >= 0.85]["fraction_cs137"], bins=bins_f, color="#d62728", alpha=0.7, label="Test Pure Cs-137 (f_Cs >= 0.85)", edgecolor="black")
-    ax3.hist(test_df[test_df["fraction_co60"] >= 0.85]["fraction_co60"], bins=bins_f, color="#9467bd", alpha=0.7, label="Test Pure Co-60 (f_Co >= 0.85)", edgecolor="black")
-    ax3.set_title("Panel C: Radionuclide Inventory Composition\n(Train Balanced Mixtures vs. Test Pure/Skewed Profiles)", fontweight="bold")
-    ax3.set_xlabel("Radionuclide Activity Fraction")
+    scen_counts = test_df["nuclide_scenario"].value_counts()
+    scen_names = {
+        "fission_reactor_fukushima": "Reactor Fission\n(Cs-137+134+I-131)",
+        "fission_pure_cs137": "Legacy Source\n(Pure Cs-137)",
+        "fission_pure_i131": "Radiopharma\n(Pure I-131)",
+        "activation_orphan_co60": "Orphan Source\n(Co-60)",
+        "mixed_fission_activation": "Core Excursion\n(Mixed All 4)",
+    }
+    scen_labels = [scen_names.get(k, k) for k in scen_counts.index]
+    colors_scen = ["#ff7f0e", "#d62728", "#2ca02c", "#9467bd", "#8c564b"]
+    bars_sc = ax3.bar(range(len(scen_counts)), scen_counts.values, color=colors_scen, edgecolor="black")
+    ax3.set_title("Panel C: Operational Release Scenarios in Test Set (N=200)\n(Balanced Across Reactor Fission, Medical, and Orphan Activation)", fontweight="bold")
     ax3.set_ylabel("Number of Injections")
-    ax3.legend(loc="upper center", frameon=True, facecolor="white")
+    ax3.set_xticks(range(len(scen_counts)))
+    ax3.set_xticklabels(scen_labels, fontsize=9.0)
+    ax3.set_ylim(0, 60)
+    for bar, count in zip(bars_sc, scen_counts.values):
+        ax3.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1.5, str(count), ha="center", fontweight="bold")
 
     # Panel D: Environment Breakdown
     ax4 = axes[1, 1]
@@ -245,16 +246,16 @@ def plot_train_test_disjointness():
 
 
 def plot_hard_case_rain():
-    """Figure 3: Detailed event timeline of INJ_0057 in Birmingham during a severe convective storm."""
+    """Figure 3: Detailed event timeline of INJ_0054 in Birmingham during a severe convective storm."""
     df = pd.read_csv("data/processed/labeled_al_birmingham_test.csv.gz")
     df["dt"] = pd.to_datetime(df["dt"])
 
-    # Target window: 2024-05-09 18:00 to 2024-05-12 18:00 (72 hours around INJ_0057)
-    t_start = pd.to_datetime("2024-05-09 18:00:00")
-    t_end = pd.to_datetime("2024-05-12 18:00:00")
+    # Target window: 2024-11-19 06:00 to 2024-11-21 14:00 (57 hours around INJ_0054)
+    t_start = pd.to_datetime("2024-11-19 06:00:00")
+    t_end = pd.to_datetime("2024-11-21 14:00:00")
     sub = df[(df["dt"] >= t_start) & (df["dt"] <= t_end)].copy().reset_index(drop=True)
 
-    # Thresholds for Birmingham
+    # Baseline thresholds for Birmingham
     dry_mask = (df["precip_24h"] == 0.0) & (df["precip_1h_mm"] == 0.0) & df["has_radnet_obs"] & df["rad_complete_channels"]
     mu_dry = df.loc[dry_mask, "gross_cpm"].mean()
     sigma_dry = df.loc[dry_mask, "gross_cpm"].std()
@@ -269,17 +270,17 @@ def plot_hard_case_rain():
 
     # Panel 1: Precipitation
     ax1 = axes[0]
-    ax1.bar(sub["dt"], sub["precip_1h_mm"], width=0.04, color="#1f77b4", edgecolor="#0b559f", alpha=0.85, label="Hourly Precipitation Depth (mm/h)")
+    ax1.bar(sub["dt"], sub["precip_1h_mm"], width=0.035, color="#1f77b4", edgecolor="#0b559f", alpha=0.85, label="Hourly Precipitation Depth (mm/h)")
     ax1.set_ylabel("Rain\n(mm/h)", fontweight="bold")
-    ax1.set_ylim(0, 22)
-    ax1.set_title("Dedicated Hard-Case Injection (INJ_0057, Birmingham, AL) During Severe Convective Storm", fontweight="bold", fontsize=13)
+    ax1.set_ylim(0, 20)
+    ax1.set_title("Dedicated Hard-Case Injection (INJ_0054, Birmingham, AL) During Severe Convective Storm\n(Concurrent Rain Onset, 16.8 mm/h Storm Peak, Co-60 Orphan Source Plume, and Filter Retention)", fontweight="bold", fontsize=12)
     ax1.legend(loc="upper right", frameon=True, facecolor="white")
 
     # Panel 2: Gross CPM
     ax2 = axes[1]
-    ax2.plot(sub["dt"], sub["gross_cpm"], color="#7f7f7f", linestyle="--", linewidth=1.8, label="Real Background + Natural Storm Washout")
-    ax2.plot(sub["dt"], sub["inj_gross_cpm"], color="#d62728", linewidth=2.5, label="Combined Detector Signal (Washout + Synthetic Fission Plume)")
-    ax2.plot(sub["dt"], sub["synthetic_excess_cpm"] + mu_dry, color="#ff7f0e", linestyle=":", linewidth=2.0, label="Synthetic Fission Plume Alone (S(t) + Baseline)")
+    ax2.plot(sub["dt"], sub["gross_cpm"], color="#7f7f7f", linestyle="--", linewidth=1.8, label="Real Background + Natural Storm Washout (Peak: 4,943.0 CPM)")
+    ax2.plot(sub["dt"], sub["inj_gross_cpm"], color="#d62728", linewidth=2.5, label="Combined Detector Signal (Peak: 6,116.4 CPM, Crosses 5-sigma)")
+    ax2.plot(sub["dt"], sub["synthetic_excess_cpm"] + mu_dry, color="#ff7f0e", linestyle=":", linewidth=2.0, label="Synthetic Co-60 Plume Alone (Plateau: +1,173.4 CPM)")
 
     ax2.axhline(thresh_3s, color="#2ca02c", linestyle="--", linewidth=1.5, label=f"Fixed 3-sigma Alarm Threshold ({thresh_3s:.1f} CPM)")
     ax2.axhline(thresh_5s, color="#e377c2", linestyle="--", linewidth=1.5, label=f"Fixed 5-sigma Alarm Threshold ({thresh_5s:.1f} CPM)")
@@ -287,43 +288,51 @@ def plot_hard_case_rain():
     # Highlight injection window
     inj_active = sub[sub["injection_active"]]
     if not inj_active.empty:
-        ax2.axvspan(inj_active["dt"].iloc[0], inj_active["dt"].iloc[-1], color="#ffebee", alpha=0.4, label="Fission Plume Active (55h on filter)")
+        ax2.axvspan(inj_active["dt"].iloc[0], inj_active["dt"].iloc[-1], color="#ffebee", alpha=0.4, label="Co-60 Plume Active on Filter (50h total duration)")
 
     ax2.set_ylabel("Gross CPM", fontweight="bold")
-    ax2.set_ylim(3200, 6200)
-    ax2.legend(loc="upper left", frameon=True, facecolor="white", fontsize=9.0)
+    ax2.set_ylim(3000, 6800)
+    ax2.legend(loc="upper left", frameon=True, facecolor="white", fontsize=8.5)
 
     # Panel 3: Ambient Dose Rate
     ax3 = axes[2]
-    ax3.plot(sub["dt"], sub["dose_rate_nsvh"], color="#7f7f7f", linestyle="--", linewidth=1.8, label="Real Background Dose Rate (Washout Peak: 89 nSv/h)")
-    ax3.plot(sub["dt"], sub["inj_dose_rate_nsvh"], color="#d62728", linewidth=2.2, label="Combined Injected Dose Rate (Calibrated k_dose = 0.0134 nSv/h per CPM)")
+    ax3.plot(sub["dt"], sub["dose_rate_nsvh"], color="#7f7f7f", linestyle="--", linewidth=1.8, label="Real Background Dose Rate (Storm Washout Peak: 82.0 nSv/h)")
+    ax3.plot(sub["dt"], sub["inj_dose_rate_nsvh"], color="#d62728", linewidth=2.2, label="Combined Injected Dose Rate (Calibrated k_dose = 0.0150 nSv/h per CPM, Peak: 99.6 nSv/h)")
     ax3.axhline(thresh_dose_3s, color="#2ca02c", linestyle="--", linewidth=1.5, label=f"Baseline 3-sigma Dose Rate Threshold ({thresh_dose_3s:.1f} nSv/h)")
     ax3.set_ylabel("Dose Rate\n(nSv/h)", fontweight="bold")
-    ax3.legend(loc="upper left", frameon=True, facecolor="white", fontsize=9.0)
+    ax3.set_ylim(50, 110)
+    ax3.legend(loc="upper left", frameon=True, facecolor="white", fontsize=8.5)
 
-    # Panel 4: Channels R05 (Cs-137) and R07 (Co-60 / Bi-214)
+    # Panel 4: Channels R05 and R07 (Co-60 in R07 vs Bi-214)
     ax4 = axes[3]
-    ax4.plot(sub["dt"], sub["inj_cpm_r05"], color="#d62728", linewidth=2.0, label="Combined R05 (601-800 keV: Cs-137 Photopeak + Bi-214 Washout)")
-    ax4.plot(sub["dt"], sub["inj_cpm_r07"], color="#1f77b4", linewidth=2.0, label="Combined R07 (1001-1400 keV: Bi-214 Washout + Co-60 Photopeaks)")
-    ax4.plot(sub["dt"], sub["cpm_r07"], color="gray", linestyle=":", alpha=0.8, label="Raw R07 (Natural Washout Spike Alone)")
+    ax4.plot(sub["dt"], sub["inj_cpm_r07"], color="#9467bd", linewidth=2.2, label="Combined R07 (1001-1400 keV: Bi-214 Washout + Co-60 Photopeaks at 1173 & 1332 keV)")
+    ax4.plot(sub["dt"], sub["cpm_r07"], color="gray", linestyle=":", linewidth=1.8, label="Raw R07 (Natural Storm Washout Alone)")
+    ax4.plot(sub["dt"], sub["inj_cpm_r05"], color="#d62728", linewidth=1.8, linestyle="--", label="Combined R05 (601-800 keV: Compton Continuum)")
     ax4.set_ylabel("Channel CPM", fontweight="bold")
-    ax4.set_xlabel("Date and Time (UTC, May 2024)", fontweight="bold")
-    ax4.legend(loc="upper left", frameon=True, facecolor="white", fontsize=9.0)
+    ax4.set_xlabel("Date and Time (UTC, November 2024)", fontweight="bold")
+    ax4.legend(loc="upper left", frameon=True, facecolor="white", fontsize=8.5)
 
     # Annotations
-    ax2.annotate("Severe Convective Storm Peak\n(19.8 mm rain, +1,775 CPM natural)",
-                 xy=(pd.to_datetime("2024-05-10 02:00:00"), 5592),
-                 xytext=(pd.to_datetime("2024-05-09 20:00:00"), 5800),
+    ax2.annotate("Severe Convective Storm Peak\n(16.8 mm/h rain, 4,538 CPM gross)",
+                 xy=(pd.to_datetime("2024-11-19 13:00:00"), 4538),
+                 xytext=(pd.to_datetime("2024-11-19 07:00:00"), 5600),
                  arrowprops=dict(facecolor="black", shrink=0.08, width=1, headwidth=6),
                  bbox=dict(boxstyle="round,pad=0.3", facecolor="#e8f5e9", edgecolor="#2ca02c"),
-                 fontsize=9.0, fontweight="bold")
+                 fontsize=8.5, fontweight="bold")
 
-    ax2.annotate("Storm washout decays within 3 hours,\nbut Fission Plume accumulates & persists!",
-                 xy=(pd.to_datetime("2024-05-10 14:00:00"), 4473),
-                 xytext=(pd.to_datetime("2024-05-10 16:00:00"), 5200),
+    ax2.annotate("Combined Signal Peak: 6,116.4 CPM\n(Exceeds 5-sigma Alarm Threshold)",
+                 xy=(pd.to_datetime("2024-11-20 01:00:00"), 6116.4),
+                 xytext=(pd.to_datetime("2024-11-20 04:00:00"), 6400),
                  arrowprops=dict(facecolor="red", shrink=0.08, width=1, headwidth=6),
                  bbox=dict(boxstyle="round,pad=0.3", facecolor="#ffebee", edgecolor="red"),
-                 fontsize=9.0, fontweight="bold")
+                 fontsize=8.5, fontweight="bold")
+
+    ax2.annotate("Storm rain ceases;\nWashout decays away, but particulate\nCo-60 persists on filter (+1,173.4 CPM)!",
+                 xy=(pd.to_datetime("2024-11-20 18:00:00"), 4450),
+                 xytext=(pd.to_datetime("2024-11-20 20:00:00"), 5300),
+                 arrowprops=dict(facecolor="#ff7f0e", shrink=0.08, width=1, headwidth=6),
+                 bbox=dict(boxstyle="round,pad=0.3", facecolor="#fff3e0", edgecolor="#ff7f0e"),
+                 fontsize=8.5, fontweight="bold")
 
     plt.tight_layout()
     out_file = FIGURES_DIR / "synthetic_injection_hard_case_rain.png"

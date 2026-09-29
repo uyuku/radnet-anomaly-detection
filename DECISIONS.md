@@ -80,44 +80,65 @@ Format:
 
 ---
 
-### Phase 3: Synthetic Injection Design Decisions (Revised & Grounded)
+### Phase 3: Synthetic Injection Design Decisions (Revised & Grounded - Second Pass)
 
-- **2026-09-29 | Headline evaluation metric policy (Addressing Review Item 2.7)**
-  - **Reason**: To eliminate vulnerability to label circularity in natural radon washout, the project adopts Claude's recommendation and Section 6 of `PROJECT_SPEC.md`: the primary headline metric is **false alarms per station-year at a fixed detection probability for injected fission events** evaluated on **unmodified real background data**. The three-class breakdown (`normal`, `radon_washout`, `fission_product`) is retained strictly as an auxiliary diagnostic, guaranteeing that the core scientific claim does not rely on a circular label definition.
-- **2026-09-29 | Multi-nuclide inventory & elimination of spectral shortcut (Addressing Review Item 2.1)**
-  - **Reason**: The initial draft assigned strictly 0.0% counts to R06–R09 for fission injections, handing classifiers an artificial shortcut against radon washout (where Bi-214 emits in R07 and R08). In real radiological emergencies, anthropogenic plumes contain isotopes with lines above 800 keV:
-    - **$^{60}\text{Co}$** ($T_{1/2} = 5.271\text{ y}$): Prominent cascading gamma lines at 1173.2 keV and 1332.5 keV fall directly inside **Channel R07 (1001–1400 keV)**, emitting 28% of counts into R07 and Compton scatter across R02–R06.
-    - **$^{134}\text{Cs}$** ($T_{1/2} = 2.065\text{ y}$): Major gamma lines at 604.7 keV (R05), 795.9 keV (R05/R06), 802.0 keV (R06), and 1365.2 keV (R07).
-    - **High-energy scatter/continuum floor**: A realistic continuum/pileup tail (1.5% in R06, 0.5% in R07) is included for all nuclides.
-    - **Result**: Anthropogenic plumes can and do elevate Channel R07. A classifier cannot use `R07 > 0` as a trivial shortcut for radon washout.
+- **2026-09-29 | Real filter step-drop synchronization & clearing physics (Addressing Review Item 2.1)**
+  - **Reason**: To eliminate artificial artifacts where synthetic injected plumes ride through real physical filter changes or end abruptly without one:
+    1. **Step Detector Integration**: Candidate injection windows are evaluated against the Gate 2 dry 3-hour negative step detector (`src/analyze_filter_cycles_multi_station.py`).
+    2. **Intake Disruption Rejection**: If a detected real filter replacement occurs during the plume intake / passage phase ($t < t_{\text{start}} + T_{\text{passage}}$), the candidate window is rejected and resampled, preventing unnatural disruption of the plume build-up.
+    3. **Retention Truncation & Synchronization**: If a detected real filter replacement occurs during the retention phase ($t_{\text{start}} + T_{\text{passage}} \le t < t_{\text{start}} + D$), the injection retention is truncated to terminate at that exact hour ($D = t_{\text{drop}} - t_{\text{start}} + 1$). The synthetic particulate activity drops to zero synchronously with the real physical filter replacement step drop on the station (43 injections in the catalog truncated cleanly).
+    4. **Unsynchronized Windows**: If no filter replacement is detected within the window, the sampled duration $D$ is retained (representing ambient cloud departure, noble gas component, or filter replacements occurring under wet/subtle conditions where dry 3-hour differential thresholding cannot trigger).
+    5. **Documented Limitation**: The step detector operates exclusively during dry spells ($P = 0.0\text{ mm/h}$) where 3-hour drops exceed $-250\text{ to }-450\text{ CPM}$. Filter replacements performed during active precipitation or with subtle count drops cannot be identified by differential thresholding.
+- **2026-09-29 | Traceable empirical dose coupling & core physical assumptions (Addressing Review Item 2.2)**
+  - **Reason**: Ambient dose rate coupling $\Delta \text{Dose}(t) = k_{\text{dose}} \cdot \Delta \text{Gross CPM}(t)$ is calibrated directly via dedicated empirical regressions in [`src/calibrate_dose_coupling.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/calibrate_dose_coupling.py), producing [`data/processed/dose_rate_cpm_regression_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/dose_rate_cpm_regression_summary.csv) across 5,623 verified rain hours:
+    - Birmingham: $n=1,863$, slope $= 0.01399\text{ nSv/h per CPM}$, $R^2 = 0.831$, $95\%\text{ CI } [0.01371, 0.01428]$.
+    - Washington, DC: $n=1,748$, slope $= 0.01687\text{ nSv/h per CPM}$, $R^2 = 0.745$, $95\%\text{ CI } [0.01641, 0.01733]$.
+    - San Diego: $n=110$, slope $= 0.02388\text{ nSv/h per CPM}$, $R^2 = 0.532$, $95\%\text{ CI } [0.01965, 0.02811]$.
+    - Dallas: $n=1,237$, slope $= 0.01246\text{ nSv/h per CPM}$, $R^2 = 0.916$, $95\%\text{ CI } [0.01225, 0.01267]$.
+    - Tampa: $n=665$, slope $= 0.01191\text{ nSv/h per CPM}$, $R^2 = 0.815$, $95\%\text{ CI } [0.01147, 0.01234]$.
+    - Pooled Network: $n=5,623$, slope $= 0.01357\text{ nSv/h per CPM}$, $R^2 = 0.790$, $95\%\text{ CI } [0.01339, 0.01375]$.
+  - **Two Mandatory Stated Assumptions**:
+    1. *Photon Energy Dependence*: In nature, dose delivered per photon varies substantially with gamma energy ($^{60}\text{Co}$ at 1.17/1.33 MeV delivers significantly higher dose per photon than $^{131}\text{I}$ at 364 keV). Here, a unified empirical $k_{\text{dose}}$ distribution calibrated from RadNet field data is used across nuclide mixes.
+    2. *Non-Shortcut / Identical Ratio*: Because $k_{\text{dose}}$ is calibrated to empirical radon washout events, the dose-to-gross ratio for synthetic fission injections is identical by construction to that of natural radon washout. Therefore, ambient dose rate carries almost no class-separating information between washout and fission plumes. This is a deliberate, conservative design choice preventing models from exploiting dose rate as an artificial shortcut.
+  - **Citation Context**: NCRP Report No. 50 (1976), pp. 45–48 discusses environmental radiation exposure rates from radon progeny and fallout, but the numeric CPM-to-dose conversion factor is empirically derived from RadNet observations, not an NCRP table.
+- **2026-09-29 | Fission spectra relabeled as operational working templates & broadened sampling (Addressing Review Item 2.3)**
+  - **Reason**: The nominal spectra are explicitly designated as **operational working approximations / semi-empirical templates**, NOT fundamental derived quantities. While the principal gamma line energies (662 keV for Cs-137; 364 keV for I-131; 1173 & 1332 keV for Co-60; 605, 796, 802 keV for Cs-134) are fundamental nuclear data (ENSDF/IAEA), the channel fractions recorded by a 2.5" NaI(Tl) detector depend on crystal response, geometry, and Compton scatter.
+  - **Broadened Dispersion**: To prevent classifiers from memorizing rigid channel ratios, channel shares are sampled across broad continuous Dirichlet and uniform distributions per injection:
+    - Photopeak fractions vary widely: Cs-137 in R05 drawn from $[0.38, 0.55]$; I-131 in R03 drawn from $[0.52, 0.70]$; Co-60 in R07 drawn from $[0.22, 0.35]$.
+    - High-energy scatter tails (R06–R08) vary independently from $0.5\%\text{ to }3.5\%$.
+    - Relative channel perturbation ($\pm 15\%$ Gaussian) applied to all channels.
+  - **Phase 5 Plan**: A formal sensitivity sweep over the photopeak-to-total ratio will be executed in Phase 5 to assess model robustness against detector response variations.
+- **2026-09-29 | Operational release scenarios, Cs-134 inclusion, & Phase 5 reporting (Addressing Review Item 2.4)**
+  - **Reason**: Test injections are structured under 5 concrete operational radiological release scenarios:
+    1. `fission_reactor_fukushima`: Fresh reactor fission inventory containing volatile fission products $^{137}\text{Cs}$, $^{134}\text{Cs}$, and $^{131}\text{I}$ in realistic proportions (Masson et al. 2011; Steinhauser et al. 2014). High-energy share (R07+R08) is ~2% to 4%, directly overlapping or below radon progeny.
+    2. `fission_pure_cs137`: Legacy sealed source / industrial gauge breach or dispersal ($^{137}\text{Cs} \ge 85\%$).
+    3. `fission_pure_i131`: Radiopharmaceutical / medical isotope release ($^{131}\text{I} \ge 85\%$).
+    4. `activation_orphan_co60`: Orphan industrial radiography / radiotherapy source breach or scrap metal smelting incident (e.g. Ciudad Juárez 1983, Algeciras 1998, Goiânia). Emits prominently in R07 (22%–35%), demonstrating detection of non-fission activation threats.
+    5. `mixed_fission_activation`: Severe core excursion with structural activation debris (Cs-137 + Cs-134 + I-131 + Co-60). High-energy share is ~5% to 10%, directly spanning the radon 5.3% threshold.
+  - **Phase 5 Commitments**:
+    - Detection probability will be evaluated and reported separately by nuclide scenario (Cs/I fission vs Co activation vs mixed) and rain state (dry vs rain).
+    - A 3-tier feature ablation will be conducted: (1) Gross radiation only, (2) Radiation + spectral ratios, (3) Radiation + spectral ratios + weather fusion, isolating the true marginal gain of weather data.
+- **2026-09-29 | Citation corrections & empirical washout spectrum accounting (Addressing Review Item 2.5)**
   - **Citations**:
-    - International Atomic Energy Agency (IAEA) Nuclear Data Section / Evaluated Nuclear Structure Data File (ENSDF).
-    - Heath, R. L. (1964). *Scintillation Spectrometry Gamma-Ray Spectrum Catalogue* (2nd ed., IDO-16880). Phillips Petroleum Company / U.S. Atomic Energy Commission.
-    - Knoll, G. F. (2010). *Radiation Detection and Measurement* (4th ed.). John Wiley & Sons.
-- **2026-09-29 | Ambient dose rate injection coupling (Addressing Review Item 2.1)**
-  - **Reason**: Particulate gamma plumes collected on the filter and passing overhead elevate ambient exposure rate probes. Without dose-rate injection, the Phase 2 baseline "Global Dose Rate" rule would be blind by construction. A physical dose-rate coupling $\Delta \text{Dose}(t) = k_{\text{dose}} \cdot \Delta \text{Gross CPM}(t)$ is injected into `dose_rate_nsvh`, with $k_{\text{dose}} \sim \mathcal{N}(0.016, 0.002)\text{ nSv/h per CPM}$ (clamped to $[0.012, 0.020]$), matching empirical rain regressions across the pilot stations ($0.014\text{ to }0.021\text{ nSv/h per CPM}$) and health physics standards (NCRP Report No. 50).
-  - **Citation**: National Council on Radiation Protection and Measurements (NCRP). (1976). *Environmental Radiation Measurements* (NCRP Report No. 50).
-- **2026-09-29 | Filter accumulation, retention decay, and replacement physics (Addressing Review Item 2.2)**
-  - **Reason**: Resolves the unrealistic single-hour "cliff" drop and incorporates genuine filter operation:
-    1. **Plume Passage Phase** ($t < T_{\text{passage}}$): Plume passes overhead and air is continuously sampled through the filter at ~60 m³/h. Activity accumulates cumulatively: $A(t) = \sum_{u=0}^t C(u) e^{-\lambda (t-u)}$.
-    2. **Retention Phase** ($T_{\text{passage}} \le t < D$): Plume has passed ($C=0$). Particulates remain trapped on the filter, decaying purely according to radiological half-life ($e^{-\lambda t}$).
-    3. **$^{131}\text{I}$ Radiological Decay**: Applied during accumulation and retention using $\lambda = \ln(2) / (8.025 \times 24\text{ h}) = 0.00360\text{ h}^{-1}$ (~8.3% loss per 24 hours, ~12% loss over 36h retention).
-    4. **Filter Replacement Drop**: Activity terminates ($S(t) \to 0$) strictly when the filter is replaced (total duration $D = T_{\text{passage}} + T_{\text{retention}}$, bounded by empirical filter replacement intervals of ~4 days).
-    5. **Iodine Chemistry Assumption**: Explicitly models the **particulate-bound fraction** of radioiodine collected on the glass fiber filter (typically 10%–30% in environmental releases; gaseous fraction collected on downstream charcoal cartridges is analyzed off-site).
-  - **Citations**:
-    - Masson, O., et al. (2011). Tracking of airborne radionuclides from the Fukushima Dai-ichi nuclear accident. *Environmental Science & Technology*, 45(18), 7670–7677. https://doi.org/10.1021/es201605m.
-    - U.S. EPA (2005). *RadNet Air Sampling Procedures* (EPA 402-R-05-001).
-- **2026-09-29 | Scripted empirical washout spectrum & random perturbation (Addressing Review Item 2.3)**
-  - **Reason**: Replaced hardcoded constants with a dedicated analysis script ([`src/analyze_washout_spectrum.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_washout_spectrum.py)) computing excess channel shares across 5,479 verified substantial rain hours across all 5 stations ([`rain_washout_spectral_shares.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rain_washout_spectral_shares.csv)):
-    - Pooled shares: R02: 43.96%, R03: 32.37%, R04: 9.04%, R05: 5.91%, R06: 2.43%, R07: 3.81%, R08: 1.54%, R09: 0.94% (R07+R08 = 5.34%).
-    - Random spectral perturbation ($\pm 10\%$ relative Gaussian per channel) applied to every synthetic injection so the model cannot memorize fixed channel ratios.
-    - Channel R01 ($\le 100\text{ keV}$) is omitted by EPA as a noise threshold; all shares are defined over reported channels R02–R09.
-- **2026-09-29 | Strict non-overlap constraint & true dry partitioning (Addressing Review Items 2.4 & 2.5)**
-  - **Reason**: Solved catalog overlaps by tracking calendar index occupancy with a 48-hour buffer before and after each injection. Detected overlapping injection pairs reduced from 37 to **exactly 0**. Standard dry injections are required to have $P_{1\text{h}} = 0.0\text{ mm}$ across the entire injection window and preceding 24h. Forced rain-onset injections have $P_{1\text{h}} \ge 1.0\text{ mm}$ at onset, included in both Train (30%) and Test (50%).
-- **2026-09-29 | Short-duration hard-regime stress test set (Addressing Review Item 2.6)**
-  - **Reason**: Test set includes 100 short plumes (8–20h) with subtle magnitudes (Band A [250, 600] CPM) forced during active rain, directly testing the genuine hard regime where plume duration is comparable to storm duration.
-- **2026-09-29 | Reconciled continuous calendar accounting & missing data handling**
-  - **Reason**: Timestamps parsed with `< "2023-01-01"` and `< "2026-01-01"`, capturing exactly 52,584 train hours and 26,304 test hours (78,888 hours per station, 394,440 hours across network). Missing RadNet data explicitly labeled `unobserved` (59,873 hours across network), not `normal`. All numbers verified from [`data/processed/labeled_dataset_reconciliation_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/labeled_dataset_reconciliation_summary.csv).
+    - Masson et al. (2011) DOI corrected to `10.1021/es2017158`. Title: "Tracking of Airborne Radionuclides from the Damaged Fukushima Dai-ichi Nuclear Reactors by European Networks", *Environ. Sci. Technol.* 2011, 45(18), 7670–7677.
+    - Radioiodine collection: RadNet stationary monitors draw air through glass-fiber particulate filters which collect aerosol-bound radioiodine. Gaseous radioiodine species ($I_2, CH_3I$) penetrate particulate filters and require charcoal cartridges analyzed off-site. The synthetic injection amplitude models the *effective particulate activity deposited on the filter*, rather than total atmospheric gaseous release.
+  - **Washout Spectrum Script**: [`src/analyze_washout_spectrum.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_washout_spectrum.py) updated to compute rolling 24h precipitation strictly on the continuous calendar grid prior to filtering for observed hours. Across 5,485 verified rain hours (>100 CPM excess), pooled shares are: R02: 43.95%, R03: 32.34%, R04: 9.05%, R05: 5.92%, R06: 2.43%, R07: 3.81%, R08: 1.54%, R09: 0.96% (R07+R08 = 5.35%).
+  - **Tampa Geology & Spectrum**: Tampa exhibits higher R02 (61.81%) and lower R03 (18.41%) due to lower terrestrial background from Florida limestone/sand geology (dry baseline R02 is 881 CPM in Tampa vs 1,973 CPM in Birmingham) and PMT gain/threshold variations across monitor models.
+- **2026-09-29 | Rain-onset anchoring & washout overlap logging (Addressing Review Item 2.6)**
+  - **Reason**: Forced-rain injections are anchored directly to precipitation onsets ($P_{\text{1h}} \ge 1.0\text{ mm/h}$ following dry hours or at the start of a storm surge). This immerses the plume's rising intake phase directly inside the rising radon washout surge. Each injection logs `washout_overlap_hours` (total concurrent rain hours) and `rise_washout_overlap_hours` (concurrent rain hours during plume rise) in the catalog.
+- **2026-09-29 | Exact duration alignment & hard-regime framing (Addressing Review Item 2.7)**
+  - **Reason**: Duration parameters are strictly aligned across scripts, catalog, and documentation:
+    - Standard test: 36 to 80 hours (clamped exact).
+    - Stress test: 8 to 20 hours (clamped exact).
+    - Training: 10 to 36 hours.
+    - Stress test set is framed as a "hard-regime test set" testing low amplitude (Band A) and short duration during active rain, rather than asserting total disjointness from training.
+- **2026-09-29 | Phase 4 & Phase 5 Architectural Policies (Addressing Review Section 3 Guidance)**
+  - **Dual Series Generation**: Two series per station and split will be constructed:
+    1. *Clean Background Series*: Contains zero synthetic injections, used exclusively for computing baseline features and counting false alarms.
+    2. *Injected Series*: Contains all injections applied before feature engineering (e.g. 168h rolling statistics), used exclusively for evaluating detection probability and delay.
+  - **Observed Hours Denominator**: False alarm rates per station-year will use verified observed hours ($N_{\text{obs}} / 8,766$) as the denominator, preventing distortion from station outages (e.g. Dallas 2023–2025 outage of 10,826 unobserved hours).
+  - **Leave-One-Station-Out (LOSO) Validation**: Models will be validated with LOSO cross-validation, holding out San Diego (which exhibits negative rain-radiation correlation due to marine atmospheric inversions).
+  - **Washout Class as Diagnostic**: The `radon_washout` label is preserved strictly as an auxiliary diagnostic tool; the core headline metric is false alarms per station-year at fixed detection on unmodified background data.
 
 
 
