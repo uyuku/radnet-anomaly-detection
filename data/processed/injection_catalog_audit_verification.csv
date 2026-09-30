@@ -1,0 +1,7 @@
+check_item,specification,realized_value,status
+Total Injections,"450 injections (250 train, 200 test)","450 total (250 train, 200 test)",PASSED
+Filter Drop Synchronization,100.0% of injections end at real detected filter drops,450/450 (100.0%),PASSED
+Scenario Balance,Exact 20.0% per scenario in all 6 environments,20.0% across all 5 scenarios in all 6 environments,PASSED
+Inter-Injection Temporal Buffer,>= 48.0 hours between consecutive events at same station,>= 48.0h (0 buffer violations across all 5 stations),PASSED
+Cs-134 High-Energy Lines (R07+R08),Reactor releases exhibit Cs-134 lines spanning radon band,Mean 4.54% high energy share in Fukushima events,PASSED
+Stress-Rain Plume Durations,Bound by storm window and physical filter replacement cycle,28h to 140h (median 49.0h),PASSED

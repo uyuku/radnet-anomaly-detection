@@ -1,0 +1,4 @@
+model,frozen_tau,realized_detection_pct,false_alarms_per_year
+MLP (Raw Probabilities),0.98,91.7,85.11
+MLP (Isotonic Calibrated),0.05,92.0,128.08
+LightGBM Tier 3 (Reference),0.99,91.9,3.73

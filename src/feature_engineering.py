@@ -81,21 +81,19 @@ TIER_3_FEATURES = TIER_2_FEATURES + WEATHER_FEATURES + [
     "washout_expected_ratio",
 ]
 
-# Load training-only dry baselines (2017-2022) to prevent any test leakage
+# Load training-only dry baselines (2017-2022: training + validation years) to eliminate test leakage.
+# Computed strictly on dry background hours prior to the 2023-2025 test split.
 import json
 
 _BASELINES_FILE = Path(__file__).resolve().parent.parent / "data" / "processed" / "station_dry_baselines_train_only.json"
-if _BASELINES_FILE.exists():
-    with open(_BASELINES_FILE, "r") as _f:
-        STATION_DRY_BASELINES = json.load(_f)
-else:
-    STATION_DRY_BASELINES = {
-        "al_birmingham": {"mu": 3873.5, "sigma": 306.5, "mu_dose": 51.8, "sigma_dose": 2.8},
-        "dc_washington": {"mu": 2072.1, "sigma": 252.1, "mu_dose": 31.7, "sigma_dose": 5.5},
-        "ca_san_diego":  {"mu": 6984.9, "sigma": 457.9, "mu_dose": 103.9, "sigma_dose": 4.1},
-        "tx_dallas":     {"mu": 2966.6, "sigma": 327.4, "mu_dose": 39.7, "sigma_dose": 2.3},
-        "fl_tampa":      {"mu": 2277.5, "sigma": 237.9, "mu_dose": 30.6, "sigma_dose": 6.1},
-    }
+if not _BASELINES_FILE.exists():
+    raise FileNotFoundError(
+        f"Required training-only baseline file not found: {_BASELINES_FILE}. "
+        "Run compute_train_only_dry_baselines() to generate."
+    )
+
+with open(_BASELINES_FILE, "r") as _f:
+    STATION_DRY_BASELINES = json.load(_f)
 
 
 def compute_features_for_series(df_input: pd.DataFrame, station_id: str, use_injected: bool = True) -> pd.DataFrame:

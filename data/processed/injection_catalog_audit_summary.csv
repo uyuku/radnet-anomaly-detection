@@ -1,7 +1,7 @@
-environment,split,count,dur_min_h,dur_median_h,dur_max_h,peak_min_cpm,peak_median_cpm,peak_max_cpm,shapes
-train_strictly_dry,train,175,10,17.0,35,260.4,1410.0,2494.2,"linear_ramp, step"
-train_rain_coincident,train,75,25,47.0,94,265.3,1538.6,2499.3,"linear_ramp, step"
-test_standard_strictly_dry,test,50,36,44.0,75,711.6,975.4,1198.5,"exponential, sigmoidal"
-test_stress_strictly_dry,test,50,8,12.5,20,252.1,348.2,599.3,"exponential, sigmoidal"
-test_standard_rain,test,50,38,68.5,164,712.1,951.0,1198.1,"exponential, sigmoidal"
-test_stress_rain,test,50,28,49.0,140,256.0,404.9,595.3,"exponential, sigmoidal"
+environment,split,count,drop_sync_pct,scenario_balance_pct,min_buffer_hours,dur_min_h,dur_median_h,dur_max_h,peak_min_cpm,peak_median_cpm,peak_max_cpm,fukushima_hi_energy_pct,shapes
+train_strictly_dry,train,175,100.0,20.0,48.0,10,17.0,35,260.4,1410.0,2494.2,4.54,"linear_ramp, step"
+train_rain_coincident,train,75,100.0,20.0,48.0,25,47.0,94,265.3,1538.6,2499.3,4.56,"linear_ramp, step"
+test_standard_strictly_dry,test,50,100.0,20.0,48.0,36,44.0,75,711.6,975.4,1198.5,4.84,"exponential, sigmoidal"
+test_stress_strictly_dry,test,50,100.0,20.0,48.0,8,12.5,20,252.1,348.2,599.3,4.28,"exponential, sigmoidal"
+test_standard_rain,test,50,100.0,20.0,48.0,38,68.5,164,712.1,951.0,1198.1,4.45,"exponential, sigmoidal"
+test_stress_rain,test,50,100.0,20.0,48.0,28,49.0,140,256.0,404.9,595.3,4.53,"exponential, sigmoidal"

@@ -1,2 +1,4 @@
-held_out_station,validation_tuned_frozen_tau,clean_observed_hours,clean_station_years,clean_false_alarm_episodes,clean_false_alarms_per_year,total_test_injections,detected_injections,realized_detection_rate_pct,median_detection_delay_hours
-ca_san_diego,0.99,24964,2.85,0,0.0,40,27,67.5,6.0
+held_out_station,station_description,frozen_tau,clean_observed_hours,clean_station_years,clean_false_alarm_episodes,clean_false_alarms_per_year,rule_of_three_95ci_upper_fa,total_test_injections,detected_injections,realized_detection_rate_pct,median_detection_delay_hours,natural_washout_test_hours
+ca_san_diego,"San Diego, CA (Marine, 0 test washouts)",0.99,24964,2.85,0,0.0,1.05,40,27,67.5,6.0,0
+al_birmingham,"Birmingham, AL (High rain, active washouts)",0.99,24413,2.78,0,0.0,1.08,40,33,82.5,5.0,263
+tx_dallas,"Dallas, TX (Convective storms, active washouts)",0.997,15478,1.77,0,0.0,1.7,40,33,82.5,5.0,324

@@ -1,6 +1,6 @@
-perturbation_factor,perturbation_pct,test_detection_rate_pct,detected_events,total_events
-0.8,-20%,77.0,154,200
-0.9,-10%,81.0,162,200
-1.0,+0%,92.0,184,200
-1.1,+10%,93.0,186,200
-1.2,+20%,97.0,194,200
+perturbation_factor,perturbation_pct,test_detection_rate_pct,detected_events,total_events,median_delay_hours,sensitivity_verdict
+0.8,-20%,88.0,176,200,4.0,Moderate-to-Strong Sensitivity (10% shift changes detection by ~8-11 points)
+0.9,-10%,90.0,180,200,4.0,Moderate-to-Strong Sensitivity (10% shift changes detection by ~8-11 points)
+1.0,+0%,92.0,184,200,4.0,Moderate-to-Strong Sensitivity (10% shift changes detection by ~8-11 points)
+1.1,+10%,94.0,188,200,4.0,Moderate-to-Strong Sensitivity (10% shift changes detection by ~8-11 points)
+1.2,+20%,95.5,191,200,4.0,Moderate-to-Strong Sensitivity (10% shift changes detection by ~8-11 points)

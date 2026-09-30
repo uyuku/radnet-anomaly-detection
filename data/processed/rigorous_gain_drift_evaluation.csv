@@ -1,0 +1,6 @@
+gain_drift_shift,gain_drift_pct,clean_false_alarms_per_year,test_detection_rate_pct,detected_events,total_events
+-0.1,-10%,7.97,89.0,178,200
+-0.05,-5%,6.08,90.5,181,200
+0.0,+0%,4.77,92.0,184,200
+0.05,+5%,5.26,92.5,185,200
+0.1,+10%,22.11,92.5,185,200

@@ -1,3 +1,6 @@
-target_detection_tier,rolling_7d_multiplier_k,rolling_7d_detection_pct,rolling_7d_fa_per_year,global_dry_multiplier_k,global_dry_detection_pct,global_dry_fa_per_year,tier1_gross_fa_per_year,tier1b_gross_weather_fa_per_year,tier2_spectral_fa_per_year,tier3_weather_fusion_fa_per_year,tier3_mlp_fa_per_year,fa_reduction_t3_vs_rolling_pct,fa_reduction_t2_vs_t3_pct
-90.0% Target,0.75,92.5,303.11,0.7,92.0,183.0,90.19,17.25,9.62,3.73,85.11,98.8,-157.9
-95.0% Target,0.75,92.5,303.11,0.7,92.0,183.0,162.99,26.92,15.16,3.73,85.11,98.8,-306.4
+matched_detection_target,rolling_7d_k,rolling_7d_realized_det,rolling_7d_fa,t1_gross_tau,t1_gross_det,t1_gross_fa,t1b_gross_weather_tau,t1b_gross_weather_det,t1b_gross_weather_fa,t2_spectral_tau,t2_spectral_det,t2_spectral_fa,t3_fusion_tau,t3_fusion_det,t3_fusion_fa,mlp_fusion_tau,mlp_fusion_det,mlp_fusion_fa,weather_benefit_on_gross_pct,spectral_benefit_over_gross_pct,weather_benefit_on_spectral_pct,total_reduction_t3_vs_baseline_pct
+80%,1.95,80.0,161.05,0.8494,80.5,32.06,0.9159,80.0,18.25,0.9907,92.0,3.37,0.9907,90.5,2.8,0.866,91.5,58.78,43.1,89.5,16.9,98.3
+85%,1.6,85.0,192.87,0.8245,86.0,46.94,0.8826,85.0,26.8,0.9907,92.0,3.37,0.9907,90.5,2.8,0.866,91.5,58.78,42.9,92.8,16.9,98.5
+90%,1.2,90.0,237.34,0.7247,90.0,109.92,0.8245,90.5,46.04,0.9907,92.0,3.37,0.9907,90.5,2.8,0.866,91.5,58.78,58.1,96.9,16.9,98.8
+92%,0.75,92.5,303.11,0.6998,92.0,127.18,0.7912,92.0,56.81,0.9907,92.0,3.37,0.9824,94.0,4.85,0.891,92.5,61.58,55.3,97.4,-43.9,98.4
+95%,5.0,6.0,23.35,0.5003,95.0,291.36,0.6915,95.5,91.17,0.9741,95.5,27.54,0.9741,95.5,8.14,0.9325,95.0,95.36,68.7,90.5,70.4,65.1
