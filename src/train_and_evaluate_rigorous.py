@@ -484,24 +484,24 @@ def main():
                     val_mlp_raw_preds.append(val_p_cln[st_id])
                     val_mlp_true_labels.append((sdata["df"]["label"] == "fission_product").astype(int).values)
 
-            # Vectorized threshold search on validation fold
+            # Ultra-fast vectorized threshold search on validation fold
             tau_det = np.zeros(len(THRESHOLD_GRID))
-            tau_fa = np.zeros(len(THRESHOLD_GRID))
-
             for st_id, idx in val_inj_slices:
                 p_inj_sub = val_p_inj[st_id][idx]
                 p_cln_sub = val_p_cln[st_id][idx]
-                for t_idx, tau in enumerate(THRESHOLD_GRID):
-                    if ((p_inj_sub >= tau) & (p_cln_sub < tau)).any():
-                        tau_det[t_idx] += 1
+                det_any = ((p_inj_sub[:, None] >= THRESHOLD_GRID[None, :]) & (p_cln_sub[:, None] < THRESHOLD_GRID[None, :])).any(axis=0)
+                tau_det += det_any.astype(int)
             tau_det /= len(val_inj_slices)
 
-            for t_idx, tau in enumerate(THRESHOLD_GRID):
-                val_ep = 0
-                for st_id, sdata in val_series.items():
-                    al = (pd.Series(val_p_cln[st_id]) >= tau) & sdata["valid"]
-                    val_ep += count_episodes(al, sdata["valid"])
-                tau_fa[t_idx] = val_ep / val_station_years
+            tau_fa = np.zeros(len(THRESHOLD_GRID))
+            for st_id, sdata in val_series.items():
+                p = val_p_cln[st_id]
+                val_m = sdata["valid"].values
+                is_on = (p[:, None] >= THRESHOLD_GRID[None, :]) & val_m[:, None]
+                prior = np.vstack([np.zeros((1, len(THRESHOLD_GRID)), dtype=bool), is_on[:-1]])
+                episodes = (is_on & ~prior).sum(axis=0)
+                tau_fa += episodes
+            tau_fa /= val_station_years
 
             val_best_taus = {}
             for tgt in targets:
@@ -720,12 +720,19 @@ def main():
         p_inj_dict = ensemble_test_p_inj[tier_name]
         p_cln_dict = ensemble_test_p_cln[tier_name]
 
-        for tau in roc_points:
-            episodes = 0
-            for st_id, sdata in test_series.items():
-                al = (pd.Series(p_cln_dict[st_id]) >= tau) & sdata["valid"]
-                episodes += count_episodes(al, sdata["valid"])
-            fa_rate = episodes / test_station_years
+        # Vectorized false alarm calculation across roc_points
+        roc_fa = np.zeros(len(roc_points))
+        for st_id, sdata in test_series.items():
+            p = p_cln_dict[st_id]
+            val_m = sdata["valid"].values
+            is_on = (p[:, None] >= roc_points[None, :]) & val_m[:, None]
+            prior = np.vstack([np.zeros((1, len(roc_points)), dtype=bool), is_on[:-1]])
+            episodes = (is_on & ~prior).sum(axis=0)
+            roc_fa += episodes
+        roc_fa /= test_station_years
+
+        for t_idx, tau in enumerate(roc_points):
+            fa_rate = roc_fa[t_idx]
 
             det_cnt = 0
             det_6h = 0

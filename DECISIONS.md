@@ -195,32 +195,51 @@ Format:
 
 ---
 
-### Phase 5: Rigorous Statistical Evaluation Protocol & Uncertainty Decisions
+### Phase 5: Rigorous Statistical Evaluation Protocol & Uncertainty Decisions (Second Revision)
 
 - **2026-09-30 | Causal Validation Split for Operating Threshold Selection (No Test Leakage)**
   - **Reason**: Tuning operating thresholds $\tau$ by sweeping on the test set creates optimistic bias. Training observations were causally partitioned into a Training Fold (2017–2020: 153,740 observed hours, 169 injections) and a Validation Fold (2021–2022: 74,199 observed hours, 81 injections).
-  - **Protocol**: Thresholds $\tau^*$ achieving target detection (90%, 95%, 98%) with minimal clean false alarms are selected strictly on the validation fold, frozen, and applied out-of-sample to the unseen test split (2023–2025: 106,628 hours, 200 injections).
-- **2026-09-30 | Continuous Baseline Multiplier Sweep for Matched Detection**
-  - **Reason**: Comparing baselines at arbitrary $3\sigma$ multipliers ($63\%$ detection) against ML models at $90\%$–$95\%$ detection is not a matched comparison. Multipliers $k \in [0.5, 5.0]$ were swept in 0.05 increments to trace continuous ROC trade-offs.
-  - **Result**: To match the ML model's $\approx 92.5\%$ realized detection, the Rolling 7-day baseline requires $k = 0.75\sigma$, producing **303.11 false alarms per station-year**. Tier 3 GBDT yields **3.73 FA/yr** at matched detection—a **98.8% reduction in operational false alarms**.
-- **2026-09-30 | Four-Tier Ablation & Multi-Seed Protocol (5 Seeds)**
-  - **Reason**: To isolate the exact physical contributions of spectrometry vs weather across sensor suites:
-    - *Tier 1 (Gross Radiation Only, 12 features)*: 90.19 ± 10.32 FA/yr at 89.1% detection.
-    - *Tier 1b (Gross Radiation + Weather, 29 features)*: 17.25 ± 2.49 FA/yr at 78.7% detection (cuts gross false alarms by **80.9%** without spectrometry!).
-    - *Tier 2 (Gross + NaI Spectrometry, 30 features)*: 9.62 ± 5.70 FA/yr at 92.8% detection (spectrometry drives primary separation).
-    - *Tier 3 (Gross + Spectrometry + Weather, 48 features)*: 3.73 ± 0.32 FA/yr at 91.9% detection (**61.2% reduction over Tier 2**).
-- **2026-09-30 | Net Alarm Criterion & Operational Deadlines**
-  - **Reason**: To prevent natural washout surges from being credited as plume detections, an alarm is credited only if $P_{\text{inj}} \ge \tau \land P_{\text{clean}} < \tau$. To prevent long filter retention tails from trivializing detection after storms pass, detection is evaluated within fixed deadlines: $\le 6\text{h}$, $\le 12\text{h}$, and $\le 24\text{h}$.
-  - **Result**: Tier 3 GBDT detects **67.4%** of events within 6 hours (during active passage), **86.2%** within 12 hours, and **91.3%** within 24 hours, with a median delay of **4.0 hours**.
-- **2026-09-30 | Clean Leave-One-Station-Out (LOSO) on San Diego**
-  - **Reason**: Evaluates out-of-domain climate generalization with zero leakage. Model trained on 4 stations (2017–2020), threshold $\tau^* = 0.99$ selected on 4 stations' validation fold (2021–2022).
-  - **Result**: Evaluated on San Diego test data (2023–2025, 2.85 station-years): **0.00 false alarms/yr** (0 episodes) and **67.5% detection** (27 of 40 events) with median delay of 6.0 hours.
-- **2026-09-30 | Spectral Template Sensitivity Sweep**
-  - **Reason**: Assesses vulnerability to detector calibration drift by perturbing photopeak channel weights by $\pm 10\%$ and $\pm 20\%$.
-  - **Result**: Detection remains stable at **81.0%** at $-10\%$ perturbation and **77.0%** at $-20\%$ perturbation, demonstrating resilience to moderate NaI gain drift.
-- **2026-09-30 | Honest MLP Neural Net Comparison**
-  - **Reason**: Evaluates a 2-hidden-layer MLP under causal validation threshold freezing across 5 seeds.
-  - **Result**: When thresholds are frozen from validation data, MLP yields **85.11 ± 26.31 FA/yr** on test data vs. LightGBM's **3.73 ± 0.32 FA/yr**. GBDT exhibits far superior probability calibration and generalization stability on tabular physical telemetry.
+  - **Protocol**: Operating thresholds $\tau^*$ achieving target detection (90%, 95%, 98%) with minimal clean false alarms are selected strictly on the validation fold across an expanded grid up to $\tau = 0.999$, frozen, and applied out-of-sample to the unseen test split (2023–2025: 106,628 hours, 200 injections).
+  - **Transfer Gap Documented**: Validation injections originate from training parameter families (linear-ramp and step, Bands A and C), whereas test injections use different shapes (sigmoidal, exponential) and Band B. Validation-selected thresholds are systematically optimistic for test detection, which is documented as an expected inductive transfer gap.
+
+- **2026-09-30 | Continuous Baseline Multiplier Sweep & Aligned Labeling**
+  - **Reason**: Baseline rule is formally defined and labeled as `Rolling 7d Local Z-Score Baseline`: $Z_{168\text{h}}(t) = (\text{gross}(t) - \mu_{168\text{h}}(t)) / (\sigma_{168\text{h}}(t) + 10^{-4}) \ge k$. Multipliers $k \in [0.5, 5.0]$ were swept in 0.05 increments to trace continuous ROC trade-offs.
+  - **Result**: The baseline detection curve plateaus near 91.0%–92.5% from $k=1.0$ down to $k=0.5$. To match ~92.5% realized detection, the baseline requires $k = 0.75$, producing **303.11 false alarms per station-year** (at $k=1.0$, 91.0% detection and 263.82 FA/yr). Tier 3 GBDT yields **4.22 FA/yr** at matched ~92% detection—a **98.6% to 98.8% reduction in operational false alarms**.
+
+- **2026-09-30 | Four-Tier Ablation Across 20 Random Seeds & Paired Statistical Tests**
+  - **Reason**: Evaluates the incremental physical contributions of spectrometry and weather across 20 random seeds (SEEDS 42 to 61) with paired tests:
+    - *Tier 1 (Gross Radiation Only, 12 features)*: At 95% target, realized test detection is **92.10 ± 0.55%** with **168.62 ± 20.57 FA/yr** (95% CI: [143.66, 174.75]).
+    - *Tier 1b (Gross Radiation + Weather, 29 features)*: At 98% target, realized test detection is **92.82 ± 1.10%** with **68.21 ± 9.75 FA/yr** (95% CI: [56.70, 77.62]).
+      - **Matched Gross Weather Benefit**: Comparing Tier 1 vs Tier 1b at matched ~92% detection reveals a **59.5% reduction** in false alarms ($p < 10^{-5}$ across 20 seeds).
+    - *Tier 2 (Gross + NaI Spectrometry, 30 features)*: At 95% target, realized test detection is **92.48 ± 1.38%** with **8.52 ± 6.23 FA/yr** (95% CI: [9.27, 22.01]). Spectrometry achieves a **95.0% reduction** over gross radiation alone.
+    - *Tier 3 (Gross + Spectrometry + Weather, 48 features)*: At 95% target, realized test detection is **92.08 ± 1.77%** with **4.22 ± 1.29 FA/yr** (95% CI: [2.29, 6.12]).
+      - **Statistical Significance**: Weather fusion on top of spectrometry cuts false alarms by **50.5%** on average ($4.31\text{ FA/yr}$ mean reduction). Across 20 paired seeds, this reduction is statistically significant: paired t-test $t = 3.166$, $p = 0.00509$; Wilcoxon signed-rank test $W = 36.5$, $p = 0.01855$.
+      - **Protocol Correction Note**: The single-seed Phase 4 ordering (where Tier 3 appeared slightly worse than Tier 2) did not survive the multi-seed protocol; multi-seed replication confirms consistent false alarm suppression and lower seed variance for Tier 3.
+
+- **2026-09-30 | Restored Sampling Uncertainty via Block & Event Bootstrapping**
+  - **Reason**: Test-set sampling uncertainty is evaluated via station-month block bootstrap ($B=1,000$ resamples) for clean false alarms, and event-level bootstrap ($B=1,000$ resamples) for detection probability and median delay.
+  - **Result**: Tier 3 achieves 92.08% detection (95% CI: [88.0%, 95.5%]), 4.22 FA/yr (95% CI: [2.29, 6.12] FA/yr), and a median detection delay of 4.0 hours (95% CI: [4.0, 5.0] h).
+
+- **2026-09-30 | Multi-Station Leave-One-Station-Out (LOSO) Validation**
+  - **Reason**: Evaluates geographic and meteorological generalization across distinct climate regimes (San Diego, Birmingham, Dallas) with zero held-out leakage.
+  - **Result**:
+    - *San Diego, CA (Marine, 0 test washout hours)*: At frozen $\tau^* = 0.990$, realizes **0.00 FA/yr** (rule-of-three 95% upper bound $\le 1.05\text{ FA/yr}$) and **67.5% detection** (27/40). Stratification reveals detection was 90.0% on Band B (600–1200 CPM) but dropped to 45.0% on subtle Band A (300–600 CPM), confirming that the frozen threshold traded subtle detection for complete silence on an out-of-domain marine background.
+    - *Birmingham, AL (High precipitation, 263 test washout hours)*: At frozen $\tau^* = 0.990$, realizes **0.00 FA/yr** ($\le 1.08\text{ FA/yr}$) and **82.5% detection** (33/40).
+    - *Dallas, TX (Convective storms, 324 test washout hours)*: At frozen $\tau^* = 0.997$, realizes **0.00 FA/yr** ($\le 1.70\text{ FA/yr}$) and **82.5% detection** (33/40).
+
+- **2026-09-30 | Proper Spectral Template Sensitivity & Instrumental Gain Drift**
+  - **Reason**: Separates injected photopeak branching uncertainty from instrumental gain drift:
+    - *Injected Photopeak Scaling*: Perturbing injected photopeak excess by $\pm 10\%$ and $\pm 20\%$ (with continuum re-normalization to preserve total CPM) yields realized test detection of 88.0% ($-20\%$), 90.0% ($-10\%$), 92.0% (nominal), 94.0% ($+10\%$), and 95.5% ($+20\%$). Detection depends noticeably on photopeak strength, demonstrating moderate-to-strong sensitivity to spectral branching assumptions.
+    - *Instrumental Gain Drift*: Symmetrically perturbing energy channels across all data by $\pm 5\%$ and $\pm 10\%$ elevates clean false alarms to 7.97 FA/yr ($-10\%$) and 22.11 FA/yr ($+10\%$), with detection ranging between 89.0% and 92.5%.
+
+- **2026-09-30 | Honest MLP Probability Calibration & Neural Net Gap Analysis**
+  - **Reason**: Investigates whether probability calibration resolves the MLP's high false alarms under frozen thresholds.
+  - **Result**: Fitting an isotonic regression calibrator on validation fold predictions does not close the gap (calibrated MLP yields **128.08 FA/yr** at 92.0% detection vs raw MLP at **85.11 FA/yr**, compared to LightGBM's **3.73–4.22 FA/yr**). LightGBM's decision tree partitions are structurally superior for tabular physical telemetry.
+
+- **2026-09-30 | Operational Deadlines & Environmental Stratification**
+  - **Reason**: Evaluates early detection deadlines ($\le 6\text{h}, \le 12\text{h}, \le 24\text{h}$) across dry vs rain and standard vs stress regimes under the net alarm criterion.
+  - **Result**: At $\le 6\text{h}$, Tier 2 detects **72.0%** while Tier 3 detects **71.5%**. Weather fusion substantially cuts false alarms (~50%–60% over spectral alone) but does not accelerate early detection over spectrometry alone. During active rainstorms, Tier 3 achieves 96.0% total detection and 66.0% early detection ($\le 6\text{h}$).
+
 
 
 

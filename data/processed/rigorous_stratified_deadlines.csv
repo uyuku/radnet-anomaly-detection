@@ -1,0 +1,19 @@
+stratum,tier_name,n_injections,detection_total_pct,detection_le_6h_pct,detection_le_12h_pct,detection_le_24h_pct,median_delay_hours
+All Test Injections,Tier 2 (Spectral),200,92.5,72.0,88.5,92.5,4.0
+All Test Injections,Tier 3 (Weather Fusion),200,92.0,71.5,89.5,91.5,4.0
+Strictly Dry Environments,Tier 2 (Spectral),100,90.0,75.0,87.0,90.0,3.5
+Strictly Dry Environments,Tier 3 (Weather Fusion),100,88.0,77.0,86.0,88.0,3.0
+Rain-Coincident Environments,Tier 2 (Spectral),100,95.0,69.0,90.0,95.0,5.0
+Rain-Coincident Environments,Tier 3 (Weather Fusion),100,96.0,66.0,93.0,95.0,5.0
+Standard Plume Regime,Tier 2 (Spectral),100,98.0,64.0,92.0,98.0,5.0
+Standard Plume Regime,Tier 3 (Weather Fusion),100,98.0,64.0,96.0,98.0,5.0
+Stress Plume Regime,Tier 2 (Spectral),100,87.0,80.0,85.0,87.0,3.0
+Stress Plume Regime,Tier 3 (Weather Fusion),100,86.0,79.0,83.0,85.0,3.0
+Standard Strictly Dry,Tier 2 (Spectral),50,98.0,70.0,92.0,98.0,5.0
+Standard Strictly Dry,Tier 3 (Weather Fusion),50,98.0,76.0,94.0,98.0,4.0
+Stress Strictly Dry,Tier 2 (Spectral),50,82.0,80.0,82.0,82.0,2.0
+Stress Strictly Dry,Tier 3 (Weather Fusion),50,78.0,78.0,78.0,78.0,2.0
+Standard Rain,Tier 2 (Spectral),50,98.0,58.0,92.0,98.0,6.0
+Standard Rain,Tier 3 (Weather Fusion),50,98.0,52.0,98.0,98.0,6.0
+Stress Rain,Tier 2 (Spectral),50,92.0,80.0,88.0,92.0,4.0
+Stress Rain,Tier 3 (Weather Fusion),50,94.0,80.0,88.0,92.0,4.0
