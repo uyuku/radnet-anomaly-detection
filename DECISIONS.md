@@ -195,7 +195,7 @@ Format:
 
 ---
 
-### Phase 5: Rigorous Statistical Evaluation Protocol & Uncertainty Decisions (Third Revision)
+### Phase 5: Rigorous Statistical Evaluation Protocol & Uncertainty Decisions (Final Revision)
 
 - **2026-09-30 | Causal Validation Split for Operating Threshold Selection (No Test Leakage)**
   - **Reason**: Tuning operating thresholds $\tau$ by sweeping on the test set creates optimistic bias. Training observations were causally partitioned into a Training Fold (2017–2020: 153,740 observed hours, 169 injections) and a Validation Fold (2021–2022: 74,199 observed hours, 81 injections).
