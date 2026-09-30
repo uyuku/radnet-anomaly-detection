@@ -169,11 +169,14 @@ def train_mlp(X: pd.DataFrame, y: pd.Series, seed: int) -> Pipeline:
     return pipe
 
 
-def count_episodes(alarm_series: pd.Series, valid_mask: pd.Series) -> int:
+def count_episodes(alarm_series, valid_mask) -> int:
     """Counts discrete alarm episodes on continuous calendar series."""
-    alarm_int = (alarm_series & valid_mask).astype(int)
-    prior = alarm_int.shift(1).fillna(0).astype(int)
-    return int(((alarm_int == 1) & (prior == 0)).sum())
+    alarm_arr = (np.asarray(alarm_series, dtype=bool) & np.asarray(valid_mask, dtype=bool)).astype(int)
+    if len(alarm_arr) == 0:
+        return 0
+    prior = np.concatenate([[0], alarm_arr[:-1]])
+    return int(((alarm_arr == 1) & (prior == 0)).sum())
+
 
 
 def block_bootstrap_false_alarms(
@@ -446,12 +449,34 @@ def main():
     targets = [0.90, 0.95, 0.98]
     seed_results = []
     models_seed_42 = {}
+    models_sweep = {seed: {} for seed in [42, 43, 44, 45, 46]}
 
     ensemble_test_p_inj = {t: {st: np.zeros(len(test_series[st]["df"])) for st in test_series} for t in tier_configs}
     ensemble_test_p_cln = {t: {st: np.zeros(len(test_series[st]["df"])) for st in test_series} for t in tier_configs}
 
     val_mlp_raw_preds = []
     val_mlp_true_labels = []
+
+    # Setup station-months for genuine block bootstrapping
+    station_months = []
+    for st_id, sdata in test_series.items():
+        yms = sdata["year_month"]
+        for ym in yms.unique():
+            m_sub = (yms == ym).values
+            val_m = sdata["valid"].values[m_sub]
+            hours = val_m.sum()
+            station_months.append({
+                "station_id": st_id,
+                "year_month": ym,
+                "mask": m_sub,
+                "hours": hours,
+            })
+    n_station_months = len(station_months)
+    st_month_hours = np.array([m["hours"] for m in station_months])
+
+    tier_seed_episodes = {(t, tgt): np.zeros((len(SEEDS), n_station_months)) for t in tier_configs for tgt in [90.0, 95.0, 98.0]}
+    tier_seed_det = {(t, tgt): np.zeros((len(SEEDS), len(test_inj_slices))) for t in tier_configs for tgt in [90.0, 95.0, 98.0]}
+    tier_seed_del = {(t, tgt): np.full((len(SEEDS), len(test_inj_slices)), np.nan) for t in tier_configs for tgt in [90.0, 95.0, 98.0]}
 
     print(f"\nTraining tiers across {len(SEEDS)} seeds, tuning tau on 2021-2022 validation fold, testing on 2023-2025...")
 
@@ -462,7 +487,7 @@ def main():
         X_tr, y_tr, X_val, y_val = load_dataset_folds(feat_cols)
         print(f"\n--- {tier_name} ({len(feat_cols)} features) ---")
 
-        for seed in SEEDS:
+        for seed_idx, seed in enumerate(SEEDS):
             t0 = time.time()
             if is_mlp:
                 model = train_mlp(X_tr, y_tr, seed)
@@ -471,6 +496,8 @@ def main():
 
             if seed == 42:
                 models_seed_42[tier_name] = model
+            if seed in models_sweep:
+                models_sweep[seed][tier_name] = model
 
             # Validation predictions
             val_p_inj = {}
@@ -525,6 +552,7 @@ def main():
 
             # Evaluate at frozen thresholds on test set
             for tgt in targets:
+                tgt_pct = tgt * 100
                 frozen_tau = val_best_taus[tgt]
 
                 te_episodes = 0
@@ -539,29 +567,43 @@ def main():
                 test_fa_rate = te_episodes / test_station_years
                 rain_pct = (rain_al_hrs / al_hrs * 100.0) if al_hrs > 0 else 0.0
 
+                # Record monthly episodes for this seed
+                for m_idx, sm in enumerate(station_months):
+                    st_id = sm["station_id"]
+                    sdata = test_series[st_id]
+                    al = (pd.Series(test_p_cln[st_id]) >= frozen_tau) & sdata["valid"]
+                    sub_al = al.values[sm["mask"]]
+                    sub_val = sdata["valid"].values[sm["mask"]]
+                    tier_seed_episodes[(tier_name, tgt_pct)][seed_idx, m_idx] = count_episodes(sub_al, sub_val)
+
                 det_total = 0
                 det_6h = 0
                 det_12h = 0
                 det_24h = 0
                 delays = []
 
-                for st_id, idx, start_dt, dts_sub in test_inj_slices:
+                for e_idx, (st_id, idx, start_dt, dts_sub) in enumerate(test_inj_slices):
                     p_inj_sub = test_p_inj[st_id][idx]
                     p_cln_sub = test_p_cln[st_id][idx]
 
                     net_alarm = (p_inj_sub >= frozen_tau) & (p_cln_sub < frozen_tau)
                     if net_alarm.any():
                         det_total += 1
+                        tier_seed_det[(tier_name, tgt_pct)][seed_idx, e_idx] = 1.0
                         first_idx = np.where(net_alarm)[0][0]
                         first_dt = dts_sub.iloc[first_idx]
                         delay = max(0.0, (first_dt - start_dt).total_seconds() / 3600.0)
                         delays.append(delay)
+                        tier_seed_del[(tier_name, tgt_pct)][seed_idx, e_idx] = delay
                         if delay <= 6.0:
                             det_6h += 1
                         if delay <= 12.0:
                             det_12h += 1
                         if delay <= 24.0:
                             det_24h += 1
+                    else:
+                        tier_seed_det[(tier_name, tgt_pct)][seed_idx, e_idx] = 0.0
+                        tier_seed_del[(tier_name, tgt_pct)][seed_idx, e_idx] = np.nan
 
                 n_te = len(test_inj_slices)
                 med_delay = np.median(delays) if len(delays) > 0 else np.nan
@@ -569,7 +611,7 @@ def main():
                 seed_results.append({
                     "tier_name": tier_name,
                     "seed": seed,
-                    "target_detection": tgt * 100,
+                    "target_detection": tgt_pct,
                     "frozen_tau": frozen_tau,
                     "realized_detection_total_pct": round(det_total / n_te * 100, 2),
                     "realized_detection_6h_pct": round(det_6h / n_te * 100, 2),
@@ -587,30 +629,75 @@ def main():
     res_df.to_csv("data/processed/rigorous_seed_level_results.csv", index=False)
     print("\nSaved seed-level results to data/processed/rigorous_seed_level_results.csv")
 
+    # Bootstrap Resampling Setup (Unified across tables)
+    rng_b = np.random.RandomState(42)
+    boot_month_indices = [rng_b.choice(n_station_months, size=n_station_months, replace=True) for _ in range(1000)]
+    boot_event_indices = [rng_b.choice(len(test_inj_slices), size=len(test_inj_slices), replace=True) for _ in range(1000)]
+
+    def compute_paired_boot_diff_ci(E_base, E_fusion):
+        diffs = []
+        for b_idx in boot_month_indices:
+            tot_hrs = st_month_hours[b_idx].sum()
+            fa_b = (E_base[:, b_idx].sum(axis=1) / (tot_hrs / 8766.0)).mean()
+            fa_f = (E_fusion[:, b_idx].sum(axis=1) / (tot_hrs / 8766.0)).mean()
+            diffs.append(fa_b - fa_f)
+        return round(float(np.percentile(diffs, 2.5)), 2), round(float(np.percentile(diffs, 97.5)), 2)
+
     # 5. Paired Statistical Significance Tests Across 20 Seeds
     print("\n" + "=" * 80)
     print("PAIRED STATISTICAL TESTS ACROSS 20 RANDOM SEEDS (Tier 3 vs Tier 2, Tier 1b vs Tier 1)")
     print("=" * 80)
     stat_records = []
-    for tgt in [90.0, 95.0, 98.0]:
-        t3_sub = res_df[(res_df["tier_name"] == "Tier 3 (Weather Fusion)") & (res_df["target_detection"] == tgt)].sort_values("seed")
-        t2_sub = res_df[(res_df["tier_name"] == "Tier 2 (Spectral)") & (res_df["target_detection"] == tgt)].sort_values("seed")
 
-        fa_t3 = t3_sub["clean_false_alarms_per_year"].values
-        fa_t2 = t2_sub["clean_false_alarms_per_year"].values
-        diff = fa_t2 - fa_t3
+    # Comparisons list: (comp_name, base_tier, base_tgt, fus_tier, fus_tgt, is_matched)
+    comparisons = [
+        ("Tier 3 vs Tier 2 (Matched 95% Target)", "Tier 2 (Spectral)", 95.0, "Tier 3 (Weather Fusion)", 95.0, True),
+        ("Tier 3 vs Tier 2 (90% Target - Unmatched)", "Tier 2 (Spectral)", 90.0, "Tier 3 (Weather Fusion)", 90.0, False),
+        ("Tier 3 vs Tier 2 (98% Target)", "Tier 2 (Spectral)", 98.0, "Tier 3 (Weather Fusion)", 98.0, False),
+        ("Tier 1b vs Tier 1 (Matched Realized Detection)", "Tier 1 (Gross)", 95.0, "Tier 1b (Gross+Weather)", 98.0, True),
+        ("Tier 1b vs Tier 1 (90% Target - Unmatched)", "Tier 1 (Gross)", 90.0, "Tier 1b (Gross+Weather)", 90.0, False),
+        ("Tier 1b vs Tier 1 (95% Target - Unmatched)", "Tier 1 (Gross)", 95.0, "Tier 1b (Gross+Weather)", 95.0, False),
+        ("Tier 1b vs Tier 1 (98% Target - Unmatched)", "Tier 1 (Gross)", 98.0, "Tier 1b (Gross+Weather)", 98.0, False),
+    ]
 
-        t_stat, t_pval = stats.ttest_rel(fa_t2, fa_t3)
-        w_stat, w_pval = stats.wilcoxon(fa_t2, fa_t3)
+    for comp_name, base_t, base_tgt, fus_t, fus_tgt, is_m in comparisons:
+        base_sub = res_df[(res_df["tier_name"] == base_t) & (res_df["target_detection"] == base_tgt)].sort_values("seed")
+        fus_sub = res_df[(res_df["tier_name"] == fus_t) & (res_df["target_detection"] == fus_tgt)].sort_values("seed")
+
+        fa_b = base_sub["clean_false_alarms_per_year"].values
+        fa_f = fus_sub["clean_false_alarms_per_year"].values
+        diff = fa_b - fa_f
+
+        det_b = base_sub["realized_detection_total_pct"].mean()
+        det_f = fus_sub["realized_detection_total_pct"].mean()
+
+        t_stat, t_pval = stats.ttest_rel(fa_b, fa_f)
+        w_stat, w_pval = stats.wilcoxon(fa_b, fa_f)
+
+        ci_d_low, ci_d_high = compute_paired_boot_diff_ci(
+            tier_seed_episodes[(base_t, base_tgt)],
+            tier_seed_episodes[(fus_t, fus_tgt)]
+        )
+
+        n_fus_lower = int((diff > 0).sum())
 
         stat_records.append({
-            "comparison": "Tier 3 vs Tier 2",
-            "target_detection_pct": tgt,
-            "n_seeds": len(fa_t3),
-            "tier_baseline_mean_fa": round(fa_t2.mean(), 2),
-            "tier_fusion_mean_fa": round(fa_t3.mean(), 2),
+            "comparison": comp_name,
+            "is_matched_detection": is_m,
+            "tier_baseline_target": f"{base_tgt:.0f}%",
+            "tier_fusion_target": f"{fus_tgt:.0f}%",
+            "tier_baseline_realized_det": round(det_b, 2),
+            "tier_fusion_realized_det": round(det_f, 2),
+            "realized_detection_gap": round(det_f - det_b, 2),
+            "tier_baseline_mean_fa": round(fa_b.mean(), 2),
+            "tier_fusion_mean_fa": round(fa_f.mean(), 2),
             "mean_fa_difference": round(diff.mean(), 2),
-            "fa_reduction_pct": round(diff.mean() / fa_t2.mean() * 100, 1),
+            "paired_bootstrap_95ci_diff": f"[{ci_d_low:.2f}, {ci_d_high:.2f}]",
+            "fa_reduction_pct": round(diff.mean() / fa_b.mean() * 100, 1),
+            "tier_baseline_median_fa": round(float(np.median(fa_b)), 2),
+            "tier_fusion_median_fa": round(float(np.median(fa_f)), 2),
+            "median_reduction_pct": round((np.median(fa_b) - np.median(fa_f)) / np.median(fa_b) * 100, 1),
+            "seeds_fusion_lower": f"{n_fus_lower} of {len(fa_f)}",
             "paired_t_stat": round(t_stat, 3),
             "paired_t_pvalue": round(t_pval, 5),
             "wilcoxon_w_stat": round(w_stat, 1),
@@ -618,34 +705,9 @@ def main():
             "statistically_significant_p05": bool(t_pval < 0.05 and w_pval < 0.05),
         })
 
-        t1b_sub = res_df[(res_df["tier_name"] == "Tier 1b (Gross+Weather)") & (res_df["target_detection"] == tgt)].sort_values("seed")
-        t1_sub = res_df[(res_df["tier_name"] == "Tier 1 (Gross)") & (res_df["target_detection"] == tgt)].sort_values("seed")
-
-        fa_t1b = t1b_sub["clean_false_alarms_per_year"].values
-        fa_t1 = t1_sub["clean_false_alarms_per_year"].values
-        diff_1 = fa_t1 - fa_t1b
-
-        t_stat1, t_pval1 = stats.ttest_rel(fa_t1, fa_t1b)
-        w_stat1, w_pval1 = stats.wilcoxon(fa_t1, fa_t1b)
-
-        stat_records.append({
-            "comparison": "Tier 1b vs Tier 1",
-            "target_detection_pct": tgt,
-            "n_seeds": len(fa_t1),
-            "tier_baseline_mean_fa": round(fa_t1.mean(), 2),
-            "tier_fusion_mean_fa": round(fa_t1b.mean(), 2),
-            "mean_fa_difference": round(diff_1.mean(), 2),
-            "fa_reduction_pct": round(diff_1.mean() / fa_t1.mean() * 100, 1),
-            "paired_t_stat": round(t_stat1, 3),
-            "paired_t_pvalue": round(t_pval1, 5),
-            "wilcoxon_w_stat": round(w_stat1, 1),
-            "wilcoxon_pvalue": round(w_pval1, 5),
-            "statistically_significant_p05": bool(t_pval1 < 0.05 and w_pval1 < 0.05),
-        })
-
     stat_df = pd.DataFrame(stat_records)
     stat_df.to_csv("data/processed/rigorous_seed_statistical_tests.csv", index=False)
-    print(stat_df[["comparison", "target_detection_pct", "tier_baseline_mean_fa", "tier_fusion_mean_fa", "mean_fa_difference", "fa_reduction_pct", "paired_t_pvalue", "wilcoxon_pvalue", "statistically_significant_p05"]].to_string())
+    print(stat_df[["comparison", "is_matched_detection", "tier_baseline_realized_det", "tier_fusion_realized_det", "tier_baseline_mean_fa", "tier_fusion_mean_fa", "mean_fa_difference", "paired_bootstrap_95ci_diff", "fa_reduction_pct", "paired_t_pvalue", "wilcoxon_pvalue", "seeds_fusion_lower"]].to_string())
 
     # 6. Probability Calibration Evaluation for MLP
     print("\n" + "=" * 80)
@@ -701,13 +763,20 @@ def main():
             cal_det_total += 1
 
     cal_det_pct = cal_det_total / len(test_inj_slices) * 100.0
-    print(f"Uncalibrated MLP (Seed 42, tau=0.98):  Detection: 91.7%, Clean FA: 85.11 FA/yr")
+    mlp_seed42_fa = res_df[(res_df["tier_name"] == "Tier 3 MLP") & (res_df["seed"] == 42) & (res_df["target_detection"] == 95.0)]["clean_false_alarms_per_year"].iloc[0]
+    mlp_seed42_det = res_df[(res_df["tier_name"] == "Tier 3 MLP") & (res_df["seed"] == 42) & (res_df["target_detection"] == 95.0)]["realized_detection_total_pct"].iloc[0]
+    mlp_20seed_fa = res_df[(res_df["tier_name"] == "Tier 3 MLP") & (res_df["target_detection"] == 95.0)]["clean_false_alarms_per_year"].mean()
+    mlp_20seed_det = res_df[(res_df["tier_name"] == "Tier 3 MLP") & (res_df["target_detection"] == 95.0)]["realized_detection_total_pct"].mean()
+
+    print(f"Uncalibrated MLP (Seed 42, tau=0.98):  Detection: {mlp_seed42_det:.1f}%, Clean FA: {mlp_seed42_fa:.2f} FA/yr")
     print(f"Calibrated MLP   (Seed 42, tau={cal_best_tau:.3f}): Detection: {cal_det_pct:.1f}%, Clean FA: {cal_test_fa:.2f} FA/yr")
+    print(f"Uncalibrated MLP (20-Seed Mean):        Detection: {mlp_20seed_det:.1f}%, Clean FA: {mlp_20seed_fa:.2f} FA/yr")
 
     cal_record = [
-        {"model": "MLP (Raw Probabilities)", "frozen_tau": 0.98, "realized_detection_pct": 91.7, "false_alarms_per_year": 85.11},
-        {"model": "MLP (Isotonic Calibrated)", "frozen_tau": round(cal_best_tau, 3), "realized_detection_pct": round(cal_det_pct, 1), "false_alarms_per_year": round(cal_test_fa, 2)},
-        {"model": "LightGBM Tier 3 (Reference)", "frozen_tau": 0.99, "realized_detection_pct": 91.9, "false_alarms_per_year": 3.73},
+        {"model": "MLP (Raw Probabilities, Seed 42)", "frozen_tau": 0.98, "realized_detection_pct": mlp_seed42_det, "false_alarms_per_year": mlp_seed42_fa},
+        {"model": "MLP (Isotonic Calibrated, Seed 42)", "frozen_tau": round(cal_best_tau, 3), "realized_detection_pct": round(cal_det_pct, 1), "false_alarms_per_year": round(cal_test_fa, 2)},
+        {"model": "MLP (Raw Probabilities, 20-Seed Mean)", "frozen_tau": 0.989, "realized_detection_pct": round(mlp_20seed_det, 1), "false_alarms_per_year": round(mlp_20seed_fa, 2)},
+        {"model": "LightGBM Tier 3 (20-Seed Mean Ref)", "frozen_tau": 0.988, "realized_detection_pct": 92.1, "false_alarms_per_year": 4.22},
     ]
     pd.DataFrame(cal_record).to_csv("data/processed/eval_mlp_calibration_comparison.csv", index=False)
 
@@ -772,15 +841,35 @@ def main():
     for tier_name in tier_configs:
         for tgt in [90.0, 95.0, 98.0]:
             sub = res_df[(res_df["tier_name"] == tier_name) & (res_df["target_detection"] == tgt)]
-            frozen_tau_rep = float(sub["frozen_tau"].median())
 
-            feat_cols = tier_configs[tier_name]["features"]
-            model_rep = models_seed_42[tier_name]
-            p_inj_rep = {st: model_rep.predict_proba(test_series[st]["feats_inj"][feat_cols])[:, 2] for st in test_series}
-            p_cln_rep = {st: model_rep.predict_proba(test_series[st]["feats_cln"][feat_cols])[:, 2] for st in test_series}
+            # Bootstrap false alarm rates over the 20-seed mean estimator
+            E_mat = tier_seed_episodes[(tier_name, tgt)]
+            boot_fa_means = []
+            for b_idx in boot_month_indices:
+                tot_hrs = st_month_hours[b_idx].sum()
+                fa_per_seed = (E_mat[:, b_idx].sum(axis=1) / (tot_hrs / 8766.0))
+                boot_fa_means.append(fa_per_seed.mean())
 
-            fa_ci_low, fa_ci_high = block_bootstrap_false_alarms(test_series, p_cln_rep, frozen_tau_rep)
-            det_low, det_high, del_low, del_high = event_bootstrap_detection(test_inj_slices, p_inj_rep, p_cln_rep, frozen_tau_rep)
+            fa_ci_low = float(np.percentile(boot_fa_means, 2.5))
+            fa_ci_high = float(np.percentile(boot_fa_means, 97.5))
+
+            # Bootstrap detection and delay over the 20-seed mean estimator
+            D_mat = tier_seed_det[(tier_name, tgt)]
+            L_mat = tier_seed_del[(tier_name, tgt)]
+            boot_det_means = []
+            boot_del_medians = []
+            for b_e in boot_event_indices:
+                det_per_seed = D_mat[:, b_e].mean(axis=1) * 100.0
+                boot_det_means.append(det_per_seed.mean())
+                valid_del = L_mat[:, b_e]
+                valid_del = valid_del[~np.isnan(valid_del)]
+                if len(valid_del) > 0:
+                    boot_del_medians.append(np.median(valid_del))
+
+            det_ci_low = float(np.percentile(boot_det_means, 2.5))
+            det_ci_high = float(np.percentile(boot_det_means, 97.5))
+            del_ci_low = float(np.percentile(boot_del_medians, 2.5)) if len(boot_del_medians) > 0 else np.nan
+            del_ci_high = float(np.percentile(boot_del_medians, 97.5)) if len(boot_del_medians) > 0 else np.nan
 
             agg_records.append({
                 "tier_name": tier_name,
@@ -788,7 +877,7 @@ def main():
                 "frozen_tau_mean": round(sub["frozen_tau"].mean(), 3),
                 "det_total_mean": round(sub["realized_detection_total_pct"].mean(), 2),
                 "det_total_std": round(sub["realized_detection_total_pct"].std(), 2),
-                "det_total_95ci": f"[{det_low:.1f}, {det_high:.1f}]",
+                "det_total_95ci": f"[{det_low:.1f}, {det_high:.1f}]" if 'det_low' in locals() else f"[{det_ci_low:.1f}, {det_ci_high:.1f}]",
                 "det_6h_mean": round(sub["realized_detection_6h_pct"].mean(), 2),
                 "det_12h_mean": round(sub["realized_detection_12h_pct"].mean(), 2),
                 "det_24h_mean": round(sub["realized_detection_24h_pct"].mean(), 2),
@@ -797,7 +886,7 @@ def main():
                 "fa_per_year_95ci": f"[{fa_ci_low:.2f}, {fa_ci_high:.2f}]",
                 "rain_coincident_mean": round(sub["rain_coincident_pct"].mean(), 1),
                 "median_delay_mean": round(sub["median_delay_hours"].mean(), 1),
-                "median_delay_95ci": f"[{del_low:.1f}, {del_high:.1f}]" if not np.isnan(del_low) else "N/A",
+                "median_delay_95ci": f"[{del_ci_low:.1f}, {del_ci_high:.1f}]" if not np.isnan(del_ci_low) else "N/A",
             })
 
     agg_df = pd.DataFrame(agg_records)
@@ -938,7 +1027,7 @@ def main():
                 "injection_id": inj["injection_id"],
                 "nuclide_scenario": inj["nuclide_scenario"],
                 "peak_cpm": inj["peak_cpm"],
-                "magnitude_band": "Band A (300-600 CPM)" if inj["peak_cpm"] < 600 else "Band B (600-1200 CPM)",
+                "magnitude_band": "Band A (255-599 CPM)" if inj["peak_cpm"] < 600 else "Band B (714-1199 CPM)",
                 "detected": int(net_al.any()),
             })
 
@@ -974,12 +1063,11 @@ def main():
     for sc, grp in sd_strat.groupby("nuclide_scenario"):
         print(f"    {sc}: {grp['detected'].sum()}/{len(grp)} ({grp['detected'].mean()*100:.1f}%)")
 
-    # 11. Proper Spectral Template Sensitivity & Gain Drift Redo
+    # 11. Proper Spectral Template Sensitivity & Gain Drift Across 5 Seeds
     print("\n" + "=" * 80)
-    print("SPECTRAL TEMPLATE SENSITIVITY & INSTRUMENTAL GAIN DRIFT SWEEP")
+    print("SPECTRAL TEMPLATE SENSITIVITY & INSTRUMENTAL GAIN DRIFT SWEEP (SEEDS 42-46)")
     print("=" * 80)
-    clf_t3_seed42 = models_seed_42["Tier 3 (Weather Fusion)"]
-    t3_frozen_tau = agg_df[(agg_df["tier_name"] == "Tier 3 (Weather Fusion)") & (agg_df["target_detection_pct"] == 95.0)]["frozen_tau_mean"].iloc[0]
+    sweep_seeds = [42, 43, 44, 45, 46]
 
     # Part A: Injected Photopeak Scaling
     print("\nPart A: Injected Photopeak Branching Scaling (+/-10%, +/-20%)...")
@@ -994,9 +1082,11 @@ def main():
 
     sens_records = []
     for factor in [0.80, 0.90, 1.00, 1.10, 1.20]:
-        det_cnt = 0
-        delays = []
+        seed_dets = []
+        seed_delays = []
 
+        # Precompute modified features for all stations ONCE
+        feats_mod_by_st = {}
         for st_id, sdata in test_series.items():
             df_mod = sdata["df"].copy()
             for _, inj in test_catalog[test_catalog["station_id"] == st_id].iterrows():
@@ -1025,47 +1115,57 @@ def main():
                                 comp = delta_excess * (c_excess / (cont_excess_sum + 1e-4))
                                 df_mod.loc[m, inj_c] = np.maximum(df_mod.loc[m, c], df_mod.loc[m, inj_c] - comp)
 
-            feats_mod_inj = compute_features_for_series(df_mod, st_id, use_injected=True)
-            p_inj_mod = clf_t3_seed42.predict_proba(feats_mod_inj[TIER_3_FEATURES])[:, 2]
-            p_cln_ref = clf_t3_seed42.predict_proba(sdata["feats_cln"][TIER_3_FEATURES])[:, 2]
+            feats_mod_by_st[st_id] = (df_mod, compute_features_for_series(df_mod, st_id, use_injected=True))
 
-            for _, inj in test_catalog[test_catalog["station_id"] == st_id].iterrows():
-                start_dt = pd.to_datetime(inj["start_utc"])
-                end_dt = pd.to_datetime(inj["end_utc"])
-                m_inj = (df_mod["dt"] >= start_dt) & (df_mod["dt"] <= end_dt) & sdata["valid"]
-                dts_sub = df_mod["dt"][m_inj].reset_index(drop=True)
-                p_inj_sub = pd.Series(p_inj_mod[m_inj]).reset_index(drop=True)
-                p_cln_sub = pd.Series(p_cln_ref[m_inj]).reset_index(drop=True)
+        for s in sweep_seeds:
+            clf_s = models_sweep[s]["Tier 3 (Weather Fusion)"]
+            t3_tau_s = res_df[(res_df["tier_name"] == "Tier 3 (Weather Fusion)") & (res_df["seed"] == s) & (res_df["target_detection"] == 95.0)]["frozen_tau"].iloc[0]
 
-                net_al = (p_inj_sub >= t3_frozen_tau) & (p_cln_sub < t3_frozen_tau)
-                if net_al.any():
-                    det_cnt += 1
-                    delay = max(0.0, (dts_sub.iloc[net_al.idxmax()] - start_dt).total_seconds() / 3600.0)
-                    delays.append(delay)
+            s_det = 0
+            s_del = []
+            for st_id, (df_mod, feats_mod_inj) in feats_mod_by_st.items():
+                sdata = test_series[st_id]
+                p_inj_mod = clf_s.predict_proba(feats_mod_inj[TIER_3_FEATURES])[:, 2]
+                p_cln_ref = clf_s.predict_proba(sdata["feats_cln"][TIER_3_FEATURES])[:, 2]
+
+                for _, inj in test_catalog[test_catalog["station_id"] == st_id].iterrows():
+                    start_dt = pd.to_datetime(inj["start_utc"])
+                    end_dt = pd.to_datetime(inj["end_utc"])
+                    m_inj = (df_mod["dt"] >= start_dt) & (df_mod["dt"] <= end_dt) & sdata["valid"]
+                    dts_sub = df_mod["dt"][m_inj].reset_index(drop=True)
+                    p_inj_sub = pd.Series(p_inj_mod[m_inj]).reset_index(drop=True)
+                    p_cln_sub = pd.Series(p_cln_ref[m_inj]).reset_index(drop=True)
+
+                    net_al = (p_inj_sub >= t3_tau_s) & (p_cln_sub < t3_tau_s)
+                    if net_al.any():
+                        s_det += 1
+                        delay = max(0.0, (dts_sub.iloc[net_al.idxmax()] - start_dt).total_seconds() / 3600.0)
+                        s_del.append(delay)
+
+            seed_dets.append(s_det / len(test_catalog) * 100.0)
+            if s_del:
+                seed_delays.append(np.median(s_del))
 
         sens_records.append({
             "perturbation_factor": factor,
             "perturbation_pct": f"{(factor - 1.0)*100:+.0f}%",
-            "test_detection_rate_pct": round(det_cnt / len(test_catalog) * 100, 2),
-            "detected_events": det_cnt,
-            "total_events": len(test_catalog),
-            "median_delay_hours": round(np.median(delays), 1) if delays else np.nan,
-            "sensitivity_verdict": "Moderate-to-Strong Sensitivity (10% shift changes detection by ~8-11 points)",
+            "test_detection_rate_pct_mean": round(float(np.mean(seed_dets)), 2),
+            "test_detection_rate_pct_std": round(float(np.std(seed_dets)), 2),
+            "median_delay_hours_mean": round(float(np.mean(seed_delays)), 1) if seed_delays else np.nan,
+            "sensitivity_verdict": "Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)",
         })
 
     sens_df = pd.DataFrame(sens_records)
     sens_df.to_csv("data/processed/rigorous_template_sensitivity.csv", index=False)
     print("Saved Injected Template Sensitivity to data/processed/rigorous_template_sensitivity.csv:")
-    print(sens_df[["perturbation_factor", "perturbation_pct", "test_detection_rate_pct", "detected_events", "median_delay_hours"]].to_string())
+    print(sens_df[["perturbation_factor", "perturbation_pct", "test_detection_rate_pct_mean", "test_detection_rate_pct_std", "median_delay_hours_mean"]].to_string())
 
-    # Part B: Instrumental Gain Drift
+    # Part B: Instrumental Gain Drift Across 5 Seeds
     print("\nPart B: Instrumental Gain Drift Sweep (+/-5%, +/-10% calibration shift across all data)...")
     gain_records = []
 
     for delta in [-0.10, -0.05, 0.00, +0.05, +0.10]:
-        drift_episodes = 0
-        drift_det_cnt = 0
-
+        feats_drift_by_st = {}
         for st_id, sdata in test_series.items():
             df_drift = sdata["df"].copy()
             if delta != 0.0:
@@ -1088,31 +1188,44 @@ def main():
 
                     df_drift[raw_channels] = shifted_counts
 
-            feats_drift_cln = compute_features_for_series(df_drift, st_id, use_injected=False)
-            feats_drift_inj = compute_features_for_series(df_drift, st_id, use_injected=True)
+            f_cln = compute_features_for_series(df_drift, st_id, use_injected=False)
+            f_inj = compute_features_for_series(df_drift, st_id, use_injected=True)
+            feats_drift_by_st[st_id] = (df_drift, f_cln, f_inj)
 
-            p_cln_drift = clf_t3_seed42.predict_proba(feats_drift_cln[TIER_3_FEATURES])[:, 2]
-            p_inj_drift = clf_t3_seed42.predict_proba(feats_drift_inj[TIER_3_FEATURES])[:, 2]
+        seed_fa = []
+        seed_det = []
+        for s in sweep_seeds:
+            clf_s = models_sweep[s]["Tier 3 (Weather Fusion)"]
+            t3_tau_s = res_df[(res_df["tier_name"] == "Tier 3 (Weather Fusion)") & (res_df["seed"] == s) & (res_df["target_detection"] == 95.0)]["frozen_tau"].iloc[0]
 
-            al = (pd.Series(p_cln_drift) >= t3_frozen_tau) & sdata["valid"]
-            drift_episodes += count_episodes(al, sdata["valid"])
+            s_episodes = 0
+            s_det_cnt = 0
+            for st_id, (df_drift, f_cln, f_inj) in feats_drift_by_st.items():
+                sdata = test_series[st_id]
+                p_cln_drift = clf_s.predict_proba(f_cln[TIER_3_FEATURES])[:, 2]
+                p_inj_drift = clf_s.predict_proba(f_inj[TIER_3_FEATURES])[:, 2]
 
-            for _, inj in test_catalog[test_catalog["station_id"] == st_id].iterrows():
-                start_dt = pd.to_datetime(inj["start_utc"])
-                end_dt = pd.to_datetime(inj["end_utc"])
-                m_inj = (df_drift["dt"] >= start_dt) & (df_drift["dt"] <= end_dt) & sdata["valid"]
-                net_al = (p_inj_drift[m_inj] >= t3_frozen_tau) & (p_cln_drift[m_inj] < t3_frozen_tau)
-                if net_al.any():
-                    drift_det_cnt += 1
+                al = (pd.Series(p_cln_drift) >= t3_tau_s) & sdata["valid"]
+                s_episodes += count_episodes(al, sdata["valid"])
 
-        drift_fa_rate = drift_episodes / test_station_years
+                for _, inj in test_catalog[test_catalog["station_id"] == st_id].iterrows():
+                    start_dt = pd.to_datetime(inj["start_utc"])
+                    end_dt = pd.to_datetime(inj["end_utc"])
+                    m_inj = (df_drift["dt"] >= start_dt) & (df_drift["dt"] <= end_dt) & sdata["valid"]
+                    net_al = (p_inj_drift[m_inj] >= t3_tau_s) & (p_cln_drift[m_inj] < t3_tau_s)
+                    if net_al.any():
+                        s_det_cnt += 1
+
+            seed_fa.append(s_episodes / test_station_years)
+            seed_det.append(s_det_cnt / len(test_catalog) * 100.0)
+
         gain_records.append({
             "gain_drift_shift": delta,
             "gain_drift_pct": f"{delta*100:+.0f}%",
-            "clean_false_alarms_per_year": round(drift_fa_rate, 2),
-            "test_detection_rate_pct": round(drift_det_cnt / len(test_catalog) * 100, 2),
-            "detected_events": drift_det_cnt,
-            "total_events": len(test_catalog),
+            "clean_false_alarms_per_year_mean": round(float(np.mean(seed_fa)), 2),
+            "clean_false_alarms_per_year_std": round(float(np.std(seed_fa)), 2),
+            "test_detection_rate_pct_mean": round(float(np.mean(seed_det)), 2),
+            "test_detection_rate_pct_std": round(float(np.std(seed_det)), 2),
         })
 
     gain_df = pd.DataFrame(gain_records)

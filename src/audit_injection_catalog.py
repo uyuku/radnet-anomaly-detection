@@ -94,6 +94,10 @@ def audit_catalog():
 
     # 5. Temporal Buffer Verification (>= 48 hours between any two injections at the same station)
     overlap_violations = 0
+    min_observed_buffer = float("inf")
+    station_min_buffers = {}
+    total_pairs = 0
+
     for st in STATIONS:
         st_id = st["id"]
         sub = df_cat[df_cat["station_id"] == st_id].copy()
@@ -101,21 +105,47 @@ def audit_catalog():
         sub["end_dt"] = pd.to_datetime(sub["end_utc"])
         sub = sub.sort_values("start_dt").reset_index(drop=True)
 
+        gaps = []
         for i in range(len(sub) - 1):
+            total_pairs += 1
             prior_end = sub.loc[i, "end_dt"]
             next_start = sub.loc[i + 1, "start_dt"]
             gap_hours = (next_start - prior_end).total_seconds() / 3600.0
+            gaps.append(gap_hours)
             if gap_hours < 48.0:
                 print(f"Buffer violation at {st_id}: gap between {sub.loc[i, 'injection_id']} and {sub.loc[i+1, 'injection_id']} is {gap_hours:.1f}h")
                 overlap_violations += 1
+        if gaps:
+            st_min = min(gaps)
+            station_min_buffers[st_id] = st_min
+            min_observed_buffer = min(min_observed_buffer, st_min)
 
     assert overlap_violations == 0, f"Found {overlap_violations} 48-hour buffer violations!"
-    print("✓ Temporal buffer verified: strictly >= 48 hours between all injections across all stations.")
+    print(f"✓ Temporal buffer verified: strictly >= 48 hours between all injections across all stations (minimum observed: {min_observed_buffer:.1f}h).")
 
     # 6. Cs-134 lines in Fukushima Scenario
     fukushima_injs = df_cat[df_cat["nuclide_scenario"] == "fission_reactor_fukushima"]
-    mean_hi_energy = (fukushima_injs["share_r07"] + fukushima_injs["share_r08"]).mean() * 100.0
-    print(f"✓ Fukushima-like high energy content (R07+R08): mean {mean_hi_energy:.2f}% (Cs-134 lines present).")
+    fuk_hi_series = (fukushima_injs["share_r07"] + fukushima_injs["share_r08"]) * 100.0
+    mean_hi_energy = fuk_hi_series.mean()
+    fuk_p5 = fuk_hi_series.quantile(0.05)
+    fuk_p95 = fuk_hi_series.quantile(0.95)
+    print(f"✓ Fukushima-like high energy content (R07+R08): mean {mean_hi_energy:.2f}% (5-95th: [{fuk_p5:.2f}%, {fuk_p95:.2f}%]).")
+
+    # Scenario balance statistics across all environments
+    all_sc_pcts = []
+    ct = pd.crosstab(df_cat["environment"], df_cat["nuclide_scenario"])
+    for _, row in ct.iterrows():
+        tot = row.sum()
+        for sc in scenarios:
+            all_sc_pcts.append(round(row[sc] / tot * 100.0, 2))
+    min_sc_pct = min(all_sc_pcts)
+    max_sc_pct = max(all_sc_pcts)
+
+    # Stress rain stats
+    sr_sub = df_cat[df_cat["environment"] == "test_stress_rain"]
+    sr_dur_min = sr_sub["duration_hours"].min()
+    sr_dur_med = sr_sub["duration_hours"].median()
+    sr_dur_max = sr_sub["duration_hours"].max()
 
     # 7. Summary Table of Duration, Peak Ranges, and Audit Evidence per Environment
     summary_records = []
@@ -135,7 +165,7 @@ def audit_catalog():
             "count": len(sub),
             "drop_sync_pct": 100.0,
             "scenario_balance_pct": 20.0 if exact_balance else np.nan,
-            "min_buffer_hours": 48.0,
+            "min_buffer_hours": min_observed_buffer,
             "dur_min_h": sub["duration_hours"].min(),
             "dur_median_h": round(sub["duration_hours"].median(), 1),
             "dur_max_h": sub["duration_hours"].max(),
@@ -156,10 +186,10 @@ def audit_catalog():
     verif_records = [
         {"check_item": "Total Injections", "specification": "450 injections (250 train, 200 test)", "realized_value": f"{len(df_cat)} total ({split_counts.get('train')} train, {split_counts.get('test')} test)", "status": "PASSED"},
         {"check_item": "Filter Drop Synchronization", "specification": "100.0% of injections end at real detected filter drops", "realized_value": f"{total_checked}/{total_checked} (100.0%)", "status": "PASSED"},
-        {"check_item": "Scenario Balance", "specification": "Exact 20.0% per scenario in all 6 environments", "realized_value": "20.0% across all 5 scenarios in all 6 environments", "status": "PASSED"},
-        {"check_item": "Inter-Injection Temporal Buffer", "specification": ">= 48.0 hours between consecutive events at same station", "realized_value": ">= 48.0h (0 buffer violations across all 5 stations)", "status": "PASSED"},
-        {"check_item": "Cs-134 High-Energy Lines (R07+R08)", "specification": "Reactor releases exhibit Cs-134 lines spanning radon band", "realized_value": f"Mean {mean_hi_energy:.2f}% high energy share in Fukushima events", "status": "PASSED"},
-        {"check_item": "Stress-Rain Plume Durations", "specification": "Bound by storm window and physical filter replacement cycle", "realized_value": "28h to 140h (median 49.0h)", "status": "PASSED"},
+        {"check_item": "Scenario Balance", "specification": "Exact 20.0% per scenario in all 6 environments", "realized_value": f"Exactly 20.0% in all environments (min {min_sc_pct:.1f}%, max {max_sc_pct:.1f}%)", "status": "PASSED"},
+        {"check_item": "Inter-Injection Temporal Buffer", "specification": ">= 48.0 hours between consecutive events at same station", "realized_value": f"Observed min: {min_observed_buffer:.1f}h (0 violations <48.0h across {total_pairs} pairs)", "status": "PASSED"},
+        {"check_item": "Cs-134 High-Energy Lines (R07+R08)", "specification": "Reactor releases exhibit Cs-134 lines spanning radon band", "realized_value": f"Mean {mean_hi_energy:.2f}% (5-95th: [{fuk_p5:.2f}%, {fuk_p95:.2f}%])", "status": "PASSED"},
+        {"check_item": "Stress-Rain Plume Durations", "specification": "Bound by storm window and physical filter replacement cycle", "realized_value": f"Observed: {sr_dur_min}h to {sr_dur_max}h (median {sr_dur_med:.1f}h); short plumes (<12h) in rain are limited by filter cycles", "status": "PASSED"},
     ]
     verif_df = pd.DataFrame(verif_records)
     verif_csv = Path("data/processed/injection_catalog_audit_verification.csv")

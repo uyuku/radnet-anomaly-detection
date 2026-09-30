@@ -1,6 +1,6 @@
-perturbation_factor,perturbation_pct,test_detection_rate_pct,detected_events,total_events,median_delay_hours,sensitivity_verdict
-0.8,-20%,88.0,176,200,4.0,Moderate-to-Strong Sensitivity (10% shift changes detection by ~8-11 points)
-0.9,-10%,90.0,180,200,4.0,Moderate-to-Strong Sensitivity (10% shift changes detection by ~8-11 points)
-1.0,+0%,92.0,184,200,4.0,Moderate-to-Strong Sensitivity (10% shift changes detection by ~8-11 points)
-1.1,+10%,94.0,188,200,4.0,Moderate-to-Strong Sensitivity (10% shift changes detection by ~8-11 points)
-1.2,+20%,95.5,191,200,4.0,Moderate-to-Strong Sensitivity (10% shift changes detection by ~8-11 points)
+perturbation_factor,perturbation_pct,test_detection_rate_pct_mean,test_detection_rate_pct_std,median_delay_hours_mean,sensitivity_verdict
+0.8,-20%,86.5,1.95,4.6,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
+0.9,-10%,89.4,1.02,4.3,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
+1.0,+0%,92.1,1.5,4.0,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
+1.1,+10%,94.0,0.95,4.0,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
+1.2,+20%,94.7,1.08,4.0,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)

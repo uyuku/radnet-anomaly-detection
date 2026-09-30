@@ -195,7 +195,7 @@ Format:
 
 ---
 
-### Phase 5: Rigorous Statistical Evaluation Protocol & Uncertainty Decisions (Second Revision)
+### Phase 5: Rigorous Statistical Evaluation Protocol & Uncertainty Decisions (Third Revision)
 
 - **2026-09-30 | Causal Validation Split for Operating Threshold Selection (No Test Leakage)**
   - **Reason**: Tuning operating thresholds $\tau$ by sweeping on the test set creates optimistic bias. Training observations were causally partitioned into a Training Fold (2017–2020: 153,740 observed hours, 169 injections) and a Validation Fold (2021–2022: 74,199 observed hours, 81 injections).
@@ -204,41 +204,42 @@ Format:
 
 - **2026-09-30 | Continuous Baseline Multiplier Sweep & Aligned Labeling**
   - **Reason**: Baseline rule is formally defined and labeled as `Rolling 7d Local Z-Score Baseline`: $Z_{168\text{h}}(t) = (\text{gross}(t) - \mu_{168\text{h}}(t)) / (\sigma_{168\text{h}}(t) + 10^{-4}) \ge k$. Multipliers $k \in [0.5, 5.0]$ were swept in 0.05 increments to trace continuous ROC trade-offs.
-  - **Result**: The baseline detection curve plateaus near 91.0%–92.5% from $k=1.0$ down to $k=0.5$. To match ~92.5% realized detection, the baseline requires $k = 0.75$, producing **303.11 false alarms per station-year** (at $k=1.0$, 91.0% detection and 263.82 FA/yr). Tier 3 GBDT yields **4.22 FA/yr** at matched ~92% detection—a **98.6% to 98.8% reduction in operational false alarms**.
+  - **Result**: The baseline detection curve plateaus near 91.0%–92.5% from $k=1.0$ down to $k=0.5$. To match ~92.5% realized detection, the baseline requires $k = 0.75$, producing **303.11 false alarms per station-year** (at $k=1.0$, 91.0% detection and 263.82 FA/yr). Tier 3 GBDT yields **4.22 FA/yr** at matched ~92% detection—a **98.6% reduction in operational false alarms**.
 
 - **2026-09-30 | Four-Tier Ablation Across 20 Random Seeds & Paired Statistical Tests**
   - **Reason**: Evaluates the incremental physical contributions of spectrometry and weather across 20 random seeds (SEEDS 42 to 61) with paired tests:
-    - *Tier 1 (Gross Radiation Only, 12 features)*: At 95% target, realized test detection is **92.10 ± 0.55%** with **168.62 ± 20.57 FA/yr** (95% CI: [143.66, 174.75]).
-    - *Tier 1b (Gross Radiation + Weather, 29 features)*: At 98% target, realized test detection is **92.82 ± 1.10%** with **68.21 ± 9.75 FA/yr** (95% CI: [56.70, 77.62]).
-      - **Matched Gross Weather Benefit**: Comparing Tier 1 vs Tier 1b at matched ~92% detection reveals a **59.5% reduction** in false alarms ($p < 10^{-5}$ across 20 seeds).
-    - *Tier 2 (Gross + NaI Spectrometry, 30 features)*: At 95% target, realized test detection is **92.48 ± 1.38%** with **8.52 ± 6.23 FA/yr** (95% CI: [9.27, 22.01]). Spectrometry achieves a **95.0% reduction** over gross radiation alone.
-    - *Tier 3 (Gross + Spectrometry + Weather, 48 features)*: At 95% target, realized test detection is **92.08 ± 1.77%** with **4.22 ± 1.29 FA/yr** (95% CI: [2.29, 6.12]).
-      - **Statistical Significance**: Weather fusion on top of spectrometry cuts false alarms by **50.5%** on average ($4.31\text{ FA/yr}$ mean reduction). Across 20 paired seeds, this reduction is statistically significant: paired t-test $t = 3.166$, $p = 0.00509$; Wilcoxon signed-rank test $W = 36.5$, $p = 0.01855$.
-      - **Protocol Correction Note**: The single-seed Phase 4 ordering (where Tier 3 appeared slightly worse than Tier 2) did not survive the multi-seed protocol; multi-seed replication confirms consistent false alarm suppression and lower seed variance for Tier 3.
+    - *Tier 1 (Gross Radiation Only, 12 features)*: At 95% target, realized test detection is **92.10 ± 0.55%** with **168.62 ± 20.57 FA/yr** (95% CI: [153.14, 185.95], median 163.56 FA/yr).
+    - *Tier 1b (Gross Radiation + Weather, 29 features)*: At 98% target, realized test detection is **92.82 ± 1.10%** with **68.21 ± 9.75 FA/yr** (95% CI: [57.90, 78.77], median 66.18 FA/yr).
+      - **Matched Gross Weather Benefit**: Comparing Tier 1 vs Tier 1b at matched ~92% detection reveals a **59.5% reduction** in false alarms (+100.41 FA/yr difference, paired bootstrap 95% CI: [88.02, 114.86], paired $t = 18.396, p < 10^{-15}$, Wilcoxon $W = 0.0, p < 10^{-5}$ across 20 seeds).
+    - *Tier 2 (Gross + NaI Spectrometry, 30 features)*: At 95% target, realized test detection is **92.48 ± 1.38%** with **8.52 ± 6.23 FA/yr** (95% CI: [5.36, 12.44], median 4.69 FA/yr). Spectrometry achieves a **95.0% reduction** over gross radiation alone.
+    - *Tier 3 (Gross + Spectrometry + Weather, 48 features)*: At 95% target, realized test detection is **92.08 ± 1.77%** with **4.22 ± 1.29 FA/yr** (95% CI: [2.56, 6.22], median 4.03 FA/yr).
+      - **Statistical Significance & Variance Suppression**: Weather fusion on top of spectrometry yields a **50.5% mean reduction** ($+4.31\text{ FA/yr}$ mean difference, paired bootstrap 95% CI: $[1.30, 7.65]\text{ FA/yr}$, paired $t = 3.166, p = 0.00509$, Wilcoxon $W = 36.5, p = 0.01855$), while median reduction is **14.0%** ($4.69 \to 4.03\text{ FA/yr}$). The primary physical benefit of weather fusion on spectral data is **variance suppression** ($\sigma$ drops from $6.23$ to $1.29\text{ FA/yr}$) and eliminating high-false-alarm storm outliers.
 
-- **2026-09-30 | Restored Sampling Uncertainty via Block & Event Bootstrapping**
-  - **Reason**: Test-set sampling uncertainty is evaluated via station-month block bootstrap ($B=1,000$ resamples) for clean false alarms, and event-level bootstrap ($B=1,000$ resamples) for detection probability and median delay.
-  - **Result**: Tier 3 achieves 92.08% detection (95% CI: [88.0%, 95.5%]), 4.22 FA/yr (95% CI: [2.29, 6.12] FA/yr), and a median detection delay of 4.0 hours (95% CI: [4.0, 5.0] h).
+- **2026-09-30 | Clustered Block & Event Bootstrapping for Uncertainty Estimation**
+  - **Reason**: Test-set sampling uncertainty is evaluated via station-month block bootstrap ($B=1,000$ resamples) for clean false alarms, and event-level bootstrap ($B=1,000$ resamples) for detection probability and median delay. The reported 95% confidence intervals describe estimator uncertainty for the 20-seed mean.
+  - **Result**: Tier 3 achieves 92.08% detection (95% CI: [88.5%, 95.2%]), 4.22 FA/yr (95% CI: [2.56, 6.22] FA/yr), and a median detection delay of 4.0 hours (95% CI: [4.0, 5.0] h).
 
 - **2026-09-30 | Multi-Station Leave-One-Station-Out (LOSO) Validation**
   - **Reason**: Evaluates geographic and meteorological generalization across distinct climate regimes (San Diego, Birmingham, Dallas) with zero held-out leakage.
   - **Result**:
-    - *San Diego, CA (Marine, 0 test washout hours)*: At frozen $\tau^* = 0.990$, realizes **0.00 FA/yr** (rule-of-three 95% upper bound $\le 1.05\text{ FA/yr}$) and **67.5% detection** (27/40). Stratification reveals detection was 90.0% on Band B (600–1200 CPM) but dropped to 45.0% on subtle Band A (300–600 CPM), confirming that the frozen threshold traded subtle detection for complete silence on an out-of-domain marine background.
-    - *Birmingham, AL (High precipitation, 263 test washout hours)*: At frozen $\tau^* = 0.990$, realizes **0.00 FA/yr** ($\le 1.08\text{ FA/yr}$) and **82.5% detection** (33/40).
-    - *Dallas, TX (Convective storms, 324 test washout hours)*: At frozen $\tau^* = 0.997$, realizes **0.00 FA/yr** ($\le 1.70\text{ FA/yr}$) and **82.5% detection** (33/40).
+    - Across all three climate regimes, out-of-domain models produced **zero clean false alarms** ($0.00\text{ FA/yr}$; rule-of-three 95% upper bounds $\le 1.05, \le 1.08, \le 1.70\text{ FA/yr}$).
+    - Across all 120 held-out events, standard plumes (Band B: 714–1199 CPM) exhibit robust **95.0% detection** (57/60: 90% in San Diego, 100% in Birmingham, 95% in Dallas), while subtle stress plumes (Band A: 255–599 CPM) drop to **60.0% detection** (36/60: 45% in San Diego, 65% in Birmingham, 70% in Dallas).
+    - Scenario breakdown: pure Cs-137 **100.0%** (24/24), Fukushima-like **91.7%** (22/24), mixed fission-activation **75.0%** (18/24), Co-60 orphan **62.5%** (15/24), pure I-131 **58.3%** (14/24).
+    - Documents inductive transfer gap: models trade subtle detection in novel climates to ensure total operational background silence.
 
-- **2026-09-30 | Proper Spectral Template Sensitivity & Instrumental Gain Drift**
-  - **Reason**: Separates injected photopeak branching uncertainty from instrumental gain drift:
-    - *Injected Photopeak Scaling*: Perturbing injected photopeak excess by $\pm 10\%$ and $\pm 20\%$ (with continuum re-normalization to preserve total CPM) yields realized test detection of 88.0% ($-20\%$), 90.0% ($-10\%$), 92.0% (nominal), 94.0% ($+10\%$), and 95.5% ($+20\%$). Detection depends noticeably on photopeak strength, demonstrating moderate-to-strong sensitivity to spectral branching assumptions.
-    - *Instrumental Gain Drift*: Symmetrically perturbing energy channels across all data by $\pm 5\%$ and $\pm 10\%$ elevates clean false alarms to 7.97 FA/yr ($-10\%$) and 22.11 FA/yr ($+10\%$), with detection ranging between 89.0% and 92.5%.
+- **2026-09-30 | Multi-Seed Spectral Template Sensitivity & Instrumental Gain Drift (SEEDS 42–46)**
+  - **Reason**: Evaluates sensitivity to assumed radionuclide photopeak shares and instrumental calibration drift across 5 seeds:
+    - *Injected Photopeak Scaling*: Perturbing photopeak excess by $\pm 10\%$ and $\pm 20\%$ yields detection of 86.5 ± 1.95% ($-20\%$), 89.4 ± 1.02% ($-10\%$), 92.1 ± 1.50% (nominal), 94.0 ± 0.95% ($+10\%$), and 94.7 ± 1.08% ($+20\%$). Modest-to-moderate sensitivity confirms spectral features drive discrimination.
+    - *Instrumental Gain Drift*: Symmetrically perturbing energy channels by $\pm 5\%$ and $\pm 10\%$ yields clean false alarms of 6.23 ± 2.29 ($-10\%$), 4.78 ± 1.86 ($-5\%$), 4.27 ± 1.37 (0%), 4.46 ± 1.74 ($+5\%$), and 19.06 ± 8.40 ($+10\%$). Routine field energy stabilization is critical to prevent upward gain drift false alarms.
 
-- **2026-09-30 | Honest MLP Probability Calibration & Neural Net Gap Analysis**
-  - **Reason**: Investigates whether probability calibration resolves the MLP's high false alarms under frozen thresholds.
-  - **Result**: Fitting an isotonic regression calibrator on validation fold predictions does not close the gap (calibrated MLP yields **128.08 FA/yr** at 92.0% detection vs raw MLP at **85.11 FA/yr**, compared to LightGBM's **3.73–4.22 FA/yr**). LightGBM's decision tree partitions are structurally superior for tabular physical telemetry.
+- **2026-09-30 | Honest MLP Probability Calibration & Tabular Modeling Gap**
+  - **Reason**: Tests whether post-hoc probability calibration resolves the MLP's high false alarm rate under frozen thresholds.
+  - **Result**: Isotonic calibration maps probabilities to empirical validation frequencies but does not alter the underlying ranking (on continuous threshold-free ROC evaluation, MLP produces ~20× more false alarms at 90% detection). LightGBM's orthogonal axis-aligned partitions are structurally superior for tabular physical telemetry.
 
 - **2026-09-30 | Operational Deadlines & Environmental Stratification**
-  - **Reason**: Evaluates early detection deadlines ($\le 6\text{h}, \le 12\text{h}, \le 24\text{h}$) across dry vs rain and standard vs stress regimes under the net alarm criterion.
-  - **Result**: At $\le 6\text{h}$, Tier 2 detects **72.0%** while Tier 3 detects **71.5%**. Weather fusion substantially cuts false alarms (~50%–60% over spectral alone) but does not accelerate early detection over spectrometry alone. During active rainstorms, Tier 3 achieves 96.0% total detection and 66.0% early detection ($\le 6\text{h}$).
+  - **Reason**: Evaluates prompt operational deadlines ($\le 6\text{h}, \le 12\text{h}, \le 24\text{h}$) across dry vs rain and standard vs stress regimes under the net alarm criterion for both Tier 2 and Tier 3.
+  - **Result**: Within $\le 6\text{h}$, Tier 2 detects **72.0%** and Tier 3 detects **71.5%**. Weather fusion does not accelerate prompt detection over spectrometry alone, but maintains high detection during storms without tripping false alarms on natural radon washouts. In rain environments, Tier 3 achieves 96.0% total detection (93.0% $\le 12\text{h}$).
+  - **Open Limitation**: Stress-rain durations span 28h to 140h (median 49.0h) due to physical filter replacement cycles; ultra-short plumes (<12h) during active rain remain an unmeasured operational boundary condition.
 
 
 

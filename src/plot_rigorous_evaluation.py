@@ -260,14 +260,20 @@ def plot_template_sensitivity():
 
     # Panel A: Injected Photopeak Scaling
     x_pct = (sens_df["perturbation_factor"] - 1.0) * 100.0
-    y_det = sens_df["test_detection_rate_pct"]
-    ax1.plot(x_pct, y_det, marker="o", color="#27ae60", linewidth=2.5, markersize=8)
+    y_det = sens_df["test_detection_rate_pct_mean"] if "test_detection_rate_pct_mean" in sens_df.columns else sens_df["test_detection_rate_pct"]
+    y_err = sens_df["test_detection_rate_pct_std"] if "test_detection_rate_pct_std" in sens_df.columns else None
+
+    if y_err is not None:
+        ax1.errorbar(x_pct, y_det, yerr=y_err, fmt="-o", color="#27ae60", linewidth=2.5, markersize=8, capsize=5)
+    else:
+        ax1.plot(x_pct, y_det, marker="o", color="#27ae60", linewidth=2.5, markersize=8)
+
     for px, py in zip(x_pct, y_det):
         ax1.annotate(f"{py:.1f}%", (px, py), textcoords="offset points", xytext=(0, 10),
                      ha="center", fontweight="bold", fontsize=9.5)
 
     ax1.set_xlabel("Injected Photopeak Excess Scaling (%)")
-    ax1.set_ylabel("Test Event Detection Rate (%)")
+    ax1.set_ylabel("Test Event Detection Rate (%) (5-Seed Mean ± Std)")
     ax1.set_title("(a) Sensitivity to Injected Photopeak Branching", fontweight="bold", pad=10)
     ax1.set_ylim(65, 105)
     ax1.xaxis.set_major_locator(ticker.MultipleLocator(10))
@@ -275,22 +281,33 @@ def plot_template_sensitivity():
 
     # Panel B: Instrumental Gain Drift (Dual Axis: Detection & Clean FA)
     gx = gain_df["gain_drift_shift"] * 100.0
-    g_det = gain_df["test_detection_rate_pct"]
-    g_fa = gain_df["clean_false_alarms_per_year"]
+    g_det = gain_df["test_detection_rate_pct_mean"] if "test_detection_rate_pct_mean" in gain_df.columns else gain_df["test_detection_rate_pct"]
+    g_det_err = gain_df["test_detection_rate_pct_std"] if "test_detection_rate_pct_std" in gain_df.columns else None
+
+    g_fa = gain_df["clean_false_alarms_per_year_mean"] if "clean_false_alarms_per_year_mean" in gain_df.columns else gain_df["clean_false_alarms_per_year"]
+    g_fa_err = gain_df["clean_false_alarms_per_year_std"] if "clean_false_alarms_per_year_std" in gain_df.columns else None
 
     color_det = "#2980b9"
     color_fa = "#d9534f"
 
-    ax2.plot(gx, g_det, marker="s", color=color_det, linewidth=2.2, markersize=7, label="Detection Rate (%)")
+    if g_det_err is not None:
+        ax2.errorbar(gx, g_det, yerr=g_det_err, fmt="-s", color=color_det, linewidth=2.2, markersize=7, capsize=4, label="Detection Rate (%)")
+    else:
+        ax2.plot(gx, g_det, marker="s", color=color_det, linewidth=2.2, markersize=7, label="Detection Rate (%)")
+
     ax2.set_xlabel("Instrumental Energy Calibration Drift (%)")
-    ax2.set_ylabel("Test Detection Rate (%)", color=color_det)
+    ax2.set_ylabel("Test Detection Rate (%) (5-Seed Mean ± Std)", color=color_det)
     ax2.tick_params(axis="y", labelcolor=color_det)
     ax2.set_ylim(65, 105)
     ax2.grid(True, alpha=0.35)
 
     ax2_fa = ax2.twinx()
-    ax2_fa.plot(gx, g_fa, marker="^", color=color_fa, linewidth=2.2, linestyle="--", markersize=7, label="Clean False Alarms")
-    ax2_fa.set_ylabel("Clean False Alarms / Station-Year", color=color_fa)
+    if g_fa_err is not None:
+        ax2_fa.errorbar(gx, g_fa, yerr=g_fa_err, fmt="--^", color=color_fa, linewidth=2.2, markersize=7, capsize=4, label="Clean False Alarms")
+    else:
+        ax2_fa.plot(gx, g_fa, marker="^", color=color_fa, linewidth=2.2, linestyle="--", markersize=7, label="Clean False Alarms")
+
+    ax2_fa.set_ylabel("Clean False Alarms / Station-Year (5-Seed Mean ± Std)", color=color_fa)
     ax2_fa.tick_params(axis="y", labelcolor=color_fa)
     ax2_fa.set_ylim(-0.5, max(g_fa.max() * 1.3, 10.0))
 
