@@ -1,49 +1,49 @@
 model_name,category,group,total_events,detected_events,detection_rate_pct,delay_p25_h,delay_median_h,delay_p75_h,delay_p90_h
-Baseline: Rolling 7d 3-sigma,Overall,All 200 Test Events,200,126,63.0,1.2,7.0,13.8,26.0
-Baseline: Rolling 7d 3-sigma,Nuclide Scenario,activation_orphan_co60,40,26,65.0,1.2,5.0,10.8,30.0
-Baseline: Rolling 7d 3-sigma,Nuclide Scenario,fission_pure_cs137,40,27,67.5,2.0,6.0,15.0,37.4
-Baseline: Rolling 7d 3-sigma,Nuclide Scenario,fission_pure_i131,40,24,60.0,2.0,7.5,16.2,29.8
-Baseline: Rolling 7d 3-sigma,Nuclide Scenario,fission_reactor_fukushima,40,24,60.0,1.0,9.0,14.5,20.8
-Baseline: Rolling 7d 3-sigma,Nuclide Scenario,mixed_fission_activation,40,25,62.5,1.0,6.0,10.0,14.0
-Baseline: Rolling 7d 3-sigma,Magnitude Band,Band_A_Low (Stress Test),100,55,55.0,2.0,4.0,10.5,32.6
-Baseline: Rolling 7d 3-sigma,Magnitude Band,Band_B_Mid,100,71,71.0,1.0,9.0,15.5,20.0
-Baseline: Rolling 7d 3-sigma,Environment Regime,test_standard_rain,50,40,80.0,0.0,4.0,16.0,19.4
-Baseline: Rolling 7d 3-sigma,Environment Regime,test_standard_strictly_dry,50,31,62.0,7.0,9.0,13.0,20.0
-Baseline: Rolling 7d 3-sigma,Environment Regime,test_stress_rain,50,34,68.0,1.0,2.5,18.2,39.7
-Baseline: Rolling 7d 3-sigma,Environment Regime,test_stress_strictly_dry,50,21,42.0,3.0,6.0,7.0,10.0
-Tier 2: Radiation + Spectrometry GBDT (95% target),Overall,All 200 Test Events,200,190,95.0,3.0,4.0,6.0,7.0
-Tier 2: Radiation + Spectrometry GBDT (95% target),Nuclide Scenario,activation_orphan_co60,40,38,95.0,3.2,4.0,6.0,7.0
+Baseline: Rolling 7d 3-sigma,Overall,All 200 Test Events,200,104,52.0,6.0,10.0,16.2,22.7
+Baseline: Rolling 7d 3-sigma,Nuclide Scenario,activation_orphan_co60,40,22,55.0,4.5,8.5,14.5,30.0
+Baseline: Rolling 7d 3-sigma,Nuclide Scenario,fission_pure_cs137,40,22,55.0,6.2,9.0,18.2,33.5
+Baseline: Rolling 7d 3-sigma,Nuclide Scenario,fission_pure_i131,40,19,47.5,6.5,10.0,18.0,23.6
+Baseline: Rolling 7d 3-sigma,Nuclide Scenario,fission_reactor_fukushima,40,21,52.5,8.0,12.0,16.0,20.0
+Baseline: Rolling 7d 3-sigma,Nuclide Scenario,mixed_fission_activation,40,20,50.0,5.8,9.0,12.2,21.1
+Baseline: Rolling 7d 3-sigma,Magnitude Band,Band_A_Low (Stress Test),100,40,40.0,3.8,7.0,14.5,35.5
+Baseline: Rolling 7d 3-sigma,Magnitude Band,Band_B_Mid,100,64,64.0,7.0,10.0,17.0,21.0
+Baseline: Rolling 7d 3-sigma,Environment Regime,test_standard_rain,50,34,68.0,10.0,14.5,18.0,21.7
+Baseline: Rolling 7d 3-sigma,Environment Regime,test_standard_strictly_dry,50,30,60.0,7.0,9.0,11.8,20.0
+Baseline: Rolling 7d 3-sigma,Environment Regime,test_stress_rain,50,21,42.0,4.0,14.0,29.0,41.0
+Baseline: Rolling 7d 3-sigma,Environment Regime,test_stress_strictly_dry,50,19,38.0,2.5,6.0,7.5,10.2
+Tier 2: Radiation + Spectrometry GBDT (95% target),Overall,All 200 Test Events,200,187,93.5,3.0,4.0,6.0,8.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),Nuclide Scenario,activation_orphan_co60,40,35,87.5,3.5,4.0,6.5,8.0
 Tier 2: Radiation + Spectrometry GBDT (95% target),Nuclide Scenario,fission_pure_cs137,40,40,100.0,2.0,3.0,4.0,5.1
-Tier 2: Radiation + Spectrometry GBDT (95% target),Nuclide Scenario,fission_pure_i131,40,33,82.5,5.0,7.0,8.0,17.0
-Tier 2: Radiation + Spectrometry GBDT (95% target),Nuclide Scenario,fission_reactor_fukushima,40,40,100.0,2.0,3.0,5.0,6.1
-Tier 2: Radiation + Spectrometry GBDT (95% target),Nuclide Scenario,mixed_fission_activation,40,39,97.5,3.0,3.0,5.0,6.0
-Tier 2: Radiation + Spectrometry GBDT (95% target),Magnitude Band,Band_A_Low (Stress Test),100,90,90.0,2.0,3.0,4.0,6.0
-Tier 2: Radiation + Spectrometry GBDT (95% target),Magnitude Band,Band_B_Mid,100,100,100.0,3.0,5.0,7.0,8.0
-Tier 2: Radiation + Spectrometry GBDT (95% target),Environment Regime,test_standard_rain,50,50,100.0,4.0,6.0,7.0,8.0
-Tier 2: Radiation + Spectrometry GBDT (95% target),Environment Regime,test_standard_strictly_dry,50,50,100.0,3.0,4.5,6.0,7.0
-Tier 2: Radiation + Spectrometry GBDT (95% target),Environment Regime,test_stress_rain,50,46,92.0,3.0,4.0,5.0,6.0
-Tier 2: Radiation + Spectrometry GBDT (95% target),Environment Regime,test_stress_strictly_dry,50,44,88.0,1.0,2.0,3.0,4.0
-Tier 3: Full Weather Fusion GBDT (95% target),Overall,All 200 Test Events,200,191,95.5,2.0,3.0,5.0,7.0
-Tier 3: Full Weather Fusion GBDT (95% target),Nuclide Scenario,activation_orphan_co60,40,39,97.5,2.0,4.0,5.0,5.2
-Tier 3: Full Weather Fusion GBDT (95% target),Nuclide Scenario,fission_pure_cs137,40,40,100.0,2.0,2.5,4.0,4.1
-Tier 3: Full Weather Fusion GBDT (95% target),Nuclide Scenario,fission_pure_i131,40,33,82.5,4.0,6.0,7.0,10.8
-Tier 3: Full Weather Fusion GBDT (95% target),Nuclide Scenario,fission_reactor_fukushima,40,40,100.0,2.0,3.0,4.2,5.2
-Tier 3: Full Weather Fusion GBDT (95% target),Nuclide Scenario,mixed_fission_activation,40,39,97.5,2.0,3.0,4.0,6.0
-Tier 3: Full Weather Fusion GBDT (95% target),Magnitude Band,Band_A_Low (Stress Test),100,91,91.0,2.0,2.0,4.0,4.0
-Tier 3: Full Weather Fusion GBDT (95% target),Magnitude Band,Band_B_Mid,100,100,100.0,3.0,4.0,6.0,7.0
-Tier 3: Full Weather Fusion GBDT (95% target),Environment Regime,test_standard_rain,50,50,100.0,3.0,5.0,7.0,8.0
-Tier 3: Full Weather Fusion GBDT (95% target),Environment Regime,test_standard_strictly_dry,50,50,100.0,3.0,4.0,5.0,6.0
-Tier 3: Full Weather Fusion GBDT (95% target),Environment Regime,test_stress_rain,50,46,92.0,2.2,3.0,4.0,5.0
-Tier 3: Full Weather Fusion GBDT (95% target),Environment Regime,test_stress_strictly_dry,50,45,90.0,1.0,2.0,2.0,4.0
-Tier 3: Weather-Fused Neural Net (MLP) (95% target),Overall,All 200 Test Events,200,191,95.5,2.0,3.0,5.0,7.0
-Tier 3: Weather-Fused Neural Net (MLP) (95% target),Nuclide Scenario,activation_orphan_co60,40,37,92.5,2.0,3.0,4.0,5.4
-Tier 3: Weather-Fused Neural Net (MLP) (95% target),Nuclide Scenario,fission_pure_cs137,40,40,100.0,2.0,3.0,4.0,4.1
-Tier 3: Weather-Fused Neural Net (MLP) (95% target),Nuclide Scenario,fission_pure_i131,40,34,85.0,4.0,6.0,7.0,9.7
-Tier 3: Weather-Fused Neural Net (MLP) (95% target),Nuclide Scenario,fission_reactor_fukushima,40,40,100.0,2.0,3.0,4.2,5.1
-Tier 3: Weather-Fused Neural Net (MLP) (95% target),Nuclide Scenario,mixed_fission_activation,40,40,100.0,2.0,3.0,5.0,5.1
-Tier 3: Weather-Fused Neural Net (MLP) (95% target),Magnitude Band,Band_A_Low (Stress Test),100,93,93.0,2.0,2.0,3.0,4.8
-Tier 3: Weather-Fused Neural Net (MLP) (95% target),Magnitude Band,Band_B_Mid,100,98,98.0,3.0,4.0,5.8,7.0
-Tier 3: Weather-Fused Neural Net (MLP) (95% target),Environment Regime,test_standard_rain,50,50,100.0,3.0,4.0,6.0,8.0
-Tier 3: Weather-Fused Neural Net (MLP) (95% target),Environment Regime,test_standard_strictly_dry,50,48,96.0,2.0,4.0,5.0,6.0
-Tier 3: Weather-Fused Neural Net (MLP) (95% target),Environment Regime,test_stress_rain,50,46,92.0,3.0,3.0,4.0,6.5
-Tier 3: Weather-Fused Neural Net (MLP) (95% target),Environment Regime,test_stress_strictly_dry,50,47,94.0,1.0,2.0,2.0,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),Nuclide Scenario,fission_pure_i131,40,34,85.0,4.0,7.0,8.8,14.4
+Tier 2: Radiation + Spectrometry GBDT (95% target),Nuclide Scenario,fission_reactor_fukushima,40,40,100.0,2.0,4.0,5.0,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),Nuclide Scenario,mixed_fission_activation,40,38,95.0,3.0,4.0,5.0,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),Magnitude Band,Band_A_Low (Stress Test),100,89,89.0,2.0,3.0,4.0,5.2
+Tier 2: Radiation + Spectrometry GBDT (95% target),Magnitude Band,Band_B_Mid,100,98,98.0,4.0,5.0,7.0,8.3
+Tier 2: Radiation + Spectrometry GBDT (95% target),Environment Regime,test_standard_rain,50,49,98.0,4.0,6.0,8.0,9.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),Environment Regime,test_standard_strictly_dry,50,49,98.0,4.0,5.0,6.0,7.2
+Tier 2: Radiation + Spectrometry GBDT (95% target),Environment Regime,test_stress_rain,50,48,96.0,3.0,4.0,5.0,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),Environment Regime,test_stress_strictly_dry,50,41,82.0,1.0,2.0,3.0,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),Overall,All 200 Test Events,200,184,92.0,3.0,4.0,6.0,9.0
+Tier 3: Full Weather Fusion GBDT (95% target),Nuclide Scenario,activation_orphan_co60,40,35,87.5,4.0,5.0,6.5,10.6
+Tier 3: Full Weather Fusion GBDT (95% target),Nuclide Scenario,fission_pure_cs137,40,40,100.0,2.0,3.5,5.0,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),Nuclide Scenario,fission_pure_i131,40,33,82.5,5.0,7.0,9.0,14.6
+Tier 3: Full Weather Fusion GBDT (95% target),Nuclide Scenario,fission_reactor_fukushima,40,39,97.5,2.5,4.0,5.0,8.0
+Tier 3: Full Weather Fusion GBDT (95% target),Nuclide Scenario,mixed_fission_activation,40,37,92.5,3.0,4.0,5.0,7.4
+Tier 3: Full Weather Fusion GBDT (95% target),Magnitude Band,Band_A_Low (Stress Test),100,86,86.0,2.0,3.0,4.0,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),Magnitude Band,Band_B_Mid,100,98,98.0,4.0,5.0,7.0,10.0
+Tier 3: Full Weather Fusion GBDT (95% target),Environment Regime,test_standard_rain,50,49,98.0,5.0,6.0,8.0,10.2
+Tier 3: Full Weather Fusion GBDT (95% target),Environment Regime,test_standard_strictly_dry,50,49,98.0,4.0,5.0,7.0,8.0
+Tier 3: Full Weather Fusion GBDT (95% target),Environment Regime,test_stress_rain,50,47,94.0,3.0,4.0,5.0,7.8
+Tier 3: Full Weather Fusion GBDT (95% target),Environment Regime,test_stress_strictly_dry,50,39,78.0,2.0,2.0,3.0,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),Overall,All 200 Test Events,200,180,90.0,2.0,3.5,5.0,7.1
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),Nuclide Scenario,activation_orphan_co60,40,35,87.5,2.0,3.0,5.0,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),Nuclide Scenario,fission_pure_cs137,40,36,90.0,2.0,3.0,4.0,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),Nuclide Scenario,fission_pure_i131,40,34,85.0,3.2,5.0,7.0,9.7
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),Nuclide Scenario,fission_reactor_fukushima,40,36,90.0,2.0,3.0,5.0,6.5
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),Nuclide Scenario,mixed_fission_activation,40,39,97.5,2.0,4.0,5.0,8.2
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),Magnitude Band,Band_A_Low (Stress Test),100,88,88.0,2.0,3.0,4.0,5.6
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),Magnitude Band,Band_B_Mid,100,92,92.0,3.0,4.5,6.0,8.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),Environment Regime,test_standard_rain,50,47,94.0,4.0,5.0,6.0,8.8
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),Environment Regime,test_standard_strictly_dry,50,45,90.0,2.0,4.0,5.0,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),Environment Regime,test_stress_rain,50,45,90.0,3.0,4.0,5.0,7.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),Environment Regime,test_stress_strictly_dry,50,43,86.0,2.0,2.0,2.0,3.8

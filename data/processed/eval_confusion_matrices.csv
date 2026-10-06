@@ -1,55 +1,55 @@
 model_name,true_class,predicted_class,raw_count,recall_fraction,precision_fraction
-Baseline: Rolling 7d 3-sigma,normal,normal,94243,0.9857,0.9072
+Baseline: Rolling 7d 3-sigma,normal,normal,94397,0.9855,0.9087
 Baseline: Rolling 7d 3-sigma,normal,radon_washout,0,0.0,0.0
-Baseline: Rolling 7d 3-sigma,normal,fission_product,1367,0.0143,0.4975
-Baseline: Rolling 7d 3-sigma,radon_washout,normal,529,0.5057,0.0051
+Baseline: Rolling 7d 3-sigma,normal,fission_product,1389,0.0145,0.5055
+Baseline: Rolling 7d 3-sigma,radon_washout,normal,375,0.431,0.0036
 Baseline: Rolling 7d 3-sigma,radon_washout,radon_washout,0,0.0,0.0
-Baseline: Rolling 7d 3-sigma,radon_washout,fission_product,517,0.4943,0.1881
+Baseline: Rolling 7d 3-sigma,radon_washout,fission_product,495,0.569,0.1801
 Baseline: Rolling 7d 3-sigma,fission_product,normal,9108,0.9134,0.0877
 Baseline: Rolling 7d 3-sigma,fission_product,radon_washout,0,0.0,0.0
 Baseline: Rolling 7d 3-sigma,fission_product,fission_product,864,0.0866,0.3144
-Baseline: Global Dry 3-sigma,normal,normal,94632,0.9898,0.9099
+Baseline: Global Dry 3-sigma,normal,normal,94351,0.985,0.9203
 Baseline: Global Dry 3-sigma,normal,radon_washout,0,0.0,0.0
-Baseline: Global Dry 3-sigma,normal,fission_product,978,0.0102,0.3719
-Baseline: Global Dry 3-sigma,radon_washout,normal,675,0.6453,0.0065
+Baseline: Global Dry 3-sigma,normal,fission_product,1435,0.015,0.3497
+Baseline: Global Dry 3-sigma,radon_washout,normal,369,0.4241,0.0036
 Baseline: Global Dry 3-sigma,radon_washout,radon_washout,0,0.0,0.0
-Baseline: Global Dry 3-sigma,radon_washout,fission_product,371,0.3547,0.1411
-Baseline: Global Dry 3-sigma,fission_product,normal,8691,0.8715,0.0836
+Baseline: Global Dry 3-sigma,radon_washout,fission_product,501,0.5759,0.1221
+Baseline: Global Dry 3-sigma,fission_product,normal,7804,0.7826,0.0761
 Baseline: Global Dry 3-sigma,fission_product,radon_washout,0,0.0,0.0
-Baseline: Global Dry 3-sigma,fission_product,fission_product,1281,0.1285,0.4871
-Tier 1: Gross Radiation GBDT,normal,normal,89606,0.9372,0.9728
-Tier 1: Gross Radiation GBDT,normal,radon_washout,2263,0.0237,0.5713
-Tier 1: Gross Radiation GBDT,normal,fission_product,3741,0.0391,0.3543
-Tier 1: Gross Radiation GBDT,radon_washout,normal,97,0.0927,0.0011
-Tier 1: Gross Radiation GBDT,radon_washout,radon_washout,740,0.7075,0.1868
-Tier 1: Gross Radiation GBDT,radon_washout,fission_product,209,0.1998,0.0198
-Tier 1: Gross Radiation GBDT,fission_product,normal,2406,0.2413,0.0261
-Tier 1: Gross Radiation GBDT,fission_product,radon_washout,958,0.0961,0.2419
-Tier 1: Gross Radiation GBDT,fission_product,fission_product,6608,0.6627,0.6259
-Tier 2: Radiation + Spectrometry GBDT,normal,normal,93684,0.9799,0.9801
-Tier 2: Radiation + Spectrometry GBDT,normal,radon_washout,1798,0.0188,0.6271
-Tier 2: Radiation + Spectrometry GBDT,normal,fission_product,128,0.0013,0.0157
-Tier 2: Radiation + Spectrometry GBDT,radon_washout,normal,251,0.24,0.0026
-Tier 2: Radiation + Spectrometry GBDT,radon_washout,radon_washout,795,0.76,0.2773
-Tier 2: Radiation + Spectrometry GBDT,radon_washout,fission_product,0,0.0,0.0
-Tier 2: Radiation + Spectrometry GBDT,fission_product,normal,1656,0.1661,0.0173
-Tier 2: Radiation + Spectrometry GBDT,fission_product,radon_washout,274,0.0275,0.0956
-Tier 2: Radiation + Spectrometry GBDT,fission_product,fission_product,8042,0.8065,0.9843
-Tier 3: Full Weather Fusion GBDT,normal,normal,95160,0.9953,0.983
-Tier 3: Full Weather Fusion GBDT,normal,radon_washout,101,0.0011,0.1001
-Tier 3: Full Weather Fusion GBDT,normal,fission_product,349,0.0037,0.0396
-Tier 3: Full Weather Fusion GBDT,radon_washout,normal,241,0.2304,0.0025
-Tier 3: Full Weather Fusion GBDT,radon_washout,radon_washout,797,0.762,0.7899
-Tier 3: Full Weather Fusion GBDT,radon_washout,fission_product,8,0.0076,0.0009
-Tier 3: Full Weather Fusion GBDT,fission_product,normal,1401,0.1405,0.0145
-Tier 3: Full Weather Fusion GBDT,fission_product,radon_washout,111,0.0111,0.11
-Tier 3: Full Weather Fusion GBDT,fission_product,fission_product,8460,0.8484,0.9595
-Tier 3: Weather-Fused Neural Net (MLP),normal,normal,95148,0.9952,0.984
-Tier 3: Weather-Fused Neural Net (MLP),normal,radon_washout,198,0.0021,0.1535
-Tier 3: Weather-Fused Neural Net (MLP),normal,fission_product,264,0.0028,0.0305
-Tier 3: Weather-Fused Neural Net (MLP),radon_washout,normal,133,0.1272,0.0014
-Tier 3: Weather-Fused Neural Net (MLP),radon_washout,radon_washout,913,0.8728,0.7078
+Baseline: Global Dry 3-sigma,fission_product,fission_product,2168,0.2174,0.5283
+Tier 1: Gross Radiation GBDT,normal,normal,91469,0.9549,0.9707
+Tier 1: Gross Radiation GBDT,normal,radon_washout,1402,0.0146,0.4181
+Tier 1: Gross Radiation GBDT,normal,fission_product,2915,0.0304,0.3224
+Tier 1: Gross Radiation GBDT,radon_washout,normal,5,0.0057,0.0001
+Tier 1: Gross Radiation GBDT,radon_washout,radon_washout,809,0.9299,0.2413
+Tier 1: Gross Radiation GBDT,radon_washout,fission_product,56,0.0644,0.0062
+Tier 1: Gross Radiation GBDT,fission_product,normal,2760,0.2768,0.0293
+Tier 1: Gross Radiation GBDT,fission_product,radon_washout,1142,0.1145,0.3406
+Tier 1: Gross Radiation GBDT,fission_product,fission_product,6070,0.6087,0.6714
+Tier 2: Radiation + Spectrometry GBDT,normal,normal,94773,0.9894,0.9801
+Tier 2: Radiation + Spectrometry GBDT,normal,radon_washout,946,0.0099,0.4577
+Tier 2: Radiation + Spectrometry GBDT,normal,fission_product,67,0.0007,0.0085
+Tier 2: Radiation + Spectrometry GBDT,radon_washout,normal,12,0.0138,0.0001
+Tier 2: Radiation + Spectrometry GBDT,radon_washout,radon_washout,857,0.9851,0.4146
+Tier 2: Radiation + Spectrometry GBDT,radon_washout,fission_product,1,0.0011,0.0001
+Tier 2: Radiation + Spectrometry GBDT,fission_product,normal,1908,0.1913,0.0197
+Tier 2: Radiation + Spectrometry GBDT,fission_product,radon_washout,264,0.0265,0.1277
+Tier 2: Radiation + Spectrometry GBDT,fission_product,fission_product,7800,0.7822,0.9914
+Tier 3: Full Weather Fusion GBDT,normal,normal,95692,0.999,0.9762
+Tier 3: Full Weather Fusion GBDT,normal,radon_washout,18,0.0002,0.0169
+Tier 3: Full Weather Fusion GBDT,normal,fission_product,76,0.0008,0.0101
+Tier 3: Full Weather Fusion GBDT,radon_washout,normal,4,0.0046,0.0
+Tier 3: Full Weather Fusion GBDT,radon_washout,radon_washout,866,0.9954,0.8124
+Tier 3: Full Weather Fusion GBDT,radon_washout,fission_product,0,0.0,0.0
+Tier 3: Full Weather Fusion GBDT,fission_product,normal,2333,0.234,0.0238
+Tier 3: Full Weather Fusion GBDT,fission_product,radon_washout,182,0.0183,0.1707
+Tier 3: Full Weather Fusion GBDT,fission_product,fission_product,7457,0.7478,0.9899
+Tier 3: Weather-Fused Neural Net (MLP),normal,normal,83310,0.8698,0.9856
+Tier 3: Weather-Fused Neural Net (MLP),normal,radon_washout,482,0.005,0.3126
+Tier 3: Weather-Fused Neural Net (MLP),normal,fission_product,11994,0.1252,0.5835
+Tier 3: Weather-Fused Neural Net (MLP),radon_washout,normal,0,0.0,0.0
+Tier 3: Weather-Fused Neural Net (MLP),radon_washout,radon_washout,870,1.0,0.5642
 Tier 3: Weather-Fused Neural Net (MLP),radon_washout,fission_product,0,0.0,0.0
-Tier 3: Weather-Fused Neural Net (MLP),fission_product,normal,1413,0.1417,0.0146
-Tier 3: Weather-Fused Neural Net (MLP),fission_product,radon_washout,179,0.018,0.1388
-Tier 3: Weather-Fused Neural Net (MLP),fission_product,fission_product,8380,0.8404,0.9695
+Tier 3: Weather-Fused Neural Net (MLP),fission_product,normal,1220,0.1223,0.0144
+Tier 3: Weather-Fused Neural Net (MLP),fission_product,radon_washout,190,0.0191,0.1232
+Tier 3: Weather-Fused Neural Net (MLP),fission_product,fission_product,8562,0.8586,0.4165
