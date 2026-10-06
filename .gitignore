@@ -17,3 +17,4 @@ data/processed/*.csv.gz
 # OS
 .DS_Store
 *.zip
+repo.bundle
