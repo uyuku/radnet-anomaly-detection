@@ -65,6 +65,8 @@ def load_and_prepare_train_data(feature_cols: list[str]) -> tuple[pd.DataFrame, 
         feats = compute_features_for_series(df_raw, st_id, use_injected=True)
 
         valid = feats["has_radnet_obs"] & feats["rad_complete_channels"] & (feats["label"].isin(LABEL_MAP.keys()))
+        # BUG-1 fix: fit ONLY on 2017-2020; 2021-2022 is the threshold-tuning fold.
+        valid = valid & (feats["dt"] < "2021-01-01")
         sub = feats[valid].copy()
 
         x_list.append(sub[feature_cols])
@@ -91,6 +93,8 @@ def load_and_prepare_train_data_loso(feature_cols: list[str], holdout_id: str) -
         feats = compute_features_for_series(df_raw, st_id, use_injected=True)
 
         valid = feats["has_radnet_obs"] & feats["rad_complete_channels"] & (feats["label"].isin(LABEL_MAP.keys()))
+        # BUG-1 fix: fit ONLY on 2017-2020; 2021-2022 is the threshold-tuning fold.
+        valid = valid & (feats["dt"] < "2021-01-01")
         sub = feats[valid].copy()
 
         x_list.append(sub[feature_cols])
@@ -213,7 +217,7 @@ def evaluate_tier_pipeline():
         p_clean_loso = clf_loso_sd.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2]
 
         # Baseline alarms on clean and injected series (Rolling 7d 3-sigma and Global 3-sigma)
-        st_base = STATION_DRY_BASELINES.get(st_id, {"mu": 3000.0, "sigma": 400.0})
+        st_base = STATION_DRY_BASELINES[st_id]  # BUG-11: no silent fabricated defaults
         base_3s_thresh = st_base["mu"] + 3.0 * st_base["sigma"]
         base_4s_thresh = st_base["mu"] + 4.0 * st_base["sigma"]
         base_5s_thresh = st_base["mu"] + 5.0 * st_base["sigma"]
@@ -242,40 +246,87 @@ def evaluate_tier_pipeline():
     total_station_years = total_clean_observed_hours / 8766.0
     print(f"Total network clean observed hours: {total_clean_observed_hours} ({total_station_years:.2f} station-years)")
 
+    # 6b. Validation fold (2021-2022) for operating-threshold selection (BUG-1 fix).
+    # Thresholds are selected here and frozen BEFORE any test evaluation.
+    print("\nBuilding 2021-2022 validation fold for threshold selection (no test tuning)...")
+    val_series = {}
+    val_obs_hours = 0
+    for st in STATIONS:
+        st_id = st["id"]
+        df_tr = pd.read_csv(Path(f"data/processed/labeled_{st_id}_train.csv.gz"))
+        df_tr["dt"] = pd.to_datetime(df_tr["dt"])
+        df_tr = df_tr.sort_values("dt").reset_index(drop=True)
+        # Featurize the full panel first (full rolling history), then slice (BUG-5 fix)
+        feats_inj_full = compute_features_for_series(df_tr, st_id, use_injected=True)
+        feats_clean_full = compute_features_for_series(df_tr, st_id, use_injected=False)
+        m_val = ((df_tr["dt"] >= "2021-01-01") & (df_tr["dt"] < "2023-01-01")).values
+        df_val = df_tr[m_val].copy().reset_index(drop=True)
+        feats_inj = feats_inj_full[m_val].reset_index(drop=True)
+        feats_clean = feats_clean_full[m_val].reset_index(drop=True)
+        valid = feats_clean["has_radnet_obs"] & feats_clean["rad_complete_channels"]
+        val_obs_hours += int(valid.sum())
+
+        val_series[st_id] = {
+            "dt": df_val["dt"],
+            "valid": valid,
+            "p_inj": {
+                "t1": clf_t1.predict_proba(feats_inj[TIER_1_FEATURES])[:, 2],
+                "t2": clf_t2.predict_proba(feats_inj[TIER_2_FEATURES])[:, 2],
+                "t3": clf_t3.predict_proba(feats_inj[TIER_3_FEATURES])[:, 2],
+                "loso": clf_loso_sd.predict_proba(feats_inj[TIER_3_FEATURES])[:, 2],
+            },
+            "p_clean": {
+                "t1": clf_t1.predict_proba(feats_clean[TIER_1_FEATURES])[:, 2],
+                "t2": clf_t2.predict_proba(feats_clean[TIER_2_FEATURES])[:, 2],
+                "t3": clf_t3.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2],
+                "loso": clf_loso_sd.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2],
+            },
+        }
+
+    val_station_years = val_obs_hours / 8766.0
+    _val_starts = pd.to_datetime(catalog["start_utc"])
+    val_catalog = catalog[(catalog["split"] == "train") &
+                          (_val_starts >= "2021-01-01") &
+                          (_val_starts < "2023-01-01")].copy().reset_index(drop=True)
+    print(f"Validation fold: {val_obs_hours} observed hours ({val_station_years:.2f} stn-yr), "
+          f"{len(val_catalog)} injection events")
+
+    def sweep_roc(series_map, catalog_df, station_years):
+        """Threshold sweep with NET-ALARM detection (alarm on injected AND NOT on
+        clean) — the unified criterion (see BUG_AUDIT.md, any vs net-alarm)."""
+        records = []
+        for tau in np.linspace(0.01, 0.99, 99):
+            record = {"threshold": tau}
+            for tier_key in ["t1", "t2", "t3", "loso"]:
+                tot_episodes = 0
+                for st_id in series_map:
+                    p_cl = pd.Series(series_map[st_id]["p_clean"][tier_key])
+                    val = series_map[st_id]["valid"]
+                    episodes, _ = count_clean_alarm_episodes(p_cl, val, tau)
+                    tot_episodes += episodes
+                fa_per_year = tot_episodes / station_years
+
+                detected_events = 0
+                for _, inj in catalog_df.iterrows():
+                    st_id = inj["station_id"]
+                    st_data = series_map[st_id]
+                    mask = (st_data["dt"] >= inj["start_utc"]) & (st_data["dt"] <= inj["end_utc"]) & st_data["valid"]
+                    p_inj = st_data["p_inj"][tier_key][mask]
+                    p_cln = st_data["p_clean"][tier_key][mask]
+                    if len(p_inj) > 0 and np.any((p_inj >= tau) & (p_cln < tau)):
+                        detected_events += 1
+
+                record[f"{tier_key}_clean_fa_per_year"] = fa_per_year
+                record[f"{tier_key}_event_det_rate"] = detected_events / len(catalog_df)
+            records.append(record)
+        return pd.DataFrame(records)
+
+    val_roc_df = sweep_roc(val_series, val_catalog, val_station_years)
+
     # 7. Sweep Thresholds to Map ROC Trade-Off Curve
-    thresholds = np.linspace(0.01, 0.99, 99)
-    roc_records = []
-
-    for tau in thresholds:
-        record = {"threshold": tau}
-        for tier_key in ["t1", "t2", "t3", "loso"]:
-            # A. Clean false alarms per station-year
-            tot_episodes = 0
-            for st_id in test_series:
-                p_cl = pd.Series(test_series[st_id]["p_clean"][tier_key])
-                val = test_series[st_id]["valid"]
-                episodes, _ = count_clean_alarm_episodes(p_cl, val, tau)
-                tot_episodes += episodes
-
-            fa_per_year = tot_episodes / total_station_years
-            record[f"{tier_key}_clean_fa_per_year"] = fa_per_year
-
-            # B. Event detection rate on test catalog
-            detected_events = 0
-            for _, inj in test_catalog.iterrows():
-                st_id = inj["station_id"]
-                st_data = test_series[st_id]
-                mask = (st_data["dt"] >= inj["start_utc"]) & (st_data["dt"] <= inj["end_utc"]) & st_data["valid"]
-                p_event = st_data["p_inj"][tier_key][mask]
-                if len(p_event) > 0 and np.max(p_event) >= tau:
-                    detected_events += 1
-
-            det_rate = detected_events / len(test_catalog)
-            record[f"{tier_key}_event_det_rate"] = det_rate
-
-        roc_records.append(record)
-
-    roc_df = pd.DataFrame(roc_records)
+    # (test ROC is descriptive only; operating points in section 9 are selected
+    #  on the VALIDATION fold from section 6b — BUG-1 fix)
+    roc_df = sweep_roc(test_series, test_catalog, total_station_years)
     roc_df.to_csv("data/processed/model_roc_curve_data.csv", index=False)
     print("Saved ROC curve data to data/processed/model_roc_curve_data.csv")
 
@@ -305,7 +356,7 @@ def evaluate_tier_pipeline():
 
         fa_per_year = tot_episodes / total_station_years
 
-        # Detection rate on injected test catalog
+        # Detection rate on injected test catalog (net-alarm: injected AND NOT clean)
         for _, inj in test_catalog.iterrows():
             st_id = inj["station_id"]
             st_data = test_series[st_id]
@@ -313,11 +364,13 @@ def evaluate_tier_pipeline():
             if base_rule.startswith("global"):
                 thresh = st_data["base_thresholds"][base_rule]
                 signal = st_data["gross_inj"][mask]
-                if len(signal) > 0 and np.max(signal) >= thresh:
+                signal_cln = st_data["gross_clean"][mask]
+                if len(signal) > 0 and np.any((signal >= thresh) & (signal_cln < thresh)):
                     detected_events += 1
             else:
                 signal = st_data["z_roll_inj"][mask]
-                if len(signal) > 0 and np.max(signal) >= k_val:
+                signal_cln = st_data["z_roll_clean"][mask]
+                if len(signal) > 0 and np.any((signal >= k_val) & (signal_cln < k_val)):
                     detected_events += 1
 
         det_rate = detected_events / len(test_catalog)
@@ -342,19 +395,18 @@ def evaluate_tier_pipeline():
             ("t3", "Tier 3 (Weather Fusion)"),
             ("loso", "Tier 3 LOSO (Held-out SD)"),
         ]:
-            # Find the threshold giving >= target_det with minimal false alarms
-            sub = roc_df[roc_df[f"{tier_key}_event_det_rate"] >= target_det]
+            # BUG-1 fix: select tau on the VALIDATION fold, then record the
+            # realized test performance at that frozen tau.
+            sub = val_roc_df[val_roc_df[f"{tier_key}_event_det_rate"] >= target_det]
             if not sub.empty:
                 # Highest threshold meeting the target detection rate has lowest FA rate
-                best_match = sub.iloc[-1]
-                tau = best_match["threshold"]
-                realized_det = best_match[f"{tier_key}_event_det_rate"]
-                fa_rate = best_match[f"{tier_key}_clean_fa_per_year"]
+                best_match_val = sub.iloc[-1]
             else:
-                best_match = roc_df.sort_values(f"{tier_key}_event_det_rate", ascending=False).iloc[0]
-                tau = best_match["threshold"]
-                realized_det = best_match[f"{tier_key}_event_det_rate"]
-                fa_rate = best_match[f"{tier_key}_clean_fa_per_year"]
+                best_match_val = val_roc_df.sort_values(f"{tier_key}_event_det_rate", ascending=False).iloc[0]
+            tau = best_match_val["threshold"]
+            test_match = roc_df[roc_df["threshold"] == tau].iloc[0]
+            realized_det = test_match[f"{tier_key}_event_det_rate"]
+            fa_rate = test_match[f"{tier_key}_clean_fa_per_year"]
 
             row[f"{tier_key}_threshold"] = round(tau, 3)
             row[f"{tier_key}_realized_det_pct"] = round(realized_det * 100, 2)
@@ -367,10 +419,15 @@ def evaluate_tier_pipeline():
     print("\nSaved operating points to data/processed/model_operating_points_summary.csv")
 
     # 10. Stratified Evaluation Breakdown for Tier 3 at 95% Overall Operating Point
-    # Find Tier 3 threshold for ~95% overall detection
-    t3_95_row = roc_df[roc_df["t3_event_det_rate"] >= 0.95].iloc[-1]
+    # BUG-1 fix: thresholds selected on the validation fold, then frozen
+    t3_95_row = val_roc_df[val_roc_df["t3_event_det_rate"] >= 0.95].iloc[-1]
     tau_t3 = t3_95_row["threshold"]
-    print(f"\nOperating Tier 3 model at threshold tau = {tau_t3:.3f} (Overall Det Rate = {t3_95_row['t3_event_det_rate']*100:.2f}%)")
+    t1_thresh = val_roc_df[val_roc_df["t1_event_det_rate"] >= 0.95].iloc[-1]["threshold"]
+    t2_thresh = val_roc_df[val_roc_df["t2_event_det_rate"] >= 0.95].iloc[-1]["threshold"]
+    test_t3_row = roc_df[roc_df["threshold"] == tau_t3].iloc[0]
+    print(f"\nOperating Tier 3 model at frozen threshold tau = {tau_t3:.3f} "
+          f"(Val Det = {t3_95_row['t3_event_det_rate']*100:.2f}%, "
+          f"Test Det = {test_t3_row['t3_event_det_rate']*100:.2f}%)")
 
     strat_records = []
     # Stratify by environment, scenario, magnitude band, and station
@@ -391,19 +448,19 @@ def evaluate_tier_pipeline():
                 p1 = st_data["p_inj"]["t1"][mask]
                 p2 = st_data["p_inj"]["t2"][mask]
                 p3 = st_data["p_inj"]["t3"][mask]
+                p1c = st_data["p_clean"]["t1"][mask]
+                p2c = st_data["p_clean"]["t2"][mask]
+                p3c = st_data["p_clean"]["t3"][mask]
 
-                # Using Tier 1 & Tier 2 matching thresholds at ~95% overall
-                t1_thresh = roc_df[roc_df["t1_event_det_rate"] >= 0.95].iloc[-1]["threshold"]
-                t2_thresh = roc_df[roc_df["t2_event_det_rate"] >= 0.95].iloc[-1]["threshold"]
-
-                if len(p1) > 0 and np.max(p1) >= t1_thresh:
+                # Net-alarm detection at frozen thresholds (t1/t2 from validation fold)
+                if len(p1) > 0 and np.any((p1 >= t1_thresh) & (p1c < t1_thresh)):
                     det_t1 += 1
-                if len(p2) > 0 and np.max(p2) >= t2_thresh:
+                if len(p2) > 0 and np.any((p2 >= t2_thresh) & (p2c < t2_thresh)):
                     det_t2 += 1
-                if len(p3) > 0 and np.max(p3) >= tau_t3:
+                if len(p3) > 0 and np.any((p3 >= tau_t3) & (p3c < tau_t3)):
                     det_t3 += 1
-                    # Compute delay (hours from start_utc to first alarm)
-                    alarm_indices = np.where(p3 >= tau_t3)[0]
+                    # Compute delay (hours from start_utc to first net-alarm)
+                    alarm_indices = np.where((p3 >= tau_t3) & (p3c < tau_t3))[0]
                     first_alarm_dt = dt_event.iloc[alarm_indices[0]]
                     delay_hours = (first_alarm_dt - pd.to_datetime(inj["start_utc"])).total_seconds() / 3600.0
                     delays_t3.append(max(0.0, delay_hours))
@@ -426,17 +483,22 @@ def evaluate_tier_pipeline():
     # 11. Leave-One-Station-Out (LOSO) Summary for San Diego
     sd_obs_years = clean_obs_hours_per_st["ca_san_diego"] / 8766.0
     sd_catalog = test_catalog[test_catalog["station_id"] == "ca_san_diego"]
+    # BUG-1 fix: LOSO uses its own validation-selected threshold (was: tau_t3,
+    # which belongs to a different model)
+    _loso_sub = val_roc_df[val_roc_df["loso_event_det_rate"] >= 0.95]
+    tau_loso = _loso_sub.iloc[-1]["threshold"] if not _loso_sub.empty else 0.5
     sd_detected = 0
     for _, inj in sd_catalog.iterrows():
         st_data = test_series["ca_san_diego"]
         mask = (st_data["dt"] >= inj["start_utc"]) & (st_data["dt"] <= inj["end_utc"]) & st_data["valid"]
         p_loso = st_data["p_inj"]["loso"][mask]
-        if len(p_loso) > 0 and np.max(p_loso) >= tau_t3:
+        p_loso_cln = st_data["p_clean"]["loso"][mask]
+        if len(p_loso) > 0 and np.any((p_loso >= tau_loso) & (p_loso_cln < tau_loso)):
             sd_detected += 1
 
     sd_p_clean = pd.Series(test_series["ca_san_diego"]["p_clean"]["loso"])
     sd_val = test_series["ca_san_diego"]["valid"]
-    sd_episodes, _ = count_clean_alarm_episodes(sd_p_clean, sd_val, tau_t3)
+    sd_episodes, _ = count_clean_alarm_episodes(sd_p_clean, sd_val, tau_loso)
     sd_fa_rate = sd_episodes / sd_obs_years
 
     loso_df = pd.DataFrame([{

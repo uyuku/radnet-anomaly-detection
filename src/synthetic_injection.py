@@ -18,18 +18,29 @@ Saves:
 """
 
 import sys
+import json
 from pathlib import Path
-sys.path.insert(0, str(Path(".").resolve()))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import pandas as pd
 import numpy as np
 import yaml
 from src.analyze_filter_cycles_multi_station import detect_filter_drops
 
-CONFIG_PATH = Path("configs/config.yaml")
+CONFIG_PATH = Path(__file__).resolve().parent.parent / "configs" / "config.yaml"
 with open(CONFIG_PATH, "r") as f:
     config = yaml.safe_load(f)
 
 RANDOM_SEED = config.get("random_seed", 42)
+
+# Frozen train-only dry baselines (2017-2022) — used for washout labeling (BUG-4 fix).
+_BASELINES_FILE = Path(__file__).resolve().parent.parent / "data" / "processed" / "station_dry_baselines_train_only.json"
+if not _BASELINES_FILE.exists():
+    raise FileNotFoundError(
+        f"Required train-only baseline file not found: {_BASELINES_FILE}. "
+        "Run: python src/compute_train_only_baselines.py"
+    )
+with open(_BASELINES_FILE, "r") as _f:
+    TRAIN_ONLY_BASELINES = json.load(_f)
 
 STATIONS = [
     {"id": "al_birmingham", "name": "Birmingham, AL", "drop_thresh": -300.0},
@@ -671,9 +682,13 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame):
             # 2. Rule-based labeling of natural radon washout (operational heuristic, partial circularity acknowledged):
             sub["precip_3h"] = sub["precip_1h_mm"].rolling(3, min_periods=1).sum()
             sub["precip_24h"] = sub["precip_1h_mm"].rolling(24, min_periods=12).sum()
-            dry_mask = (sub["precip_24h"] == 0.0) & (sub["precip_1h_mm"] == 0.0) & has_obs & comp_ch
-            mu_dry = sub.loc[dry_mask, "gross_cpm"].mean()
-            sigma_dry = sub.loc[dry_mask, "gross_cpm"].std()
+            # BUG-4 fix (2026-10-06): label thresholds come from the frozen
+            # train-only dry baselines (2017-2022). The previous version computed
+            # mu/sigma from the split being labeled, making test labels depend on
+            # test-period statistics (look-ahead) and on the split's own rain state.
+            st_base = TRAIN_ONLY_BASELINES[st_id]
+            mu_dry = st_base["mu"]
+            sigma_dry = st_base["sigma"]
 
             washout_condition = (
                 (sub["precip_3h"] > 0.0) &
@@ -744,5 +759,14 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame):
 
 
 if __name__ == "__main__":
-    cat = generate_revised_injection_catalog()
+    # Frozen-ground-truth policy (PROJECT_SPEC §2): the injection catalog is the
+    # frozen benchmark. Load it when present; only generate when absent.
+    frozen_catalog = Path("data/processed/synthetic_injection_catalog.csv")
+    if frozen_catalog.exists():
+        print(f"Loading frozen injection catalog: {frozen_catalog}")
+        cat = pd.read_csv(frozen_catalog)
+    else:
+        cat = generate_revised_injection_catalog()
+        cat.to_csv(frozen_catalog, index=False)
+        print(f"Saved new injection catalog: {frozen_catalog}")
     recon = build_and_save_labeled_datasets(cat)

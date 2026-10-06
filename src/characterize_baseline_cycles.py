@@ -15,11 +15,11 @@ OUTPUT_DIR = Path("reports/figures")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 STATIONS = [
-    {"id": "al_birmingham", "name": "Birmingham, AL", "tz_offset": -6, "color": "#1f77b4"},
-    {"id": "dc_washington", "name": "Washington, DC", "tz_offset": -5, "color": "#2ca02c"},
-    {"id": "ca_san_diego", "name": "San Diego, CA", "tz_offset": -8, "color": "#ff7f0e"},
-    {"id": "tx_dallas", "name": "Dallas, TX", "tz_offset": -6, "color": "#d62728"},
-    {"id": "fl_tampa", "name": "Tampa, FL", "tz_offset": -5, "color": "#9467bd"},
+    {"id": "al_birmingham", "name": "Birmingham, AL", "tz": "America/Chicago", "color": "#1f77b4"},
+    {"id": "dc_washington", "name": "Washington, DC", "tz": "America/New_York", "color": "#2ca02c"},
+    {"id": "ca_san_diego", "name": "San Diego, CA", "tz": "America/Los_Angeles", "color": "#ff7f0e"},
+    {"id": "tx_dallas", "name": "Dallas, TX", "tz": "America/Chicago", "color": "#d62728"},
+    {"id": "fl_tampa", "name": "Tampa, FL", "tz": "America/New_York", "color": "#9467bd"},
 ]
 
 
@@ -39,7 +39,7 @@ def analyze_diurnal_cycles():
 
 
         # Local solar hour
-        dry_df["local_hour"] = (dry_df["dt"].dt.hour + st["tz_offset"]) % 24
+        dry_df["local_hour"] = dry_df["dt"].dt.tz_localize("UTC").dt.tz_convert(st["tz"]).dt.hour
 
         grouped = dry_df.groupby("local_hour").agg(
             gross_mean=("gross_cpm", "mean"),
@@ -133,9 +133,15 @@ def analyze_filter_replacement_cycles():
     drop_threshold = -450.0
     filter_changes = sub[sub["cpm_diff_3h"] < drop_threshold].copy()
 
-    # Cluster consecutive hours of the same drop
-    filter_changes["time_diff"] = filter_changes["dt"].diff()
-    unique_drops = filter_changes[filter_changes["time_diff"] > pd.Timedelta(hours=24)].copy()
+    # Cluster consecutive hours of the same drop (keep against last KEPT drop;
+    # BUG-8 fix: previous version also silently dropped the first candidate)
+    kept_dts = []
+    last_kept = None
+    for cand_dt in filter_changes["dt"]:
+        if last_kept is None or (cand_dt - last_kept) > pd.Timedelta(hours=24):
+            kept_dts.append(cand_dt)
+            last_kept = cand_dt
+    unique_drops = filter_changes[filter_changes["dt"].isin(kept_dts)].copy()
 
     # Compute intervals between filter changes
     intervals_days = unique_drops["dt"].diff().dt.total_seconds() / 86400.0

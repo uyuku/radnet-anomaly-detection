@@ -196,12 +196,12 @@ def block_bootstrap_false_alarms(
         val_m = sdata["valid"]
         al = (pd.Series(test_p_cln[st_id]) >= frozen_tau) & val_m
         yms = sdata["year_month"]
+        # BUG-6 fix: count episode STARTS on the full series, then bin by month.
+        ep_start = al & (~al.shift(1, fill_value=False))
         for ym in yms.unique():
-            m_sub = (yms == ym)
-            sub_al = al[m_sub]
-            sub_val = val_m[m_sub]
-            episodes = count_episodes(sub_al, sub_val)
-            hours = sub_val.sum()
+            m_sub = (yms == ym).values
+            episodes = int(ep_start[m_sub].sum())
+            hours = int(val_m[m_sub].sum())
             month_data.append({"episodes": episodes, "hours": hours})
 
     df_months = pd.DataFrame(month_data)
@@ -308,11 +308,26 @@ def main():
         df_tr_raw["dt"] = pd.to_datetime(df_tr_raw["dt"])
         df_tr_raw = df_tr_raw.sort_values("dt").reset_index(drop=True)
 
-        m_val = (df_tr_raw["dt"] >= "2021-01-01") & (df_tr_raw["dt"] < "2023-01-01")
-        df_val = df_tr_raw[m_val].copy().reset_index(drop=True)
+        # Test file (contains 2023-2025)
+        df_te_raw = pd.read_csv(f"data/processed/labeled_{st_id}_test.csv.gz")
+        df_te_raw["dt"] = pd.to_datetime(df_te_raw["dt"])
+        df_te_raw = df_te_raw.sort_values("dt").reset_index(drop=True)
 
-        feats_val_inj = compute_features_for_series(df_val, st_id, use_injected=True)
-        feats_val_cln = compute_features_for_series(df_val, st_id, use_injected=False)
+        # BUG-5 fix (2026-10-06): featurize the full continuous 2017-2025 panel
+        # ONCE per radiation source, then slice the validation/test rows. Rolling
+        # windows now have identical history for identical timestamps (previously
+        # each date-slice restarted its windows at the slice start, so the first
+        # 24h of each slice got NaN z-scores and 168h windows were truncated).
+        df_all = pd.concat([df_tr_raw, df_te_raw], ignore_index=True).sort_values("dt").reset_index(drop=True)
+        feats_all_inj = compute_features_for_series(df_all, st_id, use_injected=True)
+        feats_all_cln = compute_features_for_series(df_all, st_id, use_injected=False)
+
+        m_val = ((df_all["dt"] >= "2021-01-01") & (df_all["dt"] < "2023-01-01")).values
+        m_te = (df_all["dt"] >= "2023-01-01").values
+
+        df_val = df_all[m_val].copy().reset_index(drop=True)
+        feats_val_inj = feats_all_inj[m_val].reset_index(drop=True)
+        feats_val_cln = feats_all_cln[m_val].reset_index(drop=True)
         val_valid = feats_val_cln["has_radnet_obs"] & feats_val_cln["rad_complete_channels"]
         total_val_obs_hours += val_valid.sum()
 
@@ -329,13 +344,10 @@ def main():
             "base": STATION_DRY_BASELINES[st_id],
         }
 
-        # Test file (contains 2023-2025)
-        df_te_raw = pd.read_csv(f"data/processed/labeled_{st_id}_test.csv.gz")
-        df_te_raw["dt"] = pd.to_datetime(df_te_raw["dt"])
-        df_te_raw = df_te_raw.sort_values("dt").reset_index(drop=True)
-
-        feats_te_inj = compute_features_for_series(df_te_raw, st_id, use_injected=True)
-        feats_te_cln = compute_features_for_series(df_te_raw, st_id, use_injected=False)
+        # Test file (contains 2023-2025) — sliced from the jointly featurized panel
+        df_te_raw = df_all[m_te].copy().reset_index(drop=True)
+        feats_te_inj = feats_all_inj[m_te].reset_index(drop=True)
+        feats_te_cln = feats_all_cln[m_te].reset_index(drop=True)
         te_valid = feats_te_cln["has_radnet_obs"] & feats_te_cln["rad_complete_channels"]
         total_test_obs_hours += te_valid.sum()
 
@@ -567,14 +579,17 @@ def main():
                 test_fa_rate = te_episodes / test_station_years
                 rain_pct = (rain_al_hrs / al_hrs * 100.0) if al_hrs > 0 else 0.0
 
-                # Record monthly episodes for this seed
+                # Record monthly episodes for this seed (BUG-6 fix: count episode
+                # STARTS on the full series, then bin by month. Counting inside
+                # month slices double-counts episodes crossing month boundaries.)
+                ep_starts_by_st = {}
+                for s_id, sdata in test_series.items():
+                    al_full = (pd.Series(test_p_cln[s_id]) >= frozen_tau) & sdata["valid"]
+                    ep_starts_by_st[s_id] = (al_full & (~al_full.shift(1, fill_value=False))).values
                 for m_idx, sm in enumerate(station_months):
-                    st_id = sm["station_id"]
-                    sdata = test_series[st_id]
-                    al = (pd.Series(test_p_cln[st_id]) >= frozen_tau) & sdata["valid"]
-                    sub_al = al.values[sm["mask"]]
-                    sub_val = sdata["valid"].values[sm["mask"]]
-                    tier_seed_episodes[(tier_name, tgt_pct)][seed_idx, m_idx] = count_episodes(sub_al, sub_val)
+                    tier_seed_episodes[(tier_name, tgt_pct)][seed_idx, m_idx] = int(
+                        ep_starts_by_st[sm["station_id"]][sm["mask"]].sum()
+                    )
 
                 det_total = 0
                 det_6h = 0
@@ -877,7 +892,7 @@ def main():
                 "frozen_tau_mean": round(sub["frozen_tau"].mean(), 3),
                 "det_total_mean": round(sub["realized_detection_total_pct"].mean(), 2),
                 "det_total_std": round(sub["realized_detection_total_pct"].std(), 2),
-                "det_total_95ci": f"[{det_low:.1f}, {det_high:.1f}]" if 'det_low' in locals() else f"[{det_ci_low:.1f}, {det_ci_high:.1f}]",
+                "det_total_95ci": f"[{det_ci_low:.1f}, {det_ci_high:.1f}]",
                 "det_6h_mean": round(sub["realized_detection_6h_pct"].mean(), 2),
                 "det_12h_mean": round(sub["realized_detection_12h_pct"].mean(), 2),
                 "det_24h_mean": round(sub["realized_detection_24h_pct"].mean(), 2),
@@ -903,7 +918,14 @@ def main():
     for target_level in matched_levels:
         row_dict = {"matched_detection_target": f"{target_level:.0f}%"}
         roll_sub = base_roc_df[(base_roc_df["baseline_type"] == "rolling_7d_local_z") & (base_roc_df["detection_rate_pct"] >= target_level)]
-        roll_pt = roll_sub.sort_values("false_alarms_per_year").iloc[0] if not roll_sub.empty else base_roc_df[base_roc_df["baseline_type"] == "rolling_7d_local_z"].iloc[-1]
+        if not roll_sub.empty:
+            roll_pt = roll_sub.sort_values("false_alarms_per_year").iloc[0]
+        else:
+            # BUG-2 fix (2026-10-06): target unreachable for this detector — fall
+            # back to its HIGHEST-detection point. (The previous code took
+            # .iloc[-1] = highest k = lowest detection and recorded it as the
+            # matched point, silently producing garbage reduction columns.)
+            roll_pt = base_roc_df[base_roc_df["baseline_type"] == "rolling_7d_local_z"].sort_values("detection_rate_pct").iloc[-1]
         row_dict["rolling_7d_k"] = roll_pt["k_multiplier"]
         row_dict["rolling_7d_realized_det"] = roll_pt["detection_rate_pct"]
         row_dict["rolling_7d_fa"] = roll_pt["false_alarms_per_year"]
@@ -916,7 +938,11 @@ def main():
             ("Tier 3 MLP", "mlp_fusion"),
         ]:
             t_sub = cont_roc_df[(cont_roc_df["tier_name"] == t_name) & (cont_roc_df["detection_rate_pct"] >= target_level)]
-            t_pt = t_sub.sort_values("false_alarms_per_year").iloc[0] if not t_sub.empty else cont_roc_df[cont_roc_df["tier_name"] == t_name].iloc[-1]
+            if not t_sub.empty:
+                t_pt = t_sub.sort_values("false_alarms_per_year").iloc[0]
+            else:
+                # BUG-2 fix: highest-detection fallback (was .iloc[-1] = lowest)
+                t_pt = cont_roc_df[cont_roc_df["tier_name"] == t_name].sort_values("detection_rate_pct").iloc[-1]
             row_dict[f"{short_col}_tau"] = t_pt["tau_threshold"]
             row_dict[f"{short_col}_det"] = t_pt["detection_rate_pct"]
             row_dict[f"{short_col}_fa"] = t_pt["false_alarms_per_year"]
@@ -927,10 +953,23 @@ def main():
         t3_fa = row_dict["t3_fusion_fa"]
         base_fa = row_dict["rolling_7d_fa"]
 
-        row_dict["weather_benefit_on_gross_pct"] = round((t1_fa - t1b_fa) / t1_fa * 100, 1) if t1_fa > 0 else 0.0
-        row_dict["spectral_benefit_over_gross_pct"] = round((t1_fa - t2_fa) / t1_fa * 100, 1) if t1_fa > 0 else 0.0
-        row_dict["weather_benefit_on_spectral_pct"] = round((t2_fa - t3_fa) / t2_fa * 100, 1) if t2_fa > 0 else 0.0
-        row_dict["total_reduction_t3_vs_baseline_pct"] = round((base_fa - t3_fa) / base_fa * 100, 1) if base_fa > 0 else 0.0
+        # BUG-2 fix: reduction columns are only meaningful when every compared
+        # point actually reached the matched detection target.
+        det_cols = ["rolling_7d_realized_det", "t1_gross_det", "t1b_gross_weather_det",
+                    "t2_spectral_det", "t3_fusion_det", "mlp_fusion_det"]
+        target_met = all(row_dict[c] >= target_level for c in det_cols)
+        row_dict["all_tiers_met_target"] = target_met
+
+        if target_met:
+            row_dict["weather_benefit_on_gross_pct"] = round((t1_fa - t1b_fa) / t1_fa * 100, 1) if t1_fa > 0 else 0.0
+            row_dict["spectral_benefit_over_gross_pct"] = round((t1_fa - t2_fa) / t1_fa * 100, 1) if t1_fa > 0 else 0.0
+            row_dict["weather_benefit_on_spectral_pct"] = round((t2_fa - t3_fa) / t2_fa * 100, 1) if t2_fa > 0 else 0.0
+            row_dict["total_reduction_t3_vs_baseline_pct"] = round((base_fa - t3_fa) / base_fa * 100, 1) if base_fa > 0 else 0.0
+        else:
+            row_dict["weather_benefit_on_gross_pct"] = np.nan
+            row_dict["spectral_benefit_over_gross_pct"] = np.nan
+            row_dict["weather_benefit_on_spectral_pct"] = np.nan
+            row_dict["total_reduction_t3_vs_baseline_pct"] = np.nan
 
         matched_roc_records.append(row_dict)
 

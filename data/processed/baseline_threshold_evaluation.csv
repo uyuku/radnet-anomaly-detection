@@ -1,46 +1,46 @@
 Rule_Code,Rule_Family,Multiplier_k,Station,Station_ID,Years_Evaluated,Threshold_Description,Total_Alarm_Hours,Alarm_Hours_Per_Year,Total_Alarm_Episodes,Episodes_Per_Year,Coincident_Rain_1h_Pct,Coincident_Rain_3h_Pct,Coincident_Rain_6h_Pct,Dry_Weather_Alarms_Pct,Mean_Episode_Hours
-global_cpm_3s,Global Gross CPM Sigma,3.0,"Birmingham, AL",al_birmingham,7.36,4844.9 CPM (3.0s over 3887.2),1347,183.03,479,65.09,40.68,44.25,44.99,51.22,2.81
-global_cpm_3s,Global Gross CPM Sigma,3.0,"Washington, DC",dc_washington,7.4,2775.4 CPM (3.0s over 2030.9),1597,215.67,567,76.57,50.28,58.17,60.24,33.94,2.82
-global_cpm_3s,Global Gross CPM Sigma,3.0,"San Diego, CA",ca_san_diego,8.09,8451.4 CPM (3.0s over 6953.6),829,102.51,256,31.65,0.12,0.12,0.12,99.76,3.24
-global_cpm_3s,Global Gross CPM Sigma,3.0,"Dallas, TX",tx_dallas,7.06,3915.6 CPM (3.0s over 2920.1),1859,263.23,548,77.6,43.89,52.12,53.58,43.09,3.39
-global_cpm_3s,Global Gross CPM Sigma,3.0,"Tampa, FL",fl_tampa,7.14,3307.4 CPM (3.0s over 2081.9),196,27.47,85,11.91,14.29,17.86,18.37,75.0,2.31
-global_cpm_4s,Global Gross CPM Sigma,4.0,"Birmingham, AL",al_birmingham,7.36,5164.1 CPM (4.0s over 3887.2),526,71.47,231,31.39,53.8,57.22,57.6,41.06,2.28
-global_cpm_4s,Global Gross CPM Sigma,4.0,"Washington, DC",dc_washington,7.4,3023.5 CPM (4.0s over 2030.9),704,95.08,309,41.73,67.61,76.7,78.41,18.61,2.28
-global_cpm_4s,Global Gross CPM Sigma,4.0,"San Diego, CA",ca_san_diego,8.09,8950.7 CPM (4.0s over 6953.6),264,32.64,92,11.38,0.0,0.0,0.0,100.0,2.87
-global_cpm_4s,Global Gross CPM Sigma,4.0,"Dallas, TX",tx_dallas,7.06,4247.4 CPM (4.0s over 2920.1),961,136.08,356,50.41,57.54,67.33,68.37,29.24,2.7
-global_cpm_4s,Global Gross CPM Sigma,4.0,"Tampa, FL",fl_tampa,7.14,3715.9 CPM (4.0s over 2081.9),56,7.85,31,4.34,14.29,17.86,17.86,80.36,1.81
-global_cpm_5s,Global Gross CPM Sigma,5.0,"Birmingham, AL",al_birmingham,7.36,5483.3 CPM (5.0s over 3887.2),237,32.2,118,16.03,69.2,73.0,73.0,26.16,2.01
-global_cpm_5s,Global Gross CPM Sigma,5.0,"Washington, DC",dc_washington,7.4,3271.7 CPM (5.0s over 2030.9),365,49.29,176,23.77,82.19,90.68,90.96,8.22,2.07
-global_cpm_5s,Global Gross CPM Sigma,5.0,"San Diego, CA",ca_san_diego,8.09,9450.0 CPM (5.0s over 6953.6),95,11.75,34,4.2,0.0,0.0,0.0,100.0,2.79
-global_cpm_5s,Global Gross CPM Sigma,5.0,"Dallas, TX",tx_dallas,7.06,4579.2 CPM (5.0s over 2920.1),514,72.78,225,31.86,66.54,76.65,77.63,21.01,2.28
-global_cpm_5s,Global Gross CPM Sigma,5.0,"Tampa, FL",fl_tampa,7.14,4124.4 CPM (5.0s over 2081.9),8,1.12,6,0.84,37.5,37.5,37.5,62.5,1.33
-rolling_cpm_3s,Rolling 7-Day CPM Sigma,3.0,"Birmingham, AL",al_birmingham,7.36,Rolling 168h + 3.0s (957.7 CPM),886,120.39,383,52.04,58.58,62.08,62.3,34.88,2.31
-rolling_cpm_3s,Rolling 7-Day CPM Sigma,3.0,"Washington, DC",dc_washington,7.4,Rolling 168h + 3.0s (744.5 CPM),815,110.07,392,52.94,78.4,86.5,86.87,11.53,2.08
-rolling_cpm_3s,Rolling 7-Day CPM Sigma,3.0,"San Diego, CA",ca_san_diego,8.09,Rolling 168h + 3.0s (1497.8 CPM),395,48.84,161,19.91,0.0,0.0,0.0,100.0,2.45
-rolling_cpm_3s,Rolling 7-Day CPM Sigma,3.0,"Dallas, TX",tx_dallas,7.06,Rolling 168h + 3.0s (995.5 CPM),1258,178.13,443,62.73,59.54,69.08,70.43,26.31,2.84
-rolling_cpm_3s,Rolling 7-Day CPM Sigma,3.0,"Tampa, FL",fl_tampa,7.14,Rolling 168h + 3.0s (1225.5 CPM),90,12.61,47,6.59,17.78,21.11,21.11,76.67,1.91
-rolling_cpm_4s,Rolling 7-Day CPM Sigma,4.0,"Birmingham, AL",al_birmingham,7.36,Rolling 168h + 4.0s (1276.9 CPM),345,46.88,185,25.14,73.91,77.39,77.68,21.16,1.86
-rolling_cpm_4s,Rolling 7-Day CPM Sigma,4.0,"Washington, DC",dc_washington,7.4,Rolling 168h + 4.0s (992.6 CPM),432,58.34,221,29.85,86.57,94.44,94.68,4.63,1.95
-rolling_cpm_4s,Rolling 7-Day CPM Sigma,4.0,"San Diego, CA",ca_san_diego,8.09,Rolling 168h + 4.0s (1997.1 CPM),103,12.74,48,5.94,0.0,0.0,0.0,100.0,2.15
-rolling_cpm_4s,Rolling 7-Day CPM Sigma,4.0,"Dallas, TX",tx_dallas,7.06,Rolling 168h + 4.0s (1327.3 CPM),705,99.83,293,41.49,71.35,82.13,83.4,15.18,2.41
-rolling_cpm_4s,Rolling 7-Day CPM Sigma,4.0,"Tampa, FL",fl_tampa,7.14,Rolling 168h + 4.0s (1634.0 CPM),18,2.52,14,1.96,38.89,38.89,38.89,61.11,1.29
-rolling_cpm_5s,Rolling 7-Day CPM Sigma,5.0,"Birmingham, AL",al_birmingham,7.36,Rolling 168h + 5.0s (1596.1 CPM),159,21.61,93,12.64,85.53,88.05,88.05,11.32,1.71
-rolling_cpm_5s,Rolling 7-Day CPM Sigma,5.0,"Washington, DC",dc_washington,7.4,Rolling 168h + 5.0s (1240.8 CPM),250,33.76,136,18.37,90.0,97.2,97.6,2.0,1.84
-rolling_cpm_5s,Rolling 7-Day CPM Sigma,5.0,"San Diego, CA",ca_san_diego,8.09,Rolling 168h + 5.0s (2496.4 CPM),26,3.21,13,1.61,0.0,0.0,0.0,100.0,2.0
-rolling_cpm_5s,Rolling 7-Day CPM Sigma,5.0,"Dallas, TX",tx_dallas,7.06,Rolling 168h + 5.0s (1659.2 CPM),406,57.49,189,26.76,74.88,85.96,87.44,11.82,2.15
-rolling_cpm_5s,Rolling 7-Day CPM Sigma,5.0,"Tampa, FL",fl_tampa,7.14,Rolling 168h + 5.0s (2042.5 CPM),6,0.84,5,0.7,66.67,66.67,66.67,33.33,1.2
-dose_rate_3s,Global Dose Rate Sigma,3.0,"Birmingham, AL",al_birmingham,7.36,62.6 nSv/h (3.0s over 52.9),2501,339.84,851,115.64,58.78,71.97,76.93,13.55,2.94
-dose_rate_3s,Global Dose Rate Sigma,3.0,"Washington, DC",dc_washington,7.4,46.7 nSv/h (3.0s over 30.8),1848,249.57,475,64.15,33.66,41.23,44.16,45.35,3.89
+global_cpm_3s,Global Gross CPM Sigma,3.0,"Birmingham, AL",al_birmingham,7.36,4831.3 CPM (3.0s over 3884.6),1396,189.69,494,67.13,40.19,43.7,44.56,50.14,2.83
+global_cpm_3s,Global Gross CPM Sigma,3.0,"Washington, DC",dc_washington,7.4,2776.5 CPM (3.0s over 2031.5),1592,215.0,564,76.17,50.44,58.35,60.43,33.73,2.82
+global_cpm_3s,Global Gross CPM Sigma,3.0,"San Diego, CA",ca_san_diego,8.09,8394.5 CPM (3.0s over 6940.5),960,118.71,293,36.23,0.1,0.1,0.1,84.9,3.28
+global_cpm_3s,Global Gross CPM Sigma,3.0,"Dallas, TX",tx_dallas,7.06,3905.8 CPM (3.0s over 2917.9),1895,268.33,554,78.45,43.54,51.72,53.25,42.43,3.42
+global_cpm_3s,Global Gross CPM Sigma,3.0,"Tampa, FL",fl_tampa,7.14,3309.1 CPM (3.0s over 2081.4),196,27.47,85,11.91,14.29,17.86,18.37,69.39,2.31
+global_cpm_4s,Global Gross CPM Sigma,4.0,"Birmingham, AL",al_birmingham,7.36,5146.9 CPM (4.0s over 3884.6),550,74.73,244,33.16,53.27,57.09,57.45,40.36,2.25
+global_cpm_4s,Global Gross CPM Sigma,4.0,"Washington, DC",dc_washington,7.4,3024.8 CPM (4.0s over 2031.5),704,95.08,309,41.73,67.61,76.7,78.41,18.61,2.28
+global_cpm_4s,Global Gross CPM Sigma,4.0,"San Diego, CA",ca_san_diego,8.09,8879.1 CPM (4.0s over 6940.5),304,37.59,104,12.86,0.0,0.0,0.0,80.92,2.92
+global_cpm_4s,Global Gross CPM Sigma,4.0,"Dallas, TX",tx_dallas,7.06,4235.1 CPM (4.0s over 2917.9),990,140.18,360,50.98,57.07,66.57,67.58,29.39,2.75
+global_cpm_4s,Global Gross CPM Sigma,4.0,"Tampa, FL",fl_tampa,7.14,3718.3 CPM (4.0s over 2081.4),54,7.57,30,4.2,14.81,18.52,18.52,68.52,1.8
+global_cpm_5s,Global Gross CPM Sigma,5.0,"Birmingham, AL",al_birmingham,7.36,5462.4 CPM (5.0s over 3884.6),247,33.56,120,16.31,68.02,72.06,72.06,25.91,2.06
+global_cpm_5s,Global Gross CPM Sigma,5.0,"Washington, DC",dc_washington,7.4,3273.1 CPM (5.0s over 2031.5),364,49.16,175,23.63,82.42,90.93,91.21,7.97,2.08
+global_cpm_5s,Global Gross CPM Sigma,5.0,"San Diego, CA",ca_san_diego,8.09,9363.7 CPM (5.0s over 6940.5),113,13.97,38,4.7,0.0,0.0,0.0,77.88,2.97
+global_cpm_5s,Global Gross CPM Sigma,5.0,"Dallas, TX",tx_dallas,7.06,4564.4 CPM (5.0s over 2917.9),529,74.91,229,32.43,65.41,75.61,76.56,21.36,2.31
+global_cpm_5s,Global Gross CPM Sigma,5.0,"Tampa, FL",fl_tampa,7.14,4127.5 CPM (5.0s over 2081.4),8,1.12,6,0.84,37.5,37.5,37.5,25.0,1.33
+rolling_cpm_3s,Rolling 7-Day Mean + Global Sigma,3.0,"Birmingham, AL",al_birmingham,7.36,Rolling 168h + 3.0s (946.7 CPM),923,125.42,394,53.54,57.96,61.43,61.65,33.37,2.34
+rolling_cpm_3s,Rolling 7-Day Mean + Global Sigma,3.0,"Washington, DC",dc_washington,7.4,Rolling 168h + 3.0s (744.9 CPM),815,110.07,392,52.94,78.4,86.5,86.87,11.41,2.08
+rolling_cpm_3s,Rolling 7-Day Mean + Global Sigma,3.0,"San Diego, CA",ca_san_diego,8.09,Rolling 168h + 3.0s (1453.9 CPM),423,52.3,169,20.9,0.0,0.0,0.0,93.14,2.5
+rolling_cpm_3s,Rolling 7-Day Mean + Global Sigma,3.0,"Dallas, TX",tx_dallas,7.06,Rolling 168h + 3.0s (987.9 CPM),1275,180.54,444,62.87,59.06,68.47,69.88,26.27,2.87
+rolling_cpm_3s,Rolling 7-Day Mean + Global Sigma,3.0,"Tampa, FL",fl_tampa,7.14,Rolling 168h + 3.0s (1227.7 CPM),90,12.61,47,6.59,17.78,21.11,21.11,66.67,1.91
+rolling_cpm_4s,Rolling 7-Day Mean + Global Sigma,4.0,"Birmingham, AL",al_birmingham,7.36,Rolling 168h + 4.0s (1262.3 CPM),360,48.92,192,26.09,73.06,76.39,76.67,20.28,1.88
+rolling_cpm_4s,Rolling 7-Day Mean + Global Sigma,4.0,"Washington, DC",dc_washington,7.4,Rolling 168h + 4.0s (993.2 CPM),432,58.34,221,29.85,86.57,94.44,94.68,4.63,1.95
+rolling_cpm_4s,Rolling 7-Day Mean + Global Sigma,4.0,"San Diego, CA",ca_san_diego,8.09,Rolling 168h + 4.0s (1938.6 CPM),115,14.22,53,6.55,0.0,0.0,0.0,90.43,2.17
+rolling_cpm_4s,Rolling 7-Day Mean + Global Sigma,4.0,"Dallas, TX",tx_dallas,7.06,Rolling 168h + 4.0s (1317.2 CPM),719,101.81,298,42.2,71.07,81.64,82.89,15.44,2.41
+rolling_cpm_4s,Rolling 7-Day Mean + Global Sigma,4.0,"Tampa, FL",fl_tampa,7.14,Rolling 168h + 4.0s (1636.9 CPM),18,2.52,14,1.96,38.89,38.89,38.89,33.33,1.29
+rolling_cpm_5s,Rolling 7-Day Mean + Global Sigma,5.0,"Birmingham, AL",al_birmingham,7.36,Rolling 168h + 5.0s (1577.9 CPM),166,22.56,97,13.18,84.94,87.35,87.35,10.24,1.71
+rolling_cpm_5s,Rolling 7-Day Mean + Global Sigma,5.0,"Washington, DC",dc_washington,7.4,Rolling 168h + 5.0s (1241.5 CPM),250,33.76,136,18.37,90.0,97.2,97.6,2.0,1.84
+rolling_cpm_5s,Rolling 7-Day Mean + Global Sigma,5.0,"San Diego, CA",ca_san_diego,8.09,Rolling 168h + 5.0s (2423.2 CPM),32,3.96,15,1.85,0.0,0.0,0.0,81.25,2.13
+rolling_cpm_5s,Rolling 7-Day Mean + Global Sigma,5.0,"Dallas, TX",tx_dallas,7.06,Rolling 168h + 5.0s (1646.6 CPM),417,59.05,193,27.33,74.1,85.37,86.81,12.47,2.16
+rolling_cpm_5s,Rolling 7-Day Mean + Global Sigma,5.0,"Tampa, FL",fl_tampa,7.14,Rolling 168h + 5.0s (2046.1 CPM),6,0.84,5,0.7,66.67,66.67,66.67,0.0,1.2
+dose_rate_3s,Global Dose Rate Sigma,3.0,"Birmingham, AL",al_birmingham,7.36,62.0 nSv/h (3.0s over 52.9),2501,339.84,851,115.64,58.78,71.97,76.93,11.48,2.94
+dose_rate_3s,Global Dose Rate Sigma,3.0,"Washington, DC",dc_washington,7.4,46.7 nSv/h (3.0s over 30.8),1848,249.57,475,64.15,33.66,41.23,44.16,44.86,3.89
 dose_rate_3s,Global Dose Rate Sigma,3.0,"San Diego, CA",ca_san_diego,8.09,119.8 nSv/h (3.0s over 100.5),49,6.06,32,3.96,36.73,51.02,51.02,44.9,1.53
-dose_rate_3s,Global Dose Rate Sigma,3.0,"Dallas, TX",tx_dallas,7.06,46.4 nSv/h (3.0s over 39.4),2153,304.86,677,95.86,59.17,76.82,80.31,16.16,3.18
-dose_rate_3s,Global Dose Rate Sigma,3.0,"Tampa, FL",fl_tampa,7.14,46.4 nSv/h (3.0s over 30.9),41,5.75,26,3.64,78.05,90.24,90.24,9.76,1.58
-dose_rate_4s,Global Dose Rate Sigma,4.0,"Birmingham, AL",al_birmingham,7.36,65.8 nSv/h (4.0s over 52.9),1500,203.82,541,73.51,70.93,83.07,85.73,9.0,2.77
-dose_rate_4s,Global Dose Rate Sigma,4.0,"Washington, DC",dc_washington,7.4,52.0 nSv/h (4.0s over 30.8),1133,153.01,331,44.7,34.51,41.66,44.4,45.28,3.42
+dose_rate_3s,Global Dose Rate Sigma,3.0,"Dallas, TX",tx_dallas,7.06,46.3 nSv/h (3.0s over 39.4),2153,304.86,677,95.86,59.17,76.82,80.31,16.12,3.18
+dose_rate_3s,Global Dose Rate Sigma,3.0,"Tampa, FL",fl_tampa,7.14,46.6 nSv/h (3.0s over 30.9),41,5.75,26,3.64,78.05,90.24,90.24,9.76,1.58
+dose_rate_4s,Global Dose Rate Sigma,4.0,"Birmingham, AL",al_birmingham,7.36,65.0 nSv/h (4.0s over 52.9),1500,203.82,541,73.51,70.93,83.07,85.73,6.33,2.77
+dose_rate_4s,Global Dose Rate Sigma,4.0,"Washington, DC",dc_washington,7.4,52.0 nSv/h (4.0s over 30.8),1018,137.48,295,39.84,33.99,41.26,44.11,45.28,3.45
 dose_rate_4s,Global Dose Rate Sigma,4.0,"San Diego, CA",ca_san_diego,8.09,126.2 nSv/h (4.0s over 100.5),17,2.1,9,1.11,58.82,70.59,70.59,23.53,1.89
-dose_rate_4s,Global Dose Rate Sigma,4.0,"Dallas, TX",tx_dallas,7.06,48.8 nSv/h (4.0s over 39.4),1611,228.12,532,75.33,67.41,85.1,88.64,8.63,3.03
-dose_rate_4s,Global Dose Rate Sigma,4.0,"Tampa, FL",fl_tampa,7.14,51.6 nSv/h (4.0s over 30.9),12,1.68,10,1.4,75.0,83.33,83.33,16.67,1.2
-dose_rate_5s,Global Dose Rate Sigma,5.0,"Birmingham, AL",al_birmingham,7.36,69.0 nSv/h (5.0s over 52.9),873,118.62,346,47.01,77.32,87.74,88.89,8.13,2.52
-dose_rate_5s,Global Dose Rate Sigma,5.0,"Washington, DC",dc_washington,7.4,57.3 nSv/h (5.0s over 30.8),665,89.81,201,27.14,34.59,41.95,44.66,44.21,3.31
-dose_rate_5s,Global Dose Rate Sigma,5.0,"San Diego, CA",ca_san_diego,8.09,132.7 nSv/h (5.0s over 100.5),7,0.87,6,0.74,57.14,71.43,71.43,28.57,1.17
-dose_rate_5s,Global Dose Rate Sigma,5.0,"Dallas, TX",tx_dallas,7.06,51.1 nSv/h (5.0s over 39.4),1170,165.67,411,58.2,73.25,91.28,93.68,4.44,2.85
-dose_rate_5s,Global Dose Rate Sigma,5.0,"Tampa, FL",fl_tampa,7.14,56.8 nSv/h (5.0s over 30.9),4,0.56,4,0.56,100.0,100.0,100.0,0.0,1.0
+dose_rate_4s,Global Dose Rate Sigma,4.0,"Dallas, TX",tx_dallas,7.06,48.7 nSv/h (4.0s over 39.4),1611,228.12,532,75.33,67.41,85.1,88.64,8.63,3.03
+dose_rate_4s,Global Dose Rate Sigma,4.0,"Tampa, FL",fl_tampa,7.14,51.9 nSv/h (4.0s over 30.9),12,1.68,10,1.4,75.0,83.33,83.33,16.67,1.2
+dose_rate_5s,Global Dose Rate Sigma,5.0,"Birmingham, AL",al_birmingham,7.36,68.1 nSv/h (5.0s over 52.9),996,135.34,393,53.4,76.71,87.75,88.96,5.72,2.53
+dose_rate_5s,Global Dose Rate Sigma,5.0,"Washington, DC",dc_washington,7.4,57.4 nSv/h (5.0s over 30.8),665,89.81,201,27.14,34.59,41.95,44.66,44.21,3.31
+dose_rate_5s,Global Dose Rate Sigma,5.0,"San Diego, CA",ca_san_diego,8.09,132.6 nSv/h (5.0s over 100.5),7,0.87,6,0.74,57.14,71.43,71.43,28.57,1.17
+dose_rate_5s,Global Dose Rate Sigma,5.0,"Dallas, TX",tx_dallas,7.06,51.0 nSv/h (5.0s over 39.4),1279,181.1,440,62.3,72.71,90.3,92.89,5.08,2.91
+dose_rate_5s,Global Dose Rate Sigma,5.0,"Tampa, FL",fl_tampa,7.14,57.1 nSv/h (5.0s over 30.9),4,0.56,4,0.56,100.0,100.0,100.0,0.0,1.0

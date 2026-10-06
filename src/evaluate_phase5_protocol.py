@@ -64,6 +64,9 @@ def load_train_data(feature_cols: list[str]) -> tuple[pd.DataFrame, pd.Series]:
         df_raw = pd.read_csv(csv_file)
         feats = compute_features_for_series(df_raw, st_id, use_injected=True)
         valid = feats["has_radnet_obs"] & feats["rad_complete_channels"] & (feats["label"].isin(LABEL_MAP.keys()))
+        # BUG-1 fix (2026-10-06): fit ONLY on the 2017-2020 fold. 2021-2022 is the
+        # validation fold used for threshold selection and must not be trained on.
+        valid = valid & (feats["dt"] < "2021-01-01")
         sub = feats[valid]
         x_list.append(sub[feature_cols])
         y_list.append(sub["label"].map(LABEL_MAP))
@@ -194,7 +197,7 @@ def main():
         probs_clean_t3 = clf_t3.predict_proba(feats_clean[TIER_3_FEATURES])
         probs_clean_mlp = pipe_mlp.predict_proba(feats_clean[TIER_3_FEATURES])
 
-        st_base = STATION_DRY_BASELINES.get(st_id, {"mu": 3000.0, "sigma": 400.0})
+        st_base = STATION_DRY_BASELINES[st_id]  # BUG-11: no silent fabricated defaults
         base_3s_thresh = st_base["mu"] + 3.0 * st_base["sigma"]
         base_4s_thresh = st_base["mu"] + 4.0 * st_base["sigma"]
         base_5s_thresh = st_base["mu"] + 5.0 * st_base["sigma"]
@@ -232,7 +235,62 @@ def main():
     print(f"Total clean observed hours: {total_clean_observed_hours} ({total_station_years:.2f} station-years)")
 
     # 3. Find Operating Thresholds at 90%, 95%, 98% Detection
-    # Sweep thresholds to get operating points
+    # --- BUG-1 FIX (2026-10-06) -------------------------------------------
+    # Thresholds are selected on the 2021-2022 VALIDATION fold only (held out
+    # of model fitting), then frozen and applied to the 2023-2025 test split.
+    # The previous version selected thresholds on the test split itself.
+    # Detection uses the net-alarm criterion (alarm on the injected series AND
+    # NOT on the clean series), consistent with train_and_evaluate_rigorous.py.
+    # ------------------------------------------------------------------------
+    print("\nBuilding 2021-2022 validation fold for threshold selection (no test tuning)...")
+    val_series = {}
+    total_val_observed_hours = 0
+    for st in STATIONS:
+        st_id = st["id"]
+        csv_file = Path(f"data/processed/labeled_{st_id}_train.csv.gz")
+        df_tr = pd.read_csv(csv_file)
+        df_tr["dt"] = pd.to_datetime(df_tr["dt"])
+        df_tr = df_tr.sort_values("dt").reset_index(drop=True)
+
+        # Featurize the full training panel first (full rolling history),
+        # then slice the validation rows (BUG-5 fix).
+        feats_inj_full = compute_features_for_series(df_tr, st_id, use_injected=True)
+        feats_clean_full = compute_features_for_series(df_tr, st_id, use_injected=False)
+        m_val = ((df_tr["dt"] >= "2021-01-01") & (df_tr["dt"] < "2023-01-01")).values
+
+        df_val = df_tr[m_val].copy().reset_index(drop=True)
+        feats_inj = feats_inj_full[m_val].reset_index(drop=True)
+        feats_clean = feats_clean_full[m_val].reset_index(drop=True)
+
+        valid = feats_clean["has_radnet_obs"] & feats_clean["rad_complete_channels"]
+        total_val_observed_hours += int(valid.sum())
+
+        val_series[st_id] = {
+            "dt": df_val["dt"],
+            "valid": valid,
+            "p_inj": {
+                "t1": clf_t1.predict_proba(feats_inj[TIER_1_FEATURES])[:, 2],
+                "t2": clf_t2.predict_proba(feats_inj[TIER_2_FEATURES])[:, 2],
+                "t3": clf_t3.predict_proba(feats_inj[TIER_3_FEATURES])[:, 2],
+                "mlp": pipe_mlp.predict_proba(feats_inj[TIER_3_FEATURES])[:, 2],
+            },
+            "p_clean": {
+                "t1": clf_t1.predict_proba(feats_clean[TIER_1_FEATURES])[:, 2],
+                "t2": clf_t2.predict_proba(feats_clean[TIER_2_FEATURES])[:, 2],
+                "t3": clf_t3.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2],
+                "mlp": pipe_mlp.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2],
+            },
+        }
+
+    total_val_station_years = total_val_observed_hours / 8766.0
+    val_start_dt = pd.to_datetime(catalog["start_utc"])
+    val_catalog = catalog[(catalog["split"] == "train") &
+                          (val_start_dt >= "2021-01-01") &
+                          (val_start_dt < "2023-01-01")].copy().reset_index(drop=True)
+    print(f"Validation fold: {total_val_observed_hours} observed hours "
+          f"({total_val_station_years:.2f} stn-yr), {len(val_catalog)} injection events")
+
+    # Sweep thresholds to get operating points (VALIDATION fold, net-alarm criterion)
     thresholds = np.linspace(0.01, 0.99, 99)
     model_keys = ["t1", "t2", "t3", "mlp"]
     operating_thresholds = {k: {} for k in model_keys}
@@ -243,25 +301,26 @@ def main():
         det_at_90, det_at_95, det_at_98 = 0.0, 0.0, 0.0
 
         for tau in thresholds:
-            # Detection rate
+            # Net-alarm detection rate on validation fold
             det_count = 0
-            for _, inj in test_catalog.iterrows():
+            for _, inj in val_catalog.iterrows():
                 st_id = inj["station_id"]
-                st_data = test_series[st_id]
+                st_data = val_series[st_id]
                 mask = (st_data["dt"] >= inj["start_utc"]) & (st_data["dt"] <= inj["end_utc"]) & st_data["valid"]
-                p_sub = st_data["p_inj"][k][mask]
-                if len(p_sub) > 0 and np.max(p_sub) >= tau:
+                p_inj_sub = st_data["p_inj"][k][mask]
+                p_cln_sub = st_data["p_clean"][k][mask]
+                if len(p_inj_sub) > 0 and np.any((p_inj_sub >= tau) & (p_cln_sub < tau)):
                     det_count += 1
-            det_rate = det_count / len(test_catalog)
+            det_rate = det_count / len(val_catalog)
 
-            # False alarms
+            # Clean false alarms on validation fold
             episodes = 0
-            for st_id in test_series:
-                p_cl = pd.Series(test_series[st_id]["p_clean"][k])
-                val = test_series[st_id]["valid"]
+            for st_id in val_series:
+                p_cl = pd.Series(val_series[st_id]["p_clean"][k])
+                val = val_series[st_id]["valid"]
                 ep, _, _ = count_clean_alarm_episodes(p_cl, val, tau)
                 episodes += ep
-            fa_rate = episodes / total_station_years
+            fa_rate = episodes / total_val_station_years
 
             if det_rate >= 0.90 and fa_rate < min_fa_90:
                 min_fa_90, best_tau_90, det_at_90 = fa_rate, tau, det_rate
@@ -274,10 +333,11 @@ def main():
         operating_thresholds[k][0.95] = {"tau": best_tau_95, "det_rate": det_at_95, "fa_rate": min_fa_95}
         operating_thresholds[k][0.98] = {"tau": best_tau_98, "det_rate": det_at_98, "fa_rate": min_fa_98}
 
-    print("\nOperating points identified:")
+    print("\nOperating points selected on VALIDATION fold (frozen before test):")
     for k in model_keys:
         print(f"  {k} at 95% target: tau={operating_thresholds[k][0.95]['tau']:.2f}, "
-              f"Det={operating_thresholds[k][0.95]['det_rate']*100:.1f}%, FA={operating_thresholds[k][0.95]['fa_rate']:.2f} FA/yr")
+              f"Val Det={operating_thresholds[k][0.95]['det_rate']*100:.1f}%, "
+              f"Val FA={operating_thresholds[k][0.95]['fa_rate']:.2f} FA/yr")
 
     # Define the primary comparison models and their alarm evaluation functions
     # Benchmark targets 95% target detection
@@ -386,17 +446,21 @@ def main():
         start_dt = pd.to_datetime(inj["start_utc"])
 
         for m_name, m_cfg in primary_eval_models.items():
+            # Unified net-alarm criterion (2026-10-06): alarm on the injected
+            # series AND NOT on the clean series. The previous any-alarm rule
+            # credited background false alarms inside the event window as
+            # "detections" (see BUG_AUDIT.md, any-alarm vs net-alarm verdict).
             if m_cfg["type"] == "baseline_global":
                 thresh = st_data["base_thresholds"][m_cfg["thresh_key"]]
-                signal = st_data["gross_inj"][event_mask].reset_index(drop=True)
-                is_alarm = signal >= thresh
+                is_alarm = ((st_data["gross_inj"][event_mask] >= thresh) &
+                            ~(st_data["gross_clean"][event_mask] >= thresh)).reset_index(drop=True)
             elif m_cfg["type"] == "baseline_rolling":
-                signal = st_data["z_roll_inj"][event_mask].reset_index(drop=True)
-                is_alarm = signal >= m_cfg["k_val"]
+                is_alarm = ((st_data["z_roll_inj"][event_mask] >= m_cfg["k_val"]) &
+                            ~(st_data["z_roll_clean"][event_mask] >= m_cfg["k_val"])).reset_index(drop=True)
             elif m_cfg["type"] == "ml":
-                signal = st_data["p_inj"][m_cfg["key"]][event_mask]
-                signal = pd.Series(signal).reset_index(drop=True)
-                is_alarm = signal >= m_cfg["tau"]
+                p_inj_s = pd.Series(st_data["p_inj"][m_cfg["key"]][event_mask]).reset_index(drop=True)
+                p_cln_s = pd.Series(st_data["p_clean"][m_cfg["key"]][event_mask]).reset_index(drop=True)
+                is_alarm = (p_inj_s >= m_cfg["tau"]) & (p_cln_s < m_cfg["tau"])
 
             if is_alarm.any():
                 detected = 1

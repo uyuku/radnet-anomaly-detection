@@ -1,7 +1,7 @@
 Station_ID,Station_Name,Rain_Hours_Analyzed,Slope_nSvh_per_CPM,Intercept_nSvh,R_Squared,Std_Err,CI95_Lower,CI95_Upper,P_Value
-al_birmingham,"Birmingham, AL",1863,0.01399,1.97,0.831,0.000146,0.01371,0.01428,0.0
-dc_washington,"Washington, DC",1748,0.01687,-0.51,0.745,0.000236,0.01641,0.01733,0.0
-ca_san_diego,"San Diego, CA",110,0.02388,0.24,0.532,0.002157,0.01965,0.02811,1.709662381748834e-19
-tx_dallas,"Dallas, TX",1237,0.01246,0.07,0.916,0.000108,0.01225,0.01267,0.0
-fl_tampa,"Tampa, FL",665,0.01191,0.71,0.815,0.000221,0.01147,0.01234,7.7201591487668e-245
-pooled_network,Pooled Network (5 Stations),5623,0.01357,1.1,0.79,9.3e-05,0.01339,0.01375,0.0
+al_birmingham,"Birmingham, AL",1780,0.01389,2.5,0.804,0.000163,0.01358,0.01421,0.0
+dc_washington,"Washington, DC",1680,0.01668,-0.14,0.722,0.000253,0.01618,0.01718,0.0
+ca_san_diego,"San Diego, CA",63,0.02359,0.44,0.501,0.003016,0.01768,0.0295,8.883860492262532e-11
+tx_dallas,"Dallas, TX",1175,0.01238,0.31,0.909,0.000114,0.01216,0.0126,0.0
+fl_tampa,"Tampa, FL",626,0.01142,1.12,0.658,0.00033,0.01078,0.01207,1.3010332714294263e-147
+pooled_network,Pooled Network (5 Stations),5324,0.01344,1.48,0.767,0.000102,0.01324,0.01363,0.0

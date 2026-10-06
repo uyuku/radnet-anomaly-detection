@@ -1,2 +1,2 @@
 heldout_station,climate,test_events,detected_events,detection_rate_pct,clean_observed_hours,clean_false_alarm_episodes,false_alarms_per_station_year
-"San Diego, CA (ca_san_diego)",West Coast Mediterranean / Coastal (Negative Rain Correlation),40,35,87.5,24964,11,3.86
+"San Diego, CA (ca_san_diego)",West Coast Mediterranean / Coastal (Negative Rain Correlation),40,28,70.0,24964,0,0.0

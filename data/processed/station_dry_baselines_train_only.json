@@ -1,37 +1,37 @@
 {
   "al_birmingham": {
-    "mu": 3873.5,
-    "sigma": 306.5,
-    "mu_dose": 51.8,
-    "sigma_dose": 2.8,
-    "dry_hours_train": 28794
+    "mu": 3870.3,
+    "sigma": 300.2,
+    "mu_dose": 51.7,
+    "sigma_dose": 2.5,
+    "dry_hours_train": 28279
   },
   "dc_washington": {
-    "mu": 2072.1,
-    "sigma": 252.1,
-    "mu_dose": 31.7,
-    "sigma_dose": 5.5,
-    "dry_hours_train": 30064
+    "mu": 2072.0,
+    "sigma": 252.2,
+    "mu_dose": 32.0,
+    "sigma_dose": 4.7,
+    "dry_hours_train": 29880
   },
   "ca_san_diego": {
-    "mu": 6984.9,
-    "sigma": 457.9,
-    "mu_dose": 103.9,
-    "sigma_dose": 4.1,
-    "dry_hours_train": 43599
+    "mu": 6983.3,
+    "sigma": 457.5,
+    "mu_dose": 103.8,
+    "sigma_dose": 4.0,
+    "dry_hours_train": 43236
   },
   "tx_dallas": {
-    "mu": 2966.6,
-    "sigma": 327.4,
+    "mu": 2964.4,
+    "sigma": 325.6,
     "mu_dose": 39.7,
     "sigma_dose": 2.3,
-    "dry_hours_train": 35503
+    "dry_hours_train": 35186
   },
   "fl_tampa": {
-    "mu": 2277.5,
-    "sigma": 237.9,
-    "mu_dose": 30.6,
-    "sigma_dose": 6.1,
-    "dry_hours_train": 30498
+    "mu": 2278.5,
+    "sigma": 235.4,
+    "mu_dose": 31.7,
+    "sigma_dose": 1.7,
+    "dry_hours_train": 30102
   }
 }

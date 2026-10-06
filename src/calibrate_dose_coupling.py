@@ -32,8 +32,10 @@ def run_dose_calibration():
         df = df.sort_values("dt").reset_index(drop=True)
 
         # Baseline: 168-hour rolling median on continuous calendar grid
-        df["cpm_base"] = df["gross_cpm"].rolling(168, min_periods=72, center=True).median()
-        df["dose_base"] = df["dose_rate_nsvh"].rolling(168, min_periods=72, center=True).median()
+        # Trailing (causal) baseline window. BUG-7 fix (2026-10-06): the previous
+        # center=True window used up to +84h of future data in the k_dose regression.
+        df["cpm_base"] = df["gross_cpm"].rolling(168, min_periods=72).median()
+        df["dose_base"] = df["dose_rate_nsvh"].rolling(168, min_periods=72).median()
 
         df["cpm_excess"] = df["gross_cpm"] - df["cpm_base"]
         df["dose_excess"] = df["dose_rate_nsvh"] - df["dose_base"]

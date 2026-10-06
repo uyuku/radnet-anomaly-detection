@@ -1,5 +1,5 @@
 model,frozen_tau,realized_detection_pct,false_alarms_per_year
-"MLP (Raw Probabilities, Seed 42)",0.98,92.0,78.92
-"MLP (Isotonic Calibrated, Seed 42)",0.05,92.0,128.08
-"MLP (Raw Probabilities, 20-Seed Mean)",0.989,90.2,58.52
+"MLP (Raw Probabilities, Seed 42)",0.98,91.5,43.98
+"MLP (Isotonic Calibrated, Seed 42)",0.05,91.5,132.77
+"MLP (Raw Probabilities, 20-Seed Mean)",0.989,90.2,58.3
 LightGBM Tier 3 (20-Seed Mean Ref),0.988,92.1,4.22

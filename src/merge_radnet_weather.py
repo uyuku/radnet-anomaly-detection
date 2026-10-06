@@ -54,23 +54,30 @@ CHANNEL_KEYS = ["R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09"]
 
 
 def parse_noaa_precip(val):
+    """Parse NOAA ISD AA1 liquid precipitation into mm.
+
+    Returns np.nan (UNKNOWN) for: missing/suspect quality codes (anything other
+    than 1 or 5), missing depth (9999), unparseable values, and non-1-hour
+    accumulation periods.  Unknown precipitation must never be recorded as 0.0
+    (verified dry) — see BUG_AUDIT.md BUG-3 (2026-10-06 fix).
+    """
     if pd.isna(val) or not isinstance(val, str):
-        return 0.0
+        return np.nan
     parts = val.split(",")
     if len(parts) >= 2 and parts[0] == "01":
         try:
             d = int(parts[1])
             if d == 9999:
-                return 0.0
+                return np.nan
             # Quality code verification per DECISIONS.md:
             # 1 = passed standard check, 5 = passed all checks
             quality = parts[3].strip() if len(parts) >= 4 else "1"
             if quality not in ["1", "5"]:
-                return 0.0
+                return np.nan  # suspect/excluded quality: unknown, not dry
             return d / 10.0
         except (ValueError, IndexError):
-            return 0.0
-    return 0.0
+            return np.nan
+    return np.nan  # non-1h accumulation periods are unknown on an hourly grid
 
 
 

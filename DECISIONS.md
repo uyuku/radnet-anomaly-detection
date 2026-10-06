@@ -247,3 +247,39 @@ Format:
 
 
 
+
+---
+
+### Phase 6: Final Report & Handoff Corrections (2026-10-06, MiMo assuming lead)
+
+- **2026-10-06 | Corrected injection-count errors in `HANDOFF.md` to match the frozen catalog**
+  - **Reason**: `HANDOFF.md` (and the handoff prompt) claimed 2,000 injections (1,000 train / 1,000 test; 150+150 rain hard cases; nuclides incl. Ir-192/Am-241). The authoritative `synthetic_injection_catalog.csv` contains 450 injections (250 train / 200 test; 75+100 rain hard cases; five Cs/I/Co scenarios), consistent with `PHASE_REPORT.md`, `DECISIONS.md`, `QUESTIONS.md`, and all evaluation tables. Per PROJECT_SPEC Section 2 ("no numeric value is invented"; findings checked until proven), the summary document was corrected and the catalog left untouched.
+
+- **2026-10-06 | `run_pipeline.sh` master runner added (resolves Handoff §4 item 1)**
+  - **Reason**: The handoff documented the absence of a single sequential runner as a reproducibility gap. The runner executes Phases 0–5 in order, supports `--phase` / `--dry-run`, and skips scripts whose input panels are absent with an explicit SKIP message (merged/labeled gz panels are not shipped in the archive; regeneration requires raw re-download per `DATA_LOG.md`).
+
+- **2026-10-06 | `README.md` added with honest archive-contents statement**
+  - **Reason**: Repository previously had no entry point. README states exactly what is and is not archived, and that all detection performance is measured on synthetic injections.
+
+- **2026-10-06 | Detection-criterion divergence between Phase 5 scripts flagged for unification**
+  - **Reason**: `evaluate_phase5_protocol.py` scores event detection with a plain any-alarm criterion; `train_and_evaluate_rigorous.py` uses the net-alarm criterion (injected-series alarm AND no clean-series alarm). This explains systematic small differences between `eval_*` tables (e.g. rolling 3σ detection 63.0%) and `rigorous_*` tables (52.0% at matched-detection labeling). Both conventions are labeled in `reports/PHASE6_REPORT.md`; unifying to the net-alarm criterion is a pre-publication action item. No frozen result was regenerated.
+
+- **2026-10-06 | Phase 6 draft written at `reports/PHASE6_REPORT.md` with numbers strictly from frozen CSVs**
+  - **Reason**: PROJECT_SPEC Phase 6 gate ("numbers taken only from logged results"). Report keeps neutral tone, states the synthetic-ground-truth limitation prominently, reports the modest median weather benefit (14%) alongside the mean (50.5%), and catalogs the weak regimes (stress-dry 78–82%, I-131 LOSO 58.3%) instead of headline maxima. Supersession of Phase 4 exploratory numbers by Phase 5 protocol results is stated in the report and Appendix B.
+
+---
+
+### Phase 6 Bug-Fix Pass (2026-10-06, full regeneration with corrected pipeline)
+
+- **2026-10-06 | All 13 audit bugs fixed; benchmark regenerated end-to-end from raw**
+  - **Reason**: `reports/BUG_AUDIT.md` identified 2 critical, 2 high, 4 medium, 5 low bugs. Frozen policy preserved where it matters: `synthetic_injection_catalog.csv` (the 450 injection events) is loaded, NOT regenerated (`synthetic_injection.py` now loads the frozen catalog when present). Everything downstream of corrected parsing is regenerated and all affected tables/figures recomputed.
+  - **Fixes**: BUG-1 validation-fold threshold freezing + fit-fold restriction (`evaluate_phase5_protocol.py`, `train_and_evaluate_models.py`); BUG-2 matched-comparison fallback + `all_tiers_met_target` guard (`train_and_evaluate_rigorous.py`); BUG-3 unknown precipitation = NaN, never 0.0 (`merge_radnet_weather.py`); BUG-4 washout labels use frozen train-only baselines (`synthetic_injection.py`); BUG-5 full-panel featurization before slicing (`train_and_evaluate_rigorous.py`, `train_and_evaluate_models.py`, `evaluate_phase5_protocol.py`); BUG-6 episode starts binned by month (no boundary double-count); BUG-7 trailing k_dose baseline window; BUG-8 drop dedup vs last-kept; BUG-9 zoneinfo DST-correct local hours; BUG-10 dead `det_low` conditional removed; BUG-11 no silent fabricated baselines; BUG-12 distinct rule names; BUG-13 `__file__`-based paths.
+
+- **2026-10-06 | Detection criterion unified to net-alarm everywhere**
+  - **Reason**: any-alarm credited background false alarms inside event windows as detections. Both Phase 5 scripts now use net-alarm (alarm on injected AND NOT on clean series). Regenerated `eval_*` and `model_*` tables are therefore not numerically comparable to the superseded pre-fix versions.
+
+- **2026-10-06 | Drop-detector dry-spell guard uses "no RECORDED rain" semantics**
+  - **Reason**: BUG-3 makes unknown precipitation NaN. A strict `precip == 0` dry check then discards real filter step-drops adjacent to missing weather telemetry (12/450 frozen injections lost their drop anchor). The guard's purpose is rejecting washout-decay false positives, which require recorded rain; unknown precipitation cannot produce washout. NaN therefore tolerates in this specific detector while remaining "not dry" in all labels, baselines, and statistics.
+
+- **2026-10-06 | Measured impact of the precipitation-parser fix**
+  - **Reason**: 21,156 of 394,440 station-hours (5.4%) previously recorded as verified-dry 0.0 mm are reclassified unknown (suspect quality codes, missing depths, non-1h periods). Pooled washout R07+R08 share: 5.58% -> 5.60%; catalog audit unchanged (450/450 filter-sync, 0 buffer violations).

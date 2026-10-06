@@ -144,7 +144,14 @@ def compute_features_for_series(df_input: pd.DataFrame, station_id: str, use_inj
         r08 = df["cpm_r08"].astype(float)
         r09 = df["cpm_r09"].astype(float)
 
-    st_base = STATION_DRY_BASELINES.get(station_id.lower(), {"mu": 3000.0, "sigma": 400.0, "mu_dose": 50.0, "sigma_dose": 5.0})
+    try:
+        st_base = STATION_DRY_BASELINES[station_id.lower()]
+    except KeyError:
+        # BUG-11 fix (2026-10-06): never fabricate baselines silently.
+        raise KeyError(
+            f"No train-only dry baseline for station '{station_id}'. "
+            f"Known stations: {sorted(STATION_DRY_BASELINES)}"
+        )
     mu_dry = st_base["mu"]
     sigma_dry = st_base["sigma"]
     mu_dose_dry = st_base["mu_dose"]
@@ -242,7 +249,7 @@ def compute_features_for_series(df_input: pd.DataFrame, station_id: str, use_inj
     feats["rel_humidity_pct"] = df["rel_humidity_pct"].astype(float)
 
     # Physical Cross-Domain Interactions
-    feats["rain_high_energy_interaction"] = feats["precip_3h_mm"] * feats["share_high_energy"].fillna(0.05)
+    feats["rain_high_energy_interaction"] = feats["precip_3h_mm"] * feats["share_high_energy"]  # NaN-propagating (BUG-11: removed magic 0.05 fill)
     feats["dry_excess_interaction"] = (feats["precip_6h_mm"] == 0.0).astype(float) * feats["z_score_global_dry"].fillna(0.0)
     feats["washout_expected_ratio"] = feats["z_score_global_dry"] / (np.sqrt(np.maximum(0.0, feats["precip_3h_mm"])) + 0.1)
 

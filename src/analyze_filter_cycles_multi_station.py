@@ -35,10 +35,17 @@ def detect_filter_drops(df: pd.DataFrame, drop_threshold: float) -> pd.DataFrame
     valid_t = df["has_radnet_obs"] & df["rad_complete_channels"] & df["gross_cpm"].notna()
     valid_t3 = valid_t.shift(3, fill_value=False)
     
-    # 2. Continuous dry weather: 24h precipitation at t is 0.0, and current rain is 0.0
-    # Also check that rain at t-1, t-2, t-3 was 0.0
-    rain_window = df["precip_1h_mm"].rolling(4, min_periods=4).sum()
-    dry_spell = (df["precip_24h"] == 0.0) & (rain_window == 0.0)
+    # 2. No KNOWN rain: 24h precipitation at t is 0.0, and no recorded rain at
+    # t-1, t-2, t-3.  BUG-3-aware (2026-10-06): hours with UNKNOWN precipitation
+    # (NaN) are tolerated here. They never certify dry anywhere else, but this
+    # guard rejects washout-decay false positives, which require RECORDED rain —
+    # and NaN comparisons would otherwise discard real step drops adjacent to
+    # missing weather telemetry (12 of 450 frozen injections lost their drop
+    # anchor under the stricter reading).
+    known_rain = (df["precip_1h_mm"] > 0.0)
+    no_known_rain_4h = ~(known_rain.rolling(4, min_periods=1).sum() > 0)
+    no_known_rain_24h = ~(known_rain.rolling(24, min_periods=1).sum() > 0)
+    dry_spell = no_known_rain_4h & no_known_rain_24h
     
     # Step drop condition
     drop_mask = (df["cpm_diff_3h"] < drop_threshold) & valid_t & valid_t3 & dry_spell
@@ -47,9 +54,16 @@ def detect_filter_drops(df: pd.DataFrame, drop_threshold: float) -> pd.DataFrame
     if candidate_drops.empty:
         return pd.DataFrame()
 
-    # Deduplicate consecutive hours belonging to the same step drop (min 24h separation)
-    candidate_drops["time_diff"] = candidate_drops["dt"].diff()
-    unique_drops = candidate_drops[(candidate_drops["time_diff"] > pd.Timedelta(hours=24)) | (candidate_drops["time_diff"].isna())].copy()
+    # Deduplicate consecutive hours belonging to the same step drop (min 24h separation).
+    # BUG-8 fix (2026-10-06): compare each candidate against the last KEPT drop,
+    # not against the previous candidate (which may itself have been rejected).
+    kept_dts = []
+    last_kept = None
+    for cand_dt in candidate_drops["dt"]:
+        if last_kept is None or (cand_dt - last_kept) > pd.Timedelta(hours=24):
+            kept_dts.append(cand_dt)
+            last_kept = cand_dt
+    unique_drops = candidate_drops[candidate_drops["dt"].isin(kept_dts)].copy()
     return unique_drops
 
 

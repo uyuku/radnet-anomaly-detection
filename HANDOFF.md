@@ -70,15 +70,15 @@ This repository contains the complete implementation, data processing pipeline, 
 - **Key Scripts**:
   - `src/calibrate_dose_coupling.py`: Calibrates gross CPM to dose-rate coupling.
   - `src/analyze_washout_spectrum.py`: Derives empirical multi-channel washout shares.
-  - `src/synthetic_injection.py`: Injects 2,000 synthetic plumes into continuous background.
+  - `src/synthetic_injection.py`: Injects 450 synthetic plumes into continuous background.
   - `src/audit_injection_catalog.py`: Verifies non-overlap buffer, calendar consistency, and split integrity.
   - `src/plot_synthetic_injections.py`: Plots shapes, nuclide spectra, and hard-case rain regimes.
 - **Key Artifacts & Figures**:
-  - `data/processed/synthetic_injection_catalog.csv`: 2,000 injections (1,000 train [2017–2022], 1,000 test [2023–2025]).
+  - `data/processed/synthetic_injection_catalog.csv`: 450 injections (250 train [2017–2022], 200 test [2023–2025]). *(Corrected 2026-10-06: an earlier handoff summary said 2,000 / 1,000+1,000; the frozen catalog and all phase reports consistently document 450 / 250+200.)*
   - `data/processed/labeled_{station}_{split}.csv.gz`: 10 pre-injected continuous hourly datasets.
   - `data/processed/station_dry_baselines_train_only.json`: Frozen dry-baseline reference.
   - Figures: `synthetic_injection_shapes_and_nuclides.png`, `synthetic_injection_hard_case_rain.png`, `synthetic_injection_train_test_disjointness.png`.
-- **Key Design Constraints**: 48-hour non-overlap buffer enforced; real NaI(Tl) channel shares for Cs-137, Co-60, I-131, Ir-192, Am-241; step, ramp, and Gaussian profiles; hard-case rain co-occurrence (150 train, 150 test).
+- **Key Design Constraints**: 48-hour non-overlap buffer enforced; real NaI(Tl) channel shares for five release scenarios (pure Cs-137, pure I-131, Co-60 orphan, fresh-reactor Cs-137/Cs-134/I-131 mix, mixed fission-activation); step, ramp, sigmoidal, and exponential profiles; hard-case rain co-occurrence (75 train, 100 test).
 
 ### Phase 4: Feature Engineering & Machine Learning Detection Pipeline
 - **Objective**: Engineer physical features (spectral channel ratios, temporal diffs, rolling stats, weather interactions) and train LightGBM classifier.
@@ -111,7 +111,7 @@ This repository contains the complete implementation, data processing pipeline, 
 
 ## 3. How to Run the Pipeline in Order
 
-All commands should be executed from the repository root using the project virtual environment:
+A master runner now exists: `bash run_pipeline.sh` (supports `--phase N` and `--dry-run`; it skips phases whose input panels are absent and says so explicitly). Individual commands below should be executed from the repository root using the project virtual environment:
 
 ```bash
 # Activate environment
@@ -174,7 +174,7 @@ python src/plot_phase5_evaluation.py
 
 To ensure complete transparency during the handoff, the following aspects were **never executed as a single automated end-to-end run**:
 
-1. **No Monolithic Single-Command Master Runner**:
+1. **No Monolithic Single-Command Master Runner** *(resolved 2026-10-06: `run_pipeline.sh` now provides the sequential runner with per-phase input checks; it has not yet been exercised as a single cold-start run from raw downloads, which requires live network access)*:
    - There is no single `run_all.sh` or automated DAG runner script that executes from `download_pilot_data.py` to `plot_rigorous_evaluation.py` in one invocation.
    - Each phase and script was executed incrementally by the agent at the terminal, validating outputs against gate requirements before proceeding.
 2. **Network Downloads Decoupled from Downstream Pipeline**:
@@ -182,8 +182,12 @@ To ensure complete transparency during the handoff, the following aspects were *
    - All subsequent analysis and modeling scripts assume local existence of files in `data/raw/` and `data/processed/`.
 3. **Phase 5 Execution Relies on Frozen Labeled Datasets**:
    - The 20-seed replication and rigorous benchmarking in `train_and_evaluate_rigorous.py` were run against the pre-generated `labeled_{station}_{split}.csv.gz` files produced in Phase 3. The synthetic injection generation step (`synthetic_injection.py`) was not re-executed inside the Phase 5 training loop.
+   - Note (2026-10-06): the archive as transferred ships only summary CSVs in `data/processed/`; the merged station panels (`merged_{station}_2017_2025.csv.gz`) and labeled datasets (`labeled_{station}_{split}.csv.gz`) are not included and must be regenerated from raw downloads before Phases 1–5 can re-execute. Plotting/audit scripts that read only summary CSVs run as-is.
 4. **`review_notes/` Directory**:
    - A dedicated folder named `review_notes/` was never created on disk; review bundles and review text were managed directly in chat and as zip archives (`phase0_review.zip` through `phase5_review.zip`).
+
+5. **Evaluation-criterion divergence (flagged 2026-10-06)**:
+   - `evaluate_phase5_protocol.py` scores event detection with a plain any-alarm criterion, while `train_and_evaluate_rigorous.py` uses the stricter net-alarm criterion (alarm on injected series and not on the clean series). Absolute detection/false-alarm numbers therefore differ slightly between the `eval_*` and `rigorous_*` tables. Every report table names its source; unify the criterion before publication submission.
 
 ---
 

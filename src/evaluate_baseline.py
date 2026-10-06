@@ -5,7 +5,11 @@ and lag/diff operations represent exact calendar time, not row indices.
 
 Implements explicit threshold rules recorded in DECISIONS.md:
 1. Global Gross CPM Sigma: Threshold = mu_dry + k * sigma_dry (k = 3.0, 4.0, 5.0)
-2. Rolling 7-day CPM Sigma: Threshold(t) = rolling_mean_168h(t) + k * sigma_dry (k = 3.0, 4.0, 5.0)
+2. Rolling 7-Day Mean + Global Sigma: Threshold(t) = rolling_mean_168h(t) + k * sigma_dry (k = 3.0, 4.0, 5.0)
+   (NOTE: distinct from the Phase 5 "Rolling 7d Local Z-Score" rule
+    Z = (gross - mu_168)/sigma_168 >= k used in train_and_evaluate_rigorous.py.
+    BUG-12 fix (2026-10-06): the two formulas were previously both called
+    "Rolling 7-day k-sigma" despite being different rules.)
 3. Global Dose Rate Sigma: Threshold = mu_dose_dry + k * sigma_dose_dry (k = 3.0, 4.0, 5.0)
 
 Quantifies:
@@ -94,9 +98,9 @@ def evaluate_thresholds():
         {"rule_family": "Global Gross CPM Sigma", "param": 3.0, "code": "global_cpm_3s"},
         {"rule_family": "Global Gross CPM Sigma", "param": 4.0, "code": "global_cpm_4s"},
         {"rule_family": "Global Gross CPM Sigma", "param": 5.0, "code": "global_cpm_5s"},
-        {"rule_family": "Rolling 7-Day CPM Sigma", "param": 3.0, "code": "rolling_cpm_3s"},
-        {"rule_family": "Rolling 7-Day CPM Sigma", "param": 4.0, "code": "rolling_cpm_4s"},
-        {"rule_family": "Rolling 7-Day CPM Sigma", "param": 5.0, "code": "rolling_cpm_5s"},
+        {"rule_family": "Rolling 7-Day Mean + Global Sigma", "param": 3.0, "code": "rolling_cpm_3s"},
+        {"rule_family": "Rolling 7-Day Mean + Global Sigma", "param": 4.0, "code": "rolling_cpm_4s"},
+        {"rule_family": "Rolling 7-Day Mean + Global Sigma", "param": 5.0, "code": "rolling_cpm_5s"},
         {"rule_family": "Global Dose Rate Sigma", "param": 3.0, "code": "dose_rate_3s"},
         {"rule_family": "Global Dose Rate Sigma", "param": 4.0, "code": "dose_rate_4s"},
         {"rule_family": "Global Dose Rate Sigma", "param": 5.0, "code": "dose_rate_5s"},
@@ -118,7 +122,7 @@ def evaluate_thresholds():
                 threshold = s_info["mu_cpm"] + k * s_info["sigma_cpm"]
                 is_alarm = valid_mask & (df["gross_cpm"] > threshold)
                 thresh_desc = f"{threshold:.1f} CPM ({k}s over {s_info['mu_cpm']:.1f})"
-            elif family == "Rolling 7-Day CPM Sigma":
+            elif family == "Rolling 7-Day Mean + Global Sigma":
                 threshold = df["rolling_cpm_168h"] + k * s_info["sigma_cpm"]
                 is_alarm = valid_mask & (df["gross_cpm"] > threshold)
                 thresh_desc = f"Rolling 168h + {k}s ({k*s_info['sigma_cpm']:.1f} CPM)"

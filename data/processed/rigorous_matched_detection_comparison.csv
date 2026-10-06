@@ -1,6 +1,6 @@
-matched_detection_target,rolling_7d_k,rolling_7d_realized_det,rolling_7d_fa,t1_gross_tau,t1_gross_det,t1_gross_fa,t1b_gross_weather_tau,t1b_gross_weather_det,t1b_gross_weather_fa,t2_spectral_tau,t2_spectral_det,t2_spectral_fa,t3_fusion_tau,t3_fusion_det,t3_fusion_fa,mlp_fusion_tau,mlp_fusion_det,mlp_fusion_fa,weather_benefit_on_gross_pct,spectral_benefit_over_gross_pct,weather_benefit_on_spectral_pct,total_reduction_t3_vs_baseline_pct
-80%,1.95,80.0,161.05,0.8494,80.5,32.06,0.9159,80.0,18.25,0.9907,92.0,3.37,0.9907,90.5,2.8,0.866,91.5,58.78,43.1,89.5,16.9,98.3
-85%,1.6,85.0,192.87,0.8245,86.0,46.94,0.8826,85.0,26.8,0.9907,92.0,3.37,0.9907,90.5,2.8,0.866,91.5,58.78,42.9,92.8,16.9,98.5
-90%,1.2,90.0,237.34,0.7247,90.0,109.92,0.8245,90.5,46.04,0.9907,92.0,3.37,0.9907,90.5,2.8,0.866,91.5,58.78,58.1,96.9,16.9,98.8
-92%,0.75,92.5,303.11,0.6998,92.0,127.18,0.7912,92.0,56.81,0.9907,92.0,3.37,0.9824,94.0,4.85,0.891,92.5,61.58,55.3,97.4,-43.9,98.4
-95%,5.0,6.0,23.35,0.5003,95.0,291.36,0.6915,95.5,91.17,0.9741,95.5,27.54,0.9741,95.5,8.14,0.9325,95.0,95.36,68.7,90.5,70.4,65.1
+matched_detection_target,rolling_7d_k,rolling_7d_realized_det,rolling_7d_fa,t1_gross_tau,t1_gross_det,t1_gross_fa,t1b_gross_weather_tau,t1b_gross_weather_det,t1b_gross_weather_fa,t2_spectral_tau,t2_spectral_det,t2_spectral_fa,t3_fusion_tau,t3_fusion_det,t3_fusion_fa,mlp_fusion_tau,mlp_fusion_det,mlp_fusion_fa,all_tiers_met_target,weather_benefit_on_gross_pct,spectral_benefit_over_gross_pct,weather_benefit_on_spectral_pct,total_reduction_t3_vs_baseline_pct
+80%,1.95,80.0,160.48,0.8411,80.0,35.52,0.9159,81.0,18.09,0.9907,92.5,3.37,0.9907,91.0,2.55,0.8826,90.0,53.6,True,49.1,90.5,24.3,98.4
+85%,1.6,85.0,192.78,0.7995,86.5,61.08,0.8743,85.5,28.77,0.9907,92.5,3.37,0.9907,91.0,2.55,0.8826,90.0,53.6,True,52.9,94.5,24.3,98.7
+90%,1.2,90.0,237.26,0.7164,91.0,112.38,0.7995,90.0,54.59,0.9907,92.5,3.37,0.9907,91.0,2.55,0.8826,90.0,53.6,True,51.4,97.0,24.3,98.9
+92%,0.75,92.5,303.03,0.6666,92.0,147.82,0.7414,92.5,74.98,0.9907,92.5,3.37,0.9824,94.0,5.26,0.9076,92.5,58.78,True,49.3,97.7,-56.1,98.3
+95%,0.75,92.5,303.03,0.4754,95.0,307.72,0.6915,95.0,91.99,0.9741,95.5,28.03,0.9741,95.5,7.65,0.9491,95.0,97.01,False,,,,
