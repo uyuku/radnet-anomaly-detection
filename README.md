@@ -12,17 +12,15 @@ This project combines **EPA RadNet gamma spectrometry** with live **NOAA weather
 
 ---
 
-## The Big Picture
-
-Here's how the entire pipeline fits together across monitoring strategy, weather physics, and ML:
+## How It Works
 
 ![Environmental Engineering Overview](reports/figures/environmental_engineering_synthesis.png)
 
-1. **Monitoring Strategy**: EPA RadNet stations suck in air continuously through filter tapes. We pull both total count rates (CPM) and 8 distinct gamma energy channels (R02–R09).
-2. **Weather Physics**:
-   - **Rain**: Falling rain scavenges radon progeny, causing huge count spikes that peak within 1–2 hours and naturally decay away in 4–8 hours ($T_{1/2} < 30\text{ min}$).
-   - **Inversions**: Overnight thermal inversions trap ground-level radon gas, giving a natural daily 6–12% morning bump around 6:00–8:00 AM.
-3. **Data Processing & ML**: Instead of dumb static cutoffs, we train LightGBM models on spectral fingerprinting and weather features.
+1. **Air Monitoring**: EPA RadNet stations pull air continuously through filter tapes. We collect total radiation counts (CPM) plus 8 gamma energy channels (R02–R09).
+2. **Weather Noise**:
+   - **Rain**: Falling rain washes natural airborne radon down onto the filters. This triggers massive count spikes (+40% to +180%) that peak in 1–2 hours and decay away in 4–8 hours ($T_{1/2} < 30\text{ min}$).
+   - **Night Inversions**: Ground-level radon gets trapped under morning temperature inversions, making baseline readings rise 6–12% every morning around 6:00–8:00 AM.
+3. **ML Discrimination**: Static thresholds can't tell rain spikes apart from real nuclear fallout. LightGBM looks at the energy spectrum and live weather: if an hourly surge matches the radon energy signature during rain, it ignores it. If it spots high-energy fission products ($^{137}\text{Cs}$, $^{60}\text{Co}$, $^{131}\text{I}$), it flags the anomaly.
 
 ---
 
