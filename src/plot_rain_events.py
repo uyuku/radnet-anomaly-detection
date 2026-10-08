@@ -136,8 +136,25 @@ def plot_single_event(event_cfg: dict):
     print(f"Generated event plot: {out_file}")
 
 
+def find_storm_onset(sub: pd.DataFrame) -> pd.Timestamp:
+    """Locates the onset of the rainstorm driving the primary radon washout surge.
+
+    Looks backwards up to 12 hours prior to the peak radiation surge to find
+    the beginning of the causal precipitation episode, avoiding early trace
+    drizzles days prior (BUG fix).
+    """
+    peak_idx = sub["gross_cpm"].idxmax()
+    peak_dt = sub.loc[peak_idx, "dt"]
+    pre_peak = sub[(sub["dt"] <= peak_dt) & (sub["dt"] >= peak_dt - pd.Timedelta(hours=12))]
+    rainy = pre_peak[pre_peak["precip_1h_mm"] >= 0.5]
+    if not rainy.empty:
+        return rainy.iloc[0]["dt"]
+    # Fallback to the hour of maximum rainfall in the window
+    return sub.loc[sub["precip_1h_mm"].idxmax(), "dt"]
+
+
 def plot_multi_station_comparison():
-    fig, axes = plt.subplots(5, 1, figsize=(14, 16), sharex=False)
+    fig, axes = plt.subplots(5, 1, figsize=(14, 16), sharex=True)
 
     for i, event in enumerate(EVENTS):
         ax = axes[i]
@@ -149,36 +166,56 @@ def plot_multi_station_comparison():
         mask = (df["dt"] >= event["start"]) & (df["dt"] <= event["end"])
         sub = df.loc[mask].copy().sort_values("dt")
 
-        # Normalize time to hours relative to rain onset
-        # Find rain onset
-        rainy_hours = sub[sub["precip_1h_mm"] >= 1.0]
-        if not rainy_hours.empty:
-            onset_dt = rainy_hours.iloc[0]["dt"]
-        else:
-            onset_dt = sub.iloc[len(sub)//2]["dt"]
-
+        # Synchronize time relative to the storm rain onset (t = 0)
+        onset_dt = find_storm_onset(sub)
         sub["hours_from_onset"] = (sub["dt"] - onset_dt).dt.total_seconds() / 3600.0
+
+        # Restrict display window to [-24, 36] hours for rigorous synchronization
+        sub_disp = sub[(sub["hours_from_onset"] >= -24.0) & (sub["hours_from_onset"] <= 36.0)].copy()
+
+        # Compute pre-storm baseline on [-24, 0) hours
+        pre_storm = sub_disp[sub_disp["hours_from_onset"] < 0]
+        base = pre_storm["gross_cpm"].median() if not pre_storm.empty else sub_disp["gross_cpm"].median()
+        peak_row = sub_disp.loc[sub_disp["gross_cpm"].idxmax()]
+        peak = peak_row["gross_cpm"]
+        surge_pct = (peak - base) / base * 100.0
+        peak_lag_h = peak_row["hours_from_onset"]
 
         # Plot gross count rate
         color_cpm = "#1f4e79"
-        ax.plot(sub["hours_from_onset"], sub["gross_cpm"], color=color_cpm, linewidth=2.0, label="Gross Count Rate (CPM)")
-        ax.set_ylabel(f"{event['name'].split()[0]}\nCPM", color=color_cpm, fontweight="bold", fontsize=10)
+        ax.plot(sub_disp["hours_from_onset"], sub_disp["gross_cpm"], color=color_cpm, linewidth=2.2, label="Gross CPM")
+        ax.axhline(base, color="#7f8c8d", linestyle=":", linewidth=1.2, label=f"Pre-Storm Baseline ({base:.0f} CPM)")
+        ax.axvline(0, color="#d9534f", linestyle="--", linewidth=1.2, alpha=0.8, label="Rain Onset (t=0)")
+
+        # Annotate peak surge with lag from rain onset
+        ax.annotate(
+            f"Peak: {peak:.0f} CPM (+{surge_pct:.1f}%)\nLag: +{peak_lag_h:.0f}h from onset",
+            xy=(peak_lag_h, peak),
+            xytext=(peak_lag_h + 3.5, peak - (peak - base) * 0.15),
+            arrowprops=dict(arrowstyle="->", color=color_cpm, lw=1.5),
+            fontsize=9.0,
+            fontweight="bold",
+            bbox=dict(boxstyle="round,pad=0.25", fc="white", ec=color_cpm, alpha=0.9),
+        )
+
+        ax.set_ylabel(f"{event['name'].split()[0]}\nGross CPM", color=color_cpm, fontweight="bold", fontsize=10)
         ax.grid(True, linestyle="--", alpha=0.5)
 
-        # Twin for rain
+        # Twin axis for rain depth
         ax_twin = ax.twinx()
-        ax_twin.bar(sub["hours_from_onset"], sub["precip_1h_mm"], width=0.8, color="#3498db", alpha=0.45, label="Rain (mm/h)")
-        ax_twin.set_ylabel("Rain (mm)", color="#2980b9", fontsize=9)
-        ax_twin.set_ylim(bottom=0)
+        ax_twin.bar(sub_disp["hours_from_onset"], sub_disp["precip_1h_mm"], width=0.8, color="#3498db", alpha=0.45, label="Rain (mm/h)")
+        ax_twin.set_ylabel("Rain (mm/h)", color="#2980b9", fontsize=9)
+        ax_twin.set_ylim(bottom=0, top=max(sub_disp["precip_1h_mm"].max() * 1.5, 10.0))
 
-        # Baseline and peak labels
-        base = sub[sub["hours_from_onset"] < 0]["gross_cpm"].median()
-        peak = sub["gross_cpm"].max()
-        surge_pct = (peak - base) / base * 100
-        ax.set_title(f"{event['name']} — Rain Washout Surge: Baseline {base:.0f} CPM -> Peak {peak:.0f} CPM (+{surge_pct:.1f}%)", fontsize=11, fontweight="bold")
+        ax.set_title(
+            f"{event['name']} — Washout: Baseline {base:.0f} -> Peak {peak:.0f} CPM (+{surge_pct:.1f}%) | {event['event_desc']}",
+            fontsize=10.5,
+            fontweight="bold",
+            pad=5,
+        )
 
-        if i == 4:
-            ax.set_xlabel("Hours Relative to Rain Onset (t = 0)", fontsize=11, fontweight="bold")
+    axes[-1].set_xlim(-24, 36)
+    axes[-1].set_xlabel("Hours Relative to Synoptic Rain Onset (t = 0)", fontsize=11, fontweight="bold")
 
     plt.tight_layout()
     comp_file = OUTPUT_DIR / "rain_washout_multi_station_comparison.png"

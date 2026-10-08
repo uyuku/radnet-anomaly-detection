@@ -18,7 +18,15 @@
 set -uo pipefail
 cd "$(dirname "$0")"
 
-PYTHON="${PYTHON:-python3}"
+if [[ -z "${PYTHON:-}" ]]; then
+  if [[ -x "./.venv/bin/python" ]]; then
+    PYTHON="./.venv/bin/python"
+  elif [[ -x "../.venv/bin/python" ]]; then
+    PYTHON="../.venv/bin/python"
+  else
+    PYTHON="python3"
+  fi
+fi
 DRY_RUN=0
 ONLY_PHASE=""
 

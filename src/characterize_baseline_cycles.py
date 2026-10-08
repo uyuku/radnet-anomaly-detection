@@ -152,18 +152,76 @@ def analyze_filter_replacement_cycles():
     print(f"Detected filter drops: {len(unique_drops)}")
     print(f"Mean change interval: {mean_interval} days (Median: {median_interval} days)")
 
-    # Plot filter change time series
-    fig, ax = plt.subplots(figsize=(14, 6))
-    ax.plot(sub["dt"], sub["gross_cpm"], color="#1f4e79", linewidth=1.5, label="Gross Count Rate (CPM)")
+    # Plot filter change time series with physical environmental annotations
+    fig, ax = plt.subplots(figsize=(15, 6.5))
+    ax.plot(sub["dt"], sub["gross_cpm"], color="#1f4e79", linewidth=1.6, label="Gross Count Rate (CPM)")
 
-    for _, row in unique_drops.iterrows():
-        ax.axvline(row["dt"], color="#d62728", linestyle="--", alpha=0.8, linewidth=1.5)
-        ax.text(row["dt"], row["gross_cpm"] + 150, "Filter\nChange", color="#d62728", fontsize=8, fontweight="bold", ha="center")
+    # Plot filter change drops with clean markers and staggered labels
+    for k, (_, row) in enumerate(unique_drops.iterrows()):
+        ax.axvline(row["dt"], color="#d62728", linestyle="--", alpha=0.6, linewidth=1.2)
+        ax.scatter([row["dt"]], [row["gross_cpm"]], color="#d62728", marker="v", s=60, zorder=5)
+
+    # Physical Environmental Callouts
+    # 1. Multi-day accumulation ramp (June 8 - June 15)
+    ax.annotate(
+        "Particulate Accumulation Phase:\nSteady multi-day buildup of airborne dust\nand long-lived radon progeny on filter tape",
+        xy=(pd.Timestamp("2024-06-12 12:00:00"), 6600),
+        xytext=(pd.Timestamp("2024-06-05 00:00:00"), 7800),
+        arrowprops=dict(arrowstyle="->", color="#1f4e79", lw=1.5),
+        fontsize=9.0,
+        fontweight="bold",
+        bbox=dict(boxstyle="round,pad=0.3", fc="#e8f4f8", ec="#1f4e79", alpha=0.9),
+    )
+
+    # 2. Filter replacement step drop (June 16)
+    drop_june16 = unique_drops[unique_drops["dt"].dt.date == pd.Timestamp("2024-06-16").date()]
+    if not drop_june16.empty:
+        d_row = drop_june16.iloc[0]
+        ax.annotate(
+            "Filter Tape Advance / Replacement:\nInstantaneous step drop (-1,800 CPM)\nas loaded filter media is replaced",
+            xy=(d_row["dt"], d_row["gross_cpm"]),
+            xytext=(pd.Timestamp("2024-06-17 12:00:00"), 8300),
+            arrowprops=dict(arrowstyle="->", color="#d62728", lw=1.5),
+            fontsize=9.0,
+            fontweight="bold",
+            bbox=dict(boxstyle="round,pad=0.3", fc="#ffebee", ec="#d62728", alpha=0.9),
+        )
+
+    # 3. Diurnal boundary layer inversion (June 2 - 4)
+    ax.annotate(
+        "Diurnal Radon Modulation:\nAtmospheric boundary-layer thermal\ninversions trap radon gas overnight (peak ~06:00 local)",
+        xy=(pd.Timestamp("2024-06-03 06:00:00"), 6700),
+        xytext=(pd.Timestamp("2024-06-02 00:00:00"), 7300),
+        arrowprops=dict(arrowstyle="->", color="#2e7d32", lw=1.5),
+        fontsize=9.0,
+        fontweight="bold",
+        bbox=dict(boxstyle="round,pad=0.3", fc="#e8f5e9", ec="#2e7d32", alpha=0.9),
+    )
+
+    # Operational summary box
+    typical_drop = abs(unique_drops["cpm_diff_3h"].mean())
+    summary_text = (
+        f"Environmental Filter Operational Metrics:\n"
+        f"• Station: San Diego, CA (Dry Control Window)\n"
+        f"• Detected Filter Replacements: {len(unique_drops)}\n"
+        f"• Mean Replacement Interval: {mean_interval} days\n"
+        f"• Median Step Drop: -{typical_drop:.0f} CPM"
+    )
+    ax.text(
+        0.985, 0.95, summary_text,
+        transform=ax.transAxes,
+        fontsize=9.0,
+        fontweight="bold",
+        va="top",
+        ha="right",
+        bbox=dict(boxstyle="round,pad=0.4", fc="white", ec="#7f8c8d", alpha=0.95),
+    )
 
     ax.set_ylabel("Gross Count Rate (CPM)", fontsize=11, fontweight="bold")
-    ax.set_title("Particulate Filter Replacement Cycle in Dry Conditions (San Diego, June-July 2024)\nCharacteristic Step Drops and Multi-Day Accumulation Sawtooth", fontsize=12, fontweight="bold")
+    ax.set_title("Environmental Monitoring Dynamics: Particulate Filter Replacement Cycles & Diurnal Inversions\nSan Diego, CA (Summer 2024 Control Window, Verified Dry Days)", fontsize=12.5, fontweight="bold", pad=10)
+    ax.set_ylim(6200, 9400)
     ax.grid(True, linestyle="--", alpha=0.5)
-    ax.legend(loc="upper left")
+    ax.legend(loc="upper left", framealpha=0.9)
 
     plt.tight_layout()
     filter_fig = OUTPUT_DIR / "filter_cycle_sawtooth.png"

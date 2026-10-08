@@ -86,8 +86,12 @@ def plot_shapes_and_nuclides():
     ax1.text(t_pass + t_ret / 2, 0.15, "Retention Phase\n(Plateau / Radiological Decay)", ha="center", fontsize=9.5, fontweight="bold",
              bbox=dict(boxstyle="round,pad=0.2", facecolor="#fff3e0", edgecolor="#ff7f0e", alpha=0.8))
     
+    ax1.plot([d, d], [1.0, 0.0], color="#ff7f0e", linestyle="--", linewidth=2.0)
+    ax1.plot([d, d + 4], [0.0, 0.0], color="#ff7f0e", linestyle="-", linewidth=2.0)
+    ax1.axvline(d, color="red", linestyle=":", alpha=0.7, linewidth=1.5)
+    
     ax1.annotate("Real Filter Replacement Drop:\nDeposited activity clears to 0",
-                 xy=(d - 1, 1.0), xytext=(d - 16, 0.65),
+                 xy=(d, 0.05), xytext=(d - 18, 0.38),
                  arrowprops=dict(facecolor="red", shrink=0.08, width=1.5, headwidth=6),
                  fontsize=9.5, fontweight="bold",
                  bbox=dict(boxstyle="round,pad=0.3", facecolor="#ffebee", edgecolor="red"))
@@ -95,7 +99,7 @@ def plot_shapes_and_nuclides():
     ax1.set_title("Panel A: Physical Filter Accumulation & Retention Profile $S(t) / S_{\\mathrm{peak}}$\n(Plume Inflow -> Filter Retention -> Filter Replacement Drop)", fontweight="bold")
     ax1.set_xlabel("Elapsed Monitoring Time (hours)")
     ax1.set_ylabel("Normalized Filter Excess Signal")
-    ax1.set_xlim(0, d + 2)
+    ax1.set_xlim(0, d + 4)
     ax1.set_ylim(-0.05, 1.25)
     ax1.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#cccccc", fontsize=9.0)
 
@@ -136,14 +140,19 @@ def plot_shapes_and_nuclides():
     ax2.set_ylabel("Share of Excess Net Gross Counts (%)")
     ax2.set_xticks(x)
     ax2.set_xticklabels(channels, fontsize=8.5)
-    ax2.set_ylim(0, 75)
+    ax2.set_ylim(0, 80)
 
     # Highlight R07
-    rect_box = patches.Rectangle((4.5, 0), 1.0, 72, linewidth=1.5, edgecolor="purple", facecolor="purple", alpha=0.08, linestyle="--")
+    rect_box = patches.Rectangle((4.5, 0), 1.0, 78, linewidth=1.5, edgecolor="purple", facecolor="purple", alpha=0.08, linestyle="--")
     ax2.add_patch(rect_box)
-    ax2.text(5.0, 62, f"Channel R07 (1001-1400 keV):\nCo-60: 28.0% (Photopeaks)\nWashout: {pooled['cpm_r07_ratio_of_sums_pct']:.1f}% (Bi-214)\nFukushima: 4.5% (Cs-134)\nCs-137 / I-131: < 1.0%",
-             ha="center", va="top", color="#4a148c", fontsize=8.5, fontweight="bold",
-             bbox=dict(boxstyle="round,pad=0.3", facecolor="#f3e5f5", edgecolor="purple", alpha=0.9))
+    ax2.annotate(
+        f"Channel R07 (1001-1400 keV):\n• Co-60: 28.0% (Photopeaks)\n• Washout: {pooled['cpm_r07_ratio_of_sums_pct']:.1f}% (Bi-214)\n• Fukushima: 4.5% (Cs-134)\n• Cs-137 / I-131: < 1.0%",
+        xy=(5.0, 28),
+        xytext=(2.6, 58),
+        arrowprops=dict(facecolor="purple", edgecolor="purple", shrink=0.08, width=1.5, headwidth=6),
+        ha="center", va="center", color="#4a148c", fontsize=8.5, fontweight="bold",
+        bbox=dict(boxstyle="round,pad=0.35", facecolor="#f3e5f5", edgecolor="purple", alpha=0.92)
+    )
 
     ax2.legend(loc="upper right", frameon=True, facecolor="white", edgecolor="#cccccc", fontsize=8.5)
 

@@ -116,11 +116,14 @@ def plot_bootstrap_uncertainty():
         )
         x_val = x_fa.iloc[i]
         y_p = y_pos[i]
+        ci_h = df_plot["fa_ci_high"].iloc[i]
+        text_x = ci_h * 1.25 if ci_h > 5 else ci_h + 1.8
         ax1.text(
-            x_val * 1.15 if x_val > 10 else x_val + 2.5,
+            text_x,
             y_p,
             f"{x_val:.1f} [{df_plot['fa_ci_low'].iloc[i]:.1f}, {df_plot['fa_ci_high'].iloc[i]:.1f}]",
             va="center",
+            ha="left",
             fontsize=8.5,
             color="#333333",
             fontweight="bold" if "Weather Fusion" in df_plot["model_name"].iloc[i] else "normal"
@@ -131,7 +134,7 @@ def plot_bootstrap_uncertainty():
     ax1.set_xlabel("Operational False Alarms per Station-Year (95% CI)")
     ax1.set_title("(a) Clean False Alarm Rates (Log Scale)", fontweight="bold", pad=10)
     ax1.set_xscale("symlog", linthresh=1.0)
-    ax1.set_xlim(-0.2, 350)
+    ax1.set_xlim(-0.2, 550)
     ax1.grid(True, which="both", axis="x", alpha=0.3)
     ax1.axvline(0, color="gray", linestyle="-", linewidth=0.8)
 
@@ -161,12 +164,23 @@ def plot_bootstrap_uncertainty():
         )
         x_val = x_det.iloc[i]
         y_p = y_pos[i]
+        ci_l = df_plot["det_ci_low"].iloc[i]
+        ci_h = df_plot["det_ci_high"].iloc[i]
+        
+        # Position label cleanly to avoid overlapping markers and error bars
+        if x_val >= 80:
+            label_x = ci_l - 2.0
+            ha_align = "right"
+        else:
+            label_x = ci_h + 2.0
+            ha_align = "left"
+
         ax2.text(
-            x_val - 1.5 if x_val > 92 else x_val + 2.0,
-            y_p + (0.22 if x_val > 92 else 0),
-            f"{x_val:.1f}% [{df_plot['det_ci_low'].iloc[i]:.1f}%, {df_plot['det_ci_high'].iloc[i]:.1f}%]",
+            label_x,
+            y_p,
+            f"{x_val:.1f}% [{ci_l:.1f}%, {ci_h:.1f}%]",
             va="center",
-            ha="right" if x_val > 92 else "left",
+            ha=ha_align,
             fontsize=8.5,
             color="#333333",
             fontweight="bold" if "Weather Fusion" in df_plot["model_name"].iloc[i] else "normal"
@@ -176,7 +190,7 @@ def plot_bootstrap_uncertainty():
         ax2.axhspan(t3_idx - 0.45, t3_idx + 0.45, color="#e8f5e9", alpha=0.6, zorder=1)
     ax2.set_xlabel("Event Detection Probability (%) (95% CI)")
     ax2.set_title("(b) Radiological Plume Detection Rates", fontweight="bold", pad=10)
-    ax2.set_xlim(25, 105)
+    ax2.set_xlim(-2, 106)
     ax2.grid(True, which="both", axis="x", alpha=0.3)
     ax2.axvline(90, color="gray", linestyle=":", linewidth=1.2, label="90% Target")
     ax2.axvline(95, color="black", linestyle="--", linewidth=1.2, label="95% Target")
@@ -309,10 +323,11 @@ def plot_detection_delay_distributions():
     ax2.set_xticklabels([scenario_labels[sc] for sc in scenarios], fontsize=9.5)
     ax2.set_ylabel("Median Detection Delay (Hours) [IQR]", fontweight="medium")
     ax2.set_title("(b) Detection Delay by Radiological Scenario", fontweight="bold", pad=10)
-    ax2.set_ylim(0, 14)
-    ax2.yaxis.set_major_locator(ticker.MultipleLocator(2))
+    ax2.set_xlim(-0.6, 4.6)
+    ax2.set_ylim(0, 23)
+    ax2.yaxis.set_major_locator(ticker.MultipleLocator(4))
     ax2.grid(True, axis="y", alpha=0.35)
-    ax2.legend(loc="upper left", framealpha=0.9)
+    ax2.legend(loc="upper right", framealpha=0.95, fontsize=9.5)
 
     plt.suptitle("Temporal Response and Detection Delay Characterization", fontsize=14, fontweight="bold", y=0.98)
     plt.tight_layout()
