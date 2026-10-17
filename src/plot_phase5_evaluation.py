@@ -207,54 +207,73 @@ def plot_bootstrap_uncertainty():
 
 
 def plot_detection_delay_distributions():
-    """Plots CDF of detection delay and breakdown across release scenarios."""
+    """Plots empirical CDF of detection delay and breakdown across release scenarios."""
     csv_path = Path("data/processed/eval_detection_delay_summary.csv")
-    if not csv_path.exists():
-        print(f"Error: {csv_path} not found.")
+    emp_path = Path("data/processed/eval_empirical_delays.csv")
+    if not csv_path.exists() or not emp_path.exists():
+        print(f"Error: {csv_path} or {emp_path} not found.")
         return
 
     df = pd.read_csv(csv_path)
+    emp_df = pd.read_csv(emp_path)
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
 
-    # Left Panel: Cumulative Detection CDF by Hour
-    # Simulate realistic empirical CDF from percentiles (or catalog records)
-    time_hours = np.linspace(0, 24, 100)
+    # Left Panel: True Empirical Cumulative Detection CDF by Hour (0 to 24h)
+    time_hours = np.arange(0, 25, 1, dtype=float)
 
-    model_curves = {
-        "Tier 3: Weather Fusion GBDT": {
-            "p25": 1.0, "median": 3.0, "p75": 5.0, "p90": 8.0, "max_det": 95.5,
-            "color": "#2e7d32", "style": "-", "lw": 2.8
-        },
-        "Tier 2: Spectral GBDT": {
-            "p25": 1.0, "median": 3.0, "p75": 5.0, "p90": 9.0, "max_det": 95.0,
-            "color": "#337ab7", "style": "--", "lw": 2.2
-        },
-        "Tier 3: Neural Net (MLP)": {
-            "p25": 2.0, "median": 4.0, "p75": 7.0, "p90": 11.0, "max_det": 95.0,
-            "color": "#7b1fa2", "style": "-.", "lw": 2.2
-        },
-        "Baseline: Rolling 7d 3-sigma": {
-            "p25": 2.0, "median": 4.0, "p75": 9.0, "p90": 16.0, "max_det": 63.0,
-            "color": "#d9534f", "style": ":", "lw": 2.5
-        },
-    }
+    model_specs = [
+        (
+            "Tier 3: Full Weather Fusion GBDT (95% target)",
+            "Tier 3: Weather Fusion GBDT",
+            "#2e7d32", "-", 2.8,
+        ),
+        (
+            "Tier 2: Radiation + Spectrometry GBDT (95% target)",
+            "Tier 2: Spectral GBDT",
+            "#337ab7", "--", 2.2,
+        ),
+        (
+            "Tier 3: Weather-Fused Neural Net (MLP) (95% target)",
+            "Tier 3: Neural Net (MLP)",
+            "#7b1fa2", "-.", 2.2,
+        ),
+        (
+            "Baseline: Rolling 7d 3-sigma",
+            "Baseline: Rolling 7d 3-sigma",
+            "#d9534f", ":", 2.5,
+        ),
+    ]
 
-    for m_label, cfg in model_curves.items():
-        # Log-logistic or Weibull CDF matching the empirical percentiles
-        m_det = cfg["max_det"]
-        med = cfg["median"]
-        p25 = cfg["p25"]
-        p75 = cfg["p75"]
-        # Empirical CDF curve
-        cdf = m_det / (1.0 + (med / np.maximum(time_hours, 0.05)) ** 1.8)
-        cdf[time_hours == 0] = 0.0
-        ax1.plot(time_hours, cdf, label=f"{m_label} (Max {m_det:.1f}%)",
-                 color=cfg["color"], linestyle=cfg["style"], linewidth=cfg["lw"])
+    t3_6h_pct = 0.0
+    t3_12h_pct = 0.0
+    t3_med_h = 4.0
+
+    for full_name, m_label, col, style, lw in model_specs:
+        sub_ev = emp_df[emp_df["model_name"] == full_name]
+        if sub_ev.empty:
+            continue
+        n_tot = len(sub_ev)
+        tot_det_pct = (sub_ev["detected"] == 1).mean() * 100.0
+        cdf = np.array([
+            ((sub_ev["detected"] == 1) & (sub_ev["delay_h"] <= h)).sum() / n_tot * 100.0
+            for h in time_hours
+        ])
+        ax1.step(
+            time_hours, cdf, where="post",
+            label=f"{m_label} (Total {tot_det_pct:.1f}%)",
+            color=col, linestyle=style, linewidth=lw,
+        )
+        if "Full Weather Fusion GBDT" in full_name:
+            t3_6h_pct = float(cdf[time_hours == 6.0][0])
+            t3_12h_pct = float(cdf[time_hours == 12.0][0])
+            det_only = sub_ev.loc[sub_ev["detected"] == 1, "delay_h"]
+            t3_med_h = float(det_only.median()) if len(det_only) > 0 else np.nan
+            t3_at_med = float(cdf[time_hours == round(t3_med_h)][0]) if not np.isnan(t3_med_h) else 50.0
 
     ax1.set_xlabel("Time Elapsed Since Plume Arrival (Hours)", fontweight="medium")
-    ax1.set_ylabel("Cumulative Detection Probability (%)", fontweight="medium")
-    ax1.set_title("(a) Time-to-Alarm Survival CDF", fontweight="bold", pad=10)
+    ax1.set_ylabel("Empirical Cumulative Detection Probability (%)", fontweight="medium")
+    ax1.set_title("(a) Empirical Time-to-Alarm Survival CDF (N = 200 Test Events)", fontweight="bold", pad=10)
     ax1.set_xlim(0, 24)
     ax1.set_ylim(0, 105)
     ax1.xaxis.set_major_locator(ticker.MultipleLocator(3))
@@ -262,11 +281,11 @@ def plot_detection_delay_distributions():
     ax1.axhline(90, color="gray", linestyle=":", alpha=0.7)
     ax1.legend(loc="lower right", framealpha=0.9)
 
-    # Annotate rapid response
+    # Annotate empirical rapid response from actual data
     ax1.annotate(
-        "Tier 3 GBDT:\n50% alarmed within 3.0 h\n90% alarmed within 6.5 h",
-        xy=(3.0, 48.0),
-        xytext=(7.0, 32.0),
+        f"Tier 3 GBDT (Empirical):\nMedian delay = {t3_med_h:.1f} h\n{t3_6h_pct:.1f}% detected ≤ 6 h | {t3_12h_pct:.1f}% ≤ 12 h",
+        xy=(t3_med_h, t3_at_med),
+        xytext=(7.5, 34.0),
         arrowprops=dict(facecolor="#2e7d32", shrink=0.08, width=1.5, headwidth=6),
         fontsize=9.5,
         fontweight="bold",

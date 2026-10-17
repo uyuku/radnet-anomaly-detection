@@ -1,0 +1,801 @@
+model_name,injection_id,station_id,scenario,magnitude_band,environment,detected,delay_h
+Baseline: Rolling 7d 3-sigma,INJ_0051,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0052,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0053,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,10.0
+Baseline: Rolling 7d 3-sigma,INJ_0054,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,16.0
+Baseline: Rolling 7d 3-sigma,INJ_0055,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,19.0
+Baseline: Rolling 7d 3-sigma,INJ_0056,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0057,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_rain,1,17.0
+Baseline: Rolling 7d 3-sigma,INJ_0058,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_rain,1,6.0
+Baseline: Rolling 7d 3-sigma,INJ_0059,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,13.0
+Baseline: Rolling 7d 3-sigma,INJ_0060,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,21.0
+Baseline: Rolling 7d 3-sigma,INJ_0061,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0062,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Baseline: Rolling 7d 3-sigma,INJ_0063,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0064,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0065,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,19.0
+Baseline: Rolling 7d 3-sigma,INJ_0066,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Baseline: Rolling 7d 3-sigma,INJ_0067,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0068,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,11.0
+Baseline: Rolling 7d 3-sigma,INJ_0069,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,14.0
+Baseline: Rolling 7d 3-sigma,INJ_0070,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0071,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Baseline: Rolling 7d 3-sigma,INJ_0072,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0073,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Baseline: Rolling 7d 3-sigma,INJ_0074,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0075,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0076,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0077,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0078,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0079,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Baseline: Rolling 7d 3-sigma,INJ_0080,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0081,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,12.0
+Baseline: Rolling 7d 3-sigma,INJ_0082,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,10.0
+Baseline: Rolling 7d 3-sigma,INJ_0083,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0084,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0085,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,8.0
+Baseline: Rolling 7d 3-sigma,INJ_0086,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,11.0
+Baseline: Rolling 7d 3-sigma,INJ_0087,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,20.0
+Baseline: Rolling 7d 3-sigma,INJ_0088,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Baseline: Rolling 7d 3-sigma,INJ_0089,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0090,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0141,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0142,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,22.0
+Baseline: Rolling 7d 3-sigma,INJ_0143,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,9.0
+Baseline: Rolling 7d 3-sigma,INJ_0144,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,12.0
+Baseline: Rolling 7d 3-sigma,INJ_0145,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0146,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0147,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,18.0
+Baseline: Rolling 7d 3-sigma,INJ_0148,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,14.0
+Baseline: Rolling 7d 3-sigma,INJ_0149,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_rain,1,15.0
+Baseline: Rolling 7d 3-sigma,INJ_0150,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_rain,1,12.0
+Baseline: Rolling 7d 3-sigma,INJ_0151,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Baseline: Rolling 7d 3-sigma,INJ_0152,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0153,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,20.0
+Baseline: Rolling 7d 3-sigma,INJ_0154,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Baseline: Rolling 7d 3-sigma,INJ_0155,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0156,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0157,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0158,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,35.0
+Baseline: Rolling 7d 3-sigma,INJ_0159,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,40.0
+Baseline: Rolling 7d 3-sigma,INJ_0160,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,9.0
+Baseline: Rolling 7d 3-sigma,INJ_0161,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0162,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0163,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0164,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Baseline: Rolling 7d 3-sigma,INJ_0165,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0166,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0167,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Baseline: Rolling 7d 3-sigma,INJ_0168,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,9.0
+Baseline: Rolling 7d 3-sigma,INJ_0169,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,8.0
+Baseline: Rolling 7d 3-sigma,INJ_0170,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0171,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Baseline: Rolling 7d 3-sigma,INJ_0172,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0173,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0174,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Baseline: Rolling 7d 3-sigma,INJ_0175,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0176,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0177,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0178,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0179,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0180,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0231,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0232,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,23.0
+Baseline: Rolling 7d 3-sigma,INJ_0233,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0234,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0235,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Baseline: Rolling 7d 3-sigma,INJ_0236,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,16.0
+Baseline: Rolling 7d 3-sigma,INJ_0237,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0238,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0239,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0240,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,19.0
+Baseline: Rolling 7d 3-sigma,INJ_0241,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,30.0
+Baseline: Rolling 7d 3-sigma,INJ_0242,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,18.0
+Baseline: Rolling 7d 3-sigma,INJ_0243,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0244,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,50.0
+Baseline: Rolling 7d 3-sigma,INJ_0245,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0246,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0247,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0248,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0249,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0250,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0251,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0252,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0253,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0254,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0255,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,10.0
+Baseline: Rolling 7d 3-sigma,INJ_0256,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0257,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0258,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0259,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Baseline: Rolling 7d 3-sigma,INJ_0260,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0261,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0262,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Baseline: Rolling 7d 3-sigma,INJ_0263,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,9.0
+Baseline: Rolling 7d 3-sigma,INJ_0264,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0265,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Baseline: Rolling 7d 3-sigma,INJ_0266,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,9.0
+Baseline: Rolling 7d 3-sigma,INJ_0267,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,10.0
+Baseline: Rolling 7d 3-sigma,INJ_0268,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,30.0
+Baseline: Rolling 7d 3-sigma,INJ_0269,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,9.0
+Baseline: Rolling 7d 3-sigma,INJ_0270,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0321,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,10.0
+Baseline: Rolling 7d 3-sigma,INJ_0322,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,10.0
+Baseline: Rolling 7d 3-sigma,INJ_0323,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,3.0
+Baseline: Rolling 7d 3-sigma,INJ_0324,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0325,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0326,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0327,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0328,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0329,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0330,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,10.0
+Baseline: Rolling 7d 3-sigma,INJ_0331,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_rain,1,21.0
+Baseline: Rolling 7d 3-sigma,INJ_0332,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0333,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0334,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0335,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0336,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Baseline: Rolling 7d 3-sigma,INJ_0337,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0338,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0339,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0340,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0341,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0342,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,41.0
+Baseline: Rolling 7d 3-sigma,INJ_0343,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0344,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0345,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,10.0
+Baseline: Rolling 7d 3-sigma,INJ_0346,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0347,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0348,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Baseline: Rolling 7d 3-sigma,INJ_0349,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,16.0
+Baseline: Rolling 7d 3-sigma,INJ_0350,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0351,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0352,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0353,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0354,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,9.0
+Baseline: Rolling 7d 3-sigma,INJ_0355,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,17.0
+Baseline: Rolling 7d 3-sigma,INJ_0356,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0357,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0358,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0359,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0360,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,11.0
+Baseline: Rolling 7d 3-sigma,INJ_0411,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,15.0
+Baseline: Rolling 7d 3-sigma,INJ_0412,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,9.0
+Baseline: Rolling 7d 3-sigma,INJ_0413,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,22.0
+Baseline: Rolling 7d 3-sigma,INJ_0414,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_rain,1,34.0
+Baseline: Rolling 7d 3-sigma,INJ_0415,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,29.0
+Baseline: Rolling 7d 3-sigma,INJ_0416,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,15.0
+Baseline: Rolling 7d 3-sigma,INJ_0417,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0418,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0419,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,3.0
+Baseline: Rolling 7d 3-sigma,INJ_0420,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,16.0
+Baseline: Rolling 7d 3-sigma,INJ_0421,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,13.0
+Baseline: Rolling 7d 3-sigma,INJ_0422,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,18.0
+Baseline: Rolling 7d 3-sigma,INJ_0423,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0424,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,41.0
+Baseline: Rolling 7d 3-sigma,INJ_0425,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0426,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,55.0
+Baseline: Rolling 7d 3-sigma,INJ_0427,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0428,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0429,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Baseline: Rolling 7d 3-sigma,INJ_0430,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,0,
+Baseline: Rolling 7d 3-sigma,INJ_0431,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0432,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0433,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0434,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,9.0
+Baseline: Rolling 7d 3-sigma,INJ_0435,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0436,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,5.0
+Baseline: Rolling 7d 3-sigma,INJ_0437,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,14.0
+Baseline: Rolling 7d 3-sigma,INJ_0438,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0439,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0440,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,20.0
+Baseline: Rolling 7d 3-sigma,INJ_0441,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,8.0
+Baseline: Rolling 7d 3-sigma,INJ_0442,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Baseline: Rolling 7d 3-sigma,INJ_0443,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,4.0
+Baseline: Rolling 7d 3-sigma,INJ_0444,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Baseline: Rolling 7d 3-sigma,INJ_0445,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0446,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,6.0
+Baseline: Rolling 7d 3-sigma,INJ_0447,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0448,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Baseline: Rolling 7d 3-sigma,INJ_0449,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,11.0
+Baseline: Rolling 7d 3-sigma,INJ_0450,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,6.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0051,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,12.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0052,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0053,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0054,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,6.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0055,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0056,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,8.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0057,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_rain,1,8.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0058,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0059,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0060,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,8.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0061,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0062,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0063,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0064,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0065,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0066,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0067,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0068,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0069,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0070,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0071,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0072,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0073,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0074,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0075,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0076,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0077,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0078,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0079,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0080,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0081,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0082,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0083,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0084,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0085,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0086,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0087,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0088,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0089,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0090,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0141,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,8.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0142,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0143,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0144,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0145,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0146,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0147,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,8.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0148,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0149,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_rain,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0150,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_rain,1,8.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0151,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0152,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0153,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0154,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,13.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0155,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,9.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0156,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0157,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0158,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0159,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0160,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0161,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0162,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0163,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0164,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0165,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0166,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0167,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0168,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0169,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0170,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0171,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0172,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0173,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0174,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0175,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0176,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0177,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0178,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0179,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,13.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0180,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0231,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_rain,1,8.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0232,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,9.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0233,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_rain,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0234,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,8.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0235,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,11.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0236,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0237,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0238,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_rain,1,11.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0239,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0240,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0241,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0242,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0243,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,6.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0244,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0245,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0246,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0247,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0248,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0249,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0250,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0251,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0252,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0253,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0254,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0255,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0256,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0257,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0258,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0259,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0260,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0261,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0262,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0263,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,16.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0264,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0265,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0266,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0267,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0268,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0269,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0270,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0321,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0322,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,6.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0323,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0324,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_rain,1,8.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0325,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,6.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0326,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0327,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0328,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0329,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0330,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0331,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_rain,1,10.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0332,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,6.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0333,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0334,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0335,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0336,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0337,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0338,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0339,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0340,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0341,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0342,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0343,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0344,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0345,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0346,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0347,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0348,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0349,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0350,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0351,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0352,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0353,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0354,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0355,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0356,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0357,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0358,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0359,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0360,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0411,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0412,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0413,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0414,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_rain,1,15.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0415,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0416,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,7.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0417,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0418,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0419,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0420,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0421,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0422,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,9.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0423,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0424,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0425,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0426,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0427,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,18.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0428,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0429,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0430,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0431,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0432,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0433,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0434,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0435,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,8.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0436,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0437,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0438,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0439,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,9.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0440,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0441,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0442,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,16.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0443,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0444,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0445,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0446,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0447,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0448,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0449,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 2: Radiation + Spectrometry GBDT (95% target),INJ_0450,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0051,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,12.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0052,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,9.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0053,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0054,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0055,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0056,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0057,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_rain,1,8.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0058,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_rain,1,8.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0059,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0060,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,10.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0061,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0062,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0063,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,9.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0064,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0065,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0066,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,16.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0067,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0068,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0069,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0070,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0071,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0072,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0073,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0074,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0075,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0076,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0077,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0078,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0079,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0080,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,8.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0081,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0082,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0083,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0084,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0085,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0086,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0087,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,8.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0088,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0089,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0090,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0141,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,10.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0142,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0143,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0144,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0145,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0146,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0147,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,8.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0148,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0149,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_rain,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0150,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_rain,1,10.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0151,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0152,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0153,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0154,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,13.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0155,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,45.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0156,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0157,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0158,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0159,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0160,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0161,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0162,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0163,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0164,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0165,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0166,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0167,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0168,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0169,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0170,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0171,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0172,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0173,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0174,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0175,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0176,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0177,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0178,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0179,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,13.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0180,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0231,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0232,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,10.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0233,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_rain,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0234,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,12.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0235,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0236,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0237,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0238,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_rain,1,11.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0239,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0240,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0241,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0242,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,8.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0243,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0244,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0245,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0246,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0247,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0248,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0249,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0250,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0251,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0252,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0253,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0254,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0255,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0256,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0257,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0258,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0259,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0260,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0261,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0262,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0263,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,23.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0264,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0265,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0266,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0267,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0268,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0269,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0270,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0321,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0322,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0323,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0324,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_rain,1,8.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0325,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,9.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0326,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0327,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0328,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0329,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,9.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0330,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0331,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_rain,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0332,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0333,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0334,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0335,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0336,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0337,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0338,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0339,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0340,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0341,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0342,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0343,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0344,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0345,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0346,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0347,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0348,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0349,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0350,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0351,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0352,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0353,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0354,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0355,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0356,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0357,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0358,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0359,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0360,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0411,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0412,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,7.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0413,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0414,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_rain,1,15.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0415,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0416,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0417,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0418,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_rain,1,8.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0419,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0420,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0421,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0422,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,11.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0423,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0424,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,9.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0425,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0426,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0427,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0428,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0429,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0430,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0431,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0432,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0433,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,6.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0434,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0435,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0436,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0437,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0438,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0439,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,8.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0440,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0441,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0442,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,16.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0443,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0444,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0445,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0446,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0447,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0448,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0449,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Full Weather Fusion GBDT (95% target),INJ_0450,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0051,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0052,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0053,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0054,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0055,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0056,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,8.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0057,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_rain,1,8.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0058,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0059,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0060,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0061,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0062,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0063,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,7.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0064,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0065,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0066,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0067,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0068,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0069,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0070,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0071,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0072,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0073,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0074,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0075,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0076,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0077,al_birmingham,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0078,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0079,al_birmingham,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0080,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0081,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0082,al_birmingham,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0083,al_birmingham,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0084,al_birmingham,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0085,al_birmingham,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0086,al_birmingham,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0087,al_birmingham,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,9.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0088,al_birmingham,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0089,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0090,al_birmingham,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0141,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0142,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0143,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0144,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0145,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0146,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0147,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,7.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0148,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0149,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_rain,1,10.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0150,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0151,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0152,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0153,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0154,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0155,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,9.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0156,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0157,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0158,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0159,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0160,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0161,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0162,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0163,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0164,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0165,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0166,dc_washington,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0167,dc_washington,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0168,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0169,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0170,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0171,dc_washington,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0172,dc_washington,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0173,dc_washington,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0174,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0175,dc_washington,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0176,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0177,dc_washington,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0178,dc_washington,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0179,dc_washington,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0180,dc_washington,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0231,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0232,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0233,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,45.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0234,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,8.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0235,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0236,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0237,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0238,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_rain,1,10.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0239,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0240,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0241,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0242,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0243,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0244,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0245,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0246,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,7.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0247,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0248,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0249,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0250,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0251,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0252,ca_san_diego,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0253,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0254,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0255,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0256,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0257,ca_san_diego,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0258,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0259,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0260,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0261,ca_san_diego,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0262,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0263,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,8.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0264,ca_san_diego,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0265,ca_san_diego,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0266,ca_san_diego,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0267,ca_san_diego,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,10.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0268,ca_san_diego,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0269,ca_san_diego,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0270,ca_san_diego,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0321,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0322,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0323,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0324,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0325,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0326,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0327,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0328,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0329,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,1,8.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0330,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0331,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0332,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0333,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0334,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0335,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,7.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0336,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0337,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0338,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0339,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0340,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0341,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0342,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0343,tx_dallas,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0344,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0345,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0346,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0347,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0348,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0349,tx_dallas,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0350,tx_dallas,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,5.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0351,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0352,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0353,tx_dallas,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0354,tx_dallas,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0355,tx_dallas,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0356,tx_dallas,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0357,tx_dallas,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0358,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0359,tx_dallas,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0360,tx_dallas,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0411,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0412,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_rain,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0413,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0414,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_rain,1,72.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0415,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,24.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0416,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,6.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0417,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0418,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0419,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_rain,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0420,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_rain,1,21.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0421,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_rain,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0422,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_rain,1,3.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0423,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0424,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0425,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,18.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0426,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0427,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_rain,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0428,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_rain,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0429,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_rain,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0430,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_rain,1,20.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0431,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,1,15.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0432,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0433,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0434,fl_tampa,mixed_fission_activation,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0435,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0436,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,9.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0437,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0438,fl_tampa,fission_pure_i131,Band_A_Low (Stress Test),test_stress_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0439,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0440,fl_tampa,fission_pure_cs137,Band_B_Mid,test_standard_strictly_dry,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0441,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0442,fl_tampa,fission_pure_i131,Band_B_Mid,test_standard_strictly_dry,1,2.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0443,fl_tampa,fission_reactor_fukushima,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0444,fl_tampa,mixed_fission_activation,Band_A_Low (Stress Test),test_stress_strictly_dry,1,1.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0445,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0446,fl_tampa,activation_orphan_co60,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0447,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,0,
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0448,fl_tampa,activation_orphan_co60,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0449,fl_tampa,fission_reactor_fukushima,Band_B_Mid,test_standard_strictly_dry,1,4.0
+Tier 3: Weather-Fused Neural Net (MLP) (95% target),INJ_0450,fl_tampa,fission_pure_cs137,Band_A_Low (Stress Test),test_stress_strictly_dry,0,

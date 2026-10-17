@@ -39,7 +39,7 @@ STATIONS = [
     {"id": "fl_tampa", "name": "Tampa, FL", "color": "#9467bd"},
 ]
 
-HOURS_PER_YEAR = 8760.0
+HOURS_PER_YEAR = 8766.0
 
 
 def evaluate_thresholds():
@@ -142,18 +142,23 @@ def evaluate_thresholds():
             episodes_per_year = round(alarm_episodes / n_years, 2)
 
             if alarm_hours > 0:
-                alarm_df = df[is_alarm]
+                alarm_df = df[is_alarm].copy()
                 rain_1h_frac = round((alarm_df["precip_1h_mm"] > 0.0).mean() * 100.0, 2)
                 rain_3h_frac = round((alarm_df["precip_3h"] > 0.0).mean() * 100.0, 2)
                 rain_6h_frac = round((alarm_df["precip_6h"] > 0.0).mean() * 100.0, 2)
-                dry_24h_frac = round((alarm_df["precip_24h"] == 0.0).mean() * 100.0, 2)
+                dry_24h_frac = round(((alarm_df["precip_1h_mm"] == 0.0) & (alarm_df["precip_24h"] == 0.0)).mean() * 100.0, 2)
                 mean_duration = round(alarm_hours / alarm_episodes, 2) if alarm_episodes > 0 else 0.0
+                # Episode-level rain coincidence (3h window)
+                ep_ids = episode_starts.cumsum()[is_alarm]
+                ep_rain_3h = alarm_df.groupby(ep_ids)["precip_3h"].apply(lambda s: (s > 0.0).any())
+                ep_rain_3h_frac = round(float(ep_rain_3h.mean() * 100.0), 2) if len(ep_rain_3h) > 0 else 0.0
             else:
                 rain_1h_frac = 0.0
                 rain_3h_frac = 0.0
                 rain_6h_frac = 0.0
                 dry_24h_frac = 0.0
                 mean_duration = 0.0
+                ep_rain_3h_frac = 0.0
 
             all_results.append({
                 "Rule_Code": code,
@@ -170,6 +175,7 @@ def evaluate_thresholds():
                 "Coincident_Rain_1h_Pct": rain_1h_frac,
                 "Coincident_Rain_3h_Pct": rain_3h_frac,
                 "Coincident_Rain_6h_Pct": rain_6h_frac,
+                "Episode_Rain_3h_Pct": ep_rain_3h_frac,
                 "Dry_Weather_Alarms_Pct": dry_24h_frac,
                 "Mean_Episode_Hours": mean_duration,
             })

@@ -68,7 +68,6 @@ def audit_station_year(call_sign: str, station_name: str, year: int) -> dict:
 
     parsed_aa1 = [parse_aa1(v) for v in df.loc[aa1_present_mask, "AA1"]]
     periods = [p[0] for p in parsed_aa1 if p[0] is not None]
-    depths = [p[1] for p in parsed_aa1 if p[1] is not None]
     qualities = [p[2] for p in parsed_aa1 if p[2] is not None]
 
     # Period breakdown
@@ -79,11 +78,26 @@ def audit_station_year(call_sign: str, station_name: str, year: int) -> dict:
     valid_qual_count = sum(1 for q in qualities if q in ["1", "5"])
     valid_qual_pct = round((valid_qual_count / len(qualities)) * 100, 2) if qualities else 0
 
-    # Rain occurrences (depth > 0)
-    rain_events = [d for d in depths if d > 0]
-    rain_hours_count = len(rain_events)
-    total_precip_mm = round(sum(rain_events), 1) if rain_events else 0.0
-    max_1hr_precip_mm = round(max(rain_events), 1) if rain_events else 0.0
+    # Rain occurrences (depth > 0): strictly 1-hour accumulation period (period == 1),
+    # quality-verified (quality in ['1', '5']), deduplicated by rounded UTC hour
+    # within the target calendar year (matching merge_radnet_weather.py).
+    aa1_df = df.loc[aa1_present_mask, ["dt"]].copy()
+    aa1_df["period"] = [p[0] for p in parsed_aa1]
+    aa1_df["depth"] = [p[1] for p in parsed_aa1]
+    aa1_df["quality"] = [p[2] for p in parsed_aa1]
+    aa1_df = aa1_df.dropna(subset=["dt", "depth"])
+    aa1_df["utc_hour"] = aa1_df["dt"].dt.round("h")
+    valid_1h = aa1_df[
+        (aa1_df["period"] == 1)
+        & (aa1_df["quality"].isin(["1", "5"]))
+        & (aa1_df["utc_hour"] >= pd.Timestamp("2017-01-01"))
+        & (aa1_df["utc_hour"] < pd.Timestamp("2026-01-01"))
+    ]
+    hourly_precip = valid_1h.groupby("utc_hour")["depth"].max()
+    rain_events = hourly_precip[hourly_precip > 0.0]
+    rain_hours_count = int(len(rain_events))
+    total_precip_mm = round(float(rain_events.sum()), 1) if len(rain_events) > 0 else 0.0
+    max_1hr_precip_mm = round(float(rain_events.max()), 1) if len(rain_events) > 0 else 0.0
 
     # Sea Level Pressure (SLP)
     # Format: depth_hPa_tenths,quality

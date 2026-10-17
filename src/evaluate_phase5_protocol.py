@@ -162,13 +162,23 @@ def main():
 
     for st in STATIONS:
         st_id = st["id"]
+        df_tr_raw = pd.read_csv(Path(f"data/processed/labeled_{st_id}_train.csv.gz"))
+        df_tr_raw["dt"] = pd.to_datetime(df_tr_raw["dt"])
+        df_tr_raw = df_tr_raw.sort_values("dt").reset_index(drop=True)
+        df_tr_warmup = df_tr_raw.iloc[-250:].copy().reset_index(drop=True)
+        df_tr_warmup["inj_gross_cpm"] = df_tr_warmup["gross_cpm"]
+        df_tr_warmup["inj_dose_rate_nsvh"] = df_tr_warmup["dose_rate_nsvh"]
+        for ch_idx in range(2, 10):
+            df_tr_warmup[f"inj_cpm_r0{ch_idx}"] = df_tr_warmup[f"cpm_r0{ch_idx}"]
+
         csv_file = Path(f"data/processed/labeled_{st_id}_test.csv.gz")
         df_raw = pd.read_csv(csv_file)
         df_raw["dt"] = pd.to_datetime(df_raw["dt"])
         df_raw = df_raw.sort_values("dt").reset_index(drop=True)
 
-        feats_inj = compute_features_for_series(df_raw, st_id, use_injected=True)
-        feats_clean = compute_features_for_series(df_raw, st_id, use_injected=False)
+        df_panel = pd.concat([df_tr_warmup, df_raw], ignore_index=True)
+        feats_inj = compute_features_for_series(df_panel, st_id, use_injected=True).iloc[len(df_tr_warmup):].reset_index(drop=True)
+        feats_clean = compute_features_for_series(df_panel, st_id, use_injected=False).iloc[len(df_tr_warmup):].reset_index(drop=True)
 
         valid = feats_clean["has_radnet_obs"] & feats_clean["rad_complete_channels"]
         n_obs = valid.sum()
@@ -299,6 +309,7 @@ def main():
         best_tau_90, best_tau_95, best_tau_98 = 0.5, 0.5, 0.5
         min_fa_90, min_fa_95, min_fa_98 = 1e9, 1e9, 1e9
         det_at_90, det_at_95, det_at_98 = 0.0, 0.0, 0.0
+        max_val_det, best_max_tau, best_max_fa = -1.0, 0.5, 1e9
 
         for tau in thresholds:
             # Net-alarm detection rate on validation fold
@@ -322,12 +333,22 @@ def main():
                 episodes += ep
             fa_rate = episodes / total_val_station_years
 
+            if det_rate > max_val_det or (det_rate == max_val_det and fa_rate < best_max_fa):
+                max_val_det, best_max_tau, best_max_fa = det_rate, tau, fa_rate
+
             if det_rate >= 0.90 and fa_rate < min_fa_90:
                 min_fa_90, best_tau_90, det_at_90 = fa_rate, tau, det_rate
             if det_rate >= 0.95 and fa_rate < min_fa_95:
                 min_fa_95, best_tau_95, det_at_95 = fa_rate, tau, det_rate
             if det_rate >= 0.98 and fa_rate < min_fa_98:
                 min_fa_98, best_tau_98, det_at_98 = fa_rate, tau, det_rate
+
+        if min_fa_90 == 1e9:
+            best_tau_90, det_at_90, min_fa_90 = best_max_tau, max_val_det, best_max_fa
+        if min_fa_95 == 1e9:
+            best_tau_95, det_at_95, min_fa_95 = best_max_tau, max_val_det, best_max_fa
+        if min_fa_98 == 1e9:
+            best_tau_98, det_at_98, min_fa_98 = best_max_tau, max_val_det, best_max_fa
 
         operating_thresholds[k][0.90] = {"tau": best_tau_90, "det_rate": det_at_90, "fa_rate": min_fa_90}
         operating_thresholds[k][0.95] = {"tau": best_tau_95, "det_rate": det_at_95, "fa_rate": min_fa_95}
@@ -693,8 +714,16 @@ def main():
     delay_df.to_csv("data/processed/eval_detection_delay_summary.csv", index=False)
     print("Saved Detection Delay Summary to data/processed/eval_detection_delay_summary.csv")
 
+    emp_delay_dfs = []
+    for m_name in focus_models:
+        df_ev_copy = event_dfs[m_name].copy()
+        df_ev_copy.insert(0, "model_name", m_name)
+        emp_delay_dfs.append(df_ev_copy)
+    pd.concat(emp_delay_dfs, ignore_index=True).to_csv("data/processed/eval_empirical_delays.csv", index=False)
+    print("Saved Empirical Event Delays to data/processed/eval_empirical_delays.csv")
+
     # 9. Multi-Class Hourly Confusion Matrices
-    # Evaluate across all valid test hours (106,689 hours)
+    # Evaluate across all valid test hours (106,628 hours)
     # Ground truth labels: 0=normal, 1=radon_washout, 2=fission_product
     # Gather ground-truth labels and model predictions
     y_true_all = []
@@ -788,21 +817,39 @@ def main():
     cm_df.to_csv("data/processed/eval_confusion_matrices.csv", index=False)
     print("Saved Confusion Matrices to data/processed/eval_confusion_matrices.csv")
 
-    # 10. Direct MLP vs LightGBM Comparison Summary
+    # 10. Direct MLP vs LightGBM Comparison Summary (Evaluated on 2023-2025 Test Split at Frozen Validation Thresholds)
+    def _eval_ml_test_at_tau(model_key: str, tau_val: float) -> tuple[float, float]:
+        det_cnt = 0
+        for _, inj in test_catalog.iterrows():
+            st_id = inj["station_id"]
+            st_data = test_series[st_id]
+            mask = (st_data["dt"] >= inj["start_utc"]) & (st_data["dt"] <= inj["end_utc"]) & st_data["valid"]
+            p_inj_sub = st_data["p_inj"][model_key][mask]
+            p_cln_sub = st_data["p_clean"][model_key][mask]
+            if len(p_inj_sub) > 0 and np.any((p_inj_sub >= tau_val) & (p_cln_sub < tau_val)):
+                det_cnt += 1
+        ep_cnt = 0
+        for st_id, st_data in test_series.items():
+            ep, _, _ = count_clean_alarm_episodes(pd.Series(st_data["p_clean"][model_key]), st_data["valid"], tau_val)
+            ep_cnt += ep
+        return (det_cnt / len(test_catalog)) * 100.0, ep_cnt / total_station_years
+
     mlp_comp_records = []
     for tgt_det in [0.90, 0.95, 0.98]:
-        lgb_info = operating_thresholds["t3"][tgt_det]
-        mlp_info = operating_thresholds["mlp"][tgt_det]
+        lgb_tau = float(operating_thresholds["t3"][tgt_det]["tau"])
+        mlp_tau = float(operating_thresholds["mlp"][tgt_det]["tau"])
+        lgb_test_det, lgb_test_fa = _eval_ml_test_at_tau("t3", lgb_tau)
+        mlp_test_det, mlp_test_fa = _eval_ml_test_at_tau("mlp", mlp_tau)
 
         mlp_comp_records.append({
             "target_detection_rate_pct": tgt_det * 100,
-            "lgb_threshold": lgb_info["tau"],
-            "lgb_realized_detection_pct": round(lgb_info["det_rate"] * 100, 2),
-            "lgb_false_alarms_per_year": round(lgb_info["fa_rate"], 2),
-            "mlp_threshold": mlp_info["tau"],
-            "mlp_realized_detection_pct": round(mlp_info["det_rate"] * 100, 2),
-            "mlp_false_alarms_per_year": round(mlp_info["fa_rate"], 2),
-            "fa_reduction_lgb_vs_mlp_pct": round((mlp_info["fa_rate"] - lgb_info["fa_rate"]) / mlp_info["fa_rate"] * 100, 1) if mlp_info["fa_rate"] > 0 else 0.0,
+            "lgb_threshold": round(lgb_tau, 3),
+            "lgb_realized_detection_pct": round(lgb_test_det, 2),
+            "lgb_false_alarms_per_year": round(lgb_test_fa, 2),
+            "mlp_threshold": round(mlp_tau, 3),
+            "mlp_realized_detection_pct": round(mlp_test_det, 2),
+            "mlp_false_alarms_per_year": round(mlp_test_fa, 2),
+            "fa_reduction_lgb_vs_mlp_pct": round((mlp_test_fa - lgb_test_fa) / mlp_test_fa * 100, 1) if mlp_test_fa > 0 else 0.0,
         })
 
     mlp_comp_df = pd.DataFrame(mlp_comp_records)

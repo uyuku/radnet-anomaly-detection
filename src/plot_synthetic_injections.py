@@ -273,15 +273,17 @@ def plot_hard_case_rain():
     t_end = pd.to_datetime("2023-01-29 06:00:00")
     sub = df[(df["dt"] >= t_start) & (df["dt"] <= t_end)].copy().reset_index(drop=True)
 
-    # Baseline thresholds for Birmingham
-    dry_mask = (df["precip_24h"] == 0.0) & (df["precip_1h_mm"] == 0.0) & df["has_radnet_obs"] & df["rad_complete_channels"]
-    mu_dry = df.loc[dry_mask, "gross_cpm"].mean()
-    sigma_dry = df.loc[dry_mask, "gross_cpm"].std()
+    # Baseline thresholds for Birmingham from frozen train-only dry baselines (2017-2022)
+    import json
+    with open("data/processed/station_dry_baselines_train_only.json", "r") as f_base:
+        st_base = json.load(f_base)["al_birmingham"]
+    mu_dry = float(st_base["mu"])
+    sigma_dry = float(st_base["sigma"])
     thresh_3s = mu_dry + 3.0 * sigma_dry
     thresh_5s = mu_dry + 5.0 * sigma_dry
 
-    mu_dose = df.loc[dry_mask, "dose_rate_nsvh"].mean()
-    sigma_dose = df.loc[dry_mask, "dose_rate_nsvh"].std()
+    mu_dose = float(st_base["mu_dose"])
+    sigma_dose = float(st_base["sigma_dose"])
     thresh_dose_3s = mu_dose + 3.0 * sigma_dose
 
     fig, axes = plt.subplots(4, 1, figsize=(14, 12), sharex=True, gridspec_kw={"height_ratios": [1, 2.2, 1.8, 1.8]})

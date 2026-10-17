@@ -99,120 +99,157 @@ def generate_engineering_synthesis_figure():
     ax_t1.text(87.75, 5.2, "Zero-Day Autonomous Alerting\n(Real-Time Plume Warning)", ha="center", va="bottom", style="italic", fontsize=7.8, color="#6d28d9")
 
     # -------------------------------------------------------------------------
-    # ROW 2: TASK 2 - Relevant Meteorological & Environmental Parameters
+    # ROW 2: TASK 2 - Relevant Meteorological & Environmental Parameters (Real Data)
     # -------------------------------------------------------------------------
-    # Left: Precipitation Scavenging & Radon Washout Dynamics
-    ax_t2_rain = fig.add_subplot(gs[1, 0])
-    
-    t_storm = np.linspace(-12, 24, 200)
-    # Synthetic rain hyetograph: onset at t=0, peaks at t=2h, ends at t=6h
-    rain_profile = np.maximum(0, 8.5 * np.exp(-((t_storm - 2.0) / 1.8) ** 2))
-    
-    # Radiation surge: starts at t=0, peaks at t=2.5h, exponential decay with T_1/2 ~ 35 min
-    surge = np.zeros_like(t_storm)
-    for idx, tt in enumerate(t_storm):
-        if tt >= 0:
-            # Convolution-like surge and radioactive decay of Pb-214 / Bi-214
-            surge[idx] = 185.0 * (1.0 - np.exp(-tt / 0.8)) * np.exp(-tt / 3.8)
-    gross_cpm = 3000 + 3000 * (surge / 100.0)
+    df_bhm = pd.concat([
+        pd.read_csv("data/processed/labeled_al_birmingham_train.csv.gz"),
+        pd.read_csv("data/processed/labeled_al_birmingham_test.csv.gz"),
+    ], ignore_index=True)
+    df_bhm["dt"] = pd.to_datetime(df_bhm["dt"])
+    df_bhm = df_bhm.sort_values("dt").reset_index(drop=True)
 
-    ax_t2_rain.plot(t_storm, gross_cpm, color="#b91c1c", lw=2.4, label="Gross Radiation Count Rate (CPM)")
-    ax_t2_rain.set_ylabel("Radiation Count Rate (CPM)", color="#b91c1c", fontweight="bold")
+    # Left: Real Convective Storm Scavenging & Radon Washout Episode (Birmingham, Jan 25, 2023)
+    ax_t2_rain = fig.add_subplot(gs[1, 0])
+
+    t0_utc = pd.to_datetime("2023-01-25 00:00:00")
+    m_storm = (df_bhm["dt"] >= t0_utc - pd.Timedelta(hours=12)) & (df_bhm["dt"] <= t0_utc + pd.Timedelta(hours=24))
+    sub_storm = df_bhm.loc[m_storm].copy().reset_index(drop=True)
+    t_storm = (sub_storm["dt"] - t0_utc).dt.total_seconds().to_numpy() / 3600.0
+    gross_cpm = sub_storm["gross_cpm"].to_numpy()
+    rain_profile = sub_storm["precip_1h_mm"].fillna(0.0).to_numpy()
+
+    peak_idx = int(np.nanargmax(gross_cpm))
+    peak_t = float(t_storm[peak_idx])
+    peak_cpm = float(gross_cpm[peak_idx])
+    peak_rain = float(np.nanmax(rain_profile))
+
+    ax_t2_rain.plot(t_storm, gross_cpm, color="#b91c1c", marker="o", markersize=3.5, lw=2.2, label="Observed Gross Count Rate (CPM)")
+    ax_t2_rain.set_ylabel("Observed Gross Count Rate (CPM)", color="#b91c1c", fontweight="bold")
     ax_t2_rain.tick_params(axis="y", labelcolor="#b91c1c")
-    ax_t2_rain.set_xlabel("Hours Relative to Storm Rain Onset ($t=0$)")
+    ax_t2_rain.set_xlabel("Hours Relative to Storm Onset (2023-01-25 00:00 UTC, Birmingham, AL)")
     ax_t2_rain.set_xlim(-12, 24)
-    ax_t2_rain.set_ylim(2500, 9500)
+    ax_t2_rain.set_ylim(3100, 5400)
     ax_t2_rain.grid(True, alpha=0.35)
 
     # Secondary twin axis for precipitation
     ax_rain_bar = ax_t2_rain.twinx()
-    ax_rain_bar.fill_between(t_storm, rain_profile, color="#0284c7", alpha=0.3, label="Precipitation Rate (mm/h)")
-    ax_rain_bar.plot(t_storm, rain_profile, color="#0284c7", lw=1.5)
+    ax_rain_bar.bar(t_storm, rain_profile, width=0.8, color="#0284c7", alpha=0.35, edgecolor="#0369a1", label="Observed Precipitation (mm/h)")
     ax_rain_bar.set_ylabel("Precipitation Rate (mm/h)", color="#0284c7", fontweight="bold")
     ax_rain_bar.tick_params(axis="y", labelcolor="#0284c7")
-    ax_rain_bar.set_ylim(0, 25)
+    ax_rain_bar.set_ylim(0, 20)
 
     ax_t2_rain.axvline(0, color="#0284c7", linestyle="--", lw=1.5)
-    ax_t2_rain.text(0.3, 8800, "Rain Onset ($t=0$)\nImmediate Scavenging", color="#0284c7", fontsize=8.5, fontweight="bold")
+    ax_t2_rain.text(-11.2, 5100, f"Observed Storm Onset ($t=0$)\nPeak Rain: {peak_rain:.1f} mm/h", color="#0284c7", fontsize=8.5, fontweight="bold")
 
     ax_t2_rain.annotate(
-        "Radon Progeny Washout Peak:\nGross CPM surges +185%\n($^{214}\\mathrm{Pb}, ^{214}\\mathrm{Bi}$ wet deposition)",
-        xy=(2.5, 8200), xytext=(7.0, 7500),
+        f"Empirical Radon Washout Peak:\nGross CPM reaches {peak_cpm:,.0f} CPM\n($^{{214}}\\mathrm{{Pb}}, ^{{214}}\\mathrm{{Bi}}$ wet deposition)",
+        xy=(peak_t, peak_cpm), xytext=(peak_t + 3.5, 4950),
         arrowprops=dict(facecolor="#b91c1c", edgecolor="#b91c1c", shrink=0.08, width=1.4, headwidth=5),
         fontsize=8.5, fontweight="bold", color="#991b1b",
         bbox=dict(boxstyle="round,pad=0.3", facecolor="#fef2f2", edgecolor="#b91c1c", alpha=0.9)
     )
 
     ax_t2_rain.annotate(
-        "Radioactive Decay Back to Baseline:\n$T_{1/2} = 26.8\\;\\mathrm{min}$ ($^{214}\\mathrm{Pb}$)\n$T_{1/2} = 19.9\\;\\mathrm{min}$ ($^{214}\\mathrm{Bi}$)\nClears in 4--8 hours",
-        xy=(7.5, 4200), xytext=(10.0, 5200),
+        "Radioactive Decay After Rain Stops:\n$T_{1/2} = 26.8\\;\\mathrm{min}$ ($^{214}\\mathrm{Pb}$)\n$T_{1/2} = 19.9\\;\\mathrm{min}$ ($^{214}\\mathrm{Bi}$)\nReturns toward dry baseline in 4--8 h",
+        xy=(9.0, float(gross_cpm[t_storm == 9.0][0])), xytext=(9.5, 3450),
         arrowprops=dict(facecolor="#374151", shrink=0.08, width=1.2, headwidth=5),
         fontsize=8.0, color="#1f2937",
         bbox=dict(boxstyle="round,pad=0.3", facecolor="#f9fafb", edgecolor="#9ca3af", alpha=0.9)
     )
 
     ax_t2_rain.set_title(
-        "TASK 2A: METEOROLOGICAL PARAMETER 1 — PRECIPITATION\n"
-        "Wet Scavenging Washout Surge vs. Natural Radioactive Decay",
+        "TASK 2A: METEOROLOGICAL PARAMETER 1 — PRECIPITATION (EMPIRICAL STORM)\n"
+        "Observed Wet Scavenging Washout Surge vs. Natural Progeny Decay (Birmingham, AL)",
         fontweight="bold", fontsize=10.5, pad=8
     )
 
-    # Right: Planetary Boundary Layer Thermal Inversion & Pressure Pumping
+    # Right: Real Empirical Diurnal Cycle of Dry-Weather Gross CPM & Ambient Temperature
     ax_t2_inv = fig.add_subplot(gs[1, 1])
 
-    hours = np.linspace(0, 24, 200)
-    # Diurnal cycle: peaks around 07:00 local time, troughs around 19:00
-    diurnal_cpm = 3000 + 280 * np.cos((hours - 7.0) * (2 * np.pi / 24))
-    # Boundary layer height (inversion height): shallow at night (200m), deep during midday (1800m)
-    pbl_height = 1000 - 800 * np.cos((hours - 7.0) * (2 * np.pi / 24))
+    df_bhm["precip_24h_mm"] = df_bhm["precip_1h_mm"].fillna(0.0).rolling(24, min_periods=1).sum()
+    valid_dry = (
+        df_bhm["has_radnet_obs"]
+        & df_bhm["rad_complete_channels"]
+        & (df_bhm["precip_24h_mm"] == 0.0)
+        & (df_bhm["precip_1h_mm"] == 0.0)
+    )
+    df_dry = df_bhm.loc[valid_dry].copy()
+    # Convert UTC hour to Birmingham Local Standard Time (CST = UTC - 6)
+    df_dry["local_hour"] = (df_dry["dt"].dt.hour - 6) % 24
+    diurnal_grp = df_dry.groupby("local_hour", as_index=False).agg(
+        mean_cpm=("gross_cpm", "mean"),
+        mean_temp_c=("temp_c", "mean"),
+    ).sort_values("local_hour")
 
-    ax_t2_inv.plot(hours, diurnal_cpm, color="#d97706", lw=2.4, label="Baseline Gross CPM (San Diego / Birmingham)")
-    ax_t2_inv.set_ylabel("Gross Radiation Baseline (CPM)", color="#b45309", fontweight="bold")
+    hours = diurnal_grp["local_hour"].to_numpy()
+    diurnal_cpm = diurnal_grp["mean_cpm"].to_numpy()
+    diurnal_temp = diurnal_grp["mean_temp_c"].to_numpy()
+
+    diurnal_summary = pd.read_csv("data/processed/diurnal_cycle_summary.csv")
+    bhm_amp_pct = float(diurnal_summary.loc[diurnal_summary["Station"].str.contains("Birmingham"), "Diurnal Amplitude (%)"].iloc[0])
+    min_amp_pct = float(diurnal_summary["Diurnal Amplitude (%)"].min())
+    max_amp_pct = float(diurnal_summary["Diurnal Amplitude (%)"].max())
+
+    max_h_idx = int(np.argmax(diurnal_cpm))
+    min_h_idx = int(np.argmin(diurnal_cpm))
+
+    ax_t2_inv.plot(hours, diurnal_cpm, color="#d97706", marker="o", markersize=4, lw=2.4, label="Observed Dry-Weather Mean Gross CPM")
+    ax_t2_inv.set_ylabel("Dry-Weather Mean Gross CPM (Birmingham)", color="#b45309", fontweight="bold")
     ax_t2_inv.tick_params(axis="y", labelcolor="#b45309")
-    ax_t2_inv.set_xlabel("Local Time of Day (Hour)")
-    ax_t2_inv.set_xlim(0, 24)
-    ax_t2_inv.set_xticks(np.arange(0, 25, 4))
-    ax_t2_inv.set_xticklabels(["00:00", "04:00", "08:00", "12:00", "16:00", "20:00", "24:00"])
-    ax_t2_inv.set_ylim(2500, 3500)
+    ax_t2_inv.set_xlabel("Local Standard Time (CST, UTC-6)")
+    ax_t2_inv.set_xlim(0, 23)
+    ax_t2_inv.set_xticks(np.arange(0, 24, 4))
+    ax_t2_inv.set_xticklabels(["00:00", "04:00", "08:00", "12:00", "16:00", "20:00"])
+    ax_t2_inv.set_ylim(3550, 4150)
     ax_t2_inv.grid(True, alpha=0.35)
 
     ax_pbl = ax_t2_inv.twinx()
-    ax_pbl.plot(hours, pbl_height, color="#4338ca", lw=1.8, linestyle="--", label="Planetary Boundary Layer Height (m)")
-    ax_pbl.set_ylabel("Boundary Layer Mixing Depth (m)", color="#4338ca", fontweight="bold")
+    ax_pbl.plot(hours, diurnal_temp, color="#4338ca", marker="s", markersize=3.5, lw=1.8, linestyle="--", label="Observed Mean Ambient Temp (°C)")
+    ax_pbl.set_ylabel("Mean Ambient Temperature (°C, PBL Proxy)", color="#4338ca", fontweight="bold")
     ax_pbl.tick_params(axis="y", labelcolor="#4338ca")
-    ax_pbl.set_ylim(0, 2200)
+    ax_pbl.set_ylim(10, 28)
 
     # Shaded nocturnal inversion zone
     ax_t2_inv.axvspan(0, 8, color="#fef3c7", alpha=0.35, label="Nocturnal Inversion Phase")
-    ax_t2_inv.axvspan(20, 24, color="#fef3c7", alpha=0.35)
+    ax_t2_inv.axvspan(20, 23, color="#fef3c7", alpha=0.35)
 
     ax_t2_inv.annotate(
-        "Thermal Inversion Peak (06:00--08:00):\nAtmospheric boundary layer contracts to ~200m;\nground-exhaled $^{222}\\mathrm{Rn}$ gas is trapped,\nmodulating baseline by 6%--12%",
-        xy=(7.0, 3280), xytext=(8.5, 3320),
+        f"Observed Inversion Peak ({int(hours[max_h_idx]):02d}:00 CST, {diurnal_cpm[max_h_idx]:,.0f} CPM):\nNocturnal cooling traps ground-exhaled $^{{222}}\\mathrm{{Rn}}$;\nBirmingham amplitude = {bhm_amp_pct:.1f}% (network: {min_amp_pct:.1f}%--{max_amp_pct:.1f}%)",
+        xy=(float(hours[max_h_idx]), float(diurnal_cpm[max_h_idx])), xytext=(8.2, 4010),
         arrowprops=dict(facecolor="#d97706", shrink=0.08, width=1.4, headwidth=5),
         fontsize=8.2, fontweight="bold", color="#78350f",
         bbox=dict(boxstyle="round,pad=0.3", facecolor="#fffbeb", edgecolor="#d97706", alpha=0.9)
     )
 
     ax_t2_inv.annotate(
-        "Solar Convective Mixing (14:00--19:00):\nBoundary layer expands to ~1800m;\nradon dilutes into troposphere",
-        xy=(19.0, 2720), xytext=(9.0, 2600),
+        f"Solar Convective Trough ({int(hours[min_h_idx]):02d}:00 CST, {diurnal_cpm[min_h_idx]:,.0f} CPM):\nDaytime heating expands boundary layer;\nradon dilutes into troposphere",
+        xy=(float(hours[min_h_idx]), float(diurnal_cpm[min_h_idx])), xytext=(8.5, 3600),
         arrowprops=dict(facecolor="#4338ca", shrink=0.08, width=1.2, headwidth=5),
         fontsize=8.0, color="#312e81",
         bbox=dict(boxstyle="round,pad=0.3", facecolor="#eef2ff", edgecolor="#6366f1", alpha=0.9)
     )
 
     ax_t2_inv.set_title(
-        "TASK 2B: METEOROLOGICAL PARAMETER 2 — BOUNDARY LAYER & INVERSION\n"
-        "Diurnal Thermal Trapping vs. Convective Tropospheric Dilution",
+        "TASK 2B: METEOROLOGICAL PARAMETER 2 — BOUNDARY LAYER & INVERSION (EMPIRICAL)\n"
+        "Observed 24-Hour Dry-Weather Gross CPM vs. Ambient Temperature Cycle",
         fontweight="bold", fontsize=10.5, pad=8
     )
 
     # -------------------------------------------------------------------------
     # ROW 3: TASK 3 - Environmental Data Processing & Interpretation
     # -------------------------------------------------------------------------
-    # Left: The Processing Dilemma — False Alarm Suppression vs Sensitivity
+    # Left: The Processing Dilemma — False Alarm Suppression vs Sensitivity (20-Seed Benchmark)
     ax_t3_perf = fig.add_subplot(gs[2, 0])
+
+    base_roc_df = pd.read_csv("data/processed/rigorous_baseline_continuous_roc.csv")
+    agg_df = pd.read_csv("data/processed/rigorous_benchmark_summary.csv")
+
+    r3_row = base_roc_df[(base_roc_df["baseline_type"] == "rolling_7d_local_z") & (np.isclose(base_roc_df["k_multiplier"], 3.0))].iloc[0]
+    r5_row = base_roc_df[(base_roc_df["baseline_type"] == "rolling_7d_local_z") & (np.isclose(base_roc_df["k_multiplier"], 5.0))].iloc[0]
+    t1_row = agg_df[(agg_df["tier_name"] == "Tier 1 (Gross)") & (agg_df["target_detection_pct"] == 95.0)].iloc[0]
+    t2_row = agg_df[(agg_df["tier_name"] == "Tier 2 (Spectral)") & (agg_df["target_detection_pct"] == 95.0)].iloc[0]
+    t3_row = agg_df[(agg_df["tier_name"] == "Tier 3 (Weather Fusion)") & (agg_df["target_detection_pct"] == 95.0)].iloc[0]
+    mlp_row = agg_df[(agg_df["tier_name"] == "Tier 3 MLP") & (agg_df["target_detection_pct"] == 95.0)].iloc[0]
 
     methods = [
         "Baseline\nRolling 7d 3σ",
@@ -224,8 +261,20 @@ def generate_engineering_synthesis_figure():
     x_m = np.arange(len(methods))
     w_bar = 0.36
 
-    fa_rates = [83.0, 23.4, 202.0, 5.0, 4.1]
-    det_rates = [52.0, 6.0, 92.0, 93.5, 92.0]
+    fa_rates = [
+        float(r3_row["false_alarms_per_year"]),
+        float(r5_row["false_alarms_per_year"]),
+        float(t1_row["fa_per_year_mean"]),
+        float(t2_row["fa_per_year_mean"]),
+        float(t3_row["fa_per_year_mean"]),
+    ]
+    det_rates = [
+        float(r3_row["detection_rate_pct"]),
+        float(r5_row["detection_rate_pct"]),
+        float(t1_row["det_total_mean"]),
+        float(t2_row["det_total_mean"]),
+        float(t3_row["det_total_mean"]),
+    ]
 
     b_fa = ax_t3_perf.bar(x_m - w_bar / 2, fa_rates, w_bar, label="False Alarms / Station-Yr (Clean Data)", color="#ef4444", alpha=0.85, edgecolor="black", lw=0.6)
     ax_t3_perf.set_ylabel("False Alarms per Station-Year", color="#b91c1c", fontweight="bold")
@@ -244,14 +293,14 @@ def generate_engineering_synthesis_figure():
 
     # Annotate values on bars
     for idx, (fa, det) in enumerate(zip(fa_rates, det_rates)):
-        ax_t3_perf.text(x_m[idx] - w_bar / 2, fa * 1.15, f"{fa:.1f}", ha="center", va="bottom", fontsize=8, color="#991b1b", fontweight="bold")
+        ax_t3_perf.text(x_m[idx] - w_bar / 2, fa * 1.15, f"{fa:.2f}", ha="center", va="bottom", fontsize=8, color="#991b1b", fontweight="bold")
         ax_t3_det.text(x_m[idx] + w_bar / 2, det + 2.0, f"{det:.1f}%", ha="center", va="bottom", fontsize=8, color="#065f46", fontweight="bold")
 
     ax_t3_perf.set_xticks(x_m)
     ax_t3_perf.set_xticklabels(methods, fontsize=9)
 
     ax_t3_perf.set_title(
-        "TASK 3A: ENVIRONMENTAL DATA PROCESSING METHODOLOGY\n"
+        "TASK 3A: ENVIRONMENTAL DATA PROCESSING METHODOLOGY (20-SEED MEAN)\n"
         "Multi-Tier Paradigm: Confound Suppression vs. Radiological Sensitivity",
         fontweight="bold", fontsize=10.5, pad=8
     )
@@ -268,30 +317,41 @@ def generate_engineering_synthesis_figure():
 
     ax_t3_matrix.set_title(
         "TASK 3B: OPERATIONAL INTERPRETATION & DECISION LOGIC\n"
-        "How Weather-Aware Multi-Tier Processing Solves False Alarm Paralysis",
+        "How Weather-Aware GBDT Processing Solves False Alarm Paralysis",
         fontweight="bold", fontsize=10.5, pad=8
     )
+
+    r3_rain_pct = float(r3_row["rain_coincident_pct"])
+    r5_rain_pct = float(r5_row["rain_coincident_pct"])
+    t3_fa = float(t3_row["fa_per_year_mean"])
+    t2_fa = float(t2_row["fa_per_year_mean"])
+    t3_det = float(t3_row["det_total_mean"])
+    t3_med_delay = float(t3_row["median_delay_mean"])
+    t3_rain_pct = float(t3_row["rain_coincident_mean"])
+    mlp_fa = float(mlp_row["fa_per_year_mean"])
+    fa_red_vs_r3 = (float(r3_row["false_alarms_per_year"]) - t3_fa) / float(r3_row["false_alarms_per_year"]) * 100.0
+    fa_red_vs_t2 = (t2_fa - t3_fa) / t2_fa * 100.0
 
     # Comparison Table / Cards
     card1 = patches.FancyBboxPatch((2, 52), 96, 42, boxstyle="round,pad=0.8", ec="#ef4444", fc="#fef2f2", lw=1.5)
     ax_t3_matrix.add_patch(card1)
     ax_t3_matrix.text(5, 87, "Naive Static Baselines (Rolling 3σ / 5σ) — FAILED IN PRACTICE", fontweight="bold", color="#991b1b", fontsize=9.5)
     ax_t3_matrix.text(5, 76,
-        "• Root Cause: Treat all count elevations as anomalous without physical context.\n"
-        "• Flaw 1: Rain scavenging creates massive gross surges -> 32% to 58% of all alarms are rain washout.\n"
-        "• Flaw 2: Dialing threshold to 5σ to suppress alarms collapses detection to 6.0% (plumes missed).\n"
-        "• Outcome: Severe alarm fatigue, operator blindness during storms, non-operational.",
+        f"• Root Cause: Treat all count elevations as anomalous without physical context.\n"
+        f"• Flaw 1: Rain scavenging creates gross surges -> {r3_rain_pct:.1f}% to {r5_rain_pct:.1f}% of alarms are rain washout.\n"
+        f"• Flaw 2: Dialing threshold to 5σ to suppress alarms collapses detection to {float(r5_row['detection_rate_pct']):.1f}% (plumes missed).\n"
+        f"• Outcome: Severe alarm fatigue ({float(r3_row['false_alarms_per_year']):.2f} FA/yr at 3σ), operator blindness during storms.",
         fontsize=8.5, color="#1f2937", va="top"
     )
 
     card2 = patches.FancyBboxPatch((2, 4), 96, 44, boxstyle="round,pad=0.8", ec="#10b981", fc="#ecfdf5", lw=1.5)
     ax_t3_matrix.add_patch(card2)
-    ax_t3_matrix.text(5, 41, "Tier 3 Weather-Aware ML Fusion (GBDT & MLP) — OPERATIONAL SOLUTION", fontweight="bold", color="#065f46", fontsize=9.5)
+    ax_t3_matrix.text(5, 41, "Tier 3 Weather-Aware GBDT Fusion — OPERATIONAL SOLUTION", fontweight="bold", color="#065f46", fontsize=9.5)
     ax_t3_matrix.text(5, 30,
-        "• Feature Fusion: Integrates NaI(Tl) R02--R09 spectral ratios + precipitation rate + 3h/6h rain sums.\n"
-        "• Discrimination: Recognizes Bi-214 photopeaks coincident with rain as benign natural radon washout.\n"
-        "• Performance Breakthrough: 0.0% rain-coincident false alarms; overall false alarms cut by 95% (4.1/yr).\n"
-        "• Plume Sensitivity: Preserves 92.0% detection of Cs-137, I-131, Co-60 plumes with 3--4h response time.",
+        f"• Feature Fusion: Integrates NaI(Tl) R02--R09 spectral ratios + precipitation rate + 3h/6h/24h rain.\n"
+        f"• Discrimination: Recognizes Bi-214 photopeaks coincident with rain as benign natural radon washout.\n"
+        f"• False Alarm Suppression: {t3_rain_pct:.1f}% rain-coincident alarms; {t3_fa:.2f} FA/yr ({fa_red_vs_r3:.1f}% below 3σ, {fa_red_vs_t2:.1f}% below Tier 2).\n"
+        f"• Plume Sensitivity: Preserves {t3_det:.1f}% detection ({t3_med_delay:.1f} h median delay); outperforms MLP ({mlp_fa:.1f} FA/yr).",
         fontsize=8.5, color="#1f2937", va="top"
     )
 

@@ -54,13 +54,22 @@ CHANNELS = [f"cpm_r0{i}" for i in range(2, 10)]
 
 # Traceable dose-rate coupling slopes from data/processed/dose_rate_cpm_regression_summary.csv
 DOSE_COUPLING_SLOPES = {
-    "al_birmingham": 0.01399,
-    "dc_washington": 0.01687,
-    "ca_san_diego": 0.02388,
-    "tx_dallas": 0.01246,
-    "fl_tampa": 0.01191,
-    "pooled": 0.01357,
+    "al_birmingham": 0.01389,
+    "dc_washington": 0.01668,
+    "ca_san_diego": 0.02359,
+    "tx_dallas": 0.01238,
+    "fl_tampa": 0.01142,
+    "pooled": 0.01344,
 }
+_DOSE_CSV = Path(__file__).resolve().parent.parent / "data" / "processed" / "dose_rate_cpm_regression_summary.csv"
+if _DOSE_CSV.exists():
+    _dose_df = pd.read_csv(_DOSE_CSV)
+    for _, _r in _dose_df.iterrows():
+        _sid = str(_r["Station_ID"])
+        if _sid == "pooled_network":
+            DOSE_COUPLING_SLOPES["pooled"] = float(_r["Slope_nSvh_per_CPM"])
+        elif _sid in DOSE_COUPLING_SLOPES:
+            DOSE_COUPLING_SLOPES[_sid] = float(_r["Slope_nSvh_per_CPM"])
 
 LAMBDA_I131 = np.log(2.0) / (8.025 * 24.0)  # 0.003600 h^-1
 
@@ -722,14 +731,15 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame):
                 k_dose = float(row["k_dose"])
 
                 for idx_sub, s_val in zip(indices, prof):
-                    sub.loc[idx_sub, "inj_gross_cpm"] += s_val
                     sub.loc[idx_sub, "synthetic_excess_cpm"] = s_val
-                    sub.loc[idx_sub, "inj_dose_rate_nsvh"] += s_val * k_dose
-                    for ch_idx, ch in enumerate(CHANNELS):
-                        sub.loc[idx_sub, f"inj_{ch}"] += s_val * spec[ch_idx]
-                    sub.loc[idx_sub, "label"] = "fission_product"
                     sub.loc[idx_sub, "injection_active"] = True
                     sub.loc[idx_sub, "injection_id"] = row["injection_id"]
+                    if not unobs_mask.loc[idx_sub]:
+                        sub.loc[idx_sub, "inj_gross_cpm"] += s_val
+                        sub.loc[idx_sub, "inj_dose_rate_nsvh"] += s_val * k_dose
+                        for ch_idx, ch in enumerate(CHANNELS):
+                            sub.loc[idx_sub, f"inj_{ch}"] += s_val * spec[ch_idx]
+                        sub.loc[idx_sub, "label"] = "fission_product"
 
             # Save labeled dataset
             out_file = Path(f"data/processed/labeled_{st_id}_{split_name}.csv.gz")

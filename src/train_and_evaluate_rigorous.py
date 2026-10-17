@@ -313,21 +313,18 @@ def main():
         df_te_raw["dt"] = pd.to_datetime(df_te_raw["dt"])
         df_te_raw = df_te_raw.sort_values("dt").reset_index(drop=True)
 
-        # BUG-5 fix (2026-10-06): featurize the full continuous 2017-2025 panel
-        # ONCE per radiation source, then slice the validation/test rows. Rolling
-        # windows now have identical history for identical timestamps (previously
-        # each date-slice restarted its windows at the slice start, so the first
-        # 24h of each slice got NaN z-scores and 168h windows were truncated).
-        df_all = pd.concat([df_tr_raw, df_te_raw], ignore_index=True).sort_values("dt").reset_index(drop=True)
-        feats_all_inj = compute_features_for_series(df_all, st_id, use_injected=True)
-        feats_all_cln = compute_features_for_series(df_all, st_id, use_injected=False)
+        # Featurize validation from the full 2017-2022 training panel so 2021-01-01
+        # has full 168h rolling history. For the 2023-2025 test split, prepend
+        # clean pre-2023 history so 2023-01-01 has full 168h rolling history
+        # without late-2022 synthetic training injections bleeding into early 2023.
+        feats_tr_inj = compute_features_for_series(df_tr_raw, st_id, use_injected=True)
+        feats_tr_cln = compute_features_for_series(df_tr_raw, st_id, use_injected=False)
 
-        m_val = ((df_all["dt"] >= "2021-01-01") & (df_all["dt"] < "2023-01-01")).values
-        m_te = (df_all["dt"] >= "2023-01-01").values
+        m_val = ((df_tr_raw["dt"] >= "2021-01-01") & (df_tr_raw["dt"] < "2023-01-01")).values
 
-        df_val = df_all[m_val].copy().reset_index(drop=True)
-        feats_val_inj = feats_all_inj[m_val].reset_index(drop=True)
-        feats_val_cln = feats_all_cln[m_val].reset_index(drop=True)
+        df_val = df_tr_raw[m_val].copy().reset_index(drop=True)
+        feats_val_inj = feats_tr_inj[m_val].reset_index(drop=True)
+        feats_val_cln = feats_tr_cln[m_val].reset_index(drop=True)
         val_valid = feats_val_cln["has_radnet_obs"] & feats_val_cln["rad_complete_channels"]
         total_val_obs_hours += val_valid.sum()
 
@@ -344,10 +341,17 @@ def main():
             "base": STATION_DRY_BASELINES[st_id],
         }
 
-        # Test file (contains 2023-2025) — sliced from the jointly featurized panel
-        df_te_raw = df_all[m_te].copy().reset_index(drop=True)
-        feats_te_inj = feats_all_inj[m_te].reset_index(drop=True)
-        feats_te_cln = feats_all_cln[m_te].reset_index(drop=True)
+        df_tr_warmup = df_tr_raw.copy()
+        df_tr_warmup["inj_gross_cpm"] = df_tr_warmup["gross_cpm"]
+        df_tr_warmup["inj_dose_rate_nsvh"] = df_tr_warmup["dose_rate_nsvh"]
+        for ch_idx in range(2, 10):
+            df_tr_warmup[f"inj_cpm_r0{ch_idx}"] = df_tr_warmup[f"cpm_r0{ch_idx}"]
+
+        df_te_panel = pd.concat([df_tr_warmup, df_te_raw], ignore_index=True).sort_values("dt").reset_index(drop=True)
+        m_te = (df_te_panel["dt"] >= "2023-01-01").values
+
+        feats_te_inj = compute_features_for_series(df_te_panel, st_id, use_injected=True)[m_te].reset_index(drop=True)
+        feats_te_cln = compute_features_for_series(df_te_panel, st_id, use_injected=False)[m_te].reset_index(drop=True)
         te_valid = feats_te_cln["has_radnet_obs"] & feats_te_cln["rad_complete_channels"]
         total_test_obs_hours += te_valid.sum()
 
@@ -355,6 +359,7 @@ def main():
 
         test_series[st_id] = {
             "df": df_te_raw,
+            "df_warmup": df_tr_warmup.iloc[-250:].copy().reset_index(drop=True),
             "dt": df_te_raw["dt"],
             "valid": te_valid,
             "feats_inj": feats_te_inj,
@@ -520,8 +525,9 @@ def main():
 
             if is_mlp and seed == 42:
                 for st_id, sdata in val_series.items():
-                    val_mlp_raw_preds.append(val_p_cln[st_id])
-                    val_mlp_true_labels.append((sdata["df"]["label"] == "fission_product").astype(int).values)
+                    val_m = sdata["valid"].values
+                    val_mlp_raw_preds.append(val_p_inj[st_id][val_m])
+                    val_mlp_true_labels.append((sdata["df"]["label"].values[val_m] == "fission_product").astype(int))
 
             # Ultra-fast vectorized threshold search on validation fold
             tau_det = np.zeros(len(THRESHOLD_GRID))
@@ -549,7 +555,9 @@ def main():
                     best_idx = eligible[np.argmin(tau_fa[eligible])]
                     val_best_taus[tgt] = THRESHOLD_GRID[best_idx]
                 else:
-                    val_best_taus[tgt] = 0.5
+                    max_det_idx_list = np.where(tau_det == tau_det.max())[0]
+                    best_idx = max_det_idx_list[np.argmin(tau_fa[max_det_idx_list])]
+                    val_best_taus[tgt] = THRESHOLD_GRID[best_idx]
 
             # Test predictions
             test_p_inj = {}
@@ -743,19 +751,20 @@ def main():
         val_p_inj_cal[st_id] = iso.predict(raw_inj)
         val_p_cln_cal[st_id] = iso.predict(raw_cln)
 
+    cal_tau_grid = np.unique(np.clip(iso.predict(THRESHOLD_GRID), 1e-6, 1.0 - 1e-6))
     cal_best_tau = 0.5
     min_val_fa_cal = 1e9
-    for tau in np.linspace(0.01, 0.99, 99):
+    for tau in cal_tau_grid:
         val_det = 0
         for st_id, idx in val_inj_slices:
             if ((val_p_inj_cal[st_id][idx] >= tau) & (val_p_cln_cal[st_id][idx] < tau)).any():
                 val_det += 1
-        if val_det / len(val_inj_slices) >= 0.90:
+        if val_det / len(val_inj_slices) >= 0.95:
             val_ep = sum(count_episodes((pd.Series(val_p_cln_cal[st]) >= tau) & val_series[st]["valid"], val_series[st]["valid"]) for st in val_series)
             val_fa = val_ep / val_station_years
-            if val_fa < min_val_fa_cal:
+            if val_fa <= min_val_fa_cal:
                 min_val_fa_cal = val_fa
-                cal_best_tau = tau
+                cal_best_tau = float(tau)
 
     test_cal_p_inj = {}
     test_cal_p_cln = {}
@@ -778,20 +787,30 @@ def main():
             cal_det_total += 1
 
     cal_det_pct = cal_det_total / len(test_inj_slices) * 100.0
-    mlp_seed42_fa = res_df[(res_df["tier_name"] == "Tier 3 MLP") & (res_df["seed"] == 42) & (res_df["target_detection"] == 95.0)]["clean_false_alarms_per_year"].iloc[0]
-    mlp_seed42_det = res_df[(res_df["tier_name"] == "Tier 3 MLP") & (res_df["seed"] == 42) & (res_df["target_detection"] == 95.0)]["realized_detection_total_pct"].iloc[0]
-    mlp_20seed_fa = res_df[(res_df["tier_name"] == "Tier 3 MLP") & (res_df["target_detection"] == 95.0)]["clean_false_alarms_per_year"].mean()
-    mlp_20seed_det = res_df[(res_df["tier_name"] == "Tier 3 MLP") & (res_df["target_detection"] == 95.0)]["realized_detection_total_pct"].mean()
+    mlp_s42_row = res_df[(res_df["tier_name"] == "Tier 3 MLP") & (res_df["seed"] == 42) & (res_df["target_detection"] == 95.0)].iloc[0]
+    mlp_seed42_tau = float(mlp_s42_row["frozen_tau"])
+    mlp_seed42_fa = float(mlp_s42_row["clean_false_alarms_per_year"])
+    mlp_seed42_det = float(mlp_s42_row["realized_detection_total_pct"])
 
-    print(f"Uncalibrated MLP (Seed 42, tau=0.98):  Detection: {mlp_seed42_det:.1f}%, Clean FA: {mlp_seed42_fa:.2f} FA/yr")
+    mlp_20s_sub = res_df[(res_df["tier_name"] == "Tier 3 MLP") & (res_df["target_detection"] == 95.0)]
+    mlp_20seed_tau = float(mlp_20s_sub["frozen_tau"].mean())
+    mlp_20seed_fa = float(mlp_20s_sub["clean_false_alarms_per_year"].mean())
+    mlp_20seed_det = float(mlp_20s_sub["realized_detection_total_pct"].mean())
+
+    lgb_20s_sub = res_df[(res_df["tier_name"] == "Tier 3 (Weather Fusion)") & (res_df["target_detection"] == 95.0)]
+    lgb_20seed_tau = float(lgb_20s_sub["frozen_tau"].mean())
+    lgb_20seed_fa = float(lgb_20s_sub["clean_false_alarms_per_year"].mean())
+    lgb_20seed_det = float(lgb_20s_sub["realized_detection_total_pct"].mean())
+
+    print(f"Uncalibrated MLP (Seed 42, tau={mlp_seed42_tau:.3f}): Detection: {mlp_seed42_det:.1f}%, Clean FA: {mlp_seed42_fa:.2f} FA/yr")
     print(f"Calibrated MLP   (Seed 42, tau={cal_best_tau:.3f}): Detection: {cal_det_pct:.1f}%, Clean FA: {cal_test_fa:.2f} FA/yr")
     print(f"Uncalibrated MLP (20-Seed Mean):        Detection: {mlp_20seed_det:.1f}%, Clean FA: {mlp_20seed_fa:.2f} FA/yr")
 
     cal_record = [
-        {"model": "MLP (Raw Probabilities, Seed 42)", "frozen_tau": 0.98, "realized_detection_pct": mlp_seed42_det, "false_alarms_per_year": mlp_seed42_fa},
-        {"model": "MLP (Isotonic Calibrated, Seed 42)", "frozen_tau": round(cal_best_tau, 3), "realized_detection_pct": round(cal_det_pct, 1), "false_alarms_per_year": round(cal_test_fa, 2)},
-        {"model": "MLP (Raw Probabilities, 20-Seed Mean)", "frozen_tau": 0.989, "realized_detection_pct": round(mlp_20seed_det, 1), "false_alarms_per_year": round(mlp_20seed_fa, 2)},
-        {"model": "LightGBM Tier 3 (20-Seed Mean Ref)", "frozen_tau": 0.988, "realized_detection_pct": 92.1, "false_alarms_per_year": 4.22},
+        {"model": "MLP (Raw Probabilities, Seed 42)", "frozen_tau": round(mlp_seed42_tau, 3), "realized_detection_pct": round(mlp_seed42_det, 2), "false_alarms_per_year": round(mlp_seed42_fa, 2)},
+        {"model": "MLP (Isotonic Calibrated, Seed 42)", "frozen_tau": round(cal_best_tau, 3), "realized_detection_pct": round(cal_det_pct, 2), "false_alarms_per_year": round(cal_test_fa, 2)},
+        {"model": "MLP (Raw Probabilities, 20-Seed Mean)", "frozen_tau": round(mlp_20seed_tau, 3), "realized_detection_pct": round(mlp_20seed_det, 2), "false_alarms_per_year": round(mlp_20seed_fa, 2)},
+        {"model": "LightGBM Tier 3 (20-Seed Mean Ref)", "frozen_tau": round(lgb_20seed_tau, 3), "realized_detection_pct": round(lgb_20seed_det, 2), "false_alarms_per_year": round(lgb_20seed_fa, 2)},
     ]
     pd.DataFrame(cal_record).to_csv("data/processed/eval_mlp_calibration_comparison.csv", index=False)
 
@@ -1154,7 +1173,10 @@ def main():
                                 comp = delta_excess * (c_excess / (cont_excess_sum + 1e-4))
                                 df_mod.loc[m, inj_c] = np.maximum(df_mod.loc[m, c], df_mod.loc[m, inj_c] - comp)
 
-            feats_mod_by_st[st_id] = (df_mod, compute_features_for_series(df_mod, st_id, use_injected=True))
+            df_warm = sdata["df_warmup"]
+            df_mod_panel = pd.concat([df_warm, df_mod], ignore_index=True)
+            f_mod_inj = compute_features_for_series(df_mod_panel, st_id, use_injected=True).iloc[len(df_warm):].reset_index(drop=True)
+            feats_mod_by_st[st_id] = (df_mod, f_mod_inj)
 
         for s in sweep_seeds:
             clf_s = models_sweep[s]["Tier 3 (Weather Fusion)"]
@@ -1206,7 +1228,8 @@ def main():
     for delta in [-0.10, -0.05, 0.00, +0.05, +0.10]:
         feats_drift_by_st = {}
         for st_id, sdata in test_series.items():
-            df_drift = sdata["df"].copy()
+            df_warm = sdata["df_warmup"].copy()
+            df_drift = pd.concat([df_warm, sdata["df"].copy()], ignore_index=True)
             if delta != 0.0:
                 for prefix in ["", "inj_"]:
                     raw_channels = [f"{prefix}cpm_r0{i}" for i in range(2, 10)]
@@ -1227,9 +1250,10 @@ def main():
 
                     df_drift[raw_channels] = shifted_counts
 
-            f_cln = compute_features_for_series(df_drift, st_id, use_injected=False)
-            f_inj = compute_features_for_series(df_drift, st_id, use_injected=True)
-            feats_drift_by_st[st_id] = (df_drift, f_cln, f_inj)
+            f_cln = compute_features_for_series(df_drift, st_id, use_injected=False).iloc[len(df_warm):].reset_index(drop=True)
+            f_inj = compute_features_for_series(df_drift, st_id, use_injected=True).iloc[len(df_warm):].reset_index(drop=True)
+            df_drift_te = df_drift.iloc[len(df_warm):].reset_index(drop=True)
+            feats_drift_by_st[st_id] = (df_drift_te, f_cln, f_inj)
 
         seed_fa = []
         seed_det = []
@@ -1272,80 +1296,46 @@ def main():
     print("\nSaved Instrumental Gain Drift Summary to data/processed/rigorous_gain_drift_evaluation.csv:")
     print(gain_df.to_string())
 
-    # 12. Stratified Operational Deadlines
+    # 12. Stratified Operational Deadlines (20-Seed Mean at Matched 95% Validation Target)
     print("\n" + "=" * 80)
-    print("STRATIFIED OPERATIONAL DEADLINE EVALUATION (At Matched ~92% Realized Detection)")
+    print("STRATIFIED OPERATIONAL DEADLINE EVALUATION (20-Seed Mean at Matched 95% Target)")
     print("=" * 80)
-    t3_tau_92 = agg_df[(agg_df["tier_name"] == "Tier 3 (Weather Fusion)") & (agg_df["target_detection_pct"] == 95.0)]["frozen_tau_mean"].iloc[0]
-    t2_tau_92 = agg_df[(agg_df["tier_name"] == "Tier 2 (Spectral)") & (agg_df["target_detection_pct"] == 90.0)]["frozen_tau_mean"].iloc[0]
-
-    clf_t2 = models_seed_42["Tier 2 (Spectral)"]
-    clf_t3 = models_seed_42["Tier 3 (Weather Fusion)"]
-
     strat_records = []
     strata_definitions = {
-        "All Test Injections": test_catalog,
-        "Strictly Dry Environments": test_catalog[test_catalog["environment"].str.contains("dry")],
-        "Rain-Coincident Environments": test_catalog[test_catalog["environment"].str.contains("rain")],
-        "Standard Plume Regime": test_catalog[test_catalog["environment"].str.contains("standard")],
-        "Stress Plume Regime": test_catalog[test_catalog["environment"].str.contains("stress")],
-        "Standard Strictly Dry": test_catalog[test_catalog["environment"] == "test_standard_strictly_dry"],
-        "Stress Strictly Dry": test_catalog[test_catalog["environment"] == "test_stress_strictly_dry"],
-        "Standard Rain": test_catalog[test_catalog["environment"] == "test_standard_rain"],
-        "Stress Rain": test_catalog[test_catalog["environment"] == "test_stress_rain"],
+        "All Test Injections": np.ones(len(test_catalog), dtype=bool),
+        "Strictly Dry Environments": test_catalog["environment"].str.contains("dry").values,
+        "Rain-Coincident Environments": test_catalog["environment"].str.contains("rain").values,
+        "Standard Plume Regime": test_catalog["environment"].str.contains("standard").values,
+        "Stress Plume Regime": test_catalog["environment"].str.contains("stress").values,
+        "Standard Strictly Dry": (test_catalog["environment"] == "test_standard_strictly_dry").values,
+        "Stress Strictly Dry": (test_catalog["environment"] == "test_stress_strictly_dry").values,
+        "Standard Rain": (test_catalog["environment"] == "test_standard_rain").values,
+        "Stress Rain": (test_catalog["environment"] == "test_stress_rain").values,
     }
 
-    t2_p_inj = {st: clf_t2.predict_proba(test_series[st]["feats_inj"][TIER_2_FEATURES])[:, 2] for st in test_series}
-    t2_p_cln = {st: clf_t2.predict_proba(test_series[st]["feats_cln"][TIER_2_FEATURES])[:, 2] for st in test_series}
-    t3_p_inj = {st: clf_t3.predict_proba(test_series[st]["feats_inj"][TIER_3_FEATURES])[:, 2] for st in test_series}
-    t3_p_cln = {st: clf_t3.predict_proba(test_series[st]["feats_cln"][TIER_3_FEATURES])[:, 2] for st in test_series}
+    for stratum_name, m_strat in strata_definitions.items():
+        n_strat = int(m_strat.sum())
+        for t_label in ["Tier 2 (Spectral)", "Tier 3 (Weather Fusion)"]:
+            D_sub = tier_seed_det[(t_label, 95.0)][:, m_strat]
+            L_sub = tier_seed_del[(t_label, 95.0)][:, m_strat]
 
-    for stratum_name, cat_sub in strata_definitions.items():
-        n_strat = len(cat_sub)
-        for t_label, tau_val, p_inj_map, p_cln_map in [
-            ("Tier 2 (Spectral)", t2_tau_92, t2_p_inj, t2_p_cln),
-            ("Tier 3 (Weather Fusion)", t3_tau_92, t3_p_inj, t3_p_cln),
-        ]:
-            det_total = 0
-            det_6h = 0
-            det_12h = 0
-            det_24h = 0
-            delays = []
+            det_total_pct = float((D_sub.mean(axis=1) * 100.0).mean())
+            det_6h_pct = float((((D_sub == 1.0) & (L_sub <= 6.0)).mean(axis=1) * 100.0).mean())
+            det_12h_pct = float((((D_sub == 1.0) & (L_sub <= 12.0)).mean(axis=1) * 100.0).mean())
+            det_24h_pct = float((((D_sub == 1.0) & (L_sub <= 24.0)).mean(axis=1) * 100.0).mean())
 
-            for _, inj in cat_sub.iterrows():
-                st_id = inj["station_id"]
-                sdata = test_series[st_id]
-                start_dt = pd.to_datetime(inj["start_utc"])
-                end_dt = pd.to_datetime(inj["end_utc"])
-
-                m = (sdata["dt"] >= start_dt) & (sdata["dt"] <= end_dt) & sdata["valid"]
-                dts_sub = sdata["dt"][m].reset_index(drop=True)
-                p_inj_sub = pd.Series(p_inj_map[st_id][m]).reset_index(drop=True)
-                p_cln_sub = pd.Series(p_cln_map[st_id][m]).reset_index(drop=True)
-
-                net_al = (p_inj_sub >= tau_val) & (p_cln_sub < tau_val)
-                if net_al.any():
-                    det_total += 1
-                    first_idx = net_al.idxmax()
-                    first_dt = dts_sub.iloc[first_idx]
-                    delay = max(0.0, (first_dt - start_dt).total_seconds() / 3600.0)
-                    delays.append(delay)
-                    if delay <= 6.0:
-                        det_6h += 1
-                    if delay <= 12.0:
-                        det_12h += 1
-                    if delay <= 24.0:
-                        det_24h += 1
+            seed_meds = [float(np.nanmedian(L_sub[s_i])) for s_i in range(len(SEEDS)) if np.any(~np.isnan(L_sub[s_i]))]
+            med_delay = float(np.mean(seed_meds)) if seed_meds else np.nan
 
             strat_records.append({
                 "stratum": stratum_name,
                 "tier_name": t_label,
                 "n_injections": n_strat,
-                "detection_total_pct": round(det_total / n_strat * 100, 1),
-                "detection_le_6h_pct": round(det_6h / n_strat * 100, 1),
-                "detection_le_12h_pct": round(det_12h / n_strat * 100, 1),
-                "detection_le_24h_pct": round(det_24h / n_strat * 100, 1),
-                "median_delay_hours": round(np.median(delays), 1) if delays else np.nan,
+                "detection_total_pct": round(det_total_pct, 2),
+                "detection_le_6h_pct": round(det_6h_pct, 2),
+                "detection_le_12h_pct": round(det_12h_pct, 2),
+                "detection_le_24h_pct": round(det_24h_pct, 2),
+                "median_delay_hours": round(med_delay, 1) if not np.isnan(med_delay) else np.nan,
             })
 
     strat_df = pd.DataFrame(strat_records)

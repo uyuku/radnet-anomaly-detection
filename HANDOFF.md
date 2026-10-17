@@ -1,22 +1,16 @@
-# Project Handoff: Weather-Aware Anomaly Detection in RadNet
+# Project Architecture & Pipeline Guide: Weather-Aware Anomaly Detection in RadNet
 
-**Date**: 2026-10-06  
+**Date**: 2026-10-17  
 **Project**: Weather-Aware Anomaly Detection in RadNet (EPA RadNet + NOAA NCEI ISD)  
-**Roles & Governance**:
-- **MiMo**: Lead Developer & Project Boss / Executive Decision Maker (granted full ownership, administrative clearance, pipeline execution authority, and code leadership).
-- **Claude**: Reviewer / Technical Advisor / Co-Boss (evaluates methodology, audits statistical integrity).
-- **Ömer**: Human Project Lead / Final Authority.
-- **Gemini**: Retired / Previous Assistant (handed off all materials and stepped down).
 
 ---
 
 ## 1. Executive Summary & Repository Status
 
-This repository contains the complete implementation, data processing pipeline, physical spectrometry modeling, and 20-seed rigorous evaluation of a machine-learning-based, weather-aware radiological anomaly detection system for EPA RadNet near-real-time gamma monitors.
+This repository contains the data processing pipeline, physical gamma spectrometry modeling, multi-seed evaluation suite, automated verification tests, and operational CLI diagnostic utility for weather-aware radiological anomaly detection on EPA RadNet near-real-time gamma monitors.
 
-- **Git Commit**: `3ea6567` (`docs(phase5): address Fourth Pass review items on baseline reporting, MLP framing, and neutral tone`)
-- **Status**: Phases 0 through 5 are fully implemented.
-- **Rule of Engagement**: **Nothing in previous phases is to be edited, fixed, or regenerated without explicit instruction.** All decisions, citations, and formulas are documented in [`DECISIONS.md`](file:///Users/o/Projects/radnet-anomaly-detection/DECISIONS.md) and [`PHASE_REPORT.md`](file:///Users/o/Projects/radnet-anomaly-detection/PHASE_REPORT.md). Open questions remain logged in [`QUESTIONS.md`](file:///Users/o/Projects/radnet-anomaly-detection/QUESTIONS.md).
+- **Status**: Phases 0 through 6 are implemented, verified end-to-end, and covered by automated `pytest` tests (`tests/test_radnet_pipeline.py`).
+- **Documentation**: All architectural decisions, citations, and formulas are documented in [`DECISIONS.md`](file:///Users/o/Projects/radnet-anomaly-detection/DECISIONS.md), [`PHASE_REPORT.md`](file:///Users/o/Projects/radnet-anomaly-detection/PHASE_REPORT.md), [`reports/PHASE6_REPORT.md`](file:///Users/o/Projects/radnet-anomaly-detection/reports/PHASE6_REPORT.md), and [`reports/BUG_AUDIT.md`](file:///Users/o/Projects/radnet-anomaly-detection/reports/BUG_AUDIT.md). Open research questions are logged in [`QUESTIONS.md`](file:///Users/o/Projects/radnet-anomaly-detection/QUESTIONS.md).
 
 ---
 
@@ -43,158 +37,79 @@ This repository contains the complete implementation, data processing pipeline, 
 - **Objective**: Download synchronous NOAA NCEI Global-Hourly (ISD) precipitation and weather telemetry; merge with RadNet on a continuous calendar grid.
 - **Key Scripts**:
   - `src/download_noaa_data.py`: Fetches NOAA ISD observations (2017–2025).
-  - `src/audit_noaa_precipitation.py`: Audits precipitation report frequencies and quality codes.
-  - `src/merge_radnet_weather.py`: Merges RadNet gamma and NOAA weather on UTC hourly grid.
+  - `src/audit_noaa_precipitation.py`: Audits hourly precipitation report frequencies, deduplication, and quality codes.
+  - `src/merge_radnet_weather.py`: Merges RadNet gamma and NOAA weather on a continuous UTC hourly grid.
   - `src/plot_rain_events.py`: Visualizes multi-station rain washout episodes.
 - **Key Artifacts & Figures**:
-  - `data/processed/merged_{station}_2017_2025.csv.gz`: 5 station merged datasets (**324,550 synchronous observation hours**).
-  - `data/processed/noaa_precipitation_audit.csv` & `merge_audit_summary.csv`.
+  - `data/processed/merged_{station}_2017_2025.csv.gz`: 5 station merged datasets (**334,567 valid RadNet hours** and **324,550 synchronous radiation-weather observation hours** across 394,440 grid hours).
+  - `data/processed/noaa_precipitation_audit.csv`, `noaa_station_summary.csv`, & `merge_audit_summary.csv`.
   - `reports/figures/rain_event_{station}.png` (5 figures) & `rain_washout_multi_station_comparison.png`.
-- **Key Rules Applied**: AA1 precipitation condition codes restricted strictly to `'1'` and `'5'` (passed automated & manual checks); `'C'` and `'S'` (suspect) completely excluded. Peak physical lag confirmed at 0 to +1 hour.
+- **Key Rules Applied**: AA1 precipitation condition codes restricted strictly to 1-hour period (`01`) with quality codes `'1'` and `'5'` (passed automated & manual checks) and deduplicated per UTC hour (routine FM-15 prioritized over FM-16 SPECI); suspect codes (`'C'`, `'S'`) and missing depths are recorded as `NaN` (never coerced to verified dry `0.0 mm`). Peak physical lag confirmed at 0 to +1 hour.
 
 ### Phase 2: Physical Baseline Characterization & Static Alarm Evaluation
 - **Objective**: Quantify false alarm burden of current-practice fixed-threshold monitors under natural radon washout and environmental cycling.
 - **Key Scripts**:
   - `src/characterize_baseline_cycles.py`: Analyzes diurnal radon cycle and filter advance step-drops.
-  - `src/analyze_filter_cycles_multi_station.py`: Multi-station filter advance analysis.
+  - `src/analyze_filter_cycles_multi_station.py`: Multi-station filter advance analysis across all 5 pilot stations.
   - `src/analyze_timestamp_lags.py`: Calendar-reindexed cross-correlation lag profile.
   - `src/analyze_rain_washout_distribution.py`: Rain surge amplitude distribution.
-  - `src/evaluate_baseline.py` & `src/plot_baseline_timeline.py`: Evaluates static $3\sigma$ and $5\sigma$ thresholds.
+  - `src/evaluate_baseline.py` & `src/plot_baseline_timeline.py`: Evaluates static $3\sigma$, $4\sigma$, and $5\sigma$ thresholds.
 - **Key Artifacts & Figures**:
   - `data/processed/baseline_threshold_evaluation.csv`, `lag_cross_correlation.csv`, `rain_washout_surge_distribution.csv`, `multi_station_filter_cycle_summary.csv`.
   - Figures: `baseline_alarm_rate_by_threshold.png`, `baseline_alarm_rain_coincidence.png`, `baseline_alarm_example_timeline.png`, `diurnal_radon_cycle.png`, `filter_cycle_sawtooth.png`.
-- **Key Findings**: Standard $3\sigma$ alarm produces 52–78 alarms per station-year in humid climates; 62%–97% of all alarms coincide directly with rain washout. Raising threshold to $5\sigma$ leaves 12–32 alarms/yr, of which 73%–97% remain false alarms from rain.
+- **Key Findings**: Standard rolling 7-day + $3\sigma_{\text{dry}}$ alarms produce 53.0–62.9 alarm episodes per station-year in humid continental climates (Birmingham 53.6, Washington 53.0, Dallas 62.9, San Diego 20.9, Tampa 6.6); 58%–87% of alarm hours (70%–89% of alarm episodes) in humid cities coincide directly with rain washout within 3 hours. Raising the threshold to $5\sigma$ leaves 13.2–27.4 episodes/yr in humid cities, of which 85%–97% of alarm hours remain rain-coincident false alarms.
 
 ### Phase 3: Synthetic Injection Design & Labeled Benchmark Catalog
 - **Objective**: Generate physically grounded synthetic anthropogenic anomaly injections across realistic meteorological conditions, enforcing strict train/test disjointness and non-overlap.
 - **Key Scripts**:
-  - `src/calibrate_dose_coupling.py`: Calibrates gross CPM to dose-rate coupling.
+  - `src/compute_train_only_baselines.py`: Computes frozen pre-2023 dry-weather baselines per station.
+  - `src/calibrate_dose_coupling.py`: Calibrates gross CPM to dose-rate coupling using trailing 168h medians.
   - `src/analyze_washout_spectrum.py`: Derives empirical multi-channel washout shares.
-  - `src/synthetic_injection.py`: Injects 450 synthetic plumes into continuous background.
-  - `src/audit_injection_catalog.py`: Verifies non-overlap buffer, calendar consistency, and split integrity.
+  - `src/synthetic_injection.py`: Applies the 450 frozen synthetic plumes to continuous background while preserving `"unobserved"` labels on detector-outage hours.
+  - `src/audit_injection_catalog.py`: Empirically verifies non-overlap buffer, filter-drop anchoring, channel completeness, strictly dry constraints, and spectral normalization against the merged station panels.
   - `src/plot_synthetic_injections.py`: Plots shapes, nuclide spectra, and hard-case rain regimes.
 - **Key Artifacts & Figures**:
-  - `data/processed/synthetic_injection_catalog.csv`: 450 injections (250 train [2017–2022], 200 test [2023–2025]). *(Corrected 2026-10-06: an earlier handoff summary said 2,000 / 1,000+1,000; the frozen catalog and all phase reports consistently document 450 / 250+200.)*
-  - `data/processed/labeled_{station}_{split}.csv.gz`: 10 pre-injected continuous hourly datasets.
-  - `data/processed/station_dry_baselines_train_only.json`: Frozen dry-baseline reference.
+  - `data/processed/synthetic_injection_catalog.csv`: 450 injections (250 train [2017–2022], 200 test [2023–2025]).
+  - `data/processed/labeled_{station}_{split}.csv.gz`: 10 pre-injected continuous hourly datasets (`334,567` observed hours: `227,939` train, `106,628` test = `12.16` station-years; `59,873` unobserved hours).
+  - `data/processed/station_dry_baselines_train_only.json`: Frozen pre-2023 dry-baseline reference.
   - Figures: `synthetic_injection_shapes_and_nuclides.png`, `synthetic_injection_hard_case_rain.png`, `synthetic_injection_train_test_disjointness.png`.
-- **Key Design Constraints**: 48-hour non-overlap buffer enforced; real NaI(Tl) channel shares for five release scenarios (pure Cs-137, pure I-131, Co-60 orphan, fresh-reactor Cs-137/Cs-134/I-131 mix, mixed fission-activation); step, ramp, sigmoidal, and exponential profiles; hard-case rain co-occurrence (75 train, 100 test).
 
 ### Phase 4: Feature Engineering & Machine Learning Detection Pipeline
-- **Objective**: Engineer physical features (spectral channel ratios, temporal diffs, rolling stats, weather interactions) and train LightGBM classifier.
+- **Objective**: Engineer strictly causal physical features (spectral channel ratios, temporal diffs, rolling stats, weather interactions) and train LightGBM classifiers.
 - **Key Scripts**:
-  - `src/feature_engineering.py`: Computes 40+ physics-informed spatio-temporal features.
-  - `src/train_and_evaluate_models.py`: Trains LightGBM and runs initial Leave-One-Station-Out (LOSO).
-  - `src/plot_model_evaluation.py`: Generates ROC and feature importance figures.
+  - `src/feature_engineering.py`: Computes 48 causal physics-informed spatio-temporal features across Tiers 1, 1b, 2, and 3.
+  - `src/train_and_evaluate_models.py`: Trains LightGBM tiers with validation-frozen thresholds and pre-2023 warm-up history, plus Leave-One-Station-Out (LOSO) evaluation.
+  - `src/plot_model_evaluation.py`: Generates ROC and feature importance figures dynamically from CSV outputs.
 - **Key Artifacts & Figures**:
   - `data/processed/model_feature_importance.csv`, `model_roc_curve_data.csv`, `model_operating_points_summary.csv`, `model_loso_evaluation_summary.csv`.
   - Figures: `model_detection_vs_false_alarms_roc.png`, `model_feature_importance.png`, `model_hard_case_timeline.png`, `model_stratified_performance.png`.
 
-### Phase 5: Rigorous Evaluation Protocol, Multi-Seed Replication & Causal Benchmarking
-- **Objective**: Multi-seed replication, continuous ROC evaluation on test split, matched-detection comparison at fixed false-alarm rates, causal validation threshold freezing, temperature/gain drift robustness, MLP neural network comparison.
+### Phase 5 & 6: Rigorous Evaluation Protocol, Multi-Seed Replication, CLI & Test Suite
+- **Objective**: 20-seed replication, continuous ROC evaluation on the 2023–2025 test split, matched-detection comparison at fixed false-alarm rates, causal validation threshold freezing, temperature/gain drift robustness, MLP neural network calibration comparison, synthesis visualization, operational CLI diagnostics, and automated test verification.
 - **Key Scripts**:
   - `src/train_and_evaluate_rigorous.py`: Core runner for 20-seed replication, continuous ROC, matched FAR detection, LOSO, gain drift, and template sensitivity.
-  - `src/evaluate_phase5_protocol.py`: Statistical testing, block bootstrap uncertainty, and delay metrics.
-  - `src/plot_rigorous_evaluation.py` & `src/plot_phase5_evaluation.py`: All Phase 5 visualizations.
-- **Key Artifacts & Figures**:
-  - `data/processed/rigorous_benchmark_summary.csv`: Comprehensive 4-tier benchmark summary.
-  - `data/processed/rigorous_seed_level_results.csv` & `rigorous_seed_statistical_tests.csv`: 20-seed metrics ($p < 10^{-15}$).
-  - `data/processed/rigorous_matched_detection_comparison.csv`: Matched detection at identical FAR.
-  - `data/processed/rigorous_continuous_roc_all_tiers.csv`: Full ROC points across 131,520 test hours.
-  - `data/processed/rigorous_loso_summary.csv` & `rigorous_loso_stratified_detection.csv`: LOSO generalization.
-  - `data/processed/rigorous_gain_drift_evaluation.csv`: $\pm 10\%$ detector gain drift audit.
-  - `data/processed/eval_mlp_calibration_comparison.csv`: LightGBM vs. Calibrated MLP comparison.
-  - `data/processed/eval_benchmark_uncertainty_summary.csv`: Block bootstrap confidence bounds.
-  - Figures: `rigorous_matched_roc_curves.png`, `rigorous_ablation_seeds.png`, `rigorous_loso_multistation.png`, `rigorous_detection_deadlines.png`, `rigorous_template_sensitivity.png`, `eval_bootstrap_uncertainty.png`, `eval_confusion_matrices.png`, `eval_detection_delay_distributions.png`.
+  - `src/evaluate_phase5_protocol.py`: Seed 42 uncertainty, confusion matrices, empirical delay CDFs, and MLP comparison under the unified net-alarm + validation-frozen protocol.
+  - `src/plot_rigorous_evaluation.py`, `src/plot_phase5_evaluation.py`, & `src/plot_environmental_engineering_synthesis.py`: Phase 5 and synthesis visualizations built strictly from empirical telemetry and benchmark CSVs.
+  - `src/detect_anomalies_cli.py`: Operational CLI diagnostic utility for inspecting any station, time window, model tier, and clean/injected series.
+  - `tests/test_radnet_pipeline.py`: Automated `pytest` verification suite testing causal feature engineering, spectral conservation, train-only baseline non-leakage, NOAA precipitation deduplication, unobserved outage labeling, and cross-table CSV consistency.
 
 ---
 
-## 3. How to Run the Pipeline in Order
+## 3. How to Run the Pipeline & Tests
 
-A master runner now exists: `bash run_pipeline.sh` (supports `--phase N` and `--dry-run`; it skips phases whose input panels are absent and says so explicitly). Individual commands below should be executed from the repository root using the project virtual environment:
+Execute commands from the repository root using the project virtual environment:
 
 ```bash
 # Activate environment
 source .venv/bin/activate
-# Or install dependencies if setting up clean:
-# pip install -r requirements.txt
+
+# Run the automated test suite (9 comprehensive verification checks)
+pytest -v
+
+# Run operational CLI diagnostics on a specific station/window
+python src/detect_anomalies_cli.py --station al_birmingham --start "2023-01-24 18:00:00" --end "2023-01-29 06:00:00" --use-injected
+
+# Run the full pipeline end-to-end (or a specific phase)
+bash run_pipeline.sh
+bash run_pipeline.sh --phase 5
 ```
-
-### Step 1: Phase 0 (Station Inventory & Pilot Selection)
-```bash
-python src/parse_stations.py
-python src/download_pilot_data.py
-python src/analyze_pilot_stations.py
-```
-
-### Step 2: Phase 1 (NOAA Weather Ingestion & Synchronous Merge)
-```bash
-python src/download_noaa_data.py
-python src/audit_noaa_precipitation.py
-python src/merge_radnet_weather.py
-python src/plot_rain_events.py
-```
-
-### Step 3: Phase 2 (Baseline Characterization & Static Alarm Evaluation)
-```bash
-python src/characterize_baseline_cycles.py
-python src/analyze_filter_cycles_multi_station.py
-python src/analyze_timestamp_lags.py
-python src/analyze_rain_washout_distribution.py
-python src/evaluate_baseline.py
-python src/plot_baseline_timeline.py
-```
-
-### Step 4: Phase 3 (Synthetic Injections & Dataset Generation)
-```bash
-python src/calibrate_dose_coupling.py
-python src/analyze_washout_spectrum.py
-python src/synthetic_injection.py
-python src/audit_injection_catalog.py
-python src/plot_synthetic_injections.py
-```
-
-### Step 5: Phase 4 (Feature Engineering & Baseline Model Training)
-```bash
-python src/train_and_evaluate_models.py
-python src/plot_model_evaluation.py
-```
-
-### Step 6: Phase 5 (Rigorous Multi-Seed Evaluation & Visualization)
-```bash
-python src/train_and_evaluate_rigorous.py
-python src/plot_rigorous_evaluation.py
-python src/evaluate_phase5_protocol.py
-python src/plot_phase5_evaluation.py
-```
-
----
-
-## 4. What Was Never Run End-to-End
-
-To ensure complete transparency during the handoff, the following aspects were **never executed as a single automated end-to-end run**:
-
-1. **No Monolithic Single-Command Master Runner** *(resolved 2026-10-06: `run_pipeline.sh` now provides the sequential runner with per-phase input checks; it has not yet been exercised as a single cold-start run from raw downloads, which requires live network access)*:
-   - There is no single `run_all.sh` or automated DAG runner script that executes from `download_pilot_data.py` to `plot_rigorous_evaluation.py` in one invocation.
-   - Each phase and script was executed incrementally by the agent at the terminal, validating outputs against gate requirements before proceeding.
-2. **Network Downloads Decoupled from Downstream Pipeline**:
-   - Raw data retrieval (`download_pilot_data.py` and `download_noaa_data.py`) requires live HTTP access to NOAA NCEI ISD and EPA RadNet REST endpoints.
-   - All subsequent analysis and modeling scripts assume local existence of files in `data/raw/` and `data/processed/`.
-3. **Phase 5 Execution Relies on Frozen Labeled Datasets**:
-   - The 20-seed replication and rigorous benchmarking in `train_and_evaluate_rigorous.py` were run against the pre-generated `labeled_{station}_{split}.csv.gz` files produced in Phase 3. The synthetic injection generation step (`synthetic_injection.py`) was not re-executed inside the Phase 5 training loop.
-   - Note (2026-10-06): the archive as transferred ships only summary CSVs in `data/processed/`; the merged station panels (`merged_{station}_2017_2025.csv.gz`) and labeled datasets (`labeled_{station}_{split}.csv.gz`) are not included and must be regenerated from raw downloads before Phases 1–5 can re-execute. Plotting/audit scripts that read only summary CSVs run as-is.
-4. **`review_notes/` Directory**:
-   - A dedicated folder named `review_notes/` was never created on disk; review bundles and review text were managed directly in chat and as zip archives (`phase0_review.zip` through `phase5_review.zip`).
-
-5. **Evaluation-criterion divergence (flagged 2026-10-06)**:
-   - `evaluate_phase5_protocol.py` scores event detection with a plain any-alarm criterion, while `train_and_evaluate_rigorous.py` uses the stricter net-alarm criterion (alarm on injected series and not on the clean series). Absolute detection/false-alarm numbers therefore differ slightly between the `eval_*` and `rigorous_*` tables. Every report table names its source; unify the criterion before publication submission.
-
----
-
-## 5. Guidance & Full Authority for MiMo (Lead Developer & Co-Boss)
-
-1. **Full Ownership & Administrative Clearance**: MiMo has full administrative authority and developer leadership over the repository, code, pipelines, and execution. Gemini has officially stepped down and transferred all responsibilities.
-2. **Review & Gate Alignment**: Claude functions as reviewer and technical co-advisor. Collaborate closely with Claude's rigorous feedback, especially on methodology and reporting.
-3. **Data Freezing Policy**: `data/raw/` is strictly read-only. Injections in `synthetic_injection_catalog.csv` and labeled datasets are the frozen ground truth for benchmarks—any changes to benchmark splits or generation require explicit justification.
-4. **Reproducibility**: All random seeds remain controlled via `configs/config.yaml`. Adhere to causal validation (threshold freezing on validation folds; zero test-set leakage).
-5. **Tone & Objectivity**: Maintain neutral, rigorous environmental science phrasing throughout all documentation and reports.

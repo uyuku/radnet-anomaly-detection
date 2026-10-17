@@ -70,9 +70,16 @@ def audit_catalog():
             assert abs(frac - 0.20) < 1e-4, f"Scenario balance failed for {env} / {sc}: got {frac}"
     print("✓ Scenario balance verified: exactly 20.0% (1/5) per scenario in all 6 environments.")
 
-    # 4. Synchronized Filter Drops (100% of injections end at real detected drops)
+    # 4. Synchronized Filter Drops, Telemetry Completeness, Dry-Window Purity & Spectral Normalization
     drop_sync_failures = 0
+    telemetry_gap_failures = 0
+    dry_rain_failures = 0
+    duration_math_failures = 0
+    spectral_sum_failures = 0
     total_checked = 0
+    env_drop_synced = {env: 0 for env in expected_envs}
+
+    share_cols = [f"share_r0{i}" for i in range(2, 10)]
 
     for st in STATIONS:
         st_id = st["id"]
@@ -81,16 +88,47 @@ def audit_catalog():
         df_st["dt"] = pd.to_datetime(df_st["utc_hour"])
         drops_df = detect_filter_drops(df_st, st["drop_thresh"])
         detected_drop_dts = set(pd.to_datetime(drops_df["utc_hour"]).tolist())
+        df_st_idx = df_st.set_index("dt")
 
         sub_cat = df_cat[df_cat["station_id"] == st_id]
         for _, row in sub_cat.iterrows():
             total_checked += 1
+            start_dt = pd.to_datetime(row["start_utc"])
             end_dt = pd.to_datetime(row["end_utc"])
+            env = row["environment"]
             if end_dt not in detected_drop_dts:
                 drop_sync_failures += 1
+            else:
+                env_drop_synced[env] += 1
+
+            # Verify duration math
+            expected_dur = int((end_dt - start_dt).total_seconds() // 3600) + 1
+            if int(row["duration_hours"]) != expected_dur or int(row["duration_hours"]) != int(row["t_passage_hours"]) + int(row["t_retention_hours"]):
+                duration_math_failures += 1
+
+            # Verify spectral shares sum to 1.0 and are non-negative
+            shares = np.array([float(row[c]) for c in share_cols])
+            if np.any(shares < -1e-9) or abs(shares.sum() - 1.0) > 1e-3:
+                spectral_sum_failures += 1
+
+            # Verify telemetry completeness (0 missing hours for strictly_dry, <=2 for long rain windows) and dry-window zero recorded rain
+            win = df_st_idx.loc[start_dt:end_dt]
+            valid_win = win["has_radnet_obs"].fillna(False).astype(bool) & win["rad_complete_channels"].fillna(False).astype(bool)
+            missing_hrs = int((~valid_win).sum())
+            max_allowed_missing = 0 if "strictly_dry" in env else 2
+            if len(win) != expected_dur or missing_hrs > max_allowed_missing:
+                telemetry_gap_failures += 1
+            if "strictly_dry" in env and (win["precip_1h_mm"] > 0.0).any():
+                dry_rain_failures += 1
 
     assert drop_sync_failures == 0, f"Found {drop_sync_failures} injections not ending at real drops!"
-    print(f"✓ Drop synchronization verified: {total_checked} of {total_checked} (100.0%) end at real detected drops.")
+    assert telemetry_gap_failures == 0, f"Found {telemetry_gap_failures} injections with missing RadNet telemetry!"
+    assert dry_rain_failures == 0, f"Found {dry_rain_failures} strictly_dry injections with recorded rainfall!"
+    assert duration_math_failures == 0, f"Found {duration_math_failures} injections with inconsistent duration math!"
+    assert spectral_sum_failures == 0, f"Found {spectral_sum_failures} injections with unnormalized channel shares!"
+    realized_sync_pct = round(100.0 * (total_checked - drop_sync_failures) / total_checked, 1)
+    print(f"✓ Drop synchronization verified: {total_checked - drop_sync_failures} of {total_checked} ({realized_sync_pct:.1f}%) end at real detected drops.")
+    print("✓ Telemetry completeness, dry-window zero rainfall, duration math, and spectral normalization verified.")
 
     # 5. Temporal Buffer Verification (>= 48 hours between any two injections at the same station)
     overlap_violations = 0
@@ -158,12 +196,13 @@ def audit_catalog():
         sc_counts = sub["nuclide_scenario"].value_counts()
         sc_fracs = (sc_counts / len(sub) * 100.0).round(1).tolist()
         exact_balance = all(f == 20.0 for f in sc_fracs)
+        env_sync_pct = round(100.0 * env_drop_synced[env] / len(sub), 1) if len(sub) > 0 else 0.0
 
         summary_records.append({
             "environment": env,
             "split": sub["split"].iloc[0],
             "count": len(sub),
-            "drop_sync_pct": 100.0,
+            "drop_sync_pct": env_sync_pct,
             "scenario_balance_pct": 20.0 if exact_balance else np.nan,
             "min_buffer_hours": min_observed_buffer,
             "dur_min_h": sub["duration_hours"].min(),
@@ -185,7 +224,7 @@ def audit_catalog():
     # 8. Detailed Check Verification Table
     verif_records = [
         {"check_item": "Total Injections", "specification": "450 injections (250 train, 200 test)", "realized_value": f"{len(df_cat)} total ({split_counts.get('train')} train, {split_counts.get('test')} test)", "status": "PASSED"},
-        {"check_item": "Filter Drop Synchronization", "specification": "100.0% of injections end at real detected filter drops", "realized_value": f"{total_checked}/{total_checked} (100.0%)", "status": "PASSED"},
+        {"check_item": "Filter Drop Synchronization", "specification": "100.0% of injections end at real detected filter drops", "realized_value": f"{total_checked - drop_sync_failures}/{total_checked} ({realized_sync_pct:.1f}%)", "status": "PASSED"},
         {"check_item": "Scenario Balance", "specification": "Exact 20.0% per scenario in all 6 environments", "realized_value": f"Exactly 20.0% in all environments (min {min_sc_pct:.1f}%, max {max_sc_pct:.1f}%)", "status": "PASSED"},
         {"check_item": "Inter-Injection Temporal Buffer", "specification": ">= 48.0 hours between consecutive events at same station", "realized_value": f"Observed min: {min_observed_buffer:.1f}h (0 violations <48.0h across {total_pairs} pairs)", "status": "PASSED"},
         {"check_item": "Cs-134 High-Energy Lines (R07+R08)", "specification": "Reactor releases exhibit Cs-134 lines spanning radon band", "realized_value": f"Mean {mean_hi_energy:.2f}% (5-95th: [{fuk_p5:.2f}%, {fuk_p95:.2f}%])", "status": "PASSED"},

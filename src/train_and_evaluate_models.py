@@ -191,13 +191,27 @@ def evaluate_tier_pipeline():
 
     for st in STATIONS:
         st_id = st["id"]
+        df_tr_raw = pd.read_csv(Path(f"data/processed/labeled_{st_id}_train.csv.gz"))
+        df_tr_raw["dt"] = pd.to_datetime(df_tr_raw["dt"])
+        df_tr_raw = df_tr_raw.sort_values("dt").reset_index(drop=True)
+
         csv_file = Path(f"data/processed/labeled_{st_id}_test.csv.gz")
         df_raw = pd.read_csv(csv_file)
         df_raw["dt"] = pd.to_datetime(df_raw["dt"])
         df_raw = df_raw.sort_values("dt").reset_index(drop=True)
 
-        feats_inj = compute_features_for_series(df_raw, st_id, use_injected=True)
-        feats_clean = compute_features_for_series(df_raw, st_id, use_injected=False)
+        # Prepend clean pre-2023 history so 168h rolling windows at 2023-01-01 are
+        # fully warmed up without synthetic training injections bleeding into 2023.
+        df_tr_warmup = df_tr_raw.copy()
+        df_tr_warmup["inj_gross_cpm"] = df_tr_warmup["gross_cpm"]
+        df_tr_warmup["inj_dose_rate_nsvh"] = df_tr_warmup["dose_rate_nsvh"]
+        for ch_idx in range(2, 10):
+            df_tr_warmup[f"inj_cpm_r0{ch_idx}"] = df_tr_warmup[f"cpm_r0{ch_idx}"]
+        df_panel = pd.concat([df_tr_warmup, df_raw], ignore_index=True)
+        te_mask = (df_panel["dt"] >= "2023-01-01").to_numpy()
+
+        feats_inj = compute_features_for_series(df_panel, st_id, use_injected=True).loc[te_mask].reset_index(drop=True)
+        feats_clean = compute_features_for_series(df_panel, st_id, use_injected=False).loc[te_mask].reset_index(drop=True)
 
         valid = feats_clean["has_radnet_obs"] & feats_clean["rad_complete_channels"]
         n_obs = valid.sum()
@@ -291,23 +305,34 @@ def evaluate_tier_pipeline():
     print(f"Validation fold: {val_obs_hours} observed hours ({val_station_years:.2f} stn-yr), "
           f"{len(val_catalog)} injection events")
 
-    def sweep_roc(series_map, catalog_df, station_years):
+    def sweep_roc(series_map, catalog_df, station_years, is_validation=False):
         """Threshold sweep with NET-ALARM detection (alarm on injected AND NOT on
-        clean) — the unified criterion (see BUG_AUDIT.md, any vs net-alarm)."""
+        clean). For 'loso' (trained holding out ca_san_diego):
+          - on validation (is_validation=True): tuned strictly on the 4 non-held-out
+            training stations (zero leakage from ca_san_diego).
+          - on test (is_validation=False): evaluated strictly on held-out ca_san_diego."""
         records = []
+        loso_stations = [s for s in series_map if (s != "ca_san_diego" if is_validation else s == "ca_san_diego")]
+        loso_st_years = sum(int(series_map[s]["valid"].sum()) for s in loso_stations) / 8766.0
+        loso_cat = catalog_df[catalog_df["station_id"].isin(loso_stations)]
+
         for tau in np.linspace(0.01, 0.99, 99):
             record = {"threshold": tau}
             for tier_key in ["t1", "t2", "t3", "loso"]:
+                st_subset = loso_stations if tier_key == "loso" else list(series_map.keys())
+                st_yrs = loso_st_years if tier_key == "loso" else station_years
+                cat_sub = loso_cat if tier_key == "loso" else catalog_df
+
                 tot_episodes = 0
-                for st_id in series_map:
+                for st_id in st_subset:
                     p_cl = pd.Series(series_map[st_id]["p_clean"][tier_key])
                     val = series_map[st_id]["valid"]
                     episodes, _ = count_clean_alarm_episodes(p_cl, val, tau)
                     tot_episodes += episodes
-                fa_per_year = tot_episodes / station_years
+                fa_per_year = tot_episodes / st_yrs if st_yrs > 0 else 0.0
 
                 detected_events = 0
-                for _, inj in catalog_df.iterrows():
+                for _, inj in cat_sub.iterrows():
                     st_id = inj["station_id"]
                     st_data = series_map[st_id]
                     mask = (st_data["dt"] >= inj["start_utc"]) & (st_data["dt"] <= inj["end_utc"]) & st_data["valid"]
@@ -317,16 +342,16 @@ def evaluate_tier_pipeline():
                         detected_events += 1
 
                 record[f"{tier_key}_clean_fa_per_year"] = fa_per_year
-                record[f"{tier_key}_event_det_rate"] = detected_events / len(catalog_df)
+                record[f"{tier_key}_event_det_rate"] = detected_events / len(cat_sub) if len(cat_sub) > 0 else 0.0
             records.append(record)
         return pd.DataFrame(records)
 
-    val_roc_df = sweep_roc(val_series, val_catalog, val_station_years)
+    val_roc_df = sweep_roc(val_series, val_catalog, val_station_years, is_validation=True)
 
     # 7. Sweep Thresholds to Map ROC Trade-Off Curve
     # (test ROC is descriptive only; operating points in section 9 are selected
     #  on the VALIDATION fold from section 6b — BUG-1 fix)
-    roc_df = sweep_roc(test_series, test_catalog, total_station_years)
+    roc_df = sweep_roc(test_series, test_catalog, total_station_years, is_validation=False)
     roc_df.to_csv("data/processed/model_roc_curve_data.csv", index=False)
     print("Saved ROC curve data to data/processed/model_roc_curve_data.csv")
 

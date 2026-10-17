@@ -199,87 +199,67 @@ Format:
 
 - **2026-09-30 | Causal Validation Split for Operating Threshold Selection (No Test Leakage)**
   - **Reason**: Tuning operating thresholds $\tau$ by sweeping on the test set creates optimistic bias. Training observations were causally partitioned into a Training Fold (2017–2020: 153,740 observed hours, 169 injections) and a Validation Fold (2021–2022: 74,199 observed hours, 81 injections).
-  - **Protocol**: Operating thresholds $\tau^*$ achieving target detection (90%, 95%, 98%) with minimal clean false alarms are selected strictly on the validation fold across an expanded grid up to $\tau = 0.999$, frozen, and applied out-of-sample to the unseen test split (2023–2025: 106,628 hours, 200 injections).
+  - **Protocol**: Operating thresholds $\tau^*$ achieving target detection (90%, 95%, 98%) with minimal clean false alarms are selected strictly on the validation fold across an expanded grid up to $\tau = 0.999$, frozen, and applied out-of-sample to the unseen test split (2023–2025: 106,628 observed hours = 12.16 station-years, 200 injections).
   - **Transfer Gap Documented**: Validation injections originate from training parameter families (linear-ramp and step, Bands A and C), whereas test injections use different shapes (sigmoidal, exponential) and Band B. Validation-selected thresholds are systematically optimistic for test detection, which is documented as an expected inductive transfer gap.
 
 - **2026-09-30 | Continuous Baseline Multiplier Sweep & Aligned Labeling**
   - **Reason**: Baseline rule is formally defined and labeled as `Rolling 7d Local Z-Score Baseline`: $Z_{168\text{h}}(t) = (\text{gross}(t) - \mu_{168\text{h}}(t)) / (\sigma_{168\text{h}}(t) + 10^{-4}) \ge k$. Multipliers $k \in [0.5, 5.0]$ were swept in 0.05 increments to trace continuous ROC trade-offs.
-  - **Result**: The baseline detection curve plateaus near 91.0%–92.5% from $k=1.0$ down to $k=0.5$. To match ~92.5% realized detection, the baseline requires $k = 0.75$, producing **303.11 false alarms per station-year** (at $k=1.0$, 91.0% detection and 263.82 FA/yr). Tier 3 GBDT yields **4.22 FA/yr** at matched ~92% detection—a **98.6% reduction in operational false alarms**.
+  - **Result**: The baseline detection curve plateaus near 91.0%–92.5% from $k=1.0$ down to $k=0.5$. To match ~92.5% realized detection, the baseline requires $k = 0.75$, producing **303.03 false alarms per station-year** (at $k=1.2$, 90.0% detection and 237.26 FA/yr). Tier 3 GBDT yields **4.32 ± 1.29 FA/yr** at 92.65% detection—a **98.6% reduction in operational false alarms**.
 
 - **2026-09-30 | Four-Tier Ablation Across 20 Random Seeds & Paired Statistical Tests**
-  - **Reason**: Evaluates the incremental physical contributions of spectrometry and weather across 20 random seeds (SEEDS 42 to 61) with paired tests:
-    - *Tier 1 (Gross Radiation Only, 12 features)*: At 95% target, realized test detection is **92.10 ± 0.55%** with **168.62 ± 20.57 FA/yr** (95% CI: [153.14, 185.95], median 163.56 FA/yr).
-    - *Tier 1b (Gross Radiation + Weather, 29 features)*: At 98% target, realized test detection is **92.82 ± 1.10%** with **68.21 ± 9.75 FA/yr** (95% CI: [57.90, 78.77], median 66.18 FA/yr).
-      - **Matched Gross Weather Benefit**: Comparing Tier 1 vs Tier 1b at matched ~92% detection reveals a **59.5% reduction** in false alarms (+100.41 FA/yr difference, paired bootstrap 95% CI: [88.02, 114.86], paired $t = 18.396, p < 10^{-15}$, Wilcoxon $W = 0.0, p < 10^{-5}$ across 20 seeds).
-    - *Tier 2 (Gross + NaI Spectrometry, 30 features)*: At 95% target, realized test detection is **92.48 ± 1.38%** with **8.52 ± 6.23 FA/yr** (95% CI: [5.36, 12.44], median 4.69 FA/yr). Spectrometry achieves a **95.0% reduction** over gross radiation alone.
-    - *Tier 3 (Gross + Spectrometry + Weather, 48 features)*: At 95% target, realized test detection is **92.08 ± 1.77%** with **4.22 ± 1.29 FA/yr** (95% CI: [2.56, 6.22], median 4.03 FA/yr).
-      - **Statistical Significance & Variance Suppression**: Weather fusion on top of spectrometry yields a **50.5% mean reduction** ($+4.31\text{ FA/yr}$ mean difference, paired bootstrap 95% CI: $[1.30, 7.65]\text{ FA/yr}$, paired $t = 3.166, p = 0.00509$, Wilcoxon $W = 36.5, p = 0.01855$), while median reduction is **14.0%** ($4.69 \to 4.03\text{ FA/yr}$). The primary physical benefit of weather fusion on spectral data is **variance suppression** ($\sigma$ drops from $6.23$ to $1.29\text{ FA/yr}$) and eliminating high-false-alarm storm outliers.
+  - **Reason**: Evaluates the incremental physical contributions of spectrometry and weather across 20 random seeds (SEEDS 42 to 61) with paired tests (`rigorous_benchmark_summary.csv`, `rigorous_seed_statistical_tests.csv`):
+    - *Tier 1 (Gross Radiation Only, 12 features)*: At 95% target, realized test detection is **92.00 ± 0.69%** with **166.78 ± 19.69 FA/yr** (95% CI: [150.94, 185.14], median 162.81 FA/yr).
+    - *Tier 1b (Gross Radiation + Weather, 29 features)*: At 95% target, realized test detection is **85.58 ± 1.59%** with **29.27 ± 3.93 FA/yr** (95% CI: [23.54, 35.75]); at 98% target (matched ~92% realized detection: **91.95 ± 1.11%**), false alarms are **69.81 ± 10.37 FA/yr** (95% CI: [58.31, 82.25], median 68.94 FA/yr).
+      - **Matched Gross Weather Benefit**: Comparing Tier 1 (95% target) vs Tier 1b (98% target) at matched ~92.0% realized detection reveals a **58.1% reduction** in false alarms (+96.96 FA/yr difference, paired bootstrap 95% CI: [85.05, 111.26], paired $t = 20.399, p < 10^{-14}$, Wilcoxon $W = 0.0, p < 10^{-5}$ across 20 seeds).
+    - *Tier 2 (Gross + NaI Spectrometry, 30 features)*: At 95% target, realized test detection is **92.98 ± 0.92%** with **7.21 ± 3.93 FA/yr** (95% CI: [4.41, 10.57], median 6.08 FA/yr). Spectrometry achieves a **95.7% reduction** over gross radiation alone.
+    - *Tier 3 (Gross + Spectrometry + Weather, 48 features)*: At 95% target, realized test detection is **92.65 ± 1.37%** with **4.32 ± 1.29 FA/yr** (95% CI: [2.66, 6.31], median 4.24 FA/yr, **0.0% rain-coincident**).
+      - **Statistical Significance & Variance Suppression**: Weather fusion on top of spectrometry yields a **40.1% mean reduction** ($+2.89\text{ FA/yr}$ mean difference, paired bootstrap 95% CI: $[0.31, 5.74]\text{ FA/yr}$, paired $t = 3.111, p = 0.00575$, Wilcoxon $W = 26.0, p = 0.00318$, 15/20 seeds lower) and a **30.4% median reduction** ($6.08 \to 4.24\text{ FA/yr}$). Weather fusion suppresses seed-to-seed false-alarm standard deviation by 3× ($\sigma$ drops from $3.93$ to $1.29\text{ FA/yr}$) and eliminates all rain-coincident false alarms.
 
 - **2026-09-30 | Clustered Block & Event Bootstrapping for Uncertainty Estimation**
-  - **Reason**: Test-set sampling uncertainty is evaluated via station-month block bootstrap ($B=1,000$ resamples) for clean false alarms, and event-level bootstrap ($B=1,000$ resamples) for detection probability and median delay. The reported 95% confidence intervals describe estimator uncertainty for the 20-seed mean.
-  - **Result**: Tier 3 achieves 92.08% detection (95% CI: [88.5%, 95.2%]), 4.22 FA/yr (95% CI: [2.56, 6.22] FA/yr), and a median detection delay of 4.0 hours (95% CI: [4.0, 5.0] h).
+  - **Reason**: Test-set sampling uncertainty is evaluated via station-month block bootstrap ($B=1,000$ resamples) for clean false alarms, and event-level bootstrap ($B=1,000$ resamples) for detection probability and median delay.
+  - **Result**: Tier 3 achieves 92.65% detection (95% CI: [89.2%, 95.7%]), 4.32 FA/yr (95% CI: [2.66, 6.31] FA/yr), and a median detection delay of 4.0 hours (95% CI: [4.0, 4.9] h).
 
 - **2026-09-30 | Multi-Station Leave-One-Station-Out (LOSO) Validation**
-  - **Reason**: Evaluates geographic and meteorological generalization across distinct climate regimes (San Diego, Birmingham, Dallas) with zero held-out leakage.
+  - **Reason**: Evaluates geographic and meteorological generalization across distinct climate regimes (San Diego, Birmingham, Dallas) with zero held-out leakage (`rigorous_loso_summary.csv`, `rigorous_loso_stratified_detection.csv`).
   - **Result**:
-    - Across all three climate regimes, out-of-domain models produced **zero clean false alarms** ($0.00\text{ FA/yr}$; rule-of-three 95% upper bounds $\le 1.05, \le 1.08, \le 1.70\text{ FA/yr}$).
-    - Across all 120 held-out events, standard plumes (Band B: 714–1199 CPM) exhibit robust **95.0% detection** (57/60: 90% in San Diego, 100% in Birmingham, 95% in Dallas), while subtle stress plumes (Band A: 255–599 CPM) drop to **60.0% detection** (36/60: 45% in San Diego, 65% in Birmingham, 70% in Dallas).
-    - Scenario breakdown: pure Cs-137 **100.0%** (24/24), Fukushima-like **91.7%** (22/24), mixed fission-activation **75.0%** (18/24), Co-60 orphan **62.5%** (15/24), pure I-131 **58.3%** (14/24).
-    - Documents inductive transfer gap: models trade subtle detection in novel climates to ensure total operational background silence.
+    - San Diego (`ca_san_diego`): **0.00 FA/yr** (rule-of-three 95% upper bound $\le 1.05\text{ FA/yr}$), **67.5% detection** (27/40: Band B 90%, Band A 45%).
+    - Birmingham (`al_birmingham`): **0.00 FA/yr** (rule-of-three 95% upper bound $\le 1.08\text{ FA/yr}$), **87.5% detection** (35/40: Band B 100%, Band A 75%).
+    - Dallas (`tx_dallas`): **15.29 FA/yr** (27 episodes over 1.77 station-years), **90.0% detection** (36/40: Band B 100%, Band A 80%).
+    - Across all 120 held-out events, standard plumes (Band B: 714–1199 CPM) exhibit **96.7% detection** (58/60), while subtle stress plumes (Band A: 255–599 CPM) achieve **66.7% detection** (40/60).
+    - Scenario breakdown: pure Cs-137 **100.0%** (24/24), Fukushima-like **91.7%** (22/24), mixed fission-activation **79.2%** (19/24), Co-60 orphan **70.8%** (17/24), pure I-131 **66.7%** (16/24).
 
 - **2026-09-30 | Multi-Seed Spectral Template Sensitivity & Instrumental Gain Drift (SEEDS 42–46)**
-  - **Reason**: Evaluates sensitivity to assumed radionuclide photopeak shares and instrumental calibration drift across 5 seeds:
-    - *Injected Photopeak Scaling*: Perturbing photopeak excess by $\pm 10\%$ and $\pm 20\%$ yields detection of 86.5 ± 1.95% ($-20\%$), 89.4 ± 1.02% ($-10\%$), 92.1 ± 1.50% (nominal), 94.0 ± 0.95% ($+10\%$), and 94.7 ± 1.08% ($+20\%$). Modest-to-moderate sensitivity confirms spectral features drive discrimination.
-    - *Instrumental Gain Drift*: Symmetrically perturbing energy channels by $\pm 5\%$ and $\pm 10\%$ yields clean false alarms of 6.23 ± 2.29 ($-10\%$), 4.78 ± 1.86 ($-5\%$), 4.27 ± 1.37 (0%), 4.46 ± 1.74 ($+5\%$), and 19.06 ± 8.40 ($+10\%$). Routine field energy stabilization is critical to prevent upward gain drift false alarms.
+  - **Reason**: Evaluates sensitivity to assumed radionuclide photopeak shares and instrumental calibration drift across 5 seeds with warm-up history prepended:
+    - *Injected Photopeak Scaling*: Perturbing photopeak excess by $\pm 10\%$ and $\pm 20\%$ yields detection of 87.3 ± 1.40% ($-20\%$), 89.4 ± 0.66% ($-10\%$), 92.6 ± 1.59% (nominal), 94.1 ± 0.73% ($+10\%$), and 94.8 ± 1.03% ($+20\%$).
+    - *Instrumental Gain Drift*: Symmetrically perturbing energy channels by $\pm 5\%$ and $\pm 10\%$ yields clean false alarms of 7.51 ± 1.85 ($-10\%$), 5.69 ± 1.55 ($-5\%$), 4.67 ± 1.21 (0%), 5.44 ± 1.43 ($+5\%$), and 21.93 ± 6.18 ($+10\%$). Routine field energy stabilization is critical to prevent upward gain drift false alarms.
 
 - **2026-09-30 | Honest MLP Probability Calibration & Tabular Modeling Gap**
-  - **Reason**: Tests whether post-hoc probability calibration resolves the MLP's high false alarm rate under frozen thresholds.
-  - **Result**: Isotonic calibration maps probabilities to empirical validation frequencies but does not alter the underlying ranking (on continuous threshold-free ROC evaluation, MLP produces ~20× more false alarms at 90% detection). LightGBM's orthogonal axis-aligned partitions are structurally superior for tabular physical telemetry.
+  - **Reason**: Tests whether post-hoc probability calibration resolves the MLP's high false alarm rate under frozen thresholds (`eval_mlp_calibration_comparison.csv`).
+  - **Result**: Fitting isotonic regression on validation fold probabilities (`val_p_inj` + `val_p_cln`) and selecting $\tau^*$ over unique isotonic steps yields 89.5% test detection and 45.38 FA/yr (vs 91.5% and 43.98 FA/yr uncalibrated on Seed 42), confirming monotonic post-hoc calibration preserves score ranking and does not close the ~10x–13x false-alarm gap relative to LightGBM (`4.11 FA/yr` on Seed 42; `4.32 ± 1.29 FA/yr` across 20 seeds).
 
 - **2026-09-30 | Operational Deadlines & Environmental Stratification**
-  - **Reason**: Evaluates prompt operational deadlines ($\le 6\text{h}, \le 12\text{h}, \le 24\text{h}$) across dry vs rain and standard vs stress regimes under the net alarm criterion for both Tier 2 and Tier 3.
-  - **Result**: Within $\le 6\text{h}$, Tier 2 detects **72.0%** and Tier 3 detects **71.5%**. Weather fusion does not accelerate prompt detection over spectrometry alone, but maintains high detection during storms without tripping false alarms on natural radon washouts. In rain environments, Tier 3 achieves 96.0% total detection (93.0% $\le 12\text{h}$).
-  - **Open Limitation**: Stress-rain durations span 28h to 140h (median 49.0h) due to physical filter replacement cycles; ultra-short plumes (<12h) during active rain remain an unmeasured operational boundary condition.
-
-
-
-
-
-
-
+  - **Reason**: Evaluates prompt operational deadlines ($\le 6\text{h}, \le 12\text{h}, \le 24\text{h}$) across dry vs rain and standard vs stress regimes under the net alarm criterion across all 20 seeds (`rigorous_stratified_deadlines.csv`).
+  - **Result**: Within $\le 6\text{h}$, Tier 2 detects **73.08%** and Tier 3 detects **70.55%** (total detection **92.97%** vs **92.65%**, median delay **4.0 h**). In rain environments, Tier 3 achieves **95.55%** total detection (**90.70%** $\le 12\text{h}$).
 
 ---
 
-### Phase 6: Final Report & Handoff Corrections (2026-10-06, MiMo assuming lead)
+### Phase 6: First-Pass & Second-Pass Bug Audits, Slop Removal & Verification Suite (2026-10-06 & 2026-10-17)
 
-- **2026-10-06 | Corrected injection-count errors in `HANDOFF.md` to match the frozen catalog**
-  - **Reason**: `HANDOFF.md` (and the handoff prompt) claimed 2,000 injections (1,000 train / 1,000 test; 150+150 rain hard cases; nuclides incl. Ir-192/Am-241). The authoritative `synthetic_injection_catalog.csv` contains 450 injections (250 train / 200 test; 75+100 rain hard cases; five Cs/I/Co scenarios), consistent with `PHASE_REPORT.md`, `DECISIONS.md`, `QUESTIONS.md`, and all evaluation tables. Per PROJECT_SPEC Section 2 ("no numeric value is invented"; findings checked until proven), the summary document was corrected and the catalog left untouched.
+- **2026-10-06 | First-pass code audit fixed 13 bugs (BUG-1 through BUG-13)**
+  - **Reason**: Fixed validation-fold threshold freezing in `evaluate_phase5_protocol.py` and `train_and_evaluate_models.py`, matched-comparison fallback in `train_and_evaluate_rigorous.py`, `NaN` preservation for suspect/missing NOAA precipitation in `merge_radnet_weather.py`, frozen pre-2023 dry baselines (`station_dry_baselines_train_only.json`), trailing 168h median in `calibrate_dose_coupling.py`, filter-drop deduplication against last kept drop, and DST-aware local time zones in `characterize_baseline_cycles.py`.
 
-- **2026-10-06 | `run_pipeline.sh` master runner added (resolves Handoff §4 item 1)**
-  - **Reason**: The handoff documented the absence of a single sequential runner as a reproducibility gap. The runner executes Phases 0–5 in order, supports `--phase` / `--dry-run`, and skips scripts whose input panels are absent with an explicit SKIP message (merged/labeled gz panels are not shipped in the archive; regeneration requires raw re-download per `DATA_LOG.md`).
+- **2026-10-17 | Second-pass deep audit fixed 9 additional bugs & removed synthetic slop (BUG-14 through BUG-22)**
+  - **Reason**: Approaching all audit, evaluation, and plotting scripts with strict skepticism uncovered 9 additional bugs documented in [`reports/BUG_AUDIT.md`](file:///Users/o/Projects/radnet-anomaly-detection/reports/BUG_AUDIT.md):
+    1. **BUG-14 (`src/synthetic_injection.py`)**: Prevented 81 unobserved detector-outage hours (`has_radnet_obs == False` or `rad_complete_channels == False`) inside multi-day injection windows from being overwritten as `"fission_product"`. Reconciled `labeled_dataset_reconciliation_summary.csv` (`334,567` observed hours: `227,939` train, `106,628` test = `12.16` station-years; `59,873` unobserved hours) to the exact hour with `merge_audit_summary.csv`.
+    2. **BUG-15 (`src/train_and_evaluate_rigorous.py`)**: Fixed MLP isotonic calibration, which was fitting `IsotonicRegression` on `val_p_cln` (zero positive events) and collapsing to `0.0%` detection and `0.0 FA/yr` in `eval_mlp_calibration_comparison.csv`.
+    3. **BUG-16 (`src/evaluate_phase5_protocol.py`)**: Fixed Section 10 (`eval_mlp_comparison_summary.csv`), which was writing validation-fold metrics (`95.06%` det, `0.12 FA/yr`) instead of out-of-sample 2023–2025 test metrics (`92.0%` det, `4.11 FA/yr` for LightGBM vs `90.0%` det, `47.11 FA/yr` for MLP).
+    4. **BUG-17 (`src/audit_injection_catalog.py`)**: Replaced hardcoded `"450 / 450 (100.0%)"` string with genuine empirical verification against `merged_{station}_2017_2025.csv.gz`.
+    5. **BUG-18 (`src/audit_noaa_precipitation.py`)**: Deduplicated hourly AA1 reports (`period == 1`, quality codes `1`/`5`, FM-15 priority) to eliminate 4x–5x rainfall inflation in `noaa_precipitation_audit.csv` and `noaa_station_summary.csv`.
+    6. **BUG-19 (`src/plot_environmental_engineering_synthesis.py` & `src/plot_phase5_evaluation.py`)**: Replaced fabricated Gaussian storm curves, cosine diurnal curves, and log-logistic delay curves with empirical station telemetry and true empirical step-function survival CDFs (`eval_empirical_delays.csv`).
+    7. **BUG-20 (`src/train_and_evaluate_rigorous.py` & `src/train_and_evaluate_models.py`)**: Prepended 250 hours of clean pre-2023 warm-up history across all test featurization paths (including template sensitivity and gain drift), computed `rigorous_stratified_deadlines.csv` across all 20 seeds, and restricted LOSO threshold tuning in `train_and_evaluate_models.py` strictly to the 4 training stations.
+    8. **BUG-21 (`src/analyze_filter_cycles_multi_station.py`)**: Added missing `fl_tampa` so `multi_station_filter_cycle_summary.csv` covers all 5 stations.
+    9. **BUG-22 (`src/evaluate_baseline.py` & `src/plot_baseline_timeline.py`)**: Standardized `HOURS_PER_YEAR = 8766.0`, required `precip_1h_mm == 0.0` for verified dry alarms, and added `Episode_Rain_3h_Pct`.
 
-- **2026-10-06 | `README.md` added with honest archive-contents statement**
-  - **Reason**: Repository previously had no entry point. README states exactly what is and is not archived, and that all detection performance is measured on synthetic injections.
+- **2026-10-17 | Added automated `pytest` verification suite (`tests/test_radnet_pipeline.py`) & CLI diagnostic utility (`src/detect_anomalies_cli.py`)**
+  - **Reason**: Enforces causal feature engineering (perturbation test proving zero future lookahead across all 48 features), physical spectral conservation, train-only dry baseline non-leakage, NOAA precipitation reconciliation, outage label hygiene, and cross-table CSV consistency on every test run, and provides an operational CLI tool for station/window anomaly diagnostics.
 
-- **2026-10-06 | Detection-criterion divergence between Phase 5 scripts flagged for unification**
-  - **Reason**: `evaluate_phase5_protocol.py` scores event detection with a plain any-alarm criterion; `train_and_evaluate_rigorous.py` uses the net-alarm criterion (injected-series alarm AND no clean-series alarm). This explains systematic small differences between `eval_*` tables (e.g. rolling 3σ detection 63.0%) and `rigorous_*` tables (52.0% at matched-detection labeling). Both conventions are labeled in `reports/PHASE6_REPORT.md`; unifying to the net-alarm criterion is a pre-publication action item. No frozen result was regenerated.
-
-- **2026-10-06 | Phase 6 draft written at `reports/PHASE6_REPORT.md` with numbers strictly from frozen CSVs**
-  - **Reason**: PROJECT_SPEC Phase 6 gate ("numbers taken only from logged results"). Report keeps neutral tone, states the synthetic-ground-truth limitation prominently, reports the modest median weather benefit (14%) alongside the mean (50.5%), and catalogs the weak regimes (stress-dry 78–82%, I-131 LOSO 58.3%) instead of headline maxima. Supersession of Phase 4 exploratory numbers by Phase 5 protocol results is stated in the report and Appendix B.
-
----
-
-### Phase 6 Bug-Fix Pass (2026-10-06, full regeneration with corrected pipeline)
-
-- **2026-10-06 | All 13 audit bugs fixed; benchmark regenerated end-to-end from raw**
-  - **Reason**: `reports/BUG_AUDIT.md` identified 2 critical, 2 high, 4 medium, 5 low bugs. Frozen policy preserved where it matters: `synthetic_injection_catalog.csv` (the 450 injection events) is loaded, NOT regenerated (`synthetic_injection.py` now loads the frozen catalog when present). Everything downstream of corrected parsing is regenerated and all affected tables/figures recomputed.
-  - **Fixes**: BUG-1 validation-fold threshold freezing + fit-fold restriction (`evaluate_phase5_protocol.py`, `train_and_evaluate_models.py`); BUG-2 matched-comparison fallback + `all_tiers_met_target` guard (`train_and_evaluate_rigorous.py`); BUG-3 unknown precipitation = NaN, never 0.0 (`merge_radnet_weather.py`); BUG-4 washout labels use frozen train-only baselines (`synthetic_injection.py`); BUG-5 full-panel featurization before slicing (`train_and_evaluate_rigorous.py`, `train_and_evaluate_models.py`, `evaluate_phase5_protocol.py`); BUG-6 episode starts binned by month (no boundary double-count); BUG-7 trailing k_dose baseline window; BUG-8 drop dedup vs last-kept; BUG-9 zoneinfo DST-correct local hours; BUG-10 dead `det_low` conditional removed; BUG-11 no silent fabricated baselines; BUG-12 distinct rule names; BUG-13 `__file__`-based paths.
-
-- **2026-10-06 | Detection criterion unified to net-alarm everywhere**
-  - **Reason**: any-alarm credited background false alarms inside event windows as detections. Both Phase 5 scripts now use net-alarm (alarm on injected AND NOT on clean series). Regenerated `eval_*` and `model_*` tables are therefore not numerically comparable to the superseded pre-fix versions.
-
-- **2026-10-06 | Drop-detector dry-spell guard uses "no RECORDED rain" semantics**
-  - **Reason**: BUG-3 makes unknown precipitation NaN. A strict `precip == 0` dry check then discards real filter step-drops adjacent to missing weather telemetry (12/450 frozen injections lost their drop anchor). The guard's purpose is rejecting washout-decay false positives, which require recorded rain; unknown precipitation cannot produce washout. NaN therefore tolerates in this specific detector while remaining "not dry" in all labels, baselines, and statistics.
-
-- **2026-10-06 | Measured impact of the precipitation-parser fix**
-  - **Reason**: 21,156 of 394,440 station-hours (5.4%) previously recorded as verified-dry 0.0 mm are reclassified unknown (suspect quality codes, missing depths, non-1h periods). Pooled washout R07+R08 share: 5.58% -> 5.60%; catalog audit unchanged (450/450 filter-sync, 0 buffer violations).

@@ -276,3 +276,90 @@ Note: the drop-detector dry-spell guard uses "no RECORDED rain" semantics (docum
 `analyze_filter_cycles_multi_station.py`) — unknown precipitation is not certified dry
 anywhere in labels/statistics, but cannot produce washout decays and must not discard
 real filter step-drops.
+
+---
+
+# Second-Pass Deep Audit — Hidden Bugs, Audit Traps & Synthetic Slop Removal (2026-10-17)
+
+Approaching every audit, verification, evaluation, and plotting script with strict skepticism uncovered **9 additional reproducible bugs and synthetic fabrications** (BUG-14 through BUG-22). All 9 have been fixed, all affected artifacts and figures regenerated end-to-end, and an automated `pytest` verification suite (`tests/test_radnet_pipeline.py`) now enforces these invariants on every run.
+
+---
+
+## BUG-14 (CRITICAL) — Unobserved Detector Outage Hours Overwritten as `"fission_product"` During Long Injections
+**File**: [`src/synthetic_injection.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/synthetic_injection.py)
+
+When `synthetic_injection.py` injected synthetic plumes into the continuous hourly grid, it set `df.loc[mask, "label"] = "fission_product"` across the entire `[start_utc, end_utc]` window without checking `valid_obs = has_radnet_obs & rad_complete_channels`. While injection windows were verified to have valid observations at their first 24 hours and final 6 hours, multi-day rain-coincident plumes (up to 164 hours long) occasionally spanned brief 1–6 hour station telemetry dropouts (`has_radnet_obs == False`, `gross_cpm` is `NaN`).
+- **What broke**: Exactly **81 unobserved detector-outage hours** across the 5 stations were overwritten from `"unobserved"` to `"fission_product"` (`labeled_dataset_reconciliation_summary.csv` reported `334,648` observed hours and `59,792` unobserved hours instead of the true `334,567` observed and `59,873` unobserved hours in `merge_audit_summary.csv`).
+- **Fix**: Restricted `injection_active`, synthetic count additions, and `"fission_product"` labeling strictly to `valid_obs` hours within the injection window; non-observed hours remain `"unobserved"` with `NaN` counts. Also loaded `DOSE_COUPLING_SLOPES` dynamically from `dose_rate_cpm_regression_summary.csv` rather than hardcoding pre-fix slopes.
+
+---
+
+## BUG-15 (CRITICAL) — MLP Isotonic Calibration Fit on Clean Validation Background (0 Positives) -> Degenerate 0% Detection
+**File**: [`src/train_and_evaluate_rigorous.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/train_and_evaluate_rigorous.py)
+
+In `train_and_evaluate_rigorous.py`, `IsotonicRegression` for the calibrated MLP comparison (`eval_mlp_calibration_comparison.csv`) was fit on `val_p_cln` (the clean validation series containing **zero** synthetic plumes) against `y_val == 2` (`label == "fission_product"`). Wait: even when fit on `val_p_inj`, isotonic calibration produces step-function plateaus, and selecting `tau` on an arbitrary `np.linspace(0.01, 0.999, 500)` grid jumps across the top plateau boundary (`1.0`), yielding `0.0%` test detection and `0.00 FA/yr` in `eval_mlp_calibration_comparison.csv`.
+- **What broke**: `eval_mlp_calibration_comparison.csv` reported `0.0%` realized detection and `0.0 FA/yr` for `Tier 3: Calibrated MLP (Isotonic)`.
+- **Fix**: Fit `IsotonicRegression` on the validation fold (`val_p_inj` concatenated with `val_p_cln` so both positive plumes and clean washout background are represented) and evaluate thresholds across the exact unique isotonic step values (`np.unique(val_probs_cal)`) plus a fine grid at the matched 95% validation target (`89.5%` realized test detection, `45.38 FA/yr` vs `91.5%` and `43.98 FA/yr` for uncalibrated Seed 42).
+
+---
+
+## BUG-16 (CRITICAL) — Validation-Fold Metrics Written as Test-Set Metrics in `eval_mlp_comparison_summary.csv`
+**File**: [`src/evaluate_phase5_protocol.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/evaluate_phase5_protocol.py)
+
+In Section 10 of `evaluate_phase5_protocol.py`, after tuning thresholds on the 2021–2022 validation fold (`best_lgb_pt`, `best_mlp_pt`), the script wrote `best_lgb_pt["det_rate"]` (`95.06%`) and `best_lgb_pt["fa_rate"]` (`0.12 FA/yr`) directly into `eval_mlp_comparison_summary.csv`—reporting **validation-fold** metrics as if they were 2023–2025 test-set performance!
+- **What broke**: `eval_mlp_comparison_summary.csv` claimed Tier 3 LightGBM achieved `0.12 FA/yr` and `95.06%` detection at the 95% target, directly contradicting `eval_benchmark_uncertainty_summary.csv` (`4.11 FA/yr` and `92.0%` detection on the same Seed 42 model).
+- **Fix**: Evaluated the frozen validation thresholds (`best_lgb_pt["tau"]`, `best_mlp_pt["tau"]`) out-of-sample on the 2023–2025 test split (`evaluate_at_tau`), so `eval_mlp_comparison_summary.csv` now matches `eval_benchmark_uncertainty_summary.csv` to the exact decimal place (`92.0%` det, `4.11 FA/yr` for LightGBM vs `90.0%` det, `47.11 FA/yr` for MLP).
+
+---
+
+## BUG-17 (HIGH) — Fake Hardcoded `100.0%` Pass Rate in `audit_injection_catalog.py`
+**File**: [`src/audit_injection_catalog.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/audit_injection_catalog.py)
+
+Check 3 (`"Filter Drop Synchronization (100% Real Step Drops)"`) in `audit_injection_catalog.py` did not inspect a single station dataframe—it literally hardcoded `"observed_value": "450 / 450 (100.0%)"` and `"status": "PASSED"`.
+- **What broke**: The audit script was a rubber-stamp theater check that would pass even if `end_utc` had zero relation to real filter changes or if injection windows lacked valid RadNet telemetry.
+- **Fix**: Replaced the hardcoded string with an empirical verification against `merged_{station}_2017_2025.csv.gz` that verifies for all 450 catalog rows: (1) real filter step-drop at `end_utc`, (2) valid 8-channel telemetry at start and end windows, (3) strictly zero precipitation (`precip_1h_mm == 0.0` and `precip_24h == 0.0`) across all 275 `strictly_dry` injections, (4) exact calendar duration math (`duration_hours == (end_utc - start_utc)/1h + 1`), and (5) spectral channel shares summing to `1.0`.
+
+---
+
+## BUG-18 (HIGH) — 4x–5x Annual Rainfall Inflation in `audit_noaa_precipitation.py`
+**File**: [`src/audit_noaa_precipitation.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/audit_noaa_precipitation.py)
+
+`audit_noaa_precipitation.py` summed raw `AA1` precipitation records without deduplicating multiple reports within the same UTC hour (FM-15 routine METAR + FM-16 SPECI special reports + FM-12 synoptic multi-hour summaries) and without filtering out multi-hour accumulation periods when computing `total_precip_mm` and `max_1hr_precip_mm`.
+- **What broke**: `noaa_precipitation_audit.csv` and `noaa_station_summary.csv` reported unphysical annual rainfall (`5,081.8 mm/yr` in Birmingham, `3,716.0 mm/yr` in Washington DC, `290.3 mm/h` 1-hour max in Tampa), disagreeing by 3x–4x with `merge_audit_summary.csv` (`1,691.6 mm/yr` in Birmingham).
+- **Fix**: Applied the exact same 1-hour period (`period == 1`), quality code (`1`, `5`), and UTC-hour deduplication (prioritizing FM-15 routine METARs) used in `merge_radnet_weather.py`. Both NOAA audit CSVs now match `merge_audit_summary.csv` to within `0.1 mm/yr` across all 5 stations.
+
+---
+
+## BUG-19 (HIGH) — Fabricated Analytical Curves Masquerading as Empirical Data in Figures
+**Files**: [`src/plot_environmental_engineering_synthesis.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/plot_environmental_engineering_synthesis.py), [`src/plot_phase5_evaluation.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/plot_phase5_evaluation.py)
+
+1. `plot_environmental_engineering_synthesis.py` generated synthetic Gaussian storms (`rain_mm = 14.5 * np.exp(-0.5 * ((t_storm - 6.2) / 1.1) ** 2)`) and synthetic cosine diurnal cycles (`cpm_diurnal = 3885 + 290 * np.cos(...)`) and labeled them `"Birmingham (KBHM) Empirical Mean"`, and hardcoded stale benchmark numbers while labeling the 58.3 FA/yr MLP as `"OPERATIONAL SOLUTION"`.
+2. `plot_phase5_evaluation.py` (Panel B of `eval_detection_delay_distributions.png`) plotted a fabricated analytical log-logistic curve `cdf = m_det / (1.0 + (med / time_hours) ** 1.8)` instead of the empirical survival CDF of the 200 test events.
+- **Fix**: Replaced all fabricated analytical curves in `plot_environmental_engineering_synthesis.py` with real empirical telemetry from `labeled_al_birmingham_train/test.csv.gz` (the Jan 25, 2023 Birmingham storm washout event and the observed 24-hour CST dry-weather diurnal cycle) and dynamically loaded all benchmark metrics from `rigorous_benchmark_summary.csv`. Exported `data/processed/eval_empirical_delays.csv` in `evaluate_phase5_protocol.py` and plotted the true step-function empirical CDF in `plot_phase5_evaluation.py`.
+
+---
+
+## BUG-20 (MEDIUM) — Missing Pre-2023 Warm-Up History & Single-Seed Mismatch in `train_and_evaluate_rigorous.py` & `train_and_evaluate_models.py`
+**Files**: [`src/train_and_evaluate_rigorous.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/train_and_evaluate_rigorous.py), [`src/train_and_evaluate_models.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/train_and_evaluate_models.py)
+
+1. Test split featurization (`2023-01-01` onward) started cold without prepending the trailing 250 hours of clean late-2022 telemetry, leaving 168-hour rolling features truncated/NaN during the first week of January 2023. Similarly, Part A (spectral template sensitivity) and Part B (gain drift) forgot to prepend the warm-up history, causing their `+0%` nominal rows to disagree with the 5-seed mean (`92.6% ± 1.59%`).
+2. `rigorous_stratified_deadlines.csv` was computed only on Seed 42 while `rigorous_benchmark_summary.csv` reported the 20-seed mean, causing `"All Test Injections"` in `rigorous_stratified_deadlines.csv` to disagree with `rigorous_benchmark_summary.csv`.
+3. In `train_and_evaluate_models.py`, `sweep_roc` tuned the LOSO threshold across all 5 stations on validation instead of only the 4 non-held-out training stations.
+- **Fix**: Prepended 250 hours of clean pre-2023 warm-up history across all test featurization paths (`train_and_evaluate_models.py`, `train_and_evaluate_rigorous.py` main loop + Parts A & B, and `evaluate_phase5_protocol.py`); computed `rigorous_stratified_deadlines.csv` across all 20 seeds so `"All Test Injections"` matches `rigorous_benchmark_summary.csv` (`92.97%` Tier 2, `92.65%` Tier 3); restricted LOSO validation threshold tuning strictly to the 4 training stations.
+
+---
+
+## BUG-21 (LOW-MEDIUM) — Missing `fl_tampa` in `analyze_filter_cycles_multi_station.py`
+**File**: [`src/analyze_filter_cycles_multi_station.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_filter_cycles_multi_station.py)
+
+`analyze_filter_cycles_multi_station.py` omitted `fl_tampa`, generating a 4-station `multi_station_filter_cycle_summary.csv` despite the 5-station pilot network.
+- **Fix**: Added `fl_tampa` (`-300.0 CPM` threshold) and regenerated `multi_station_filter_cycle_summary.csv` across all 5 stations (`147` plausible operational intervals, median `4.33 days`, mean drop `444.9 CPM` for Tampa).
+
+---
+
+## BUG-22 (LOW) — `HOURS_PER_YEAR = 8760.0` vs `8766.0` & Unverified Dry Fraction in `evaluate_baseline.py`
+**Files**: [`src/evaluate_baseline.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/evaluate_baseline.py), [`src/plot_baseline_timeline.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/plot_baseline_timeline.py)
+
+`evaluate_baseline.py` used `HOURS_PER_YEAR = 8760.0` (whereas all Phase 4/5 scripts use `8766.0` to account for leap years) and counted `precip_24h == 0.0` without `precip_1h_mm == 0.0` in `dry_24h_frac`.
+- **Fix**: Standardized `HOURS_PER_YEAR = 8766.0`, required `(precip_24h == 0.0) & (precip_1h_mm == 0.0)` for verified dry alarms, added episode-level rain coincidence (`Episode_Rain_3h_Pct`), and aligned `plot_baseline_timeline.py` with `evaluate_baseline.py`.
+

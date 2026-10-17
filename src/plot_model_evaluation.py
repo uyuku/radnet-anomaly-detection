@@ -78,14 +78,29 @@ def plot_headline_roc():
         label="Tier 3 LOSO: Held-out San Diego (Unseen Coastal Station)",
     )
 
-    # Plot Baseline Benchmark Points
+    # Plot Baseline Benchmark Points dynamically from CSV
+    base_roc_df = pd.read_csv("data/processed/rigorous_baseline_continuous_roc.csv")
+    op_df = pd.read_csv("data/processed/model_operating_points_summary.csv")
+    loso_df = pd.read_csv("data/processed/model_loso_evaluation_summary.csv")
+
+    def _get_base_pt(b_type: str, k: float) -> tuple[float, float]:
+        row = base_roc_df[(base_roc_df["baseline_type"] == b_type) & (np.isclose(base_roc_df["k_multiplier"], k))].iloc[0]
+        return float(row["detection_rate_pct"]), float(row["false_alarms_per_year"])
+
+    r3_det, r3_fa = _get_base_pt("rolling_7d_local_z", 3.0)
+    r4_det, r4_fa = _get_base_pt("rolling_7d_local_z", 4.0)
+    r5_det, r5_fa = _get_base_pt("rolling_7d_local_z", 5.0)
+    g3_det, g3_fa = _get_base_pt("global_dry_sigma", 3.0)
+    g4_det, g4_fa = _get_base_pt("global_dry_sigma", 4.0)
+    g5_det, g5_fa = _get_base_pt("global_dry_sigma", 5.0)
+
     baselines = [
-        {"name": "Rolling 7d 3-sigma", "det": 63.0, "fa": 82.95, "color": "#d62728", "marker": "s"},
-        {"name": "Rolling 7d 4-sigma", "det": 36.5, "fa": 42.34, "color": "#d62728", "marker": "o"},
-        {"name": "Rolling 7d 5-sigma", "det": 18.0, "fa": 23.35, "color": "#d62728", "marker": "^"},
-        {"name": "Global Dry 3-sigma", "det": 49.5, "fa": 39.46, "color": "#8c564b", "marker": "s"},
-        {"name": "Global Dry 4-sigma", "det": 30.5, "fa": 20.88, "color": "#8c564b", "marker": "o"},
-        {"name": "Global Dry 5-sigma", "det": 20.5, "fa": 10.61, "color": "#8c564b", "marker": "^"},
+        {"name": "Rolling 7d 3-sigma", "det": r3_det, "fa": r3_fa, "color": "#d62728", "marker": "s"},
+        {"name": "Rolling 7d 4-sigma", "det": r4_det, "fa": r4_fa, "color": "#d62728", "marker": "o"},
+        {"name": "Rolling 7d 5-sigma", "det": r5_det, "fa": r5_fa, "color": "#d62728", "marker": "^"},
+        {"name": "Global Dry 3-sigma", "det": g3_det, "fa": g3_fa, "color": "#8c564b", "marker": "s"},
+        {"name": "Global Dry 4-sigma", "det": g4_det, "fa": g4_fa, "color": "#8c564b", "marker": "o"},
+        {"name": "Global Dry 5-sigma", "det": g5_det, "fa": g5_fa, "color": "#8c564b", "marker": "^"},
     ]
 
     for b in baselines:
@@ -105,13 +120,20 @@ def plot_headline_roc():
     ax.text(120, 90.5, "90% Detection Target", color="gray", fontsize=8.5, fontstyle="italic")
     ax.text(120, 95.5, "95% Detection Target", color="gray", fontsize=8.5, fontstyle="italic")
 
+    op95 = op_df[op_df["target_detection_rate_pct"] == 95.0].iloc[0]
+    t2_det, t2_fa = float(op95["t2_realized_det_pct"]), float(op95["t2_fa_per_year"])
+    t3_det, t3_fa = float(op95["t3_realized_det_pct"]), float(op95["t3_fa_per_year"])
+    fa_red_vs_r3 = (r3_fa - t3_fa) / r3_fa * 100.0
+    loso_sd_det = float(loso_df["detection_rate_pct"].iloc[0])
+    loso_sd_fa = float(loso_df["false_alarms_per_station_year"].iloc[0])
+
     # Add Callout Box
     textstr = (
-        "Key Findings:\n"
-        "• Fixed 3σ baseline triggers 83 FA/stn-yr at only 63% detection\n"
-        "• Tier 2 & 3 achieve 90% detection with only 3.1-3.2 FA/stn-yr\n"
-        "• 96.1% reduction in operational false alarms vs baseline!\n"
-        "• LOSO cross-validation holds up at 3.5 FA/stn-yr on unseen site"
+        "Key Findings (Frozen Validation Thresholds):\n"
+        f"• Rolling 3σ baseline triggers {r3_fa:.1f} FA/stn-yr at {r3_det:.1f}% net detection\n"
+        f"• Tier 3 achieves {t3_det:.1f}% test detection at {t3_fa:.2f} FA/stn-yr (Tier 2: {t2_fa:.2f})\n"
+        f"• {fa_red_vs_r3:.1f}% reduction in operational false alarms vs 3σ baseline\n"
+        f"• Held-out San Diego (LOSO): {loso_sd_det:.1f}% det at {loso_sd_fa:.2f} FA/stn-yr"
     )
     props = dict(boxstyle="round,pad=0.5", facecolor="#f8f9fa", edgecolor="#adb5bd", alpha=0.95)
     ax.text(0.04, 0.40, textstr, transform=ax.transAxes, fontsize=9.0, verticalalignment="top", bbox=props)
@@ -120,7 +142,7 @@ def plot_headline_roc():
     ax.set_xlabel("Clean Operational False Alarms per Station-Year (Lower is Better)")
     ax.set_ylabel("Synthetic Injection Detection Probability (%) (Higher is Better)")
     ax.set_xlim(-2, 160)
-    ax.set_ylim(10, 103)
+    ax.set_ylim(5, 103)
     ax.grid(True, linestyle="--", alpha=0.5)
     ax.legend(loc="lower right", frameon=True, facecolor="white", edgecolor="#adb5bd", fontsize=9.0)
 
@@ -253,7 +275,7 @@ def plot_hard_case_timeline():
     df_raw["dt"] = pd.to_datetime(df_raw["dt"])
     df_raw = df_raw.sort_values("dt").reset_index(drop=True)
 
-    from src.feature_engineering import compute_features_for_series, TIER_3_FEATURES
+    from src.feature_engineering import compute_features_for_series, TIER_3_FEATURES, STATION_DRY_BASELINES
     from src.train_and_evaluate_models import load_and_prepare_train_data, train_tier_model
 
     # Train model to get live probabilities
@@ -279,13 +301,17 @@ def plot_hard_case_timeline():
     ax1.set_title("Figure 4: Model Diagnostic Timeline on Dedicated Hard-Case Injection (INJ_0067, Birmingham, AL)\nConvective Storm (13.5 mm/h Rain Peak) + Subtle Band A Pure Cs-137 Plume (+479 CPM) Ending at Physical Filter Drop", fontweight="bold", fontsize=11)
     ax1.legend(loc="upper right", frameon=True, facecolor="white")
 
-    # Panel 2: Gross Count Rate & Baseline
+    # Panel 2: Gross Count Rate & Baseline (strictly train-split dry baseline)
     ax2 = axes[1]
+    bhm_base = STATION_DRY_BASELINES["al_birmingham"]
+    bhm_mu = bhm_base["mu"]
+    bhm_sigma = bhm_base["sigma"]
+    base_thresh = bhm_mu + 3.0 * bhm_sigma
+
     ax2.plot(sub_df["dt"], sub_df["gross_cpm"], color="gray", linestyle="--", linewidth=1.8, label="Real Background + Natural Storm Washout (Peak: 4,896 CPM)")
     ax2.plot(sub_df["dt"], sub_df["inj_gross_cpm"], color="#d62728", linewidth=2.5, label="Injected Detector Gross CPM (Peak: 4,992 CPM)")
-    ax2.plot(sub_df["dt"], sub_df["synthetic_excess_cpm"] + 3887.3, color="#ff7f0e", linestyle=":", linewidth=2.0, label="Synthetic Cs-137 Signal Alone (+479.1 CPM plateau)")
+    ax2.plot(sub_df["dt"], sub_df["synthetic_excess_cpm"] + bhm_mu, color="#ff7f0e", linestyle=":", linewidth=2.0, label="Synthetic Cs-137 Signal Alone (+479.1 CPM plateau)")
 
-    base_thresh = 3887.3 + 3.0 * 348.4
     ax2.axhline(base_thresh, color="#2ca02c", linestyle="--", label=f"Fixed 3-sigma Alarm Threshold ({base_thresh:.1f} CPM)")
 
     inj_act = sub_df[sub_df["injection_active"]]
@@ -301,8 +327,9 @@ def plot_hard_case_timeline():
     ax3.plot(sub_df["dt"], sub_probs[:, 1], color="#1f77b4", linewidth=1.8, linestyle="--", label="P(radon_washout) — Weather-Aware Natural Washout Probability")
     ax3.plot(sub_df["dt"], sub_probs[:, 0], color="gray", linewidth=1.5, linestyle=":", label="P(normal) — Background Probability")
 
-    tau_t3 = 0.89
-    ax3.axhline(tau_t3, color="black", linestyle="--", linewidth=1.5, label=f"Operating Decision Threshold (tau = {tau_t3})")
+    op_df = pd.read_csv("data/processed/model_operating_points_summary.csv")
+    tau_t3 = float(op_df[op_df["target_detection_rate_pct"] == 95.0]["t3_threshold"].iloc[0])
+    ax3.axhline(tau_t3, color="black", linestyle="--", linewidth=1.5, label=f"Frozen Validation Decision Threshold (tau = {tau_t3:.3f})")
     ax3.set_ylabel("Posterior\nProbability", fontweight="bold")
     ax3.set_ylim(-0.05, 1.05)
     ax3.legend(loc="upper left", frameon=True, facecolor="white", fontsize=8.5)

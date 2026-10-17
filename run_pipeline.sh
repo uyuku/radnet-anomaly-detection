@@ -107,6 +107,7 @@ phase 5 && {
   run_if "data/processed/rigorous_benchmark_summary.csv" src/plot_rigorous_evaluation.py
   run_if "data/processed/labeled_*_test.csv.gz" src/evaluate_phase5_protocol.py
   run_if "data/processed/eval_benchmark_uncertainty_summary.csv" src/plot_phase5_evaluation.py
+  run_if "data/processed/rigorous_benchmark_summary.csv" src/plot_environmental_engineering_synthesis.py
 }
 
 echo ""

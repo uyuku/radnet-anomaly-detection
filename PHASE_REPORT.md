@@ -618,45 +618,40 @@ This Phase 5 report implements the complete rigorous evaluation protocol in resp
 
 ### Core Scientific Findings:
 1. **Primary Physical Discrimination via Spectrometry**:
-   - Multi-channel NaI(Tl) spectrometry (Tier 2) provides the primary physical separation of radon progeny washout from anthropogenic plumes, reducing operational false alarms by **95.0%** over gross radiation alone (from **168.62 ± 20.57 FA/yr** down to **8.52 ± 6.23 FA/yr** at ~92% matched detection).
+   - Multi-channel NaI(Tl) spectrometry (Tier 2) provides the primary physical separation of radon progeny washout from anthropogenic plumes, reducing operational false alarms by **95.7%** over gross radiation alone (from **166.78 ± 19.69 FA/yr** down to **7.21 ± 3.93 FA/yr** at ~92–93% matched detection).
 2. **Statistically Significant Weather Benefit & Variance Suppression Across 20 Seeds**:
-   - Weather fusion on top of spectrometry (Tier 3 vs. Tier 2) provides a statistically significant false alarm reduction across 20 random seeds: at the 95% detection target, mean false alarms drop by **50.5%** ($8.52 \to 4.22\text{ FA/yr}$, paired $t = 3.166, p = 0.00509$; Wilcoxon $W = 36.5, p = 0.01855$, paired bootstrap 95% CI on difference: $[1.30, 7.65]\text{ FA/yr}$), while the median drops by **14.0%** ($4.69 \to 4.03\text{ FA/yr}$).
-   - The primary physical role of weather fusion on spectral data is **variance suppression** ($\sigma$ drops from $6.23$ to $1.29\text{ FA/yr}$) and eliminating high-false-alarm outliers during severe storms, rather than halving the typical background rate.
+   - Weather fusion on top of spectrometry (Tier 3 vs. Tier 2) provides a statistically significant false alarm reduction across 20 random seeds: at the 95% detection target, mean false alarms drop by **40.1%** ($7.21 \to 4.32\text{ FA/yr}$, paired $t = 3.111, p = 0.00575$; Wilcoxon $W = 26.0, p = 0.00318$, paired bootstrap 95% CI on difference: $[0.31, 5.74]\text{ FA/yr}$), while the median drops by **30.4%** ($6.08 \to 4.24\text{ FA/yr}$, lower in 15 of 20 seeds).
+   - Weather fusion on spectral data reduces seed-to-seed variance by 3× ($\sigma$ drops from $3.93$ to $1.29\text{ FA/yr}$) and eliminates 100% of rain-coincident false alarms ($4.7\% \to 0.0\%$).
 3. **Substantial Gross Weather Benefit for Non-Spectral Detectors**:
-   - For monitoring networks lacking multi-channel analyzers (e.g., standard GM tubes or total scintillation counters), adding NOAA ASOS weather features (Tier 1b vs. Tier 1) reduces false alarms by **59.5%** at matched ~92% detection ($168.62 \to 68.21\text{ FA/yr}$, median $163.56 \to 66.18\text{ FA/yr}$, paired $t = 18.396, p < 10^{-15}$, paired bootstrap 95% CI on difference: $[88.02, 114.86]\text{ FA/yr}$).
+   - For monitoring networks lacking multi-channel analyzers (e.g., standard GM tubes or total scintillation counters), adding NOAA ASOS weather features (Tier 1b vs. Tier 1) reduces false alarms by **58.1%** at matched ~92% detection ($166.78 \to 69.81\text{ FA/yr}$, median $162.81 \to 68.94\text{ FA/yr}$, paired $t = 20.399, p < 10^{-14}$, paired bootstrap 95% CI on difference: $[85.05, 111.26]\text{ FA/yr}$).
 4. **Substantial False Alarm Reduction Relative to Fixed-Threshold Practice**:
-   - At conventional operational settings ($k = 3.0\sigma$), the rolling 7-day rule generates **82.95 false alarms per station-year** but detects only **52.0%** of synthetic events (and the global dry $3\sigma$ rule gives **52.70 FA/yr** at **56.0%** detection).
-   - To match machine learning detection (~92%), a rolling threshold rule must lower its multiplier to $k = 0.75\sigma$, causing false alarms to surge to **303.11 FA/yr** (~25 alarms/month/station).
-   - In contrast, Tier 3 GBDT operates at **4.22 ± 1.29 FA/yr** at matched **92.08 ± 1.77% detection**, demonstrating that fixed threshold rules can only reach comparable detection by accepting roughly 70× more operational false alarms.
+   - At conventional operational settings ($k = 3.0\sigma$), the rolling 7-day rule generates **82.62 false alarms per station-year** but detects only **52.50%** of synthetic events (and the global dry $3\sigma$ rule gives **52.86 FA/yr** at **57.00%** detection).
+   - To match machine learning detection (~92.5%), a rolling threshold rule must lower its multiplier to $k = 0.75\sigma$, causing false alarms to surge to **303.03 FA/yr** (~25 alarms/month/station).
+   - In contrast, Tier 3 GBDT operates at **4.32 ± 1.29 FA/yr** at **92.65 ± 1.37% detection**, demonstrating that fixed threshold rules can only reach comparable detection by accepting roughly 70× more operational false alarms.
 5. **Zero Test-Tuning Leakage**:
    - All operating thresholds $\tau^*$ are determined exclusively on the 2021–2022 validation fold and frozen.
    - All station dry baseline parameters ($\mu_{\text{dry}}, \sigma_{\text{dry}}$) are computed strictly on 2017–2022 training years from [`data/processed/station_dry_baselines_train_only.json`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/station_dry_baselines_train_only.json).
 
 ---
 
-## 2. Head-to-Head Benchmark at Matched Realized Detection
+## 2. Head-to-Head Benchmark at Validation-Frozen & Matched Detection
 
 *(Drawn from [`data/processed/rigorous_matched_detection_comparison.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_matched_detection_comparison.csv) and [`data/processed/rigorous_benchmark_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_benchmark_summary.csv))*
 
-Comparing models and baselines strictly at matched realized event detection ($\approx 92.0\% - 92.8\%$ across all 200 test injections):
+Comparing models and baselines across all 200 test injections on the 2023–2025 out-of-sample test split (106,628 observed hours = 12.16 station-years):
 
 | Architecture / Model Tier | Operating Parameter | Realized Test Detection (%) | Clean False Alarms per Station-Year | 95% Confidence Interval (20-Seed Mean) | Reduction vs. Matched Rolling Baseline | Reduction vs. Gross Tier 1 | Reduction vs. Preceding Tier |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Baseline: Rolling 7d Sigma (Conventional)** | $k = 3.00\sigma$ | **52.0%** | **82.95** | Conventional Setting | — | — | — |
-| **Baseline: Rolling 7d Sigma (Matched Det)** | $k = 0.75\sigma$ | **92.5%** | **303.11** | [271.4, 335.2] | Baseline Reference | — | — |
-| **Baseline: Global Dry Sigma (Conventional)** | $k = 3.00\sigma$ | **56.0%** | **52.70** | Conventional Setting | — | — | — |
-| **Baseline: Global Dry Sigma (Matched Det)** | $k = 0.70\sigma$ | **92.0%** | **183.00** | [160.8, 206.5] | 39.6% Reduction | — | — |
-| **Tier 1: Gross Radiation GBDT** (12 feats) | $\tau^* = 0.65$ | **92.10 ± 0.55%** | **168.62 ± 20.57** | [153.14, 185.95] | 44.4% Reduction | Baseline ML | — |
-| **Tier 1b: Gross Radiation + Weather GBDT** (29 feats) | $\tau^* = 0.77$ | **92.82 ± 1.10%** | **68.21 ± 9.75** | [57.90, 78.77] | 77.5% Reduction | **59.5% Reduction** | **59.5% Reduction** |
-| **Tier 2: Gross + Spectrometry GBDT** (30 feats) | $\tau^* = 0.99$ | **92.48 ± 1.38%** | **8.52 ± 6.23** | [5.36, 12.44] | 97.2% Reduction | **95.0% Reduction** | — |
-| **Tier 3: Full Weather Fusion GBDT** (48 feats) | $\tau^* = 0.99$ | **92.08 ± 1.77%** | **4.22 ± 1.29** | [2.56, 6.22] | **98.6% Reduction** | **97.5% Reduction** | **50.5% Mean Reduction (14.0% Median)** |
-| **Tier 3: Neural Net (MLP)** (48 feats, 95% target) | $\tau^* = 0.989$ | **90.22 ± 2.84%** | **58.52 ± 16.18** | [43.41, 76.91] | 80.7% Reduction | 65.3% Reduction | 13.9× More FA than GBDT (Unmatched Det) |
-| **Tier 3: Neural Net (MLP)** (48 feats, 98% target) | $\tau^* = 0.952$ | **90.55 ± 3.30%** | **84.83 ± 31.75** | [66.49, 108.82] | 72.0% Reduction | 49.7% Reduction | 20.1× More FA than GBDT (Unmatched Det) |
-
-> [!NOTE]
-> **Validation Fold Inductive Transfer Gap**: Operating thresholds $\tau^*$ were selected on the 2021–2022 validation fold, which drew from the training parameter family (linear-ramp and step shapes, Bands A and C). The unseen 2023–2025 test split contains different plume shapes (sigmoidal, exponential) and Band B. Consequently, validation-selected thresholds are slightly optimistic on test detection (e.g., Tier 3's 90%-target threshold yields 86.68% realized detection on test).
->
-> All ML metrics reflect 20-seed averages (SEEDS 42–61). The 95% confidence intervals describe estimator uncertainty for the 20-seed mean, computed via station-month block bootstrapping ($B=1,000$) for false alarms and event-level bootstrapping ($B=1,000$) for detection rates. Visualized in [`reports/figures/rigorous_matched_roc_curves.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rigorous_matched_roc_curves.png) and [`reports/figures/rigorous_ablation_seeds.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rigorous_ablation_seeds.png).
+| **Baseline: Rolling 7d Sigma (Conventional)** | $k = 3.00\sigma$ | **52.50%** | **82.62** | [74.40, 91.85] | — | — | — |
+| **Baseline: Rolling 7d Sigma (Matched Det)** | $k = 0.75\sigma$ | **92.50%** | **303.03** | Continuous Sweep | Baseline Reference | — | — |
+| **Baseline: Global Dry Sigma (Conventional)** | $k = 3.00\sigma$ | **57.00%** | **52.86** | [44.72, 61.34] | — | — | — |
+| **Tier 1: Gross Radiation GBDT** (12 feats, 95% target) | $\tau^* = 0.647$ | **92.00 ± 0.69%** | **166.78 ± 19.69** | [150.94, 185.14] | 45.0% Reduction | Baseline ML | — |
+| **Tier 1b: Gross + Weather GBDT** (29 feats, 95% target) | $\tau^* = 0.878$ | **85.58 ± 1.59%** | **29.27 ± 3.93** | [23.54, 35.75] | 90.3% Reduction | 82.5% Reduction | 82.5% Reduction (Unmatched) |
+| **Tier 1b: Gross + Weather GBDT** (29 feats, 98% target / Matched Det) | $\tau^* = 0.774$ | **91.95 ± 1.11%** | **69.81 ± 10.37** | [58.31, 82.25] | 77.0% Reduction | **58.1% Reduction** | **58.1% Reduction** |
+| **Tier 2: Gross + Spectrometry GBDT** (30 feats, 95% target) | $\tau^* = 0.990$ | **92.98 ± 0.92%** | **7.21 ± 3.93** | [4.41, 10.57] | 97.6% Reduction | **95.7% Reduction** | — |
+| **Tier 3: Full Weather Fusion GBDT** (48 feats, 95% target) | $\tau^* = 0.988$ | **92.65 ± 1.37%** | **4.32 ± 1.29** | [2.66, 6.31] | **98.6% Reduction** | **97.4% Reduction** | **40.1% Mean Reduction (30.4% Median)** |
+| **Tier 3: Neural Net (MLP)** (48 feats, 95% target) | $\tau^* = 0.993$ | **90.18 ± 2.81%** | **58.30 ± 23.63** | [42.17, 77.38] | 80.8% Reduction | 65.0% Reduction | 13.5× More FA than GBDT |
+| **Tier 3: Neural Net (MLP)** (48 feats, 98% target) | $\tau^* = 0.957$ | **91.22 ± 2.93%** | **84.29 ± 29.88** | [66.66, 107.62] | 72.2% Reduction | 49.5% Reduction | 19.5× More FA than GBDT |
 
 ---
 
@@ -664,60 +659,42 @@ Comparing models and baselines strictly at matched realized event detection ($\a
 
 *(Drawn from [`data/processed/rigorous_seed_statistical_tests.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_seed_statistical_tests.csv))*
 
-To resolve whether the weather benefit on top of spectrometry is genuine or seed noise, paired parametric (t-test) and non-parametric (Wilcoxon signed-rank) hypothesis tests were executed across all 20 random seeds (SEEDS 42–61) with paired block-bootstrap 95% confidence intervals on the differences:
-
 | Comparison | Matched Detection? | Baseline Realized Det | Fusion Realized Det | Baseline Mean (Median) FA | Fusion Mean (Median) FA | Mean FA Difference [Paired Boot 95% CI] | Mean (Median) Reduction % | Paired $t$ $p$-value | Wilcoxon $p$-value | Seeds Fusion Lower | Significant? ($p < 0.05$) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Tier 3 vs. Tier 2 (Matched 95% Target)** | **Yes** | **92.48%** | **92.08%** | 8.52 (4.69) | 4.22 (4.03) | **+4.31** [1.30, 7.65] | **50.5% (14.0%)** | $p = 0.00509$ | $p = 0.01855$ | **12 of 20** | **Yes ($p < 0.02$)** |
-| **Tier 3 vs. Tier 2 (90% Target - Unmatched)** | No | 90.82% | 86.68% | 4.86 (3.46) | 1.63 (1.48) | **+3.23** [1.61, 5.05] | **66.4% (57.2%)** | $p = 0.02044$ | $p = 0.00109$ | **17 of 20** | **Yes ($p < 0.05$)** |
-| **Tier 3 vs. Tier 2 (98% Target - Tail)** | No | 96.18% | 97.80% | 186.50 (198.41) | 188.90 (192.38) | -2.40 [-16.33, 13.52] | -1.3% (+3.0%) | $p = 0.794$ | $p = 0.898$ | 10 of 20 | No (Tail saturation) |
-| **Tier 1b vs. Tier 1 (Matched Realized Det)** | **Yes** | **92.10%** | **92.82%** | 168.62 (163.56) | 68.21 (66.18) | **+100.41** [88.02, 114.86] | **59.5% (59.5%)** | $p < 10^{-15}$ | $p < 10^{-5}$ | **20 of 20** | **Yes ($p < 10^{-15}$)** |
-| **Tier 1b vs. Tier 1 (90% Target - Unmatched)** | No | 88.68% | 78.58% | 88.68 (86.78) | 17.19 (17.43) | **+71.49** [62.25, 82.38] | **80.6% (79.9%)** | $p < 10^{-15}$ | $p < 10^{-5}$ | **20 of 20** | **Yes ($p < 10^{-15}$)** |
-| **Tier 1b vs. Tier 1 (95% Target - Unmatched)** | No | 92.10% | 84.58% | 168.62 (163.56) | 27.32 (27.25) | **+141.30** [128.14, 156.31] | **83.8% (83.3%)** | $p < 10^{-15}$ | $p < 10^{-5}$ | **20 of 20** | **Yes ($p < 10^{-15}$)** |
-| **Tier 1b vs. Tier 1 (98% Target - Unmatched)** | No | 94.82% | 92.82% | 287.19 (278.37) | 68.21 (66.18) | **+218.98** [199.88, 238.44] | **76.3% (76.2%)** | $p < 10^{-14}$ | $p < 10^{-5}$ | **20 of 20** | **Yes ($p < 10^{-14}$)** |
-
-### Scientific Conclusions on Weather Fusion:
-1. **At Matched Operational Detection (~92%)**: Weather fusion provides a statistically significant false alarm reduction on top of spectrometry ($p = 0.00509$ parametric, $p = 0.01855$ rank test; paired bootstrap 95% CI $[1.30, 7.65]\text{ FA/yr}$).
-2. **Variance Suppression**: While the mean reduction is 50.5% (driven by suppressing severe false-alarm outbreaks during volatile storms in Tier 2), the median reduction is 14.0% ($4.69 \to 4.03\text{ FA/yr}$). Weather fusion's primary effect is dramatically reducing seed variance ($\sigma = 1.29\text{ FA/yr}$ for Tier 3 vs. $\sigma = 6.23\text{ FA/yr}$ for Tier 2).
-3. **Consistent Gross Benefit**: For non-spectral gross detectors, weather features provide a consistent 59.5% reduction in false alarms across all 20 seeds ($p < 10^{-15}$).
-4. **Extreme Tail Saturation (98% Target)**: At an extreme 98% target, both models operate at very low decision thresholds ($\tau^* \approx 0.74 - 0.84$), admitting background false alarms indiscriminately, where neither spectral nor meteorological features can overcome the low threshold.
+| **Tier 3 vs. Tier 2 (Matched 95% Target)** | **Yes** | **92.98%** | **92.65%** | 7.21 (6.08) | 4.32 (4.24) | **+2.89** [0.31, 5.74] | **40.1% (30.4%)** | $p = 0.00575$ | $p = 0.00318$ | **15 of 20** | **Yes ($p < 0.01$)** |
+| **Tier 3 vs. Tier 2 (90% Target - Unmatched)** | No | 90.52% | 88.20% | 3.01 (2.96) | 2.26 (1.98) | +0.75 [-0.29, 1.80] | 25.0% (33.3%) | $p = 0.12636$ | $p = 0.15365$ | 12 of 20 | No |
+| **Tier 3 vs. Tier 2 (98% Target - Tail)** | No | 96.72% | 98.12% | 193.82 (188.88) | 185.91 (190.24) | +7.92 [-3.86, 22.11] | 4.1% (-0.7%) | $p = 0.30167$ | $p = 0.36828$ | 11 of 20 | No (Tail saturation) |
+| **Tier 1b vs. Tier 1 (Matched Realized Det)** | **Yes** | **92.00%** | **91.95%** | 166.78 (162.81) | 69.81 (68.94) | **+96.96** [85.05, 111.26] | **58.1% (57.7%)** | $p < 10^{-14}$ | $p < 10^{-5}$ | **20 of 20** | **Yes ($p < 10^{-14}$)** |
+| **Tier 1b vs. Tier 1 (90% Target - Unmatched)** | No | 88.75% | 79.28% | 88.32 (91.75) | 18.16 (17.88) | **+70.16** [61.01, 81.08] | **79.4% (80.5%)** | $p < 10^{-15}$ | $p < 10^{-5}$ | **20 of 20** | **Yes ($p < 10^{-15}$)** |
+| **Tier 1b vs. Tier 1 (95% Target - Unmatched)** | No | 92.00% | 85.58% | 166.78 (162.81) | 29.27 (30.05) | **+137.51** [124.15, 153.19] | **82.5% (81.5%)** | $p < 10^{-15}$ | $p < 10^{-5}$ | **20 of 20** | **Yes ($p < 10^{-15}$)** |
+| **Tier 1b vs. Tier 1 (98% Target - Unmatched)** | No | 94.12% | 91.95% | 271.73 (257.69) | 69.81 (68.94) | **+201.92** [183.87, 220.34] | **74.3% (73.2%)** | $p < 10^{-14}$ | $p < 10^{-5}$ | **20 of 20** | **Yes ($p < 10^{-14}$)** |
 
 ---
 
-## 4. Operational Deadlines & Environmental Stratification
+## 4. Operational Deadlines & Environmental Stratification (20-Seed Mean)
 
 *(Drawn from [`data/processed/rigorous_stratified_deadlines.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_stratified_deadlines.csv) and visualized in [`reports/figures/rigorous_detection_deadlines.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rigorous_detection_deadlines.png))*
 
-Under the net-alarm criterion ($\text{alarm}_{\text{inj}} \land \neg \text{alarm}_{\text{clean}}$), detection rates were evaluated across prompt operational deadlines ($\le 6\text{h}$ prompt detection, $\le 12\text{h}$, $\le 24\text{h}$, and total window until filter replacement) across environmental and plume strata:
-
 | Stratum / Evaluation Slice | Model Tier | Total Injections ($N$) | Realized $\le 6\text{h}$ Detection | Realized $\le 12\text{h}$ Detection | Realized $\le 24\text{h}$ Detection | Total Window Detection | Median Detection Delay (h) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **All Test Injections** | **Tier 2 (Spectral)** | 200 | **72.0%** | **88.5%** | **92.5%** | **92.5%** | **4.0 h** |
-| **All Test Injections** | **Tier 3 (Weather Fusion)** | 200 | **71.5%** | **89.5%** | **91.5%** | **92.0%** | **4.0 h** |
-| **Strictly Dry Environments** | Tier 2 (Spectral) | 100 | 75.0% | 87.0% | 90.0% | 90.0% | 3.5 h |
-| **Strictly Dry Environments** | Tier 3 (Weather Fusion) | 100 | 77.0% | 86.0% | 88.0% | 88.0% | 3.0 h |
-| **Rain-Coincident Environments**| Tier 2 (Spectral) | 100 | 69.0% | 90.0% | 95.0% | 95.0% | 5.0 h |
-| **Rain-Coincident Environments**| Tier 3 (Weather Fusion) | 100 | 66.0% | 93.0% | 95.0% | **96.0%** | 5.0 h |
-| **Standard Plume Regime** | Tier 2 (Spectral) | 100 | 64.0% | 92.0% | 98.0% | 98.0% | 5.0 h |
-| **Standard Plume Regime** | Tier 3 (Weather Fusion) | 100 | 64.0% | 96.0% | 98.0% | 98.0% | 5.0 h |
-| **Stress Plume Regime** | Tier 2 (Spectral) | 100 | 80.0% | 85.0% | 87.0% | 87.0% | 3.0 h |
-| **Stress Plume Regime** | Tier 3 (Weather Fusion) | 100 | 79.0% | 83.0% | 85.0% | 86.0% | 3.0 h |
-| **Standard Strictly Dry** | Tier 2 (Spectral) | 50 | 70.0% | 92.0% | 98.0% | 98.0% | 5.0 h |
-| **Standard Strictly Dry** | Tier 3 (Weather Fusion) | 50 | 76.0% | 94.0% | 98.0% | 98.0% | 4.0 h |
-| **Stress Strictly Dry** | Tier 2 (Spectral) | 50 | 80.0% | 82.0% | 82.0% | 82.0% | 2.0 h |
-| **Stress Strictly Dry** | Tier 3 (Weather Fusion) | 50 | 78.0% | 78.0% | 78.0% | 78.0% | 2.0 h |
-| **Standard Rain** | Tier 2 (Spectral) | 50 | 58.0% | 92.0% | 98.0% | 98.0% | 6.0 h |
-| **Standard Rain** | Tier 3 (Weather Fusion) | 50 | 52.0% | 98.0% | 98.0% | 98.0% | 6.0 h |
-| **Stress Rain** | Tier 2 (Spectral) | 50 | 80.0% | 88.0% | 92.0% | 92.0% | 4.0 h |
-| **Stress Rain** | Tier 3 (Weather Fusion) | 50 | 80.0% | 88.0% | 92.0% | 94.0% | 4.0 h |
-
-### Operational Deadlines Insight & Limitations:
-- **Prompt Detection Speed**: Within the first 6 hours of plume arrival, Tier 2 detects **72.0%** and Tier 3 detects **71.5%** of all events.
-- **Role of Weather Fusion**: Weather fusion does *not* accelerate prompt detection over spectrometry alone. Instead, weather fusion allows the model to maintain high prompt sensitivity during storms without tripping false alarms on natural radon washout surges.
-- **Rain Plume Detection**: In rain-coincident environments, Tier 3 detects **96.0%** of all plumes before filter replacement, with 93.0% alarmed within 12 hours.
-- **Stress Strictly Dry Analysis**: Stress Strictly Dry (8 to 20h plumes, Band A: 255–599 CPM) is the weakest performance stratum: Tier 2 detects **82.0%** (41/50) and Tier 3 detects **78.0%** (39/50). The 4-point difference corresponds to exactly 2 injections and is well within binomial sampling noise ($p = 0.62$). This stratum represents the realistic operational hard case: short, subtle plumes occurring in quiet dry weather without accumulated counts, which the models miss approximately one time in five (~20% miss rate).
-- **Test Rain Precipitation Overlap**: Among the 100 test rain injections, exactly 5 events had zero rain accumulation during the injection window (`washout_overlap_hours` = 0: 1 in standard rain, 4 in stress rain) and 6 had zero rain overlap during the plume rise (`rise_washout_overlap_hours` = 0: 2 in standard rain, 4 in stress rain). The median rain overlap with the plume rise is 1.0 to 2.0 hours, indicating that "plume arriving during a storm" typically represents a brief onset overlap rather than continuous immersion throughout the entire plume.
-- **Open Boundary Condition**: In the injection catalog, realized stress-rain durations span 28h to 140h (median 49.0h) because plumes are physically constrained by filter replacement cycles. Consequently, detector performance during ultra-short plumes (<12h) arriving midway through severe downpours remains an unmeasured operational boundary condition.
+| **All Test Injections** | **Tier 2 (Spectral)** | 200 | **73.08%** | **90.10%** | **92.75%** | **92.97%** | **4.0 h** |
+| **All Test Injections** | **Tier 3 (Weather Fusion)** | 200 | **70.55%** | **88.53%** | **91.92%** | **92.65%** | **4.0 h** |
+| **Strictly Dry Environments** | Tier 2 (Spectral) | 100 | 78.00% | 87.00% | 90.30% | 90.50% | 3.0 h |
+| **Strictly Dry Environments** | Tier 3 (Weather Fusion) | 100 | 76.20% | 86.35% | 89.50% | 89.75% | 3.0 h |
+| **Rain-Coincident Environments**| Tier 2 (Spectral) | 100 | 68.15% | 93.20% | 95.20% | 95.45% | 4.9 h |
+| **Rain-Coincident Environments**| Tier 3 (Weather Fusion) | 100 | 64.90% | 90.70% | 94.35% | **95.55%** | 5.0 h |
+| **Standard Plume Regime** | Tier 2 (Spectral) | 100 | 66.05% | 94.65% | 98.60% | 98.95% | 5.2 h |
+| **Standard Plume Regime** | Tier 3 (Weather Fusion) | 100 | 62.50% | 94.40% | 98.65% | 98.90% | 5.4 h |
+| **Stress Plume Regime** | Tier 2 (Spectral) | 100 | 80.10% | 85.55% | 86.90% | 87.00% | 3.0 h |
+| **Stress Plume Regime** | Tier 3 (Weather Fusion) | 100 | 78.60% | 82.65% | 85.20% | 86.40% | 3.0 h |
+| **Standard Strictly Dry** | Tier 2 (Spectral) | 50 | 74.80% | 92.60% | 99.20% | 99.60% | 5.0 h |
+| **Standard Strictly Dry** | Tier 3 (Weather Fusion) | 50 | 73.90% | 93.10% | 99.30% | 99.80% | 4.9 h |
+| **Stress Strictly Dry** | Tier 2 (Spectral) | 50 | 81.20% | 81.40% | 81.40% | 81.40% | 2.0 h |
+| **Stress Strictly Dry** | Tier 3 (Weather Fusion) | 50 | 78.50% | 79.60% | 79.70% | 79.70% | 2.0 h |
+| **Standard Rain** | Tier 2 (Spectral) | 50 | 57.30% | 96.70% | 98.00% | 98.30% | 5.8 h |
+| **Standard Rain** | Tier 3 (Weather Fusion) | 50 | 51.10% | 95.70% | 98.00% | 98.00% | 6.3 h |
+| **Stress Rain** | Tier 2 (Spectral) | 50 | 79.00% | 89.70% | 92.40% | 92.60% | 4.0 h |
+| **Stress Rain** | Tier 3 (Weather Fusion) | 50 | 78.70% | 85.70% | 90.70% | 93.10% | 4.0 h |
 
 ---
 
@@ -725,107 +702,60 @@ Under the net-alarm criterion ($\text{alarm}_{\text{inj}} \land \neg \text{alarm
 
 *(Drawn from [`data/processed/rigorous_loso_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_loso_summary.csv) and [`data/processed/rigorous_loso_stratified_detection.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_loso_stratified_detection.csv); visualized in [`reports/figures/rigorous_loso_multistation.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rigorous_loso_multistation.png))*
 
-To rigorously test geographic, detector, and meteorological transferability with zero out-of-domain leakage, models were trained on 4 stations using 2017–2020 data, tuned strictly on the 4 stations' 2021–2022 validation split, and evaluated on unseen held-out stations across 2023–2025:
-
 | Held-Out Station | Climate & Operational Regime | Frozen Threshold $\tau^*$ | Clean Test Hours (Station-Years) | Clean False Alarms per Year | Rule-of-Three 95% Upper Bound (FA/yr) | Test Injections Detected | Overall Realized Detection Rate | Band B Detection Rate (714–1199 CPM) | Band A Detection Rate (255–599 CPM) | Median Delay (h) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **San Diego, CA** (`ca_san_diego`) | Marine coastal; negative rain-rad correlation; 0 test washouts | $\tau^* = 0.990$ | 24,964 (2.85 stn-yr) | **0.00** | $\le \mathbf{1.05\text{ FA/yr}}$ | 27 / 40 | **67.5%** | **90.0%** (18/20) | **45.0%** (9/20) | 6.0 h |
-| **Birmingham, AL** (`al_birmingham`) | High precipitation; subtropical; 263 test washouts | $\tau^* = 0.990$ | 24,413 (2.78 stn-yr) | **0.00** | $\le \mathbf{1.08\text{ FA/yr}}$ | 33 / 40 | **82.5%** | **100.0%** (20/20) | **65.0%** (13/20) | 5.0 h |
-| **Dallas, TX** (`tx_dallas`) | Convective thunderstorms; continental; 324 test washouts | $\tau^* = 0.997$ | 15,478 (1.77 stn-yr) | **0.00** | $\le \mathbf{1.70\text{ FA/yr}}$ | 33 / 40 | **82.5%** | **95.0%** (19/20) | **70.0%** (14/20) | 5.0 h |
+| **Birmingham, AL** (`al_birmingham`) | High precipitation; subtropical; 363 test washouts | $\tau^* = 0.985$ | 24,413 (2.78 stn-yr) | **0.00** | $\le \mathbf{1.08\text{ FA/yr}}$ | 35 / 40 | **87.5%** | **100.0%** (20/20) | **75.0%** (15/20) | 5.0 h |
+| **Dallas, TX** (`tx_dallas`) | Convective thunderstorms; continental; 249 test washouts | $\tau^* = 0.992$ | 15,478 (1.77 stn-yr) | **15.29** (27 ep) | — | 36 / 40 | **90.0%** | **100.0%** (20/20) | **80.0%** (16/20) | 4.5 h |
 
-### Physical Interpretation & Honest Inductive Transfer Gap:
-1. **Total Background Silence**: Across all three climate regimes, the frozen out-of-domain models produced **zero clean false alarms** ($0.00\text{ FA/yr}$). By the rule of three for zero Poisson events, the true 95% upper confidence bounds are $\le 1.05$, $\le 1.08$, and $\le 1.70\text{ FA/yr}$.
-2. **Transfer Detection Trade-off**:
-   - Across all 120 held-out events, standard plumes (Band B: 714–1199 CPM) exhibit robust detection: **95.0% detection** (57 of 60 events: 90.0% in San Diego, 100.0% in Birmingham, 95.0% in Dallas).
-   - Subtle stress plumes (Band A: 255–599 CPM) drop to **60.0% detection** overall (36 of 60 events: 45.0% in San Diego, 65.0% in Birmingham, 70.0% in Dallas).
-3. **Scenario Sensitivity Breakdown (Across 120 Held-Out Events)**:
-   - **Pure Cs-137** (`fission_pure_cs137`): **100.0%** (24 of 24 detected).
-   - **Fukushima-like Mixture** (`fission_reactor_fukushima`): **91.7%** (22 of 24 detected).
-   - **Mixed Fission/Activation** (`mixed_fission_activation`): **75.0%** (18 of 24 detected).
-   - **Co-60 Orphan Source** (`activation_orphan_co60`): **62.5%** (15 of 24 detected).
-   - **Pure I-131** (`fission_pure_i131`): **58.3%** (14 of 24 detected).
-4. **Inductive Transfer Gap**: The validation fold used to select $\tau^*$ draws from the training parameter family (linear-ramp/step shapes, Bands A/C), whereas test sets contain unseen shapes and bands. Out-of-domain thresholds were selected conservatively ($\tau^* = 0.990 - 0.997$) to enforce zero false alarms across disparate backgrounds, trading sensitivity on low-energy single-nuclide releases (e.g., pure I-131 in Band A) to ensure background silence.
+- **Transfer Detection Breakdown (120 Held-Out Events)**:
+  - Standard plumes (Band B: 714–1199 CPM): **96.7% detection** (58 of 60 events: 90.0% in San Diego, 100.0% in Birmingham, 100.0% in Dallas).
+  - Subtle stress plumes (Band A: 255–599 CPM): **66.7% detection** (40 of 60 events: 45.0% in San Diego, 75.0% in Birmingham, 80.0% in Dallas).
+  - Scenario sensitivity: Pure Cs-137 **100.0%** (24/24), Fukushima-like **91.7%** (22/24), Mixed Fission/Activation **79.2%** (19/24), Co-60 Orphan **70.8%** (17/24), Pure I-131 **66.7%** (16/24).
 
 ---
 
-## 6. Spectral Template Sensitivity & Instrumental Gain Drift
+## 6. Spectral Template Sensitivity & Instrumental Gain Drift (SEEDS 42–46)
 
-*(Drawn from [`data/processed/rigorous_template_sensitivity.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_template_sensitivity.csv) and [`data/processed/rigorous_gain_drift_evaluation.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_gain_drift_evaluation.csv); visualized in [`reports/figures/rigorous_template_sensitivity.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rigorous_template_sensitivity.png))*
+*(Drawn from [`data/processed/rigorous_template_sensitivity.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_template_sensitivity.csv) and [`data/processed/rigorous_gain_drift_evaluation.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_gain_drift_evaluation.csv))*
 
-### Panel A: Injected Photopeak Branching Ratio Sensitivity (5-Seed Sweep: SEEDS 42–46)
-To test model dependence on assumed radionuclide emission fractions, the injected photopeak channel shares ($R03, R05, R07$) were scaled by $\pm 10\%$ and $\pm 20\%$, with continuum redistribution to strictly preserve total injected CPM:
-
+### Panel A: Injected Photopeak Branching Ratio Sensitivity
 | Perturbation Factor | Nominal Photopeak Scaling | Realized Test Event Detection (%) (5-Seed Mean ± Std) | Median Delay (h) | Sensitivity Verdict |
 | :---: | :---: | :---: | :---: | :--- |
-| **0.80** | $-20\%$ Photopeak Contraction | **86.5 ± 1.95%** | 4.6 h | Modest to Moderate Sensitivity |
-| **0.90** | $-10\%$ Photopeak Contraction | **89.4 ± 1.02%** | 4.3 h | Modest to Moderate Sensitivity |
-| **1.00** | **Nominal Calibration Template** | **92.1 ± 1.50%** | 4.0 h | Benchmark Reference Point |
-| **1.10** | $+10\%$ Photopeak Expansion | **94.0 ± 0.95%** | 4.0 h | Modest to Moderate Sensitivity |
-| **1.20** | $+20\%$ Photopeak Expansion | **94.7 ± 1.08%** | 4.0 h | Modest to Moderate Sensitivity |
+| **0.80** | $-20\%$ Photopeak Contraction | **87.3 ± 1.40%** | 4.4 h | Modest to Moderate Sensitivity |
+| **0.90** | $-10\%$ Photopeak Contraction | **89.4 ± 0.66%** | 4.2 h | Modest to Moderate Sensitivity |
+| **1.00** | **Nominal Calibration Template** | **92.6 ± 1.59%** | 4.0 h | Benchmark Reference Point |
+| **1.10** | $+10\%$ Photopeak Expansion | **94.1 ± 0.73%** | 4.0 h | Modest to Moderate Sensitivity |
+| **1.20** | $+20\%$ Photopeak Expansion | **94.8 ± 1.03%** | 4.0 h | Modest to Moderate Sensitivity |
 
-*Finding*: Scaling photopeak branching by $\pm 10\%$ moves realized test detection by ~2–3 percentage points across seeds (~8 points across the full $\pm 20\%$ span). Detection exhibits modest-to-moderate sensitivity to spectral branching, confirming that multi-channel spectral features actively drive discrimination.
-
-### Panel B: Instrumental PMT Gain Drift (5-Seed Sweep: SEEDS 42–46)
-To test resilience against field detector calibration errors, all observed energy channels were shifted symmetrically by $\pm 5\%$ and $\pm 10\%$ across both clean background and injection test series:
-
+### Panel B: Instrumental PMT Gain Drift
 | Gain Drift Shift | Instrumental Scenario | Clean False Alarms / Stn-Yr (5-Seed Mean ± Std) | Realized Test Detection (%) (5-Seed Mean ± Std) |
 | :---: | :---: | :---: | :---: |
-| **-10%** | Downward PMT High-Voltage Drift | **6.23 ± 2.29** | **88.3 ± 1.29%** |
-| **-5%** | Moderate Downward Gain Drift | **4.78 ± 1.86** | **90.0 ± 1.64%** |
-| **0%** | **Nominal In-Calibration Detector** | **4.27 ± 1.37** | **92.1 ± 1.50%** |
-| **+5%** | Moderate Upward Gain Drift | **4.46 ± 1.74** | **89.9 ± 1.59%** |
-| **+10%** | Upward PMT High-Voltage Drift | **19.06 ± 8.40** | **89.8 ± 2.94%** |
-
-*Finding*: Downward gain drift slightly reduces detection ($92.1\% \to 88.3\%$) with modest false alarm elevation ($4.27 \to 6.23\text{ FA/yr}$). Upward gain drift (+10%) causes channels to shift into adjacent bins, elevating clean false alarms to **19.06 ± 8.40 FA/yr**. Routine field gain stabilization (e.g. tracking the 1461 keV $^{40}\text{K}$ photopeak) is critical to maintaining low false alarm rates.
+| **-10%** | Downward PMT High-Voltage Drift | **7.51 ± 1.85** | **88.2 ± 1.33%** |
+| **-5%** | Moderate Downward Gain Drift | **5.69 ± 1.55** | **90.5 ± 1.30%** |
+| **0%** | **Nominal In-Calibration Detector** | **4.67 ± 1.21** | **92.6 ± 1.59%** |
+| **+5%** | Moderate Upward Gain Drift | **5.44 ± 1.43** | **89.5 ± 1.48%** |
+| **+10%** | Upward PMT High-Voltage Drift | **21.93 ± 6.18** | **90.2 ± 2.38%** |
 
 ---
 
 ## 7. Neural Network Probability Calibration & Tabular Modeling Gap
 
-*(Drawn from [`data/processed/eval_mlp_calibration_comparison.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/eval_mlp_calibration_comparison.csv))*
-
-To test whether the Multi-Layer Perceptron's (MLP) higher false alarm rate under frozen thresholds could be resolved by post-hoc probability calibration, an **isotonic regression calibrator** was fit strictly on the validation fold predictions and applied to the test split:
+*(Drawn from [`data/processed/eval_mlp_calibration_comparison.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/eval_mlp_calibration_comparison.csv) and [`data/processed/eval_mlp_comparison_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/eval_mlp_comparison_summary.csv))*
 
 | Model Architecture | Calibration Protocol | Frozen Operating Threshold $\tau^*$ | Realized Test Detection (%) | Clean False Alarms per Station-Year |
 | :--- | :--- | :---: | :---: | :---: |
-| **Tier 3: Multi-Layer Perceptron (MLP)** | Raw Validation-Tuned (Seed 42) | $\tau^* = 0.98$ | **92.0%** | **78.92** |
-| **Tier 3: Multi-Layer Perceptron (MLP)** | Isotonic Calibrated on Val (Seed 42) | $\tau^* = 0.05$ | **92.0%** | **128.08** |
-| **Tier 3: Multi-Layer Perceptron (MLP)** | Raw Validation-Tuned (20-Seed Mean) | $\tau^* = 0.989$ | **90.2%** | **58.52** |
-| **Tier 3: LightGBM GBDT (Reference)** | Uncalibrated Tree Leaf Ensembles (20-Seed Mean) | $\tau^* = 0.988$ | **92.1%** | **4.22** |
-
-### Why Calibration Does Not Close the Neural Net Gap:
-1. **Calibration Preserves Ranking**: Isotonic regression is a monotonic transformation; it maps uncalibrated probabilities to empirical frequencies on the validation fold, but does not alter the underlying ranking. On continuous ROC evaluation (threshold-free), at 90.0% detection the MLP requires 58.8 to 67.1 FA/yr compared to 2.80 FA/yr for Tier 3 GBDT (~21× more false alarms).
-2. **Frozen-Threshold Operating Gap**: Under validation-frozen decision thresholds, the MLP never reaches the 92% detection level achieved by the GBDT tiers (it plateaus between 90.2% and 90.6%). At the 95% target, the MLP yields 58.52 ± 16.18 FA/yr at 90.2% detection, which is 13.9× higher than Tier 3 GBDT (4.22 ± 1.29 FA/yr at 92.1% detection).
-3. **Architectural Comparison**: Under this configuration and protocol, the MLP required about 14 to 21 times more false alarms than gradient boosting at about 90% detection.
+| **Tier 3: Multi-Layer Perceptron (MLP)** | Raw Validation-Tuned (Seed 42) | $\tau^* = 0.996$ | **91.5%** | **43.98** |
+| **Tier 3: Multi-Layer Perceptron (MLP)** | Isotonic Calibrated on Val (Seed 42) | $\tau^* = 0.9558$ | **89.5%** | **45.38** |
+| **Tier 3: Multi-Layer Perceptron (MLP)** | Raw Validation-Tuned (20-Seed Mean) | $\tau^* = 0.993$ | **90.18%** | **58.30** |
+| **Tier 3: LightGBM GBDT (Reference)** | Uncalibrated Tree Leaf Ensembles (20-Seed Mean) | $\tau^* = 0.988$ | **92.65%** | **4.32** |
 
 ---
 
 ## 8. Catalog Audit & Formal Verification Summary
 
-All catalog properties were audited and formally verified by [`src/audit_injection_catalog.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/audit_injection_catalog.py), exporting summary tables to [`data/processed/injection_catalog_audit_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/injection_catalog_audit_summary.csv) and [`data/processed/injection_catalog_audit_verification.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/injection_catalog_audit_verification.csv):
-- **100.0% Filter Step-Drop Synchronization**: Exactly 450 of 450 injections (100.0%) terminate at a verified real physical filter replacement step drop (`drop_sync_pct = 100.0%`, reflected in `truncated_by_filter_change = True` for all 450 rows). Zero synthetic-only drop cliffs exist across the entire network.
-- **Exact 20.0% Scenario Balance**: Exactly 20.0% of injections in every environment belong to each of the 5 radiological release scenarios (`scenario_balance_pct = 100.0%`).
-- **Strict 48-Hour Buffer Enforced**: Minimum separation between consecutive injections on any station is **49.0 hours** (`min_buffer_hours = 49.0`), with zero buffer violations (<48h across 445 consecutive pairs).
-- **Fukushima High-Energy Overlap Grounded**: Mean R07+R08 share for Fukushima injections is **4.54%** (`fukushima_hi_energy_pct = 4.54%`), directly overlapping the empirical radon washout ratio-of-sums (5.58%) and the natural hour-level IQR band [4.04%, 7.21%].
-- **Clean Observed Test Hours Fully Accounted For**: Exactly **106,628 clean observed hours** (12.16 station-years) across the 5 pilot stations during 2023–2025.
-
----
-
-## 9. Gate 5 Review Checklist & Sign-off
-
-Per Section 4 of `PROJECT_SPEC.md`:
-> **Phase 5 Gate: Rigorous Evaluation Protocol.** Multi-seed replication, matched detection benchmarks, and causal validation. Gate: human approves results.
-
-- [x] **Zero Test-Tuning Leakage**: Operating thresholds selected on 2021–2022 validation fold and frozen before test evaluation.
-- [x] **Exact Matched-Detection Comparison**: Baselines and ML models compared at matched ~92% realized detection.
-- [x] **20-Seed Replication & Paired Statistical Tests**: Paired $t$-test ($p = 0.0051$) and Wilcoxon signed-rank test ($p = 0.0186$) verify significant false alarm reduction for weather fusion.
-- [x] **Prompt Operational Deadlines Enforced**: Latencies evaluated at $\le 6\text{h}$, $\le 12\text{h}$, $\le 24\text{h}$, and total window under the net-alarm rule.
-- [x] **Neural Net Probability Calibration Evaluated**: Isotonic calibration evaluated on validation fold, confirming GBDT superiority.
-- [x] **Multi-Station LOSO Generalization Verified**: San Diego, Birmingham, and Dallas evaluated with zero held-out leakage and documented rule-of-three upper bounds.
-- [x] **Two-Panel Sensitivity Sweeps Completed**: Injected photopeak scaling ($\pm 10\%, \pm 20\%$) and instrumental gain drift ($\pm 5\%, \pm 10\%$) evaluated and documented.
-- [x] **Catalog Formally Audited**: Verified 100% drop synchronization, 20% scenario balance, and strict 48h buffer.
-- [ ] **Gate 5 Approved — Sign-off by Ömer Barut (Ready for Phase 6: Paper Manuscript & Final Report)**
-
-
-
-
+All catalog properties were empirically audited against `merged_{station}_2017_2025.csv.gz` by [`src/audit_injection_catalog.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/audit_injection_catalog.py) and [`tests/test_radnet_pipeline.py`](file:///Users/o/Projects/radnet-anomaly-detection/tests/test_radnet_pipeline.py), exporting summary tables to [`data/processed/injection_catalog_audit_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/injection_catalog_audit_summary.csv) and [`data/processed/injection_catalog_audit_verification.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/injection_catalog_audit_verification.csv):
+- **100.0% Filter Step-Drop Synchronization**: All 450 of 450 injections empirically verified against merged station telemetry (`status = PASSED`).
+- **Exact 20.0% Scenario Balance**: Exactly 20.0% of injections in every environment belong to each of the 5 radiological release scenarios.
+- **Strict 48-Hour Buffer Enforced**: Minimum separation between consecutive injections on any station is **49.0 hours**, with zero buffer violations (<48h across 445 consecutive pairs).
+- **Clean Observed Test Hours Fully Accounted For**: Exactly **106,628 clean observed hours** (12.16 station-years) across the 5 pilot stations during 2023–2025 (`labeled_dataset_reconciliation_summary.csv`).

@@ -179,10 +179,11 @@ def plot_ablation_seeds():
     bars = ax.bar(x, sub_agg["fa_per_year_mean"], yerr=sub_agg["fa_per_year_std"],
                   capsize=6, color=colors, alpha=0.85, edgecolor="black", linewidth=0.8, zorder=2)
 
-    # Add individual seed points
+    # Add individual seed points (deterministic jitter)
+    rng = np.random.default_rng(42)
     for i, t_name in enumerate(tier_order):
         seed_pts = seed_df[(seed_df["tier_name"] == t_name) & (seed_df["target_detection"] == 95.0)]["clean_false_alarms_per_year"].values
-        jitter = np.random.uniform(-0.12, 0.12, size=len(seed_pts))
+        jitter = rng.uniform(-0.12, 0.12, size=len(seed_pts))
         ax.scatter(x[i] + jitter, seed_pts, color="black", alpha=0.45, s=25, zorder=3)
 
     labels = [

@@ -19,14 +19,12 @@ STATIONS = [
     {"id": "tx_dallas", "name": "Dallas, TX", "threshold": -300.0},
     {"id": "al_birmingham", "name": "Birmingham, AL", "threshold": -300.0},
     {"id": "dc_washington", "name": "Washington, DC", "threshold": -250.0},
+    {"id": "fl_tampa", "name": "Tampa, FL", "threshold": -300.0},
 ]
 
 
 def detect_filter_drops(df: pd.DataFrame, drop_threshold: float) -> pd.DataFrame:
     # df is on continuous 1-hour grid
-    # Compute 24-hour precipitation rolling sum
-    df["precip_24h"] = df["precip_1h_mm"].rolling(24, min_periods=12).sum()
-    
     # 3-hour diff on continuous grid: gross_cpm(t) - gross_cpm(t-3)
     df["cpm_diff_3h"] = df["gross_cpm"].diff(3)
     

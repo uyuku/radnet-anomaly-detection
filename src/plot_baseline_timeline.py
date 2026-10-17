@@ -22,8 +22,9 @@ def plot_alarm_timeline():
     mask = (df["dt"] >= "2023-04-15 00:00:00") & (df["dt"] <= "2023-05-15 23:00:00")
     sub = df[mask].copy().sort_values("dt")
 
-    # Compute dry parameters for Birmingham
-    dry_df = df[(df["precip_1h_mm"] == 0) & (df["precip_1h_mm"].rolling(24, min_periods=12).sum() == 0)]
+    # Compute dry parameters for Birmingham matching evaluate_baseline.py
+    valid_obs_mask = df["has_radnet_obs"] & df["has_weather_obs"] & df["rad_complete_channels"]
+    dry_df = df[(df["precip_1h_mm"] == 0.0) & (df["precip_1h_mm"].rolling(24, min_periods=12).sum() == 0.0) & valid_obs_mask]
     mu_dry = dry_df["gross_cpm"].mean()
     sigma_dry = dry_df["gross_cpm"].std()
 
