@@ -1,6 +1,6 @@
 perturbation_factor,perturbation_pct,test_detection_rate_pct_mean,test_detection_rate_pct_std,median_delay_hours_mean,sensitivity_verdict
-0.8,-20%,87.3,1.4,4.4,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
-0.9,-10%,89.4,0.66,4.2,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
-1.0,+0%,92.6,1.59,4.0,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
-1.1,+10%,94.1,0.73,4.0,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
-1.2,+20%,94.8,1.03,4.0,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
+0.8,-20%,85.4,2.44,4.8,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
+0.9,-10%,87.8,1.5,4.2,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
+1.0,+0%,90.2,1.96,4.0,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
+1.1,+10%,93.3,1.57,4.0,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)
+1.2,+20%,94.0,1.52,4.0,Modest to Moderate Sensitivity (2 to 4 points per 10% photopeak change)

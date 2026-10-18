@@ -26,7 +26,7 @@ ca_san_diego,INJ_0254,fission_reactor_fukushima,1019.7,Band B (714-1199 CPM),1
 ca_san_diego,INJ_0255,mixed_fission_activation,435.2,Band A (255-599 CPM),1
 ca_san_diego,INJ_0256,fission_pure_i131,577.5,Band A (255-599 CPM),0
 ca_san_diego,INJ_0257,mixed_fission_activation,867.6,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0258,activation_orphan_co60,303.0,Band A (255-599 CPM),0
+ca_san_diego,INJ_0258,activation_orphan_co60,303.0,Band A (255-599 CPM),1
 ca_san_diego,INJ_0259,fission_pure_cs137,882.2,Band B (714-1199 CPM),1
 ca_san_diego,INJ_0260,fission_pure_cs137,449.7,Band A (255-599 CPM),1
 ca_san_diego,INJ_0261,fission_pure_cs137,300.5,Band A (255-599 CPM),1
@@ -88,12 +88,12 @@ tx_dallas,INJ_0326,fission_pure_cs137,1068.3,Band B (714-1199 CPM),1
 tx_dallas,INJ_0327,fission_reactor_fukushima,313.4,Band A (255-599 CPM),1
 tx_dallas,INJ_0328,mixed_fission_activation,1198.1,Band B (714-1199 CPM),1
 tx_dallas,INJ_0329,fission_reactor_fukushima,890.0,Band B (714-1199 CPM),1
-tx_dallas,INJ_0330,activation_orphan_co60,714.1,Band B (714-1199 CPM),1
+tx_dallas,INJ_0330,activation_orphan_co60,714.1,Band B (714-1199 CPM),0
 tx_dallas,INJ_0331,fission_pure_i131,768.5,Band B (714-1199 CPM),1
 tx_dallas,INJ_0332,fission_pure_i131,327.2,Band A (255-599 CPM),0
 tx_dallas,INJ_0333,fission_pure_cs137,380.1,Band A (255-599 CPM),1
-tx_dallas,INJ_0334,fission_pure_i131,366.1,Band A (255-599 CPM),1
-tx_dallas,INJ_0335,activation_orphan_co60,320.6,Band A (255-599 CPM),1
+tx_dallas,INJ_0334,fission_pure_i131,366.1,Band A (255-599 CPM),0
+tx_dallas,INJ_0335,activation_orphan_co60,320.6,Band A (255-599 CPM),0
 tx_dallas,INJ_0336,fission_reactor_fukushima,540.9,Band A (255-599 CPM),1
 tx_dallas,INJ_0337,activation_orphan_co60,563.9,Band A (255-599 CPM),1
 tx_dallas,INJ_0338,mixed_fission_activation,317.1,Band A (255-599 CPM),1
@@ -102,7 +102,7 @@ tx_dallas,INJ_0340,mixed_fission_activation,327.8,Band A (255-599 CPM),1
 tx_dallas,INJ_0341,mixed_fission_activation,402.6,Band A (255-599 CPM),1
 tx_dallas,INJ_0342,fission_pure_cs137,1110.3,Band B (714-1199 CPM),1
 tx_dallas,INJ_0343,fission_pure_cs137,1079.0,Band B (714-1199 CPM),1
-tx_dallas,INJ_0344,fission_pure_i131,527.6,Band A (255-599 CPM),1
+tx_dallas,INJ_0344,fission_pure_i131,527.6,Band A (255-599 CPM),0
 tx_dallas,INJ_0345,fission_pure_i131,1006.8,Band B (714-1199 CPM),1
 tx_dallas,INJ_0346,fission_reactor_fukushima,301.5,Band A (255-599 CPM),1
 tx_dallas,INJ_0347,activation_orphan_co60,1182.4,Band B (714-1199 CPM),1
@@ -118,4 +118,4 @@ tx_dallas,INJ_0356,fission_pure_i131,316.5,Band A (255-599 CPM),0
 tx_dallas,INJ_0357,activation_orphan_co60,313.4,Band A (255-599 CPM),0
 tx_dallas,INJ_0358,fission_pure_cs137,378.3,Band A (255-599 CPM),1
 tx_dallas,INJ_0359,fission_pure_cs137,455.7,Band A (255-599 CPM),1
-tx_dallas,INJ_0360,mixed_fission_activation,463.2,Band A (255-599 CPM),1
+tx_dallas,INJ_0360,mixed_fission_activation,463.2,Band A (255-599 CPM),0

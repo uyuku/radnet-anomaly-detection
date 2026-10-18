@@ -1,19 +1,19 @@
 stratum,tier_name,n_injections,detection_total_pct,detection_le_6h_pct,detection_le_12h_pct,detection_le_24h_pct,median_delay_hours
 All Test Injections,Tier 2 (Spectral),200,92.97,73.08,90.1,92.75,4.0
-All Test Injections,Tier 3 (Weather Fusion),200,92.65,70.55,88.53,91.92,4.0
+All Test Injections,Tier 3 (Weather Fusion),200,91.88,70.22,87.95,91.38,4.0
 Strictly Dry Environments,Tier 2 (Spectral),100,90.5,78.0,87.0,90.3,3.0
-Strictly Dry Environments,Tier 3 (Weather Fusion),100,89.75,76.2,86.35,89.5,3.0
+Strictly Dry Environments,Tier 3 (Weather Fusion),100,88.9,75.85,85.65,88.75,3.0
 Rain-Coincident Environments,Tier 2 (Spectral),100,95.45,68.15,93.2,95.2,4.9
-Rain-Coincident Environments,Tier 3 (Weather Fusion),100,95.55,64.9,90.7,94.35,5.0
+Rain-Coincident Environments,Tier 3 (Weather Fusion),100,94.85,64.6,90.25,94.0,5.0
 Standard Plume Regime,Tier 2 (Spectral),100,98.95,66.05,94.65,98.6,5.2
-Standard Plume Regime,Tier 3 (Weather Fusion),100,98.9,62.5,94.4,98.65,5.4
+Standard Plume Regime,Tier 3 (Weather Fusion),100,98.05,62.1,93.45,97.85,5.3
 Stress Plume Regime,Tier 2 (Spectral),100,87.0,80.1,85.55,86.9,3.0
-Stress Plume Regime,Tier 3 (Weather Fusion),100,86.4,78.6,82.65,85.2,3.0
+Stress Plume Regime,Tier 3 (Weather Fusion),100,85.7,78.35,82.45,84.9,3.0
 Standard Strictly Dry,Tier 2 (Spectral),50,99.6,74.8,92.6,99.2,5.0
-Standard Strictly Dry,Tier 3 (Weather Fusion),50,99.8,73.9,93.1,99.3,4.9
+Standard Strictly Dry,Tier 3 (Weather Fusion),50,98.4,73.1,91.9,98.1,5.0
 Stress Strictly Dry,Tier 2 (Spectral),50,81.4,81.2,81.4,81.4,2.0
-Stress Strictly Dry,Tier 3 (Weather Fusion),50,79.7,78.5,79.6,79.7,2.0
+Stress Strictly Dry,Tier 3 (Weather Fusion),50,79.4,78.6,79.4,79.4,2.0
 Standard Rain,Tier 2 (Spectral),50,98.3,57.3,96.7,98.0,5.8
-Standard Rain,Tier 3 (Weather Fusion),50,98.0,51.1,95.7,98.0,6.3
+Standard Rain,Tier 3 (Weather Fusion),50,97.7,51.1,95.0,97.6,6.5
 Stress Rain,Tier 2 (Spectral),50,92.6,79.0,89.7,92.4,4.0
-Stress Rain,Tier 3 (Weather Fusion),50,93.1,78.7,85.7,90.7,4.0
+Stress Rain,Tier 3 (Weather Fusion),50,92.0,78.1,85.5,90.4,4.0

@@ -4,13 +4,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Data: EPA RadNet + NOAA ISD](https://img.shields.io/badge/Data-EPA%20RadNet%20%2B%20NOAA%20ISD-orange.svg)](https://www.epa.gov/radnet)
 
-**Update, 2026-10-18:** Missing rainfall now remains unknown in the model features, and CLI thresholds are calibrated for the fitted model. This is **feature schema 2**. The tables and figures below are archived results from the earlier schema; the full 20-seed benchmark has not been regenerated. See [the maintenance report](reports/MAINTENANCE_2026-10-18.md) for fixes, verification, and remaining research limitations.
+**Update, 2026-10-18:** Features follow **Feature Schema 2** (strict NaN propagation for missing weather telemetry and fitted-model validation threshold calibration). The 20-seed benchmark and evaluation figures have been fully regenerated across all tiers. See [the maintenance report](reports/MAINTENANCE_2026-10-18.md) for detailed verification and methodology.
 
 When it rains, natural radon daughters ($^{214}\text{Pb}$, $^{214}\text{Bi}$) wash out of the atmosphere onto EPA RadNet particulate filters. This produces sudden gamma count spikes of +40% to +180% that mimic radiological releases.
 
 Conventional fixed and rolling $3\sigma$ thresholds fail under precipitation: across humid U.S. stations they trigger **53 to 83 false alarm episodes per station-year**, with up to 89% of alarm episodes in humid cities coinciding with rain.
 
-This research project combines **8-channel EPA RadNet gamma spectrometry** with **NOAA ISD surface weather telemetry** using LightGBM. The archived 20-seed evaluation reported **4.32 ± 1.29 false alarm episodes per station-year** and **92.65 ± 1.37% detection of synthetic plumes**. These are simulation-benchmark results, not demonstrated detection rates for real releases.
+This research project combines **8-channel EPA RadNet gamma spectrometry** with **NOAA ISD surface weather telemetry** using LightGBM. The 20-seed evaluation on Feature Schema 2 yields **5.60 ± 3.16 false alarm episodes per station-year** (down to **2.01 ± 1.74** at 90% target) and **91.88 ± 2.67% detection of synthetic plumes**. These are simulation-benchmark results, not demonstrated detection rates for real releases.
 
 ---
 
@@ -27,7 +27,7 @@ This research project combines **8-channel EPA RadNet gamma spectrometry** with 
 
 ---
 
-## Archived Results (2023–2025 Test Split, Feature Schema 1)
+## Benchmark Results (2023–2025 Test Split, Feature Schema 2)
 
 Evaluated across **334,567 valid RadNet hours** (**324,550 synchronous radiation-weather hours**; **106,628 observed test hours** = 12.16 station-years) across five U.S. stations (Birmingham AL, Washington DC, San Diego CA, Dallas TX, Tampa FL) and **450 filter-synchronized synthetic plumes** (250 train, 200 test across $^{137}\text{Cs}$, $^{131}\text{I}$, $^{60}\text{Co}$, and $^{134}\text{Cs}$ mixtures):
 
@@ -37,12 +37,12 @@ Evaluated across **334,567 valid RadNet hours** (**324,550 synchronous radiation
 | **Global Dry Baseline** (Global $3\sigma_{\text{dry}}$) | 52.86 | 24.9% | 57.00% | 9.0 hrs |
 | **Conservative Baseline** (Rolling 7d $5\sigma$) | 23.51 | 57.6% | 6.00% | 8.5 hrs |
 | **Tier 1: Gross GBDT** (12 features) | 166.78 ± 19.69 | 17.3% | 92.00 ± 0.69% | 6.7 hrs |
-| **Tier 1b: Gross + Weather GBDT** (29 features) | 29.27 ± 3.93 | 0.0% | 85.58 ± 1.59% | 9.5 hrs |
+| **Tier 1b: Gross + Weather GBDT** (29 features) | 35.74 ± 18.21 | 0.0% | 87.42 ± 3.66% | 9.2 hrs |
 | **Tier 2: Spectral GBDT** (30 features) | 7.21 ± 3.93 | 4.7% | 92.98 ± 0.92% | 4.0 hrs |
-| **Tier 3: Weather Fusion GBDT** (48 features) | **4.32 ± 1.29** | **0.0%** | **92.65 ± 1.37%** | **4.0 hrs** |
-| **Tier 3: Weather-Fused MLP** (Neural Net) | 58.30 ± 23.63 | 3.7% | 90.18 ± 2.81% | 3.6 hrs |
+| **Tier 3: Weather Fusion GBDT** (48 features) | **5.60 ± 3.16** | **0.7%** | **91.88 ± 2.67%** | **4.0 hrs** |
+| **Tier 3: Weather-Fused MLP** (Neural Net) | 63.84 ± 25.09 | 3.3% | 90.42 ± 3.40% | 3.5 hrs |
 
-*Source: [rigorous_benchmark_summary.csv](data/processed/rigorous_benchmark_summary.csv), 20 random seeds. “95% target” describes validation threshold selection; realized test detection differs. This table does not validate schema 2.*
+*Source: [rigorous_benchmark_summary.csv](data/processed/rigorous_benchmark_summary.csv), 20 random seeds (SEEDS = 42 to 61). “95% target” describes validation threshold selection; realized test detection reflects out-of-sample performance.*
 
 ![ROC Performance Curves](reports/figures/rigorous_matched_roc_curves.png)
 

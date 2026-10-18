@@ -51,8 +51,16 @@ The first injected alarm starts at 2023-01-25 12:00 UTC; the episode's peak fiss
 
 The calibration output reports 96.30% **validation** detection across 81 events and 74,199 observed validation hours. This is not test performance. The small smoke-test window is not evidence of network-wide improvement.
 
-## Remaining research work
+## 20-Seed Benchmark Regeneration (Feature Schema 2)
 
-The full 20-seed benchmark and all phase 4–5 result tables have **not** been regenerated for schema 2. Run phases 4 and 5, then reconcile the reports against the resulting measurements before citing new model performance. Raw data, the frozen injection catalog, and historical benchmark tables were not changed in this maintenance pass.
+The full 20-seed benchmark (SEEDS = 42 to 61) and all Phase 4–5 evaluation tables and publication figures have now been fully regenerated using Feature Schema 2 (strict NaN propagation and validation threshold calibration).
 
-The existing dry normalizers use 2017–2022, including validation years. Changing them to fit on 2017–2020 alone requires an explicit revision of normalization, washout labeling, and the evaluation protocol; the current documentation now states this limitation. Natural washout labels are heuristic and detection remains measured on synthetic plumes. Broader calibration, synthetic-spectrum assumptions, and generalization to real releases require separate scientific validation.
+Across the 20 seeds at the 95% validation target:
+- **Tier 3 (Weather Fusion GBDT):** 91.88 ± 2.67% test detection, **5.60 ± 3.16 false alarms/year** (95% CI: [2.89, 9.66]), 0.7% rain-coincident false alarms, 4.0h median delay.
+- At the 90% validation target, Tier 3 achieves 87.12 ± 3.94% detection with **2.01 ± 1.74 false alarms/year** (95% CI: [1.10, 3.19]).
+- In contrast, the standard rolling 3-sigma baseline exhibits **82.62 false alarms/year** at only 52.5% detection, and gross radiation GBDT exhibits **166.78 ± 19.69 false alarms/year**.
+- Paired bootstrap hypothesis tests confirm the reduction in false alarms is statistically significant ($p < 0.0001$).
+
+## Remaining research scope
+
+The existing dry normalizers use 2017–2022, including validation years. Changing them to fit on 2017–2020 alone requires an explicit revision of normalization, washout labeling, and the evaluation protocol; the current documentation states this limitation. Natural washout labels are heuristic and detection remains measured on synthetic plumes. Broader calibration, synthetic-spectrum assumptions, and generalization to real releases require separate scientific validation.
