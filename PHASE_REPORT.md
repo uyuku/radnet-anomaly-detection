@@ -1,5 +1,7 @@
 # Phase 2 Report (Revised): Fixed-Threshold Baseline Alarm Evaluation & Gate 1 Resolutions
 
+> **Latest maintenance report (2026-10-18):** [Correctness and reproducibility updates](reports/MAINTENANCE_2026-10-18.md). Feature schema 2, fitted-model threshold calibration, portable runner, and 53 passing tests are current. Historical phase results below predate this revision; the full benchmark has not been regenerated.
+
 **Date**: 2026-09-29  
 **Project**: Weather-Aware Anomaly Detection in RadNet  
 **Phase**: Phase 2 (Fixed-Threshold Baseline)  
@@ -14,7 +16,7 @@ Phase 2 establishes the empirical performance of current-practice **fixed-thresh
 In response to independent AI cross-review, **all time-series operations (rolling windows, lag shifts, and episode clustering) were re-engineered to operate strictly on continuous 78,888-hour calendar grids** with gap-aware boundaries, ensuring that window lengths and lag times represent exact physical calendar hours rather than row indices.
 
 ### Core Phase 2 Findings
-1. **Severe False Alarm Burden Under Current Practice**: At a standard operational $3\sigma$ threshold, fixed-threshold monitoring produces **52 to 78 discrete alarm episodes per station-year** in humid/rainy climates (Birmingham: 65.1/yr global CPM, 52.0/yr rolling CPM; Washington DC: 76.6/yr global CPM, 52.9/yr rolling CPM; Dallas: 77.6/yr global CPM, 62.7/yr rolling CPM) ([`baseline_threshold_evaluation.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/baseline_threshold_evaluation.csv)).
+1. **Severe False Alarm Burden Under Current Practice**: At a standard operational $3\sigma$ threshold, fixed-threshold monitoring produces **52 to 78 discrete alarm episodes per station-year** in humid/rainy climates (Birmingham: 65.1/yr global CPM, 52.0/yr rolling CPM; Washington DC: 76.6/yr global CPM, 52.9/yr rolling CPM; Dallas: 77.6/yr global CPM, 62.7/yr rolling CPM) ([`baseline_threshold_evaluation.csv`](data/processed/baseline_threshold_evaluation.csv)).
 2. **Washout Triggers the Vast Majority of High Alarms**: In Washington, DC, **86.5% to 97.2%** of rolling CPM alarm episodes coincide with rainfall within 3 hours. In Birmingham and Dallas, **62.1% to 91.3%** of alarms coincide with rain. In Florida, **90% to 100%** of dose rate alarms coincide with rain.
 3. **The Operational Dilemma**: Raising the threshold to $5\sigma$ fails to solve the problem: stations still suffer 12 to 32 alarm episodes per year, and **73% to 97% of those remaining alarms are still rain washout**, while the detector becomes blind to genuine low-level anthropogenic plumes.
 4. **Resolution of Gate 1 Review Items**: All six review items flagged in the Gate 1 review have been resolved with empirical continuous-grid re-computations and documented citations.
@@ -24,11 +26,11 @@ In response to independent AI cross-review, **all time-series operations (rollin
 ## 2. Resolution of Gate 1 AI Cross-Review Items
 
 ### Item 1 & 3.2: AA1 Quality Code Filtering in Merge Pipeline
-- **Action**: In `parse_noaa_precip()` ([`src/merge_radnet_weather.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/merge_radnet_weather.py)), quality codes are restricted **strictly to `'1'` and `'5'`** (passed all automated and manual quality checks). Codes `'C'` and `'S'` (suspect) are completely excluded.
+- **Action**: In `parse_noaa_precip()` ([`src/merge_radnet_weather.py`](src/merge_radnet_weather.py)), quality codes are restricted **strictly to `'1'` and `'5'`** (passed all automated and manual quality checks). Codes `'C'` and `'S'` (suspect) are completely excluded.
 - **Result**: Re-executed merge across all 5 stations. Exactly **15,606 verified synchronous rain hours** passed all checks. (15,602 hours have simultaneous temperature observations, with 4 hours in Tampa missing temperature telemetry during rain).
 
 ### Item 2 & Section 2: Full Timestamp Cross-Correlation Lag Profile on Continuous Calendar Grid
-- **Action**: In [`src/analyze_timestamp_lags.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_timestamp_lags.py), lag shifts are performed on the continuous 78,888-hour grid (`shift(lag)` before filtering), guaranteeing that lag $k$ is strictly $k$ real calendar hours regardless of telemetry gaps ([`lag_cross_correlation.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/lag_cross_correlation.csv), [`reports/figures/precipitation_radnet_lag_cross_correlation.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/precipitation_radnet_lag_cross_correlation.png)).
+- **Action**: In [`src/analyze_timestamp_lags.py`](src/analyze_timestamp_lags.py), lag shifts are performed on the continuous 78,888-hour grid (`shift(lag)` before filtering), guaranteeing that lag $k$ is strictly $k$ real calendar hours regardless of telemetry gaps ([`lag_cross_correlation.csv`](data/processed/lag_cross_correlation.csv), [`reports/figures/precipitation_radnet_lag_cross_correlation.png`](reports/figures/precipitation_radnet_lag_cross_correlation.png)).
 - **Result**:
   - In Dallas: Dose rate correlation rises from $r = 0.10$ at lag -3 to $r = 0.31$ at lag 0, peaks at **$r = 0.39$ at lag +1**, and decays to $r = 0.30$ at lag +3.
   - In Birmingham: Dose rate correlation rises from $r = 0.09$ at lag -3 to $r = 0.30$ at lag 0, peaks at **$r = 0.36$ at lag +1**, and decays to $r = 0.21$ at lag +3.
@@ -36,7 +38,7 @@ In response to independent AI cross-review, **all time-series operations (rollin
   - **Physical Interpretation**: The peak at lag +1 occurs because hourly rainfall is accumulated over the preceding hour, and radioactive radon progeny (Pb-214: $T_{1/2}=26.8\text{ min}$, Bi-214: $T_{1/2}=19.9\text{ min}$) deposited on the ground/filter continue to decay into the subsequent hour.
 
 ### Item 3 & 3.4: Full Distribution of Radiation Surges Across All Rain Hours
-- **Action**: In [`src/analyze_rain_washout_distribution.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_rain_washout_distribution.py), the 24-hour dry rolling window is computed on the continuous calendar grid prior to filtering ([`rain_washout_surge_distribution.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rain_washout_surge_distribution.csv), [`reports/figures/rain_washout_surge_distribution.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rain_washout_surge_distribution.png)).
+- **Action**: In [`src/analyze_rain_washout_distribution.py`](src/analyze_rain_washout_distribution.py), the 24-hour dry rolling window is computed on the continuous calendar grid prior to filtering ([`rain_washout_surge_distribution.csv`](data/processed/rain_washout_surge_distribution.csv), [`reports/figures/rain_washout_surge_distribution.png`](reports/figures/rain_washout_surge_distribution.png)).
 - **Result (Across all 15,602 fully-observed rain hours; 15,606 hours have synchronous rain and RadNet observations, of which 15,602 also have simultaneous temperature observations, with 4 hours in Tampa missing temperature telemetry)**:
 
   - Median: **+6.85%** (+180.8 CPM, +0.56 $\sigma$)
@@ -55,7 +57,7 @@ In response to independent AI cross-review, **all time-series operations (rollin
 - **Other Four Stations**: Exact street addresses or GPS coordinates for the monitors in Washington DC, San Diego, Dallas, and Tampa are not published in public RadNet data or metadata, and official citations for their specific coordinates have not yet been located. Consequently, exact monitor-to-airport distances for those four stations remain unverified and are tracked in `QUESTIONS.md` as open items, with approximate municipal urban boundaries (typically 5 to 20 km from the respective airport ASOS).
 
 ### Item 6 & Section 2: Multi-Station Filter Replacement Schedule on Continuous Calendar Grid
-- **Action**: In [`src/analyze_filter_cycles_multi_station.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_filter_cycles_multi_station.py), 3-hour diffs are computed on the continuous calendar grid, requiring valid observations at both $t$ and $t-3$, and verifying that the entire 24-hour window was dry (precip == 0). This strictly eliminates false detections across weather or telemetry gaps ([`multi_station_filter_cycle_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/multi_station_filter_cycle_summary.csv)).
+- **Action**: In [`src/analyze_filter_cycles_multi_station.py`](src/analyze_filter_cycles_multi_station.py), 3-hour diffs are computed on the continuous calendar grid, requiring valid observations at both $t$ and $t-3$, and verifying that the entire 24-hour window was dry (precip == 0). This strictly eliminates false detections across weather or telemetry gaps ([`multi_station_filter_cycle_summary.csv`](data/processed/multi_station_filter_cycle_summary.csv)).
 - **Result (2021–2024, 143 to 216 strictly within-dry-spell step drops per station)**:
   - San Diego: Median interval **4.00 days** (Mean 4.81 d); Mean step drop: 648.6 CPM
   - Dallas: Median interval **3.96 days** (Mean 4.80 d); Mean step drop: 453.4 CPM
@@ -67,11 +69,11 @@ In response to independent AI cross-review, **all time-series operations (rollin
 
 ## 3. Fixed-Threshold Baseline Performance Evaluation (Continuous Grid)
 
-[`src/evaluate_baseline.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/evaluate_baseline.py) was re-executed using continuous calendar time for all rolling means (168h), precipitation windows (3h, 6h, 24h), and gap-aware episode clustering across all 5 stations (324,550 synchronous observation hours over 2017–2025):
+[`src/evaluate_baseline.py`](src/evaluate_baseline.py) was re-executed using continuous calendar time for all rolling means (168h), precipitation windows (3h, 6h, 24h), and gap-aware episode clustering across all 5 stations (324,550 synchronous observation hours over 2017–2025):
 
 ### Comprehensive Baseline Results Table
 
-*(From [`data/processed/baseline_threshold_evaluation.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/baseline_threshold_evaluation.csv))*:
+*(From [`data/processed/baseline_threshold_evaluation.csv`](data/processed/baseline_threshold_evaluation.csv))*:
 
 | Rule Family | Multiplier $k$ | Station | Years Evaluated | Alarm Episodes / Year | Total Alarm Hours / Year | **Rain Coincident % (3h Window)** | Rain Coincident % (6h Storm) | Dry Weather Alarms (%) | Mean Episode Duration (h) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -109,22 +111,22 @@ In response to independent AI cross-review, **all time-series operations (rollin
 1. **Intense Alarm Fatigue**: At a typical $3\sigma$ operational setting, monitors in Washington DC, Birmingham, and Dallas trigger **52 to 78 alarm episodes every single year** (averaging an alarm every 5 to 7 days).
 2. **Washout Explains the High Alarms**: In Washington, DC, **86.5%** of $3\sigma$ alarms and **97.2%** of $5\sigma$ alarms coincide with rain within 3 hours. In Birmingham and Dallas, **86% to 91%** of $5\sigma$ alarms are caused by rain.
 3. **The Sensitivity Trade-off**: Raising the threshold to $5\sigma$ suppresses total alarms, but does *not* fix the false alarm problem: **the remaining alarms are almost exclusively rain washout**, while the detector becomes completely blind to subtle, real fission plumes (+200 to +800 CPM).
-4. **Visual Proof on Event Timeline**: [`reports/figures/baseline_alarm_example_timeline.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/baseline_alarm_example_timeline.png) illustrates this directly over a 30-day spring period in Birmingham: every rainstorm pushes the gross count rate above the $3\sigma$ and $5\sigma$ lines, triggering repeated false alerts while dry periods remain calm.
+4. **Visual Proof on Event Timeline**: [`reports/figures/baseline_alarm_example_timeline.png`](reports/figures/baseline_alarm_example_timeline.png) illustrates this directly over a 30-day spring period in Birmingham: every rainstorm pushes the gross count rate above the $3\sigma$ and $5\sigma$ lines, triggering repeated false alerts while dry periods remain calm.
 
 ---
 
 ## 5. Figures Generated in Phase 2
 
-1. **Annual Alarm Rate by Rule and Station**: [`reports/figures/baseline_alarm_rate_by_threshold.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/baseline_alarm_rate_by_threshold.png)
+1. **Annual Alarm Rate by Rule and Station**: [`reports/figures/baseline_alarm_rate_by_threshold.png`](reports/figures/baseline_alarm_rate_by_threshold.png)
    - Panel A: Discrete annual alarm episodes across Global CPM, Rolling CPM, and Dose Rate at $3\sigma$.
    - Panel B: Fraction of alarms coinciding with rain within 3 hours.
-2. **Sigma Multiplier vs. Rain Coincidence Trade-off**: [`reports/figures/baseline_alarm_rain_coincidence.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/baseline_alarm_rain_coincidence.png)
+2. **Sigma Multiplier vs. Rain Coincidence Trade-off**: [`reports/figures/baseline_alarm_rain_coincidence.png`](reports/figures/baseline_alarm_rain_coincidence.png)
    - Demonstrates that increasing $k$ from 3 to 5 reduces total alarm count but concentrates the remaining alarms into pure rain washout events.
-3. **Illustrative Event Timeline**: [`reports/figures/baseline_alarm_example_timeline.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/baseline_alarm_example_timeline.png)
+3. **Illustrative Event Timeline**: [`reports/figures/baseline_alarm_example_timeline.png`](reports/figures/baseline_alarm_example_timeline.png)
    - 30-day timeline in Birmingham showing repeated threshold breaches driven by rain.
-4. **Precipitation vs. RadNet Cross-Correlation Lag Profile**: [`reports/figures/precipitation_radnet_lag_cross_correlation.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/precipitation_radnet_lag_cross_correlation.png)
+4. **Precipitation vs. RadNet Cross-Correlation Lag Profile**: [`reports/figures/precipitation_radnet_lag_cross_correlation.png`](reports/figures/precipitation_radnet_lag_cross_correlation.png)
    - Lags -12 to +12 hours confirming peak correlation at lag 0 to +1 across stations.
-5. **Rain Surge Distribution**: [`reports/figures/rain_washout_surge_distribution.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rain_washout_surge_distribution.png)
+5. **Rain Surge Distribution**: [`reports/figures/rain_washout_surge_distribution.png`](reports/figures/rain_washout_surge_distribution.png)
    - Empirical distribution across all 15,602 rain hours stratified by intensity.
 
 ---
@@ -173,7 +175,7 @@ This final revision of Phase 3 resolves all outstanding requirements identified 
    - Fresh reactor fission scenario (`fission_reactor_fukushima`) incorporates high-energy $^{134}\text{Cs}$ gamma lines (1168 keV, 1.8% yield; 1365 keV, 3.0% yield) falling into R07 via $p_{\text{R07, Cs134}} \sim \mathcal{U}[0.025, 0.055]$.
    - Fukushima injected R07+R08 share: Catalog ($N=90$) Mean = **4.54%** (5–95th [2.82%, 6.47%], IQR [3.65%, 5.42%]); 4,000 draws Mean = **4.51%** (5–95th [2.84%, 6.48%], IQR [3.65%, 5.28%]). This directly and substantially overlaps the empirical radon washout ratio-of-sums (5.58%) and the hour-level IQR band [4.04%, 7.21%].
 4. **Traceable Empirical Dose-Rate Calibration (Addressing Review Item 2.2 / Note 3.1)**:
-   - Ambient dose rate coupling $\Delta \text{Dose}(t) = k_{\text{dose}} \cdot \Delta \text{Gross CPM}(t)$ calibrated directly in [`src/calibrate_dose_coupling.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/calibrate_dose_coupling.py) to station-specific regressions across 5,623 verified rain hours ([`dose_rate_cpm_regression_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/dose_rate_cpm_regression_summary.csv)).
+   - Ambient dose rate coupling $\Delta \text{Dose}(t) = k_{\text{dose}} \cdot \Delta \text{Gross CPM}(t)$ calibrated directly in [`src/calibrate_dose_coupling.py`](src/calibrate_dose_coupling.py) to station-specific regressions across 5,623 verified rain hours ([`dose_rate_cpm_regression_summary.csv`](data/processed/dose_rate_cpm_regression_summary.csv)).
    - Stated physical assumptions documented: photon energy dependence vs unified empirical range; identical dose-to-gross ratio between classes by construction.
 5. **Exact Realized Durations, Strict 48h Buffer, & Catalog Spectrum Storage (Addressing Review Item 2.4)**:
    - Strict 48-hour buffer enforced across all injection branches: **0 buffer violations (<48h)** across all 450 injections.
@@ -185,7 +187,7 @@ This final revision of Phase 3 resolves all outstanding requirements identified 
    - Tampa's lower baseline counts (dry mean R02 882.7 CPM vs 1,980.4 CPM in Birmingham; gross 2,081.8 CPM vs 3,887.3 CPM) are grounded directly in `candidate_pilot_stations_comparison.csv` and empirical dry baseline records.
    - Geological and atmospheric boundary layer hypotheses are cataloged as formal open research questions in `QUESTIONS.md`.
 7. **Pure Cs-137 Hard-Case Walkthrough (`INJ_0067`) (Addressing Review Item 2.3 & 2.6)**:
-   - Walkthrough figure ([`reports/figures/synthetic_injection_hard_case_rain.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_hard_case_rain.png)) features `INJ_0067` at Birmingham, AL (Jan 25–28, 2023): a subtle Band A (479.1 CPM peak) pure Cs-137 plume rising concurrently inside a 13.5 mm/h rainstorm and ending at a verified physical filter change drop (3,885 $\to$ 3,578 CPM background drop), illustrating the physically difficult regime where the plume has zero R07 signature during the storm.
+   - Walkthrough figure ([`reports/figures/synthetic_injection_hard_case_rain.png`](reports/figures/synthetic_injection_hard_case_rain.png)) features `INJ_0067` at Birmingham, AL (Jan 25–28, 2023): a subtle Band A (479.1 CPM peak) pure Cs-137 plume rising concurrently inside a 13.5 mm/h rainstorm and ending at a verified physical filter change drop (3,885 $\to$ 3,578 CPM background drop), illustrating the physically difficult regime where the plume has zero R07 signature during the storm.
 8. **Adopted Headline Metric & Continuous Calendar Accounting**:
    - Primary headline metric: **False alarms per station-year at a fixed detection probability for injected fission events** evaluated on **unmodified real background data** using verified observed hours as the denominator ($N_{\text{obs}} / 8,766$).
    - Exactly 52,584 train hours and 26,304 test hours per station (78,888 h/station, 394,440 h network). Missing RadNet data explicitly labeled `unobserved` (59,792 hours across network).
@@ -250,13 +252,13 @@ The physical excess count rate profile $S(t)$ over total duration $D = T_{\text{
    - Any candidate window spanning an intermediate detected filter replacement between $t_{\text{start}}$ and $t_{\text{drop}}$ is strictly rejected and resampled.
    - Filter cadence check: `hours_since_last_detected_drop` at injection onset exhibits a median of 84.0 h (IQR [40.2 h, 176.8 h]), matching natural baseline operational cycles (median 97.0 h, IQR [41.0 h, 226.0 h]).
 
-This physical progression is illustrated in [`reports/figures/synthetic_injection_shapes_and_nuclides.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_shapes_and_nuclides.png).
+This physical progression is illustrated in [`reports/figures/synthetic_injection_shapes_and_nuclides.png`](reports/figures/synthetic_injection_shapes_and_nuclides.png).
 
 ---
 
 ## 4. Traceable Empirical Dose-Rate Calibration
 
-Calibrated in [`src/calibrate_dose_coupling.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/calibrate_dose_coupling.py) and saved to [`data/processed/dose_rate_cpm_regression_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/dose_rate_cpm_regression_summary.csv):
+Calibrated in [`src/calibrate_dose_coupling.py`](src/calibrate_dose_coupling.py) and saved to [`data/processed/dose_rate_cpm_regression_summary.csv`](data/processed/dose_rate_cpm_regression_summary.csv):
 
 | Station ID | Station Name | Rain Hours Analyzed ($N$) | Slope $k_{\text{dose}}$ (nSv/h per CPM) | Intercept (nSv/h) | $R^2$ | 95% Confidence Interval |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -271,7 +273,7 @@ Calibrated in [`src/calibrate_dose_coupling.py`](file:///Users/o/Projects/radnet
 
 ## 5. Revised Train/Test Parameter Disjointness Matrix
 
-In [`data/processed/synthetic_injection_catalog.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/synthetic_injection_catalog.csv), exactly 450 deterministic injections (seed `42`) were synthesized across the 5 pilot stations with **0 overlapping pairs** and **0 buffer violations (<48h)**:
+In [`data/processed/synthetic_injection_catalog.csv`](data/processed/synthetic_injection_catalog.csv), exactly 450 deterministic injections (seed `42`) were synthesized across the 5 pilot stations with **0 overlapping pairs** and **0 buffer violations (<48h)**:
 
 | Parameter Axis | Training Set (2017–2022, N=250) | Test Standard Set (2023–2025, N=100) | Test Stress Hard-Regime Set (N=100) | Evaluation Role |
 | :--- | :--- | :--- | :--- | :--- |
@@ -285,13 +287,13 @@ In [`data/processed/synthetic_injection_catalog.csv`](file:///Users/o/Projects/r
 | **Filter Sync** | **250/250 (100.0%) synchronized** | **100/100 (100.0%) synchronized** | **100/100 (100.0%) synchronized** | Exactly 0 synthetic-only drop cliffs network-wide |
 
 > [!NOTE]
-> Parameter distributions are verified in [`reports/figures/synthetic_injection_train_test_disjointness.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_train_test_disjointness.png).
+> Parameter distributions are verified in [`reports/figures/synthetic_injection_train_test_disjointness.png`](reports/figures/synthetic_injection_train_test_disjointness.png).
 
 ---
 
 ## 6. Reconciled Hard-Case Event Walkthrough (`INJ_0067`)
 
-[`reports/figures/synthetic_injection_hard_case_rain.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_hard_case_rain.png) details injection `INJ_0067` at Birmingham, AL (January 25–28, 2023), illustrating the challenging regime requested in Claude Review Item 2.3:
+[`reports/figures/synthetic_injection_hard_case_rain.png`](reports/figures/synthetic_injection_hard_case_rain.png) details injection `INJ_0067` at Birmingham, AL (January 25–28, 2023), illustrating the challenging regime requested in Claude Review Item 2.3:
 
 - **Event Parameters**: Start: 2023-01-25 07:00 UTC; End: 2023-01-28 17:00 UTC; Duration: 83 hours (Passage: 8h, Retention: 75h); Peak Injected Signal: +479.1 CPM; Shape: Sigmoidal ($s = 0.81$); Nuclide Scenario: `fission_pure_cs137` (100% $^{137}\text{Cs}$, prominent 662 keV photopeak in Channel R05, zero photopeak in Channel R07); $k_{\text{dose}} = 0.01446\text{ nSv/h per CPM}$.
 - **Storm Timeline & Concurrent Onset**:
@@ -307,13 +309,13 @@ In [`data/processed/synthetic_injection_catalog.csv`](file:///Users/o/Projects/r
   - After rain ceases on Jan 25 (13:00 UTC), natural radon washout decays away within 3 hours back to baseline (~3,700 CPM).
   - In contrast, particulate $^{137}\text{Cs}$ remains trapped on the filter media, maintaining an elevated plateau of **+479.1 CPM** for 75 hours!
   - At 2023-01-28 17:00 UTC, a routine physical filter replacement occurs. Background count rate steps down from 3,885 CPM (at 14:00 UTC) to 3,578 CPM (at 17:00 UTC). Synchronously at 18:00 UTC, the synthetic particulate activity resets to zero on the new clean filter media.
-  - All curves, legends, and thresholds in [`reports/figures/synthetic_injection_hard_case_rain.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_hard_case_rain.png) match `data/processed/labeled_al_birmingham_test.csv.gz` to the single digit.
+  - All curves, legends, and thresholds in [`reports/figures/synthetic_injection_hard_case_rain.png`](reports/figures/synthetic_injection_hard_case_rain.png) match `data/processed/labeled_al_birmingham_test.csv.gz` to the single digit.
 
 ---
 
 ## 7. Reconciled Continuous Calendar Accounting & Missing Data
 
-Data generated by [`src/synthetic_injection.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/synthetic_injection.py) and verified in [`data/processed/labeled_dataset_reconciliation_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/labeled_dataset_reconciliation_summary.csv):
+Data generated by [`src/synthetic_injection.py`](src/synthetic_injection.py) and verified in [`data/processed/labeled_dataset_reconciliation_summary.csv`](data/processed/labeled_dataset_reconciliation_summary.csv):
 
 | Station ID | Station Name | Split | Total Calendar Hours | Normal Hours | Radon Washout Hours | Fission Product Hours | Unobserved Hours |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -338,17 +340,17 @@ Data generated by [`src/synthetic_injection.py`](file:///Users/o/Projects/radnet
 
 ## 8. Deliverables & Figures Generated in Revised Phase 3
 
-1. **Dose Coupling Calibration Script**: [`src/calibrate_dose_coupling.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/calibrate_dose_coupling.py)
-2. **Dose Calibration Summary Data**: [`data/processed/dose_rate_cpm_regression_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/dose_rate_cpm_regression_summary.csv)
-3. **Washout Spectrum Analysis Script**: [`src/analyze_washout_spectrum.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/analyze_washout_spectrum.py)
-4. **Washout Spectral Shares Data**: [`data/processed/rain_washout_spectral_shares.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rain_washout_spectral_shares.csv)
-5. **Synthetic Injection Generator**: [`src/synthetic_injection.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/synthetic_injection.py)
-6. **Synthetic Injection Catalog**: [`data/processed/synthetic_injection_catalog.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/synthetic_injection_catalog.csv) (450 deterministic injections, 100% filter drop synchronized, exact 20.0% scenario balanced, 0 overlaps, 0 buffer violations).
-7. **Labeled Reconciliation Summary**: [`data/processed/labeled_dataset_reconciliation_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/labeled_dataset_reconciliation_summary.csv)
-8. **Phase 3 Plotting Script**: [`src/plot_synthetic_injections.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/plot_synthetic_injections.py)
-9. **Figure 1 (Physical Shapes & Multi-Nuclide Spectroscopy)**: [`reports/figures/synthetic_injection_shapes_and_nuclides.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_shapes_and_nuclides.png)
-10. **Figure 2 (Train/Test Disjointness & Stress Coverage)**: [`reports/figures/synthetic_injection_train_test_disjointness.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_train_test_disjointness.png)
-11. **Figure 3 (Hard-Case Pure Cs-137 Rain Event Walkthrough - INJ_0067)**: [`reports/figures/synthetic_injection_hard_case_rain.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/synthetic_injection_hard_case_rain.png)
+1. **Dose Coupling Calibration Script**: [`src/calibrate_dose_coupling.py`](src/calibrate_dose_coupling.py)
+2. **Dose Calibration Summary Data**: [`data/processed/dose_rate_cpm_regression_summary.csv`](data/processed/dose_rate_cpm_regression_summary.csv)
+3. **Washout Spectrum Analysis Script**: [`src/analyze_washout_spectrum.py`](src/analyze_washout_spectrum.py)
+4. **Washout Spectral Shares Data**: [`data/processed/rain_washout_spectral_shares.csv`](data/processed/rain_washout_spectral_shares.csv)
+5. **Synthetic Injection Generator**: [`src/synthetic_injection.py`](src/synthetic_injection.py)
+6. **Synthetic Injection Catalog**: [`data/processed/synthetic_injection_catalog.csv`](data/processed/synthetic_injection_catalog.csv) (450 deterministic injections, 100% filter drop synchronized, exact 20.0% scenario balanced, 0 overlaps, 0 buffer violations).
+7. **Labeled Reconciliation Summary**: [`data/processed/labeled_dataset_reconciliation_summary.csv`](data/processed/labeled_dataset_reconciliation_summary.csv)
+8. **Phase 3 Plotting Script**: [`src/plot_synthetic_injections.py`](src/plot_synthetic_injections.py)
+9. **Figure 1 (Physical Shapes & Multi-Nuclide Spectroscopy)**: [`reports/figures/synthetic_injection_shapes_and_nuclides.png`](reports/figures/synthetic_injection_shapes_and_nuclides.png)
+10. **Figure 2 (Train/Test Disjointness & Stress Coverage)**: [`reports/figures/synthetic_injection_train_test_disjointness.png`](reports/figures/synthetic_injection_train_test_disjointness.png)
+11. **Figure 3 (Hard-Case Pure Cs-137 Rain Event Walkthrough - INJ_0067)**: [`reports/figures/synthetic_injection_hard_case_rain.png`](reports/figures/synthetic_injection_hard_case_rain.png)
 
 ---
 
@@ -438,7 +440,7 @@ Evaluated on 200 catalog test injections (injected series) and 106,628 clean obs
 > 2. NaI(Tl) spectrometry (Tier 2) provides the primary class separation, dropping false alarms by **97.5%** (from 124.3 to 3.12 FA/yr).
 > 3. Full weather fusion (Tier 3) stabilizes probability estimates during severe storm onsets, providing physical grounding and suppressing weather-induced false alarms down to 2.6%.
 
-This trade-off is illustrated in [`reports/figures/model_detection_vs_false_alarms_roc.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/model_detection_vs_false_alarms_roc.png).
+This trade-off is illustrated in [`reports/figures/model_detection_vs_false_alarms_roc.png`](reports/figures/model_detection_vs_false_alarms_roc.png).
 
 ---
 
@@ -465,13 +467,13 @@ Evaluated across the 200 test catalog injections operating at the ~95% overall t
 | **Station** | Dallas, TX (`tx_dallas`) | 40 | 100.0% | 95.0% | **97.5%** | 3.0 h |
 | **Station** | Tampa, FL (`fl_tampa`) | 40 | 97.5% | 95.0% | **95.0%** | 3.0 h |
 
-This breakdown is illustrated in [`reports/figures/model_stratified_performance.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/model_stratified_performance.png).
+This breakdown is illustrated in [`reports/figures/model_stratified_performance.png`](reports/figures/model_stratified_performance.png).
 
 ---
 
 ## 4. Feature Importance Hierarchy & Physical Interpretation
 
-Feature importance was evaluated in [`src/train_and_evaluate_models.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/train_and_evaluate_models.py) across all 48 features and saved to [`data/processed/model_feature_importance.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/model_feature_importance.csv):
+Feature importance was evaluated in [`src/train_and_evaluate_models.py`](src/train_and_evaluate_models.py) across all 48 features and saved to [`data/processed/model_feature_importance.csv`](data/processed/model_feature_importance.csv):
 
 | Rank | Feature Name | Physical Domain | Importance Gain | Importance Split | Physical Role |
 | :---: | :--- | :---: | :---: | :---: | :--- |
@@ -494,7 +496,7 @@ Feature importance was evaluated in [`src/train_and_evaluate_models.py`](file://
 > [!NOTE]
 > The top 4 features span both Weather (`precip_3h_mm`, `rain_recent_3h`), Gross Radiation (`z_score_global_dry`), and Spectrometry (`ratio_r05_r03`), demonstrating that the model leverages genuine multi-modal physical fusion.
 
-This hierarchy is illustrated in [`reports/figures/model_feature_importance.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/model_feature_importance.png).
+This hierarchy is illustrated in [`reports/figures/model_feature_importance.png`](reports/figures/model_feature_importance.png).
 
 ---
 
@@ -509,7 +511,7 @@ San Diego represents the most challenging out-of-domain evaluation site in the n
 
 ### LOSO Test Results (2023–2025 Test Split)
 
-Saved to [`data/processed/model_loso_evaluation_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/model_loso_evaluation_summary.csv):
+Saved to [`data/processed/model_loso_evaluation_summary.csv`](data/processed/model_loso_evaluation_summary.csv):
 - **Held-out Station**: San Diego, CA (`ca_san_diego`)
 - **Test Injections**: 40 events (20 standard, 20 stress)
 - **Detected Events**: **35 of 40 events (87.5% detection rate)**
@@ -523,7 +525,7 @@ This confirms that scale-invariant feature formulation (dimensionless Z-scores, 
 
 ## 6. Real-Time Diagnostic Timeline Walkthrough (`INJ_0067`)
 
-[`reports/figures/model_hard_case_timeline.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/model_hard_case_timeline.png) illustrates the model diagnostic behavior during injection `INJ_0067` at Birmingham, AL (January 24–29, 2023):
+[`reports/figures/model_hard_case_timeline.png`](reports/figures/model_hard_case_timeline.png) illustrates the model diagnostic behavior during injection `INJ_0067` at Birmingham, AL (January 24–29, 2023):
 
 1. **Pre-Storm Baseline (Jan 24 18:00 – Jan 25 06:00 UTC)**:
    - Dry conditions (0.0 mm/h).
@@ -547,20 +549,20 @@ This confirms that scale-invariant feature formulation (dimensionless Z-scores, 
 
 ## 7. Deliverables & Figures Generated in Phase 4
 
-1. **Feature Engineering Module**: [`src/feature_engineering.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/feature_engineering.py) (Strictly causal, dual-series, 48 features across 3 tiers).
-2. **Model Training & Evaluation Script**: [`src/train_and_evaluate_models.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/train_and_evaluate_models.py) (LightGBM training, threshold sweeping, baseline benchmarking, LOSO evaluation).
-3. **Model Plotting Script**: [`src/plot_model_evaluation.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/plot_model_evaluation.py).
+1. **Feature Engineering Module**: [`src/feature_engineering.py`](src/feature_engineering.py) (Strictly causal, dual-series, 48 features across 3 tiers).
+2. **Model Training & Evaluation Script**: [`src/train_and_evaluate_models.py`](src/train_and_evaluate_models.py) (LightGBM training, threshold sweeping, baseline benchmarking, LOSO evaluation).
+3. **Model Plotting Script**: [`src/plot_model_evaluation.py`](src/plot_model_evaluation.py).
 4. **Summary CSV Deliverables**:
-   - [`data/processed/model_operating_points_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/model_operating_points_summary.csv) (Headline comparison at 90%, 95%, 98% detection).
-   - [`data/processed/model_stratified_evaluation_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/model_stratified_evaluation_summary.csv) (Breakdown by environment, test set, scenario, station).
-   - [`data/processed/model_loso_evaluation_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/model_loso_evaluation_summary.csv) (External generalization on held-out San Diego).
-   - [`data/processed/model_feature_importance.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/model_feature_importance.csv) (Feature gains and splits across all 48 features).
-   - [`data/processed/model_roc_curve_data.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/model_roc_curve_data.csv) (Continuous trade-off curve data).
+   - [`data/processed/model_operating_points_summary.csv`](data/processed/model_operating_points_summary.csv) (Headline comparison at 90%, 95%, 98% detection).
+   - [`data/processed/model_stratified_evaluation_summary.csv`](data/processed/model_stratified_evaluation_summary.csv) (Breakdown by environment, test set, scenario, station).
+   - [`data/processed/model_loso_evaluation_summary.csv`](data/processed/model_loso_evaluation_summary.csv) (External generalization on held-out San Diego).
+   - [`data/processed/model_feature_importance.csv`](data/processed/model_feature_importance.csv) (Feature gains and splits across all 48 features).
+   - [`data/processed/model_roc_curve_data.csv`](data/processed/model_roc_curve_data.csv) (Continuous trade-off curve data).
 5. **Publication-Quality Figures**:
-   - [`reports/figures/model_detection_vs_false_alarms_roc.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/model_detection_vs_false_alarms_roc.png) (Headline trade-off curve).
-   - [`reports/figures/model_stratified_performance.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/model_stratified_performance.png) (Stratified detection breakdown).
-   - [`reports/figures/model_feature_importance.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/model_feature_importance.png) (Top 15 features color-coded by physical domain).
-   - [`reports/figures/model_hard_case_timeline.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/model_hard_case_timeline.png) (Real-time diagnostic probabilities during `INJ_0067`).
+   - [`reports/figures/model_detection_vs_false_alarms_roc.png`](reports/figures/model_detection_vs_false_alarms_roc.png) (Headline trade-off curve).
+   - [`reports/figures/model_stratified_performance.png`](reports/figures/model_stratified_performance.png) (Stratified detection breakdown).
+   - [`reports/figures/model_feature_importance.png`](reports/figures/model_feature_importance.png) (Top 15 features color-coded by physical domain).
+   - [`reports/figures/model_hard_case_timeline.png`](reports/figures/model_hard_case_timeline.png) (Real-time diagnostic probabilities during `INJ_0067`).
 
 ---
 
@@ -589,26 +591,26 @@ We request Ömer and Claude review and confirm:
 **Unseen Test Split**: 2023–2025 Test Split across all 5 pilot stations (106,628 clean observed hours = 12.16 station-years; 200 synthetic injection events)  
 **Operational Denominators**: $N_{\text{obs}} / 8,766$ station-years (strictly prevents outage distortion)  
 **Deliverables**:
-- Evaluation Script: [`src/train_and_evaluate_rigorous.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/train_and_evaluate_rigorous.py)
-- Plotting Script: [`src/plot_rigorous_evaluation.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/plot_rigorous_evaluation.py)
-- Catalog Audit Script: [`src/audit_injection_catalog.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/audit_injection_catalog.py)
-- Benchmark Summary (20-Seed Mean ± Std with 95% CIs): [`data/processed/rigorous_benchmark_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_benchmark_summary.csv)
-- Matched Detection Comparison Table: [`data/processed/rigorous_matched_detection_comparison.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_matched_detection_comparison.csv)
-- Seed-Level Statistical Tests (20 Seeds): [`data/processed/rigorous_seed_statistical_tests.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_seed_statistical_tests.csv)
-- Continuous Baseline ROC Curve Data: [`data/processed/rigorous_baseline_continuous_roc.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_baseline_continuous_roc.csv)
-- Continuous ML ROC Curves (All 5 Tiers): [`data/processed/rigorous_continuous_roc_all_tiers.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_continuous_roc_all_tiers.csv)
-- Multi-Station LOSO Evaluation: [`data/processed/rigorous_loso_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_loso_summary.csv) & [`data/processed/rigorous_loso_stratified_detection.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_loso_stratified_detection.csv)
-- Spectral Template Sensitivity Sweep: [`data/processed/rigorous_template_sensitivity.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_template_sensitivity.csv)
-- Instrumental Gain Drift Evaluation: [`data/processed/rigorous_gain_drift_evaluation.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_gain_drift_evaluation.csv)
-- Neural Net Probability Calibration: [`data/processed/eval_mlp_calibration_comparison.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/eval_mlp_calibration_comparison.csv)
-- Operational Deadlines & Environmental Stratification: [`data/processed/rigorous_stratified_deadlines.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_stratified_deadlines.csv)
-- Catalog Audit Verification: [`data/processed/injection_catalog_audit_verification.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/injection_catalog_audit_verification.csv)
+- Evaluation Script: [`src/train_and_evaluate_rigorous.py`](src/train_and_evaluate_rigorous.py)
+- Plotting Script: [`src/plot_rigorous_evaluation.py`](src/plot_rigorous_evaluation.py)
+- Catalog Audit Script: [`src/audit_injection_catalog.py`](src/audit_injection_catalog.py)
+- Benchmark Summary (20-Seed Mean ± Std with 95% CIs): [`data/processed/rigorous_benchmark_summary.csv`](data/processed/rigorous_benchmark_summary.csv)
+- Matched Detection Comparison Table: [`data/processed/rigorous_matched_detection_comparison.csv`](data/processed/rigorous_matched_detection_comparison.csv)
+- Seed-Level Statistical Tests (20 Seeds): [`data/processed/rigorous_seed_statistical_tests.csv`](data/processed/rigorous_seed_statistical_tests.csv)
+- Continuous Baseline ROC Curve Data: [`data/processed/rigorous_baseline_continuous_roc.csv`](data/processed/rigorous_baseline_continuous_roc.csv)
+- Continuous ML ROC Curves (All 5 Tiers): [`data/processed/rigorous_continuous_roc_all_tiers.csv`](data/processed/rigorous_continuous_roc_all_tiers.csv)
+- Multi-Station LOSO Evaluation: [`data/processed/rigorous_loso_summary.csv`](data/processed/rigorous_loso_summary.csv) & [`data/processed/rigorous_loso_stratified_detection.csv`](data/processed/rigorous_loso_stratified_detection.csv)
+- Spectral Template Sensitivity Sweep: [`data/processed/rigorous_template_sensitivity.csv`](data/processed/rigorous_template_sensitivity.csv)
+- Instrumental Gain Drift Evaluation: [`data/processed/rigorous_gain_drift_evaluation.csv`](data/processed/rigorous_gain_drift_evaluation.csv)
+- Neural Net Probability Calibration: [`data/processed/eval_mlp_calibration_comparison.csv`](data/processed/eval_mlp_calibration_comparison.csv)
+- Operational Deadlines & Environmental Stratification: [`data/processed/rigorous_stratified_deadlines.csv`](data/processed/rigorous_stratified_deadlines.csv)
+- Catalog Audit Verification: [`data/processed/injection_catalog_audit_verification.csv`](data/processed/injection_catalog_audit_verification.csv)
 - Publication Figures:
-  - [`reports/figures/rigorous_matched_roc_curves.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rigorous_matched_roc_curves.png)
-  - [`reports/figures/rigorous_ablation_seeds.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rigorous_ablation_seeds.png)
-  - [`reports/figures/rigorous_detection_deadlines.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rigorous_detection_deadlines.png)
-  - [`reports/figures/rigorous_template_sensitivity.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rigorous_template_sensitivity.png)
-  - [`reports/figures/rigorous_loso_multistation.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rigorous_loso_multistation.png)
+  - [`reports/figures/rigorous_matched_roc_curves.png`](reports/figures/rigorous_matched_roc_curves.png)
+  - [`reports/figures/rigorous_ablation_seeds.png`](reports/figures/rigorous_ablation_seeds.png)
+  - [`reports/figures/rigorous_detection_deadlines.png`](reports/figures/rigorous_detection_deadlines.png)
+  - [`reports/figures/rigorous_template_sensitivity.png`](reports/figures/rigorous_template_sensitivity.png)
+  - [`reports/figures/rigorous_loso_multistation.png`](reports/figures/rigorous_loso_multistation.png)
 
 ---
 
@@ -630,13 +632,13 @@ This Phase 5 report implements the complete rigorous evaluation protocol in resp
    - In contrast, Tier 3 GBDT operates at **4.32 ± 1.29 FA/yr** at **92.65 ± 1.37% detection**, demonstrating that fixed threshold rules can only reach comparable detection by accepting roughly 70× more operational false alarms.
 5. **Zero Test-Tuning Leakage**:
    - All operating thresholds $\tau^*$ are determined exclusively on the 2021–2022 validation fold and frozen.
-   - All station dry baseline parameters ($\mu_{\text{dry}}, \sigma_{\text{dry}}$) are computed strictly on 2017–2022 training years from [`data/processed/station_dry_baselines_train_only.json`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/station_dry_baselines_train_only.json).
+   - All station dry baseline parameters ($\mu_{\text{dry}}, \sigma_{\text{dry}}$) are computed strictly on 2017–2022 training years from [`data/processed/station_dry_baselines_train_only.json`](data/processed/station_dry_baselines_train_only.json).
 
 ---
 
 ## 2. Head-to-Head Benchmark at Validation-Frozen & Matched Detection
 
-*(Drawn from [`data/processed/rigorous_matched_detection_comparison.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_matched_detection_comparison.csv) and [`data/processed/rigorous_benchmark_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_benchmark_summary.csv))*
+*(Drawn from [`data/processed/rigorous_matched_detection_comparison.csv`](data/processed/rigorous_matched_detection_comparison.csv) and [`data/processed/rigorous_benchmark_summary.csv`](data/processed/rigorous_benchmark_summary.csv))*
 
 Comparing models and baselines across all 200 test injections on the 2023–2025 out-of-sample test split (106,628 observed hours = 12.16 station-years):
 
@@ -657,7 +659,7 @@ Comparing models and baselines across all 200 test injections on the 2023–2025
 
 ## 3. 20-Seed Replication & Statistical Significance Analysis
 
-*(Drawn from [`data/processed/rigorous_seed_statistical_tests.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_seed_statistical_tests.csv))*
+*(Drawn from [`data/processed/rigorous_seed_statistical_tests.csv`](data/processed/rigorous_seed_statistical_tests.csv))*
 
 | Comparison | Matched Detection? | Baseline Realized Det | Fusion Realized Det | Baseline Mean (Median) FA | Fusion Mean (Median) FA | Mean FA Difference [Paired Boot 95% CI] | Mean (Median) Reduction % | Paired $t$ $p$-value | Wilcoxon $p$-value | Seeds Fusion Lower | Significant? ($p < 0.05$) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -673,7 +675,7 @@ Comparing models and baselines across all 200 test injections on the 2023–2025
 
 ## 4. Operational Deadlines & Environmental Stratification (20-Seed Mean)
 
-*(Drawn from [`data/processed/rigorous_stratified_deadlines.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_stratified_deadlines.csv) and visualized in [`reports/figures/rigorous_detection_deadlines.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rigorous_detection_deadlines.png))*
+*(Drawn from [`data/processed/rigorous_stratified_deadlines.csv`](data/processed/rigorous_stratified_deadlines.csv) and visualized in [`reports/figures/rigorous_detection_deadlines.png`](reports/figures/rigorous_detection_deadlines.png))*
 
 | Stratum / Evaluation Slice | Model Tier | Total Injections ($N$) | Realized $\le 6\text{h}$ Detection | Realized $\le 12\text{h}$ Detection | Realized $\le 24\text{h}$ Detection | Total Window Detection | Median Detection Delay (h) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -700,7 +702,7 @@ Comparing models and baselines across all 200 test injections on the 2023–2025
 
 ## 5. Multi-Station Leave-One-Station-Out (LOSO) Generalization
 
-*(Drawn from [`data/processed/rigorous_loso_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_loso_summary.csv) and [`data/processed/rigorous_loso_stratified_detection.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_loso_stratified_detection.csv); visualized in [`reports/figures/rigorous_loso_multistation.png`](file:///Users/o/Projects/radnet-anomaly-detection/reports/figures/rigorous_loso_multistation.png))*
+*(Drawn from [`data/processed/rigorous_loso_summary.csv`](data/processed/rigorous_loso_summary.csv) and [`data/processed/rigorous_loso_stratified_detection.csv`](data/processed/rigorous_loso_stratified_detection.csv); visualized in [`reports/figures/rigorous_loso_multistation.png`](reports/figures/rigorous_loso_multistation.png))*
 
 | Held-Out Station | Climate & Operational Regime | Frozen Threshold $\tau^*$ | Clean Test Hours (Station-Years) | Clean False Alarms per Year | Rule-of-Three 95% Upper Bound (FA/yr) | Test Injections Detected | Overall Realized Detection Rate | Band B Detection Rate (714–1199 CPM) | Band A Detection Rate (255–599 CPM) | Median Delay (h) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -717,7 +719,7 @@ Comparing models and baselines across all 200 test injections on the 2023–2025
 
 ## 6. Spectral Template Sensitivity & Instrumental Gain Drift (SEEDS 42–46)
 
-*(Drawn from [`data/processed/rigorous_template_sensitivity.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_template_sensitivity.csv) and [`data/processed/rigorous_gain_drift_evaluation.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/rigorous_gain_drift_evaluation.csv))*
+*(Drawn from [`data/processed/rigorous_template_sensitivity.csv`](data/processed/rigorous_template_sensitivity.csv) and [`data/processed/rigorous_gain_drift_evaluation.csv`](data/processed/rigorous_gain_drift_evaluation.csv))*
 
 ### Panel A: Injected Photopeak Branching Ratio Sensitivity
 | Perturbation Factor | Nominal Photopeak Scaling | Realized Test Event Detection (%) (5-Seed Mean ± Std) | Median Delay (h) | Sensitivity Verdict |
@@ -741,7 +743,7 @@ Comparing models and baselines across all 200 test injections on the 2023–2025
 
 ## 7. Neural Network Probability Calibration & Tabular Modeling Gap
 
-*(Drawn from [`data/processed/eval_mlp_calibration_comparison.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/eval_mlp_calibration_comparison.csv) and [`data/processed/eval_mlp_comparison_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/eval_mlp_comparison_summary.csv))*
+*(Drawn from [`data/processed/eval_mlp_calibration_comparison.csv`](data/processed/eval_mlp_calibration_comparison.csv) and [`data/processed/eval_mlp_comparison_summary.csv`](data/processed/eval_mlp_comparison_summary.csv))*
 
 | Model Architecture | Calibration Protocol | Frozen Operating Threshold $\tau^*$ | Realized Test Detection (%) | Clean False Alarms per Station-Year |
 | :--- | :--- | :---: | :---: | :---: |
@@ -754,7 +756,7 @@ Comparing models and baselines across all 200 test injections on the 2023–2025
 
 ## 8. Catalog Audit & Formal Verification Summary
 
-All catalog properties were empirically audited against `merged_{station}_2017_2025.csv.gz` by [`src/audit_injection_catalog.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/audit_injection_catalog.py) and [`tests/test_radnet_pipeline.py`](file:///Users/o/Projects/radnet-anomaly-detection/tests/test_radnet_pipeline.py), exporting summary tables to [`data/processed/injection_catalog_audit_summary.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/injection_catalog_audit_summary.csv) and [`data/processed/injection_catalog_audit_verification.csv`](file:///Users/o/Projects/radnet-anomaly-detection/data/processed/injection_catalog_audit_verification.csv):
+All catalog properties were empirically audited against `merged_{station}_2017_2025.csv.gz` by [`src/audit_injection_catalog.py`](src/audit_injection_catalog.py) and [`tests/test_radnet_pipeline.py`](tests/test_radnet_pipeline.py), exporting summary tables to [`data/processed/injection_catalog_audit_summary.csv`](data/processed/injection_catalog_audit_summary.csv) and [`data/processed/injection_catalog_audit_verification.csv`](data/processed/injection_catalog_audit_verification.csv):
 - **100.0% Filter Step-Drop Synchronization**: All 450 of 450 injections empirically verified against merged station telemetry (`status = PASSED`).
 - **Exact 20.0% Scenario Balance**: Exactly 20.0% of injections in every environment belong to each of the 5 radiological release scenarios.
 - **Strict 48-Hour Buffer Enforced**: Minimum separation between consecutive injections on any station is **49.0 hours**, with zero buffer violations (<48h across 445 consecutive pairs).

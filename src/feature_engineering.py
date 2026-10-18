@@ -11,9 +11,12 @@ on the continuous hourly calendar grid for both clean and injected series:
 All rolling and differential operations look strictly backward in time (t-k, k >= 0).
 """
 
+import json
 from pathlib import Path
 import pandas as pd
 import numpy as np
+
+FEATURE_SCHEMA_VERSION = 2
 
 
 TIER_1_FEATURES = [
@@ -82,14 +85,13 @@ TIER_3_FEATURES = TIER_2_FEATURES + WEATHER_FEATURES + [
 ]
 
 # Load training-only dry baselines (2017-2022: training + validation years) to eliminate test leakage.
-# Computed strictly on dry background hours prior to the 2023-2025 test split.
-import json
+# These pre-test normalizers include validation years; they are not fit-fold-only.
 
 _BASELINES_FILE = Path(__file__).resolve().parent.parent / "data" / "processed" / "station_dry_baselines_train_only.json"
 if not _BASELINES_FILE.exists():
     raise FileNotFoundError(
         f"Required training-only baseline file not found: {_BASELINES_FILE}. "
-        "Run compute_train_only_dry_baselines() to generate."
+        "Run: python src/compute_train_only_baselines.py"
     )
 
 with open(_BASELINES_FILE, "r") as _f:
@@ -115,10 +117,15 @@ def compute_features_for_series(df_input: pd.DataFrame, station_id: str, use_inj
     pd.DataFrame
         DataFrame with computed feature columns, preserved labels, and metadata.
     """
-    df = df_input.copy()
-    if not pd.api.types.is_datetime64_any_dtype(df["dt"]):
-        df["dt"] = pd.to_datetime(df["dt"])
-    df = df.sort_values("dt").reset_index(drop=True)
+    df = df_input.copy().reset_index(drop=True)
+    df["dt"] = pd.to_datetime(df["dt"], utc=True).dt.tz_localize(None)
+    if df.empty or df["dt"].isna().any():
+        raise ValueError("Feature input must contain non-missing hourly UTC timestamps.")
+    if not df["dt"].diff().iloc[1:].eq(pd.Timedelta(hours=1)).all():
+        raise ValueError(
+            "Feature input must be a sorted, unique, continuous hourly UTC grid. "
+            "Reindex missing hours before computing features; do not drop outage rows."
+        )
 
     # 1. Select Radiation Sources (Clean vs Injected)
     if use_injected:
@@ -155,7 +162,6 @@ def compute_features_for_series(df_input: pd.DataFrame, station_id: str, use_inj
     mu_dry = st_base["mu"]
     sigma_dry = st_base["sigma"]
     mu_dose_dry = st_base["mu_dose"]
-    sigma_dose_dry = st_base["sigma_dose"]
 
     # -------------------------------------------------------------
     # Tier 1: Gross Radiation & Dose Features
@@ -220,22 +226,29 @@ def compute_features_for_series(df_input: pd.DataFrame, station_id: str, use_inj
     # -------------------------------------------------------------
     # Tier 3: Weather Fusion & Interaction Features
     # -------------------------------------------------------------
-    precip_1h = df["precip_1h_mm"].fillna(0.0).astype(float)
+    # Unknown precipitation is not verified dry. Full windows are required for
+    # accumulation totals; missing weather remains NaN for LightGBM to handle.
+    precip_1h = df["precip_1h_mm"].astype(float)
     feats["precip_1h_mm"] = precip_1h
-    feats["precip_3h_mm"] = precip_1h.rolling(3, min_periods=1).sum()
-    feats["precip_6h_mm"] = precip_1h.rolling(6, min_periods=1).sum()
-    feats["precip_24h_mm"] = precip_1h.rolling(24, min_periods=1).sum()
+    for hours in (3, 6, 24):
+        feats[f"precip_{hours}h_mm"] = precip_1h.rolling(hours, min_periods=hours).sum()
 
-    feats["is_raining"] = (precip_1h >= 0.1).astype(float)
-    feats["rain_recent_3h"] = (feats["precip_3h_mm"] >= 0.1).astype(float)
-    feats["rain_recent_6h"] = (feats["precip_6h_mm"] >= 0.1).astype(float)
-    feats["rain_recent_24h"] = (feats["precip_24h_mm"] >= 0.1).astype(float)
+    feats["is_raining"] = precip_1h.ge(0.1).astype(float).where(precip_1h.notna())
+    for hours in (3, 6, 24):
+        total = feats[f"precip_{hours}h_mm"]
+        feats[f"rain_recent_{hours}h"] = total.ge(0.1).astype(float).where(total.notna())
 
     # Vectorized hours since last precipitation
     is_rain = precip_1h >= 0.1
     last_rain_dt = df["dt"].where(is_rain).ffill()
+    last_unknown_dt = df["dt"].where(precip_1h.isna()).ffill()
     hrs_since_rain = (df["dt"] - last_rain_dt).dt.total_seconds() / 3600.0
-    feats["hours_since_rain"] = hrs_since_rain.clip(lower=0.0, upper=168.0).fillna(168.0)
+    rain_time_known = last_rain_dt.notna() & (
+        last_unknown_dt.isna() | last_rain_dt.ge(last_unknown_dt)
+    )
+    dry_168h = precip_1h.rolling(168, min_periods=168).sum().eq(0.0)
+    feats["hours_since_rain"] = hrs_since_rain.clip(0.0, 168.0).where(rain_time_known)
+    feats.loc[dry_168h, "hours_since_rain"] = 168.0
 
     # Pressure & tendencies
     pressure = df["pressure_hpa"].astype(float)
@@ -250,7 +263,8 @@ def compute_features_for_series(df_input: pd.DataFrame, station_id: str, use_inj
 
     # Physical Cross-Domain Interactions
     feats["rain_high_energy_interaction"] = feats["precip_3h_mm"] * feats["share_high_energy"]  # NaN-propagating (BUG-11: removed magic 0.05 fill)
-    feats["dry_excess_interaction"] = (feats["precip_6h_mm"] == 0.0).astype(float) * feats["z_score_global_dry"].fillna(0.0)
+    dry_6h = feats["precip_6h_mm"].eq(0.0).astype(float).where(feats["precip_6h_mm"].notna())
+    feats["dry_excess_interaction"] = dry_6h * feats["z_score_global_dry"]
     feats["washout_expected_ratio"] = feats["z_score_global_dry"] / (np.sqrt(np.maximum(0.0, feats["precip_3h_mm"])) + 0.1)
 
     # Attach labels and metadata

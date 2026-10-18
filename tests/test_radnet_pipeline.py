@@ -79,6 +79,7 @@ def test_causal_feature_engineering_no_lookahead():
         )
 
 
+@pytest.mark.integration
 def test_spectral_shares_sum_to_one_and_templates_normalized():
     """Spectral channel shares R02..R09 must sum to 1.0 and all synthetic templates must sum to 1.0."""
     rng = np.random.RandomState(42)
@@ -97,6 +98,7 @@ def test_spectral_shares_sum_to_one_and_templates_normalized():
     assert np.allclose(share_sums, 1.0, atol=1e-4), "Spectral channel shares R02..R09 do not sum to 1.0"
 
 
+@pytest.mark.integration
 def test_station_dry_baselines_strictly_train_only_no_test_leakage():
     """STATION_DRY_BASELINES must match pre-2023 training dry-weather statistics with zero test leakage."""
     for st in STATIONS:
@@ -145,6 +147,7 @@ def test_noaa_precipitation_audit_matches_merge_audit():
         )
 
 
+@pytest.mark.integration
 def test_labeled_dataset_reconciliation_and_no_unobserved_label_leakage():
     """Unobserved detector outage hours must never be labeled as fission_product, radon_washout, or normal."""
     rec_df = pd.read_csv(PROJECT_ROOT / "data/processed/labeled_dataset_reconciliation_summary.csv")
@@ -241,6 +244,7 @@ def test_validation_vs_test_separation_and_cross_table_consistency():
         assert abs(float(b_row["median_delay_mean"]) - float(s_row["median_delay_hours"])) <= 0.05
 
 
+@pytest.mark.integration
 def test_cli_diagnostic_utility_detects_hard_case_plume():
     """Operational CLI diagnostic utility must detect the Birmingham Jan 2023 storm + Cs-137 plume (INJ_0067)."""
     res = run_station_diagnostics(
@@ -254,3 +258,6 @@ def test_cli_diagnostic_utility_detects_hard_case_plume():
     assert res["ml_alarm_episodes"] >= 1
     assert res["top_episodes"][0]["peak_p_fission"] >= 0.99
     assert "fission_product" in res["top_episodes"][0]["ground_truth_labels"]
+    assert res["calibration"]["source"] == "validation_predictions_of_fitted_model"
+    assert res["calibration"]["validation_events"] == 81
+    assert res["calibration"]["target_met"]

@@ -1,0 +1,51 @@
+{
+  "station_id": "al_birmingham",
+  "split": "test",
+  "tier": "tier3",
+  "tier_label": "Tier 3 (Weather Fusion)",
+  "use_injected": true,
+  "feature_schema_version": 2,
+  "model_seed": 42,
+  "model_training_period": "2017-2020",
+  "label_source": "synthetic_catalog_and_washout_heuristic",
+  "decision_threshold_tau": 0.985,
+  "calibration": {
+    "threshold": 0.985,
+    "target_detection_pct": 95.0,
+    "target_met": true,
+    "validation_detection_pct": 96.29629629629629,
+    "validation_false_alarms_per_station_year": 0.11814175393199369,
+    "validation_observed_hours": 74199,
+    "validation_events": 81,
+    "source": "validation_predictions_of_fitted_model"
+  },
+  "window_start_utc": "2023-01-24 18:00:00",
+  "window_end_utc": "2023-01-29 06:00:00",
+  "total_hours": 109,
+  "valid_observed_hours": 108,
+  "observed_station_years": 0.0123,
+  "ml_alarm_hours": 78,
+  "ml_alarm_episodes": 1,
+  "ml_alarms_per_station_year": 81.17,
+  "rolling_3sigma_alarm_episodes": 1,
+  "rolling_3sigma_alarms_per_station_year": 81.17,
+  "top_episodes": [
+    {
+      "start_utc": "2023-01-25 12:00:00",
+      "end_utc": "2023-01-28 17:00:00",
+      "duration_hours": 78,
+      "peak_p_fission": 0.9998,
+      "peak_p_washout": 0.0001,
+      "peak_gross_cpm": 4422.1,
+      "peak_z_score_168h": 1.6,
+      "total_precip_mm": 0.0,
+      "max_precip_1h_mm": 0.0,
+      "precip_observed_hours": 78,
+      "precip_missing_hours": 0,
+      "dominant_channel": "R02",
+      "ground_truth_labels": [
+        "fission_product"
+      ]
+    }
+  ]
+}

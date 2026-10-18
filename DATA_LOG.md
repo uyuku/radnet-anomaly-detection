@@ -1,6 +1,6 @@
 # Data Download Log
 
-> Full 64-character SHA-256 hashes are recorded in [`data/raw/MANIFEST.sha256`](file:///Users/o/Projects/radnet-anomaly-detection/data/raw/MANIFEST.sha256).
+> Full 64-character SHA-256 hashes are recorded in [`data/raw/MANIFEST.sha256`](data/raw/MANIFEST.sha256).
 
 | Date Retrieved | Station | URL | File Name | SHA256 Prefix (Size) | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |

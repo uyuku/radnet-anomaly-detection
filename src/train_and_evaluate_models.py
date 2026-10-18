@@ -50,17 +50,18 @@ LABEL_MAP = {"normal": 0, "radon_washout": 1, "fission_product": 2}
 INV_LABEL_MAP = {v: k for k, v in LABEL_MAP.items()}
 
 
-def load_and_prepare_train_data(feature_cols: list[str]) -> tuple[pd.DataFrame, pd.Series]:
+def load_and_prepare_train_data(feature_cols: list[str], data_dir: Path | None = None) -> tuple[pd.DataFrame, pd.Series]:
     """
-    Loads training data across all 5 stations (2017-2022) with injected features.
+    Fits on 2017-2020, retaining full history for feature generation.
     Filters out unobserved records.
     """
     x_list = []
     y_list = []
+    data_dir = Path(data_dir) if data_dir is not None else Path(__file__).resolve().parent.parent / "data" / "processed"
 
     for st in STATIONS:
         st_id = st["id"]
-        csv_file = Path(f"data/processed/labeled_{st_id}_train.csv.gz")
+        csv_file = data_dir / f"labeled_{st_id}_train.csv.gz"
         df_raw = pd.read_csv(csv_file)
         feats = compute_features_for_series(df_raw, st_id, use_injected=True)
 

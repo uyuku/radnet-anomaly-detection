@@ -1,8 +1,10 @@
 # Phase 6 Report: Weather-Aware Anomaly Detection in EPA RadNet — Final Report
 
+> **Historical report:** These results predate feature schema 2 (2026-10-18). They have not been revalidated after correcting missing-weather features. The status and numerical claims below describe the earlier run. See [the maintenance report](MAINTENANCE_2026-10-18.md).
+
 **Date**: 2026-10-17
 **Project**: Weather-Aware Anomaly Detection in RadNet (EPA RadNet + NOAA NCEI ISD)
-**Status**: Final verified report. Every number below traces directly to the regenerated CSV tables in `data/processed/` and is verified by the automated test suite in [`tests/test_radnet_pipeline.py`](file:///Users/o/Projects/radnet-anomaly-detection/tests/test_radnet_pipeline.py).
+**Status**: Final verified report. Every number below traces directly to the regenerated CSV tables in `data/processed/` and is verified by the automated test suite in [`tests/test_radnet_pipeline.py`](../tests/test_radnet_pipeline.py).
 
 ---
 
@@ -118,8 +120,8 @@ At matched ~92.5% detection on the continuous test sweep (`rigorous_matched_dete
 ## 5. Reproducibility, CLI Diagnostics & Automated Verification
 
 - **Master Pipeline Runner**: `bash run_pipeline.sh` executes Phases 0 through 5 sequentially.
-- **Automated Verification Suite**: `.venv/bin/pytest -v` runs [`tests/test_radnet_pipeline.py`](file:///Users/o/Projects/radnet-anomaly-detection/tests/test_radnet_pipeline.py), verifying causal feature engineering (zero lookahead), spectral channel normalization, train-only dry baseline non-leakage, NOAA hourly precipitation deduplication, unobserved detector-outage labeling, and cross-table CSV consistency.
-- **Operational CLI Diagnostic Utility**: [`src/detect_anomalies_cli.py`](file:///Users/o/Projects/radnet-anomaly-detection/src/detect_anomalies_cli.py) provides command-line inference, episode clustering, and physical attribution on any station and time window.
+- **Automated Verification Suite**: `.venv/bin/pytest -v` runs [`tests/test_radnet_pipeline.py`](../tests/test_radnet_pipeline.py), verifying causal feature engineering (zero lookahead), spectral channel normalization, train-only dry baseline non-leakage, NOAA hourly precipitation deduplication, unobserved detector-outage labeling, and cross-table CSV consistency.
+- **Operational CLI Diagnostic Utility**: [`src/detect_anomalies_cli.py`](../src/detect_anomalies_cli.py) provides command-line inference, episode clustering, and physical attribution on any station and time window.
 
 ---
 
