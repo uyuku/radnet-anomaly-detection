@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Data: EPA RadNet + NOAA ISD](https://img.shields.io/badge/Data-EPA%20RadNet%20%2B%20NOAA%20ISD-orange.svg)](https://www.epa.gov/radnet)
 
-**Update, 2026-10-18:** Features follow **Feature Schema 2** (strict NaN propagation for missing weather telemetry and fitted-model validation threshold calibration). The 20-seed benchmark and evaluation figures have been fully regenerated across all tiers. See [the maintenance report](docs/dev-notes/MAINTENANCE_2026-10-18.md) for detailed verification and methodology.
+**Methodology Note:** Features incorporate strictly causal Feature Schema 2 (strict NaN propagation for missing weather telemetry and validation-fold threshold calibration). Multi-seed benchmarks and evaluation curves are evaluated across 20 random seeds.
 
 When it rains, natural radon daughters ($^{214}\text{Pb}$, $^{214}\text{Bi}$) wash out of the atmosphere onto EPA RadNet particulate filters. This produces sudden gamma count spikes of +40% to +180% that mimic radiological releases.
 
@@ -142,8 +142,6 @@ Use `--threshold` for an explicit probability override, and `--data-dir` for a d
 - Detection is measured on synthetic injections. Natural washout labels are heuristic; clean-background alarms are not adjudicated real-world false positives.
 - Classifier fitting uses 2017–2020 and threshold selection uses 2021–2022. The existing dry normalizers use **2017–2022**, including the validation years. They exclude test years, but are not strictly training-fold-only normalizers.
 - `hours_since_rain` and rainfall totals remain unknown until sufficient observed history exists. Retrain and recalibrate after changing feature semantics; old thresholds are not portable.
-- Re-running phases 4–5 regenerates model tables and figures. Historical prose in the phase reports must then be reconciled with the new measurements.
-
 ## Repository Layout
 
 - `src/`: Pipeline, feature extraction, and model training code.
@@ -151,7 +149,6 @@ Use `--threshold` for an explicit probability override, and `--data-dir` for a d
 - `configs/`: Pipeline configuration files.
 - `data/processed/`: Processed summary tables and benchmark results.
 - `reports/figures/`: Publication figures and diagnostic plots.
-- `docs/`: System design decisions, architectural documentation, and development notes.
 
 ---
 

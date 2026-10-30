@@ -58,8 +58,8 @@ def parse_noaa_precip(val):
 
     Returns np.nan (UNKNOWN) for: missing/suspect quality codes (anything other
     than 1 or 5), missing depth (9999), unparseable values, and non-1-hour
-    accumulation periods.  Unknown precipitation must never be recorded as 0.0
-    (verified dry) — see BUG_AUDIT.md BUG-3 (2026-10-06 fix).
+    accumulation periods. Unknown precipitation must never be recorded as 0.0
+    (verified dry).
     """
     if pd.isna(val) or not isinstance(val, str):
         return np.nan
@@ -69,7 +69,7 @@ def parse_noaa_precip(val):
             d = int(parts[1])
             if d == 9999:
                 return np.nan
-            # Quality code verification per DECISIONS.md:
+            # Quality code verification:
             # 1 = passed standard check, 5 = passed all checks
             quality = parts[3].strip() if len(parts) >= 4 else "1"
             if quality not in ["1", "5"]:

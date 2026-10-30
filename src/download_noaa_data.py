@@ -45,7 +45,7 @@ def update_manifest(filename: str, sha256_hash: str):
 
 
 def log_download(station: str, url: str, filename: str, file_hash: str, file_size_str: str, notes: str):
-    log_file = Path("docs/dev-notes/DATA_LOG.md")
+    log_file = Path("data/raw/DATA_LOG.md")
     today = datetime.now().strftime("%Y-%m-%d")
     short_hash = f"{file_hash[:8]}..."
     entry = f"| {today} | {station} | {url} | {filename} | {short_hash} ({file_size_str}) | {notes} |\n"

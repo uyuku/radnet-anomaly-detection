@@ -470,7 +470,7 @@ def main():
             # Unified net-alarm criterion (2026-10-06): alarm on the injected
             # series AND NOT on the clean series. The previous any-alarm rule
             # credited background false alarms inside the event window as
-            # "detections" (see BUG_AUDIT.md, any-alarm vs net-alarm verdict).
+            # "detections" (any-alarm vs net-alarm criterion).
             if m_cfg["type"] == "baseline_global":
                 thresh = st_data["base_thresholds"][m_cfg["thresh_key"]]
                 is_alarm = ((st_data["gross_inj"][event_mask] >= thresh) &
