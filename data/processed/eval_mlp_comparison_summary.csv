@@ -1,4 +1,4 @@
 target_detection_rate_pct,lgb_threshold,lgb_realized_detection_pct,lgb_false_alarms_per_year,mlp_threshold,mlp_realized_detection_pct,mlp_false_alarms_per_year,fa_reduction_lgb_vs_mlp_pct
-90.0,0.99,91.0,3.37,0.98,88.0,65.6,94.9
-95.0,0.98,93.5,12.74,0.98,88.0,65.6,80.6
-98.0,0.79,98.5,192.46,0.97,88.5,73.74,-161.0
+90.0,0.994,90.0,3.37,0.994,87.5,45.79,92.6
+95.0,0.994,90.0,3.37,0.994,87.5,45.79,92.6
+98.0,0.71,88.5,104.16,0.93,88.0,86.57,-20.3

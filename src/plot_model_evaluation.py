@@ -1,10 +1,10 @@
 """
-Phase 4 Plotting Script: Model Evaluation, Feature Importance, and Trade-off Curves.
+Plotting Script: Model Evaluation, Feature Importance, and Trade-off Curves.
 
 Generates 4 publication-quality figures:
 1. reports/figures/model_detection_vs_false_alarms_roc.png
    - Headline trade-off: Event Detection Probability vs Clean False Alarms per Station-Year.
-   - Compares Phase 2 Fixed-Threshold Baselines against Tier 1, Tier 2, Tier 3, and LOSO.
+   - Compares Fixed-Threshold Baselines against Tier 1, Tier 2, Tier 3, and LOSO.
 2. reports/figures/model_stratified_performance.png
    - Detection probability across environmental regimes, test sets, and operational release scenarios.
 3. reports/figures/model_feature_importance.png
@@ -357,9 +357,9 @@ def plot_hard_case_timeline():
 
 
 if __name__ == "__main__":
-    print("Generating Phase 4 evaluation figures...")
+    print("Generating model evaluation figures...")
     plot_headline_roc()
     plot_stratified_performance()
     plot_feature_importance()
     plot_hard_case_timeline()
-    print("All Phase 4 figures successfully generated.")
+    print("All model evaluation figures successfully generated.")

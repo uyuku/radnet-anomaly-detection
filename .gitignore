@@ -23,3 +23,13 @@ data/processed/*.csv.gz
 .DS_Store
 *.zip
 repo.bundle
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.lot
+*.lof
+*.synctex.gz
+missfont.log

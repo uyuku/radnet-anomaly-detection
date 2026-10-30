@@ -1,7 +1,7 @@
 """
-Phase 4 & 5 Rigorous Model Training and Evaluation Pipeline (Second Revision - Optimized).
+Rigorous Multi-Seed Model Training and Evaluation Pipeline.
 
-Implements all required corrections from the internal review of Revised Phase 5:
+Implements the multi-seed statistical evaluation protocol:
 1. Expanded Threshold Grid & Realized Detection Labels:
    - Evaluates thresholds up to tau=0.999 (finer grid above 0.98: 0.985, 0.990, 0.992, 0.995, 0.998, 0.999).
    - All tables strictly labeled by realized test detection, never by targets the model missed.
@@ -13,7 +13,7 @@ Implements all required corrections from the internal review of Revised Phase 5:
 3. Twenty Random Seeds & Paired Statistical Tests:
    - Trains tiers across 20 random seeds (SEEDS = 42 to 61).
    - Runs paired t-test and Wilcoxon signed-rank test on false alarms for Tier 3 vs Tier 2.
-   - Explicitly notes that the single-seed Phase 4 ordering did not survive the multi-seed protocol.
+   - Evaluates multi-seed stability across 20 random initializations.
 4. Restored Sampling Uncertainty Intervals:
    - Station-month block bootstrap (B=1,000 resamples) for clean false alarms per station-year.
    - Event-level bootstrap (B=1,000 resamples) for test detection probability and median detection delay.
@@ -63,6 +63,7 @@ from src.feature_engineering import (
     TIER_1B_FEATURES,
     TIER_2_FEATURES,
     TIER_3_FEATURES,
+    TIER_4_NUCLEAR_FEATURES,
     STATION_DRY_BASELINES,
 )
 
@@ -84,6 +85,9 @@ THRESHOLD_GRID = np.concatenate([
 ])
 
 
+_TRAIN_FEATS_CACHE: dict[str, tuple[pd.DataFrame, pd.Series, pd.Series]] = {}
+
+
 def load_dataset_folds(feature_cols: list[str], holdout_id: str = None) -> tuple[pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]:
     """
     Loads training data split into:
@@ -98,20 +102,20 @@ def load_dataset_folds(feature_cols: list[str], holdout_id: str = None) -> tuple
         st_id = st["id"]
         if holdout_id and st_id == holdout_id:
             continue
-        csv_file = Path(f"data/processed/labeled_{st_id}_train.csv.gz")
-        df_raw = pd.read_csv(csv_file)
-        df_raw["dt"] = pd.to_datetime(df_raw["dt"])
-        feats = compute_features_for_series(df_raw, st_id, use_injected=True)
+        if st_id not in _TRAIN_FEATS_CACHE:
+            csv_file = Path(f"data/processed/labeled_{st_id}_train.csv.gz")
+            df_raw = pd.read_csv(csv_file)
+            df_raw["dt"] = pd.to_datetime(df_raw["dt"])
+            feats = compute_features_for_series(df_raw, st_id, use_injected=True)
+            valid = feats["has_radnet_obs"] & feats["rad_complete_channels"] & (feats["label"].isin(LABEL_MAP.keys()))
+            m_tr = valid & (df_raw["dt"] < "2021-01-01")
+            m_val = valid & (df_raw["dt"] >= "2021-01-01") & (df_raw["dt"] < "2023-01-01")
+            _TRAIN_FEATS_CACHE[st_id] = (feats, m_tr, m_val)
+        feats, m_tr, m_val = _TRAIN_FEATS_CACHE[st_id]
 
-        valid = feats["has_radnet_obs"] & feats["rad_complete_channels"] & (feats["label"].isin(LABEL_MAP.keys()))
-
-        # Train fold mask
-        m_tr = valid & (df_raw["dt"] < "2021-01-01")
         x_tr_list.append(feats.loc[m_tr, feature_cols])
         y_tr_list.append(feats.loc[m_tr, "label"].map(LABEL_MAP))
 
-        # Val fold mask
-        m_val = valid & (df_raw["dt"] >= "2021-01-01") & (df_raw["dt"] < "2023-01-01")
         x_val_list.append(feats.loc[m_val, feature_cols])
         y_val_list.append(feats.loc[m_val, "label"].map(LABEL_MAP))
 
@@ -135,7 +139,7 @@ def train_lgb(X: pd.DataFrame, y: pd.Series, seed: int) -> lgb.LGBMClassifier:
         colsample_bytree=0.8,
         class_weight="balanced",
         random_state=seed,
-        n_jobs=4,
+        n_jobs=1,
         verbose=-1,
     )
     clf.fit(X, y)
@@ -319,6 +323,12 @@ def main():
         # without late-2022 synthetic training injections bleeding into early 2023.
         feats_tr_inj = compute_features_for_series(df_tr_raw, st_id, use_injected=True)
         feats_tr_cln = compute_features_for_series(df_tr_raw, st_id, use_injected=False)
+        tr_valid = feats_tr_inj["has_radnet_obs"] & feats_tr_inj["rad_complete_channels"] & (feats_tr_inj["label"].isin(LABEL_MAP.keys()))
+        _TRAIN_FEATS_CACHE[st_id] = (
+            feats_tr_inj,
+            tr_valid & (df_tr_raw["dt"] < "2021-01-01"),
+            tr_valid & (df_tr_raw["dt"] >= "2021-01-01") & (df_tr_raw["dt"] < "2023-01-01"),
+        )
 
         m_val = ((df_tr_raw["dt"] >= "2021-01-01") & (df_tr_raw["dt"] < "2023-01-01")).values
 
@@ -460,6 +470,7 @@ def main():
         "Tier 1b (Gross+Weather)": {"features": TIER_1B_FEATURES, "is_mlp": False},
         "Tier 2 (Spectral)": {"features": TIER_2_FEATURES, "is_mlp": False},
         "Tier 3 (Weather Fusion)": {"features": TIER_3_FEATURES, "is_mlp": False},
+        "Tier 4 (Physics-Informed Nuclear)": {"features": TIER_4_NUCLEAR_FEATURES, "is_mlp": False},
         "Tier 3 MLP": {"features": TIER_3_FEATURES, "is_mlp": True},
     }
 
@@ -674,6 +685,9 @@ def main():
 
     # Comparisons list: (comp_name, base_tier, base_tgt, fus_tier, fus_tgt, is_matched)
     comparisons = [
+        ("Tier 4 vs Tier 3 (Matched 95% Target)", "Tier 3 (Weather Fusion)", 95.0, "Tier 4 (Physics-Informed Nuclear)", 95.0, True),
+        ("Tier 4 vs Tier 3 (Matched 90% Target)", "Tier 3 (Weather Fusion)", 90.0, "Tier 4 (Physics-Informed Nuclear)", 90.0, True),
+        ("Tier 4 vs Tier 2 (Matched 95% Target)", "Tier 2 (Spectral)", 95.0, "Tier 4 (Physics-Informed Nuclear)", 95.0, True),
         ("Tier 3 vs Tier 2 (Matched 95% Target)", "Tier 2 (Spectral)", 95.0, "Tier 3 (Weather Fusion)", 95.0, True),
         ("Tier 3 vs Tier 2 (90% Target - Unmatched)", "Tier 2 (Spectral)", 90.0, "Tier 3 (Weather Fusion)", 90.0, False),
         ("Tier 3 vs Tier 2 (98% Target)", "Tier 2 (Spectral)", 98.0, "Tier 3 (Weather Fusion)", 98.0, False),
@@ -954,6 +968,7 @@ def main():
             ("Tier 1b (Gross+Weather)", "t1b_gross_weather"),
             ("Tier 2 (Spectral)", "t2_spectral"),
             ("Tier 3 (Weather Fusion)", "t3_fusion"),
+            ("Tier 4 (Physics-Informed Nuclear)", "t4_nuclear"),
             ("Tier 3 MLP", "mlp_fusion"),
         ]:
             t_sub = cont_roc_df[(cont_roc_df["tier_name"] == t_name) & (cont_roc_df["detection_rate_pct"] >= target_level)]
@@ -996,121 +1011,129 @@ def main():
     matched_roc_df.to_csv("data/processed/rigorous_matched_detection_comparison.csv", index=False)
     print(matched_roc_df[["matched_detection_target", "rolling_7d_fa", "t1_gross_fa", "t1b_gross_weather_fa", "t2_spectral_fa", "t3_fusion_fa", "weather_benefit_on_gross_pct", "weather_benefit_on_spectral_pct", "total_reduction_t3_vs_baseline_pct"]].to_string())
 
-    # 10. Multi-Station Leave-One-Station-Out (LOSO) Validation (San Diego, Birmingham, Dallas)
+    # 10. Multi-Station Leave-One-Station-Out (LOSO) Validation across all 5 Pilot Stations (Tier 3 vs Tier 4)
     print("\n" + "=" * 80)
-    print("MULTI-STATION LEAVE-ONE-STATION-OUT (LOSO) VALIDATION")
+    print("MULTI-STATION LEAVE-ONE-STATION-OUT (LOSO) VALIDATION (ALL 5 PILOT STATIONS)")
     print("=" * 80)
     loso_stations = [
         {"id": "ca_san_diego", "name": "San Diego, CA (Marine, 0 test washouts)"},
         {"id": "al_birmingham", "name": "Birmingham, AL (High rain, active washouts)"},
         {"id": "tx_dallas", "name": "Dallas, TX (Convective storms, active washouts)"},
+        {"id": "dc_washington", "name": "Washington, DC (Temperate Mid-Atlantic)"},
+        {"id": "fl_tampa", "name": "Tampa, FL (Gulf Subtropical)"},
     ]
 
     loso_records = []
     loso_strat_records = []
 
-    for held_info in loso_stations:
-        held_id = held_info["id"]
-        held_name = held_info["name"]
-        print(f"\nEvaluating LOSO holding out {held_name}...")
+    for loso_tier_name, loso_feat_cols in [
+        ("Tier 3 (Weather Fusion)", TIER_3_FEATURES),
+        ("Tier 4 (Physics-Informed Nuclear)", TIER_4_NUCLEAR_FEATURES),
+    ]:
+        for held_info in loso_stations:
+            held_id = held_info["id"]
+            held_name = held_info["name"]
+            print(f"\nEvaluating LOSO ({loso_tier_name}) holding out {held_name}...")
 
-        X_tr_loso, y_tr_loso, X_val_loso, y_val_loso = load_dataset_folds(TIER_3_FEATURES, holdout_id=held_id)
-        clf_loso = train_lgb(X_tr_loso, y_tr_loso, seed=42)
+            X_tr_loso, y_tr_loso, X_val_loso, y_val_loso = load_dataset_folds(loso_feat_cols, holdout_id=held_id)
+            clf_loso = train_lgb(X_tr_loso, y_tr_loso, seed=42)
 
-        # Validation tuning on remaining 4 stations using pre-extracted slices
-        val_loso_slices = [s for s in val_inj_slices if s[0] != held_id]
-        val_loso_st_yrs = sum(val_series[s]["valid"].sum() for s in val_series if s != held_id) / 8766.0
+            # Validation tuning on remaining 4 stations using pre-extracted slices
+            val_loso_slices = [s for s in val_inj_slices if s[0] != held_id]
+            val_loso_st_yrs = sum(val_series[s]["valid"].sum() for s in val_series if s != held_id) / 8766.0
 
-        val_loso_p_inj = {s: clf_loso.predict_proba(val_series[s]["feats_inj"][TIER_3_FEATURES])[:, 2] for s in val_series if s != held_id}
-        val_loso_p_cln = {s: clf_loso.predict_proba(val_series[s]["feats_cln"][TIER_3_FEATURES])[:, 2] for s in val_series if s != held_id}
+            val_loso_p_inj = {s: clf_loso.predict_proba(val_series[s]["feats_inj"][loso_feat_cols])[:, 2] for s in val_series if s != held_id}
+            val_loso_p_cln = {s: clf_loso.predict_proba(val_series[s]["feats_cln"][loso_feat_cols])[:, 2] for s in val_series if s != held_id}
 
-        best_loso_tau = 0.5
-        min_loso_fa = 1e9
-        for tau in THRESHOLD_GRID:
-            det_cnt = 0
-            for st_id, idx in val_loso_slices:
-                p_inj = val_loso_p_inj[st_id][idx]
-                p_cln = val_loso_p_cln[st_id][idx]
-                if ((p_inj >= tau) & (p_cln < tau)).any():
-                    det_cnt += 1
-            if det_cnt / len(val_loso_slices) >= 0.90:
-                ep_cnt = sum(count_episodes((pd.Series(val_loso_p_cln[s]) >= tau) & val_series[s]["valid"], val_series[s]["valid"]) for s in val_series if s != held_id)
-                fa_r = ep_cnt / val_loso_st_yrs
-                if fa_r < min_loso_fa:
-                    min_loso_fa = fa_r
-                    best_loso_tau = tau
+            best_loso_tau = 0.5
+            min_loso_fa = 1e9
+            for tau in THRESHOLD_GRID:
+                det_cnt = 0
+                for st_id, idx in val_loso_slices:
+                    p_inj = val_loso_p_inj[st_id][idx]
+                    p_cln = val_loso_p_cln[st_id][idx]
+                    if ((p_inj >= tau) & (p_cln < tau)).any():
+                        det_cnt += 1
+                if det_cnt / len(val_loso_slices) >= 0.90:
+                    ep_cnt = sum(count_episodes((pd.Series(val_loso_p_cln[s]) >= tau) & val_series[s]["valid"], val_series[s]["valid"]) for s in val_series if s != held_id)
+                    fa_r = ep_cnt / val_loso_st_yrs
+                    if fa_r < min_loso_fa:
+                        min_loso_fa = fa_r
+                        best_loso_tau = tau
 
-        # Evaluate at frozen threshold on held-out station test split (2023-2025)
-        st_test = test_series[held_id]
-        p_inj_held = clf_loso.predict_proba(st_test["feats_inj"][TIER_3_FEATURES])[:, 2]
-        p_cln_held = clf_loso.predict_proba(st_test["feats_cln"][TIER_3_FEATURES])[:, 2]
+            # Evaluate at frozen threshold on held-out station test split (2023-2025)
+            st_test = test_series[held_id]
+            p_inj_held = clf_loso.predict_proba(st_test["feats_inj"][loso_feat_cols])[:, 2]
+            p_cln_held = clf_loso.predict_proba(st_test["feats_cln"][loso_feat_cols])[:, 2]
 
-        al = (pd.Series(p_cln_held) >= best_loso_tau) & st_test["valid"]
-        held_episodes = count_episodes(al, st_test["valid"])
-        held_st_years = st_test["valid"].sum() / 8766.0
-        held_fa_rate = held_episodes / held_st_years
-        rule_of_three_upper = round(3.0 / held_st_years, 2) if held_episodes == 0 else np.nan
+            al = (pd.Series(p_cln_held) >= best_loso_tau) & st_test["valid"]
+            held_episodes = count_episodes(al, st_test["valid"])
+            held_st_years = st_test["valid"].sum() / 8766.0
+            held_fa_rate = held_episodes / held_st_years
+            rule_of_three_upper = round(3.0 / held_st_years, 2) if held_episodes == 0 else np.nan
 
-        held_test_slices = [s for s in test_inj_slices if s[0] == held_id]
-        held_det = 0
-        held_delays = []
+            held_test_slices = [s for s in test_inj_slices if s[0] == held_id]
+            held_det = 0
+            held_delays = []
 
-        for st_id, idx, start_dt, dts_sub in held_test_slices:
-            p_inj_sub = p_inj_held[idx]
-            p_cln_sub = p_cln_held[idx]
+            for st_id, idx, start_dt, dts_sub in held_test_slices:
+                p_inj_sub = p_inj_held[idx]
+                p_cln_sub = p_cln_held[idx]
 
-            net_al = (p_inj_sub >= best_loso_tau) & (p_cln_sub < best_loso_tau)
-            is_det = net_al.any()
-            if is_det:
-                held_det += 1
-                first_idx = np.where(net_al)[0][0]
-                first_dt = dts_sub.iloc[first_idx]
-                delay = max(0.0, (first_dt - start_dt).total_seconds() / 3600.0)
-                held_delays.append(delay)
+                net_al = (p_inj_sub >= best_loso_tau) & (p_cln_sub < best_loso_tau)
+                is_det = net_al.any()
+                if is_det:
+                    held_det += 1
+                    first_idx = np.where(net_al)[0][0]
+                    first_dt = dts_sub.iloc[first_idx]
+                    delay = max(0.0, (first_dt - start_dt).total_seconds() / 3600.0)
+                    held_delays.append(delay)
 
-        # Stratified detection
-        held_injs = test_catalog[test_catalog["station_id"] == held_id]
-        for _, inj in held_injs.iterrows():
-            st_id = inj["station_id"]
-            sdata = test_series[st_id]
-            start_dt = pd.to_datetime(inj["start_utc"])
-            end_dt = pd.to_datetime(inj["end_utc"])
-            m = (sdata["dt"] >= start_dt) & (sdata["dt"] <= end_dt) & sdata["valid"]
-            p_inj_sub = p_inj_held[m]
-            p_cln_sub = p_cln_held[m]
-            net_al = (p_inj_sub >= best_loso_tau) & (p_cln_sub < best_loso_tau)
+            # Stratified detection
+            held_injs = test_catalog[test_catalog["station_id"] == held_id]
+            for _, inj in held_injs.iterrows():
+                st_id = inj["station_id"]
+                sdata = test_series[st_id]
+                start_dt = pd.to_datetime(inj["start_utc"])
+                end_dt = pd.to_datetime(inj["end_utc"])
+                m = (sdata["dt"] >= start_dt) & (sdata["dt"] <= end_dt) & sdata["valid"]
+                p_inj_sub = p_inj_held[m]
+                p_cln_sub = p_cln_held[m]
+                net_al = (p_inj_sub >= best_loso_tau) & (p_cln_sub < best_loso_tau)
 
-            loso_strat_records.append({
+                loso_strat_records.append({
+                    "tier_name": loso_tier_name,
+                    "held_out_station": held_id,
+                    "injection_id": inj["injection_id"],
+                    "nuclide_scenario": inj["nuclide_scenario"],
+                    "peak_cpm": inj["peak_cpm"],
+                    "magnitude_band": "Band A (255-599 CPM)" if inj["peak_cpm"] < 600 else "Band B (714-1199 CPM)",
+                    "detected": int(net_al.any()),
+                })
+
+            loso_records.append({
+                "tier_name": loso_tier_name,
                 "held_out_station": held_id,
-                "injection_id": inj["injection_id"],
-                "nuclide_scenario": inj["nuclide_scenario"],
-                "peak_cpm": inj["peak_cpm"],
-                "magnitude_band": "Band A (255-599 CPM)" if inj["peak_cpm"] < 600 else "Band B (714-1199 CPM)",
-                "detected": int(net_al.any()),
+                "station_description": held_name,
+                "frozen_tau": round(best_loso_tau, 3),
+                "clean_observed_hours": int(st_test["valid"].sum()),
+                "clean_station_years": round(held_st_years, 2),
+                "clean_false_alarm_episodes": held_episodes,
+                "clean_false_alarms_per_year": round(held_fa_rate, 2),
+                "rule_of_three_95ci_upper_fa": rule_of_three_upper,
+                "total_test_injections": len(held_test_slices),
+                "detected_injections": held_det,
+                "realized_detection_rate_pct": round(held_det / len(held_test_slices) * 100, 2),
+                "median_detection_delay_hours": round(np.median(held_delays), 1) if held_delays else np.nan,
+                "natural_washout_test_hours": st_test["washout_test_hours"],
             })
-
-        loso_records.append({
-            "held_out_station": held_id,
-            "station_description": held_name,
-            "frozen_tau": round(best_loso_tau, 3),
-            "clean_observed_hours": int(st_test["valid"].sum()),
-            "clean_station_years": round(held_st_years, 2),
-            "clean_false_alarm_episodes": held_episodes,
-            "clean_false_alarms_per_year": round(held_fa_rate, 2),
-            "rule_of_three_95ci_upper_fa": rule_of_three_upper,
-            "total_test_injections": len(held_test_slices),
-            "detected_injections": held_det,
-            "realized_detection_rate_pct": round(held_det / len(held_test_slices) * 100, 2),
-            "median_detection_delay_hours": round(np.median(held_delays), 1) if held_delays else np.nan,
-            "natural_washout_test_hours": st_test["washout_test_hours"],
-        })
 
     loso_df = pd.DataFrame(loso_records)
     loso_df.to_csv("data/processed/rigorous_loso_summary.csv", index=False)
     loso_strat_df = pd.DataFrame(loso_strat_records)
     loso_strat_df.to_csv("data/processed/rigorous_loso_stratified_detection.csv", index=False)
     print("\nSaved Clean Multi-Station LOSO Summary to data/processed/rigorous_loso_summary.csv:")
-    print(loso_df[["held_out_station", "frozen_tau", "clean_false_alarms_per_year", "rule_of_three_95ci_upper_fa", "detected_injections", "realized_detection_rate_pct", "natural_washout_test_hours"]].to_string())
+    print(loso_df[["tier_name", "held_out_station", "frozen_tau", "clean_false_alarms_per_year", "rule_of_three_95ci_upper_fa", "detected_injections", "realized_detection_rate_pct", "median_detection_delay_hours", "natural_washout_test_hours"]].to_string())
 
     sd_strat = loso_strat_df[loso_strat_df["held_out_station"] == "ca_san_diego"]
     print("\nSan Diego Stratified Detection Breakdown:")
@@ -1301,12 +1324,15 @@ def main():
     print("STRATIFIED OPERATIONAL DEADLINE EVALUATION (20-Seed Mean at Matched 95% Target)")
     print("=" * 80)
     strat_records = []
+    st_sigmas = test_catalog["station_id"].map(lambda s: STATION_DRY_BASELINES[s]["sigma"]).values
+    low_snr_mask = (test_catalog["peak_cpm"].values / st_sigmas) < 1.0
     strata_definitions = {
         "All Test Injections": np.ones(len(test_catalog), dtype=bool),
         "Strictly Dry Environments": test_catalog["environment"].str.contains("dry").values,
         "Rain-Coincident Environments": test_catalog["environment"].str.contains("rain").values,
         "Standard Plume Regime": test_catalog["environment"].str.contains("standard").values,
         "Stress Plume Regime": test_catalog["environment"].str.contains("stress").values,
+        "Low-SNR (< 1.0 sigma)": low_snr_mask,
         "Standard Strictly Dry": (test_catalog["environment"] == "test_standard_strictly_dry").values,
         "Stress Strictly Dry": (test_catalog["environment"] == "test_stress_strictly_dry").values,
         "Standard Rain": (test_catalog["environment"] == "test_standard_rain").values,
@@ -1315,7 +1341,7 @@ def main():
 
     for stratum_name, m_strat in strata_definitions.items():
         n_strat = int(m_strat.sum())
-        for t_label in ["Tier 2 (Spectral)", "Tier 3 (Weather Fusion)"]:
+        for t_label in ["Tier 2 (Spectral)", "Tier 3 (Weather Fusion)", "Tier 4 (Physics-Informed Nuclear)"]:
             D_sub = tier_seed_det[(t_label, 95.0)][:, m_strat]
             L_sub = tier_seed_del[(t_label, 95.0)][:, m_strat]
 

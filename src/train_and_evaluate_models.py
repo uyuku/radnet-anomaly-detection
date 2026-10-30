@@ -1,14 +1,15 @@
 """
-Phase 4 Model Training and Evaluation Pipeline.
+Model Training and Evaluation Pipeline.
 
 Implements:
 1. Dual-series feature generation across all 5 pilot stations (2017-2022 train, 2023-2025 test).
-2. Three-tier feature ablation hierarchy:
+2. Four-tier feature ablation hierarchy:
    - Tier 1: Gross Radiation Only
    - Tier 2: Radiation + Spectral Ratios
-   - Tier 3: Full Weather Fusion
+   - Tier 3: Full Weather Fusion (Schema 2)
+   - Tier 4: Physics-Informed Nuclear (Schema 3)
 3. Multi-class LightGBM modeling (normal vs radon_washout vs fission_product).
-4. Continuous threshold sweep on P(fission) to benchmark against Phase 2 fixed-threshold baselines:
+4. Continuous threshold sweep on P(fission) to benchmark against fixed-threshold baselines:
    - Event-level detection probability on injected test series.
    - Clean operational false alarms per station-year on unmodified clean background series.
 5. Stratified performance breakdown:
@@ -35,6 +36,7 @@ from src.feature_engineering import (
     TIER_1_FEATURES,
     TIER_2_FEATURES,
     TIER_3_FEATURES,
+    TIER_4_NUCLEAR_FEATURES,
     STATION_DRY_BASELINES,
 )
 
@@ -122,7 +124,7 @@ def train_tier_model(X_train: pd.DataFrame, y_train: pd.Series, tier_name: str) 
         colsample_bytree=0.8,
         class_weight="balanced",
         random_state=42,
-        n_jobs=4,
+        n_jobs=1,
         verbose=-1,
     )
     clf.fit(X_train, y_train)
@@ -146,40 +148,46 @@ def count_clean_alarm_episodes(p_fission: pd.Series, valid_mask: pd.Series, thre
 def evaluate_tier_pipeline():
     """
     Main evaluation routine:
-    1. Trains Tier 1, Tier 2, Tier 3, and LOSO models.
+    1. Trains Tier 1, Tier 2, Tier 3, Tier 4, and LOSO models.
     2. Runs continuous threshold sweep across test datasets.
     3. Evaluates event detection rate on catalog injections.
     4. Evaluates clean false alarms per station-year on clean background data.
-    5. Produces summary CSVs and benchmarks against Phase 2 baselines.
+    5. Produces summary CSVs and benchmarks against fixed-threshold baselines.
     """
     print("=" * 80)
-    print("PHASE 4: MODEL TRAINING & EVALUATION PIPELINE")
+    print("MODEL TRAINING & EVALUATION PIPELINE")
     print("=" * 80)
 
-    # 1. Train Tier 1 Model
-    X_tr_t1, y_tr = load_and_prepare_train_data(TIER_1_FEATURES)
+    # 1. Train Models using single-pass feature computation across stations
+    X_tr_t4, y_tr = load_and_prepare_train_data(TIER_4_NUCLEAR_FEATURES)
+    X_tr_t1 = X_tr_t4[TIER_1_FEATURES]
+    X_tr_t2 = X_tr_t4[TIER_2_FEATURES]
+    X_tr_t3 = X_tr_t4[TIER_3_FEATURES]
+
     clf_t1 = train_tier_model(X_tr_t1, y_tr, "Tier 1 (Gross Only)")
-
-    # 2. Train Tier 2 Model
-    X_tr_t2, _ = load_and_prepare_train_data(TIER_2_FEATURES)
     clf_t2 = train_tier_model(X_tr_t2, y_tr, "Tier 2 (Spectral)")
-
-    # 3. Train Tier 3 Model
-    X_tr_t3, _ = load_and_prepare_train_data(TIER_3_FEATURES)
     clf_t3 = train_tier_model(X_tr_t3, y_tr, "Tier 3 (Weather Fusion)")
+    clf_t4 = train_tier_model(X_tr_t4, y_tr, "Tier 4 (Physics-Informed Nuclear)")
 
     # 4. Train LOSO Model (Holdout San Diego)
     X_tr_loso, y_tr_loso = load_and_prepare_train_data_loso(TIER_3_FEATURES, "ca_san_diego")
     clf_loso_sd = train_tier_model(X_tr_loso, y_tr_loso, "Tier 3 LOSO (Held-out San Diego)")
 
-    # 5. Extract Feature Importance
+    # 5. Extract Feature Importance (Tier 3 and Tier 4)
     importance_df = pd.DataFrame({
         "feature": TIER_3_FEATURES,
         "importance_gain": clf_t3.booster_.feature_importance(importance_type="gain"),
         "importance_split": clf_t3.booster_.feature_importance(importance_type="split"),
     }).sort_values("importance_gain", ascending=False).reset_index(drop=True)
     importance_df.to_csv("data/processed/model_feature_importance.csv", index=False)
-    print("Saved feature importance to data/processed/model_feature_importance.csv")
+
+    importance_t4_df = pd.DataFrame({
+        "feature": TIER_4_NUCLEAR_FEATURES,
+        "importance_gain": clf_t4.booster_.feature_importance(importance_type="gain"),
+        "importance_split": clf_t4.booster_.feature_importance(importance_type="split"),
+    }).sort_values("importance_gain", ascending=False).reset_index(drop=True)
+    importance_t4_df.to_csv("data/processed/model_feature_importance_tier4.csv", index=False)
+    print("Saved feature importance to data/processed/model_feature_importance.csv (& _tier4.csv)")
 
     # 6. Load Test Data and Prepare Dual Series
     catalog = pd.read_csv("data/processed/synthetic_injection_catalog.csv")
@@ -223,16 +231,18 @@ def evaluate_tier_pipeline():
         p_inj_t1 = clf_t1.predict_proba(feats_inj[TIER_1_FEATURES])[:, 2]
         p_inj_t2 = clf_t2.predict_proba(feats_inj[TIER_2_FEATURES])[:, 2]
         p_inj_t3 = clf_t3.predict_proba(feats_inj[TIER_3_FEATURES])[:, 2]
+        p_inj_t4 = clf_t4.predict_proba(feats_inj[TIER_4_NUCLEAR_FEATURES])[:, 2]
         p_inj_loso = clf_loso_sd.predict_proba(feats_inj[TIER_3_FEATURES])[:, 2]
 
         # Predictions on clean background series (prob of fission class = 2)
         p_clean_t1 = clf_t1.predict_proba(feats_clean[TIER_1_FEATURES])[:, 2]
         p_clean_t2 = clf_t2.predict_proba(feats_clean[TIER_2_FEATURES])[:, 2]
         p_clean_t3 = clf_t3.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2]
+        p_clean_t4 = clf_t4.predict_proba(feats_clean[TIER_4_NUCLEAR_FEATURES])[:, 2]
         p_clean_loso = clf_loso_sd.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2]
 
         # Baseline alarms on clean and injected series (Rolling 7d 3-sigma and Global 3-sigma)
-        st_base = STATION_DRY_BASELINES[st_id]  # BUG-11: no silent fabricated defaults
+        st_base = STATION_DRY_BASELINES[st_id]
         base_3s_thresh = st_base["mu"] + 3.0 * st_base["sigma"]
         base_4s_thresh = st_base["mu"] + 4.0 * st_base["sigma"]
         base_5s_thresh = st_base["mu"] + 5.0 * st_base["sigma"]
@@ -245,8 +255,8 @@ def evaluate_tier_pipeline():
             "valid": valid,
             "feats_inj": feats_inj,
             "feats_clean": feats_clean,
-            "p_inj": {"t1": p_inj_t1, "t2": p_inj_t2, "t3": p_inj_t3, "loso": p_inj_loso},
-            "p_clean": {"t1": p_clean_t1, "t2": p_clean_t2, "t3": p_clean_t3, "loso": p_clean_loso},
+            "p_inj": {"t1": p_inj_t1, "t2": p_inj_t2, "t3": p_inj_t3, "t4": p_inj_t4, "loso": p_inj_loso},
+            "p_clean": {"t1": p_clean_t1, "t2": p_clean_t2, "t3": p_clean_t3, "t4": p_clean_t4, "loso": p_clean_loso},
             "gross_clean": df_raw["gross_cpm"],
             "gross_inj": df_raw["inj_gross_cpm"],
             "base_thresholds": {
@@ -262,7 +272,6 @@ def evaluate_tier_pipeline():
     print(f"Total network clean observed hours: {total_clean_observed_hours} ({total_station_years:.2f} station-years)")
 
     # 6b. Validation fold (2021-2022) for operating-threshold selection (BUG-1 fix).
-    # Thresholds are selected here and frozen BEFORE any test evaluation.
     print("\nBuilding 2021-2022 validation fold for threshold selection (no test tuning)...")
     val_series = {}
     val_obs_hours = 0
@@ -271,7 +280,6 @@ def evaluate_tier_pipeline():
         df_tr = pd.read_csv(Path(f"data/processed/labeled_{st_id}_train.csv.gz"))
         df_tr["dt"] = pd.to_datetime(df_tr["dt"])
         df_tr = df_tr.sort_values("dt").reset_index(drop=True)
-        # Featurize the full panel first (full rolling history), then slice (BUG-5 fix)
         feats_inj_full = compute_features_for_series(df_tr, st_id, use_injected=True)
         feats_clean_full = compute_features_for_series(df_tr, st_id, use_injected=False)
         m_val = ((df_tr["dt"] >= "2021-01-01") & (df_tr["dt"] < "2023-01-01")).values
@@ -288,12 +296,14 @@ def evaluate_tier_pipeline():
                 "t1": clf_t1.predict_proba(feats_inj[TIER_1_FEATURES])[:, 2],
                 "t2": clf_t2.predict_proba(feats_inj[TIER_2_FEATURES])[:, 2],
                 "t3": clf_t3.predict_proba(feats_inj[TIER_3_FEATURES])[:, 2],
+                "t4": clf_t4.predict_proba(feats_inj[TIER_4_NUCLEAR_FEATURES])[:, 2],
                 "loso": clf_loso_sd.predict_proba(feats_inj[TIER_3_FEATURES])[:, 2],
             },
             "p_clean": {
                 "t1": clf_t1.predict_proba(feats_clean[TIER_1_FEATURES])[:, 2],
                 "t2": clf_t2.predict_proba(feats_clean[TIER_2_FEATURES])[:, 2],
                 "t3": clf_t3.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2],
+                "t4": clf_t4.predict_proba(feats_clean[TIER_4_NUCLEAR_FEATURES])[:, 2],
                 "loso": clf_loso_sd.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2],
             },
         }
@@ -307,11 +317,6 @@ def evaluate_tier_pipeline():
           f"{len(val_catalog)} injection events")
 
     def sweep_roc(series_map, catalog_df, station_years, is_validation=False):
-        """Threshold sweep with NET-ALARM detection (alarm on injected AND NOT on
-        clean). For 'loso' (trained holding out ca_san_diego):
-          - on validation (is_validation=True): tuned strictly on the 4 non-held-out
-            training stations (zero leakage from ca_san_diego).
-          - on test (is_validation=False): evaluated strictly on held-out ca_san_diego."""
         records = []
         loso_stations = [s for s in series_map if (s != "ca_san_diego" if is_validation else s == "ca_san_diego")]
         loso_st_years = sum(int(series_map[s]["valid"].sum()) for s in loso_stations) / 8766.0
@@ -319,7 +324,7 @@ def evaluate_tier_pipeline():
 
         for tau in np.linspace(0.01, 0.99, 99):
             record = {"threshold": tau}
-            for tier_key in ["t1", "t2", "t3", "loso"]:
+            for tier_key in ["t1", "t2", "t3", "t4", "loso"]:
                 st_subset = loso_stations if tier_key == "loso" else list(series_map.keys())
                 st_yrs = loso_st_years if tier_key == "loso" else station_years
                 cat_sub = loso_cat if tier_key == "loso" else catalog_df
@@ -348,16 +353,11 @@ def evaluate_tier_pipeline():
         return pd.DataFrame(records)
 
     val_roc_df = sweep_roc(val_series, val_catalog, val_station_years, is_validation=True)
-
-    # 7. Sweep Thresholds to Map ROC Trade-Off Curve
-    # (test ROC is descriptive only; operating points in section 9 are selected
-    #  on the VALIDATION fold from section 6b — BUG-1 fix)
     roc_df = sweep_roc(test_series, test_catalog, total_station_years, is_validation=False)
     roc_df.to_csv("data/processed/model_roc_curve_data.csv", index=False)
     print("Saved ROC curve data to data/processed/model_roc_curve_data.csv")
 
     # 8. Benchmark Fixed-Threshold Baselines on Test Data
-    # Global 3s, 4s, 5s and Rolling 3s, 4s, 5s
     baseline_benchmarks = {}
     for base_rule, k_val in [
         ("global_3s", 3.0), ("global_4s", 4.0), ("global_5s", 5.0),
@@ -366,7 +366,6 @@ def evaluate_tier_pipeline():
         tot_episodes = 0
         detected_events = 0
 
-        # False alarms on clean data
         for st_id in test_series:
             val = test_series[st_id]["valid"]
             if base_rule.startswith("global"):
@@ -382,7 +381,6 @@ def evaluate_tier_pipeline():
 
         fa_per_year = tot_episodes / total_station_years
 
-        # Detection rate on injected test catalog (net-alarm: injected AND NOT clean)
         for _, inj in test_catalog.iterrows():
             st_id = inj["station_id"]
             st_data = test_series[st_id]
@@ -419,13 +417,11 @@ def evaluate_tier_pipeline():
             ("t1", "Tier 1 (Gross Only)"),
             ("t2", "Tier 2 (Spectral)"),
             ("t3", "Tier 3 (Weather Fusion)"),
+            ("t4", "Tier 4 (Physics-Informed Nuclear)"),
             ("loso", "Tier 3 LOSO (Held-out SD)"),
         ]:
-            # BUG-1 fix: select tau on the VALIDATION fold, then record the
-            # realized test performance at that frozen tau.
             sub = val_roc_df[val_roc_df[f"{tier_key}_event_det_rate"] >= target_det]
             if not sub.empty:
-                # Highest threshold meeting the target detection rate has lowest FA rate
                 best_match_val = sub.iloc[-1]
             else:
                 best_match_val = val_roc_df.sort_values(f"{tier_key}_event_det_rate", ascending=False).iloc[0]
@@ -444,26 +440,32 @@ def evaluate_tier_pipeline():
     op_df.to_csv("data/processed/model_operating_points_summary.csv", index=False)
     print("\nSaved operating points to data/processed/model_operating_points_summary.csv")
 
-    # 10. Stratified Evaluation Breakdown for Tier 3 at 95% Overall Operating Point
-    # BUG-1 fix: thresholds selected on the validation fold, then frozen
+    # 10. Stratified Evaluation Breakdown for Tier 3 & Tier 4 at 95% Overall Operating Point
     t3_95_row = val_roc_df[val_roc_df["t3_event_det_rate"] >= 0.95].iloc[-1]
     tau_t3 = t3_95_row["threshold"]
+    t4_95_row = val_roc_df[val_roc_df["t4_event_det_rate"] >= 0.95].iloc[-1]
+    tau_t4 = t4_95_row["threshold"]
     t1_thresh = val_roc_df[val_roc_df["t1_event_det_rate"] >= 0.95].iloc[-1]["threshold"]
     t2_thresh = val_roc_df[val_roc_df["t2_event_det_rate"] >= 0.95].iloc[-1]["threshold"]
     test_t3_row = roc_df[roc_df["threshold"] == tau_t3].iloc[0]
+    test_t4_row = roc_df[roc_df["threshold"] == tau_t4].iloc[0]
     print(f"\nOperating Tier 3 model at frozen threshold tau = {tau_t3:.3f} "
           f"(Val Det = {t3_95_row['t3_event_det_rate']*100:.2f}%, "
           f"Test Det = {test_t3_row['t3_event_det_rate']*100:.2f}%)")
+    print(f"Operating Tier 4 model at frozen threshold tau = {tau_t4:.3f} "
+          f"(Val Det = {t4_95_row['t4_event_det_rate']*100:.2f}%, "
+          f"Test Det = {test_t4_row['t4_event_det_rate']*100:.2f}%)")
 
     strat_records = []
-    # Stratify by environment, scenario, magnitude band, and station
     for group_col in ["environment", "nuclide_scenario", "magnitude_band", "station_name"]:
         for group_val, grp in test_catalog.groupby(group_col):
             tot = len(grp)
             det_t1 = 0
             det_t2 = 0
             det_t3 = 0
+            det_t4 = 0
             delays_t3 = []
+            delays_t4 = []
 
             for _, inj in grp.iterrows():
                 st_id = inj["station_id"]
@@ -474,24 +476,31 @@ def evaluate_tier_pipeline():
                 p1 = st_data["p_inj"]["t1"][mask]
                 p2 = st_data["p_inj"]["t2"][mask]
                 p3 = st_data["p_inj"]["t3"][mask]
+                p4 = st_data["p_inj"]["t4"][mask]
                 p1c = st_data["p_clean"]["t1"][mask]
                 p2c = st_data["p_clean"]["t2"][mask]
                 p3c = st_data["p_clean"]["t3"][mask]
+                p4c = st_data["p_clean"]["t4"][mask]
 
-                # Net-alarm detection at frozen thresholds (t1/t2 from validation fold)
                 if len(p1) > 0 and np.any((p1 >= t1_thresh) & (p1c < t1_thresh)):
                     det_t1 += 1
                 if len(p2) > 0 and np.any((p2 >= t2_thresh) & (p2c < t2_thresh)):
                     det_t2 += 1
                 if len(p3) > 0 and np.any((p3 >= tau_t3) & (p3c < tau_t3)):
                     det_t3 += 1
-                    # Compute delay (hours from start_utc to first net-alarm)
                     alarm_indices = np.where((p3 >= tau_t3) & (p3c < tau_t3))[0]
                     first_alarm_dt = dt_event.iloc[alarm_indices[0]]
                     delay_hours = (first_alarm_dt - pd.to_datetime(inj["start_utc"])).total_seconds() / 3600.0
                     delays_t3.append(max(0.0, delay_hours))
+                if len(p4) > 0 and np.any((p4 >= tau_t4) & (p4c < tau_t4)):
+                    det_t4 += 1
+                    alarm_indices = np.where((p4 >= tau_t4) & (p4c < tau_t4))[0]
+                    first_alarm_dt = dt_event.iloc[alarm_indices[0]]
+                    delay_hours = (first_alarm_dt - pd.to_datetime(inj["start_utc"])).total_seconds() / 3600.0
+                    delays_t4.append(max(0.0, delay_hours))
 
             med_delay = np.median(delays_t3) if delays_t3 else np.nan
+            med_delay_t4 = np.median(delays_t4) if delays_t4 else np.nan
             strat_records.append({
                 "group_category": group_col,
                 "group_value": group_val,
@@ -499,7 +508,9 @@ def evaluate_tier_pipeline():
                 "tier1_det_rate_pct": round(det_t1 / tot * 100, 2),
                 "tier2_det_rate_pct": round(det_t2 / tot * 100, 2),
                 "tier3_det_rate_pct": round(det_t3 / tot * 100, 2),
+                "tier4_det_rate_pct": round(det_t4 / tot * 100, 2),
                 "tier3_median_delay_hours": round(med_delay, 1) if not np.isnan(med_delay) else "N/A",
+                "tier4_median_delay_hours": round(med_delay_t4, 1) if not np.isnan(med_delay_t4) else "N/A",
             })
 
     strat_df = pd.DataFrame(strat_records)
@@ -509,8 +520,6 @@ def evaluate_tier_pipeline():
     # 11. Leave-One-Station-Out (LOSO) Summary for San Diego
     sd_obs_years = clean_obs_hours_per_st["ca_san_diego"] / 8766.0
     sd_catalog = test_catalog[test_catalog["station_id"] == "ca_san_diego"]
-    # BUG-1 fix: LOSO uses its own validation-selected threshold (was: tau_t3,
-    # which belongs to a different model)
     _loso_sub = val_roc_df[val_roc_df["loso_event_det_rate"] >= 0.95]
     tau_loso = _loso_sub.iloc[-1]["threshold"] if not _loso_sub.empty else 0.5
     sd_detected = 0

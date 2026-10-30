@@ -1,121 +1,401 @@
-held_out_station,injection_id,nuclide_scenario,peak_cpm,magnitude_band,detected
-ca_san_diego,INJ_0231,fission_pure_i131,774.6,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0232,fission_reactor_fukushima,776.4,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0233,activation_orphan_co60,822.2,Band B (714-1199 CPM),0
-ca_san_diego,INJ_0234,mixed_fission_activation,793.0,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0235,mixed_fission_activation,506.2,Band A (255-599 CPM),0
-ca_san_diego,INJ_0236,fission_reactor_fukushima,521.0,Band A (255-599 CPM),1
-ca_san_diego,INJ_0237,mixed_fission_activation,1136.7,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0238,fission_pure_i131,912.7,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0239,mixed_fission_activation,315.5,Band A (255-599 CPM),0
-ca_san_diego,INJ_0240,fission_pure_cs137,1120.6,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0241,activation_orphan_co60,1191.6,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0242,fission_reactor_fukushima,1015.4,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0243,fission_pure_cs137,766.7,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0244,activation_orphan_co60,538.7,Band A (255-599 CPM),1
-ca_san_diego,INJ_0245,fission_reactor_fukushima,595.3,Band A (255-599 CPM),1
-ca_san_diego,INJ_0246,fission_pure_i131,286.2,Band A (255-599 CPM),0
-ca_san_diego,INJ_0247,fission_pure_cs137,299.9,Band A (255-599 CPM),1
-ca_san_diego,INJ_0248,fission_pure_cs137,594.8,Band A (255-599 CPM),1
-ca_san_diego,INJ_0249,fission_pure_i131,256.0,Band A (255-599 CPM),0
-ca_san_diego,INJ_0250,activation_orphan_co60,316.8,Band A (255-599 CPM),1
-ca_san_diego,INJ_0251,fission_reactor_fukushima,255.0,Band A (255-599 CPM),0
-ca_san_diego,INJ_0252,fission_reactor_fukushima,301.0,Band A (255-599 CPM),0
-ca_san_diego,INJ_0253,mixed_fission_activation,1041.5,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0254,fission_reactor_fukushima,1019.7,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0255,mixed_fission_activation,435.2,Band A (255-599 CPM),1
-ca_san_diego,INJ_0256,fission_pure_i131,577.5,Band A (255-599 CPM),0
-ca_san_diego,INJ_0257,mixed_fission_activation,867.6,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0258,activation_orphan_co60,303.0,Band A (255-599 CPM),1
-ca_san_diego,INJ_0259,fission_pure_cs137,882.2,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0260,fission_pure_cs137,449.7,Band A (255-599 CPM),1
-ca_san_diego,INJ_0261,fission_pure_cs137,300.5,Band A (255-599 CPM),1
-ca_san_diego,INJ_0262,activation_orphan_co60,1079.5,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0263,fission_pure_i131,918.2,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0264,fission_pure_i131,338.3,Band A (255-599 CPM),0
-ca_san_diego,INJ_0265,mixed_fission_activation,259.4,Band A (255-599 CPM),0
-ca_san_diego,INJ_0266,fission_reactor_fukushima,1141.9,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0267,fission_pure_i131,952.7,Band B (714-1199 CPM),0
-ca_san_diego,INJ_0268,activation_orphan_co60,1108.9,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0269,fission_pure_cs137,1154.8,Band B (714-1199 CPM),1
-ca_san_diego,INJ_0270,activation_orphan_co60,576.2,Band A (255-599 CPM),0
-al_birmingham,INJ_0051,activation_orphan_co60,726.0,Band B (714-1199 CPM),1
-al_birmingham,INJ_0052,fission_reactor_fukushima,1000.8,Band B (714-1199 CPM),1
-al_birmingham,INJ_0053,mixed_fission_activation,953.3,Band B (714-1199 CPM),1
-al_birmingham,INJ_0054,fission_pure_cs137,1012.4,Band B (714-1199 CPM),1
-al_birmingham,INJ_0055,fission_pure_cs137,1020.9,Band B (714-1199 CPM),1
-al_birmingham,INJ_0056,fission_reactor_fukushima,734.2,Band B (714-1199 CPM),1
-al_birmingham,INJ_0057,fission_pure_i131,1062.9,Band B (714-1199 CPM),1
-al_birmingham,INJ_0058,fission_pure_i131,1057.0,Band B (714-1199 CPM),1
-al_birmingham,INJ_0059,activation_orphan_co60,1111.5,Band B (714-1199 CPM),1
-al_birmingham,INJ_0060,mixed_fission_activation,1163.6,Band B (714-1199 CPM),1
-al_birmingham,INJ_0061,mixed_fission_activation,317.9,Band A (255-599 CPM),0
-al_birmingham,INJ_0062,fission_pure_cs137,586.0,Band A (255-599 CPM),1
-al_birmingham,INJ_0063,fission_pure_i131,427.7,Band A (255-599 CPM),1
-al_birmingham,INJ_0064,fission_reactor_fukushima,428.7,Band A (255-599 CPM),1
-al_birmingham,INJ_0065,fission_pure_i131,372.5,Band A (255-599 CPM),0
-al_birmingham,INJ_0066,activation_orphan_co60,548.4,Band A (255-599 CPM),1
-al_birmingham,INJ_0067,fission_pure_cs137,479.1,Band A (255-599 CPM),1
-al_birmingham,INJ_0068,activation_orphan_co60,530.5,Band A (255-599 CPM),1
-al_birmingham,INJ_0069,fission_reactor_fukushima,449.3,Band A (255-599 CPM),1
-al_birmingham,INJ_0070,mixed_fission_activation,394.8,Band A (255-599 CPM),1
-al_birmingham,INJ_0071,activation_orphan_co60,956.5,Band B (714-1199 CPM),1
-al_birmingham,INJ_0072,fission_pure_i131,953.2,Band B (714-1199 CPM),1
-al_birmingham,INJ_0073,fission_pure_cs137,287.0,Band A (255-599 CPM),1
-al_birmingham,INJ_0074,fission_reactor_fukushima,291.5,Band A (255-599 CPM),1
-al_birmingham,INJ_0075,mixed_fission_activation,264.1,Band A (255-599 CPM),0
-al_birmingham,INJ_0076,fission_pure_i131,527.3,Band A (255-599 CPM),1
-al_birmingham,INJ_0077,fission_pure_cs137,338.3,Band A (255-599 CPM),1
-al_birmingham,INJ_0078,activation_orphan_co60,494.4,Band A (255-599 CPM),0
-al_birmingham,INJ_0079,fission_pure_i131,542.4,Band A (255-599 CPM),1
-al_birmingham,INJ_0080,mixed_fission_activation,803.9,Band B (714-1199 CPM),1
-al_birmingham,INJ_0081,fission_reactor_fukushima,1005.1,Band B (714-1199 CPM),1
-al_birmingham,INJ_0082,activation_orphan_co60,1198.5,Band B (714-1199 CPM),1
-al_birmingham,INJ_0083,fission_reactor_fukushima,974.5,Band B (714-1199 CPM),1
-al_birmingham,INJ_0084,mixed_fission_activation,840.7,Band B (714-1199 CPM),1
-al_birmingham,INJ_0085,fission_reactor_fukushima,597.8,Band A (255-599 CPM),1
-al_birmingham,INJ_0086,mixed_fission_activation,287.1,Band A (255-599 CPM),1
-al_birmingham,INJ_0087,fission_pure_i131,967.7,Band B (714-1199 CPM),1
-al_birmingham,INJ_0088,activation_orphan_co60,426.7,Band A (255-599 CPM),0
-al_birmingham,INJ_0089,fission_pure_cs137,1082.7,Band B (714-1199 CPM),1
-al_birmingham,INJ_0090,fission_pure_cs137,968.1,Band B (714-1199 CPM),1
-tx_dallas,INJ_0321,fission_reactor_fukushima,870.1,Band B (714-1199 CPM),1
-tx_dallas,INJ_0322,fission_pure_cs137,916.2,Band B (714-1199 CPM),1
-tx_dallas,INJ_0323,activation_orphan_co60,893.9,Band B (714-1199 CPM),1
-tx_dallas,INJ_0324,fission_pure_i131,1151.0,Band B (714-1199 CPM),1
-tx_dallas,INJ_0325,mixed_fission_activation,930.9,Band B (714-1199 CPM),1
-tx_dallas,INJ_0326,fission_pure_cs137,1068.3,Band B (714-1199 CPM),1
-tx_dallas,INJ_0327,fission_reactor_fukushima,313.4,Band A (255-599 CPM),1
-tx_dallas,INJ_0328,mixed_fission_activation,1198.1,Band B (714-1199 CPM),1
-tx_dallas,INJ_0329,fission_reactor_fukushima,890.0,Band B (714-1199 CPM),1
-tx_dallas,INJ_0330,activation_orphan_co60,714.1,Band B (714-1199 CPM),0
-tx_dallas,INJ_0331,fission_pure_i131,768.5,Band B (714-1199 CPM),1
-tx_dallas,INJ_0332,fission_pure_i131,327.2,Band A (255-599 CPM),0
-tx_dallas,INJ_0333,fission_pure_cs137,380.1,Band A (255-599 CPM),1
-tx_dallas,INJ_0334,fission_pure_i131,366.1,Band A (255-599 CPM),0
-tx_dallas,INJ_0335,activation_orphan_co60,320.6,Band A (255-599 CPM),0
-tx_dallas,INJ_0336,fission_reactor_fukushima,540.9,Band A (255-599 CPM),1
-tx_dallas,INJ_0337,activation_orphan_co60,563.9,Band A (255-599 CPM),1
-tx_dallas,INJ_0338,mixed_fission_activation,317.1,Band A (255-599 CPM),1
-tx_dallas,INJ_0339,fission_pure_cs137,263.9,Band A (255-599 CPM),1
-tx_dallas,INJ_0340,mixed_fission_activation,327.8,Band A (255-599 CPM),1
-tx_dallas,INJ_0341,mixed_fission_activation,402.6,Band A (255-599 CPM),1
-tx_dallas,INJ_0342,fission_pure_cs137,1110.3,Band B (714-1199 CPM),1
-tx_dallas,INJ_0343,fission_pure_cs137,1079.0,Band B (714-1199 CPM),1
-tx_dallas,INJ_0344,fission_pure_i131,527.6,Band A (255-599 CPM),0
-tx_dallas,INJ_0345,fission_pure_i131,1006.8,Band B (714-1199 CPM),1
-tx_dallas,INJ_0346,fission_reactor_fukushima,301.5,Band A (255-599 CPM),1
-tx_dallas,INJ_0347,activation_orphan_co60,1182.4,Band B (714-1199 CPM),1
-tx_dallas,INJ_0348,mixed_fission_activation,951.0,Band B (714-1199 CPM),1
-tx_dallas,INJ_0349,fission_pure_i131,861.1,Band B (714-1199 CPM),1
-tx_dallas,INJ_0350,activation_orphan_co60,1094.5,Band B (714-1199 CPM),1
-tx_dallas,INJ_0351,fission_reactor_fukushima,772.5,Band B (714-1199 CPM),1
-tx_dallas,INJ_0352,activation_orphan_co60,348.6,Band A (255-599 CPM),0
-tx_dallas,INJ_0353,fission_reactor_fukushima,762.0,Band B (714-1199 CPM),1
-tx_dallas,INJ_0354,fission_reactor_fukushima,599.3,Band A (255-599 CPM),1
-tx_dallas,INJ_0355,mixed_fission_activation,1146.2,Band B (714-1199 CPM),1
-tx_dallas,INJ_0356,fission_pure_i131,316.5,Band A (255-599 CPM),0
-tx_dallas,INJ_0357,activation_orphan_co60,313.4,Band A (255-599 CPM),0
-tx_dallas,INJ_0358,fission_pure_cs137,378.3,Band A (255-599 CPM),1
-tx_dallas,INJ_0359,fission_pure_cs137,455.7,Band A (255-599 CPM),1
-tx_dallas,INJ_0360,mixed_fission_activation,463.2,Band A (255-599 CPM),0
+tier_name,held_out_station,injection_id,nuclide_scenario,peak_cpm,magnitude_band,detected
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0231,fission_pure_i131,774.6,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0232,fission_reactor_fukushima,776.4,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0233,activation_orphan_co60,822.2,Band B (714-1199 CPM),0
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0234,mixed_fission_activation,793.0,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0235,mixed_fission_activation,506.2,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0236,fission_reactor_fukushima,521.0,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0237,mixed_fission_activation,1136.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0238,fission_pure_i131,912.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0239,mixed_fission_activation,315.5,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0240,fission_pure_cs137,1120.6,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0241,activation_orphan_co60,1191.6,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0242,fission_reactor_fukushima,1015.4,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0243,fission_pure_cs137,766.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0244,activation_orphan_co60,538.7,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0245,fission_reactor_fukushima,595.3,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0246,fission_pure_i131,286.2,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0247,fission_pure_cs137,299.9,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0248,fission_pure_cs137,594.8,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0249,fission_pure_i131,256.0,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0250,activation_orphan_co60,316.8,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0251,fission_reactor_fukushima,255.0,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0252,fission_reactor_fukushima,301.0,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0253,mixed_fission_activation,1041.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0254,fission_reactor_fukushima,1019.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0255,mixed_fission_activation,435.2,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0256,fission_pure_i131,577.5,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0257,mixed_fission_activation,867.6,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0258,activation_orphan_co60,303.0,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0259,fission_pure_cs137,882.2,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0260,fission_pure_cs137,449.7,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0261,fission_pure_cs137,300.5,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0262,activation_orphan_co60,1079.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0263,fission_pure_i131,918.2,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0264,fission_pure_i131,338.3,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0265,mixed_fission_activation,259.4,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0266,fission_reactor_fukushima,1141.9,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0267,fission_pure_i131,952.7,Band B (714-1199 CPM),0
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0268,activation_orphan_co60,1108.9,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0269,fission_pure_cs137,1154.8,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),ca_san_diego,INJ_0270,activation_orphan_co60,576.2,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),al_birmingham,INJ_0051,activation_orphan_co60,726.0,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0052,fission_reactor_fukushima,1000.8,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0053,mixed_fission_activation,953.3,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0054,fission_pure_cs137,1012.4,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0055,fission_pure_cs137,1020.9,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0056,fission_reactor_fukushima,734.2,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0057,fission_pure_i131,1062.9,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0058,fission_pure_i131,1057.0,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0059,activation_orphan_co60,1111.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0060,mixed_fission_activation,1163.6,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0061,mixed_fission_activation,317.9,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),al_birmingham,INJ_0062,fission_pure_cs137,586.0,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0063,fission_pure_i131,427.7,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0064,fission_reactor_fukushima,428.7,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0065,fission_pure_i131,372.5,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),al_birmingham,INJ_0066,activation_orphan_co60,548.4,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0067,fission_pure_cs137,479.1,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0068,activation_orphan_co60,530.5,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0069,fission_reactor_fukushima,449.3,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0070,mixed_fission_activation,394.8,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0071,activation_orphan_co60,956.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0072,fission_pure_i131,953.2,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0073,fission_pure_cs137,287.0,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0074,fission_reactor_fukushima,291.5,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0075,mixed_fission_activation,264.1,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),al_birmingham,INJ_0076,fission_pure_i131,527.3,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0077,fission_pure_cs137,338.3,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0078,activation_orphan_co60,494.4,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),al_birmingham,INJ_0079,fission_pure_i131,542.4,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0080,mixed_fission_activation,803.9,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0081,fission_reactor_fukushima,1005.1,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0082,activation_orphan_co60,1198.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0083,fission_reactor_fukushima,974.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0084,mixed_fission_activation,840.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0085,fission_reactor_fukushima,597.8,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0086,mixed_fission_activation,287.1,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),al_birmingham,INJ_0087,fission_pure_i131,967.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0088,activation_orphan_co60,426.7,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),al_birmingham,INJ_0089,fission_pure_cs137,1082.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),al_birmingham,INJ_0090,fission_pure_cs137,968.1,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0321,fission_reactor_fukushima,870.1,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0322,fission_pure_cs137,916.2,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0323,activation_orphan_co60,893.9,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0324,fission_pure_i131,1151.0,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0325,mixed_fission_activation,930.9,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0326,fission_pure_cs137,1068.3,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0327,fission_reactor_fukushima,313.4,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0328,mixed_fission_activation,1198.1,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0329,fission_reactor_fukushima,890.0,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0330,activation_orphan_co60,714.1,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0331,fission_pure_i131,768.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0332,fission_pure_i131,327.2,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0333,fission_pure_cs137,380.1,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0334,fission_pure_i131,366.1,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0335,activation_orphan_co60,320.6,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0336,fission_reactor_fukushima,540.9,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0337,activation_orphan_co60,563.9,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0338,mixed_fission_activation,317.1,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0339,fission_pure_cs137,263.9,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0340,mixed_fission_activation,327.8,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0341,mixed_fission_activation,402.6,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0342,fission_pure_cs137,1110.3,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0343,fission_pure_cs137,1079.0,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0344,fission_pure_i131,527.6,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0345,fission_pure_i131,1006.8,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0346,fission_reactor_fukushima,301.5,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0347,activation_orphan_co60,1182.4,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0348,mixed_fission_activation,951.0,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0349,fission_pure_i131,861.1,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0350,activation_orphan_co60,1094.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0351,fission_reactor_fukushima,772.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0352,activation_orphan_co60,348.6,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),tx_dallas,INJ_0353,fission_reactor_fukushima,762.0,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0354,fission_reactor_fukushima,599.3,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0355,mixed_fission_activation,1146.2,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0356,fission_pure_i131,316.5,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),tx_dallas,INJ_0357,activation_orphan_co60,313.4,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),tx_dallas,INJ_0358,fission_pure_cs137,378.3,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0359,fission_pure_cs137,455.7,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),tx_dallas,INJ_0360,mixed_fission_activation,463.2,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0141,activation_orphan_co60,752.8,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0142,mixed_fission_activation,1031.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0143,activation_orphan_co60,860.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0144,fission_pure_cs137,1078.9,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0145,fission_pure_cs137,974.0,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0146,mixed_fission_activation,938.0,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0147,fission_reactor_fukushima,803.9,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0148,fission_reactor_fukushima,983.1,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0149,fission_pure_i131,934.4,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0150,fission_pure_i131,949.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0151,mixed_fission_activation,329.8,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0152,fission_reactor_fukushima,319.2,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0153,fission_reactor_fukushima,517.4,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0154,fission_pure_i131,387.1,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0155,fission_pure_i131,457.8,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0156,mixed_fission_activation,271.5,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0157,activation_orphan_co60,566.0,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0158,fission_pure_cs137,404.0,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0159,activation_orphan_co60,566.5,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0160,fission_pure_cs137,325.1,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0161,activation_orphan_co60,1138.1,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0162,fission_reactor_fukushima,252.1,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0163,fission_pure_i131,341.8,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),dc_washington,INJ_0164,fission_pure_cs137,546.1,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0165,activation_orphan_co60,305.3,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0166,fission_reactor_fukushima,574.8,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0167,fission_pure_i131,302.0,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),dc_washington,INJ_0168,fission_reactor_fukushima,967.0,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0169,fission_pure_i131,1160.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0170,mixed_fission_activation,354.3,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0171,activation_orphan_co60,257.0,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0172,fission_reactor_fukushima,1107.6,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0173,mixed_fission_activation,293.6,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0174,mixed_fission_activation,962.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0175,fission_pure_cs137,470.6,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0176,fission_pure_cs137,976.4,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0177,fission_pure_i131,752.3,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0178,fission_pure_cs137,1116.6,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0179,activation_orphan_co60,1123.0,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),dc_washington,INJ_0180,mixed_fission_activation,726.2,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0411,fission_reactor_fukushima,1067.6,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0412,mixed_fission_activation,952.6,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0413,fission_reactor_fukushima,584.8,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0414,fission_pure_i131,712.1,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0415,mixed_fission_activation,312.0,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0416,activation_orphan_co60,935.2,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0417,fission_pure_cs137,1019.9,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0418,fission_pure_i131,885.9,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0419,fission_pure_cs137,1138.2,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0420,mixed_fission_activation,1125.4,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0421,fission_reactor_fukushima,845.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0422,activation_orphan_co60,1020.9,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0423,activation_orphan_co60,411.2,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0424,fission_pure_i131,347.6,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0425,fission_pure_cs137,554.6,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0426,fission_pure_cs137,472.0,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0427,fission_pure_i131,368.0,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0428,fission_reactor_fukushima,488.7,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0429,activation_orphan_co60,405.8,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0430,mixed_fission_activation,482.0,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0431,fission_reactor_fukushima,255.9,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),fl_tampa,INJ_0432,mixed_fission_activation,763.5,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0433,fission_pure_i131,260.9,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),fl_tampa,INJ_0434,mixed_fission_activation,853.2,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0435,activation_orphan_co60,1040.1,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0436,mixed_fission_activation,347.7,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0437,fission_pure_cs137,1107.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0438,fission_pure_i131,463.7,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0439,fission_pure_i131,947.6,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0440,fission_pure_cs137,711.6,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0441,activation_orphan_co60,568.3,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),fl_tampa,INJ_0442,fission_pure_i131,1188.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0443,fission_reactor_fukushima,555.5,Band A (255-599 CPM),0
+Tier 3 (Weather Fusion),fl_tampa,INJ_0444,mixed_fission_activation,471.9,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0445,fission_reactor_fukushima,750.7,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0446,activation_orphan_co60,495.3,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0447,fission_pure_cs137,294.7,Band A (255-599 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0448,activation_orphan_co60,1134.1,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0449,fission_reactor_fukushima,950.3,Band B (714-1199 CPM),1
+Tier 3 (Weather Fusion),fl_tampa,INJ_0450,fission_pure_cs137,252.6,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0231,fission_pure_i131,774.6,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0232,fission_reactor_fukushima,776.4,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0233,activation_orphan_co60,822.2,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0234,mixed_fission_activation,793.0,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0235,mixed_fission_activation,506.2,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0236,fission_reactor_fukushima,521.0,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0237,mixed_fission_activation,1136.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0238,fission_pure_i131,912.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0239,mixed_fission_activation,315.5,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0240,fission_pure_cs137,1120.6,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0241,activation_orphan_co60,1191.6,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0242,fission_reactor_fukushima,1015.4,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0243,fission_pure_cs137,766.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0244,activation_orphan_co60,538.7,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0245,fission_reactor_fukushima,595.3,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0246,fission_pure_i131,286.2,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0247,fission_pure_cs137,299.9,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0248,fission_pure_cs137,594.8,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0249,fission_pure_i131,256.0,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0250,activation_orphan_co60,316.8,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0251,fission_reactor_fukushima,255.0,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0252,fission_reactor_fukushima,301.0,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0253,mixed_fission_activation,1041.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0254,fission_reactor_fukushima,1019.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0255,mixed_fission_activation,435.2,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0256,fission_pure_i131,577.5,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0257,mixed_fission_activation,867.6,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0258,activation_orphan_co60,303.0,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0259,fission_pure_cs137,882.2,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0260,fission_pure_cs137,449.7,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0261,fission_pure_cs137,300.5,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0262,activation_orphan_co60,1079.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0263,fission_pure_i131,918.2,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0264,fission_pure_i131,338.3,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0265,mixed_fission_activation,259.4,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0266,fission_reactor_fukushima,1141.9,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0267,fission_pure_i131,952.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0268,activation_orphan_co60,1108.9,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0269,fission_pure_cs137,1154.8,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,INJ_0270,activation_orphan_co60,576.2,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0051,activation_orphan_co60,726.0,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0052,fission_reactor_fukushima,1000.8,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0053,mixed_fission_activation,953.3,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0054,fission_pure_cs137,1012.4,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0055,fission_pure_cs137,1020.9,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0056,fission_reactor_fukushima,734.2,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0057,fission_pure_i131,1062.9,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0058,fission_pure_i131,1057.0,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0059,activation_orphan_co60,1111.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0060,mixed_fission_activation,1163.6,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0061,mixed_fission_activation,317.9,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0062,fission_pure_cs137,586.0,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0063,fission_pure_i131,427.7,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0064,fission_reactor_fukushima,428.7,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0065,fission_pure_i131,372.5,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0066,activation_orphan_co60,548.4,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0067,fission_pure_cs137,479.1,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0068,activation_orphan_co60,530.5,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0069,fission_reactor_fukushima,449.3,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0070,mixed_fission_activation,394.8,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0071,activation_orphan_co60,956.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0072,fission_pure_i131,953.2,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0073,fission_pure_cs137,287.0,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0074,fission_reactor_fukushima,291.5,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0075,mixed_fission_activation,264.1,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0076,fission_pure_i131,527.3,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0077,fission_pure_cs137,338.3,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0078,activation_orphan_co60,494.4,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0079,fission_pure_i131,542.4,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0080,mixed_fission_activation,803.9,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0081,fission_reactor_fukushima,1005.1,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0082,activation_orphan_co60,1198.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0083,fission_reactor_fukushima,974.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0084,mixed_fission_activation,840.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0085,fission_reactor_fukushima,597.8,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0086,mixed_fission_activation,287.1,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0087,fission_pure_i131,967.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0088,activation_orphan_co60,426.7,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0089,fission_pure_cs137,1082.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),al_birmingham,INJ_0090,fission_pure_cs137,968.1,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0321,fission_reactor_fukushima,870.1,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0322,fission_pure_cs137,916.2,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0323,activation_orphan_co60,893.9,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0324,fission_pure_i131,1151.0,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0325,mixed_fission_activation,930.9,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0326,fission_pure_cs137,1068.3,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0327,fission_reactor_fukushima,313.4,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0328,mixed_fission_activation,1198.1,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0329,fission_reactor_fukushima,890.0,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0330,activation_orphan_co60,714.1,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0331,fission_pure_i131,768.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0332,fission_pure_i131,327.2,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0333,fission_pure_cs137,380.1,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0334,fission_pure_i131,366.1,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0335,activation_orphan_co60,320.6,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0336,fission_reactor_fukushima,540.9,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0337,activation_orphan_co60,563.9,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0338,mixed_fission_activation,317.1,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0339,fission_pure_cs137,263.9,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0340,mixed_fission_activation,327.8,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0341,mixed_fission_activation,402.6,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0342,fission_pure_cs137,1110.3,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0343,fission_pure_cs137,1079.0,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0344,fission_pure_i131,527.6,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0345,fission_pure_i131,1006.8,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0346,fission_reactor_fukushima,301.5,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0347,activation_orphan_co60,1182.4,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0348,mixed_fission_activation,951.0,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0349,fission_pure_i131,861.1,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0350,activation_orphan_co60,1094.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0351,fission_reactor_fukushima,772.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0352,activation_orphan_co60,348.6,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0353,fission_reactor_fukushima,762.0,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0354,fission_reactor_fukushima,599.3,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0355,mixed_fission_activation,1146.2,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0356,fission_pure_i131,316.5,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0357,activation_orphan_co60,313.4,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0358,fission_pure_cs137,378.3,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0359,fission_pure_cs137,455.7,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),tx_dallas,INJ_0360,mixed_fission_activation,463.2,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0141,activation_orphan_co60,752.8,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0142,mixed_fission_activation,1031.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0143,activation_orphan_co60,860.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0144,fission_pure_cs137,1078.9,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0145,fission_pure_cs137,974.0,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0146,mixed_fission_activation,938.0,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0147,fission_reactor_fukushima,803.9,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0148,fission_reactor_fukushima,983.1,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0149,fission_pure_i131,934.4,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0150,fission_pure_i131,949.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0151,mixed_fission_activation,329.8,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0152,fission_reactor_fukushima,319.2,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0153,fission_reactor_fukushima,517.4,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0154,fission_pure_i131,387.1,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0155,fission_pure_i131,457.8,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0156,mixed_fission_activation,271.5,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0157,activation_orphan_co60,566.0,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0158,fission_pure_cs137,404.0,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0159,activation_orphan_co60,566.5,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0160,fission_pure_cs137,325.1,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0161,activation_orphan_co60,1138.1,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0162,fission_reactor_fukushima,252.1,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0163,fission_pure_i131,341.8,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0164,fission_pure_cs137,546.1,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0165,activation_orphan_co60,305.3,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0166,fission_reactor_fukushima,574.8,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0167,fission_pure_i131,302.0,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0168,fission_reactor_fukushima,967.0,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0169,fission_pure_i131,1160.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0170,mixed_fission_activation,354.3,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0171,activation_orphan_co60,257.0,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0172,fission_reactor_fukushima,1107.6,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0173,mixed_fission_activation,293.6,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0174,mixed_fission_activation,962.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0175,fission_pure_cs137,470.6,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0176,fission_pure_cs137,976.4,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0177,fission_pure_i131,752.3,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0178,fission_pure_cs137,1116.6,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0179,activation_orphan_co60,1123.0,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),dc_washington,INJ_0180,mixed_fission_activation,726.2,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0411,fission_reactor_fukushima,1067.6,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0412,mixed_fission_activation,952.6,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0413,fission_reactor_fukushima,584.8,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0414,fission_pure_i131,712.1,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0415,mixed_fission_activation,312.0,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0416,activation_orphan_co60,935.2,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0417,fission_pure_cs137,1019.9,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0418,fission_pure_i131,885.9,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0419,fission_pure_cs137,1138.2,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0420,mixed_fission_activation,1125.4,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0421,fission_reactor_fukushima,845.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0422,activation_orphan_co60,1020.9,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0423,activation_orphan_co60,411.2,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0424,fission_pure_i131,347.6,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0425,fission_pure_cs137,554.6,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0426,fission_pure_cs137,472.0,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0427,fission_pure_i131,368.0,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0428,fission_reactor_fukushima,488.7,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0429,activation_orphan_co60,405.8,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0430,mixed_fission_activation,482.0,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0431,fission_reactor_fukushima,255.9,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0432,mixed_fission_activation,763.5,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0433,fission_pure_i131,260.9,Band A (255-599 CPM),0
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0434,mixed_fission_activation,853.2,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0435,activation_orphan_co60,1040.1,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0436,mixed_fission_activation,347.7,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0437,fission_pure_cs137,1107.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0438,fission_pure_i131,463.7,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0439,fission_pure_i131,947.6,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0440,fission_pure_cs137,711.6,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0441,activation_orphan_co60,568.3,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0442,fission_pure_i131,1188.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0443,fission_reactor_fukushima,555.5,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0444,mixed_fission_activation,471.9,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0445,fission_reactor_fukushima,750.7,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0446,activation_orphan_co60,495.3,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0447,fission_pure_cs137,294.7,Band A (255-599 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0448,activation_orphan_co60,1134.1,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0449,fission_reactor_fukushima,950.3,Band B (714-1199 CPM),1
+Tier 4 (Physics-Informed Nuclear),fl_tampa,INJ_0450,fission_pure_cs137,252.6,Band A (255-599 CPM),1

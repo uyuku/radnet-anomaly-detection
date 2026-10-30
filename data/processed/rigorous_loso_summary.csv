@@ -1,4 +1,11 @@
-held_out_station,station_description,frozen_tau,clean_observed_hours,clean_station_years,clean_false_alarm_episodes,clean_false_alarms_per_year,rule_of_three_95ci_upper_fa,total_test_injections,detected_injections,realized_detection_rate_pct,median_detection_delay_hours,natural_washout_test_hours
-ca_san_diego,"San Diego, CA (Marine, 0 test washouts)",0.985,24964,2.85,1,0.35,,40,28,70.0,6.0,0
-al_birmingham,"Birmingham, AL (High rain, active washouts)",0.985,24413,2.78,0,0.0,1.08,40,35,87.5,5.0,363
-tx_dallas,"Dallas, TX (Convective storms, active washouts)",0.998,15478,1.77,0,0.0,1.7,40,31,77.5,5.0,249
+tier_name,held_out_station,station_description,frozen_tau,clean_observed_hours,clean_station_years,clean_false_alarm_episodes,clean_false_alarms_per_year,rule_of_three_95ci_upper_fa,total_test_injections,detected_injections,realized_detection_rate_pct,median_detection_delay_hours,natural_washout_test_hours
+Tier 3 (Weather Fusion),ca_san_diego,"San Diego, CA (Marine, 0 test washouts)",0.99,24964,2.85,0,0.0,1.05,40,28,70.0,6.0,0
+Tier 3 (Weather Fusion),al_birmingham,"Birmingham, AL (High rain, active washouts)",0.991,24413,2.78,0,0.0,1.08,40,34,85.0,6.0,363
+Tier 3 (Weather Fusion),tx_dallas,"Dallas, TX (Convective storms, active washouts)",0.991,15478,1.77,1,0.57,,40,37,92.5,5.0,249
+Tier 3 (Weather Fusion),dc_washington,"Washington, DC (Temperate Mid-Atlantic)",0.99,22266,2.54,3,1.18,,40,38,95.0,4.0,240
+Tier 3 (Weather Fusion),fl_tampa,"Tampa, FL (Gulf Subtropical)",0.94,19507,2.23,2562,1151.3,,40,36,90.0,3.0,18
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,"San Diego, CA (Marine, 0 test washouts)",0.995,24964,2.85,4,1.4,,40,32,80.0,5.0,0
+Tier 4 (Physics-Informed Nuclear),al_birmingham,"Birmingham, AL (High rain, active washouts)",0.991,24413,2.78,0,0.0,1.08,40,38,95.0,5.0,363
+Tier 4 (Physics-Informed Nuclear),tx_dallas,"Dallas, TX (Convective storms, active washouts)",0.993,15478,1.77,0,0.0,1.7,40,38,95.0,5.0,249
+Tier 4 (Physics-Informed Nuclear),dc_washington,"Washington, DC (Temperate Mid-Atlantic)",0.994,22266,2.54,0,0.0,1.18,40,38,95.0,4.0,240
+Tier 4 (Physics-Informed Nuclear),fl_tampa,"Tampa, FL (Gulf Subtropical)",0.985,19507,2.23,377,169.42,,40,39,97.5,4.0,18

@@ -1,4 +1,4 @@
-"""Portable pipeline runner with prerequisite checks and failure propagation."""
+"""Portable end-to-end pipeline runner with prerequisite checks and failure propagation."""
 
 from __future__ import annotations
 
@@ -47,44 +47,42 @@ EVAL_TABLES = processed(*(f"eval_{name}.csv" for name in (
 
 @dataclass(frozen=True)
 class Step:
-    phase: int
     script: str
     inputs: tuple[str, ...] = ()
     outputs: tuple[str, ...] = ()
 
 
-def build_plan(phase: int | None = None) -> list[Step]:
+def build_plan(script_filter: str | None = None) -> list[Step]:
     steps = [
         # A fresh checkout must download the index before parsing it.
-        Step(0, "download_pilot_data.py", outputs=CANDIDATES + ("data/raw/radnet_csv_file_downloads.html",)),
-        Step(0, "parse_stations.py", ("data/raw/radnet_csv_file_downloads.html",), processed("radnet_station_inventory.csv")),
-        Step(0, "analyze_pilot_stations.py", CANDIDATES, processed("pilot_station_metrics.csv", "pilot_station_channel_missingness.csv", "candidate_pilot_stations_comparison.csv")),
-        Step(1, "download_noaa_data.py", outputs=NOAA),
-        Step(1, "audit_noaa_precipitation.py", NOAA, processed("noaa_precipitation_audit.csv", "noaa_station_summary.csv")),
-        Step(1, "merge_radnet_weather.py", RADNET + NOAA, MERGED + processed("merge_audit_summary.csv")),
-        Step(1, "plot_rain_events.py", MERGED),
-        Step(2, "characterize_baseline_cycles.py", MERGED, processed("diurnal_cycle_summary.csv", "filter_cycle_summary.csv")),
-        Step(2, "analyze_filter_cycles_multi_station.py", MERGED, processed("multi_station_filter_cycle_summary.csv")),
-        Step(2, "analyze_timestamp_lags.py", MERGED, processed("lag_cross_correlation.csv")),
-        Step(2, "analyze_rain_washout_distribution.py", MERGED, processed("rain_washout_surge_distribution.csv")),
-        Step(2, "evaluate_baseline.py", MERGED, processed("baseline_threshold_evaluation.csv")),
-        Step(2, "plot_baseline_timeline.py", MERGED),
-        Step(3, "compute_train_only_baselines.py", MERGED, BASELINES),
-        Step(3, "calibrate_dose_coupling.py", MERGED, processed("dose_rate_cpm_regression_summary.csv")),
-        Step(3, "analyze_washout_spectrum.py", MERGED, processed("rain_washout_spectral_shares.csv")),
-        Step(3, "synthetic_injection.py", MERGED + BASELINES + processed("dose_rate_cpm_regression_summary.csv") + ("configs/config.yaml",), LABELED + CATALOG + processed("labeled_dataset_reconciliation_summary.csv")),
-        Step(3, "audit_injection_catalog.py", MERGED + LABELED + CATALOG, processed("injection_catalog_audit_summary.csv", "injection_catalog_audit_verification.csv")),
-        Step(3, "plot_synthetic_injections.py", LABELED + CATALOG + processed("rain_washout_spectral_shares.csv")),
-        Step(4, "train_and_evaluate_models.py", LABELED + CATALOG + BASELINES, MODEL_TABLES),
-        Step(5, "train_and_evaluate_rigorous.py", LABELED + CATALOG + BASELINES, RIGOROUS_TABLES + processed("eval_mlp_calibration_comparison.csv")),
-        # Phase 4 figures require the baseline ROC produced by Phase 5.
-        Step(5, "plot_model_evaluation.py", MODEL_TABLES + LABELED + BASELINES + processed("rigorous_baseline_continuous_roc.csv")),
-        Step(5, "plot_rigorous_evaluation.py", RIGOROUS_TABLES),
-        Step(5, "evaluate_phase5_protocol.py", LABELED + CATALOG + BASELINES, EVAL_TABLES),
-        Step(5, "plot_phase5_evaluation.py", EVAL_TABLES),
-        Step(5, "plot_environmental_engineering_synthesis.py", LABELED + processed("diurnal_cycle_summary.csv", "rigorous_baseline_continuous_roc.csv", "rigorous_benchmark_summary.csv")),
+        Step("download_pilot_data.py", outputs=CANDIDATES + ("data/raw/radnet_csv_file_downloads.html",)),
+        Step("parse_stations.py", ("data/raw/radnet_csv_file_downloads.html",), processed("radnet_station_inventory.csv")),
+        Step("analyze_pilot_stations.py", CANDIDATES, processed("pilot_station_metrics.csv", "pilot_station_channel_missingness.csv", "candidate_pilot_stations_comparison.csv")),
+        Step("download_noaa_data.py", outputs=NOAA),
+        Step("audit_noaa_precipitation.py", NOAA, processed("noaa_precipitation_audit.csv", "noaa_station_summary.csv")),
+        Step("merge_radnet_weather.py", RADNET + NOAA, MERGED + processed("merge_audit_summary.csv")),
+        Step("plot_rain_events.py", MERGED),
+        Step("characterize_baseline_cycles.py", MERGED, processed("diurnal_cycle_summary.csv", "filter_cycle_summary.csv")),
+        Step("analyze_filter_cycles_multi_station.py", MERGED, processed("multi_station_filter_cycle_summary.csv")),
+        Step("analyze_timestamp_lags.py", MERGED, processed("lag_cross_correlation.csv")),
+        Step("analyze_rain_washout_distribution.py", MERGED, processed("rain_washout_surge_distribution.csv")),
+        Step("evaluate_baseline.py", MERGED, processed("baseline_threshold_evaluation.csv")),
+        Step("plot_baseline_timeline.py", MERGED),
+        Step("compute_train_only_baselines.py", MERGED, BASELINES),
+        Step("calibrate_dose_coupling.py", MERGED, processed("dose_rate_cpm_regression_summary.csv")),
+        Step("analyze_washout_spectrum.py", MERGED, processed("rain_washout_spectral_shares.csv")),
+        Step("synthetic_injection.py", MERGED + BASELINES + processed("dose_rate_cpm_regression_summary.csv") + ("configs/config.yaml",), LABELED + CATALOG + processed("labeled_dataset_reconciliation_summary.csv")),
+        Step("audit_injection_catalog.py", MERGED + LABELED + CATALOG, processed("injection_catalog_audit_summary.csv", "injection_catalog_audit_verification.csv")),
+        Step("plot_synthetic_injections.py", LABELED + CATALOG + processed("rain_washout_spectral_shares.csv")),
+        Step("train_and_evaluate_models.py", LABELED + CATALOG + BASELINES, MODEL_TABLES),
+        Step("train_and_evaluate_rigorous.py", LABELED + CATALOG + BASELINES, RIGOROUS_TABLES + processed("eval_mlp_calibration_comparison.csv")),
+        Step("plot_model_evaluation.py", MODEL_TABLES + LABELED + BASELINES + processed("rigorous_baseline_continuous_roc.csv")),
+        Step("plot_rigorous_evaluation.py", RIGOROUS_TABLES),
+        Step("evaluate_uncertainty_protocol.py", LABELED + CATALOG + BASELINES, EVAL_TABLES),
+        Step("plot_uncertainty_evaluation.py", EVAL_TABLES),
+        Step("plot_environmental_engineering_synthesis.py", LABELED + processed("diurnal_cycle_summary.csv", "rigorous_baseline_continuous_roc.csv", "rigorous_benchmark_summary.csv")),
     ]
-    return [step for step in steps if phase is None or step.phase == phase]
+    return [step for step in steps if script_filter is None or step.script == script_filter]
 
 
 def missing_inputs(steps: list[Step], root: Path = ROOT) -> dict[str, list[str]]:
@@ -102,13 +100,13 @@ def missing_inputs(steps: list[Step], root: Path = ROOT) -> dict[str, list[str]]
 def execute_plan(steps: list[Step], root: Path = ROOT) -> int:
     missing = missing_inputs(steps, root)
     if missing:
-        print("Missing prerequisites. Run the preceding phases first:", file=sys.stderr)
+        print("Missing prerequisites. Run earlier pipeline steps first:", file=sys.stderr)
         for script, names in missing.items():
             print(f"  {script}: {', '.join(names)}", file=sys.stderr)
         return 2
     env = dict(os.environ, PYTHONUTF8="1")
-    for step in steps:
-        print(f"[Phase {step.phase}] {step.script}", flush=True)
+    for idx, step in enumerate(steps, start=1):
+        print(f"[{idx}/{len(steps)}] {step.script}", flush=True)
         result = subprocess.run([sys.executable, str(root / "src" / step.script)], cwd=root, env=env)
         if result.returncode:
             print(f"FAILED: {step.script} (exit {result.returncode})", file=sys.stderr)
@@ -122,17 +120,18 @@ def execute_plan(steps: list[Step], root: Path = ROOT) -> int:
 
 
 def main(argv=None) -> int:
+    valid_scripts = [step.script for step in build_plan()]
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--phase", type=int, choices=range(6), help="Run only phase 0-5 (all phases by default)")
+    parser.add_argument("--script", choices=valid_scripts, help="Run only a specific script step (all steps by default)")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--dry-run", action="store_true", help="Show every command without executing or downloading")
     mode.add_argument("--check", action="store_true", help="Check prerequisites for the selected plan without running it")
     args = parser.parse_args(argv)
-    steps = build_plan(args.phase)
+    steps = build_plan(args.script)
     if args.dry_run:
-        for step in steps:
+        for idx, step in enumerate(steps, start=1):
             command = subprocess.list2cmdline([sys.executable, str(ROOT / "src" / step.script)])
-            print(f"[Phase {step.phase}] {command}")
+            print(f"[{idx}/{len(steps)}] {command}")
         print("Plan only; no scripts were run. Use --check to validate prerequisites.")
         return 0
     if args.check:

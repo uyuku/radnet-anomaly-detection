@@ -1,21 +1,19 @@
 """
-Publication-Quality Plotting Script for Rigorous Evaluation (Second Revision).
+Publication-Quality Plotting Script for Rigorous Multi-Seed Evaluation.
 
 Generates 5 comprehensive figures:
 1. reports/figures/rigorous_matched_roc_curves.png:
-   - Continuous test ROC curves for Baselines and all ML Tiers across tau in [0.01, 0.999] and k in [0.5, 5.0].
-   - Direct visualization of matched detection at ~92%: Tier 1 (162.99 FA/yr) vs Tier 1b (67.08 FA/yr, 58.8% reduction),
-     Tier 2 (9.62 FA/yr), and Tier 3 (3.73 FA/yr, 98.8% reduction over baseline).
+   - Continuous test ROC curves for Baselines and all ML Tiers (Tier 1..Tier 4) across tau in [0.01, 0.999] and k in [0.5, 5.0].
 2. reports/figures/rigorous_ablation_seeds.png:
-   - Four-tier ablation bar chart + strip plot across 20 random seeds with mean +/- std error bars.
+   - Five-tier ablation bar chart + strip plot across 20 random seeds with mean +/- std error bars.
 3. reports/figures/rigorous_detection_deadlines.png:
-   - Grouped bar chart showing early detection (<=6h, <=12h, <=24h, total) and stratification across Dry vs Rain and Standard vs Stress.
+   - Grouped bar chart showing early detection (<=6h, <=12h, <=24h, total) and stratification across Dry vs Rain, Standard vs Stress, and <1.0 sigma Low-SNR.
 4. reports/figures/rigorous_template_sensitivity.png:
    - Two-panel figure:
      (a) Injected photopeak scaling (+/-10%, +/-20%) showing moderate-to-strong sensitivity.
      (b) Instrumental gain drift (+/-5%, +/-10%) showing both detection and clean false alarm impact.
 5. reports/figures/rigorous_loso_multistation.png:
-   - Multi-station leave-one-station-out (LOSO) comparison across San Diego, Birmingham, and Dallas.
+   - Multi-station leave-one-station-out (LOSO) comparison across all 5 pilot stations (Tier 3 vs Tier 4).
 """
 
 import sys
@@ -56,7 +54,6 @@ def get_operational_frontier(df: pd.DataFrame) -> pd.DataFrame:
     pts = []
     for _, row in rev_df.iterrows():
         fa = row["false_alarms_per_year"]
-        det = row["detection_rate_pct"]
         if fa < min_fa:
             min_fa = fa
             pts.append(row)
@@ -104,7 +101,8 @@ def plot_matched_roc_curves():
         "Tier 1 (Gross)": {"col": "#7f8c8d", "ls": "-", "lw": 1.8, "name": "Tier 1: Gross Only"},
         "Tier 1b (Gross+Weather)": {"col": "#e67e22", "ls": "-", "lw": 2.0, "name": "Tier 1b: Gross + Weather"},
         "Tier 2 (Spectral)": {"col": "#2980b9", "ls": "-", "lw": 2.2, "name": "Tier 2: Spectral Only"},
-        "Tier 3 (Weather Fusion)": {"col": "#27ae60", "ls": "-", "lw": 2.8, "name": "Tier 3: Weather Fusion (GBDT)"},
+        "Tier 3 (Weather Fusion)": {"col": "#27ae60", "ls": "-", "lw": 2.4, "name": "Tier 3: Weather Fusion (Schema 2)"},
+        "Tier 4 (Physics-Informed Nuclear)": {"col": "#0d47a1", "ls": "-", "lw": 3.0, "name": "Tier 4: Physics-Informed Nuclear (Schema 3)"},
         "Tier 3 MLP": {"col": "#8e44ad", "ls": "--", "lw": 1.8, "name": "Tier 3: MLP Neural Net"},
     }
 
@@ -124,9 +122,11 @@ def plot_matched_roc_curves():
             ("Baseline (k=0.75)", row_92["rolling_7d_realized_det"], row_92["rolling_7d_fa"], "#d9534f", "s", (-118, 12)),
             ("Tier 1 (Gross)", row_92["t1_gross_det"], row_92["t1_gross_fa"], "#7f8c8d", "s", (-110, 2)),
             ("Tier 1b (Gross+Wx)", row_92["t1b_gross_weather_det"], row_92["t1b_gross_weather_fa"], "#e67e22", "D", (-115, -12)),
-            ("Tier 2 (Spectral)", row_92["t2_spectral_det"], row_92["t2_spectral_fa"], "#2980b9", "^", (18, -18)),
-            ("Tier 3 (Wx Fusion)", row_92["t3_fusion_det"], row_92["t3_fusion_fa"], "#27ae60", "o", (-122, -10)),
+            ("Tier 2 (Spectral)", row_92["t2_spectral_det"], row_92["t2_spectral_fa"], "#2980b9", "^", (18, 12)),
+            ("Tier 3 (Wx Fusion)", row_92["t3_fusion_det"], row_92["t3_fusion_fa"], "#27ae60", "o", (-122, 8)),
         ]
+        if "t4_nuclear_det" in row_92 and "t4_nuclear_fa" in row_92:
+            pts.append(("Tier 4 (Nuclear)", row_92["t4_nuclear_det"], row_92["t4_nuclear_fa"], "#0d47a1", "*", (-122, -18)))
 
         for lbl, x_val, y_val, col, marker, offset in pts:
             ax.scatter([x_val], [y_val], color=col, marker=marker, s=130, zorder=6, edgecolor="black", linewidth=1.2)
@@ -147,9 +147,9 @@ def plot_matched_roc_curves():
     ax.set_ylim(-0.2, 600)
     ax.set_xlabel("Test Event Detection Probability (%) on Synthetic Plumes (2023–2025)", fontweight="bold")
     ax.set_ylabel("Clean Operational False Alarms per Station-Year (Symlog Scale)", fontweight="bold")
-    ax.set_title("Operational Detection vs. False Alarm Pareto Trade-Off (Test Split 2023–2025)\nDemonstrating 98% False Alarm Suppression via Weather & Spectral Fusion", fontweight="bold", pad=12)
+    ax.set_title("Operational Detection vs. False Alarm Pareto Trade-Off (Test Split 2023–2025)\nDemonstrating False Alarm Suppression via Weather & Physics-Informed Nuclear Fusion", fontweight="bold", pad=12)
     ax.grid(True, which="both", alpha=0.35)
-    ax.legend(loc="upper left", framealpha=0.95, fontsize=9.2)
+    ax.legend(loc="upper left", framealpha=0.95, fontsize=9.0)
 
     out_file = Path("reports/figures/rigorous_matched_roc_curves.png")
     plt.savefig(out_file, dpi=300, bbox_inches="tight")
@@ -158,7 +158,7 @@ def plot_matched_roc_curves():
 
 
 def plot_ablation_seeds():
-    """Bar chart + strip plot showing 4-tier ablation across 20 random seeds."""
+    """Bar chart + strip plot showing 5-tier ablation across 20 random seeds."""
     seed_file = Path("data/processed/rigorous_seed_level_results.csv")
     agg_file = Path("data/processed/rigorous_benchmark_summary.csv")
     if not seed_file.exists() or not agg_file.exists():
@@ -168,14 +168,30 @@ def plot_ablation_seeds():
     agg_df = pd.read_csv(agg_file)
 
     sub_agg = agg_df[agg_df["target_detection_pct"] == 95.0].copy()
-    tier_order = ["Tier 1 (Gross)", "Tier 1b (Gross+Weather)", "Tier 2 (Spectral)", "Tier 3 (Weather Fusion)", "Tier 3 MLP"]
+    tier_order = [
+        "Tier 1 (Gross)",
+        "Tier 1b (Gross+Weather)",
+        "Tier 2 (Spectral)",
+        "Tier 3 (Weather Fusion)",
+        "Tier 4 (Physics-Informed Nuclear)",
+        "Tier 3 MLP",
+    ]
+    tier_order = [t for t in tier_order if t in sub_agg["tier_name"].values]
     sub_agg["tier_name"] = pd.Categorical(sub_agg["tier_name"], categories=tier_order, ordered=True)
     sub_agg = sub_agg.sort_values("tier_name").reset_index(drop=True)
 
-    fig, ax = plt.subplots(figsize=(10.5, 6))
+    fig, ax = plt.subplots(figsize=(11.5, 6))
     x = np.arange(len(sub_agg))
 
-    colors = ["#7f8c8d", "#e67e22", "#2980b9", "#27ae60", "#8e44ad"]
+    color_map = {
+        "Tier 1 (Gross)": "#7f8c8d",
+        "Tier 1b (Gross+Weather)": "#e67e22",
+        "Tier 2 (Spectral)": "#2980b9",
+        "Tier 3 (Weather Fusion)": "#27ae60",
+        "Tier 4 (Physics-Informed Nuclear)": "#0d47a1",
+        "Tier 3 MLP": "#8e44ad",
+    }
+    colors = [color_map.get(t, "#333333") for t in tier_order]
     bars = ax.bar(x, sub_agg["fa_per_year_mean"], yerr=sub_agg["fa_per_year_std"],
                   capsize=6, color=colors, alpha=0.85, edgecolor="black", linewidth=0.8, zorder=2)
 
@@ -186,15 +202,16 @@ def plot_ablation_seeds():
         jitter = rng.uniform(-0.12, 0.12, size=len(seed_pts))
         ax.scatter(x[i] + jitter, seed_pts, color="black", alpha=0.45, s=25, zorder=3)
 
-    labels = [
-        "Tier 1\n(Gross Only)",
-        "Tier 1b\n(Gross+Weather)",
-        "Tier 2\n(Spectral Ratios)",
-        "Tier 3\n(Weather Fusion)",
-        "Tier 3\n(MLP Neural Net)"
-    ]
+    label_map = {
+        "Tier 1 (Gross)": "Tier 1\n(Gross Only)",
+        "Tier 1b (Gross+Weather)": "Tier 1b\n(Gross+Weather)",
+        "Tier 2 (Spectral)": "Tier 2\n(Spectral Ratios)",
+        "Tier 3 (Weather Fusion)": "Tier 3\n(Weather Fusion)",
+        "Tier 4 (Physics-Informed Nuclear)": "Tier 4\n(Nuclear Physics)",
+        "Tier 3 MLP": "Tier 3\n(MLP Neural Net)",
+    }
     ax.set_xticks(x)
-    ax.set_xticklabels(labels, fontsize=10.5)
+    ax.set_xticklabels([label_map.get(t, t) for t in tier_order], fontsize=10.0)
     ax.set_ylabel("Clean Operational False Alarms per Station-Year (Symlog Scale)")
     ax.set_yscale("symlog", linthresh=1.0)
     ax.set_ylim(-0.2, 500)
@@ -221,19 +238,34 @@ def plot_detection_deadlines():
         return
 
     strat_df = pd.read_csv(strat_file)
-    t3_strat = strat_df[strat_df["tier_name"] == "Tier 3 (Weather Fusion)"].copy()
+    target_tier = "Tier 4 (Physics-Informed Nuclear)" if "Tier 4 (Physics-Informed Nuclear)" in strat_df["tier_name"].values else "Tier 3 (Weather Fusion)"
+    t_strat = strat_df[strat_df["tier_name"] == target_tier].copy()
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5.5))
-
-    # Panel 1: Deadlines for Tier 2 vs Tier 3 on All Injections
-    tiers = ["Tier 1b (Gross+Weather)", "Tier 2 (Spectral)", "Tier 3 (Weather Fusion)", "Tier 3 MLP"]
-    labels = ["Tier 1b\n(Gross+Wx)", "Tier 2\n(Spectral)", "Tier 3\n(Wx Fusion)", "Tier 3\n(MLP)"]
 
     agg_df = pd.read_csv(agg_file)
     sub = agg_df[agg_df["target_detection_pct"] == 95.0].set_index("tier_name")
 
+    tiers = [
+        t for t in [
+            "Tier 1b (Gross+Weather)",
+            "Tier 2 (Spectral)",
+            "Tier 3 (Weather Fusion)",
+            "Tier 4 (Physics-Informed Nuclear)",
+            "Tier 3 MLP",
+        ] if t in sub.index
+    ]
+    label_map = {
+        "Tier 1b (Gross+Weather)": "Tier 1b\n(Gross+Wx)",
+        "Tier 2 (Spectral)": "Tier 2\n(Spectral)",
+        "Tier 3 (Weather Fusion)": "Tier 3\n(Wx Fusion)",
+        "Tier 4 (Physics-Informed Nuclear)": "Tier 4\n(Nuclear)",
+        "Tier 3 MLP": "Tier 3\n(MLP)",
+    }
+    labels = [label_map[t] for t in tiers]
+
     x = np.arange(len(tiers))
-    width = 0.20
+    width = 0.19
 
     d6 = [sub.loc[t, "det_6h_mean"] for t in tiers]
     d12 = [sub.loc[t, "det_12h_mean"] for t in tiers]
@@ -246,28 +278,43 @@ def plot_detection_deadlines():
     ax1.bar(x + 1.5*width, dtot, width, label="Total Window", color="#7b1fa2", alpha=0.9)
 
     ax1.set_xticks(x)
-    ax1.set_xticklabels(labels, fontsize=10)
+    ax1.set_xticklabels(labels, fontsize=9.5)
     ax1.set_ylabel("Detection Probability (%) Under Net Alarm Criterion")
     ax1.set_title("(a) Detection Deadlines Across Model Tiers", fontweight="bold", pad=10)
     ax1.set_ylim(0, 115)
     ax1.grid(True, axis="y", alpha=0.35)
     ax1.legend(loc="upper left", framealpha=0.9, fontsize=9)
 
-    # Panel 2: Stratified Deadlines for Tier 3 across Dry vs Rain and Standard vs Stress
-    strata_keys = ["Strictly Dry Environments", "Rain-Coincident Environments", "Standard Plume Regime", "Stress Plume Regime"]
-    strata_labels = ["Strictly\nDry", "Rain-\nCoincident", "Standard\nPlume", "Stress\nPlume"]
-    sub_t3 = t3_strat[t3_strat["stratum"].isin(strata_keys)].set_index("stratum").loc[strata_keys]
+    # Panel 2: Stratified Deadlines across Dry vs Rain, Standard vs Stress, and <1.0 sigma
+    strata_keys = [
+        k for k in [
+            "Strictly Dry Environments",
+            "Rain-Coincident Environments",
+            "Standard Plume Regime",
+            "Stress Plume Regime",
+            "Low-SNR (< 1.0 sigma)",
+        ] if k in t_strat["stratum"].values
+    ]
+    strata_label_map = {
+        "Strictly Dry Environments": "Strictly\nDry",
+        "Rain-Coincident Environments": "Rain-\nCoincident",
+        "Standard Plume Regime": "Standard\nPlume",
+        "Stress Plume Regime": "Stress\nPlume",
+        "Low-SNR (< 1.0 sigma)": "Low-SNR\n(<1.0σ)",
+    }
+    strata_labels = [strata_label_map[k] for k in strata_keys]
+    sub_t = t_strat[t_strat["stratum"].isin(strata_keys)].set_index("stratum").loc[strata_keys]
 
     xs = np.arange(len(strata_keys))
-    ax2.bar(xs - 1.5*width, sub_t3["detection_le_6h_pct"], width, label="≤ 6h", color="#1976d2", alpha=0.9)
-    ax2.bar(xs - 0.5*width, sub_t3["detection_le_12h_pct"], width, label="≤ 12h", color="#388e3c", alpha=0.9)
-    ax2.bar(xs + 0.5*width, sub_t3["detection_le_24h_pct"], width, label="≤ 24h", color="#f57c00", alpha=0.9)
-    ax2.bar(xs + 1.5*width, sub_t3["detection_total_pct"], width, label="Total", color="#7b1fa2", alpha=0.9)
+    ax2.bar(xs - 1.5*width, sub_t["detection_le_6h_pct"], width, label="≤ 6h", color="#1976d2", alpha=0.9)
+    ax2.bar(xs - 0.5*width, sub_t["detection_le_12h_pct"], width, label="≤ 12h", color="#388e3c", alpha=0.9)
+    ax2.bar(xs + 0.5*width, sub_t["detection_le_24h_pct"], width, label="≤ 24h", color="#f57c00", alpha=0.9)
+    ax2.bar(xs + 1.5*width, sub_t["detection_total_pct"], width, label="Total", color="#7b1fa2", alpha=0.9)
 
     ax2.set_xticks(xs)
-    ax2.set_xticklabels(strata_labels, fontsize=10)
+    ax2.set_xticklabels(strata_labels, fontsize=9.5)
     ax2.set_ylabel("Detection Probability (%) Under Net Alarm Criterion")
-    ax2.set_title("(b) Tier 3 Deadlines Stratified by Regime", fontweight="bold", pad=10)
+    ax2.set_title("(b) Tier 4 Deadlines Stratified by Regime", fontweight="bold", pad=10)
     ax2.set_ylim(0, 115)
     ax2.grid(True, axis="y", alpha=0.35)
     ax2.legend(loc="upper left", framealpha=0.9, fontsize=9)
@@ -352,50 +399,61 @@ def plot_template_sensitivity():
 
 
 def plot_loso_multistation():
-    """Plots multi-station LOSO performance comparing San Diego, Birmingham, and Dallas."""
+    """Plots multi-station LOSO performance comparing Tier 3 and Tier 4 across the 5 stations."""
     loso_file = Path("data/processed/rigorous_loso_summary.csv")
     if not loso_file.exists():
         return
     loso_df = pd.read_csv(loso_file)
 
-    fig, ax1 = plt.subplots(figsize=(9, 5.5))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13.5, 5.5))
 
-    x = np.arange(len(loso_df))
-    width = 0.35
+    if "tier_name" in loso_df.columns:
+        idx_col = "held_out_station" if "held_out_station" in loso_df.columns else "heldout_station"
+        desc_col = "station_description" if "station_description" in loso_df.columns else "station_name"
+        t3_df = loso_df[loso_df["tier_name"] == "Tier 3 (Weather Fusion)"].set_index(idx_col)
+        t4_df = loso_df[loso_df["tier_name"] == "Tier 4 (Physics-Informed Nuclear)"].set_index(idx_col)
+        stations = list(t4_df.index)
+        x = np.arange(len(stations))
+        width = 0.35
 
-    color_det = "#2980b9"
-    color_fa = "#d9534f"
+        b1 = ax1.bar(x - width/2, t3_df.loc[stations, "realized_detection_rate_pct"], width,
+                     label="Tier 3 (Weather Fusion)", color="#27ae60", alpha=0.85, edgecolor="black")
+        b2 = ax1.bar(x + width/2, t4_df.loc[stations, "realized_detection_rate_pct"], width,
+                     label="Tier 4 (Physics-Informed Nuclear)", color="#0d47a1", alpha=0.88, edgecolor="black")
+        ax1.set_ylabel("Realized Detection Rate (%)")
+        ax1.set_ylim(0, 115)
+        ax1.set_xticks(x)
+        short_names = [s.split(",")[0] for s in t4_df.loc[stations, desc_col]]
+        ax1.set_xticklabels(short_names, fontsize=10)
+        ax1.set_title("(a) LOSO Detection Rate by Held-Out Station", fontweight="bold")
+        ax1.grid(True, axis="y", alpha=0.35)
+        ax1.legend(loc="lower right", fontsize=9)
+        for b in list(b1) + list(b2):
+            h = b.get_height()
+            ax1.text(b.get_x() + b.get_width()/2., h + 1.5, f"{h:.0f}%", ha="center", va="bottom", fontsize=8.5, fontweight="bold")
 
-    bars1 = ax1.bar(x - width/2, loso_df["realized_detection_rate_pct"], width, label="Realized Detection Rate (%)", color=color_det, alpha=0.88, edgecolor="black")
-    ax1.set_ylabel("Realized Detection Rate (%)", color=color_det)
-    ax1.tick_params(axis="y", labelcolor=color_det)
-    ax1.set_ylim(0, 115)
+        b3 = ax2.bar(x - width/2, t3_df.loc[stations, "clean_false_alarms_per_year"], width,
+                     label="Tier 3 (Weather Fusion)", color="#e67e22", alpha=0.85, edgecolor="black")
+        b4 = ax2.bar(x + width/2, t4_df.loc[stations, "clean_false_alarms_per_year"], width,
+                     label="Tier 4 (Physics-Informed Nuclear)", color="#d9534f", alpha=0.88, edgecolor="black")
+        ax2.set_yscale("symlog", linthresh=1.0)
+        ax2.set_ylim(-0.1, 2500)
+        ax2.set_ylabel("Clean False Alarms / Station-Year (Symlog Scale)")
+        ax2.set_xticks(x)
+        ax2.set_xticklabels(short_names, fontsize=10)
+        ax2.set_title("(b) LOSO Clean False Alarm Burden", fontweight="bold")
+        ax2.grid(True, which="both", axis="y", alpha=0.35)
+        ax2.legend(loc="upper left", fontsize=9)
+        for b in list(b3) + list(b4):
+            h = b.get_height()
+            ax2.text(b.get_x() + b.get_width()/2., h * 1.25 if h > 2 else h + 0.15, f"{h:.1f}", ha="center", va="bottom", fontsize=8.0, fontweight="bold")
+    else:
+        x = np.arange(len(loso_df))
+        ax1.bar(x, loso_df["realized_detection_rate_pct"], color="#2980b9")
+        ax2.bar(x, loso_df["clean_false_alarms_per_year"], color="#d9534f")
 
-    ax2 = ax1.twinx()
-    bars2 = ax2.bar(x + width/2, loso_df["clean_false_alarms_per_year"], width, label="Clean False Alarms / Year", color=color_fa, alpha=0.88, edgecolor="black")
-    ax2.set_ylabel("Clean False Alarms / Station-Year", color=color_fa)
-    ax2.tick_params(axis="y", labelcolor=color_fa)
-    ax2.set_ylim(-0.2, max(loso_df["clean_false_alarms_per_year"].max() * 1.4, 6.0))
-
-    labels = [
-        "San Diego, CA\n(Marine, 0 Washout Hrs)",
-        "Birmingham, AL\n(High Rain, Active Washouts)",
-        "Dallas, TX\n(Convective, Active Washouts)",
-    ]
-    ax1.set_xticks(x)
-    ax1.set_xticklabels(labels, fontsize=10)
-    ax1.set_title("Multi-Station Leave-One-Station-Out (LOSO) Validation", fontweight="bold", pad=12)
-    ax1.grid(True, axis="y", alpha=0.35)
-
-    # Annotate bars
-    for b in bars1:
-        h = b.get_height()
-        ax1.text(b.get_x() + b.get_width()/2., h + 2, f"{h:.1f}%", ha="center", va="bottom", fontsize=9, fontweight="bold", color=color_det)
-    for b, r in zip(bars2, loso_df.itertuples()):
-        h = b.get_height()
-        annot = f"{h:.1f}" if h > 0 else f"0.0 (≤{r.rule_of_three_95ci_upper_fa})"
-        ax2.text(b.get_x() + b.get_width()/2., h + 0.2, annot, ha="center", va="bottom", fontsize=9, fontweight="bold", color=color_fa)
-
+    plt.suptitle("5-Station Leave-One-Station-Out (LOSO) Generalization: Schema 2 vs Schema 3", fontweight="bold", y=0.98)
+    plt.tight_layout()
     out_file = Path("reports/figures/rigorous_loso_multistation.png")
     plt.savefig(out_file, dpi=300, bbox_inches="tight")
     plt.close()

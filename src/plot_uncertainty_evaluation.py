@@ -1,5 +1,5 @@
 """
-Phase 5 Evaluation Plotting Script.
+Bootstrap Uncertainty, Detection Delay, and Confusion Matrix Plotting Script.
 
 Generates 3 publication-quality figures:
 1. reports/figures/eval_bootstrap_uncertainty.png:
@@ -7,7 +7,7 @@ Generates 3 publication-quality figures:
 2. reports/figures/eval_detection_delay_distributions.png:
    - Cumulative detection probability over time elapsed (CDF) and median delay across release scenarios.
 3. reports/figures/eval_confusion_matrices.png:
-   - 4-panel heatmap showing multi-class hourly confusion matrices (Baseline vs Tier 1 vs Tier 2 vs Tier 3).
+   - 4-panel heatmap showing multi-class hourly confusion matrices (Baseline vs Tier 2 vs Tier 3 vs Tier 4).
 """
 
 import sys
@@ -56,13 +56,14 @@ def plot_bootstrap_uncertainty():
         "Tier 2: Radiation + Spectrometry GBDT (95% target)": "Tier 2: Spectral GBDT (95% target)",
         "Tier 3: Full Weather Fusion GBDT (95% target)": "Tier 3: Weather Fusion GBDT (95% target)",
         "Tier 3: Full Weather Fusion GBDT (90% target)": "Tier 3: Weather Fusion GBDT (90% target)",
+        "Tier 4: Physics-Informed Nuclear GBDT (95% target)": "Tier 4: Nuclear Physics GBDT (95% target)",
+        "Tier 4: Physics-Informed Nuclear GBDT (90% target)": "Tier 4: Nuclear Physics GBDT (90% target)",
         "Tier 3: Weather-Fused Neural Net (MLP) (95% target)": "Tier 3: Neural Net MLP (95% target)",
     }
     df["display_name"] = df["model_name"].map(lambda x: display_names.get(x, x))
 
     # Parse 95% CIs
     def parse_ci(val_str):
-        # Format "[x, y]" or "[x%, y%]" or "[xh, yh]"
         clean = val_str.replace("[", "").replace("]", "").replace("%", "").replace("h", "")
         parts = clean.split(",")
         return float(parts[0].strip()), float(parts[1].strip())
@@ -76,7 +77,7 @@ def plot_bootstrap_uncertainty():
     # Reverse order for plotting from top to bottom
     df_plot = df.iloc[::-1].reset_index(drop=True)
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6.5), sharey=True)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14.5, 7.2), sharey=True)
 
     y_pos = np.arange(len(df_plot))
 
@@ -93,6 +94,8 @@ def plot_bootstrap_uncertainty():
             colors.append("#337ab7")  # Blue for Tier 2
         elif "Tier 3: Full Weather Fusion" in m:
             colors.append("#2e7d32")  # Deep Green for Tier 3 GBDT
+        elif "Tier 4: Physics-Informed Nuclear" in m:
+            colors.append("#0d47a1")  # Deep Navy for Tier 4 Nuclear GBDT
         else:
             colors.append("#7b1fa2")  # Purple for MLP
 
@@ -118,6 +121,7 @@ def plot_bootstrap_uncertainty():
         y_p = y_pos[i]
         ci_h = df_plot["fa_ci_high"].iloc[i]
         text_x = ci_h * 1.25 if ci_h > 5 else ci_h + 1.8
+        is_bold = ("Weather Fusion" in df_plot["model_name"].iloc[i]) or ("Physics-Informed Nuclear" in df_plot["model_name"].iloc[i])
         ax1.text(
             text_x,
             y_p,
@@ -126,7 +130,7 @@ def plot_bootstrap_uncertainty():
             ha="left",
             fontsize=8.5,
             color="#333333",
-            fontweight="bold" if "Weather Fusion" in df_plot["model_name"].iloc[i] else "normal"
+            fontweight="bold" if is_bold else "normal",
         )
 
     ax1.set_yticks(y_pos)
@@ -138,11 +142,11 @@ def plot_bootstrap_uncertainty():
     ax1.grid(True, which="both", axis="x", alpha=0.3)
     ax1.axvline(0, color="gray", linestyle="-", linewidth=0.8)
 
-    # Highlight Tier 3 row
-    t3_match = df_plot[df_plot["model_name"].str.contains(r"Tier 3: Full Weather Fusion GBDT \(95%", regex=True)]
-    if not t3_match.empty:
-        t3_idx = t3_match.index[0]
-        ax1.axhspan(t3_idx - 0.45, t3_idx + 0.45, color="#e8f5e9", alpha=0.6, zorder=1)
+    # Highlight Tier 4 row (or Tier 3 if Tier 4 not present)
+    t4_match = df_plot[df_plot["model_name"].str.contains(r"Tier 4: Physics-Informed Nuclear GBDT \(95%", regex=True)]
+    if not t4_match.empty:
+        t4_idx = t4_match.index[0]
+        ax1.axhspan(t4_idx - 0.45, t4_idx + 0.45, color="#e3f2fd", alpha=0.6, zorder=1)
 
     # Panel 2: Realized Detection Rate
     x_det = df_plot["realized_detection_pct"]
@@ -166,8 +170,7 @@ def plot_bootstrap_uncertainty():
         y_p = y_pos[i]
         ci_l = df_plot["det_ci_low"].iloc[i]
         ci_h = df_plot["det_ci_high"].iloc[i]
-        
-        # Position label cleanly to avoid overlapping markers and error bars
+
         if x_val >= 80:
             label_x = ci_l - 2.0
             ha_align = "right"
@@ -175,6 +178,7 @@ def plot_bootstrap_uncertainty():
             label_x = ci_h + 2.0
             ha_align = "left"
 
+        is_bold = ("Weather Fusion" in df_plot["model_name"].iloc[i]) or ("Physics-Informed Nuclear" in df_plot["model_name"].iloc[i])
         ax2.text(
             label_x,
             y_p,
@@ -183,11 +187,11 @@ def plot_bootstrap_uncertainty():
             ha=ha_align,
             fontsize=8.5,
             color="#333333",
-            fontweight="bold" if "Weather Fusion" in df_plot["model_name"].iloc[i] else "normal"
+            fontweight="bold" if is_bold else "normal",
         )
 
-    if not t3_match.empty:
-        ax2.axhspan(t3_idx - 0.45, t3_idx + 0.45, color="#e8f5e9", alpha=0.6, zorder=1)
+    if not t4_match.empty:
+        ax2.axhspan(t4_idx - 0.45, t4_idx + 0.45, color="#e3f2fd", alpha=0.6, zorder=1)
     ax2.set_xlabel("Event Detection Probability (%) (95% CI)")
     ax2.set_title("(b) Radiological Plume Detection Rates", fontweight="bold", pad=10)
     ax2.set_xlim(-2, 106)
@@ -219,14 +223,18 @@ def plot_detection_delay_distributions():
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
 
-    # Left Panel: True Empirical Cumulative Detection CDF by Hour (0 to 24h)
     time_hours = np.arange(0, 25, 1, dtype=float)
 
     model_specs = [
         (
+            "Tier 4: Physics-Informed Nuclear GBDT (95% target)",
+            "Tier 4: Nuclear Physics GBDT",
+            "#0d47a1", "-", 3.0,
+        ),
+        (
             "Tier 3: Full Weather Fusion GBDT (95% target)",
             "Tier 3: Weather Fusion GBDT",
-            "#2e7d32", "-", 2.8,
+            "#2e7d32", "-", 2.5,
         ),
         (
             "Tier 2: Radiation + Spectrometry GBDT (95% target)",
@@ -236,18 +244,19 @@ def plot_detection_delay_distributions():
         (
             "Tier 3: Weather-Fused Neural Net (MLP) (95% target)",
             "Tier 3: Neural Net (MLP)",
-            "#7b1fa2", "-.", 2.2,
+            "#7b1fa2", "-.", 2.0,
         ),
         (
             "Baseline: Rolling 7d 3-sigma",
             "Baseline: Rolling 7d 3-sigma",
-            "#d9534f", ":", 2.5,
+            "#d9534f", ":", 2.3,
         ),
     ]
 
-    t3_6h_pct = 0.0
-    t3_12h_pct = 0.0
-    t3_med_h = 4.0
+    t4_6h_pct = 0.0
+    t4_12h_pct = 0.0
+    t4_med_h = 4.0
+    t4_at_med = 50.0
 
     for full_name, m_label, col, style, lw in model_specs:
         sub_ev = emp_df[emp_df["model_name"] == full_name]
@@ -264,12 +273,12 @@ def plot_detection_delay_distributions():
             label=f"{m_label} (Total {tot_det_pct:.1f}%)",
             color=col, linestyle=style, linewidth=lw,
         )
-        if "Full Weather Fusion GBDT" in full_name:
-            t3_6h_pct = float(cdf[time_hours == 6.0][0])
-            t3_12h_pct = float(cdf[time_hours == 12.0][0])
+        if "Physics-Informed Nuclear GBDT" in full_name:
+            t4_6h_pct = float(cdf[time_hours == 6.0][0])
+            t4_12h_pct = float(cdf[time_hours == 12.0][0])
             det_only = sub_ev.loc[sub_ev["detected"] == 1, "delay_h"]
-            t3_med_h = float(det_only.median()) if len(det_only) > 0 else np.nan
-            t3_at_med = float(cdf[time_hours == round(t3_med_h)][0]) if not np.isnan(t3_med_h) else 50.0
+            t4_med_h = float(det_only.median()) if len(det_only) > 0 else np.nan
+            t4_at_med = float(cdf[time_hours == round(t4_med_h)][0]) if not np.isnan(t4_med_h) else 50.0
 
     ax1.set_xlabel("Time Elapsed Since Plume Arrival (Hours)", fontweight="medium")
     ax1.set_ylabel("Empirical Cumulative Detection Probability (%)", fontweight="medium")
@@ -279,18 +288,17 @@ def plot_detection_delay_distributions():
     ax1.xaxis.set_major_locator(ticker.MultipleLocator(3))
     ax1.grid(True, alpha=0.35)
     ax1.axhline(90, color="gray", linestyle=":", alpha=0.7)
-    ax1.legend(loc="lower right", framealpha=0.9)
+    ax1.legend(loc="lower right", framealpha=0.9, fontsize=8.8)
 
-    # Annotate empirical rapid response from actual data
     ax1.annotate(
-        f"Tier 3 GBDT (Empirical):\nMedian delay = {t3_med_h:.1f} h\n{t3_6h_pct:.1f}% detected ≤ 6 h | {t3_12h_pct:.1f}% ≤ 12 h",
-        xy=(t3_med_h, t3_at_med),
+        f"Tier 4 Nuclear GBDT:\nMedian delay = {t4_med_h:.1f} h\n{t4_6h_pct:.1f}% detected ≤ 6 h | {t4_12h_pct:.1f}% ≤ 12 h",
+        xy=(t4_med_h, t4_at_med),
         xytext=(7.5, 34.0),
-        arrowprops=dict(facecolor="#2e7d32", shrink=0.08, width=1.5, headwidth=6),
-        fontsize=9.5,
+        arrowprops=dict(facecolor="#0d47a1", shrink=0.08, width=1.5, headwidth=6),
+        fontsize=9.2,
         fontweight="bold",
-        color="#2e7d32",
-        bbox=dict(boxstyle="round,pad=0.3", fc="#e8f5e9", ec="#2e7d32", alpha=0.9),
+        color="#0d47a1",
+        bbox=dict(boxstyle="round,pad=0.3", fc="#e3f2fd", ec="#0d47a1", alpha=0.9),
     )
 
     # Right Panel: Scenario Delay Breakdown
@@ -309,7 +317,7 @@ def plot_detection_delay_distributions():
         ("Baseline: Rolling 7d 3-sigma", "Rolling 3σ", "#d9534f"),
         ("Tier 2: Radiation + Spectrometry GBDT (95% target)", "Tier 2 (Spectral)", "#337ab7"),
         ("Tier 3: Full Weather Fusion GBDT (95% target)", "Tier 3 (Weather Fusion)", "#2e7d32"),
-        ("Tier 3: Weather-Fused Neural Net (MLP) (95% target)", "Tier 3 (MLP)", "#7b1fa2"),
+        ("Tier 4: Physics-Informed Nuclear GBDT (95% target)", "Tier 4 (Nuclear Physics)", "#0d47a1"),
     ]
 
     scenarios = ["fission_reactor_fukushima", "fission_pure_cs137", "activation_orphan_co60", "mixed_fission_activation", "fission_pure_i131"]
@@ -346,7 +354,7 @@ def plot_detection_delay_distributions():
     ax2.set_ylim(0, 23)
     ax2.yaxis.set_major_locator(ticker.MultipleLocator(4))
     ax2.grid(True, axis="y", alpha=0.35)
-    ax2.legend(loc="upper right", framealpha=0.95, fontsize=9.5)
+    ax2.legend(loc="upper right", framealpha=0.95, fontsize=9.0)
 
     plt.suptitle("Temporal Response and Detection Delay Characterization", fontsize=14, fontweight="bold", y=0.98)
     plt.tight_layout()
@@ -368,9 +376,9 @@ def plot_confusion_matrices():
 
     panels = [
         ("Baseline: Rolling 7d 3-sigma", "(a) Baseline: Rolling 7d 3σ"),
-        ("Tier 1: Gross Radiation GBDT", "(b) Tier 1: Gross Radiation GBDT"),
-        ("Tier 2: Radiation + Spectrometry GBDT", "(c) Tier 2: Radiation + Spectrometry"),
-        ("Tier 3: Full Weather Fusion GBDT", "(d) Tier 3: Full Weather Fusion GBDT"),
+        ("Tier 2: Radiation + Spectrometry GBDT", "(b) Tier 2: Radiation + Spectrometry"),
+        ("Tier 3: Full Weather Fusion GBDT", "(c) Tier 3: Full Weather Fusion GBDT"),
+        ("Tier 4: Physics-Informed Nuclear GBDT", "(d) Tier 4: Physics-Informed Nuclear GBDT"),
     ]
 
     fig, axes = plt.subplots(2, 2, figsize=(12, 10))
@@ -390,10 +398,8 @@ def plot_confusion_matrices():
             mat_recall[i, j] = row["recall_fraction"] * 100.0
             mat_counts[i, j] = int(row["raw_count"])
 
-        # Heatmap
         im = ax.imshow(mat_recall, cmap="Blues", vmin=0, vmax=100)
 
-        # Annotations
         for i in range(3):
             for j in range(3):
                 val_pct = mat_recall[i, j]
@@ -416,13 +422,10 @@ def plot_confusion_matrices():
         ax.set_ylabel("True Class", fontweight="medium")
         ax.set_title(title, fontweight="bold", pad=8)
 
-        # Highlight key error cell: Radon washout misclassified as Fission
         if "Baseline" in m_id:
-            # Baseline misclassifies 20.3% of washout as fission
             rect = plt.Rectangle((1.5, 0.5), 1, 1, fill=False, edgecolor="#d9534f", linewidth=2.5, linestyle="--")
             ax.add_patch(rect)
-        elif "Tier 3" in m_id:
-            # Tier 3 correctly suppresses washout misclassification down to 0.4%
+        elif "Tier 3" in m_id or "Tier 4" in m_id:
             rect = plt.Rectangle((1.5, 0.5), 1, 1, fill=False, edgecolor="#2e7d32", linewidth=2.5, linestyle="-")
             ax.add_patch(rect)
 
@@ -436,11 +439,11 @@ def plot_confusion_matrices():
 
 
 def main():
-    print("Generating Phase 5 Evaluation Figures...")
+    print("Generating uncertainty and delay evaluation figures...")
     plot_bootstrap_uncertainty()
     plot_detection_delay_distributions()
     plot_confusion_matrices()
-    print("All Phase 5 figures generated successfully.")
+    print("All uncertainty and delay evaluation figures generated successfully.")
 
 
 if __name__ == "__main__":

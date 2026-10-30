@@ -1,5 +1,5 @@
 """
-Phase 3 Script: Empirical Analysis of Radon Progeny Washout Gamma Energy Spectrum.
+Empirical Analysis of Radon Progeny Washout Gamma Energy Spectrum.
 
 Computes the empirical excess channel shares across all verified rain hours across
 the 5 pilot stations (2017-2025) on continuous regular grids.

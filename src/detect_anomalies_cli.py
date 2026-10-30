@@ -35,6 +35,7 @@ from src.feature_engineering import (
     TIER_1B_FEATURES,
     TIER_2_FEATURES,
     TIER_3_FEATURES,
+    TIER_4_NUCLEAR_FEATURES,
     compute_features_for_series,
 )
 from src.operating_threshold import calibrate_model_threshold
@@ -47,6 +48,7 @@ TIER_FEATURE_MAP = {
     "tier1b": (TIER_1B_FEATURES, "Tier 1b (Gross + Weather)"),
     "tier2": (TIER_2_FEATURES, "Tier 2 (Spectral)"),
     "tier3": (TIER_3_FEATURES, "Tier 3 (Weather Fusion)"),
+    "tier4": (TIER_4_NUCLEAR_FEATURES, "Tier 4 (Physics-Informed Nuclear)"),
 }
 
 
@@ -129,7 +131,7 @@ def run_station_diagnostics(
         required.append(data_dir / "synthetic_injection_catalog.csv")
     missing = [str(path) for path in required if not path.is_file()]
     if missing:
-        raise FileNotFoundError("Missing diagnostic inputs; run pipeline phases 0-3 first:\n" + "\n".join(missing))
+        raise FileNotFoundError("Missing diagnostic inputs; run the data preparation pipeline first:\n" + "\n".join(missing))
 
     feat_cols, tier_label = TIER_FEATURE_MAP[tier]
 

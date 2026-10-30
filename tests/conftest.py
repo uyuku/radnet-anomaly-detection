@@ -19,7 +19,7 @@ def check_integration_inputs(request):
                for station in STATIONS for split in ("train", "test")
                if not (root / f"labeled_{station['id']}_{split}.csv.gz").is_file()]
     if missing:
-        reason = "Run pipeline phases 0-3 for integration inputs: " + ", ".join(missing)
+        reason = "Run data preparation pipeline steps for integration inputs: " + ", ".join(missing)
         if request.config.getoption("--require-data"):
             pytest.fail(reason)
         pytest.skip(reason)

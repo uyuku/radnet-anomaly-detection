@@ -1,5 +1,5 @@
 """
-Generates publication-quality figures for Phase 3 (Synthetic Injection Design):
+Generates publication-quality figures for Synthetic Injection Design:
 1. reports/figures/synthetic_injection_shapes_and_nuclides.png:
    - Panel A: Filter accumulation inflow, retention plateau, radiological decay, and filter change drop.
    - Panel B: NaI(Tl) channel energy shares comparing Cs-137, I-131, Co-60, Cs-134, and empirical radon washout ratio of sums.
@@ -363,8 +363,8 @@ def plot_hard_case_rain():
 
 
 if __name__ == "__main__":
-    print("Generating revised Phase 3 figures...")
+    print("Generating synthetic injection figures...")
     plot_shapes_and_nuclides()
     plot_train_test_disjointness()
     plot_hard_case_rain()
-    print("All revised Phase 3 figures successfully generated.")
+    print("All synthetic injection figures successfully generated.")

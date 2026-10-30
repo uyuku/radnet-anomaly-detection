@@ -228,4 +228,4 @@ if __name__ == "__main__":
     for ev in EVENTS:
         plot_single_event(ev)
     plot_multi_station_comparison()
-    print("All Phase 1 rain event plots successfully generated.")
+    print("All rain event plots successfully generated.")

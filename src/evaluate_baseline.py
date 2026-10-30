@@ -1,12 +1,12 @@
 """
-Phase 2: Evaluates fixed-threshold baseline alarm systems on RadNet data (2017-2025).
+Evaluates fixed-threshold baseline alarm systems on RadNet data (2017-2025).
 Operates strictly on the continuous 78,888-hour calendar grid so that rolling windows
 and lag/diff operations represent exact calendar time, not row indices.
 
 Implements explicit threshold baseline rules:
 1. Global Gross CPM Sigma: Threshold = mu_dry + k * sigma_dry (k = 3.0, 4.0, 5.0)
 2. Rolling 7-Day Mean + Global Sigma: Threshold(t) = rolling_mean_168h(t) + k * sigma_dry (k = 3.0, 4.0, 5.0)
-   (NOTE: distinct from the Phase 5 "Rolling 7d Local Z-Score" rule
+   (NOTE: distinct from the "Rolling 7d Local Z-Score" rule
     Z = (gross - mu_168)/sigma_168 >= k used in train_and_evaluate_rigorous.py.
     BUG-12 fix (2026-10-06): the two formulas were previously both called
     "Rolling 7-day k-sigma" despite being different rules.)

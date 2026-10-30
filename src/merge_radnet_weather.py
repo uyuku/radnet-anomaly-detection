@@ -278,7 +278,7 @@ def run_all_merges():
     df_audit = pd.DataFrame(audit_rows)
     out_path = Path("data/processed/merge_audit_summary.csv")
     df_audit.to_csv(out_path, index=False)
-    print("\n=== Phase 1 Merge Audit Summary (2017-2025) ===")
+    print("\n=== RadNet-Weather Merge Audit Summary (2017-2025) ===")
     print(df_audit.to_string(index=False))
 
 

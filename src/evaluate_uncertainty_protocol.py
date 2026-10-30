@@ -1,5 +1,5 @@
 """
-Phase 5 Comprehensive Evaluation Protocol Script.
+Comprehensive Uncertainty & Delay Evaluation Protocol Script.
 
 Implements Section 6 of PROJECT_SPEC.md:
 1. Multi-Model Benchmark:
@@ -40,6 +40,7 @@ from src.feature_engineering import (
     TIER_1_FEATURES,
     TIER_2_FEATURES,
     TIER_3_FEATURES,
+    TIER_4_NUCLEAR_FEATURES,
     STATION_DRY_BASELINES,
 )
 
@@ -55,19 +56,24 @@ LABEL_MAP = {"normal": 0, "radon_washout": 1, "fission_product": 2}
 INV_LABEL_MAP = {v: k for k, v in LABEL_MAP.items()}
 
 
+_TRAIN_SUB_CACHE: dict[str, pd.DataFrame] = {}
+
+
 def load_train_data(feature_cols: list[str]) -> tuple[pd.DataFrame, pd.Series]:
     """Loads all observed training hours across 5 stations with injected features."""
     x_list, y_list = [], []
     for st in STATIONS:
         st_id = st["id"]
-        csv_file = Path(f"data/processed/labeled_{st_id}_train.csv.gz")
-        df_raw = pd.read_csv(csv_file)
-        feats = compute_features_for_series(df_raw, st_id, use_injected=True)
-        valid = feats["has_radnet_obs"] & feats["rad_complete_channels"] & (feats["label"].isin(LABEL_MAP.keys()))
-        # BUG-1 fix (2026-10-06): fit ONLY on the 2017-2020 fold. 2021-2022 is the
-        # validation fold used for threshold selection and must not be trained on.
-        valid = valid & (feats["dt"] < "2021-01-01")
-        sub = feats[valid]
+        if st_id not in _TRAIN_SUB_CACHE:
+            csv_file = Path(f"data/processed/labeled_{st_id}_train.csv.gz")
+            df_raw = pd.read_csv(csv_file)
+            feats = compute_features_for_series(df_raw, st_id, use_injected=True)
+            valid = feats["has_radnet_obs"] & feats["rad_complete_channels"] & (feats["label"].isin(LABEL_MAP.keys()))
+            # BUG-1 fix (2026-10-06): fit ONLY on the 2017-2020 fold. 2021-2022 is the
+            # validation fold used for threshold selection and must not be trained on.
+            valid = valid & (feats["dt"] < "2021-01-01")
+            _TRAIN_SUB_CACHE[st_id] = feats[valid]
+        sub = _TRAIN_SUB_CACHE[st_id]
         x_list.append(sub[feature_cols])
         y_list.append(sub["label"].map(LABEL_MAP))
     return pd.concat(x_list, ignore_index=True), pd.concat(y_list, ignore_index=True)
@@ -86,7 +92,7 @@ def train_lgb_model(X: pd.DataFrame, y: pd.Series, name: str) -> lgb.LGBMClassif
         colsample_bytree=0.8,
         class_weight="balanced",
         random_state=42,
-        n_jobs=4,
+        n_jobs=1,
         verbose=-1,
     )
     clf.fit(X, y)
@@ -136,7 +142,7 @@ def count_clean_alarm_episodes(p_fission: pd.Series, valid_mask: pd.Series, thre
 def main():
     t_start = time.time()
     print("=" * 80)
-    print("PHASE 5: COMPREHENSIVE EVALUATION PROTOCOL & STATISTICAL UNCERTAINTY")
+    print("COMPREHENSIVE EVALUATION PROTOCOL & STATISTICAL UNCERTAINTY")
     print("=" * 80)
 
     # 1. Train Models
@@ -148,6 +154,9 @@ def main():
 
     X_tr_t3, _ = load_train_data(TIER_3_FEATURES)
     clf_t3 = train_lgb_model(X_tr_t3, y_tr, "Tier 3 (Weather Fusion)")
+
+    X_tr_t4, _ = load_train_data(TIER_4_NUCLEAR_FEATURES)
+    clf_t4 = train_lgb_model(X_tr_t4, y_tr, "Tier 4 (Physics-Informed Nuclear)")
 
     pipe_mlp = train_mlp_model(X_tr_t3, y_tr)
 
@@ -188,23 +197,27 @@ def main():
         p_inj_t1 = clf_t1.predict_proba(feats_inj[TIER_1_FEATURES])[:, 2]
         p_inj_t2 = clf_t2.predict_proba(feats_inj[TIER_2_FEATURES])[:, 2]
         p_inj_t3 = clf_t3.predict_proba(feats_inj[TIER_3_FEATURES])[:, 2]
+        p_inj_t4 = clf_t4.predict_proba(feats_inj[TIER_4_NUCLEAR_FEATURES])[:, 2]
         p_inj_mlp = pipe_mlp.predict_proba(feats_inj[TIER_3_FEATURES])[:, 2]
 
         # Full class probabilities on injected series
         probs_inj_t1 = clf_t1.predict_proba(feats_inj[TIER_1_FEATURES])
         probs_inj_t2 = clf_t2.predict_proba(feats_inj[TIER_2_FEATURES])
         probs_inj_t3 = clf_t3.predict_proba(feats_inj[TIER_3_FEATURES])
+        probs_inj_t4 = clf_t4.predict_proba(feats_inj[TIER_4_NUCLEAR_FEATURES])
         probs_inj_mlp = pipe_mlp.predict_proba(feats_inj[TIER_3_FEATURES])
 
         # Predictions on clean series
         p_clean_t1 = clf_t1.predict_proba(feats_clean[TIER_1_FEATURES])[:, 2]
         p_clean_t2 = clf_t2.predict_proba(feats_clean[TIER_2_FEATURES])[:, 2]
         p_clean_t3 = clf_t3.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2]
+        p_clean_t4 = clf_t4.predict_proba(feats_clean[TIER_4_NUCLEAR_FEATURES])[:, 2]
         p_clean_mlp = pipe_mlp.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2]
 
         probs_clean_t1 = clf_t1.predict_proba(feats_clean[TIER_1_FEATURES])
         probs_clean_t2 = clf_t2.predict_proba(feats_clean[TIER_2_FEATURES])
         probs_clean_t3 = clf_t3.predict_proba(feats_clean[TIER_3_FEATURES])
+        probs_clean_t4 = clf_t4.predict_proba(feats_clean[TIER_4_NUCLEAR_FEATURES])
         probs_clean_mlp = pipe_mlp.predict_proba(feats_clean[TIER_3_FEATURES])
 
         st_base = STATION_DRY_BASELINES[st_id]  # BUG-11: no silent fabricated defaults
@@ -226,10 +239,10 @@ def main():
             "valid": valid,
             "precip_1h": df_raw["precip_1h_mm"].fillna(0.0),
             "label_true": df_raw["label"],
-            "p_inj": {"t1": p_inj_t1, "t2": p_inj_t2, "t3": p_inj_t3, "mlp": p_inj_mlp},
-            "p_clean": {"t1": p_clean_t1, "t2": p_clean_t2, "t3": p_clean_t3, "mlp": p_clean_mlp},
-            "probs_inj": {"t1": probs_inj_t1, "t2": probs_inj_t2, "t3": probs_inj_t3, "mlp": probs_inj_mlp},
-            "probs_clean": {"t1": probs_clean_t1, "t2": probs_clean_t2, "t3": probs_clean_t3, "mlp": probs_clean_mlp},
+            "p_inj": {"t1": p_inj_t1, "t2": p_inj_t2, "t3": p_inj_t3, "t4": p_inj_t4, "mlp": p_inj_mlp},
+            "p_clean": {"t1": p_clean_t1, "t2": p_clean_t2, "t3": p_clean_t3, "t4": p_clean_t4, "mlp": p_clean_mlp},
+            "probs_inj": {"t1": probs_inj_t1, "t2": probs_inj_t2, "t3": probs_inj_t3, "t4": probs_inj_t4, "mlp": probs_inj_mlp},
+            "probs_clean": {"t1": probs_clean_t1, "t2": probs_clean_t2, "t3": probs_clean_t3, "t4": probs_clean_t4, "mlp": probs_clean_mlp},
             "gross_clean": df_raw["gross_cpm"],
             "gross_inj": df_raw["inj_gross_cpm"],
             "base_thresholds": {
@@ -282,12 +295,14 @@ def main():
                 "t1": clf_t1.predict_proba(feats_inj[TIER_1_FEATURES])[:, 2],
                 "t2": clf_t2.predict_proba(feats_inj[TIER_2_FEATURES])[:, 2],
                 "t3": clf_t3.predict_proba(feats_inj[TIER_3_FEATURES])[:, 2],
+                "t4": clf_t4.predict_proba(feats_inj[TIER_4_NUCLEAR_FEATURES])[:, 2],
                 "mlp": pipe_mlp.predict_proba(feats_inj[TIER_3_FEATURES])[:, 2],
             },
             "p_clean": {
                 "t1": clf_t1.predict_proba(feats_clean[TIER_1_FEATURES])[:, 2],
                 "t2": clf_t2.predict_proba(feats_clean[TIER_2_FEATURES])[:, 2],
                 "t3": clf_t3.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2],
+                "t4": clf_t4.predict_proba(feats_clean[TIER_4_NUCLEAR_FEATURES])[:, 2],
                 "mlp": pipe_mlp.predict_proba(feats_clean[TIER_3_FEATURES])[:, 2],
             },
         }
@@ -301,8 +316,11 @@ def main():
           f"({total_val_station_years:.2f} stn-yr), {len(val_catalog)} injection events")
 
     # Sweep thresholds to get operating points (VALIDATION fold, net-alarm criterion)
-    thresholds = np.linspace(0.01, 0.99, 99)
-    model_keys = ["t1", "t2", "t3", "mlp"]
+    thresholds = np.concatenate([
+        np.linspace(0.01, 0.95, 95),
+        np.array([0.96, 0.97, 0.98, 0.985, 0.990, 0.991, 0.992, 0.993, 0.994, 0.995, 0.996, 0.997, 0.998, 0.999]),
+    ])
+    model_keys = ["t1", "t2", "t3", "t4", "mlp"]
     operating_thresholds = {k: {} for k in model_keys}
 
     for k in model_keys:
@@ -399,6 +417,16 @@ def main():
             "type": "ml",
             "key": "t3",
             "tau": operating_thresholds["t3"][0.90]["tau"],
+        },
+        "Tier 4: Physics-Informed Nuclear GBDT (95% target)": {
+            "type": "ml",
+            "key": "t4",
+            "tau": operating_thresholds["t4"][0.95]["tau"],
+        },
+        "Tier 4: Physics-Informed Nuclear GBDT (90% target)": {
+            "type": "ml",
+            "key": "t4",
+            "tau": operating_thresholds["t4"][0.90]["tau"],
         },
         "Tier 3: Weather-Fused Neural Net (MLP) (95% target)": {
             "type": "ml",
@@ -634,6 +662,7 @@ def main():
         "Baseline: Rolling 7d 3-sigma",
         "Tier 2: Radiation + Spectrometry GBDT (95% target)",
         "Tier 3: Full Weather Fusion GBDT (95% target)",
+        "Tier 4: Physics-Informed Nuclear GBDT (95% target)",
         "Tier 3: Weather-Fused Neural Net (MLP) (95% target)",
     ]
 
@@ -733,6 +762,7 @@ def main():
         "Tier 1: Gross Radiation GBDT": [],
         "Tier 2: Radiation + Spectrometry GBDT": [],
         "Tier 3: Full Weather Fusion GBDT": [],
+        "Tier 4: Physics-Informed Nuclear GBDT": [],
         "Tier 3: Weather-Fused Neural Net (MLP)": [],
     }
 
@@ -742,6 +772,7 @@ def main():
         ("Tier 1: Gross Radiation GBDT", "ml", ("t1", operating_thresholds["t1"][0.95]["tau"])),
         ("Tier 2: Radiation + Spectrometry GBDT", "ml", ("t2", operating_thresholds["t2"][0.95]["tau"])),
         ("Tier 3: Full Weather Fusion GBDT", "ml", ("t3", operating_thresholds["t3"][0.95]["tau"])),
+        ("Tier 4: Physics-Informed Nuclear GBDT", "ml", ("t4", operating_thresholds["t4"][0.95]["tau"])),
         ("Tier 3: Weather-Fused Neural Net (MLP)", "ml", ("mlp", operating_thresholds["mlp"][0.95]["tau"])),
     ]
 
@@ -859,7 +890,7 @@ def main():
     print("\n--- Direct Head-to-Head Benchmark Table (at 95% Detection Target) ---")
     print(benchmark_df[["model_name", "realized_detection_pct", "detection_ci_95", "false_alarms_per_station_year", "false_alarms_ci_95", "rain_coincident_alarm_pct", "median_detection_delay_hours"]].to_string())
 
-    print(f"\nPhase 5 Evaluation Protocol completed in {time.time() - t_start:.2f}s!")
+    print(f"\nUncertainty Evaluation Protocol completed in {time.time() - t_start:.2f}s!")
 
 
 if __name__ == "__main__":

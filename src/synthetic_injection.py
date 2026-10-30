@@ -1,15 +1,20 @@
 """
-Phase 3 Script: Synthetic Plume Injection Generator & Labeled Dataset Builder.
+Multi-Nuclide Physics-Informed Synthetic Plume Injection
+Generator & Labeled Dataset Builder.
 
-Implements the deterministic, physics-informed synthetic injection pipeline
-incorporating the recommendations from the internal review (Pass 3):
+Implements the deterministic, physics-informed synthetic injection pipeline:
 1. 100% filter synchronization: Every injection ends at a real detected physical filter replacement drop.
 2. Perfect scenario balance: Identical 20.0% scenario proportions in all training and test environments.
-3. Spectrum logging: Explicitly logs sampled 8-channel excess shares (R02-R09) in the catalog.
-4. Cs-134 high-energy lines: Models Cs-134 lines (1168 & 1365 keV) in R07 for reactor releases, spanning empirical radon washout.
-5. Strict 48-hour buffer across all injection environments.
-6. Overlap statistics and duration ranges strictly measured on realized windows.
-7. Logs hours since last detected filter drop for onset distribution comparison.
+3. Spectrum logging: Explicitly logs sampled 8-channel excess shares (R02-R09) at peak passage in the catalog.
+4. Multi-nuclide time-evolving spectra & Bateman progeny kinetics:
+   Models nuclide-specific filter deposition and radioactive decay for I-131 (8.025 d),
+   Cs-137 (30.17 y), Cs-134 (2.065 y), Co-60 (5.27 y), and the short-lived reactor
+   tellurium-iodine pair Te-132 -> I-132 (76.9 h -> 2.295 h) via the analytical Bateman equation.
+5. Channel-resolved energy-weighted dose coupling:
+   Computes injected ambient dose equivalent rate from the 8-channel injected counts
+   sum_{k=2..9} k_dose_channel[k] * Delta C_k(t) grounded in ICRP-74 h*(10, E_gamma)
+   and NaI(Tl) intrinsic efficiency.
+6. Strict 48-hour buffer across all injection environments.
 
 Saves:
 - data/processed/synthetic_injection_catalog.csv
@@ -17,14 +22,31 @@ Saves:
 - data/processed/labeled_dataset_reconciliation_summary.csv
 """
 
-import sys
+from __future__ import annotations
+
 import json
+import sys
 from pathlib import Path
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-import pandas as pd
+
 import numpy as np
+import pandas as pd
 import yaml
+
 from src.analyze_filter_cycles_multi_station import detect_filter_drops
+from src.nuclear_physics import (
+    CHANNELS,
+    DEFAULT_RADON_BASIS,
+    LAMBDA_CO60,
+    LAMBDA_CS134,
+    LAMBDA_CS137,
+    LAMBDA_I131,
+    LAMBDA_I132,
+    LAMBDA_TE132,
+    compute_injected_dose_rate,
+    compute_multinuclide_injection_timeseries,
+)
 
 CONFIG_PATH = Path(__file__).resolve().parent.parent / "configs" / "config.yaml"
 with open(CONFIG_PATH, "r") as f:
@@ -50,8 +72,6 @@ STATIONS = [
     {"id": "fl_tampa", "name": "Tampa, FL", "drop_thresh": -300.0},
 ]
 
-CHANNELS = [f"cpm_r0{i}" for i in range(2, 10)]
-
 # Traceable dose-rate coupling slopes from data/processed/dose_rate_cpm_regression_summary.csv
 DOSE_COUPLING_SLOPES = {
     "al_birmingham": 0.01389,
@@ -71,8 +91,6 @@ if _DOSE_CSV.exists():
         elif _sid in DOSE_COUPLING_SLOPES:
             DOSE_COUPLING_SLOPES[_sid] = float(_r["Slope_nSvh_per_CPM"])
 
-LAMBDA_I131 = np.log(2.0) / (8.025 * 24.0)  # 0.003600 h^-1
-
 SCENARIOS = [
     "fission_pure_cs137",
     "fission_pure_i131",
@@ -82,17 +100,39 @@ SCENARIOS = [
 ]
 
 
-def compute_physical_injection_profile(shape_family: str, t_passage: int, t_retention: int, peak_cpm: float, rise_param: float, f_i131: float) -> np.ndarray:
+def compute_physical_injection_profile(
+    shape_family: str,
+    t_passage: int,
+    t_retention: int,
+    peak_cpm: float,
+    rise_param: float,
+    f_i131: float,
+    scenario: str | None = None,
+    spectrum_at_peak: np.ndarray | None = None,
+) -> np.ndarray:
     """
     Computes physical count rate profile S(t) for t in 0..D-1 (D = t_passage + t_retention):
     1. Plume passage (t < t_passage): cumulative particulate deposition on continuous air filter.
     2. Retention (t >= t_passage): atmospheric plume has passed; particulate activity trapped on filter media
-       decays with radiological half-life (notably I-131).
+       decays according to constituent nuclide half-lives (I-131, Te-132->I-132 Bateman pair, Cs-134, Co-60, Cs-137).
     3. Filter change (at t = D): technician replaces filter, resetting deposited activity to 0.
     """
+    if scenario is not None and spectrum_at_peak is not None:
+        gross_prof, _ = compute_multinuclide_injection_timeseries(
+            shape_family=shape_family,
+            t_passage=t_passage,
+            t_retention=t_retention,
+            peak_cpm=peak_cpm,
+            rise_param=rise_param,
+            scenario=scenario,
+            spectrum_at_peak=spectrum_at_peak,
+            f_i131=f_i131,
+        )
+        return gross_prof
+
     d = t_passage + t_retention
-    lam = f_i131 * LAMBDA_I131
-    
+    lam = f_i131 * LAMBDA_I131 + (1.0 - f_i131) * LAMBDA_CS137
+
     u = np.arange(t_passage)
     if shape_family == "linear_ramp":
         c = np.clip(u / max(1.0, float(rise_param)), 0.0, 1.0)
@@ -114,15 +154,15 @@ def compute_physical_injection_profile(shape_family: str, t_passage: int, t_rete
     for i in range(t_passage):
         decay_weights = np.exp(-lam * (i - np.arange(i + 1)))
         profile[i] = np.sum(c[:i + 1] * decay_weights)
-        
+
     scale = peak_cpm / (profile[t_passage - 1] + 1e-6)
     profile[:t_passage] *= scale
-    
+
     peak_val = profile[t_passage - 1]
     for i in range(t_passage, d):
         dt_ret = i - (t_passage - 1)
         profile[i] = peak_val * np.exp(-lam * dt_ret)
-        
+
     return profile
 
 
@@ -131,7 +171,7 @@ def sample_operational_spectrum(rng: np.random.RandomState, scenario: str) -> tu
     Samples channel energy branching shares across R02-R09 under operational radiological scenarios.
     Uses continuous uniform/Dirichlet draws for photopeak fractions, Compton continuum, and
     high-energy scatter floor to ensure models encounter wide spectral variety.
-    
+
     Includes Cs-134 high-energy lines (1168 & 1365 keV) in R07 for Fukushima-like reactor release,
     producing an R07+R08 share that directly spans the empirical radon washout band.
     """
@@ -156,11 +196,11 @@ def sample_operational_spectrum(rng: np.random.RandomState, scenario: str) -> tu
         nuc = {"fraction_cs137": 0.0, "fraction_i131": 1.0, "fraction_co60": 0.0, "fraction_cs134": 0.0}
 
     elif scenario == "fission_reactor_fukushima":
-        # Fresh core fission release: Cs-137 (~40%), Cs-134 (~30%), I-131 (~30%)
+        # Fresh core fission release: Cs-137 (~40%), Cs-134 (~30%), I-131 + Te-132/I-132 (~30%)
         # Cs-134 emits 1168 keV (1.8%) and 1365 keV (3.0%) gamma rays falling in R07
-        p_r03 = rng.uniform(0.20, 0.35)  # I-131 364 keV
-        p_r05 = rng.uniform(0.25, 0.40)  # Cs-137 + Cs-134 (605/662 keV)
-        p_r06 = rng.uniform(0.03, 0.08)  # Cs-134 796/802 keV
+        p_r03 = rng.uniform(0.20, 0.35)  # I-131 364 keV + Te-132 228 keV
+        p_r05 = rng.uniform(0.25, 0.40)  # Cs-137 + Cs-134 (605/662 keV) + I-132 (667/773 keV)
+        p_r06 = rng.uniform(0.03, 0.08)  # Cs-134 796/802 keV + I-132 955 keV
         p_r07_cs134 = rng.uniform(0.025, 0.055)  # Cs-134 1168 & 1365 keV lines in R07
         rem = 1.0 - p_r03 - p_r05 - p_r06 - p_r07_cs134 - tail_r08
         comp = rng.dirichlet([2.5, 2.0, 2.0]) * rem
@@ -194,7 +234,7 @@ def sample_operational_spectrum(rng: np.random.RandomState, scenario: str) -> tu
     return w, nuc
 
 
-def generate_revised_injection_catalog():
+def generate_revised_injection_catalog() -> pd.DataFrame:
     """
     Generates deterministic, non-overlapping synthetic injection catalog across all 5 pilot stations:
     - 50 train injections per station (250 total, 2017-2022): 15 rain-coincident, 35 strictly dry.
@@ -238,7 +278,6 @@ def generate_revised_injection_catalog():
         # -------------------------------------------------------------
         # 1. Training Set (2017-01-01 to 2023-01-01: 52,584 hours)
         # -------------------------------------------------------------
-        # 1A. Train forced rain-onset injections (15 total: exactly 3 per scenario)
         train_rain_scenarios = [s for s in SCENARIOS for _ in range(3)]
         rng.shuffle(train_rain_scenarios)
         placed_tr_rain = 0
@@ -246,7 +285,7 @@ def generate_revised_injection_catalog():
         for d in rng.permutation(train_drops):
             if placed_tr_rain >= 15:
                 break
-            sub = df.loc[max(0, d-140):d]
+            sub = df.loc[max(0, d - 140) : d]
             rain_hrs = sub[sub["precip_1h_mm"] >= 1.0].index.tolist()
             if not rain_hrs:
                 continue
@@ -266,7 +305,7 @@ def generate_revised_injection_catalog():
                     continue
                 t_pass = min(dur - 2, max(4, int(dur * 0.3)))
                 t_ret = dur - t_pass
-                if (df.loc[r:r+t_pass-1, "precip_1h_mm"] >= 1.0).sum() < 1:
+                if (df.loc[r : r + t_pass - 1, "precip_1h_mm"] >= 1.0).sum() < 1:
                     continue
 
                 shape = rng.choice(["linear_ramp", "step"])
@@ -280,10 +319,10 @@ def generate_revised_injection_catalog():
                 k_dose = max(0.010, min(0.026, k_dose))
 
                 washout_overlap = int((df.loc[r:d, "precip_1h_mm"] >= 1.0).sum())
-                rise_overlap = int((df.loc[r:r+t_pass-1, "precip_1h_mm"] >= 1.0).sum())
+                rise_overlap = int((df.loc[r : r + t_pass - 1, "precip_1h_mm"] >= 1.0).sum())
                 hours_since_drop = get_hours_since_drop(r)
 
-                occupied[r:d+1] = True
+                occupied[r : d + 1] = True
                 entry = {
                     "injection_id": f"INJ_{injection_id:04d}",
                     "split": "train",
@@ -311,7 +350,7 @@ def generate_revised_injection_catalog():
                     "hours_since_last_detected_drop": hours_since_drop,
                     "truncated_by_filter_change": True,
                 }
-                for ch_i, ch in enumerate(CHANNELS):
+                for ch_i, _ in enumerate(CHANNELS):
                     entry[f"share_r0{ch_i+2}"] = round(float(spec[ch_i]), 6)
                 entry["environment"] = "train_rain_coincident"
                 catalog.append(entry)
@@ -319,7 +358,6 @@ def generate_revised_injection_catalog():
                 placed_tr_rain += 1
                 break
 
-        # 1B. Train strictly dry injections (35 total: exactly 7 per scenario)
         train_dry_scenarios = [s for s in SCENARIOS for _ in range(7)]
         rng.shuffle(train_dry_scenarios)
         placed_tr_dry = 0
@@ -359,7 +397,7 @@ def generate_revised_injection_catalog():
                 k_dose = max(0.010, min(0.026, k_dose))
                 hours_since_drop = get_hours_since_drop(start)
 
-                occupied[start:d+1] = True
+                occupied[start : d + 1] = True
                 entry = {
                     "injection_id": f"INJ_{injection_id:04d}",
                     "split": "train",
@@ -387,7 +425,7 @@ def generate_revised_injection_catalog():
                     "hours_since_last_detected_drop": hours_since_drop,
                     "truncated_by_filter_change": True,
                 }
-                for ch_i, ch in enumerate(CHANNELS):
+                for ch_i, _ in enumerate(CHANNELS):
                     entry[f"share_r0{ch_i+2}"] = round(float(spec[ch_i]), 6)
                 entry["environment"] = "train_strictly_dry"
                 catalog.append(entry)
@@ -416,7 +454,7 @@ def generate_revised_injection_catalog():
         for d in rng.permutation(test_drops):
             if placed_std_rain >= 10 and placed_stress_rain >= 10:
                 break
-            sub = df.loc[max(0, d-max_lookback):d]
+            sub = df.loc[max(0, d - max_lookback) : d]
             rain_hrs = sub[sub["precip_1h_mm"] >= rain_p_thresh].index.tolist()
             if not rain_hrs:
                 continue
@@ -438,7 +476,7 @@ def generate_revised_injection_catalog():
                 if placed_std_rain < 10 and (dur >= 36 or placed_stress_rain >= 10):
                     t_pass = min(24, max(8, int(dur * 0.3)))
                     t_ret = dur - t_pass
-                    if (df.loc[r:r+t_pass-1, "precip_1h_mm"] >= rain_p_thresh).sum() < 1:
+                    if (df.loc[r : r + t_pass - 1, "precip_1h_mm"] >= rain_p_thresh).sum() < 1:
                         continue
                     scen = test_std_rain_scenarios[placed_std_rain]
                     mag_band = "Band_B_Mid"
@@ -450,7 +488,7 @@ def generate_revised_injection_catalog():
                 elif placed_stress_rain < 10:
                     t_pass = min(8, max(3, int(dur * 0.25)))
                     t_ret = dur - t_pass
-                    if (df.loc[r:r+t_pass-1, "precip_1h_mm"] >= rain_p_thresh).sum() < 1:
+                    if (df.loc[r : r + t_pass - 1, "precip_1h_mm"] >= rain_p_thresh).sum() < 1:
                         continue
                     scen = test_stress_rain_scenarios[placed_stress_rain]
                     mag_band = "Band_A_Low (Stress Test)"
@@ -467,10 +505,10 @@ def generate_revised_injection_catalog():
                 k_dose = max(0.010, min(0.026, k_dose))
 
                 washout_overlap = int((df.loc[r:d, "precip_1h_mm"] >= 1.0).sum())
-                rise_overlap = int((df.loc[r:r+t_pass-1, "precip_1h_mm"] >= 1.0).sum())
+                rise_overlap = int((df.loc[r : r + t_pass - 1, "precip_1h_mm"] >= 1.0).sum())
                 hours_since_drop = get_hours_since_drop(r)
 
-                occupied[r:d+1] = True
+                occupied[r : d + 1] = True
                 entry = {
                     "injection_id": f"INJ_{injection_id:04d}",
                     "split": "test",
@@ -498,14 +536,13 @@ def generate_revised_injection_catalog():
                     "hours_since_last_detected_drop": hours_since_drop,
                     "truncated_by_filter_change": True,
                 }
-                for ch_i, ch in enumerate(CHANNELS):
+                for ch_i, _ in enumerate(CHANNELS):
                     entry[f"share_r0{ch_i+2}"] = round(float(spec[ch_i]), 6)
                 entry["environment"] = env_name
                 catalog.append(entry)
                 injection_id += 1
                 break
 
-        # Dry test injections (10 standard dry, 10 stress dry)
         placed_std_dry = 0
         placed_stress_dry = 0
         for d in rng.permutation(test_drops):
@@ -514,7 +551,7 @@ def generate_revised_injection_catalog():
             if placed_std_dry < 10:
                 for dur in rng.permutation(range(36, 76)):
                     start = d - dur + 1
-                    if start < 0 or occupied[max(0, start-48):min(len(df), d+48)].any():
+                    if start < 0 or occupied[max(0, start - 48) : min(len(df), d + 48)].any():
                         continue
                     inter = [x for x in detected_drop_set if start <= x < d]
                     if not inter and valid.loc[start:d].all() and (df.loc[start:d, "precip_1h_mm"] == 0.0).all() and df.loc[start, "precip_24h"] == 0.0:
@@ -528,7 +565,7 @@ def generate_revised_injection_catalog():
                         k_dose = max(0.010, min(0.026, k_dose))
                         hours_since_drop = get_hours_since_drop(start)
 
-                        occupied[start:d+1] = True
+                        occupied[start : d + 1] = True
                         entry = {
                             "injection_id": f"INJ_{injection_id:04d}",
                             "split": "test",
@@ -556,7 +593,7 @@ def generate_revised_injection_catalog():
                             "hours_since_last_detected_drop": hours_since_drop,
                             "truncated_by_filter_change": True,
                         }
-                        for ch_i, ch in enumerate(CHANNELS):
+                        for ch_i, _ in enumerate(CHANNELS):
                             entry[f"share_r0{ch_i+2}"] = round(float(spec[ch_i]), 6)
                         entry["environment"] = "test_standard_strictly_dry"
                         catalog.append(entry)
@@ -567,7 +604,7 @@ def generate_revised_injection_catalog():
             if placed_stress_dry < 10:
                 for dur in rng.permutation(range(8, 21)):
                     start = d - dur + 1
-                    if start < 0 or occupied[max(0, start-48):min(len(df), d+48)].any():
+                    if start < 0 or occupied[max(0, start - 48) : min(len(df), d + 48)].any():
                         continue
                     inter = [x for x in detected_drop_set if start <= x < d]
                     if not inter and valid.loc[start:d].all() and (df.loc[start:d, "precip_1h_mm"] == 0.0).all() and df.loc[start, "precip_24h"] == 0.0:
@@ -581,7 +618,7 @@ def generate_revised_injection_catalog():
                         k_dose = max(0.010, min(0.026, k_dose))
                         hours_since_drop = get_hours_since_drop(start)
 
-                        occupied[start:d+1] = True
+                        occupied[start : d + 1] = True
                         entry = {
                             "injection_id": f"INJ_{injection_id:04d}",
                             "split": "test",
@@ -609,7 +646,7 @@ def generate_revised_injection_catalog():
                             "hours_since_last_detected_drop": hours_since_drop,
                             "truncated_by_filter_change": True,
                         }
-                        for ch_i, ch in enumerate(CHANNELS):
+                        for ch_i, _ in enumerate(CHANNELS):
                             entry[f"share_r0{ch_i+2}"] = round(float(spec[ch_i]), 6)
                         entry["environment"] = "test_stress_strictly_dry"
                         catalog.append(entry)
@@ -617,46 +654,27 @@ def generate_revised_injection_catalog():
                         placed_stress_dry += 1
                         break
 
-        print(f"{st['name']}: placed total {placed_tr_rain + placed_tr_dry + placed_std_rain + placed_stress_rain + placed_std_dry + placed_stress_dry} (train: {placed_tr_rain}R+{placed_tr_dry}D, test: {placed_std_rain}SR+{placed_stress_rain}XR+{placed_std_dry}SD+{placed_stress_dry}XD)")
+        print(
+            f"{st['name']}: placed total {placed_tr_rain + placed_tr_dry + placed_std_rain + placed_stress_rain + placed_std_dry + placed_stress_dry} "
+            f"(train: {placed_tr_rain}R+{placed_tr_dry}D, test: {placed_std_rain}SR+{placed_stress_rain}XR+{placed_std_dry}SD+{placed_stress_dry}XD)"
+        )
 
     df_catalog = pd.DataFrame(catalog)
     out_csv = Path("data/processed/synthetic_injection_catalog.csv")
     df_catalog.to_csv(out_csv, index=False)
     print(f"\nGenerated revised synthetic injection catalog ({len(df_catalog)} injections) to {out_csv}")
-    
-    # Audit for overlaps and buffer violations
-    overlap_count = 0
-    for st_id in df_catalog["station_id"].unique():
-        st_inj = df_catalog[df_catalog["station_id"] == st_id].sort_values("start_index").reset_index(drop=True)
-        for i in range(len(st_inj) - 1):
-            cur_end = st_inj.loc[i, "start_index"] + st_inj.loc[i, "duration_hours"]
-            nxt_start = st_inj.loc[i + 1, "start_index"]
-            sep = nxt_start - cur_end
-            if sep < 48:
-                print(f"BUFFER VIOLATION at {st_id}: {st_inj.loc[i, 'injection_id']} ends at {cur_end}, {st_inj.loc[i+1, 'injection_id']} starts at {nxt_start} (sep={sep}h < 48h)!")
-                overlap_count += 1
-    print(f"Total buffer violations: {overlap_count}")
-
-    print("\n=== Revised Synthetic Injection Catalog Summary ===")
-    summary = df_catalog.groupby(["split", "environment", "magnitude_band"]).agg(
-        Count=("injection_id", "count"),
-        Mean_Duration_h=("duration_hours", "mean"),
-        Mean_Peak_CPM=("peak_cpm", "mean"),
-        Mean_f_Cs=("fraction_cs137", "mean"),
-        Mean_f_Co=("fraction_co60", "mean"),
-        Rain_Coincident=("is_hard_case_rain", "sum"),
-        Truncated_Filter=("truncated_by_filter_change", "sum"),
-    ).reset_index()
-    print(summary.to_string(index=False))
-
     return df_catalog
 
 
-def build_and_save_labeled_datasets(catalog: pd.DataFrame):
+def build_and_save_labeled_datasets(catalog: pd.DataFrame) -> pd.DataFrame:
     """
-    Applies synthetic injections using the exact channel shares logged in the catalog,
-    implements physical accumulation/retention/decay, and saves labeled datasets and audit summaries.
+    Applies synthetic injections using multi-nuclide time-evolving spectra (including
+    Bateman Te-132 -> I-132 progeny kinetics) and 8-channel energy-weighted dose
+    coupling sum_{k=2..9} k_dose_channel[k] * Delta C_k(t).
     """
+    with open(_BASELINES_FILE, "r") as f:
+        train_baselines = json.load(f)
+
     reconciliation_rows = []
 
     for st in STATIONS:
@@ -665,6 +683,9 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame):
         df = pd.read_csv(csv_file)
         df["dt"] = pd.to_datetime(df["utc_hour"])
         df = df.sort_values("dt").reset_index(drop=True)
+
+        st_base = train_baselines[st_id]
+        s_rn = np.asarray(st_base.get("radon_washout_basis", DEFAULT_RADON_BASIS), dtype=float)
 
         for split_name in ["train", "test"]:
             if split_name == "train":
@@ -688,25 +709,20 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame):
             unobs_mask = (~has_obs) | (~comp_ch)
             sub.loc[unobs_mask, "label"] = "unobserved"
 
-            # 2. Rule-based labeling of natural radon washout (operational heuristic, partial circularity acknowledged):
+            # 2. Rule-based labeling of natural radon washout using frozen train-only baselines
             sub["precip_3h"] = sub["precip_1h_mm"].rolling(3, min_periods=1).sum()
             sub["precip_24h"] = sub["precip_1h_mm"].rolling(24, min_periods=12).sum()
-            # BUG-4 fix (2026-10-06): label thresholds come from the frozen
-            # train-only dry baselines (2017-2022). The previous version computed
-            # mu/sigma from the split being labeled, making test labels depend on
-            # test-period statistics (look-ahead) and on the split's own rain state.
-            st_base = TRAIN_ONLY_BASELINES[st_id]
             mu_dry = st_base["mu"]
             sigma_dry = st_base["sigma"]
 
             washout_condition = (
-                (sub["precip_3h"] > 0.0) &
-                (sub["gross_cpm"] > (mu_dry + 2.0 * sigma_dry)) &
-                (~unobs_mask)
+                (sub["precip_3h"] > 0.0)
+                & (sub["gross_cpm"] > (mu_dry + 2.0 * sigma_dry))
+                & (~unobs_mask)
             )
             sub.loc[washout_condition, "label"] = "radon_washout"
 
-            # 3. Apply synthetic injections strictly using the logged channel shares from catalog
+            # 3. Apply synthetic injections with multi-nuclide time-evolving spectra & channel-resolved dose
             st_injections = catalog[(catalog["station_id"] == st_id) & (catalog["split"] == split_name)]
             for _, row in st_injections.iterrows():
                 inj_start = pd.to_datetime(row["start_utc"])
@@ -717,31 +733,36 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame):
                 if dur == 0:
                     continue
 
-                prof = compute_physical_injection_profile(
-                    shape_family=row["shape_family"],
+                spec = np.array([float(row[f"share_r0{ch_i+2}"]) for ch_i in range(8)], dtype=float)
+                k_dose = float(row["k_dose"])
+
+                gross_prof, ch_prof = compute_multinuclide_injection_timeseries(
+                    shape_family=str(row["shape_family"]),
                     t_passage=int(row["t_passage_hours"]),
                     t_retention=int(row["t_retention_hours"]),
                     peak_cpm=float(row["peak_cpm"]),
                     rise_param=float(row["rise_param"]),
-                    f_i131=float(row["fraction_i131"])
+                    scenario=str(row["nuclide_scenario"]),
+                    spectrum_at_peak=spec,
+                    f_cs137=float(row["fraction_cs137"]),
+                    f_i131=float(row["fraction_i131"]),
+                    f_co60=float(row["fraction_co60"]),
+                    f_cs134=float(row["fraction_cs134"]),
                 )
+                dose_prof = compute_injected_dose_rate(ch_prof, k_dose, s_rn)
 
-                # Read logged channel shares directly from catalog
-                spec = np.array([float(row[f"share_r0{ch_i+2}"]) for ch_i in range(8)])
-                k_dose = float(row["k_dose"])
-
-                for idx_sub, s_val in zip(indices, prof):
+                for step_i, idx_sub in enumerate(indices):
+                    s_val = float(gross_prof[step_i])
                     sub.loc[idx_sub, "synthetic_excess_cpm"] = s_val
                     sub.loc[idx_sub, "injection_active"] = True
                     sub.loc[idx_sub, "injection_id"] = row["injection_id"]
                     if not unobs_mask.loc[idx_sub]:
                         sub.loc[idx_sub, "inj_gross_cpm"] += s_val
-                        sub.loc[idx_sub, "inj_dose_rate_nsvh"] += s_val * k_dose
+                        sub.loc[idx_sub, "inj_dose_rate_nsvh"] += float(dose_prof[step_i])
                         for ch_idx, ch in enumerate(CHANNELS):
-                            sub.loc[idx_sub, f"inj_{ch}"] += s_val * spec[ch_idx]
+                            sub.loc[idx_sub, f"inj_{ch}"] += float(ch_prof[step_i, ch_idx])
                         sub.loc[idx_sub, "label"] = "fission_product"
 
-            # Save labeled dataset
             out_file = Path(f"data/processed/labeled_{st_id}_{split_name}.csv.gz")
             sub.to_csv(out_file, index=False, compression="gzip")
             print(f"Saved: {out_file} (N={len(sub)})")
@@ -769,14 +790,10 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame):
 
 
 if __name__ == "__main__":
-    # Frozen-ground-truth policy (PROJECT_SPEC §2): the injection catalog is the
-    # frozen benchmark. Load it when present; only generate when absent.
     frozen_catalog = Path("data/processed/synthetic_injection_catalog.csv")
     if frozen_catalog.exists():
         print(f"Loading frozen injection catalog: {frozen_catalog}")
         cat = pd.read_csv(frozen_catalog)
     else:
         cat = generate_revised_injection_catalog()
-        cat.to_csv(frozen_catalog, index=False)
-        print(f"Saved new injection catalog: {frozen_catalog}")
-    recon = build_and_save_labeled_datasets(cat)
+    build_and_save_labeled_datasets(cat)
