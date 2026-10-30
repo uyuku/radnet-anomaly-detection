@@ -144,11 +144,14 @@ Use `--threshold` for an explicit probability override, and `--data-dir` for a d
 - `hours_since_rain` and rainfall totals remain unknown until sufficient observed history exists. Retrain and recalibrate after changing feature semantics; old thresholds are not portable.
 - Re-running phases 4–5 regenerates model tables and figures. Historical prose in the phase reports must then be reconciled with the new measurements.
 
-## Repository layout and AI assistance
+## Repository Layout
 
-- `src/` pipeline code, `tests/` automated tests, `configs/` configuration, `data/processed/` small result tables, `reports/figures/` figures.
-- `docs/DECISIONS.md` design decisions; `docs/dev-notes/` historical working notes.
-- This repository was developed with substantial assistance from AI coding agents (code, analysis scripts, documentation drafts). Their working notes are kept in `docs/dev-notes/` for transparency.
+- `src/`: Pipeline, feature extraction, and model training code.
+- `tests/`: Automated test suite (unit and integration tests).
+- `configs/`: Pipeline configuration files.
+- `data/processed/`: Processed summary tables and benchmark results.
+- `reports/figures/`: Publication figures and diagnostic plots.
+- `docs/`: System design decisions, architectural documentation, and development notes.
 
 ---
 

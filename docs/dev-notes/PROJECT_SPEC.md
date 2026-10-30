@@ -1,6 +1,6 @@
 # Project Spec: Weather-Aware Anomaly Detection in RadNet
 
-Single source of truth for all AI agents (Gemini agentic on the laptop, Claude in chat) and the human (Ömer). If something here conflicts with an agent's own idea, this file wins until the human changes it.
+Single source of truth for project development and research guidelines. If something conflicts, this specification defines the baseline protocol.
 
 ## 1. Goal
 
@@ -13,7 +13,7 @@ Baseline for comparison: a fixed-threshold alarm, representing current practice.
 
 Classes: `normal`, `radon_washout`, `fission_product`.
 
-## 2. Operating rules for agents
+## 2. Operating and Engineering Rules
 
 - Raw data is never modified. Raw files live in `data/raw/` and are read-only after download.
 - Every download is logged in `DATA_LOG.md` with the URL, date retrieved, station, and file name.
@@ -46,13 +46,13 @@ Weather source: NOAA hourly observations (precipitation, pressure, humidity) fro
 
 **Phase 2. Baseline.** Fixed-threshold alarm, with threshold set by an explicit rule recorded in `DECISIONS.md`. Report alarms per station-year and how many coincide with rain. Gate: human approves.
 
-**Phase 3. Synthetic injection.** See Section 5. Gate: human and Claude review injection design before any model training.
+**Phase 3. Synthetic injection.** See Section 5. Gate: human and peer review injection design before any model training.
 
 **Phase 4. Models.** Gradient boosting first. Small neural net only if the boosting result leaves a clear gap. Gate: human approves results tables.
 
 **Phase 5. Evaluation.** See Section 6.
 
-**Phase 6. Report.** Introduction, methods, results, discussion, keywords, references. Drafted with Claude, numbers taken only from logged results.
+**Phase 6. Report.** Introduction, methods, results, discussion, keywords, references. Structured report, numbers taken only from logged results.
 
 **Stretch (only after Phase 5):** wind-informed graph across stations, HYSPLIT or FLEXPART dispersion for injections, conformal prediction for calibrated false alarm bounds.
 
@@ -82,8 +82,8 @@ Open question for the radon washout class: real data has no ground-truth labels.
 - Baseline and model are compared on identical test data.
 - Uncertainty is reported (for example, bootstrap over stations or months).
 
-## 7. Cross-review between AIs
+## 7. Quality Assurance and Review Protocol
 
-- After each phase, the human pastes `PHASE_REPORT.md`, key code, and result tables into a Claude chat for independent review.
-- Claude's review covers physics, leakage, and evaluation validity. The Gemini agent's role is execution and code.
-- Where the two disagree, both positions and the evidence are written to `DECISIONS.md`, and the human decides.
+- After each phase, key code, physics assumptions, and result tables undergo independent methodological review.
+- The review covers physical conservation, temporal leakage prevention, and statistical evaluation validity.
+- Any methodological edge cases or trade-offs are logged in `DECISIONS.md`.

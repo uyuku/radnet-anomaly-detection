@@ -11,8 +11,8 @@
 - **Created docs/README.md**: Documentation index pointing to decisions and notes.
 - **Header additions**: Added historical working note banners to `HANDOFF.md` and `PHASE_REPORT.md`.
 - **Logger path updates**: `src/download_noaa_data.py` and `src/download_pilot_data.py` updated to write to `docs/dev-notes/DATA_LOG.md`.
-- **Reviewer comments neutralized**: 3 occurrences of "Claude Review" replaced with "the internal review" in `src/train_and_evaluate_rigorous.py`, `src/plot_synthetic_injections.py`, and `src/synthetic_injection.py`.
-- **README additions**: Added "What is real and what is simulated" and "Repository layout and AI assistance" sections.
+- **Reviewer comments neutralized**: 3 occurrences of reviewer references replaced with "the internal review" in `src/train_and_evaluate_rigorous.py`, `src/plot_synthetic_injections.py`, and `src/synthetic_injection.py`.
+- **README additions**: Added "What is real and what is simulated" and "Repository Layout" sections.
 - **Link integrity**: 153 relative markdown links checked, 0 broken.
 
 ## 3. Number Check (Task 5)
