@@ -1,6 +1,8 @@
+> **Historical working note.** Written during development and not updated afterwards. Where it disagrees with the top-level README.md, README.md and `data/processed/rigorous_benchmark_summary.csv` are current. In particular, the 20-seed benchmark HAS been regenerated for Feature Schema 2 (see MAINTENANCE_2026-10-18.md).
+
 # Project Architecture & Pipeline Guide: Weather-Aware Anomaly Detection in RadNet
 
-> **Maintenance update (2026-10-18):** Feature schema 2 corrects missing-weather handling and the research CLI calibrates each fitted model. The archived benchmark figures and numbers below describe the earlier schema. Use the portable `python run_pipeline.py` runner and current [README](README.md); see [maintenance verification](reports/MAINTENANCE_2026-10-18.md). The full 20-seed evaluation has not been rerun for schema 2.
+> **Maintenance update (2026-10-18):** Feature schema 2 corrects missing-weather handling and the research CLI calibrates each fitted model. The archived benchmark figures and numbers below describe the earlier schema. Use the portable `python run_pipeline.py` runner and current [README](../../README.md); see [maintenance verification](MAINTENANCE_2026-10-18.md). The full 20-seed evaluation has not been rerun for schema 2.
 
 **Date**: 2026-10-17  
 **Project**: Weather-Aware Anomaly Detection in RadNet (EPA RadNet + NOAA NCEI ISD)  
@@ -12,7 +14,7 @@
 This repository contains the data processing pipeline, physical gamma spectrometry modeling, multi-seed evaluation suite, automated verification tests, and operational CLI diagnostic utility for weather-aware radiological anomaly detection on EPA RadNet near-real-time gamma monitors.
 
 - **Status**: Phases 0 through 6 are implemented, verified end-to-end, and covered by automated `pytest` tests (`tests/test_radnet_pipeline.py`).
-- **Documentation**: All architectural decisions, citations, and formulas are documented in [`DECISIONS.md`](DECISIONS.md), [`PHASE_REPORT.md`](PHASE_REPORT.md), [`reports/PHASE6_REPORT.md`](reports/PHASE6_REPORT.md), and [`reports/BUG_AUDIT.md`](reports/BUG_AUDIT.md). Open research questions are logged in [`QUESTIONS.md`](QUESTIONS.md).
+- **Documentation**: All architectural decisions, citations, and formulas are documented in [`DECISIONS.md`](../DECISIONS.md), [`PHASE_REPORT.md`](PHASE_REPORT.md), [`reports/PHASE6_REPORT.md`](PHASE6_REPORT.md), and [`reports/BUG_AUDIT.md`](BUG_AUDIT.md). Open research questions are logged in [`QUESTIONS.md`](QUESTIONS.md).
 
 ---
 

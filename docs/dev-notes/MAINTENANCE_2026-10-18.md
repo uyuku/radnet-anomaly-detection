@@ -9,11 +9,11 @@ This revision improves inference correctness and reproducibility. It does not cl
 - **Calendar integrity.** Feature generation rejects duplicate, unsorted, missing, and irregular timestamps rather than silently treating a row count as elapsed hours. Time zones normalize to UTC. Alarm episodes also break across gaps and detector outages.
 - **Diagnostic integrity.** Clean-background output no longer displays labels from the injected series. Probabilities map through the model's class identifiers. Unknown rainfall and undefined alarm rates serialize as JSON `null`; episode summaries include weather coverage. Invalid thresholds, split names, window bounds, and empty windows fail explicitly.
 
-The new reusable threshold implementation is [operating_threshold.py](../src/operating_threshold.py). Feature names and tier sizes are unchanged, but feature **values** change; previous fitted models and thresholds must be replaced by retraining and recalibration.
+The new reusable threshold implementation is [operating_threshold.py](../../src/operating_threshold.py). Feature names and tier sizes are unchanged, but feature **values** change; previous fitted models and thresholds must be replaced by retraining and recalibration.
 
 ## Reproducibility and usability
 
-- Added [run_pipeline.py](../run_pipeline.py), which uses the active Python interpreter and runs child scripts from the repository root on Windows, macOS, and Linux.
+- Added [run_pipeline.py](../../run_pipeline.py), which uses the active Python interpreter and runs child scripts from the repository root on Windows, macOS, and Linux.
 - The runner checks every required station file before executing a selected plan. Missing inputs, child failures, and missing expected outputs return failure; a skipped pipeline is no longer announced as complete.
 - Corrected three dependency problems: download the station index before parsing it; regenerate dry baselines before synthetic labeling; generate phase 4 figures after the phase 5 baseline ROC they read.
 - `--dry-run` prints the full plan without downloading or executing. `--check` checks prerequisite availability, accounting for preceding planned outputs. Neither checks dataset contents or freshness.
@@ -47,7 +47,7 @@ Two CLI smoke runs used the same Birmingham window, **2023-01-24 18:00 through 2
 | Rolling 3-sigma episodes | 1 | 1 |
 | ML alarm hours | 0 | 78 |
 
-The first injected alarm starts at 2023-01-25 12:00 UTC; the episode's peak fission score is 0.9998. The clean CLI invocation was run from outside the repository. Both files parse as strict JSON: [clean output](diagnostics_clean_2026-10-18.json), [injected output](diagnostics_injected_2026-10-18.json).
+The first injected alarm starts at 2023-01-25 12:00 UTC; the episode's peak fission score is 0.9998. The clean CLI invocation was run from outside the repository. Both files parse as strict JSON: [clean output](../../reports/diagnostics_clean_2026-10-18.json), [injected output](../../reports/diagnostics_injected_2026-10-18.json).
 
 The calibration output reports 96.30% **validation** detection across 81 events and 74,199 observed validation hours. This is not test performance. The small smoke-test window is not evidence of network-wide improvement.
 
