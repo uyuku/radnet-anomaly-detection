@@ -1,7 +1,7 @@
 """
 Phase 4 & 5 Rigorous Model Training and Evaluation Pipeline (Second Revision - Optimized).
 
-Implements all required corrections from Claude Review of Revised Phase 5:
+Implements all required corrections from the internal review of Revised Phase 5:
 1. Expanded Threshold Grid & Realized Detection Labels:
    - Evaluates thresholds up to tau=0.999 (finer grid above 0.98: 0.985, 0.990, 0.992, 0.995, 0.998, 0.999).
    - All tables strictly labeled by realized test detection, never by targets the model missed.

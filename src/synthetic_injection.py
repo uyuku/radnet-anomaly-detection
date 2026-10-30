@@ -2,7 +2,7 @@
 Phase 3 Script: Synthetic Plume Injection Generator & Labeled Dataset Builder.
 
 Implements the deterministic, physics-informed synthetic injection pipeline
-incorporating the recommendations from the Claude Review (Pass 3):
+incorporating the recommendations from the internal review (Pass 3):
 1. 100% filter synchronization: Every injection ends at a real detected physical filter replacement drop.
 2. Perfect scenario balance: Identical 20.0% scenario proportions in all training and test environments.
 3. Spectrum logging: Explicitly logs sampled 8-channel excess shares (R02-R09) in the catalog.

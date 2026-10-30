@@ -257,7 +257,7 @@ def plot_train_test_disjointness():
 def plot_hard_case_rain():
     """
     Figure 3: Detailed event timeline of INJ_0067 in Birmingham, AL during a severe convective storm.
-    Demonstrates the challenging regime requested by Claude Review (Item 2.3):
+    Demonstrates the challenging regime requested by the internal review (Item 2.3):
     A subtle (Band A: 479 CPM) pure Cs-137 plume rising concurrently during a 13.5 mm/h rainstorm.
     Features:
     - Pure Cs-137: Prominent 662 keV photopeak in R05, ZERO photopeak in R07.
