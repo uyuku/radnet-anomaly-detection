@@ -17,7 +17,6 @@ All results are strictly derived from real data in:
 Outputs:
 - data/processed/post_hoc_matched_test_table.csv
 - data/processed/post_hoc_matched_test_curves.csv
-- report/figures/post_hoc_matched_roc.png
 - reports/figures/post_hoc_matched_roc.png
 - docs/post_hoc_matched_analysis.md
 """
@@ -35,7 +34,6 @@ if str(REPO_ROOT) not in sys.path:
 
 from src.uncertainty import cluster_bootstrap_detection, block_bootstrap_fa_rate
 DATA_PROCESSED = REPO_ROOT / "data" / "processed"
-FIGURES_REPORT = REPO_ROOT / "report" / "figures"
 FIGURES_REPORTS = REPO_ROOT / "reports" / "figures"
 DOCS_DIR = REPO_ROOT / "docs"
 
@@ -339,12 +337,10 @@ def main():
     plt.legend(loc="lower right", frameon=True, fontsize=8.5)
     plt.tight_layout()
 
-    out_fig_report = FIGURES_REPORT / "post_hoc_matched_roc.png"
     out_fig_reports = FIGURES_REPORTS / "post_hoc_matched_roc.png"
-    plt.savefig(out_fig_report, dpi=300)
-    if out_fig_report.resolve() != out_fig_reports.resolve():
-        shutil.copy2(out_fig_report, out_fig_reports)
-    print(f"Saved ROC figure to {out_fig_report}")
+    out_fig_reports.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(out_fig_reports, dpi=300)
+    print(f"Saved ROC figure to {out_fig_reports}")
 
     # 5. Write documentation summary
     md_content = [

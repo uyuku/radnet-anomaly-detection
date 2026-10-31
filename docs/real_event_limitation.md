@@ -1,8 +1,8 @@
-# Real-Event Validation Limitations and Manuscript Disclosure
+# Real-Event Validation Limitations and Project Disclosure
 
 **Revision Step**: Phase 7, Step 6  
 **Date**: October 31, 2026  
-**Scope**: Methodological limitations of real-event evaluation on operational EPA RadNet fixed-station monitoring, physical detection boundaries, and manuscript limitation text.
+**Scope**: Methodological limitations of real-event evaluation on operational EPA RadNet fixed-station monitoring, physical detection boundaries, and limitation text.
 
 ---
 
@@ -44,9 +44,9 @@ The failure of fixed ambient gamma monitors to register trans-oceanic plumes lik
 
 ---
 
-## 3. Pre-Drafted Manuscript Limitation Paragraph (For Section 6)
+## 3. Limitation Disclosure Statement
 
-The following text is pre-drafted for inclusion in Section 6 (Limitations) of the revised MDPI manuscript:
+The following text summarizes the limitation statement for the project:
 
 > **Validation Scope and Absence of Real-Release Ground Truth**:
-> A primary limitation of this study is that all detection sensitivity metrics ($P_{det}$, detection delay, and ROC curves) are evaluated exclusively on synthetic plume injections superimposed on empirical background series. We systematically evaluated the frozen detectors against historical RadNet records from the March–April 2011 Fukushima Daiichi trans-Pacific transport event across Pacific gateway stations (Honolulu, HI; San Diego, CA; Anchorage, AK). In accordance with atmospheric dispersion physics, peak trans-Pacific atmospheric concentrations ($<0.1\text{ Bq/m}^3$ $^{131}\text{I}$) delivered an ambient gamma immersion excess of $\sim 10^{-4}\text{ CPM}$, which is four orders of magnitude below the Poisson counting noise of a single-station hourly 2"$\times$2" $\text{NaI(Tl)}$ detector. Consequently, neither the machine learning models nor the non-ML baselines registered genuine radiological alarms during the 2011 event. While high-volume particulate filter sampling and laboratory HPGe spectrometry detected trace Fukushima fallout, near-real-time ambient fixed monitors are physically incapable of detecting trans-oceanic releases of this dilution. Therefore, our reported detection rates are conditional on synthetic injection templates, and performance on genuine, localized anthropogenic releases remains untested.
+> A primary limitation of this study is that all detection sensitivity metrics ($P_{det}$, detection delay, and ROC curves) are evaluated exclusively on synthetic plume injections superimposed on empirical background series. We systematically evaluated the frozen detectors against historical RadNet records from the March–April 2011 Fukushima Daiichi trans-Pacific transport event across Pacific gateway stations (Honolulu, HI; San Diego, CA; Anchorage, AK). In accordance with atmospheric dispersion physics, peak trans-Pacific atmospheric concentrations ($<0.1\text{ Bq/m}^3$ $^{131}\text{I}$) delivered an ambient gamma immersion excess of $\approx 0.15\text{ CPM}$, which is an order of magnitude below single-hour Poisson counting noise ($\sigma_{\text{Poisson}} \approx 4.5\text{--}5.7\text{ CPM}$) of a single-station hourly 2"$\times$2" $\text{NaI(Tl)}$ detector. Consequently, neither the machine learning models nor the non-ML baselines registered genuine radiological alarms during the 2011 event. While high-volume particulate filter sampling and laboratory HPGe spectrometry detected trace Fukushima fallout, near-real-time ambient fixed monitors are physically incapable of detecting trans-oceanic releases of this dilution. Therefore, our reported detection rates are conditional on synthetic injection templates, and performance on genuine, localized anthropogenic releases remains untested.

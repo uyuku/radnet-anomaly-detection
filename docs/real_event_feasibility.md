@@ -83,7 +83,7 @@ Could any near-real-time fixed gamma monitor have detected the Fukushima plume i
 
 4. **Conclusion on Detectability**:
    The physical reality is that **no ambient single-station near-real-time gross gamma detector in North America could have registered the 2011 Fukushima plume immersion above natural environmental noise**. While single-hour Poisson counting noise is $\sigma_{\text{Poisson}} = \sqrt{\text{rate}/60} \approx 4.5\text{--}5.7\text{ CPM}$, natural environmental radon baseline variations ($\sigma_{\text{env}} \approx 130\text{ CPM}$ at Honolulu) swamp the $0.15\text{ CPM}$ immersion excess by three orders of magnitude. Active filter accumulation produces $\approx 17\text{ CPM}$ in Channel 3 after 24h, but automatic periodic filter tape advances prevent sustained multi-day integration.
-   Consequently, if an anomaly detector flags an alarm during March–April 2011, it is responding to either (a) natural radon washout during coincident precipitation, or (b) an operational/background artifact, **not** to the radiological excess of the Fukushima plume. Demonstrating this empirically in our frozen detector test provides vital real-world grounding for the manuscript's limitation section.
+   Consequently, if an anomaly detector flags an alarm during March–April 2011, it is responding to either (a) natural radon washout during coincident precipitation, or (b) an operational/background artifact, **not** to the radiological excess of the Fukushima plume. Demonstrating this empirically in our frozen detector test provides vital real-world grounding for the project's limitation analysis.
 
 ---
 

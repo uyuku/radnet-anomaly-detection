@@ -35,22 +35,11 @@ def test_data_manifest_integrity():
     assert "data/processed/synthetic_injection_catalog.csv" in file_names
     assert "data/processed/extended_loso_11station_summary.csv" in file_names
     assert "data/processed/real_event_fukushima_station_summary.csv" in file_names
-    assert "data/processed/hand_labeled_test_alarms_summary.csv" in file_names
+    assert "data/processed/rule_categorized_test_alarms_summary.csv" in file_names
 
     # Check that sha256 hashes are valid 64-char hex strings
     for r in rows:
         assert len(r["sha256"]) == 64, f"Invalid SHA-256 in manifest row {r['file_name']}"
-
-
-def test_zenodo_archive_completeness():
-    """Verifies that zenodo_archive/ directory contains required archive files."""
-    zenodo_dir = Path("zenodo_archive")
-    assert zenodo_dir.exists(), "zenodo_archive directory missing"
-    assert (zenodo_dir / "README.md").exists()
-    assert (zenodo_dir / "data/DATA_MANIFEST.csv").exists()
-    assert (zenodo_dir / "data/processed/eval_benchmark_uncertainty_summary.csv").exists()
-    assert (zenodo_dir / "data/processed/synthetic_injection_catalog.csv").exists()
-    assert (zenodo_dir / "docs/hand_labeled_test_alarms.csv").exists()
 
 
 def test_reproducibility_documentation_and_license_deliverables():
@@ -63,7 +52,6 @@ def test_reproducibility_documentation_and_license_deliverables():
         Path("environment.yml"),
         Path(".github/workflows/ci.yml"),
         Path("docs/data_licenses_and_terms.md"),
-        Path("docs/zenodo_upload_instructions.md"),
     ]
     for p in required:
         assert p.exists(), f"Missing required file: {p}"

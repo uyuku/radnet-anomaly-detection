@@ -1,7 +1,7 @@
 """
 Recomputes all quantitative claims from the committed datasets and processed outputs,
-writes data/processed/recomputed_claims_summary.json, and verifies that README.md,
-report/interim_report.tex, and docs/claims_audit.csv match the recomputed evidence.
+writes data/processed/recomputed_claims_summary.json, and verifies that README.md
+and docs/claims_audit.csv match the recomputed evidence.
 
 Exits 0 if all checks pass; exits 1 if any discrepancy or unresolved unsupported claim is found.
 """
@@ -223,17 +223,15 @@ def recompute_benchmark_metrics(data_dir: Path) -> dict:
 
 def verify_documents_and_audit(
     readme_path: Path,
-    report_path: Path,
     audit_csv_path: Path,
     summary: dict,
 ) -> list[str]:
-    """Verifies that README.md, report/interim_report.tex, and docs/claims_audit.csv satisfy all checks."""
+    """Verifies that README.md and docs/claims_audit.csv satisfy all checks."""
     errors: list[str] = []
 
     readme_text = readme_path.read_text(encoding="utf-8")
-    report_text = report_path.read_text(encoding="utf-8")
 
-    # 1. Check required numbers in README.md and report/interim_report.tex
+    # 1. Check required numbers in README.md
     required_readme_Substrings = [
         "334,567",
         "324,550",
@@ -262,49 +260,6 @@ def verify_documents_and_audit(
         if sub not in readme_text:
             errors.append(f"README.md missing expected verified value: {sub!r}")
 
-    if "manuscript_mdpi.tex" in report_path.name:
-        required_report_substrings = [
-            r"\BenchmarkPlumeInjections{}",
-            r"\TierFourDet{}",
-            r"\TierFourFA{}",
-            r"\BaselineRollingThreeSigmaDet{}",
-            r"\BaselineRollingThreeSigmaFA{}",
-            r"\BaselineNonMLRadonDet{}",
-            r"\BaselineNonMLRadonFA{}",
-            r"\BenchmarkPlumesTrain{}",
-            r"\BenchmarkPlumesTest{}",
-            "106,628",
-            "12.16",
-            r"+6.9\%",
-            r"+41.4\%",
-            r"+196.7\%",
-        ]
-    else:
-        required_report_substrings = [
-            "324,550",
-            "15,602",
-            "82.62",
-            "52.86",
-            r"57.00\%",
-            "13.5 h",
-            "23.51",
-            "8.0 h",
-            r"102.83 \pm 9.30",
-            r"89.98 \pm 0.94\%",
-            r"10.39 \pm 2.62",
-            r"79.62 \pm 1.47\%",
-            r"27.97 \pm 28.27",
-            r"3.89 \pm 1.25",
-            r"2.71 \pm 1.39",
-            r"2.63 \pm 1.49",
-            r"57.10 \pm 23.67",
-            r"89.62 \pm 2.93\%",
-            "minimum child samples of 50",
-        ]
-    for sub in required_report_substrings:
-        if sub not in report_text:
-            errors.append(f"{report_path.name} missing expected verified value: {sub!r}")
-
     # 2. Check prohibited stale/contradicted claims
     prohibited_readme = [
         "169.36",
@@ -320,24 +275,6 @@ def verify_documents_and_audit(
     for bad in prohibited_readme:
         if bad in readme_text:
             errors.append(f"README.md still contains contradicted value/string: {bad!r}")
-
-    prohibited_report = [
-        "169.36",
-        "92.22",
-        "38.64",
-        "87.92",
-        "60.75",
-        "90.30",
-        "56.50\\%",
-        "bi-weekly cycle",
-        "Monte Carlo transfer factors from Knoll",
-        "calibrated to atmospheric dispersion",
-        "minimum child samples of 20",
-        "saturation vapor pressure deficit",
-    ]
-    for bad in prohibited_report:
-        if bad in report_text:
-            errors.append(f"{report_path.name} still contains contradicted/unsupported string: {bad!r}")
 
     # 3. Check claims_audit.csv structure and resolution
     if not audit_csv_path.exists():
@@ -373,7 +310,6 @@ def main() -> int:
     root = Path(__file__).resolve().parent
     data_dir = root / "data" / "processed"
     readme_path = root / "README.md"
-    report_path = root / "report" / "manuscript_mdpi.tex" if (root / "report" / "manuscript_mdpi.tex").exists() else root / "report" / "interim_report.tex"
     audit_csv_path = root / "docs" / "claims_audit.csv"
 
     summary = {
@@ -388,7 +324,7 @@ def main() -> int:
     out_json.write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(f"Wrote recomputed claims summary to {out_json}")
 
-    errors = verify_documents_and_audit(readme_path, report_path, audit_csv_path, summary)
+    errors = verify_documents_and_audit(readme_path, audit_csv_path, summary)
     if errors:
         print("\nCLAIM VERIFICATION FAILED:")
         for err in errors:

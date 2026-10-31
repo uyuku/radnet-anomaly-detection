@@ -49,4 +49,3 @@
 
 - **Software Code**: Licensed under the MIT License (`LICENSE`).
 - **Curated Datasets and Synthetic Catalogs**: Released under Creative Commons Attribution 4.0 International (CC-BY-4.0).
-- **Zenodo Archive DOI**: `[DOI PLACEHOLDER UPON ZENODO DEPOSIT: 10.5281/zenodo.XXXXXXX]`

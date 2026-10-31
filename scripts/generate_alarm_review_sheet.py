@@ -26,7 +26,7 @@ FIGURES_DIR = REPORTS_DIR / "figures" / "alarm_review"
 
 def main():
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
-    alarms_csv = DOCS_DIR / "hand_labeled_test_alarms.csv"
+    alarms_csv = DOCS_DIR / "rule_categorized_test_alarms.csv"
     assert alarms_csv.exists(), f"Missing {alarms_csv}"
 
     df_alarms = pd.read_csv(alarms_csv)

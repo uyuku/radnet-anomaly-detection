@@ -11,8 +11,8 @@ test period across pilot stations (and extended stations) and classifies each in
 - unexplained (no identifiable meteorological, operational, or hardware anomaly)
 
 Computes exact Wilson score 95% confidence intervals and generates:
-- docs/hand_labeled_test_alarms.csv
-- data/processed/hand_labeled_test_alarms_summary.csv
+- docs/rule_categorized_test_alarms.csv
+- data/processed/rule_categorized_test_alarms_summary.csv
 - reports/figures/alarm_audit_sample_panel.png
 """
 
@@ -295,8 +295,8 @@ def main():
     sample_df["adjudicated_category"] = adjudicated_categories
     sample_df["adjudication_rationale"] = adjudication_rationales
 
-    # Save docs/hand_labeled_test_alarms.csv
-    out_csv = Path("docs/hand_labeled_test_alarms.csv")
+    # Save docs/rule_categorized_test_alarms.csv
+    out_csv = Path("docs/rule_categorized_test_alarms.csv")
     sample_df.to_csv(out_csv, index=False)
     print(f"\nSaved 100 adjudicated alarms to {out_csv}")
 
@@ -327,7 +327,7 @@ def main():
         })
 
     summary_df = pd.DataFrame(summary_rows)
-    summary_csv = Path("data/processed/hand_labeled_test_alarms_summary.csv")
+    summary_csv = Path("data/processed/rule_categorized_test_alarms_summary.csv")
     summary_df.to_csv(summary_csv, index=False)
     print(f"Saved summary proportions with Wilson CIs to {summary_csv}")
     print("\nAdjudication Summary:")

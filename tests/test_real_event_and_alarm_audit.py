@@ -13,10 +13,10 @@ def test_real_event_and_alarm_audit_deliverables_exist():
         Path("docs/real_event_protocol.md"),
         Path("docs/real_event_limitation.md"),
         Path("docs/published_radnet_anomalies_2017_2025.md"),
-        Path("docs/hand_labeled_test_alarms.csv"),
+        Path("docs/rule_categorized_test_alarms.csv"),
         Path("data/processed/real_event_fukushima_evaluation.csv"),
         Path("data/processed/real_event_fukushima_station_summary.csv"),
-        Path("data/processed/hand_labeled_test_alarms_summary.csv"),
+        Path("data/processed/rule_categorized_test_alarms_summary.csv"),
         Path("reports/figures/real_event_fukushima_timeline.png"),
         Path("reports/figures/alarm_audit_sample_panel.png"),
     ]
@@ -25,8 +25,8 @@ def test_real_event_and_alarm_audit_deliverables_exist():
         assert p.stat().st_size > 0, f"File {p} is empty"
 
 
-def test_hand_labeled_test_alarms_schema_and_count():
-    df = pd.read_csv("docs/hand_labeled_test_alarms.csv")
+def test_rule_categorized_test_alarms_schema_and_count():
+    df = pd.read_csv("docs/rule_categorized_test_alarms.csv")
     assert len(df) == 100, f"Expected exactly 100 audited alarms, got {len(df)}"
 
     required_cols = [
@@ -45,7 +45,7 @@ def test_hand_labeled_test_alarms_schema_and_count():
         "adjudication_rationale",
     ]
     for col in required_cols:
-        assert col in df.columns, f"Missing column {col} in docs/hand_labeled_test_alarms.csv"
+        assert col in df.columns, f"Missing column {col} in docs/rule_categorized_test_alarms.csv"
 
     valid_categories = {
         "rain_coincident",
@@ -59,7 +59,7 @@ def test_hand_labeled_test_alarms_schema_and_count():
 
 
 def test_alarm_summary_proportions_and_confidence_intervals():
-    df = pd.read_csv("data/processed/hand_labeled_test_alarms_summary.csv")
+    df = pd.read_csv("data/processed/rule_categorized_test_alarms_summary.csv")
     assert df["alarm_count"].sum() == 100
     assert abs(df["percentage"].sum() - 100.0) < 1e-3
 

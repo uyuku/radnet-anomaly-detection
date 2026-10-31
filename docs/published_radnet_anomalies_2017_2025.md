@@ -48,7 +48,7 @@ However, our systematic search across EPA RadNet technical bulletins, NRC Event 
 
 ---
 
-## 3. Methodological Implications for Manuscript
+## 3. Methodological Implications
 
 1. **Absence of Confirmed Continental Fission Plumes (2017–2025)**: The absence of real civilian fission releases during the modern RadNet 8-channel period explains why all contemporary research in this domain (e.g., Breitkreutz et al., 2023; Frankemölle et al., 2025) must rely on synthetic injection benchmarks.
 2. **Environmental Robustness Demonstrated**: The primary challenge in real operational RadNet data is distinguishing natural radon washout spikes and hardware calibration drift from genuine isotopic excess. The ability of physics-motivated weather fusion to suppress convective washouts without alarm inflation constitutes the primary operational benefit of the proposed architecture.

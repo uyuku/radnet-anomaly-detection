@@ -61,7 +61,7 @@ Evaluated across **334,567** valid RadNet hours (**324,550** synchronous radiati
 | **Tier 4: Physics-Motivated Nuclear GBDT** (59 features) | **7.19 ± 1.17** | **2.6%** | **93.60 ± 1.03%** | **5.0 hrs** |
 | **Tier 3: Weather-Fused MLP** (Neural Net) | 45.79 ± 12.30 | 3.6% | 87.50 ± 2.10% | 4.0 hrs |
 
-*Source: [benchmark_realism_comparison.csv](data/processed/benchmark_realism_comparison.csv) and [table1_benchmark_summary.tex](report/tables/table1_benchmark_summary.tex), 20 random seeds (SEEDS = 42 to 61). "95% target" describes validation threshold selection; realized test detection reflects out-of-sample performance on Family B templates.*
+*Source: [benchmark_realism_comparison.csv](data/processed/benchmark_realism_comparison.csv), 20 random seeds (SEEDS = 42 to 61). "95% target" describes validation threshold selection; realized test detection reflects out-of-sample performance on Family B templates.*
 
 ### Side-by-Side Comparison: Legacy (v1) vs. Realistic (v2) Benchmark (`benchmark_realism_comparison.csv`)
 
@@ -253,7 +253,7 @@ In accordance with pre-registered protocol (`docs/real_event_protocol.md`), froz
 - **Empirical Findings**: Neither the ML models nor the comparison baselines registered genuine radiological alarms on the trans-oceanic plume. Gross-count rolling $3\sigma$ baselines triggered elevated false alarms during routine rain washouts (up to $202.5\text{ FA/yr}$ in Dallas and $61.0\text{ FA/yr}$ in Anchorage), whereas Tier 3 weather fusion and Tier 4 nuclear models suppressed these rain washouts. Detections in 2011 were achieved exclusively by high-volume particulate filter accumulation ($>10,000\text{ m}^3$) analyzed via 24-hour laboratory HPGe spectrometry (`docs/real_event_feasibility.md`, `reports/figures/real_event_fukushima_timeline.png`).
 
 ### 2. Rule-Based Categorization of 100 Clean-Background Test Alarms
-We conducted a rule-based categorization audit on a stratified random sample of $N=100$ clean-background test alarms from the 2023–2025 evaluation split (`docs/rule_categorized_test_alarms.csv`, archived as `docs/hand_labeled_test_alarms.csv`) across all five pilot stations, classified algorithmically using deterministic physical, meteorological, and operational decision rules (author review sheet provided in `docs/alarm_review_sheet.md` and `docs/alarm_review_sheet.csv`):
+We conducted a rule-based categorization audit on a stratified random sample of $N=100$ clean-background test alarms from the 2023–2025 evaluation split (`docs/rule_categorized_test_alarms.csv`) across all five pilot stations, classified algorithmically using deterministic physical, meteorological, and operational decision rules (author review sheet provided in `docs/alarm_review_sheet.md` and `docs/alarm_review_sheet.csv`):
 - **Active Rain-Coincident Washout**: 12.0% (95% CI: [7.0%, 19.8%]) — verified active precipitation ($P \ge 0.1\text{ mm/h}$) scavenging radon progeny.
 - **Post-Rain Washout Persistence**: 2.0% (95% CI: [0.6%, 7.0%]) — dry at alarm ($P=0$), but within 6h of rain cessation with elevated $^{214}\text{Bi}$ ($R_{05}$) and $^{214}\text{Pb}$ ($R_{03}$).
 - **Filter Change Discontinuity**: 2.0% (95% CI: [0.6%, 7.0%]) — abrupt baseline step coincident with bi-weekly filter replacement.

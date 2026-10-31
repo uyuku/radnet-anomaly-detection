@@ -19,7 +19,6 @@ from recompute_claims import (
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "data" / "processed"
 README_PATH = ROOT_DIR / "README.md"
-REPORT_PATH = ROOT_DIR / "report" / "manuscript_mdpi.tex" if (ROOT_DIR / "report" / "manuscript_mdpi.tex").exists() else ROOT_DIR / "report" / "interim_report.tex"
 AUDIT_CSV_PATH = ROOT_DIR / "docs" / "claims_audit.csv"
 
 
@@ -91,7 +90,7 @@ def test_recompute_filter_cycles_and_baseline_summaries(tmp_path: Path) -> None:
 
 
 def test_verify_documents_and_audit_passes() -> None:
-    errors = verify_documents_and_audit(README_PATH, REPORT_PATH, AUDIT_CSV_PATH, {})
+    errors = verify_documents_and_audit(README_PATH, AUDIT_CSV_PATH, {})
     assert errors == [], f"Document verification failed with errors: {errors}"
 
     audit_df = pd.read_csv(AUDIT_CSV_PATH)

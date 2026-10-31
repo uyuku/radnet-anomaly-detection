@@ -34,7 +34,6 @@ repo.bundle
 *.synctex.gz
 missfont.log
 *.pdf
-report/*.pdf
 
 # Review and draft working docs
 docs/phase*.md
