@@ -72,17 +72,17 @@ Could any near-real-time fixed gamma monitor have detected the Fukushima plume i
 
 2. **Dose Conversion (Federal Guidance Report No. 12 / ICRP Publication 74)**:
    For semi-infinite cloud immersion:
-   - $^{131}\text{I}$ immersion dose rate coefficient: $h_{imm} = 1.82 \times 10^{-14}\text{ Sv}\cdot\text{m}^3/(\text{Bq}\cdot\text{s}) = 6.55 \times 10^{-11}\text{ mSv}\cdot\text{m}^3/(\text{Bq}\cdot\text{h})$.
-   - At $C = 0.096\text{ Bq/m}^3$, the hourly dose rate excess is:
-     $$\Delta \dot{H}^*(10) = 0.096 \times 6.55 \times 10^{-8}\text{ \mu Sv/h} = 6.29 \times 10^{-9}\text{ mSv/h} \approx 6.3 \times 10^{-6}\text{ nSv/h}$$
-   - Converting to detector count rate via the calibrated NaI coupling coefficient ($k \approx 30–35\text{ CPM per nSv/h}$):
-     $$\Delta \text{CPM}_{cloud} \approx 32 \times 6.3 \times 10^{-6} \approx 0.0002\text{ CPM}$$
+   - $^{131}\text{I}$ immersion dose rate coefficient: $h_{sub} = 1.82 \times 10^{-14}\text{ Sv}\cdot\text{m}^3/(\text{Bq}\cdot\text{s}) = 6.552 \times 10^{-2}\text{ nSv/h per Bq/m}^3$.
+   - At measured peak particulate $C = 0.031\text{ Bq/m}^3$ (and total volatile $C = 0.096\text{ Bq/m}^3$), the ambient submersion dose rate excess is:
+     $$\dot{D}_{sub} = 0.031 \times 0.06552 = 2.03 \times 10^{-3}\text{ nSv/h} = 2.03\text{ pSv/h} \quad (\text{total volatile: } 6.29\text{ pSv/h})$$
+   - Converting to detector count rate via the empirical station calibration slope ($0.0134\text{ nSv/h per CPM}$):
+     $$\Delta \text{CPM}_{cloud} = \frac{0.00203\text{ nSv/h}}{0.0134\text{ nSv/h per CPM}} \approx 0.15\text{ CPM} \quad (\text{total volatile: } \approx 0.47\text{ CPM})$$
 
 3. **Ground Deposition via Precipitation**:
    Precipitation scavenging deposited trace $^{131}\text{I}$ and $^{134/137}\text{Cs}$ onto the ground surface in precipitation events during late March and April 2011. Peak rainwater concentrations in the Pacific Northwest reached $\approx 10–50\text{ Bq/L}$. However, distributed across ground area, the surface terrestrial excess remained $< 0.1\text{ CPM}$, completely swamped by the $+200\text{ to }+800\text{ CPM}$ natural radon daughter ($^{214}\text{Pb}$, $^{214}\text{Bi}$) washout that accompanies any rainfall.
 
 4. **Conclusion on Detectability**:
-   The physical reality is that **no ambient single-station near-real-time gross gamma detector in North America could have registered the 2011 Fukushima plume above statistical noise**. A single-hour counting Poisson standard deviation on a $1,200\text{ CPM}$ baseline is $\sigma = \sqrt{1200 / 60} \approx 4.5\text{ CPM}$. A $0.0005\text{ CPM}$ excess is $\approx 10^{-4}\sigma$.
+   The physical reality is that **no ambient single-station near-real-time gross gamma detector in North America could have registered the 2011 Fukushima plume immersion above natural environmental noise**. While single-hour Poisson counting noise is $\sigma_{\text{Poisson}} = \sqrt{\text{rate}/60} \approx 4.5\text{--}5.7\text{ CPM}$, natural environmental radon baseline variations ($\sigma_{\text{env}} \approx 130\text{ CPM}$ at Honolulu) swamp the $0.15\text{ CPM}$ immersion excess by three orders of magnitude. Active filter accumulation produces $\approx 17\text{ CPM}$ in Channel 3 after 24h, but automatic periodic filter tape advances prevent sustained multi-day integration.
    Consequently, if an anomaly detector flags an alarm during March–April 2011, it is responding to either (a) natural radon washout during coincident precipitation, or (b) an operational/background artifact, **not** to the radiological excess of the Fukushima plume. Demonstrating this empirically in our frozen detector test provides vital real-world grounding for the manuscript's limitation section.
 
 ---

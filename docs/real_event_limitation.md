@@ -36,8 +36,8 @@ The failure of fixed ambient gamma monitors to register trans-oceanic plumes lik
 
 2. **Trans-Oceanic Plume Immersion Dose**:
    During the Fukushima event, peak measured US atmospheric concentrations were $31\text{ mBq/m}^3$ particulate $^{131}\text{I}$ and $96\text{ mBq/m}^3$ total volatile $^{131}\text{I}$ (Thakur et al., 2012). Applying standard semi-infinite cloud immersion dose conversion factors (Federal Guidance Report No. 12 / ICRP Publication 74):
-   $$\Delta \dot{H}^*(10) \approx 6.3 \times 10^{-6}\text{ nSv/h} \implies \Delta \text{CPM} \approx 0.0002\text{ CPM}$$
-   This true physical excess is **four orders of magnitude smaller than the single-hour Poisson standard deviation** ($\sim 10^{-4}\sigma$) and five orders of magnitude below the single-station Currie detection limit.
+   $$\dot{D}_{sub} \approx 2.03 \times 10^{-3}\text{ nSv/h} = 2.03\text{ pSv/h} \implies \Delta \text{CPM} \approx 0.15\text{ CPM}$$
+   (via empirical station calibration slope $0.0134\text{ nSv/h per CPM}$). This physical excess is an order of magnitude smaller than single-hour Poisson counting noise ($\sigma_{\text{Poisson}} \approx 4.5\text{--}5.7\text{ CPM}$) and three orders of magnitude below natural environmental background swings ($\sigma_{\text{env}} \approx 130\text{ CPM}$ at Honolulu).
 
 3. **Role of High-Volume Air Particulate Filters**:
    EPA RadNet confirmed Fukushima fallout not via near-real-time scintillation detectors, but by pumping $>10,000\text{ m}^3$ of air through glass-fiber filters over multiple days and counting the accumulated particulate mass for 24 hours on laboratory High-Purity Germanium (HPGe) spectrometers at NAREL (Montgomery, AL). Ambient near-real-time monitors operate in a fundamentally different detection regime: detecting immediate, localized, un-diluted plumes from domestic accidents, industrial sources, or radiological dispersal devices.
