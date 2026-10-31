@@ -1,0 +1,101 @@
+detector_name,station_id,year,split_role,observed_hours,exposure_station_years,false_alarm_episodes,fa_per_yr,fa_exact_poisson_ci_low,fa_exact_poisson_ci_high,n_plumes,n_detected,detection_pct
+B4c: Radon Projection + Peak Channel Z (Non-ML),al_birmingham,2021,validation,7660,0.8738,0,0.0,0.0,4.22,6,6,100.0
+B4c: Radon Projection + Peak Channel Z (Non-ML),dc_washington,2021,validation,7353,0.8388,0,0.0,0.0,4.4,12,11,91.67
+B4c: Radon Projection + Peak Channel Z (Non-ML),ca_san_diego,2021,validation,8484,0.9678,0,0.0,0.0,3.81,7,7,100.0
+B4c: Radon Projection + Peak Channel Z (Non-ML),tx_dallas,2021,validation,7948,0.9067,0,0.0,0.0,4.07,5,5,100.0
+B4c: Radon Projection + Peak Channel Z (Non-ML),fl_tampa,2021,validation,8078,0.9215,0,0.0,0.0,4.0,7,7,100.0
+B4c: Radon Projection + Peak Channel Z (Non-ML),al_birmingham,2022,validation,7849,0.8954,0,0.0,0.0,4.12,11,10,90.91
+B4c: Radon Projection + Peak Channel Z (Non-ML),dc_washington,2022,validation,6398,0.7299,3,4.11,0.85,12.01,7,7,100.0
+B4c: Radon Projection + Peak Channel Z (Non-ML),ca_san_diego,2022,validation,7250,0.8271,2,2.42,0.29,8.74,7,6,85.71
+B4c: Radon Projection + Peak Channel Z (Non-ML),tx_dallas,2022,validation,7233,0.8251,0,0.0,0.0,4.47,11,10,90.91
+B4c: Radon Projection + Peak Channel Z (Non-ML),fl_tampa,2022,validation,5946,0.6783,3,4.42,0.91,12.93,8,8,100.0
+B4c: Radon Projection + Peak Channel Z (Non-ML),al_birmingham,2023,test,8252,0.9414,0,0.0,0.0,3.92,14,11,78.57
+B4c: Radon Projection + Peak Channel Z (Non-ML),dc_washington,2023,test,6542,0.7463,0,0.0,0.0,4.94,16,13,81.25
+B4c: Radon Projection + Peak Channel Z (Non-ML),ca_san_diego,2023,test,8129,0.9273,3,3.24,0.67,9.45,15,14,93.33
+B4c: Radon Projection + Peak Channel Z (Non-ML),tx_dallas,2023,test,7170,0.8179,0,0.0,0.0,4.51,20,18,90.0
+B4c: Radon Projection + Peak Channel Z (Non-ML),fl_tampa,2023,test,8375,0.9554,1,1.05,0.03,5.83,17,15,88.24
+B4c: Radon Projection + Peak Channel Z (Non-ML),al_birmingham,2024,test,8358,0.9535,0,0.0,0.0,3.87,14,12,85.71
+B4c: Radon Projection + Peak Channel Z (Non-ML),dc_washington,2024,test,8322,0.9493,0,0.0,0.0,3.89,20,18,90.0
+B4c: Radon Projection + Peak Channel Z (Non-ML),ca_san_diego,2024,test,8368,0.9546,2,2.1,0.25,7.57,13,9,69.23
+B4c: Radon Projection + Peak Channel Z (Non-ML),tx_dallas,2024,test,7140,0.8145,0,0.0,0.0,4.53,18,12,66.67
+B4c: Radon Projection + Peak Channel Z (Non-ML),fl_tampa,2024,test,6962,0.7942,2,2.52,0.3,9.1,11,7,63.64
+B4c: Radon Projection + Peak Channel Z (Non-ML),al_birmingham,2025,test,7803,0.8901,0,0.0,0.0,4.14,12,12,100.0
+B4c: Radon Projection + Peak Channel Z (Non-ML),dc_washington,2025,test,7402,0.8444,1,1.18,0.03,6.6,4,4,100.0
+B4c: Radon Projection + Peak Channel Z (Non-ML),ca_san_diego,2025,test,8467,0.9659,19,19.67,11.84,30.72,12,7,58.33
+B4c: Radon Projection + Peak Channel Z (Non-ML),tx_dallas,2025,test,1168,0.1332,0,0.0,0.0,27.69,2,2,100.0
+B4c: Radon Projection + Peak Channel Z (Non-ML),fl_tampa,2025,test,4170,0.4757,0,0.0,0.0,7.75,12,6,50.0
+Tier 2 (Spectral),al_birmingham,2021,validation,7660,0.8738,0,0.0,0.0,4.22,6,6,100.0
+Tier 2 (Spectral),dc_washington,2021,validation,7353,0.8388,0,0.0,0.0,4.4,12,12,100.0
+Tier 2 (Spectral),ca_san_diego,2021,validation,8484,0.9678,0,0.0,0.0,3.81,7,6,85.71
+Tier 2 (Spectral),tx_dallas,2021,validation,7948,0.9067,0,0.0,0.0,4.07,5,5,100.0
+Tier 2 (Spectral),fl_tampa,2021,validation,8078,0.9215,0,0.0,0.0,4.0,7,7,100.0
+Tier 2 (Spectral),al_birmingham,2022,validation,7849,0.8954,0,0.0,0.0,4.12,11,10,90.91
+Tier 2 (Spectral),dc_washington,2022,validation,6398,0.7299,0,0.0,0.0,5.05,7,7,100.0
+Tier 2 (Spectral),ca_san_diego,2022,validation,7250,0.8271,0,0.0,0.0,4.46,7,5,71.43
+Tier 2 (Spectral),tx_dallas,2022,validation,7233,0.8251,0,0.0,0.0,4.47,11,11,100.0
+Tier 2 (Spectral),fl_tampa,2022,validation,5946,0.6783,0,0.0,0.0,5.44,8,8,100.0
+Tier 2 (Spectral),al_birmingham,2023,test,8252,0.9414,0,0.0,0.0,3.92,14,11,78.57
+Tier 2 (Spectral),dc_washington,2023,test,6542,0.7463,0,0.0,0.0,4.94,16,15,93.75
+Tier 2 (Spectral),ca_san_diego,2023,test,8129,0.9273,0,0.0,0.0,3.98,15,12,80.0
+Tier 2 (Spectral),tx_dallas,2023,test,7170,0.8179,0,0.0,0.0,4.51,20,20,100.0
+Tier 2 (Spectral),fl_tampa,2023,test,8375,0.9554,4,4.19,1.14,10.72,17,17,100.0
+Tier 2 (Spectral),al_birmingham,2024,test,8358,0.9535,0,0.0,0.0,3.87,14,13,92.86
+Tier 2 (Spectral),dc_washington,2024,test,8322,0.9493,0,0.0,0.0,3.89,20,19,95.0
+Tier 2 (Spectral),ca_san_diego,2024,test,8368,0.9546,0,0.0,0.0,3.86,13,8,61.54
+Tier 2 (Spectral),tx_dallas,2024,test,7140,0.8145,0,0.0,0.0,4.53,18,14,77.78
+Tier 2 (Spectral),fl_tampa,2024,test,6962,0.7942,5,6.3,2.04,14.69,11,11,100.0
+Tier 2 (Spectral),al_birmingham,2025,test,7803,0.8901,0,0.0,0.0,4.14,12,11,91.67
+Tier 2 (Spectral),dc_washington,2025,test,7402,0.8444,4,4.74,1.29,12.13,4,4,100.0
+Tier 2 (Spectral),ca_san_diego,2025,test,8467,0.9659,2,2.07,0.25,7.48,12,4,33.33
+Tier 2 (Spectral),tx_dallas,2025,test,1168,0.1332,0,0.0,0.0,27.69,2,2,100.0
+Tier 2 (Spectral),fl_tampa,2025,test,4170,0.4757,0,0.0,0.0,7.75,12,12,100.0
+Tier 3 (Weather Fusion),al_birmingham,2021,validation,7660,0.8738,0,0.0,0.0,4.22,6,6,100.0
+Tier 3 (Weather Fusion),dc_washington,2021,validation,7353,0.8388,0,0.0,0.0,4.4,12,12,100.0
+Tier 3 (Weather Fusion),ca_san_diego,2021,validation,8484,0.9678,0,0.0,0.0,3.81,7,7,100.0
+Tier 3 (Weather Fusion),tx_dallas,2021,validation,7948,0.9067,0,0.0,0.0,4.07,5,5,100.0
+Tier 3 (Weather Fusion),fl_tampa,2021,validation,8078,0.9215,0,0.0,0.0,4.0,7,7,100.0
+Tier 3 (Weather Fusion),al_birmingham,2022,validation,7849,0.8954,0,0.0,0.0,4.12,11,10,90.91
+Tier 3 (Weather Fusion),dc_washington,2022,validation,6398,0.7299,0,0.0,0.0,5.05,7,7,100.0
+Tier 3 (Weather Fusion),ca_san_diego,2022,validation,7250,0.8271,0,0.0,0.0,4.46,7,5,71.43
+Tier 3 (Weather Fusion),tx_dallas,2022,validation,7233,0.8251,0,0.0,0.0,4.47,11,11,100.0
+Tier 3 (Weather Fusion),fl_tampa,2022,validation,5946,0.6783,0,0.0,0.0,5.44,8,8,100.0
+Tier 3 (Weather Fusion),al_birmingham,2023,test,8252,0.9414,0,0.0,0.0,3.92,14,11,78.57
+Tier 3 (Weather Fusion),dc_washington,2023,test,6542,0.7463,0,0.0,0.0,4.94,16,16,100.0
+Tier 3 (Weather Fusion),ca_san_diego,2023,test,8129,0.9273,0,0.0,0.0,3.98,15,15,100.0
+Tier 3 (Weather Fusion),tx_dallas,2023,test,7170,0.8179,0,0.0,0.0,4.51,20,20,100.0
+Tier 3 (Weather Fusion),fl_tampa,2023,test,8375,0.9554,37,38.73,27.27,53.38,17,17,100.0
+Tier 3 (Weather Fusion),al_birmingham,2024,test,8358,0.9535,0,0.0,0.0,3.87,14,13,92.86
+Tier 3 (Weather Fusion),dc_washington,2024,test,8322,0.9493,0,0.0,0.0,3.89,20,19,95.0
+Tier 3 (Weather Fusion),ca_san_diego,2024,test,8368,0.9546,0,0.0,0.0,3.86,13,10,76.92
+Tier 3 (Weather Fusion),tx_dallas,2024,test,7140,0.8145,0,0.0,0.0,4.53,18,18,100.0
+Tier 3 (Weather Fusion),fl_tampa,2024,test,6962,0.7942,65,81.84,63.16,104.32,11,11,100.0
+Tier 3 (Weather Fusion),al_birmingham,2025,test,7803,0.8901,0,0.0,0.0,4.14,12,12,100.0
+Tier 3 (Weather Fusion),dc_washington,2025,test,7402,0.8444,8,9.47,4.09,18.67,4,4,100.0
+Tier 3 (Weather Fusion),ca_san_diego,2025,test,8467,0.9659,16,16.57,9.47,26.9,12,6,50.0
+Tier 3 (Weather Fusion),tx_dallas,2025,test,1168,0.1332,0,0.0,0.0,27.69,2,2,100.0
+Tier 3 (Weather Fusion),fl_tampa,2025,test,4170,0.4757,5,10.51,3.41,24.53,12,12,100.0
+Tier 4 (Physics-Informed Nuclear),al_birmingham,2021,validation,7660,0.8738,0,0.0,0.0,4.22,6,6,100.0
+Tier 4 (Physics-Informed Nuclear),dc_washington,2021,validation,7353,0.8388,0,0.0,0.0,4.4,12,12,100.0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,2021,validation,8484,0.9678,0,0.0,0.0,3.81,7,7,100.0
+Tier 4 (Physics-Informed Nuclear),tx_dallas,2021,validation,7948,0.9067,0,0.0,0.0,4.07,5,5,100.0
+Tier 4 (Physics-Informed Nuclear),fl_tampa,2021,validation,8078,0.9215,0,0.0,0.0,4.0,7,7,100.0
+Tier 4 (Physics-Informed Nuclear),al_birmingham,2022,validation,7849,0.8954,0,0.0,0.0,4.12,11,11,100.0
+Tier 4 (Physics-Informed Nuclear),dc_washington,2022,validation,6398,0.7299,0,0.0,0.0,5.05,7,7,100.0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,2022,validation,7250,0.8271,0,0.0,0.0,4.46,7,7,100.0
+Tier 4 (Physics-Informed Nuclear),tx_dallas,2022,validation,7233,0.8251,0,0.0,0.0,4.47,11,11,100.0
+Tier 4 (Physics-Informed Nuclear),fl_tampa,2022,validation,5946,0.6783,0,0.0,0.0,5.44,8,8,100.0
+Tier 4 (Physics-Informed Nuclear),al_birmingham,2023,test,8252,0.9414,0,0.0,0.0,3.92,14,13,92.86
+Tier 4 (Physics-Informed Nuclear),dc_washington,2023,test,6542,0.7463,0,0.0,0.0,4.94,16,16,100.0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,2023,test,8129,0.9273,0,0.0,0.0,3.98,15,15,100.0
+Tier 4 (Physics-Informed Nuclear),tx_dallas,2023,test,7170,0.8179,0,0.0,0.0,4.51,20,20,100.0
+Tier 4 (Physics-Informed Nuclear),fl_tampa,2023,test,8375,0.9554,16,16.75,9.57,27.2,17,17,100.0
+Tier 4 (Physics-Informed Nuclear),al_birmingham,2024,test,8358,0.9535,0,0.0,0.0,3.87,14,13,92.86
+Tier 4 (Physics-Informed Nuclear),dc_washington,2024,test,8322,0.9493,0,0.0,0.0,3.89,20,20,100.0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,2024,test,8368,0.9546,3,3.14,0.65,9.18,13,11,84.62
+Tier 4 (Physics-Informed Nuclear),tx_dallas,2024,test,7140,0.8145,0,0.0,0.0,4.53,18,17,94.44
+Tier 4 (Physics-Informed Nuclear),fl_tampa,2024,test,6962,0.7942,27,34.0,22.4,49.46,11,11,100.0
+Tier 4 (Physics-Informed Nuclear),al_birmingham,2025,test,7803,0.8901,0,0.0,0.0,4.14,12,12,100.0
+Tier 4 (Physics-Informed Nuclear),dc_washington,2025,test,7402,0.8444,2,2.37,0.29,8.56,4,4,100.0
+Tier 4 (Physics-Informed Nuclear),ca_san_diego,2025,test,8467,0.9659,56,57.98,43.8,75.29,12,10,83.33
+Tier 4 (Physics-Informed Nuclear),tx_dallas,2025,test,1168,0.1332,0,0.0,0.0,27.69,2,2,100.0
+Tier 4 (Physics-Informed Nuclear),fl_tampa,2025,test,4170,0.4757,0,0.0,0.0,7.75,12,12,100.0

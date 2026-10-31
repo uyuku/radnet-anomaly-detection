@@ -1,0 +1,7 @@
+tier_name,intervention,threshold_tau,observed_hours,exposure_station_years,false_alarm_episodes,fa_per_yr,fa_exact_poisson_ci_low,fa_exact_poisson_ci_high,n_plumes,n_detected,detection_pct,det_clopper_pearson_ci_low,det_clopper_pearson_ci_high,median_delay_hours
+Tier 3 (Weather Fusion),1_Unmodified_HeldOut_Tampa,0.94,19507,2.2253,1751,786.86,750.43,824.6,40,27,67.5,50.87,81.43,4.0
+Tier 3 (Weather Fusion),2_Align_Tampa_2017_2020_Spectral_Shares_Only,0.94,19507,2.2253,454,204.02,185.68,223.68,40,40,100.0,91.19,100.0,4.0
+Tier 3 (Weather Fusion),3_Align_Tampa_2022_PreTest_Clean_Stats,0.94,19507,2.2253,1170,525.77,496.07,556.78,40,40,100.0,91.19,100.0,4.0
+Tier 4 (Physics-Informed Nuclear),1_Unmodified_HeldOut_Tampa,0.97,19507,2.2253,274,123.13,108.98,138.61,40,40,100.0,91.19,100.0,3.0
+Tier 4 (Physics-Informed Nuclear),2_Align_Tampa_2017_2020_Spectral_Shares_Only,0.97,19507,2.2253,52,23.37,17.45,30.64,40,40,100.0,91.19,100.0,4.0
+Tier 4 (Physics-Informed Nuclear),3_Align_Tampa_2022_PreTest_Clean_Stats,0.97,19507,2.2253,34,15.28,10.58,21.35,40,39,97.5,86.84,99.94,4.0

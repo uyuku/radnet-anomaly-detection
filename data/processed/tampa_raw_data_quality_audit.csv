@@ -1,0 +1,12 @@
+station_id,total_grid_hours,valid_complete_channel_hours,completeness_pct,missing_gap_episodes,stuck_gross_cpm_hours_ge3,abrupt_dry_positive_jumps_gt4sigma,detected_filter_drop_hours,dry_gross_mean_cpm,dry_gross_sd_cpm,dry_share_r02_mean,dry_share_r03_mean,dry_share_r05_mean,dry_share_r07_mean,station_name,climate_group
+al_birmingham,78888,67065,85.01,1313,13,48,2635,3884.7,348.6,0.5116,0.2843,0.0422,0.0294,"Birmingham, AL",Humid_Subtropical_SE
+dc_washington,78888,67886,86.05,2417,27,64,1667,2058.4,294.1,0.5133,0.2645,0.0427,0.0359,"Washington, DC",Temperate_MidAtlantic
+ca_san_diego,78888,73821,93.58,1445,10,2,3295,6913.4,531.3,0.4984,0.2821,0.0429,0.0337,"San Diego, CA",Coastal_Mediterranean
+tx_dallas,78888,61870,78.43,1194,12,58,2412,2943.9,400.9,0.4823,0.2927,0.046,0.0349,"Dallas, TX",Convective_Plains
+fl_tampa,78888,63911,81.01,1585,24,3,1341,2079.7,399.0,0.4148,0.2851,0.0521,0.0535,"Tampa, FL",Subtropical_Gulf_Coastal
+az_phoenix,78888,66129,83.83,1821,8,1,1511,6198.8,456.9,0.4838,0.2892,0.0476,0.0357,"Phoenix, AZ",Arid_Interior
+ne_omaha,78888,66886,84.79,1417,11,32,3037,4294.4,511.3,0.491,0.2807,0.045,0.0378,"Omaha, NE",Cold_Continental
+hi_honolulu,78888,60121,76.21,1620,75,3,118,2031.4,198.7,0.4751,0.2507,0.0474,0.0457,"Honolulu, HI",Tropical_Maritime
+ak_anchorage,78888,63429,80.4,1379,51,4,374,1646.9,196.6,0.4711,0.2772,0.0463,0.0416,"Anchorage, AK",High_Latitude_Subarctic
+la_baton_rouge,78888,64681,81.99,1240,31,10,1666,3009.4,527.2,0.4877,0.2833,0.0435,0.0378,"Baton Rouge, LA",Subtropical_Gulf_Coastal
+vt_burlington,78888,50766,64.35,899,11,4,1556,3178.7,502.4,0.4855,0.2854,0.0458,0.037,"Burlington, VT",Cold_Continental
