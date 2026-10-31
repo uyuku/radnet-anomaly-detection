@@ -1,0 +1,57 @@
+{
+  "submersion_dose": {
+    "source": "Federal Guidance Report No. 12 (EPA 402-R-93-081, 1993), Table III.1",
+    "nuclide": "I-131",
+    "h_sub_sv_m3_per_bq_s": 1.82e-14,
+    "h_sub_nsvh_per_bq_m3": 0.06552,
+    "c_air_bq_m3": 0.031,
+    "dose_rate_submersion_nsvh": 0.00203112,
+    "dose_rate_submersion_psvh": 2.031,
+    "previous_flawed_value_nsvh": 6.3e-06,
+    "discrepancy_factor": 322.4,
+    "ambient_excess_cpm_submersion": 0.0002,
+    "conclusion": "Immersion dose rate alone (2.03 pSv/h) is ~320x higher than 6.3e-6 nSv/h, but still completely undetectable against 50-100 nSv/h background."
+  },
+  "filter_accumulation": {
+    "flow_rate_m3_per_h": 60.0,
+    "flow_rate_status": "UNVERIFIED: EPA RadNet continuous sampler nominal flow rate ~35 CFM / ~60 m^3/h",
+    "f_particulate": 0.25,
+    "activity_drawn_24h_bq": 44.64,
+    "activity_particulate_24h_bq": 11.16,
+    "cpm_excess_channel3_24h": 16.7,
+    "cpm_excess_gross_24h": 30.1,
+    "cpm_excess_channel3_100h": 69.8,
+    "cpm_excess_gross_100h": 125.5,
+    "hourly_poisson_noise_cpm": 27.4,
+    "diurnal_radon_swing_cpm": 100.0,
+    "conclusion": "Filter accumulation could produce a measurable signal (16-30 CPM after 24h, 70-125 CPM after 100h) IF particulate iodine is retained and filter is not advanced."
+  },
+  "honolulu_march21_alarms": {
+    "alarms_count": 2,
+    "first_alarm_utc": "2011-03-21 07:00:00",
+    "alarm_records": [
+      {
+        "dt": "2011-03-21 07:00:00",
+        "gross_cpm": 2432.0,
+        "precip_1h_mm": 0.0,
+        "hours_since_rain": 37.0,
+        "score_t4": 0.9156874890822644,
+        "score_t3": 0.0189294851728975,
+        "alarm_t4": 1
+      },
+      {
+        "dt": "2011-03-21 08:00:00",
+        "gross_cpm": 2452.0,
+        "precip_1h_mm": 0.0,
+        "hours_since_rain": 38.0,
+        "score_t4": 0.9529795855618964,
+        "score_t3": 0.0149106008539116,
+        "alarm_t4": 1
+      }
+    ],
+    "threshold_actually_loaded": 0.8719,
+    "threshold_written_in_protocol": 0.5802,
+    "threshold_discrepancy_documented": true,
+    "interpretation": "Honolulu triggered 2 alarms under Tier 4 on March 21 (07:00 and 08:00 UTC) with scores 0.9157 and 0.9530. Both occurred during dry weather (precip = 0 mm, 37-38 hours after rain). These alarms reflect subtle PMT baseline shifts in the maritime background rather than verified Fukushima plume detection, as Tier 3, Tier 2, and B4c remained unalarmed."
+  }
+}

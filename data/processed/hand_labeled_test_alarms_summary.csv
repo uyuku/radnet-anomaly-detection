@@ -1,0 +1,7 @@
+adjudicated_category,alarm_count,sample_size,percentage,ci_95_pct_lower,ci_95_pct_upper,ci_95_str
+rain_coincident,12,100,12.0,7.0,19.8,"[7.0%, 19.8%]"
+post_rain_washout,2,100,2.0,0.6,7.0,"[0.6%, 7.0%]"
+filter_change_artifact,2,100,2.0,0.6,7.0,"[0.6%, 7.0%]"
+instrument_step_drift,28,100,28.0,20.1,37.5,"[20.1%, 37.5%]"
+other_natural,0,100,0.0,0.0,3.7,"[0.0%, 3.7%]"
+unexplained,56,100,56.0,46.2,65.3,"[46.2%, 65.3%]"
