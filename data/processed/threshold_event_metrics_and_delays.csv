@@ -1,0 +1,61 @@
+tier_name,operating_point,duration_stratum,n_plumes,det_total_pct,det_le_3h_pct,det_le_6h_pct,det_le_12h_pct,det_le_24h_pct,time_normalized_12h_det_pct,mean_active_hour_recall_pct,delay_p25_hours,delay_median_hours,delay_p75_hours,delay_p90_hours,delay_mean_hours,test_fa_per_station_year
+Tier 1 (Gross),FA_Budget_5_per_yr,All_Durations (8-164h),200,55.0,0.5,4.5,8.5,26.5,44.64,13.04,16.0,25.5,32.0,39.1,25.0,5.84
+Tier 1 (Gross),FA_Budget_5_per_yr,Short_Plumes (<=24h),50,8.0,2.0,8.0,8.0,8.0,5.59,1.19,3.75,4.5,5.0,5.0,4.25,5.84
+Tier 1 (Gross),FA_Budget_5_per_yr,Medium_Plumes (25-60h),92,70.65,0.0,5.43,13.04,42.39,55.16,14.03,15.0,23.0,29.0,33.6,22.02,5.84
+Tier 1 (Gross),FA_Budget_5_per_yr,Long_Plumes (>60h),58,70.69,0.0,0.0,1.72,17.24,61.63,21.7,25.0,31.0,39.0,43.0,31.76,5.84
+Tier 1 (Gross),FA_Budget_10_per_yr,All_Durations (8-164h),200,63.5,2.0,7.0,16.0,34.0,51.15,15.9,12.5,24.0,31.0,37.4,22.94,9.87
+Tier 1 (Gross),FA_Budget_10_per_yr,Short_Plumes (<=24h),50,16.0,6.0,12.0,14.0,16.0,11.39,2.48,3.0,4.5,6.5,11.6,5.75,9.87
+Tier 1 (Gross),FA_Budget_10_per_yr,Medium_Plumes (25-60h),92,77.17,1.09,7.61,21.74,50.0,63.03,17.44,12.0,19.0,28.5,33.0,19.94,9.87
+Tier 1 (Gross),FA_Budget_10_per_yr,Long_Plumes (>60h),58,82.76,0.0,1.72,8.62,24.14,66.58,25.02,24.0,31.0,37.25,46.3,30.23,9.87
+Tier 1 (Gross),Val_Target_95pct,All_Durations (8-164h),200,87.0,11.5,32.5,64.0,84.0,82.05,40.34,5.0,8.0,13.0,18.0,9.65,189.5
+Tier 1 (Gross),Val_Target_95pct,Short_Plumes (<=24h),50,54.0,26.0,38.0,52.0,54.0,47.89,16.22,2.0,4.0,8.0,10.0,5.15,189.5
+Tier 1 (Gross),Val_Target_95pct,Medium_Plumes (25-60h),92,98.91,8.7,36.96,76.09,95.65,93.55,45.4,5.5,7.0,12.0,17.0,9.31,189.5
+Tier 1 (Gross),Val_Target_95pct,Long_Plumes (>60h),58,96.55,3.45,20.69,55.17,91.38,93.27,53.11,7.75,10.5,16.25,19.5,12.38,189.5
+Tier 1b (Gross+Weather),FA_Budget_5_per_yr,All_Durations (8-164h),200,47.5,1.0,4.5,14.0,39.0,40.86,15.65,10.5,17.0,22.0,35.6,18.81,1.97
+Tier 1b (Gross+Weather),FA_Budget_5_per_yr,Short_Plumes (<=24h),50,14.0,4.0,12.0,14.0,14.0,12.58,4.67,3.5,4.0,5.0,8.4,5.14,1.97
+Tier 1b (Gross+Weather),FA_Budget_5_per_yr,Medium_Plumes (25-60h),92,57.61,0.0,3.26,21.74,52.17,48.85,17.49,9.0,14.0,21.0,23.0,15.58,1.97
+Tier 1b (Gross+Weather),FA_Budget_5_per_yr,Long_Plumes (>60h),58,60.34,0.0,0.0,1.72,39.66,52.58,22.19,18.5,22.0,35.0,41.4,26.43,1.97
+Tier 1b (Gross+Weather),FA_Budget_10_per_yr,All_Durations (8-164h),200,56.0,1.5,7.0,22.5,46.5,47.26,19.82,9.0,15.0,21.0,31.0,16.86,4.77
+Tier 1b (Gross+Weather),FA_Budget_10_per_yr,Short_Plumes (<=24h),50,18.0,6.0,16.0,18.0,18.0,16.37,5.83,3.0,4.0,5.0,7.0,4.67,4.77
+Tier 1b (Gross+Weather),FA_Budget_10_per_yr,Medium_Plumes (25-60h),92,71.74,0.0,6.52,36.96,63.04,58.07,22.85,8.25,12.0,18.75,25.0,14.39,4.77
+Tier 1b (Gross+Weather),FA_Budget_10_per_yr,Long_Plumes (>60h),58,63.79,0.0,0.0,3.45,44.83,56.75,27.07,17.0,21.0,27.0,39.0,24.22,4.77
+Tier 1b (Gross+Weather),Val_Target_95pct,All_Durations (8-164h),200,85.0,7.5,24.5,59.0,79.0,79.25,42.05,6.0,9.0,14.75,20.2,11.45,74.07
+Tier 1b (Gross+Weather),Val_Target_95pct,Short_Plumes (<=24h),50,52.0,22.0,40.0,48.0,52.0,45.67,19.49,2.0,4.0,6.0,9.0,4.81,74.07
+Tier 1b (Gross+Weather),Val_Target_95pct,Medium_Plumes (25-60h),92,96.74,4.35,30.43,76.09,91.3,90.85,49.18,6.0,8.0,12.0,17.2,10.37,74.07
+Tier 1b (Gross+Weather),Val_Target_95pct,Long_Plumes (>60h),58,94.83,0.0,1.72,41.38,82.76,89.79,50.21,11.0,14.0,19.0,26.6,16.35,74.07
+Tier 2 (Spectral),FA_Budget_5_per_yr,All_Durations (8-164h),200,95.5,39.5,78.5,91.0,95.5,93.57,66.0,2.0,4.0,6.0,9.0,4.77,191.39
+Tier 2 (Spectral),FA_Budget_5_per_yr,Short_Plumes (<=24h),50,94.0,76.0,92.0,94.0,94.0,89.73,56.12,2.0,2.0,3.0,4.0,2.53,191.39
+Tier 2 (Spectral),FA_Budget_5_per_yr,Medium_Plumes (25-60h),92,95.65,31.52,80.43,92.39,95.65,94.13,67.15,3.0,4.0,6.0,7.0,4.8,191.39
+Tier 2 (Spectral),FA_Budget_5_per_yr,Long_Plumes (>60h),58,96.55,20.69,63.79,86.21,96.55,95.98,72.71,4.0,5.0,7.25,11.5,6.61,191.39
+Tier 2 (Spectral),FA_Budget_10_per_yr,All_Durations (8-164h),200,95.5,40.0,79.0,89.5,95.0,92.39,64.68,2.0,4.0,6.0,9.0,5.03,171.0
+Tier 2 (Spectral),FA_Budget_10_per_yr,Short_Plumes (<=24h),50,94.0,76.0,92.0,94.0,94.0,88.32,53.69,2.0,2.0,3.0,5.0,2.66,171.0
+Tier 2 (Spectral),FA_Budget_10_per_yr,Medium_Plumes (25-60h),92,95.65,31.52,82.61,92.39,95.65,93.32,66.73,3.0,4.0,6.0,7.0,4.73,171.0
+Tier 2 (Spectral),FA_Budget_10_per_yr,Long_Plumes (>60h),58,96.55,22.41,62.07,81.03,94.83,94.44,70.9,4.0,5.0,8.25,16.5,7.5,171.0
+Tier 2 (Spectral),Val_Target_95pct,All_Durations (8-164h),200,86.5,20.0,55.0,77.5,85.0,83.83,55.85,4.0,5.0,7.0,12.8,6.5,1.23
+Tier 2 (Spectral),Val_Target_95pct,Short_Plumes (<=24h),50,68.0,50.0,68.0,68.0,68.0,65.37,39.46,2.0,2.0,3.75,4.0,2.74,1.23
+Tier 2 (Spectral),Val_Target_95pct,Medium_Plumes (25-60h),92,92.39,11.96,55.43,83.7,91.3,89.3,57.49,4.0,6.0,7.0,12.0,6.69,1.23
+Tier 2 (Spectral),Val_Target_95pct,Long_Plumes (>60h),58,93.1,6.9,43.1,75.86,89.66,91.07,67.39,5.25,7.0,9.75,15.0,8.56,1.23
+Tier 3 (Weather Fusion),FA_Budget_5_per_yr,All_Durations (8-164h),200,97.0,40.5,83.0,93.5,96.5,94.89,71.84,2.0,4.0,5.0,7.0,4.56,88.54
+Tier 3 (Weather Fusion),FA_Budget_5_per_yr,Short_Plumes (<=24h),50,94.0,76.0,94.0,94.0,94.0,91.68,63.26,1.0,2.0,3.0,4.0,2.23,88.54
+Tier 3 (Weather Fusion),FA_Budget_5_per_yr,Medium_Plumes (25-60h),92,97.83,30.43,85.87,95.65,96.74,95.47,71.71,3.0,4.0,5.0,7.0,4.81,88.54
+Tier 3 (Weather Fusion),FA_Budget_5_per_yr,Long_Plumes (>60h),58,98.28,25.86,68.97,89.66,98.28,96.75,79.43,3.0,5.0,7.0,10.8,6.07,88.54
+Tier 3 (Weather Fusion),FA_Budget_10_per_yr,All_Durations (8-164h),200,98.0,43.0,83.0,94.5,97.5,95.49,71.83,2.0,4.0,5.0,7.0,4.48,109.51
+Tier 3 (Weather Fusion),FA_Budget_10_per_yr,Short_Plumes (<=24h),50,98.0,78.0,96.0,98.0,98.0,94.05,63.36,1.0,2.0,3.0,4.0,2.31,109.51
+Tier 3 (Weather Fusion),FA_Budget_10_per_yr,Medium_Plumes (25-60h),92,97.83,31.52,84.78,95.65,96.74,95.47,71.85,3.0,4.0,5.0,7.0,4.84,109.51
+Tier 3 (Weather Fusion),FA_Budget_10_per_yr,Long_Plumes (>60h),58,98.28,31.03,68.97,89.66,98.28,96.75,79.11,3.0,5.0,7.0,9.4,5.79,109.51
+Tier 3 (Weather Fusion),Val_Target_95pct,All_Durations (8-164h),200,93.0,28.0,69.5,87.5,93.0,91.15,65.19,3.0,5.0,6.75,9.0,5.47,10.77
+Tier 3 (Weather Fusion),Val_Target_95pct,Short_Plumes (<=24h),50,86.0,62.0,86.0,86.0,86.0,82.79,52.13,2.0,2.0,4.0,4.0,2.7,10.77
+Tier 3 (Weather Fusion),Val_Target_95pct,Medium_Plumes (25-60h),92,94.57,21.74,67.39,90.22,94.57,93.29,66.77,4.0,5.0,7.0,8.0,5.54,10.77
+Tier 3 (Weather Fusion),Val_Target_95pct,Long_Plumes (>60h),58,96.55,8.62,58.62,84.48,96.55,94.97,73.94,4.75,6.0,9.0,13.5,7.48,10.77
+Tier 4 (Physics-Informed Nuclear),FA_Budget_5_per_yr,All_Durations (8-164h),200,99.0,40.5,88.5,98.0,99.0,98.43,77.98,3.0,4.0,5.0,7.0,4.18,39.46
+Tier 4 (Physics-Informed Nuclear),FA_Budget_5_per_yr,Short_Plumes (<=24h),50,96.0,78.0,96.0,96.0,96.0,95.7,71.63,1.0,2.0,3.0,4.0,2.33,39.46
+Tier 4 (Physics-Informed Nuclear),FA_Budget_5_per_yr,Medium_Plumes (25-60h),92,100.0,35.87,92.39,98.91,100.0,99.82,77.64,3.0,4.0,5.0,6.0,4.38,39.46
+Tier 4 (Physics-Informed Nuclear),FA_Budget_5_per_yr,Long_Plumes (>60h),58,100.0,15.52,75.86,98.28,100.0,98.58,84.0,4.0,5.0,6.0,8.3,5.4,39.46
+Tier 4 (Physics-Informed Nuclear),FA_Budget_10_per_yr,All_Durations (8-164h),200,99.5,44.0,91.0,99.5,99.5,98.94,78.83,2.0,4.0,5.0,6.0,3.98,58.45
+Tier 4 (Physics-Informed Nuclear),FA_Budget_10_per_yr,Short_Plumes (<=24h),50,98.0,80.0,98.0,98.0,98.0,97.2,72.79,1.0,2.0,3.0,4.0,2.31,58.45
+Tier 4 (Physics-Informed Nuclear),FA_Budget_10_per_yr,Medium_Plumes (25-60h),92,100.0,40.22,94.57,100.0,100.0,99.96,78.78,3.0,4.0,5.0,6.0,4.14,58.45
+Tier 4 (Physics-Informed Nuclear),FA_Budget_10_per_yr,Long_Plumes (>60h),58,100.0,18.97,79.31,100.0,100.0,98.84,84.11,4.0,5.0,6.0,8.3,5.16,58.45
+Tier 4 (Physics-Informed Nuclear),Val_Target_95pct,All_Durations (8-164h),200,96.5,30.0,75.5,94.0,96.0,95.48,70.75,3.0,5.0,6.0,8.0,5.1,8.55
+Tier 4 (Physics-Informed Nuclear),Val_Target_95pct,Short_Plumes (<=24h),50,92.0,68.0,88.0,92.0,92.0,91.22,60.66,2.0,3.0,3.75,4.0,2.87,8.55
+Tier 4 (Physics-Informed Nuclear),Val_Target_95pct,Medium_Plumes (25-60h),92,97.83,20.65,78.26,95.65,96.74,96.07,70.91,4.0,5.0,6.0,8.0,5.32,8.55
+Tier 4 (Physics-Informed Nuclear),Val_Target_95pct,Long_Plumes (>60h),58,98.28,12.07,60.34,93.1,98.28,98.21,79.19,5.0,6.0,8.0,11.0,6.56,8.55

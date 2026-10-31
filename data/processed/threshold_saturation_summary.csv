@@ -1,0 +1,21 @@
+tier_name,grid_type,target_detection_pct,target_met_all_seeds,n_seeds_target_met,n_seeds_tau_90_eq_95,threshold_tau_mean,threshold_tau_std,val_detection_pct_mean,val_fa_per_yr_mean,test_det_total_mean,test_det_total_std,test_det_le_3h_mean,test_det_le_6h_mean,test_det_le_12h_mean,test_det_le_24h_mean,test_time_norm_12h_det_mean,test_median_delay_mean,test_fa_per_yr_mean,test_fa_per_yr_std,test_rain_fa_pct_mean
+Tier 1 (Gross),coarse_THRESHOLD_GRID,90.0,True,20,0,0.699,0.01119,90.43,157.73,83.55,1.01,9.28,28.02,54.62,78.65,77.34,8.8,116.58,7.9,16.3
+Tier 1 (Gross),coarse_THRESHOLD_GRID,95.0,True,20,0,0.6105,0.01468,95.18,265.67,88.6,1.03,13.38,35.58,67.58,86.08,83.2,7.75,196.15,14.96,13.8
+Tier 1 (Gross),fine_FINE_THRESHOLD_GRID,90.0,True,20,0,0.699,0.01119,90.43,157.73,83.55,1.01,9.28,28.02,54.62,78.65,77.34,8.8,116.58,7.9,16.3
+Tier 1 (Gross),fine_FINE_THRESHOLD_GRID,95.0,True,20,0,0.6105,0.01468,95.18,265.67,88.6,1.03,13.38,35.58,67.58,86.08,83.2,7.75,196.15,14.96,13.8
+Tier 1b (Gross+Weather),coarse_THRESHOLD_GRID,90.0,True,20,0,0.8715,0.01387,90.31,38.07,73.67,1.82,5.62,14.0,38.5,63.77,64.37,11.95,21.18,3.43,0.1
+Tier 1b (Gross+Weather),coarse_THRESHOLD_GRID,95.0,True,20,0,0.754,0.03761,95.12,108.88,82.38,2.33,7.4,22.05,53.0,76.88,75.87,10.15,58.05,14.56,1.7
+Tier 1b (Gross+Weather),fine_FINE_THRESHOLD_GRID,90.0,True,20,0,0.8716,0.01409,90.31,38.03,73.67,1.82,5.62,14.0,38.5,63.77,64.35,11.95,21.16,3.46,0.1
+Tier 1b (Gross+Weather),fine_FINE_THRESHOLD_GRID,95.0,True,20,0,0.754,0.03761,95.12,108.88,82.38,2.33,7.4,22.05,53.0,76.88,75.87,10.15,58.05,14.56,1.7
+Tier 2 (Spectral),coarse_THRESHOLD_GRID,90.0,True,20,20,0.99415,0.00203,95.06,0.0,85.97,2.08,18.0,52.9,76.45,84.28,82.68,5.25,1.76,2.39,1.6
+Tier 2 (Spectral),coarse_THRESHOLD_GRID,95.0,True,20,20,0.99415,0.00203,95.06,0.0,85.97,2.08,18.0,52.9,76.45,84.28,82.68,5.25,1.76,2.39,1.6
+Tier 2 (Spectral),fine_FINE_THRESHOLD_GRID,90.0,True,20,20,0.99369,0.00219,95.06,0.0,86.42,1.78,18.77,54.1,77.3,84.97,83.46,5.15,2.27,2.85,1.8
+Tier 2 (Spectral),fine_FINE_THRESHOLD_GRID,95.0,True,20,20,0.99369,0.00219,95.06,0.0,86.42,1.78,18.77,54.1,77.3,84.97,83.46,5.15,2.27,2.85,1.8
+Tier 3 (Weather Fusion),coarse_THRESHOLD_GRID,90.0,True,20,20,0.98035,0.00713,95.18,0.0,90.35,2.01,23.9,62.98,83.3,89.35,87.91,5.0,4.22,2.69,7.1
+Tier 3 (Weather Fusion),coarse_THRESHOLD_GRID,95.0,True,20,20,0.98035,0.00713,95.18,0.0,90.35,2.01,23.9,62.98,83.3,89.35,87.91,5.0,4.22,2.69,7.1
+Tier 3 (Weather Fusion),fine_FINE_THRESHOLD_GRID,90.0,True,20,20,0.97753,0.007,95.18,0.0,90.95,1.71,25.12,64.8,84.35,90.17,88.69,5.0,5.24,3.01,6.6
+Tier 3 (Weather Fusion),fine_FINE_THRESHOLD_GRID,95.0,True,20,20,0.97753,0.007,95.18,0.0,90.95,1.71,25.12,64.8,84.35,90.17,88.69,5.0,5.24,3.01,6.6
+Tier 4 (Physics-Informed Nuclear),coarse_THRESHOLD_GRID,90.0,True,20,20,0.98475,0.00413,99.82,0.0,95.4,0.85,25.4,70.95,91.6,94.88,93.95,5.0,7.86,1.1,1.0
+Tier 4 (Physics-Informed Nuclear),coarse_THRESHOLD_GRID,95.0,True,20,20,0.98475,0.00413,99.82,0.0,95.4,0.85,25.4,70.95,91.6,94.88,93.95,5.0,7.86,1.1,1.0
+Tier 4 (Physics-Informed Nuclear),fine_FINE_THRESHOLD_GRID,90.0,True,20,20,0.9816,0.00563,100.0,0.0,95.75,0.77,26.73,72.45,92.45,95.12,94.46,4.8,8.53,1.43,1.4
+Tier 4 (Physics-Informed Nuclear),fine_FINE_THRESHOLD_GRID,95.0,True,20,20,0.9816,0.00563,100.0,0.0,95.75,0.77,26.73,72.45,92.45,95.12,94.46,4.8,8.53,1.43,1.4

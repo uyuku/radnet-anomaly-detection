@@ -1,0 +1,6 @@
+weighting_scheme,val_clean_hours_p_ge_099,tau_90pct_target,tau_95pct_target,tau_90_eq_tau_95,test_det_at_95pct_target,test_fa_at_95pct_target,tau_at_5fa_budget,test_det_at_5fa_budget,test_fa_at_5fa_budget
+Unweighted (class_weight=None),0,0.985,0.985,True,94.5,21.29,0.649478,99.5,71.61
+"Mild_Fission_Boost ({0:1, 1:2, 2:5})",0,0.99,0.99,True,94.0,7.15,0.647547,99.0,82.46
+"Moderate_Fission_Boost ({0:1, 1:5, 2:15})",0,0.98,0.98,True,95.5,10.19,0.786654,99.0,61.25
+"Balanced (class_weight='balanced', Default)",0,0.98,0.98,True,96.5,8.55,0.871205,99.0,39.46
+Environment_Rain_Upweighted (2x on rain hours),0,0.98,0.98,True,96.5,9.54,0.931272,98.5,18.0

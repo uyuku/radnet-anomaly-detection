@@ -1,0 +1,241 @@
+detector,test_fa_per_yr,test_det_pct,det_ci_low_pct,det_ci_high_pct
+Tier 4: Physics-Motivated GBDT,0.5,21.7,18.2,25.2
+Tier 4: Physics-Motivated GBDT,0.58,23.14,19.64,26.64
+Tier 4: Physics-Motivated GBDT,0.67,24.66,21.16,28.16
+Tier 4: Physics-Motivated GBDT,0.78,26.26,22.76,29.76
+Tier 4: Physics-Motivated GBDT,0.9,27.94,24.44,31.44
+Tier 4: Physics-Motivated GBDT,1.04,29.7,26.2,33.2
+Tier 4: Physics-Motivated GBDT,1.2,31.55,28.05,35.05
+Tier 4: Physics-Motivated GBDT,1.39,33.49,29.99,36.99
+Tier 4: Physics-Motivated GBDT,1.61,35.51,32.01,39.01
+Tier 4: Physics-Motivated GBDT,1.86,37.61,34.11,41.11
+Tier 4: Physics-Motivated GBDT,2.16,39.8,36.3,43.3
+Tier 4: Physics-Motivated GBDT,2.5,42.07,38.57,45.57
+Tier 4: Physics-Motivated GBDT,2.89,44.41,40.91,47.91
+Tier 4: Physics-Motivated GBDT,3.35,46.82,43.32,50.32
+Tier 4: Physics-Motivated GBDT,3.87,49.29,45.79,52.79
+Tier 4: Physics-Motivated GBDT,4.48,51.82,48.32,55.32
+Tier 4: Physics-Motivated GBDT,5.19,54.4,50.9,57.9
+Tier 4: Physics-Motivated GBDT,6.01,57.02,53.52,60.52
+Tier 4: Physics-Motivated GBDT,6.95,59.66,56.16,63.16
+Tier 4: Physics-Motivated GBDT,8.05,62.32,58.82,65.82
+Tier 4: Physics-Motivated GBDT,9.32,64.99,61.49,68.49
+Tier 4: Physics-Motivated GBDT,10.78,67.63,64.13,71.13
+Tier 4: Physics-Motivated GBDT,12.48,70.25,66.75,73.75
+Tier 4: Physics-Motivated GBDT,14.45,72.83,69.33,76.33
+Tier 4: Physics-Motivated GBDT,16.72,75.34,71.84,78.84
+Tier 4: Physics-Motivated GBDT,19.36,77.77,74.27,81.27
+Tier 4: Physics-Motivated GBDT,22.41,80.12,76.62,83.62
+Tier 4: Physics-Motivated GBDT,25.94,82.35,78.85,85.85
+Tier 4: Physics-Motivated GBDT,30.02,84.45,80.95,87.95
+Tier 4: Physics-Motivated GBDT,34.75,86.42,82.92,89.92
+Tier 4: Physics-Motivated GBDT,40.22,88.24,84.74,91.74
+Tier 4: Physics-Motivated GBDT,46.55,89.91,86.41,93.41
+Tier 4: Physics-Motivated GBDT,53.89,91.42,87.92,94.92
+Tier 4: Physics-Motivated GBDT,62.37,92.76,89.26,96.26
+Tier 4: Physics-Motivated GBDT,72.2,93.94,90.44,97.44
+Tier 4: Physics-Motivated GBDT,83.57,94.96,91.46,98.46
+Tier 4: Physics-Motivated GBDT,96.73,95.83,92.33,99.33
+Tier 4: Physics-Motivated GBDT,111.96,96.56,93.06,100.0
+Tier 4: Physics-Motivated GBDT,129.59,97.16,93.66,100.0
+Tier 4: Physics-Motivated GBDT,150.0,97.64,94.14,100.0
+Tier 3: Weather Fusion GBDT,0.5,17.42,13.92,20.92
+Tier 3: Weather Fusion GBDT,0.58,18.61,15.11,22.11
+Tier 3: Weather Fusion GBDT,0.67,19.87,16.37,23.37
+Tier 3: Weather Fusion GBDT,0.78,21.2,17.7,24.7
+Tier 3: Weather Fusion GBDT,0.9,22.6,19.1,26.1
+Tier 3: Weather Fusion GBDT,1.04,24.08,20.58,27.58
+Tier 3: Weather Fusion GBDT,1.2,25.64,22.14,29.14
+Tier 3: Weather Fusion GBDT,1.39,27.29,23.79,30.79
+Tier 3: Weather Fusion GBDT,1.61,29.01,25.51,32.51
+Tier 3: Weather Fusion GBDT,1.86,30.82,27.32,34.32
+Tier 3: Weather Fusion GBDT,2.16,32.71,29.21,36.21
+Tier 3: Weather Fusion GBDT,2.5,34.69,31.19,38.19
+Tier 3: Weather Fusion GBDT,2.89,36.75,33.25,40.25
+Tier 3: Weather Fusion GBDT,3.35,38.88,35.38,42.38
+Tier 3: Weather Fusion GBDT,3.87,41.1,37.6,44.6
+Tier 3: Weather Fusion GBDT,4.48,43.39,39.89,46.89
+Tier 3: Weather Fusion GBDT,5.19,45.75,42.25,49.25
+Tier 3: Weather Fusion GBDT,6.01,48.17,44.67,51.67
+Tier 3: Weather Fusion GBDT,6.95,50.65,47.15,54.15
+Tier 3: Weather Fusion GBDT,8.05,53.17,49.67,56.67
+Tier 3: Weather Fusion GBDT,9.32,55.73,52.23,59.23
+Tier 3: Weather Fusion GBDT,10.78,58.33,54.83,61.83
+Tier 3: Weather Fusion GBDT,12.48,60.93,57.43,64.43
+Tier 3: Weather Fusion GBDT,14.45,63.54,60.04,67.04
+Tier 3: Weather Fusion GBDT,16.72,66.13,62.63,69.63
+Tier 3: Weather Fusion GBDT,19.36,68.7,65.2,72.2
+Tier 3: Weather Fusion GBDT,22.41,71.23,67.73,74.73
+Tier 3: Weather Fusion GBDT,25.94,73.69,70.19,77.19
+Tier 3: Weather Fusion GBDT,30.02,76.08,72.58,79.58
+Tier 3: Weather Fusion GBDT,34.75,78.38,74.88,81.88
+Tier 3: Weather Fusion GBDT,40.22,80.57,77.07,84.07
+Tier 3: Weather Fusion GBDT,46.55,82.64,79.14,86.14
+Tier 3: Weather Fusion GBDT,53.89,84.58,81.08,88.08
+Tier 3: Weather Fusion GBDT,62.37,86.37,82.87,89.87
+Tier 3: Weather Fusion GBDT,72.2,88.01,84.51,91.51
+Tier 3: Weather Fusion GBDT,83.57,89.5,86.0,93.0
+Tier 3: Weather Fusion GBDT,96.73,90.82,87.32,94.32
+Tier 3: Weather Fusion GBDT,111.96,91.99,88.49,95.49
+Tier 3: Weather Fusion GBDT,129.59,93.0,89.5,96.5
+Tier 3: Weather Fusion GBDT,150.0,93.86,90.36,97.36
+Tier 2: Gross + Spectrometry,0.5,13.4,9.9,16.9
+Tier 2: Gross + Spectrometry,0.58,14.33,10.83,17.83
+Tier 2: Gross + Spectrometry,0.67,15.32,11.82,18.82
+Tier 2: Gross + Spectrometry,0.78,16.38,12.88,19.88
+Tier 2: Gross + Spectrometry,0.9,17.5,14.0,21.0
+Tier 2: Gross + Spectrometry,1.04,18.68,15.18,22.18
+Tier 2: Gross + Spectrometry,1.2,19.93,16.43,23.43
+Tier 2: Gross + Spectrometry,1.39,21.26,17.76,24.76
+Tier 2: Gross + Spectrometry,1.61,22.66,19.16,26.16
+Tier 2: Gross + Spectrometry,1.86,24.13,20.63,27.63
+Tier 2: Gross + Spectrometry,2.16,25.68,22.18,29.18
+Tier 2: Gross + Spectrometry,2.5,27.32,23.82,30.82
+Tier 2: Gross + Spectrometry,2.89,29.03,25.53,32.53
+Tier 2: Gross + Spectrometry,3.35,30.82,27.32,34.32
+Tier 2: Gross + Spectrometry,3.87,32.69,29.19,36.19
+Tier 2: Gross + Spectrometry,4.48,34.64,31.14,38.14
+Tier 2: Gross + Spectrometry,5.19,36.66,33.16,40.16
+Tier 2: Gross + Spectrometry,6.01,38.76,35.26,42.26
+Tier 2: Gross + Spectrometry,6.95,40.94,37.44,44.44
+Tier 2: Gross + Spectrometry,8.05,43.18,39.68,46.68
+Tier 2: Gross + Spectrometry,9.32,45.48,41.98,48.98
+Tier 2: Gross + Spectrometry,10.78,47.84,44.34,51.34
+Tier 2: Gross + Spectrometry,12.48,50.25,46.75,53.75
+Tier 2: Gross + Spectrometry,14.45,52.7,49.2,56.2
+Tier 2: Gross + Spectrometry,16.72,55.18,51.68,58.68
+Tier 2: Gross + Spectrometry,19.36,57.67,54.17,61.17
+Tier 2: Gross + Spectrometry,22.41,60.17,56.67,63.67
+Tier 2: Gross + Spectrometry,25.94,62.67,59.17,66.17
+Tier 2: Gross + Spectrometry,30.02,65.14,61.64,68.64
+Tier 2: Gross + Spectrometry,34.75,67.57,64.07,71.07
+Tier 2: Gross + Spectrometry,40.22,69.96,66.46,73.46
+Tier 2: Gross + Spectrometry,46.55,72.27,68.77,75.77
+Tier 2: Gross + Spectrometry,53.89,74.5,71.0,78.0
+Tier 2: Gross + Spectrometry,62.37,76.64,73.14,80.14
+Tier 2: Gross + Spectrometry,72.2,78.66,75.16,82.16
+Tier 2: Gross + Spectrometry,83.57,80.55,77.05,84.05
+Tier 2: Gross + Spectrometry,96.73,82.31,78.81,85.81
+Tier 2: Gross + Spectrometry,111.96,83.93,80.43,87.43
+Tier 2: Gross + Spectrometry,129.59,85.4,81.9,88.9
+Tier 2: Gross + Spectrometry,150.0,86.72,83.22,90.22
+Non-ML Radon Stripping (B4c),0.5,18.35,14.85,21.85
+Non-ML Radon Stripping (B4c),0.58,19.59,16.09,23.09
+Non-ML Radon Stripping (B4c),0.67,20.9,17.4,24.4
+Non-ML Radon Stripping (B4c),0.78,22.29,18.79,25.79
+Non-ML Radon Stripping (B4c),0.9,23.75,20.25,27.25
+Non-ML Radon Stripping (B4c),1.04,25.29,21.79,28.79
+Non-ML Radon Stripping (B4c),1.2,26.91,23.41,30.41
+Non-ML Radon Stripping (B4c),1.39,28.61,25.11,32.11
+Non-ML Radon Stripping (B4c),1.61,30.4,26.9,33.9
+Non-ML Radon Stripping (B4c),1.86,32.27,28.77,35.77
+Non-ML Radon Stripping (B4c),2.16,34.22,30.72,37.72
+Non-ML Radon Stripping (B4c),2.5,36.25,32.75,39.75
+Non-ML Radon Stripping (B4c),2.89,38.36,34.86,41.86
+Non-ML Radon Stripping (B4c),3.35,40.55,37.05,44.05
+Non-ML Radon Stripping (B4c),3.87,42.81,39.31,46.31
+Non-ML Radon Stripping (B4c),4.48,45.14,41.64,48.64
+Non-ML Radon Stripping (B4c),5.19,47.53,44.03,51.03
+Non-ML Radon Stripping (B4c),6.01,49.98,46.48,53.48
+Non-ML Radon Stripping (B4c),6.95,52.48,48.98,55.98
+Non-ML Radon Stripping (B4c),8.05,55.02,51.52,58.52
+Non-ML Radon Stripping (B4c),9.32,57.58,54.08,61.08
+Non-ML Radon Stripping (B4c),10.78,60.16,56.66,63.66
+Non-ML Radon Stripping (B4c),12.48,62.74,59.24,66.24
+Non-ML Radon Stripping (B4c),14.45,65.31,61.81,68.81
+Non-ML Radon Stripping (B4c),16.72,67.85,64.35,71.35
+Non-ML Radon Stripping (B4c),19.36,70.35,66.85,73.85
+Non-ML Radon Stripping (B4c),22.41,72.8,69.3,76.3
+Non-ML Radon Stripping (B4c),25.94,75.17,71.67,78.67
+Non-ML Radon Stripping (B4c),30.02,77.45,73.95,80.95
+Non-ML Radon Stripping (B4c),34.75,79.62,76.12,83.12
+Non-ML Radon Stripping (B4c),40.22,81.68,78.18,85.18
+Non-ML Radon Stripping (B4c),46.55,83.6,80.1,87.1
+Non-ML Radon Stripping (B4c),53.89,85.39,81.89,88.89
+Non-ML Radon Stripping (B4c),62.37,87.02,83.52,90.52
+Non-ML Radon Stripping (B4c),72.2,88.5,85.0,92.0
+Non-ML Radon Stripping (B4c),83.57,89.82,86.32,93.32
+Non-ML Radon Stripping (B4c),96.73,90.98,87.48,94.48
+Non-ML Radon Stripping (B4c),111.96,91.99,88.49,95.49
+Non-ML Radon Stripping (B4c),129.59,92.84,89.34,96.34
+Non-ML Radon Stripping (B4c),150.0,93.56,90.06,97.06
+Tier 1: Gross Only GBDT,0.5,6.91,3.41,10.41
+Tier 1: Gross Only GBDT,0.58,7.42,3.92,10.92
+Tier 1: Gross Only GBDT,0.67,7.95,4.45,11.45
+Tier 1: Gross Only GBDT,0.78,8.52,5.02,12.02
+Tier 1: Gross Only GBDT,0.9,9.13,5.63,12.63
+Tier 1: Gross Only GBDT,1.04,9.79,6.29,13.29
+Tier 1: Gross Only GBDT,1.2,10.48,6.98,13.98
+Tier 1: Gross Only GBDT,1.39,11.22,7.72,14.72
+Tier 1: Gross Only GBDT,1.61,12.01,8.51,15.51
+Tier 1: Gross Only GBDT,1.86,12.85,9.35,16.35
+Tier 1: Gross Only GBDT,2.16,13.74,10.24,17.24
+Tier 1: Gross Only GBDT,2.5,14.69,11.19,18.19
+Tier 1: Gross Only GBDT,2.89,15.69,12.19,19.19
+Tier 1: Gross Only GBDT,3.35,16.75,13.25,20.25
+Tier 1: Gross Only GBDT,3.87,17.88,14.38,21.38
+Tier 1: Gross Only GBDT,4.48,19.07,15.57,22.57
+Tier 1: Gross Only GBDT,5.19,20.33,16.83,23.83
+Tier 1: Gross Only GBDT,6.01,21.66,18.16,25.16
+Tier 1: Gross Only GBDT,6.95,23.06,19.56,26.56
+Tier 1: Gross Only GBDT,8.05,24.53,21.03,28.03
+Tier 1: Gross Only GBDT,9.32,26.07,22.57,29.57
+Tier 1: Gross Only GBDT,10.78,27.68,24.18,31.18
+Tier 1: Gross Only GBDT,12.48,29.37,25.87,32.87
+Tier 1: Gross Only GBDT,14.45,31.13,27.63,34.63
+Tier 1: Gross Only GBDT,16.72,32.97,29.47,36.47
+Tier 1: Gross Only GBDT,19.36,34.87,31.37,38.37
+Tier 1: Gross Only GBDT,22.41,36.84,33.34,40.34
+Tier 1: Gross Only GBDT,25.94,38.87,35.37,42.37
+Tier 1: Gross Only GBDT,30.02,40.96,37.46,44.46
+Tier 1: Gross Only GBDT,34.75,43.1,39.6,46.6
+Tier 1: Gross Only GBDT,40.22,45.29,41.79,48.79
+Tier 1: Gross Only GBDT,46.55,47.52,44.02,51.02
+Tier 1: Gross Only GBDT,53.89,49.77,46.27,53.27
+Tier 1: Gross Only GBDT,62.37,52.05,48.55,55.55
+Tier 1: Gross Only GBDT,72.2,54.34,50.84,57.84
+Tier 1: Gross Only GBDT,83.57,56.62,53.12,60.12
+Tier 1: Gross Only GBDT,96.73,58.89,55.39,62.39
+Tier 1: Gross Only GBDT,111.96,61.12,57.62,64.62
+Tier 1: Gross Only GBDT,129.59,63.32,59.82,66.82
+Tier 1: Gross Only GBDT,150.0,65.45,61.95,68.95
+Rolling 7d 3-sigma (B1a),0.5,1.91,0.0,5.41
+Rolling 7d 3-sigma (B1a),0.58,2.05,0.0,5.55
+Rolling 7d 3-sigma (B1a),0.67,2.21,0.0,5.71
+Rolling 7d 3-sigma (B1a),0.78,2.37,0.0,5.87
+Rolling 7d 3-sigma (B1a),0.9,2.54,0.0,6.04
+Rolling 7d 3-sigma (B1a),1.04,2.73,0.0,6.23
+Rolling 7d 3-sigma (B1a),1.2,2.93,0.0,6.43
+Rolling 7d 3-sigma (B1a),1.39,3.15,0.0,6.65
+Rolling 7d 3-sigma (B1a),1.61,3.38,0.0,6.88
+Rolling 7d 3-sigma (B1a),1.86,3.63,0.13,7.13
+Rolling 7d 3-sigma (B1a),2.16,3.9,0.4,7.4
+Rolling 7d 3-sigma (B1a),2.5,4.18,0.68,7.68
+Rolling 7d 3-sigma (B1a),2.89,4.48,0.98,7.98
+Rolling 7d 3-sigma (B1a),3.35,4.81,1.31,8.31
+Rolling 7d 3-sigma (B1a),3.87,5.16,1.66,8.66
+Rolling 7d 3-sigma (B1a),4.48,5.53,2.03,9.03
+Rolling 7d 3-sigma (B1a),5.19,5.92,2.42,9.42
+Rolling 7d 3-sigma (B1a),6.01,6.34,2.84,9.84
+Rolling 7d 3-sigma (B1a),6.95,6.79,3.29,10.29
+Rolling 7d 3-sigma (B1a),8.05,7.27,3.77,10.77
+Rolling 7d 3-sigma (B1a),9.32,7.78,4.28,11.28
+Rolling 7d 3-sigma (B1a),10.78,8.33,4.83,11.83
+Rolling 7d 3-sigma (B1a),12.48,8.91,5.41,12.41
+Rolling 7d 3-sigma (B1a),14.45,9.52,6.02,13.02
+Rolling 7d 3-sigma (B1a),16.72,10.17,6.67,13.67
+Rolling 7d 3-sigma (B1a),19.36,10.86,7.36,14.36
+Rolling 7d 3-sigma (B1a),22.41,11.59,8.09,15.09
+Rolling 7d 3-sigma (B1a),25.94,12.36,8.86,15.86
+Rolling 7d 3-sigma (B1a),30.02,13.18,9.68,16.68
+Rolling 7d 3-sigma (B1a),34.75,14.04,10.54,17.54
+Rolling 7d 3-sigma (B1a),40.22,14.95,11.45,18.45
+Rolling 7d 3-sigma (B1a),46.55,15.9,12.4,19.4
+Rolling 7d 3-sigma (B1a),53.89,16.9,13.4,20.4
+Rolling 7d 3-sigma (B1a),62.37,17.94,14.44,21.44
+Rolling 7d 3-sigma (B1a),72.2,19.04,15.54,22.54
+Rolling 7d 3-sigma (B1a),83.57,20.18,16.68,23.68
+Rolling 7d 3-sigma (B1a),96.73,21.36,17.86,24.86
+Rolling 7d 3-sigma (B1a),111.96,22.6,19.1,26.1
+Rolling 7d 3-sigma (B1a),129.59,23.87,20.37,27.37
+Rolling 7d 3-sigma (B1a),150.0,25.19,21.69,28.69

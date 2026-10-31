@@ -1,0 +1,6 @@
+positive_label_window,train_positive_plume_hours,tau_at_95pct_val_target,test_det_at_95pct_val_target,test_fa_at_95pct_val_target,tau_at_5fa_budget,test_det_at_5fa_budget,test_det_le_12h_at_5fa_budget,test_median_delay_at_5fa_budget,test_fa_at_5fa_budget
+First_6_Hours_Only,1012,0.99,87.5,3.29,0.823511,98.5,97.5,3.0,37.82
+First_12_Hours_Only,1991,0.99,92.5,1.97,0.835002,99.0,98.5,4.0,31.9
+First_24_Hours_Only,3335,0.985,95.5,7.23,0.845466,99.5,98.5,4.0,37.41
+Active_Passage_Hours_Only,1536,0.99,92.0,2.71,0.888204,99.0,98.0,4.0,27.79
+Full_Plume_With_Retention (Default),4952,0.98,96.5,8.55,0.871205,99.0,98.0,4.0,39.46

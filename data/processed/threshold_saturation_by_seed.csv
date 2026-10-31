@@ -1,0 +1,401 @@
+tier_name,detector_id,seed,grid_type,target_detection_pct,target_met,threshold_tau,tau_90_eq_tau_95,val_detection_pct,val_fa_per_yr,test_det_total_pct,test_det_le_3h_pct,test_det_le_6h_pct,test_det_le_12h_pct,test_det_le_24h_pct,test_time_norm_12h_det_pct,test_median_delay_hrs,test_fa_per_yr,test_rain_fa_pct
+Tier 1 (Gross),ML_Tier1_Gross,42,coarse_THRESHOLD_GRID,90.0,True,0.71,False,90.12,146.26,82.5,9.5,28.0,54.0,76.5,76.52,8.0,110.16,16.7
+Tier 1 (Gross),ML_Tier1_Gross,42,coarse_THRESHOLD_GRID,95.0,True,0.62,False,95.06,256.84,87.0,11.5,32.5,64.0,84.0,82.05,8.0,189.5,13.7
+Tier 1 (Gross),ML_Tier1_Gross,42,fine_FINE_THRESHOLD_GRID,90.0,True,0.71,False,90.12,146.26,82.5,9.5,28.0,54.0,76.5,76.52,8.0,110.16,16.7
+Tier 1 (Gross),ML_Tier1_Gross,42,fine_FINE_THRESHOLD_GRID,95.0,True,0.62,False,95.06,256.84,87.0,11.5,32.5,64.0,84.0,82.05,8.0,189.5,13.7
+Tier 1 (Gross),ML_Tier1_Gross,43,coarse_THRESHOLD_GRID,90.0,True,0.69,False,91.36,163.98,85.0,10.5,30.5,57.5,80.0,78.43,8.0,120.85,15.7
+Tier 1 (Gross),ML_Tier1_Gross,43,coarse_THRESHOLD_GRID,95.0,True,0.59,False,95.06,288.5,90.0,14.0,37.0,70.0,87.0,84.32,8.0,212.52,13.2
+Tier 1 (Gross),ML_Tier1_Gross,43,fine_FINE_THRESHOLD_GRID,90.0,True,0.69,False,91.36,163.98,85.0,10.5,30.5,57.5,80.0,78.43,8.0,120.85,15.7
+Tier 1 (Gross),ML_Tier1_Gross,43,fine_FINE_THRESHOLD_GRID,95.0,True,0.59,False,95.06,288.5,90.0,14.0,37.0,70.0,87.0,84.32,8.0,212.52,13.2
+Tier 1 (Gross),ML_Tier1_Gross,44,coarse_THRESHOLD_GRID,90.0,True,0.71,False,90.12,144.01,83.0,8.0,27.0,53.5,78.5,76.94,9.0,109.01,16.0
+Tier 1 (Gross),ML_Tier1_Gross,44,coarse_THRESHOLD_GRID,95.0,True,0.61,False,95.06,267.24,89.0,12.5,34.0,69.0,87.5,83.29,8.0,198.62,13.4
+Tier 1 (Gross),ML_Tier1_Gross,44,fine_FINE_THRESHOLD_GRID,90.0,True,0.71,False,90.12,144.01,83.0,8.0,27.0,53.5,78.5,76.94,9.0,109.01,16.0
+Tier 1 (Gross),ML_Tier1_Gross,44,fine_FINE_THRESHOLD_GRID,95.0,True,0.61,False,95.06,267.24,89.0,12.5,34.0,69.0,87.5,83.29,8.0,198.62,13.4
+Tier 1 (Gross),ML_Tier1_Gross,45,coarse_THRESHOLD_GRID,90.0,True,0.71,False,90.12,146.97,83.5,8.0,26.5,52.0,77.0,76.71,9.0,108.68,16.9
+Tier 1 (Gross),ML_Tier1_Gross,45,coarse_THRESHOLD_GRID,95.0,True,0.61,False,95.06,268.18,89.0,14.5,37.5,68.0,86.0,83.5,7.0,194.84,13.9
+Tier 1 (Gross),ML_Tier1_Gross,45,fine_FINE_THRESHOLD_GRID,90.0,True,0.71,False,90.12,146.97,83.5,8.0,26.5,52.0,77.0,76.71,9.0,108.68,16.9
+Tier 1 (Gross),ML_Tier1_Gross,45,fine_FINE_THRESHOLD_GRID,95.0,True,0.61,False,95.06,268.18,89.0,14.5,37.5,68.0,86.0,83.5,7.0,194.84,13.9
+Tier 1 (Gross),ML_Tier1_Gross,46,coarse_THRESHOLD_GRID,90.0,True,0.73,False,90.12,127.47,82.5,8.0,25.0,51.5,74.5,75.52,10.0,96.43,18.2
+Tier 1 (Gross),ML_Tier1_Gross,46,coarse_THRESHOLD_GRID,95.0,True,0.61,False,95.06,267.83,89.5,14.5,36.0,70.0,87.5,83.95,7.0,198.21,13.7
+Tier 1 (Gross),ML_Tier1_Gross,46,fine_FINE_THRESHOLD_GRID,90.0,True,0.73,False,90.12,127.47,82.5,8.0,25.0,51.5,74.5,75.52,10.0,96.43,18.2
+Tier 1 (Gross),ML_Tier1_Gross,46,fine_FINE_THRESHOLD_GRID,95.0,True,0.61,False,95.06,267.83,89.5,14.5,36.0,70.0,87.5,83.95,7.0,198.21,13.7
+Tier 1 (Gross),ML_Tier1_Gross,47,coarse_THRESHOLD_GRID,90.0,True,0.7,False,90.12,155.71,82.5,9.0,27.0,52.5,77.5,76.21,9.0,116.58,17.0
+Tier 1 (Gross),ML_Tier1_Gross,47,coarse_THRESHOLD_GRID,95.0,True,0.63,False,95.06,241.48,87.5,15.0,34.5,63.0,85.5,82.35,8.0,178.4,14.5
+Tier 1 (Gross),ML_Tier1_Gross,47,fine_FINE_THRESHOLD_GRID,90.0,True,0.7,False,90.12,155.71,82.5,9.0,27.0,52.5,77.5,76.21,9.0,116.58,17.0
+Tier 1 (Gross),ML_Tier1_Gross,47,fine_FINE_THRESHOLD_GRID,95.0,True,0.63,False,95.06,241.48,87.5,15.0,34.5,63.0,85.5,82.35,8.0,178.4,14.5
+Tier 1 (Gross),ML_Tier1_Gross,48,coarse_THRESHOLD_GRID,90.0,True,0.69,False,91.36,165.87,84.0,8.5,29.0,55.5,80.5,78.26,9.0,120.19,16.2
+Tier 1 (Gross),ML_Tier1_Gross,48,coarse_THRESHOLD_GRID,95.0,True,0.6,False,95.06,273.5,89.5,13.5,37.5,67.5,86.5,83.67,8.0,203.8,13.8
+Tier 1 (Gross),ML_Tier1_Gross,48,fine_FINE_THRESHOLD_GRID,90.0,True,0.69,False,91.36,165.87,84.0,8.5,29.0,55.5,80.5,78.26,9.0,120.19,16.2
+Tier 1 (Gross),ML_Tier1_Gross,48,fine_FINE_THRESHOLD_GRID,95.0,True,0.6,False,95.06,273.5,89.5,13.5,37.5,67.5,86.5,83.67,8.0,203.8,13.8
+Tier 1 (Gross),ML_Tier1_Gross,49,coarse_THRESHOLD_GRID,90.0,True,0.71,False,90.12,143.9,81.5,8.0,24.0,49.5,74.5,76.03,10.0,106.96,16.3
+Tier 1 (Gross),ML_Tier1_Gross,49,coarse_THRESHOLD_GRID,95.0,True,0.61,False,95.06,261.92,88.0,13.5,35.5,66.5,86.0,82.76,7.0,191.06,13.8
+Tier 1 (Gross),ML_Tier1_Gross,49,fine_FINE_THRESHOLD_GRID,90.0,True,0.71,False,90.12,143.9,81.5,8.0,24.0,49.5,74.5,76.03,10.0,106.96,16.3
+Tier 1 (Gross),ML_Tier1_Gross,49,fine_FINE_THRESHOLD_GRID,95.0,True,0.61,False,95.06,261.92,88.0,13.5,35.5,66.5,86.0,82.76,7.0,191.06,13.8
+Tier 1 (Gross),ML_Tier1_Gross,50,coarse_THRESHOLD_GRID,90.0,True,0.69,False,90.12,164.34,84.5,9.5,29.5,56.0,80.0,78.1,9.0,121.26,15.8
+Tier 1 (Gross),ML_Tier1_Gross,50,coarse_THRESHOLD_GRID,95.0,True,0.6,False,95.06,272.08,88.5,13.5,36.5,69.0,85.5,82.95,8.0,204.79,13.6
+Tier 1 (Gross),ML_Tier1_Gross,50,fine_FINE_THRESHOLD_GRID,90.0,True,0.69,False,90.12,164.34,84.5,9.5,29.5,56.0,80.0,78.1,9.0,121.26,15.8
+Tier 1 (Gross),ML_Tier1_Gross,50,fine_FINE_THRESHOLD_GRID,95.0,True,0.6,False,95.06,272.08,88.5,13.5,36.5,69.0,85.5,82.95,8.0,204.79,13.6
+Tier 1 (Gross),ML_Tier1_Gross,51,coarse_THRESHOLD_GRID,90.0,True,0.7,False,90.12,156.54,84.5,10.5,28.5,56.0,80.0,78.09,8.0,119.21,17.1
+Tier 1 (Gross),ML_Tier1_Gross,51,coarse_THRESHOLD_GRID,95.0,True,0.62,False,95.06,253.77,89.0,13.5,33.5,65.5,86.0,83.43,8.0,192.29,14.1
+Tier 1 (Gross),ML_Tier1_Gross,51,fine_FINE_THRESHOLD_GRID,90.0,True,0.7,False,90.12,156.54,84.5,10.5,28.5,56.0,80.0,78.09,8.0,119.21,17.1
+Tier 1 (Gross),ML_Tier1_Gross,51,fine_FINE_THRESHOLD_GRID,95.0,True,0.62,False,95.06,253.77,89.0,13.5,33.5,65.5,86.0,83.43,8.0,192.29,14.1
+Tier 1 (Gross),ML_Tier1_Gross,52,coarse_THRESHOLD_GRID,90.0,True,0.69,False,91.36,169.53,84.5,11.0,30.5,58.5,80.5,78.56,8.0,123.73,16.3
+Tier 1 (Gross),ML_Tier1_Gross,52,coarse_THRESHOLD_GRID,95.0,True,0.64,False,95.06,227.9,87.5,13.0,34.5,65.0,84.5,81.58,8.0,167.22,14.8
+Tier 1 (Gross),ML_Tier1_Gross,52,fine_FINE_THRESHOLD_GRID,90.0,True,0.69,False,91.36,169.53,84.5,11.0,30.5,58.5,80.5,78.56,8.0,123.73,16.3
+Tier 1 (Gross),ML_Tier1_Gross,52,fine_FINE_THRESHOLD_GRID,95.0,True,0.64,False,95.06,227.9,87.5,13.0,34.5,65.0,84.5,81.58,8.0,167.22,14.8
+Tier 1 (Gross),ML_Tier1_Gross,53,coarse_THRESHOLD_GRID,90.0,True,0.69,False,90.12,171.31,84.0,9.5,30.0,57.5,80.0,77.83,8.0,128.5,15.8
+Tier 1 (Gross),ML_Tier1_Gross,53,coarse_THRESHOLD_GRID,95.0,True,0.59,False,96.3,294.05,90.0,14.0,38.0,72.5,88.5,84.71,7.0,227.72,13.4
+Tier 1 (Gross),ML_Tier1_Gross,53,fine_FINE_THRESHOLD_GRID,90.0,True,0.69,False,90.12,171.31,84.0,9.5,30.0,57.5,80.0,77.83,8.0,128.5,15.8
+Tier 1 (Gross),ML_Tier1_Gross,53,fine_FINE_THRESHOLD_GRID,95.0,True,0.59,False,96.3,294.05,90.0,14.0,38.0,72.5,88.5,84.71,7.0,227.72,13.4
+Tier 1 (Gross),ML_Tier1_Gross,54,coarse_THRESHOLD_GRID,90.0,True,0.69,False,90.12,172.25,84.5,11.0,32.0,56.5,80.0,78.27,8.0,125.54,15.8
+Tier 1 (Gross),ML_Tier1_Gross,54,coarse_THRESHOLD_GRID,95.0,True,0.62,False,95.06,257.08,88.0,13.5,36.0,66.5,86.5,82.95,7.5,189.17,14.1
+Tier 1 (Gross),ML_Tier1_Gross,54,fine_FINE_THRESHOLD_GRID,90.0,True,0.69,False,90.12,172.25,84.5,11.0,32.0,56.5,80.0,78.27,8.0,125.54,15.8
+Tier 1 (Gross),ML_Tier1_Gross,54,fine_FINE_THRESHOLD_GRID,95.0,True,0.62,False,95.06,257.08,88.0,13.5,36.0,66.5,86.5,82.95,7.5,189.17,14.1
+Tier 1 (Gross),ML_Tier1_Gross,55,coarse_THRESHOLD_GRID,90.0,True,0.68,False,92.59,176.5,84.0,10.0,28.5,56.5,80.0,78.18,8.0,127.43,15.7
+Tier 1 (Gross),ML_Tier1_Gross,55,coarse_THRESHOLD_GRID,95.0,True,0.59,False,95.06,296.18,88.5,13.0,35.5,67.0,85.0,83.45,8.0,212.84,13.4
+Tier 1 (Gross),ML_Tier1_Gross,55,fine_FINE_THRESHOLD_GRID,90.0,True,0.68,False,92.59,176.5,84.0,10.0,28.5,56.5,80.0,78.18,8.0,127.43,15.7
+Tier 1 (Gross),ML_Tier1_Gross,55,fine_FINE_THRESHOLD_GRID,95.0,True,0.59,False,95.06,296.18,88.5,13.0,35.5,67.0,85.0,83.45,8.0,212.84,13.4
+Tier 1 (Gross),ML_Tier1_Gross,56,coarse_THRESHOLD_GRID,90.0,True,0.7,False,90.12,156.66,84.5,10.0,28.5,55.0,80.0,77.76,9.0,114.52,16.6
+Tier 1 (Gross),ML_Tier1_Gross,56,coarse_THRESHOLD_GRID,95.0,True,0.61,False,95.06,267.35,90.0,13.5,36.5,71.0,87.5,84.41,8.0,194.18,13.9
+Tier 1 (Gross),ML_Tier1_Gross,56,fine_FINE_THRESHOLD_GRID,90.0,True,0.7,False,90.12,156.66,84.5,10.0,28.5,55.0,80.0,77.76,9.0,114.52,16.6
+Tier 1 (Gross),ML_Tier1_Gross,56,fine_FINE_THRESHOLD_GRID,95.0,True,0.61,False,95.06,267.35,90.0,13.5,36.5,71.0,87.5,84.41,8.0,194.18,13.9
+Tier 1 (Gross),ML_Tier1_Gross,57,coarse_THRESHOLD_GRID,90.0,True,0.7,False,90.12,154.88,82.5,9.5,28.0,54.0,78.0,76.77,9.0,115.01,16.0
+Tier 1 (Gross),ML_Tier1_Gross,57,coarse_THRESHOLD_GRID,95.0,True,0.63,False,95.06,242.55,86.5,13.0,34.0,63.0,83.5,81.67,8.0,175.93,14.3
+Tier 1 (Gross),ML_Tier1_Gross,57,fine_FINE_THRESHOLD_GRID,90.0,True,0.7,False,90.12,154.88,82.5,9.5,28.0,54.0,78.0,76.77,9.0,115.01,16.0
+Tier 1 (Gross),ML_Tier1_Gross,57,fine_FINE_THRESHOLD_GRID,95.0,True,0.63,False,95.06,242.55,86.5,13.0,34.0,63.0,83.5,81.67,8.0,175.93,14.3
+Tier 1 (Gross),ML_Tier1_Gross,58,coarse_THRESHOLD_GRID,90.0,True,0.7,False,90.12,155.95,84.5,9.0,29.0,56.5,79.5,77.68,9.0,115.75,16.3
+Tier 1 (Gross),ML_Tier1_Gross,58,coarse_THRESHOLD_GRID,95.0,True,0.6,False,96.3,281.53,89.0,13.0,36.5,71.0,87.0,83.93,7.5,207.58,13.5
+Tier 1 (Gross),ML_Tier1_Gross,58,fine_FINE_THRESHOLD_GRID,90.0,True,0.7,False,90.12,155.95,84.5,9.0,29.0,56.5,79.5,77.68,9.0,115.75,16.3
+Tier 1 (Gross),ML_Tier1_Gross,58,fine_FINE_THRESHOLD_GRID,95.0,True,0.6,False,96.3,281.53,89.0,13.0,36.5,71.0,87.0,83.93,7.5,207.58,13.5
+Tier 1 (Gross),ML_Tier1_Gross,59,coarse_THRESHOLD_GRID,90.0,True,0.7,False,90.12,157.6,82.5,8.0,26.0,53.0,79.0,76.78,9.0,113.53,16.1
+Tier 1 (Gross),ML_Tier1_Gross,59,coarse_THRESHOLD_GRID,95.0,True,0.62,False,95.06,254.24,87.5,12.5,35.5,65.5,84.5,82.35,8.0,183.58,13.9
+Tier 1 (Gross),ML_Tier1_Gross,59,fine_FINE_THRESHOLD_GRID,90.0,True,0.7,False,90.12,157.6,82.5,8.0,26.0,53.0,79.0,76.78,9.0,113.53,16.1
+Tier 1 (Gross),ML_Tier1_Gross,59,fine_FINE_THRESHOLD_GRID,95.0,True,0.62,False,95.06,254.24,87.5,12.5,35.5,65.5,84.5,82.35,8.0,183.58,13.9
+Tier 1 (Gross),ML_Tier1_Gross,60,coarse_THRESHOLD_GRID,90.0,True,0.7,False,90.12,155.36,82.5,9.0,25.5,52.5,77.5,76.66,10.0,114.44,16.1
+Tier 1 (Gross),ML_Tier1_Gross,60,coarse_THRESHOLD_GRID,95.0,True,0.59,False,95.06,290.39,89.5,13.0,36.0,68.5,87.0,83.85,8.0,216.79,13.5
+Tier 1 (Gross),ML_Tier1_Gross,60,fine_FINE_THRESHOLD_GRID,90.0,True,0.7,False,90.12,155.36,82.5,9.0,25.5,52.5,77.5,76.66,10.0,114.44,16.1
+Tier 1 (Gross),ML_Tier1_Gross,60,fine_FINE_THRESHOLD_GRID,95.0,True,0.59,False,95.06,290.39,89.5,13.0,36.0,68.5,87.0,83.85,8.0,216.79,13.5
+Tier 1 (Gross),ML_Tier1_Gross,61,coarse_THRESHOLD_GRID,90.0,True,0.69,False,90.12,169.53,84.0,9.0,27.5,54.5,79.5,77.56,9.0,123.89,15.9
+Tier 1 (Gross),ML_Tier1_Gross,61,coarse_THRESHOLD_GRID,95.0,True,0.62,False,95.06,250.81,88.5,13.0,34.5,69.0,86.0,82.91,8.0,183.91,14.2
+Tier 1 (Gross),ML_Tier1_Gross,61,fine_FINE_THRESHOLD_GRID,90.0,True,0.69,False,90.12,169.53,84.0,9.0,27.5,54.5,79.5,77.56,9.0,123.89,15.9
+Tier 1 (Gross),ML_Tier1_Gross,61,fine_FINE_THRESHOLD_GRID,95.0,True,0.62,False,95.06,250.81,88.5,13.0,34.5,69.0,86.0,82.91,8.0,183.91,14.2
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,42,coarse_THRESHOLD_GRID,90.0,True,0.85,False,90.12,48.44,76.5,6.0,15.5,42.5,69.0,68.05,11.0,26.39,0.6
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,42,coarse_THRESHOLD_GRID,95.0,True,0.71,False,95.06,138.46,85.0,7.5,24.5,59.0,79.0,79.25,9.0,74.07,2.4
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,42,fine_FINE_THRESHOLD_GRID,90.0,True,0.85,False,90.12,48.44,76.5,6.0,15.5,42.5,69.0,68.05,11.0,26.39,0.6
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,42,fine_FINE_THRESHOLD_GRID,95.0,True,0.71,False,95.06,138.46,85.0,7.5,24.5,59.0,79.0,79.25,9.0,74.07,2.4
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,43,coarse_THRESHOLD_GRID,90.0,True,0.87,False,90.12,39.46,73.5,5.5,15.5,39.5,63.0,64.28,12.0,21.62,0.5
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,43,coarse_THRESHOLD_GRID,95.0,True,0.76,False,95.06,104.91,82.0,7.0,23.5,54.5,76.5,75.93,10.0,55.25,1.8
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,43,fine_FINE_THRESHOLD_GRID,90.0,True,0.87,False,90.12,39.46,73.5,5.5,15.5,39.5,63.0,64.28,12.0,21.62,0.5
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,43,fine_FINE_THRESHOLD_GRID,95.0,True,0.76,False,95.06,104.91,82.0,7.0,23.5,54.5,76.5,75.93,10.0,55.25,1.8
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,44,coarse_THRESHOLD_GRID,90.0,True,0.88,False,90.12,32.84,72.5,5.5,12.5,36.5,62.0,62.78,12.0,19.57,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,44,coarse_THRESHOLD_GRID,95.0,True,0.81,False,95.06,71.0,78.0,6.5,18.0,46.5,73.5,71.18,11.0,38.15,0.4
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,44,fine_FINE_THRESHOLD_GRID,90.0,True,0.88,False,90.12,32.84,72.5,5.5,12.5,36.5,62.0,62.78,12.0,19.57,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,44,fine_FINE_THRESHOLD_GRID,95.0,True,0.81,False,95.06,71.0,78.0,6.5,18.0,46.5,73.5,71.18,11.0,38.15,0.4
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,45,coarse_THRESHOLD_GRID,90.0,True,0.86,False,90.12,41.47,74.5,6.0,15.0,39.0,65.0,66.35,12.0,24.58,0.7
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,45,coarse_THRESHOLD_GRID,95.0,True,0.75,False,95.06,109.75,84.0,7.5,22.5,55.5,78.0,77.43,10.0,61.33,2.4
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,45,fine_FINE_THRESHOLD_GRID,90.0,True,0.86,False,90.12,41.47,74.5,6.0,15.0,39.0,65.0,66.35,12.0,24.58,0.7
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,45,fine_FINE_THRESHOLD_GRID,95.0,True,0.75,False,95.06,109.75,84.0,7.5,22.5,55.5,78.0,77.43,10.0,61.33,2.4
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,46,coarse_THRESHOLD_GRID,90.0,True,0.88,False,90.12,31.9,71.5,5.5,13.0,36.5,61.0,62.89,12.0,17.84,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,46,coarse_THRESHOLD_GRID,95.0,True,0.76,False,95.06,102.31,81.0,7.0,21.5,51.5,76.0,75.09,10.0,56.07,1.6
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,46,fine_FINE_THRESHOLD_GRID,90.0,True,0.88,False,90.12,31.9,71.5,5.5,13.0,36.5,61.0,62.89,12.0,17.84,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,46,fine_FINE_THRESHOLD_GRID,95.0,True,0.76,False,95.06,102.31,81.0,7.0,21.5,51.5,76.0,75.09,10.0,56.07,1.6
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,47,coarse_THRESHOLD_GRID,90.0,True,0.86,False,90.12,45.48,74.0,6.0,16.5,40.5,66.5,65.27,11.0,24.01,0.2
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,47,coarse_THRESHOLD_GRID,95.0,True,0.75,False,95.06,111.29,82.0,7.0,21.5,51.0,76.0,75.77,10.0,57.63,1.5
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,47,fine_FINE_THRESHOLD_GRID,90.0,True,0.86,False,90.12,45.48,74.0,6.0,16.5,40.5,66.5,65.27,11.0,24.01,0.2
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,47,fine_FINE_THRESHOLD_GRID,95.0,True,0.75,False,95.06,111.29,82.0,7.0,21.5,51.0,76.0,75.77,10.0,57.63,1.5
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,48,coarse_THRESHOLD_GRID,90.0,True,0.86,False,90.12,42.65,75.5,6.5,15.5,41.0,66.5,65.75,11.0,24.17,0.2
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,48,coarse_THRESHOLD_GRID,95.0,True,0.8,False,95.06,78.45,79.0,7.0,17.5,46.0,73.0,71.93,11.0,40.78,0.8
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,48,fine_FINE_THRESHOLD_GRID,90.0,True,0.86,False,90.12,42.65,75.5,6.5,15.5,41.0,66.5,65.75,11.0,24.17,0.2
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,48,fine_FINE_THRESHOLD_GRID,95.0,True,0.8,False,95.06,78.45,79.0,7.0,17.5,46.0,73.0,71.93,11.0,40.78,0.8
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,49,coarse_THRESHOLD_GRID,90.0,True,0.87,False,90.12,40.88,74.0,6.0,14.5,39.0,63.5,64.48,12.0,21.21,0.3
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,49,coarse_THRESHOLD_GRID,95.0,True,0.74,False,95.06,122.63,82.5,7.0,23.0,54.5,78.0,77.02,10.0,62.97,2.6
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,49,fine_FINE_THRESHOLD_GRID,90.0,True,0.87,False,90.12,40.88,74.0,6.0,14.5,39.0,63.5,64.48,12.0,21.21,0.3
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,49,fine_FINE_THRESHOLD_GRID,95.0,True,0.74,False,95.06,122.63,82.5,7.0,23.0,54.5,78.0,77.02,10.0,62.97,2.6
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,50,coarse_THRESHOLD_GRID,90.0,True,0.88,False,90.12,37.33,73.5,5.5,12.5,37.0,64.0,62.89,12.0,19.48,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,50,coarse_THRESHOLD_GRID,95.0,True,0.78,False,95.06,92.98,81.5,6.5,20.0,51.0,76.5,74.52,11.0,47.85,1.3
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,50,fine_FINE_THRESHOLD_GRID,90.0,True,0.88,False,90.12,37.33,73.5,5.5,12.5,37.0,64.0,62.89,12.0,19.48,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,50,fine_FINE_THRESHOLD_GRID,95.0,True,0.78,False,95.06,92.98,81.5,6.5,20.0,51.0,76.5,74.52,11.0,47.85,1.3
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,51,coarse_THRESHOLD_GRID,90.0,True,0.86,False,90.12,43.48,75.0,6.0,15.0,39.5,65.5,65.89,12.0,24.09,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,51,coarse_THRESHOLD_GRID,95.0,True,0.75,False,95.06,113.06,82.0,7.0,22.5,53.0,76.5,75.71,10.0,59.85,1.8
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,51,fine_FINE_THRESHOLD_GRID,90.0,True,0.86,False,90.12,43.48,75.0,6.0,15.0,39.5,65.5,65.89,12.0,24.09,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,51,fine_FINE_THRESHOLD_GRID,95.0,True,0.75,False,95.06,113.06,82.0,7.0,22.5,53.0,76.5,75.71,10.0,59.85,1.8
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,52,coarse_THRESHOLD_GRID,90.0,True,0.86,False,90.12,39.58,75.5,6.0,13.5,40.0,65.0,65.74,12.0,23.1,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,52,coarse_THRESHOLD_GRID,95.0,True,0.64,False,95.06,187.49,88.0,10.0,29.5,65.5,82.0,82.3,9.0,104.82,2.7
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,52,fine_FINE_THRESHOLD_GRID,90.0,True,0.86,False,90.12,39.58,75.5,6.0,13.5,40.0,65.0,65.74,12.0,23.1,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,52,fine_FINE_THRESHOLD_GRID,95.0,True,0.64,False,95.06,187.49,88.0,10.0,29.5,65.5,82.0,82.3,9.0,104.82,2.7
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,53,coarse_THRESHOLD_GRID,90.0,True,0.89,False,90.12,29.65,70.5,5.5,12.5,35.0,58.5,61.49,13.0,15.62,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,53,coarse_THRESHOLD_GRID,95.0,True,0.74,False,95.06,117.67,83.5,7.0,23.0,55.5,78.0,77.04,10.0,61.33,2.1
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,53,fine_FINE_THRESHOLD_GRID,90.0,True,0.89,False,90.12,29.65,70.5,5.5,12.5,35.0,58.5,61.49,13.0,15.62,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,53,fine_FINE_THRESHOLD_GRID,95.0,True,0.74,False,95.06,117.67,83.5,7.0,23.0,55.5,78.0,77.04,10.0,61.33,2.1
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,54,coarse_THRESHOLD_GRID,90.0,True,0.9,False,90.12,27.65,69.5,4.5,11.5,34.0,58.5,60.21,13.0,14.55,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,54,coarse_THRESHOLD_GRID,95.0,True,0.78,False,95.06,90.26,81.0,8.5,20.0,50.5,76.0,74.3,10.0,47.76,1.1
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,54,fine_FINE_THRESHOLD_GRID,90.0,True,0.902,False,90.12,26.82,69.5,4.5,11.5,34.0,58.5,59.76,13.0,14.3,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,54,fine_FINE_THRESHOLD_GRID,95.0,True,0.78,False,95.06,90.26,81.0,8.5,20.0,50.5,76.0,74.3,10.0,47.76,1.1
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,55,coarse_THRESHOLD_GRID,90.0,True,0.86,False,91.36,42.89,75.0,6.0,14.5,41.0,67.0,65.88,11.0,24.17,0.2
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,55,coarse_THRESHOLD_GRID,95.0,True,0.8,False,95.06,74.78,78.5,7.0,19.5,44.5,72.0,71.67,11.0,41.35,1.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,55,fine_FINE_THRESHOLD_GRID,90.0,True,0.86,False,91.36,42.89,75.0,6.0,14.5,41.0,67.0,65.88,11.0,24.17,0.2
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,55,fine_FINE_THRESHOLD_GRID,95.0,True,0.8,False,95.06,74.78,78.5,7.0,19.5,44.5,72.0,71.67,11.0,41.35,1.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,56,coarse_THRESHOLD_GRID,90.0,True,0.89,False,90.12,31.07,73.0,5.0,12.0,37.5,61.5,62.66,12.0,17.18,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,56,coarse_THRESHOLD_GRID,95.0,True,0.78,False,95.06,90.73,83.0,7.5,22.5,52.5,77.0,75.57,11.0,49.57,1.4
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,56,fine_FINE_THRESHOLD_GRID,90.0,True,0.89,False,90.12,31.07,73.0,5.0,12.0,37.5,61.5,62.66,12.0,17.18,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,56,fine_FINE_THRESHOLD_GRID,95.0,True,0.78,False,95.06,90.73,83.0,7.5,22.5,52.5,77.0,75.57,11.0,49.57,1.4
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,57,coarse_THRESHOLD_GRID,90.0,True,0.85,False,91.36,46.9,76.5,6.0,15.5,42.0,69.0,67.58,12.0,26.55,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,57,coarse_THRESHOLD_GRID,95.0,True,0.76,False,95.06,105.38,82.0,8.0,22.5,52.0,77.0,75.47,10.0,54.26,2.1
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,57,fine_FINE_THRESHOLD_GRID,90.0,True,0.85,False,91.36,46.9,76.5,6.0,15.5,42.0,69.0,67.58,12.0,26.55,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,57,fine_FINE_THRESHOLD_GRID,95.0,True,0.76,False,95.06,105.38,82.0,8.0,22.5,52.0,77.0,75.47,10.0,54.26,2.1
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,58,coarse_THRESHOLD_GRID,90.0,True,0.88,False,90.12,33.32,73.0,4.0,13.5,36.0,61.5,63.43,13.0,20.31,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,58,coarse_THRESHOLD_GRID,95.0,True,0.75,False,96.3,109.87,83.0,7.0,22.0,54.0,77.5,76.18,10.0,59.11,2.3
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,58,fine_FINE_THRESHOLD_GRID,90.0,True,0.88,False,90.12,33.32,73.0,4.0,13.5,36.0,61.5,63.43,13.0,20.31,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,58,fine_FINE_THRESHOLD_GRID,95.0,True,0.75,False,96.3,109.87,83.0,7.0,22.0,54.0,77.5,76.18,10.0,59.11,2.3
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,59,coarse_THRESHOLD_GRID,90.0,True,0.88,False,90.12,34.02,74.0,5.0,13.0,38.5,61.0,63.99,12.0,18.74,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,59,coarse_THRESHOLD_GRID,95.0,True,0.73,False,95.06,126.18,84.5,7.5,22.5,55.0,79.0,78.08,10.0,67.41,2.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,59,fine_FINE_THRESHOLD_GRID,90.0,True,0.88,False,90.12,34.02,74.0,5.0,13.0,38.5,61.0,63.99,12.0,18.74,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,59,fine_FINE_THRESHOLD_GRID,95.0,True,0.73,False,95.06,126.18,84.5,7.5,22.5,55.0,79.0,78.08,10.0,67.41,2.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,60,coarse_THRESHOLD_GRID,90.0,True,0.88,False,91.36,35.21,72.5,6.5,14.0,37.0,63.0,63.14,12.0,19.32,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,60,coarse_THRESHOLD_GRID,95.0,True,0.77,False,95.06,98.06,82.5,7.5,21.0,53.5,77.0,75.25,10.0,52.12,1.2
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,60,fine_FINE_THRESHOLD_GRID,90.0,True,0.88,False,91.36,35.21,72.5,6.5,14.0,37.0,63.0,63.14,12.0,19.32,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,60,fine_FINE_THRESHOLD_GRID,95.0,True,0.77,False,95.06,98.06,82.5,7.5,21.0,53.5,77.0,75.25,10.0,52.12,1.2
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,61,coarse_THRESHOLD_GRID,90.0,True,0.87,False,90.12,37.21,73.5,5.5,14.5,38.0,64.5,64.65,12.0,21.05,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,61,coarse_THRESHOLD_GRID,95.0,True,0.72,False,95.06,132.44,84.5,8.0,24.0,54.5,79.0,77.77,10.0,69.39,1.9
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,61,fine_FINE_THRESHOLD_GRID,90.0,True,0.87,False,90.12,37.21,73.5,5.5,14.5,38.0,64.5,64.65,12.0,21.05,0.0
+Tier 1b (Gross+Weather),ML_Tier1b_GrossWeather,61,fine_FINE_THRESHOLD_GRID,95.0,True,0.72,False,95.06,132.44,84.5,8.0,24.0,54.5,79.0,77.77,10.0,69.39,1.9
+Tier 2 (Spectral),ML_Tier2_Spectral,42,coarse_THRESHOLD_GRID,90.0,True,0.994,True,95.06,0.0,86.5,20.0,55.0,77.5,85.0,83.83,5.0,1.23,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,42,coarse_THRESHOLD_GRID,95.0,True,0.994,True,95.06,0.0,86.5,20.0,55.0,77.5,85.0,83.83,5.0,1.23,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,42,fine_FINE_THRESHOLD_GRID,90.0,True,0.993965,True,95.06,0.0,86.5,20.0,55.0,77.5,85.0,83.84,5.0,1.23,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,42,fine_FINE_THRESHOLD_GRID,95.0,True,0.993965,True,95.06,0.0,86.5,20.0,55.0,77.5,85.0,83.84,5.0,1.23,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,43,coarse_THRESHOLD_GRID,90.0,True,0.994,True,95.06,0.0,88.0,17.5,55.0,78.5,86.0,84.97,5.0,2.06,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,43,coarse_THRESHOLD_GRID,95.0,True,0.994,True,95.06,0.0,88.0,17.5,55.0,78.5,86.0,84.97,5.0,2.06,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,43,fine_FINE_THRESHOLD_GRID,90.0,True,0.993716,True,95.06,0.0,88.0,19.0,55.0,79.5,86.5,85.29,5.0,2.06,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,43,fine_FINE_THRESHOLD_GRID,95.0,True,0.993716,True,95.06,0.0,88.0,19.0,55.0,79.5,86.5,85.29,5.0,2.06,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,44,coarse_THRESHOLD_GRID,90.0,True,0.991,True,95.06,0.0,88.5,21.5,59.5,80.0,86.5,85.93,5.0,2.3,6.2
+Tier 2 (Spectral),ML_Tier2_Spectral,44,coarse_THRESHOLD_GRID,95.0,True,0.991,True,95.06,0.0,88.5,21.5,59.5,80.0,86.5,85.93,5.0,2.3,6.2
+Tier 2 (Spectral),ML_Tier2_Spectral,44,fine_FINE_THRESHOLD_GRID,90.0,True,0.990723,True,95.06,0.0,88.5,22.0,59.5,80.0,86.5,86.17,5.0,2.8,5.3
+Tier 2 (Spectral),ML_Tier2_Spectral,44,fine_FINE_THRESHOLD_GRID,95.0,True,0.990723,True,95.06,0.0,88.5,22.0,59.5,80.0,86.5,86.17,5.0,2.8,5.3
+Tier 2 (Spectral),ML_Tier2_Spectral,45,coarse_THRESHOLD_GRID,90.0,True,0.995,True,95.06,0.0,86.5,17.5,54.0,77.0,84.0,83.54,5.0,2.96,10.9
+Tier 2 (Spectral),ML_Tier2_Spectral,45,coarse_THRESHOLD_GRID,95.0,True,0.995,True,95.06,0.0,86.5,17.5,54.0,77.0,84.0,83.54,5.0,2.96,10.9
+Tier 2 (Spectral),ML_Tier2_Spectral,45,fine_FINE_THRESHOLD_GRID,90.0,True,0.99409,True,95.06,0.0,87.0,19.0,56.5,78.5,85.0,84.53,5.0,7.4,7.7
+Tier 2 (Spectral),ML_Tier2_Spectral,45,fine_FINE_THRESHOLD_GRID,95.0,True,0.99409,True,95.06,0.0,87.0,19.0,56.5,78.5,85.0,84.53,5.0,7.4,7.7
+Tier 2 (Spectral),ML_Tier2_Spectral,46,coarse_THRESHOLD_GRID,90.0,True,0.994,True,95.06,0.0,87.5,19.5,54.0,77.5,86.0,83.5,5.0,0.66,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,46,coarse_THRESHOLD_GRID,95.0,True,0.994,True,95.06,0.0,87.5,19.5,54.0,77.5,86.0,83.5,5.0,0.66,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,46,fine_FINE_THRESHOLD_GRID,90.0,True,0.993267,True,95.06,0.0,87.5,20.5,54.5,78.5,86.5,84.42,5.0,0.82,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,46,fine_FINE_THRESHOLD_GRID,95.0,True,0.993267,True,95.06,0.0,87.5,20.5,54.5,78.5,86.5,84.42,5.0,0.82,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,47,coarse_THRESHOLD_GRID,90.0,True,0.991,True,95.06,0.0,89.0,21.5,57.5,80.0,88.0,86.23,5.0,1.56,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,47,coarse_THRESHOLD_GRID,95.0,True,0.991,True,95.06,0.0,89.0,21.5,57.5,80.0,88.0,86.23,5.0,1.56,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,47,fine_FINE_THRESHOLD_GRID,90.0,True,0.990948,True,95.06,0.0,89.0,21.5,57.5,80.0,88.0,86.23,5.0,1.64,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,47,fine_FINE_THRESHOLD_GRID,95.0,True,0.990948,True,95.06,0.0,89.0,21.5,57.5,80.0,88.0,86.23,5.0,1.64,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,48,coarse_THRESHOLD_GRID,90.0,True,0.997,True,95.06,0.0,81.5,12.5,44.5,70.0,79.0,76.04,6.0,0.0,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,48,coarse_THRESHOLD_GRID,95.0,True,0.997,True,95.06,0.0,81.5,12.5,44.5,70.0,79.0,76.04,6.0,0.0,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,48,fine_FINE_THRESHOLD_GRID,90.0,True,0.996808,True,95.06,0.0,83.5,13.5,47.0,71.5,81.0,77.84,6.0,0.16,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,48,fine_FINE_THRESHOLD_GRID,95.0,True,0.996808,True,95.06,0.0,83.5,13.5,47.0,71.5,81.0,77.84,6.0,0.16,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,49,coarse_THRESHOLD_GRID,90.0,True,0.994,True,95.06,0.0,86.5,19.0,52.5,77.0,85.5,83.88,5.0,0.82,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,49,coarse_THRESHOLD_GRID,95.0,True,0.994,True,95.06,0.0,86.5,19.0,52.5,77.0,85.5,83.88,5.0,0.82,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,49,fine_FINE_THRESHOLD_GRID,90.0,True,0.99399,True,95.06,0.0,86.5,19.0,52.5,77.0,85.5,83.89,5.0,0.82,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,49,fine_FINE_THRESHOLD_GRID,95.0,True,0.99399,True,95.06,0.0,86.5,19.0,52.5,77.0,85.5,83.89,5.0,0.82,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,50,coarse_THRESHOLD_GRID,90.0,True,0.996,True,95.06,0.0,84.5,18.0,51.0,74.0,82.5,81.2,5.0,2.14,6.2
+Tier 2 (Spectral),ML_Tier2_Spectral,50,coarse_THRESHOLD_GRID,95.0,True,0.996,True,95.06,0.0,84.5,18.0,51.0,74.0,82.5,81.2,5.0,2.14,6.2
+Tier 2 (Spectral),ML_Tier2_Spectral,50,fine_FINE_THRESHOLD_GRID,90.0,True,0.995885,True,95.06,0.0,84.5,18.5,51.5,74.0,82.5,81.44,5.0,2.3,5.9
+Tier 2 (Spectral),ML_Tier2_Spectral,50,fine_FINE_THRESHOLD_GRID,95.0,True,0.995885,True,95.06,0.0,84.5,18.5,51.5,74.0,82.5,81.44,5.0,2.3,5.9
+Tier 2 (Spectral),ML_Tier2_Spectral,51,coarse_THRESHOLD_GRID,90.0,True,0.993,True,95.06,0.0,87.5,19.5,56.0,78.5,86.5,84.45,5.0,0.99,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,51,coarse_THRESHOLD_GRID,95.0,True,0.993,True,95.06,0.0,87.5,19.5,56.0,78.5,86.5,84.45,5.0,0.99,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,51,fine_FINE_THRESHOLD_GRID,90.0,True,0.992194,True,95.06,0.0,88.0,20.0,58.0,80.5,87.5,85.27,5.0,1.56,5.0
+Tier 2 (Spectral),ML_Tier2_Spectral,51,fine_FINE_THRESHOLD_GRID,95.0,True,0.992194,True,95.06,0.0,88.0,20.0,58.0,80.5,87.5,85.27,5.0,1.56,5.0
+Tier 2 (Spectral),ML_Tier2_Spectral,52,coarse_THRESHOLD_GRID,90.0,True,0.993,True,95.06,0.0,87.5,22.0,59.5,80.0,86.5,85.49,5.0,11.18,4.7
+Tier 2 (Spectral),ML_Tier2_Spectral,52,coarse_THRESHOLD_GRID,95.0,True,0.993,True,95.06,0.0,87.5,22.0,59.5,80.0,86.5,85.49,5.0,11.18,4.7
+Tier 2 (Spectral),ML_Tier2_Spectral,52,fine_FINE_THRESHOLD_GRID,90.0,True,0.992918,True,95.06,0.0,87.5,22.5,59.5,80.0,86.5,85.54,5.0,11.76,4.5
+Tier 2 (Spectral),ML_Tier2_Spectral,52,fine_FINE_THRESHOLD_GRID,95.0,True,0.992918,True,95.06,0.0,87.5,22.5,59.5,80.0,86.5,85.54,5.0,11.76,4.5
+Tier 2 (Spectral),ML_Tier2_Spectral,53,coarse_THRESHOLD_GRID,90.0,True,0.99,True,95.06,0.0,88.5,23.5,60.0,80.0,87.0,86.01,5.0,1.81,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,53,coarse_THRESHOLD_GRID,95.0,True,0.99,True,95.06,0.0,88.5,23.5,60.0,80.0,87.0,86.01,5.0,1.81,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,53,fine_FINE_THRESHOLD_GRID,90.0,True,0.988,True,95.06,0.0,89.5,25.0,62.5,82.0,88.0,87.46,5.0,2.38,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,53,fine_FINE_THRESHOLD_GRID,95.0,True,0.988,True,95.06,0.0,89.5,25.0,62.5,82.0,88.0,87.46,5.0,2.38,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,54,coarse_THRESHOLD_GRID,90.0,True,0.996,True,95.06,0.0,83.5,15.0,48.5,74.0,82.0,80.22,6.0,3.04,4.3
+Tier 2 (Spectral),ML_Tier2_Spectral,54,coarse_THRESHOLD_GRID,95.0,True,0.996,True,95.06,0.0,83.5,15.0,48.5,74.0,82.0,80.22,6.0,3.04,4.3
+Tier 2 (Spectral),ML_Tier2_Spectral,54,fine_FINE_THRESHOLD_GRID,90.0,True,0.995312,True,95.06,0.0,84.0,16.0,49.5,75.0,82.0,81.14,5.0,5.26,6.7
+Tier 2 (Spectral),ML_Tier2_Spectral,54,fine_FINE_THRESHOLD_GRID,95.0,True,0.995312,True,95.06,0.0,84.0,16.0,49.5,75.0,82.0,81.14,5.0,5.26,6.7
+Tier 2 (Spectral),ML_Tier2_Spectral,55,coarse_THRESHOLD_GRID,90.0,True,0.997,True,95.06,0.0,83.0,13.5,44.5,71.0,80.5,77.39,6.0,0.25,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,55,coarse_THRESHOLD_GRID,95.0,True,0.997,True,95.06,0.0,83.0,13.5,44.5,71.0,80.5,77.39,6.0,0.25,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,55,fine_FINE_THRESHOLD_GRID,90.0,True,0.996409,True,95.06,0.0,85.5,15.5,48.0,73.5,83.5,80.5,6.0,0.41,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,55,fine_FINE_THRESHOLD_GRID,95.0,True,0.996409,True,95.06,0.0,85.5,15.5,48.0,73.5,83.5,80.5,6.0,0.41,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,56,coarse_THRESHOLD_GRID,90.0,True,0.993,True,95.06,0.0,85.0,17.5,52.5,76.5,83.5,82.63,5.0,1.07,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,56,coarse_THRESHOLD_GRID,95.0,True,0.993,True,95.06,0.0,85.0,17.5,52.5,76.5,83.5,82.63,5.0,1.07,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,56,fine_FINE_THRESHOLD_GRID,90.0,True,0.992868,True,95.06,0.0,85.0,17.5,53.0,76.5,84.0,82.73,5.0,1.07,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,56,fine_FINE_THRESHOLD_GRID,95.0,True,0.992868,True,95.06,0.0,85.0,17.5,53.0,76.5,84.0,82.73,5.0,1.07,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,57,coarse_THRESHOLD_GRID,90.0,True,0.993,True,95.06,0.0,86.5,20.0,54.5,77.5,85.5,84.49,5.0,1.07,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,57,coarse_THRESHOLD_GRID,95.0,True,0.993,True,95.06,0.0,86.5,20.0,54.5,77.5,85.5,84.49,5.0,1.07,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,57,fine_FINE_THRESHOLD_GRID,90.0,True,0.992369,True,95.06,0.0,87.0,20.5,56.0,78.0,86.0,85.11,5.0,1.48,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,57,fine_FINE_THRESHOLD_GRID,95.0,True,0.992369,True,95.06,0.0,87.0,20.5,56.0,78.0,86.0,85.11,5.0,1.48,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,58,coarse_THRESHOLD_GRID,90.0,True,0.997,True,95.06,0.0,83.0,14.0,44.5,72.5,80.0,77.58,6.0,0.08,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,58,coarse_THRESHOLD_GRID,95.0,True,0.997,True,95.06,0.0,83.0,14.0,44.5,72.5,80.0,77.58,6.0,0.08,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,58,fine_FINE_THRESHOLD_GRID,90.0,True,0.996633,True,95.06,0.0,83.5,14.0,46.5,74.0,82.0,79.2,6.0,0.08,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,58,fine_FINE_THRESHOLD_GRID,95.0,True,0.996633,True,95.06,0.0,83.5,14.0,46.5,74.0,82.0,79.2,6.0,0.08,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,59,coarse_THRESHOLD_GRID,90.0,True,0.996,True,95.06,0.0,85.0,15.5,52.5,75.0,83.0,80.79,5.0,0.82,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,59,coarse_THRESHOLD_GRID,95.0,True,0.996,True,95.06,0.0,85.0,15.5,52.5,75.0,83.0,80.79,5.0,0.82,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,59,fine_FINE_THRESHOLD_GRID,90.0,True,0.995436,True,95.06,0.0,85.0,18.0,55.0,75.0,83.5,81.88,5.0,0.9,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,59,fine_FINE_THRESHOLD_GRID,95.0,True,0.995436,True,95.06,0.0,85.0,18.0,55.0,75.0,83.5,81.88,5.0,0.9,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,60,coarse_THRESHOLD_GRID,90.0,True,0.994,True,95.06,0.0,86.0,16.5,51.5,76.5,84.5,83.0,5.0,0.66,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,60,coarse_THRESHOLD_GRID,95.0,True,0.994,True,95.06,0.0,86.0,16.5,51.5,76.5,84.5,83.0,5.0,0.66,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,60,fine_FINE_THRESHOLD_GRID,90.0,True,0.993915,True,95.06,0.0,86.0,17.0,52.0,77.0,84.5,83.05,5.0,0.66,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,60,fine_FINE_THRESHOLD_GRID,95.0,True,0.993915,True,95.06,0.0,86.0,17.0,52.0,77.0,84.5,83.05,5.0,0.66,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,61,coarse_THRESHOLD_GRID,90.0,True,0.995,True,95.06,0.0,85.5,16.0,51.0,76.0,84.0,82.4,6.0,0.49,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,61,coarse_THRESHOLD_GRID,95.0,True,0.995,True,95.06,0.0,85.5,16.0,51.0,76.0,84.0,82.4,6.0,0.49,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,61,fine_FINE_THRESHOLD_GRID,90.0,True,0.994389,True,95.06,0.0,86.5,16.5,53.0,78.0,85.5,83.72,5.0,0.58,0.0
+Tier 2 (Spectral),ML_Tier2_Spectral,61,fine_FINE_THRESHOLD_GRID,95.0,True,0.994389,True,95.06,0.0,86.5,16.5,53.0,78.0,85.5,83.72,5.0,0.58,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,42,coarse_THRESHOLD_GRID,90.0,True,0.97,True,96.3,0.0,93.0,28.0,69.5,87.5,93.0,91.15,5.0,10.77,11.6
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,42,coarse_THRESHOLD_GRID,95.0,True,0.97,True,96.3,0.0,93.0,28.0,69.5,87.5,93.0,91.15,5.0,10.77,11.6
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,42,fine_FINE_THRESHOLD_GRID,90.0,True,0.966,True,96.3,0.0,93.5,29.0,70.0,88.0,93.5,91.84,5.0,12.66,10.9
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,42,fine_FINE_THRESHOLD_GRID,95.0,True,0.966,True,96.3,0.0,93.5,29.0,70.0,88.0,93.5,91.84,5.0,12.66,10.9
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,43,coarse_THRESHOLD_GRID,90.0,True,0.98,True,95.06,0.0,91.5,24.0,65.5,85.0,89.5,89.04,5.0,2.38,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,43,coarse_THRESHOLD_GRID,95.0,True,0.98,True,95.06,0.0,91.5,24.0,65.5,85.0,89.5,89.04,5.0,2.38,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,43,fine_FINE_THRESHOLD_GRID,90.0,True,0.976,True,95.06,0.0,92.0,26.0,68.0,86.0,90.5,89.54,5.0,3.37,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,43,fine_FINE_THRESHOLD_GRID,95.0,True,0.976,True,95.06,0.0,92.0,26.0,68.0,86.0,90.5,89.54,5.0,3.37,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,44,coarse_THRESHOLD_GRID,90.0,True,0.97,True,95.06,0.0,92.5,27.0,70.0,86.5,91.5,90.34,5.0,6.41,7.6
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,44,coarse_THRESHOLD_GRID,95.0,True,0.97,True,95.06,0.0,92.5,27.0,70.0,86.5,91.5,90.34,5.0,6.41,7.6
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,44,fine_FINE_THRESHOLD_GRID,90.0,True,0.968,True,95.06,0.0,92.5,28.0,71.0,87.5,92.0,90.5,5.0,6.82,7.9
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,44,fine_FINE_THRESHOLD_GRID,95.0,True,0.968,True,95.06,0.0,92.5,28.0,71.0,87.5,92.0,90.5,5.0,6.82,7.9
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,45,coarse_THRESHOLD_GRID,90.0,True,0.985,True,95.06,0.0,89.5,24.0,62.0,83.5,88.5,87.5,5.0,3.7,9.4
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,45,coarse_THRESHOLD_GRID,95.0,True,0.985,True,95.06,0.0,89.5,24.0,62.0,83.5,88.5,87.5,5.0,3.7,9.4
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,45,fine_FINE_THRESHOLD_GRID,90.0,True,0.981,True,95.06,0.0,90.5,26.5,66.0,85.5,90.0,88.65,5.0,5.51,12.9
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,45,fine_FINE_THRESHOLD_GRID,95.0,True,0.981,True,95.06,0.0,90.5,26.5,66.0,85.5,90.0,88.65,5.0,5.51,12.9
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,46,coarse_THRESHOLD_GRID,90.0,True,0.98,True,95.06,0.0,91.0,24.5,64.5,84.0,90.5,88.16,5.0,3.62,3.6
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,46,coarse_THRESHOLD_GRID,95.0,True,0.98,True,95.06,0.0,91.0,24.5,64.5,84.0,90.5,88.16,5.0,3.62,3.6
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,46,fine_FINE_THRESHOLD_GRID,90.0,True,0.979,True,95.06,0.0,91.0,25.5,65.0,84.0,91.0,88.38,5.0,3.78,3.4
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,46,fine_FINE_THRESHOLD_GRID,95.0,True,0.979,True,95.06,0.0,91.0,25.5,65.0,84.0,91.0,88.38,5.0,3.78,3.4
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,47,coarse_THRESHOLD_GRID,90.0,True,0.98,True,95.06,0.0,91.0,23.0,63.0,84.0,89.0,87.98,5.0,3.12,4.2
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,47,coarse_THRESHOLD_GRID,95.0,True,0.98,True,95.06,0.0,91.0,23.0,63.0,84.0,89.0,87.98,5.0,3.12,4.2
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,47,fine_FINE_THRESHOLD_GRID,90.0,True,0.973,True,95.06,0.0,91.5,26.5,68.0,85.5,90.5,89.85,5.0,5.59,2.2
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,47,fine_FINE_THRESHOLD_GRID,95.0,True,0.973,True,95.06,0.0,91.5,26.5,68.0,85.5,90.5,89.85,5.0,5.59,2.2
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,48,coarse_THRESHOLD_GRID,90.0,True,0.98,True,95.06,0.0,90.5,23.5,62.5,83.5,90.0,88.15,5.0,4.11,6.7
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,48,coarse_THRESHOLD_GRID,95.0,True,0.98,True,95.06,0.0,90.5,23.5,62.5,83.5,90.0,88.15,5.0,4.11,6.7
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,48,fine_FINE_THRESHOLD_GRID,90.0,True,0.979,True,95.06,0.0,90.5,24.0,62.5,84.0,90.0,88.26,5.0,4.44,6.2
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,48,fine_FINE_THRESHOLD_GRID,95.0,True,0.979,True,95.06,0.0,90.5,24.0,62.5,84.0,90.0,88.26,5.0,4.44,6.2
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,49,coarse_THRESHOLD_GRID,90.0,True,0.98,True,95.06,0.0,91.0,24.5,64.0,84.0,91.0,88.98,5.0,5.51,4.2
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,49,coarse_THRESHOLD_GRID,95.0,True,0.98,True,95.06,0.0,91.0,24.5,64.0,84.0,91.0,88.98,5.0,5.51,4.2
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,49,fine_FINE_THRESHOLD_GRID,90.0,True,0.978,True,95.06,0.0,91.5,26.0,66.5,85.0,91.5,89.52,5.0,6.49,4.4
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,49,fine_FINE_THRESHOLD_GRID,95.0,True,0.978,True,95.06,0.0,91.5,26.0,66.5,85.0,91.5,89.52,5.0,6.49,4.4
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,50,coarse_THRESHOLD_GRID,90.0,True,0.98,True,95.06,0.0,91.0,25.0,63.5,84.0,89.5,88.81,5.0,3.21,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,50,coarse_THRESHOLD_GRID,95.0,True,0.98,True,95.06,0.0,91.0,25.0,63.5,84.0,89.5,88.81,5.0,3.21,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,50,fine_FINE_THRESHOLD_GRID,90.0,True,0.976,True,95.06,0.0,92.0,26.0,65.0,86.0,90.5,89.64,5.0,4.27,1.4
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,50,fine_FINE_THRESHOLD_GRID,95.0,True,0.976,True,95.06,0.0,92.0,26.0,65.0,86.0,90.5,89.64,5.0,4.27,1.4
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,51,coarse_THRESHOLD_GRID,90.0,True,0.98,True,95.06,0.0,92.0,26.0,63.5,84.5,90.5,88.84,5.0,4.85,8.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,51,coarse_THRESHOLD_GRID,95.0,True,0.98,True,95.06,0.0,92.0,26.0,63.5,84.5,90.5,88.84,5.0,4.85,8.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,51,fine_FINE_THRESHOLD_GRID,90.0,True,0.978,True,95.06,0.0,92.0,26.0,65.0,84.5,91.0,89.48,5.0,5.43,6.8
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,51,fine_FINE_THRESHOLD_GRID,95.0,True,0.978,True,95.06,0.0,92.0,26.0,65.0,84.5,91.0,89.48,5.0,5.43,6.8
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,52,coarse_THRESHOLD_GRID,90.0,True,0.96,True,96.3,0.0,93.5,30.0,74.5,88.5,93.5,92.27,5.0,10.03,4.1
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,52,coarse_THRESHOLD_GRID,95.0,True,0.96,True,96.3,0.0,93.5,30.0,74.5,88.5,93.5,92.27,5.0,10.03,4.1
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,52,fine_FINE_THRESHOLD_GRID,90.0,True,0.96,True,96.3,0.0,93.5,30.0,74.5,88.5,93.5,92.27,5.0,10.03,4.1
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,52,fine_FINE_THRESHOLD_GRID,95.0,True,0.96,True,96.3,0.0,93.5,30.0,74.5,88.5,93.5,92.27,5.0,10.03,4.1
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,53,coarse_THRESHOLD_GRID,90.0,True,0.985,True,95.06,0.0,88.5,20.5,59.5,80.5,87.5,85.96,5.0,1.56,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,53,coarse_THRESHOLD_GRID,95.0,True,0.985,True,95.06,0.0,88.5,20.5,59.5,80.5,87.5,85.96,5.0,1.56,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,53,fine_FINE_THRESHOLD_GRID,90.0,True,0.981,True,95.06,0.0,91.0,23.0,62.0,83.5,89.0,88.07,5.0,2.38,2.7
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,53,fine_FINE_THRESHOLD_GRID,95.0,True,0.981,True,95.06,0.0,91.0,23.0,62.0,83.5,89.0,88.07,5.0,2.38,2.7
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,54,coarse_THRESHOLD_GRID,90.0,True,0.98,True,95.06,0.0,90.0,23.5,62.0,83.5,89.5,87.38,5.0,3.86,3.3
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,54,coarse_THRESHOLD_GRID,95.0,True,0.98,True,95.06,0.0,90.0,23.5,62.0,83.5,89.5,87.38,5.0,3.86,3.3
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,54,fine_FINE_THRESHOLD_GRID,90.0,True,0.979,True,95.06,0.0,90.0,24.5,63.5,83.5,89.5,87.59,5.0,3.95,4.6
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,54,fine_FINE_THRESHOLD_GRID,95.0,True,0.979,True,95.06,0.0,90.0,24.5,63.5,83.5,89.5,87.59,5.0,3.95,4.6
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,55,coarse_THRESHOLD_GRID,90.0,True,0.992,True,95.06,0.0,86.0,19.5,52.5,76.5,84.0,82.03,5.0,0.66,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,55,coarse_THRESHOLD_GRID,95.0,True,0.992,True,95.06,0.0,86.0,19.5,52.5,76.5,84.0,82.03,5.0,0.66,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,55,fine_FINE_THRESHOLD_GRID,90.0,True,0.991546,True,95.06,0.0,86.0,19.5,52.5,76.5,84.5,82.28,5.0,0.66,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,55,fine_FINE_THRESHOLD_GRID,95.0,True,0.991546,True,95.06,0.0,86.0,19.5,52.5,76.5,84.5,82.28,5.0,0.66,0.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,56,coarse_THRESHOLD_GRID,90.0,True,0.985,True,95.06,0.0,90.0,21.5,60.5,82.0,88.5,87.12,5.0,2.8,10.8
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,56,coarse_THRESHOLD_GRID,95.0,True,0.985,True,95.06,0.0,90.0,21.5,60.5,82.0,88.5,87.12,5.0,2.8,10.8
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,56,fine_FINE_THRESHOLD_GRID,90.0,True,0.982,True,95.06,0.0,90.5,23.0,62.0,83.0,89.5,88.13,5.0,4.85,10.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,56,fine_FINE_THRESHOLD_GRID,95.0,True,0.982,True,95.06,0.0,90.5,23.0,62.0,83.0,89.5,88.13,5.0,4.85,10.0
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,57,coarse_THRESHOLD_GRID,90.0,True,0.98,True,95.06,0.0,91.5,25.5,64.0,85.0,91.5,89.04,5.0,7.4,14.9
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,57,coarse_THRESHOLD_GRID,95.0,True,0.98,True,95.06,0.0,91.5,25.5,64.0,85.0,91.5,89.04,5.0,7.4,14.9
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,57,fine_FINE_THRESHOLD_GRID,90.0,True,0.975,True,95.06,0.0,92.0,25.5,66.5,85.0,92.0,89.87,5.0,10.77,14.7
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,57,fine_FINE_THRESHOLD_GRID,95.0,True,0.975,True,95.06,0.0,92.0,25.5,66.5,85.0,92.0,89.87,5.0,10.77,14.7
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,58,coarse_THRESHOLD_GRID,90.0,True,0.98,True,95.06,0.0,91.0,24.0,66.5,84.0,90.0,88.34,5.0,4.03,4.9
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,58,coarse_THRESHOLD_GRID,95.0,True,0.98,True,95.06,0.0,91.0,24.0,66.5,84.0,90.0,88.34,5.0,4.03,4.9
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,58,fine_FINE_THRESHOLD_GRID,90.0,True,0.977,True,95.06,0.0,91.0,26.0,67.0,84.5,90.0,88.6,5.0,5.18,7.5
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,58,fine_FINE_THRESHOLD_GRID,95.0,True,0.977,True,95.06,0.0,91.0,26.0,67.0,84.5,90.0,88.6,5.0,5.18,7.5
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,59,coarse_THRESHOLD_GRID,90.0,True,0.985,True,95.06,0.0,89.0,23.0,60.5,82.0,88.0,87.0,5.0,2.55,17.1
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,59,coarse_THRESHOLD_GRID,95.0,True,0.985,True,95.06,0.0,89.0,23.0,60.5,82.0,88.0,87.0,5.0,2.55,17.1
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,59,fine_FINE_THRESHOLD_GRID,90.0,True,0.983,True,95.06,0.0,89.5,24.5,62.0,82.5,88.5,87.58,5.0,3.29,14.3
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,59,fine_FINE_THRESHOLD_GRID,95.0,True,0.983,True,95.06,0.0,89.5,24.5,62.0,82.5,88.5,87.58,5.0,3.29,14.3
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,60,coarse_THRESHOLD_GRID,90.0,True,0.985,True,95.06,0.0,88.5,21.5,58.5,81.0,87.0,86.56,5.0,3.12,8.9
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,60,coarse_THRESHOLD_GRID,95.0,True,0.985,True,95.06,0.0,88.5,21.5,58.5,81.0,87.0,86.56,5.0,3.12,8.9
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,60,fine_FINE_THRESHOLD_GRID,90.0,True,0.982,True,95.06,0.0,90.0,22.0,62.0,83.5,89.5,87.55,5.0,4.03,6.8
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,60,fine_FINE_THRESHOLD_GRID,95.0,True,0.982,True,95.06,0.0,90.0,22.0,62.0,83.5,89.5,87.55,5.0,4.03,6.8
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,61,coarse_THRESHOLD_GRID,90.0,True,0.99,True,95.06,0.0,86.0,19.5,53.0,76.5,84.5,83.63,5.0,0.74,22.2
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,61,coarse_THRESHOLD_GRID,95.0,True,0.99,True,95.06,0.0,86.0,19.5,53.0,76.5,84.5,83.63,5.0,0.74,22.2
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,61,fine_FINE_THRESHOLD_GRID,90.0,True,0.986,True,95.06,0.0,88.5,21.0,57.0,80.5,87.0,86.29,5.0,1.32,10.5
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,61,fine_FINE_THRESHOLD_GRID,95.0,True,0.986,True,95.06,0.0,88.5,21.0,57.0,80.5,87.0,86.29,5.0,1.32,10.5
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,42,coarse_THRESHOLD_GRID,90.0,True,0.98,True,100.0,0.0,96.5,30.0,75.5,94.0,96.0,95.48,5.0,8.55,1.2
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,42,coarse_THRESHOLD_GRID,95.0,True,0.98,True,100.0,0.0,96.5,30.0,75.5,94.0,96.0,95.48,5.0,8.55,1.2
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,42,fine_FINE_THRESHOLD_GRID,90.0,True,0.974,True,100.0,0.0,96.5,33.0,77.0,94.0,96.0,96.09,4.0,9.87,1.6
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,42,fine_FINE_THRESHOLD_GRID,95.0,True,0.974,True,100.0,0.0,96.5,33.0,77.0,94.0,96.0,96.09,4.0,9.87,1.6
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,43,coarse_THRESHOLD_GRID,90.0,True,0.985,True,100.0,0.0,95.5,25.0,70.5,91.5,95.0,93.86,5.0,7.23,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,43,coarse_THRESHOLD_GRID,95.0,True,0.985,True,100.0,0.0,95.5,25.0,70.5,91.5,95.0,93.86,5.0,7.23,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,43,fine_FINE_THRESHOLD_GRID,90.0,True,0.985,True,100.0,0.0,95.5,25.0,70.5,91.5,95.0,93.86,5.0,7.23,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,43,fine_FINE_THRESHOLD_GRID,95.0,True,0.985,True,100.0,0.0,95.5,25.0,70.5,91.5,95.0,93.86,5.0,7.23,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,44,coarse_THRESHOLD_GRID,90.0,True,0.99,True,98.77,0.0,95.0,22.5,67.5,90.5,94.0,92.39,5.0,7.56,1.3
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,44,coarse_THRESHOLD_GRID,95.0,True,0.99,True,98.77,0.0,95.0,22.5,67.5,90.5,94.0,92.39,5.0,7.56,1.3
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,44,fine_FINE_THRESHOLD_GRID,90.0,True,0.986,True,100.0,0.0,95.0,24.0,70.5,92.0,95.0,93.56,5.0,8.47,1.4
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,44,fine_FINE_THRESHOLD_GRID,95.0,True,0.986,True,100.0,0.0,95.0,24.0,70.5,92.0,95.0,93.56,5.0,8.47,1.4
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,45,coarse_THRESHOLD_GRID,90.0,True,0.985,True,100.0,0.0,95.5,25.5,71.0,92.0,94.5,93.94,5.0,8.3,2.3
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,45,coarse_THRESHOLD_GRID,95.0,True,0.985,True,100.0,0.0,95.5,25.5,71.0,92.0,94.5,93.94,5.0,8.3,2.3
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,45,fine_FINE_THRESHOLD_GRID,90.0,True,0.984,True,100.0,0.0,95.5,26.0,71.0,92.0,94.5,94.05,5.0,8.39,2.3
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,45,fine_FINE_THRESHOLD_GRID,95.0,True,0.984,True,100.0,0.0,95.5,26.0,71.0,92.0,94.5,94.05,5.0,8.39,2.3
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,46,coarse_THRESHOLD_GRID,90.0,True,0.98,True,100.0,0.0,96.5,30.0,74.0,93.5,96.0,95.73,5.0,9.13,1.2
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,46,coarse_THRESHOLD_GRID,95.0,True,0.98,True,100.0,0.0,96.5,30.0,74.0,93.5,96.0,95.73,5.0,9.13,1.2
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,46,fine_FINE_THRESHOLD_GRID,90.0,True,0.972,True,100.0,0.0,97.0,32.0,77.5,94.5,96.5,96.31,4.0,10.03,1.7
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,46,fine_FINE_THRESHOLD_GRID,95.0,True,0.972,True,100.0,0.0,97.0,32.0,77.5,94.5,96.5,96.31,4.0,10.03,1.7
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,47,coarse_THRESHOLD_GRID,90.0,True,0.98,True,100.0,0.0,95.5,27.0,73.0,92.0,94.0,94.18,5.0,8.88,2.1
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,47,coarse_THRESHOLD_GRID,95.0,True,0.98,True,100.0,0.0,95.5,27.0,73.0,92.0,94.0,94.18,5.0,8.88,2.1
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,47,fine_FINE_THRESHOLD_GRID,90.0,True,0.98,True,100.0,0.0,95.5,27.0,73.0,92.0,94.0,94.18,5.0,8.88,2.1
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,47,fine_FINE_THRESHOLD_GRID,95.0,True,0.98,True,100.0,0.0,95.5,27.0,73.0,92.0,94.0,94.18,5.0,8.88,2.1
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,48,coarse_THRESHOLD_GRID,90.0,True,0.99,True,100.0,0.0,94.0,23.0,68.0,90.0,94.0,92.64,5.0,7.23,0.4
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,48,coarse_THRESHOLD_GRID,95.0,True,0.99,True,100.0,0.0,94.0,23.0,68.0,90.0,94.0,92.64,5.0,7.23,0.4
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,48,fine_FINE_THRESHOLD_GRID,90.0,True,0.988,True,100.0,0.0,94.5,25.0,69.0,90.5,94.0,93.07,5.0,7.56,1.5
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,48,fine_FINE_THRESHOLD_GRID,95.0,True,0.988,True,100.0,0.0,94.5,25.0,69.0,90.5,94.0,93.07,5.0,7.56,1.5
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,49,coarse_THRESHOLD_GRID,90.0,True,0.98,True,100.0,0.0,96.5,27.0,74.0,93.0,96.0,95.17,5.0,8.39,1.6
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,49,coarse_THRESHOLD_GRID,95.0,True,0.98,True,100.0,0.0,96.5,27.0,74.0,93.0,96.0,95.17,5.0,8.39,1.6
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,49,fine_FINE_THRESHOLD_GRID,90.0,True,0.979,True,100.0,0.0,97.0,27.0,74.5,94.0,96.5,95.75,5.0,8.55,1.6
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,49,fine_FINE_THRESHOLD_GRID,95.0,True,0.979,True,100.0,0.0,97.0,27.0,74.5,94.0,96.5,95.75,5.0,8.55,1.6
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,50,coarse_THRESHOLD_GRID,90.0,True,0.99,True,98.77,0.0,94.5,23.0,68.5,90.5,94.5,92.96,5.0,6.33,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,50,coarse_THRESHOLD_GRID,95.0,True,0.99,True,98.77,0.0,94.5,23.0,68.5,90.5,94.5,92.96,5.0,6.33,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,50,fine_FINE_THRESHOLD_GRID,90.0,True,0.987,True,100.0,0.0,95.5,24.5,69.0,91.5,95.0,93.71,5.0,7.48,1.3
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,50,fine_FINE_THRESHOLD_GRID,95.0,True,0.987,True,100.0,0.0,95.5,24.5,69.0,91.5,95.0,93.71,5.0,7.48,1.3
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,51,coarse_THRESHOLD_GRID,90.0,True,0.99,True,100.0,0.0,94.0,22.0,67.0,89.0,94.0,92.26,5.0,6.33,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,51,coarse_THRESHOLD_GRID,95.0,True,0.99,True,100.0,0.0,94.0,22.0,67.0,89.0,94.0,92.26,5.0,6.33,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,51,fine_FINE_THRESHOLD_GRID,90.0,True,0.989,True,100.0,0.0,94.5,22.0,67.5,89.5,94.0,92.7,5.0,6.99,0.4
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,51,fine_FINE_THRESHOLD_GRID,95.0,True,0.989,True,100.0,0.0,94.5,22.0,67.5,89.5,94.0,92.7,5.0,6.99,0.4
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,52,coarse_THRESHOLD_GRID,90.0,True,0.985,True,100.0,0.0,95.5,26.0,70.5,91.0,95.0,94.2,5.0,7.23,1.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,52,coarse_THRESHOLD_GRID,95.0,True,0.985,True,100.0,0.0,95.5,26.0,70.5,91.0,95.0,94.2,5.0,7.23,1.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,52,fine_FINE_THRESHOLD_GRID,90.0,True,0.981,True,100.0,0.0,96.0,27.0,74.0,93.0,95.5,94.95,5.0,8.06,1.2
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,52,fine_FINE_THRESHOLD_GRID,95.0,True,0.981,True,100.0,0.0,96.0,27.0,74.0,93.0,95.5,94.95,5.0,8.06,1.2
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,53,coarse_THRESHOLD_GRID,90.0,True,0.985,True,100.0,0.0,95.0,25.0,70.0,91.0,94.5,93.43,5.0,8.06,1.7
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,53,coarse_THRESHOLD_GRID,95.0,True,0.985,True,100.0,0.0,95.0,25.0,70.0,91.0,94.5,93.43,5.0,8.06,1.7
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,53,fine_FINE_THRESHOLD_GRID,90.0,True,0.982,True,100.0,0.0,95.0,26.5,72.5,91.5,94.5,93.78,5.0,8.71,2.9
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,53,fine_FINE_THRESHOLD_GRID,95.0,True,0.982,True,100.0,0.0,95.0,26.5,72.5,91.5,94.5,93.78,5.0,8.71,2.9
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,54,coarse_THRESHOLD_GRID,90.0,True,0.98,True,100.0,0.0,95.5,26.5,72.5,92.5,95.0,94.41,5.0,10.03,2.6
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,54,coarse_THRESHOLD_GRID,95.0,True,0.98,True,100.0,0.0,95.5,26.5,72.5,92.5,95.0,94.41,5.0,10.03,2.6
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,54,fine_FINE_THRESHOLD_GRID,90.0,True,0.973,True,100.0,0.0,96.0,29.0,76.0,94.0,95.0,95.09,4.0,11.59,2.9
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,54,fine_FINE_THRESHOLD_GRID,95.0,True,0.973,True,100.0,0.0,96.0,29.0,76.0,94.0,95.0,95.09,4.0,11.59,2.9
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,55,coarse_THRESHOLD_GRID,90.0,True,0.98,True,100.0,0.0,96.5,28.5,74.5,93.5,96.0,95.2,5.0,8.96,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,55,coarse_THRESHOLD_GRID,95.0,True,0.98,True,100.0,0.0,96.5,28.5,74.5,93.5,96.0,95.2,5.0,8.96,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,55,fine_FINE_THRESHOLD_GRID,90.0,True,0.975,True,100.0,0.0,97.0,30.0,75.0,94.0,96.5,95.58,5.0,10.28,0.3
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,55,fine_FINE_THRESHOLD_GRID,95.0,True,0.975,True,100.0,0.0,97.0,30.0,75.0,94.0,96.5,95.58,5.0,10.28,0.3
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,56,coarse_THRESHOLD_GRID,90.0,True,0.985,True,100.0,0.0,95.0,25.0,69.5,90.5,94.5,94.03,5.0,7.48,1.1
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,56,coarse_THRESHOLD_GRID,95.0,True,0.985,True,100.0,0.0,95.0,25.0,69.5,90.5,94.5,94.03,5.0,7.48,1.1
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,56,fine_FINE_THRESHOLD_GRID,90.0,True,0.983,True,100.0,0.0,95.5,26.5,70.0,92.0,95.0,94.42,5.0,8.22,1.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,56,fine_FINE_THRESHOLD_GRID,95.0,True,0.983,True,100.0,0.0,95.5,26.5,70.0,92.0,95.0,94.42,5.0,8.22,1.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,57,coarse_THRESHOLD_GRID,90.0,True,0.99,True,100.0,0.0,94.0,22.0,69.0,89.5,94.0,92.59,5.0,7.32,2.1
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,57,coarse_THRESHOLD_GRID,95.0,True,0.99,True,100.0,0.0,94.0,22.0,69.0,89.5,94.0,92.59,5.0,7.32,2.1
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,57,fine_FINE_THRESHOLD_GRID,90.0,True,0.987,True,100.0,0.0,95.5,24.0,72.0,92.0,95.0,93.87,5.0,7.56,2.1
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,57,fine_FINE_THRESHOLD_GRID,95.0,True,0.987,True,100.0,0.0,95.5,24.0,72.0,92.0,95.0,93.87,5.0,7.56,2.1
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,58,coarse_THRESHOLD_GRID,90.0,True,0.985,True,100.0,0.0,95.5,25.0,72.0,92.5,95.0,94.24,5.0,6.66,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,58,coarse_THRESHOLD_GRID,95.0,True,0.985,True,100.0,0.0,95.5,25.0,72.0,92.5,95.0,94.24,5.0,6.66,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,58,fine_FINE_THRESHOLD_GRID,90.0,True,0.984,True,100.0,0.0,96.0,26.0,72.0,92.5,95.0,94.46,5.0,7.07,0.4
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,58,fine_FINE_THRESHOLD_GRID,95.0,True,0.984,True,100.0,0.0,96.0,26.0,72.0,92.5,95.0,94.46,5.0,7.07,0.4
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,59,coarse_THRESHOLD_GRID,90.0,True,0.98,True,100.0,0.0,96.5,29.0,74.0,93.0,95.5,94.88,5.0,9.78,1.6
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,59,coarse_THRESHOLD_GRID,95.0,True,0.98,True,100.0,0.0,96.5,29.0,74.0,93.0,95.5,94.88,5.0,9.78,1.6
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,59,fine_FINE_THRESHOLD_GRID,90.0,True,0.972,True,100.0,0.0,96.5,30.5,77.5,94.0,95.5,95.7,4.0,11.43,2.1
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,59,fine_FINE_THRESHOLD_GRID,95.0,True,0.972,True,100.0,0.0,96.5,30.5,77.5,94.0,95.5,95.7,4.0,11.43,2.1
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,60,coarse_THRESHOLD_GRID,90.0,True,0.99,True,98.77,0.0,95.0,20.0,67.5,89.5,94.5,93.04,5.0,6.99,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,60,coarse_THRESHOLD_GRID,95.0,True,0.99,True,98.77,0.0,95.0,20.0,67.5,89.5,94.5,93.04,5.0,6.99,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,60,fine_FINE_THRESHOLD_GRID,90.0,True,0.987,True,100.0,0.0,95.0,23.5,69.5,91.0,94.5,93.63,5.0,7.15,0.4
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,60,fine_FINE_THRESHOLD_GRID,95.0,True,0.987,True,100.0,0.0,95.0,23.5,69.5,91.0,94.5,93.63,5.0,7.15,0.4
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,61,coarse_THRESHOLD_GRID,90.0,True,0.985,True,100.0,0.0,96.0,26.0,70.5,93.0,95.5,94.36,5.0,6.82,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,61,coarse_THRESHOLD_GRID,95.0,True,0.985,True,100.0,0.0,96.0,26.0,70.5,93.0,95.5,94.36,5.0,6.82,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,61,fine_FINE_THRESHOLD_GRID,90.0,True,0.984,True,100.0,0.0,96.0,26.0,71.0,93.5,95.5,94.38,5.0,7.07,0.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,61,fine_FINE_THRESHOLD_GRID,95.0,True,0.984,True,100.0,0.0,96.0,26.0,71.0,93.5,95.5,94.38,5.0,7.07,0.0
