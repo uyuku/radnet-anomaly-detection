@@ -18,7 +18,7 @@ DATA_PROCESSED = REPO_ROOT / "data" / "processed"
 
 def test_macros_file_exists():
     assert MACROS_PATH.exists(), "report/manuscript_macros.tex must exist"
-    content = MACROS_PATH.read_text()
+    content = MACROS_PATH.read_text(encoding="utf-8")
     assert len(content) > 100, "manuscript_macros.tex must not be empty"
 
 
@@ -39,7 +39,7 @@ def test_tables_exist():
 
 def test_macro_values_match_underlying_csvs():
     """Verify that macros match the exact data in benchmark_realism_comparison.csv."""
-    macros_content = MACROS_PATH.read_text()
+    macros_content = MACROS_PATH.read_text(encoding="utf-8")
     macro_map = {}
     for line in macros_content.splitlines():
         m = re.match(r"\\newcommand\{\\(\w+)\}\{(.+)\}", line.strip())
@@ -81,7 +81,7 @@ def test_macro_values_match_underlying_csvs():
 
 def test_no_number_drift_between_macros_and_documents():
     """Verify that numbers in the abstract, README, and Results match the macros exactly."""
-    macros_content = MACROS_PATH.read_text()
+    macros_content = MACROS_PATH.read_text(encoding="utf-8")
     macro_map = {}
     for line in macros_content.splitlines():
         m = re.match(r"\\newcommand\{\\(\w+)\}\{(.+)\}", line.strip())
@@ -95,7 +95,7 @@ def test_no_number_drift_between_macros_and_documents():
     assert macro_map["BenchmarkPlumesTest"] == "200"
 
     # 2. Manuscript Abstract check
-    manuscript_text = (REPORT_DIR / "manuscript_mdpi.tex").read_text()
+    manuscript_text = (REPORT_DIR / "manuscript_mdpi.tex").read_text(encoding="utf-8")
     start = manuscript_text.find(r"\abstract{") + len(r"\abstract{")
     assert start > len(r"\abstract{"), "Abstract not found in manuscript"
     depth = 1
@@ -119,7 +119,7 @@ def test_no_number_drift_between_macros_and_documents():
     assert "2.71" not in abstract_text
 
     # 3. README check
-    readme_text = (REPO_ROOT / "README.md").read_text()
+    readme_text = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
     t4_fa_val = macro_map["TierFourFA"]
     # Main README headline must quote realistic benchmark numbers
     assert f"{float(t4_fa_val):.2f} ±" in readme_text or t4_fa_val in readme_text
