@@ -200,7 +200,7 @@ def block_bootstrap_false_alarms(
         val_m = sdata["valid"]
         al = (pd.Series(test_p_cln[st_id]) >= frozen_tau) & val_m
         yms = sdata["year_month"]
-        # BUG-6 fix: count episode STARTS on the full series, then bin by month.
+        # count episode STARTS on the full series, then bin by month.
         ep_start = al & (~al.shift(1, fill_value=False))
         for ym in yms.unique():
             m_sub = (yms == ym).values
@@ -598,7 +598,7 @@ def main():
                 test_fa_rate = te_episodes / test_station_years
                 rain_pct = (rain_al_hrs / al_hrs * 100.0) if al_hrs > 0 else 0.0
 
-                # Record monthly episodes for this seed (BUG-6 fix: count episode
+                # Record monthly episodes for this seed: count episode
                 # STARTS on the full series, then bin by month. Counting inside
                 # month slices double-counts episodes crossing month boundaries.)
                 ep_starts_by_st = {}
@@ -954,7 +954,7 @@ def main():
         if not roll_sub.empty:
             roll_pt = roll_sub.sort_values("false_alarms_per_year").iloc[0]
         else:
-            # BUG-2 fix (2026-10-06): target unreachable for this detector — fall
+            # target unreachable for this detector — fall
             # back to its HIGHEST-detection point. (The previous code took
             # .iloc[-1] = highest k = lowest detection and recorded it as the
             # matched point, silently producing garbage reduction columns.)
@@ -975,7 +975,7 @@ def main():
             if not t_sub.empty:
                 t_pt = t_sub.sort_values("false_alarms_per_year").iloc[0]
             else:
-                # BUG-2 fix: highest-detection fallback (was .iloc[-1] = lowest)
+                # highest-detection fallback (was .iloc[-1] = lowest)
                 t_pt = cont_roc_df[cont_roc_df["tier_name"] == t_name].sort_values("detection_rate_pct").iloc[-1]
             row_dict[f"{short_col}_tau"] = t_pt["tau_threshold"]
             row_dict[f"{short_col}_det"] = t_pt["detection_rate_pct"]
@@ -987,7 +987,7 @@ def main():
         t3_fa = row_dict["t3_fusion_fa"]
         base_fa = row_dict["rolling_7d_fa"]
 
-        # BUG-2 fix: reduction columns are only meaningful when every compared
+        # reduction columns are only meaningful when every compared
         # point actually reached the matched detection target.
         det_cols = ["rolling_7d_realized_det", "t1_gross_det", "t1b_gross_weather_det",
                     "t2_spectral_det", "t3_fusion_det", "mlp_fusion_det"]

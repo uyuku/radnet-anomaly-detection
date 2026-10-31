@@ -57,7 +57,7 @@
 \textbf{Department / Faculty:} & Department of Environmental Engineering / Faculty of Engineering \\[0.4em]
 \textbf{University:} & Hacettepe University \\[0.4em]
 \textbf{Student Name(s) \& ID(s):} & Necdet Ömer Barut (2230867059) \\[0.4em]
-\textbf{Supervisor / Instructor:} & [Supervisor / Instructor Name] \\[0.4em]
+\textbf{Supervisor / Instructor:} & Prof. Dr. Şule Ergün \\[0.4em]
 \textbf{Submission Date:} & November 2026 \\[0.4em]
 \textbf{Academic Year / Semester:} & 2026--2027 Fall Semester
 \end{tabular}
@@ -71,7 +71,7 @@
 % ==============================================================================
 \begin{framed}
 \noindent\textbf{ABSTRACT}\\[0.6em]
-This interim report presents a physics-informed computational framework to address the widespread operational vulnerability of automated radiation monitoring networks caused by precipitation-induced radon progeny washout. During rainfall events, natural terrestrial radon daughters ($^{214}\text{Pb}$ and $^{214}\text{Bi}$) are scavenged from the atmosphere onto particulate air filters, generating sudden gross gamma count surges of +40\% to +180\% that closely mimic anthropogenic releases. Existing automated threshold systems trigger 53 to 83 false alarms per station-year in humid climates. This research develops a multi-modal machine learning discrimination framework that fuses 8-channel sodium iodide gamma spectrometry from the United States Environmental Protection Agency RadNet network with contemporaneous National Oceanic and Atmospheric Administration surface weather observations. The project evaluates 324,550 synchronous observation hours across five climatologically diverse stations spanning 2017 through 2025. Detection performance is benchmarked across 450 filter-synchronized synthetic release plumes covering industrial and reactor fission products ($^{137}\text{Cs}$, $^{131}\text{I}$, $^{134}\text{Cs}$, $^{60}\text{Co}$). Across a 20-seed evaluation, the physics-informed nuclear and weather-fused gradient boosted model (Feature Schema 3) reduces operational false alarms by 96.7\% down to 2.71 per station-year (and 2.63 at the 90\% target) while achieving 94.00\% detection. This project delivers an automated, field-deployable decision-support system eliminating meteorological false alarms in environmental radiation surveillance.\\[0.6em]
+This interim report presents a physics-informed computational framework to address the operational vulnerability of automated radiation monitoring networks caused by precipitation-induced radon progeny washout. During rainfall events, natural terrestrial radon daughters $^{214}\text{Pb}$ and $^{214}\text{Bi}$ are scavenged onto particulate air filters. Across 15,602 observed rain hours in this study, precipitation induces a median gross count surge of +6.9\%, with the 90th percentile reaching +41.4\% and convective thunderstorm peaks surging up to +196.7\%, while coastal stations experience slight count depressions due to oceanic air masses. Conventional rolling $3\sigma$ threshold systems trigger between 52.9 and 82.6 false alarm episodes per station-year in humid climates. This research develops a multi-modal machine learning discrimination framework that fuses 8-channel sodium iodide gamma spectrometry from the United States Environmental Protection Agency RadNet network with contemporaneous surface weather observations from the National Oceanic and Atmospheric Administration. The project evaluates 324,550 synchronous observation hours across five climatologically diverse stations spanning 2017 through 2025: Birmingham, AL; Washington, DC; San Diego, CA; Dallas, TX; and Tampa, FL. Detection performance is benchmarked across 450 filter-synchronized synthetic release plumes covering $^{137}\text{Cs}$, $^{131}\text{I}$, $^{134}\text{Cs}$, and $^{60}\text{Co}$. On the held-out 2023--2025 test dataset, the physics-informed nuclear and weather-fused model achieves 2.71 false alarm episodes per station-year with a 95\% bootstrap confidence interval of [1.17, 4.58] and 94.00\% synthetic plume detection. In leave-one-station-out cross-validation, 4 of 5 stations maintain $\le 1.40$ false alarms per station-year, whereas the subtropical convective regime of Tampa experiences 169.4 false alarms per station-year without local baseline calibration. Feature importance analysis confirms that elapsed time since rain and non-negative spectral stripping residuals drive anomaly discrimination, while Bateman decay kinetics provide secondary regularisation.\\[0.6em]
 \noindent\textbf{Keywords:} Environmental Radiation Monitoring, EPA RadNet, Radon Washout, Gamma Spectrometry, Machine Learning, Anomaly Detection.
 \end{framed}
 
@@ -114,13 +114,15 @@ This interim report presents a physics-informed computational framework to addre
 \noindent\textbf{LIST OF ABBREVIATIONS}\\[0.6em]
 \begin{tabular}{l l}
 \textbf{API} & Application Programming Interface \\
+\textbf{CI} & Confidence Interval \\
 \textbf{CPM} & Counts Per Minute \\
 \textbf{eFDR} & Empirical False Discovery Rate \\
 \textbf{EPA} & United States Environmental Protection Agency \\
 \textbf{FA/yr} & False Alarms per Station-Year \\
 \textbf{FWHM} & Full Width at Half Maximum \\
-\textbf{GBDT} & Gradient Boosted Decision Tree (LightGBM) \\
-\textbf{ISD} & Integrated Surface Dataset (NOAA) \\
+\textbf{GBDT} & Gradient Boosted Decision Tree \\
+\textbf{ISD} & Integrated Surface Dataset \\
+\textbf{LOSO} & Leave-One-Station-Out \\
 \textbf{MLP} & Multi-Layer Perceptron \\
 \textbf{NaI(Tl)} & Thallium-activated Sodium Iodide Scintillation Detector \\
 \textbf{NCEI} & National Centers for Environmental Information \\
@@ -148,15 +150,15 @@ This interim report presents a physics-informed computational framework to addre
 \noindent\textbf{1.1 Background of the Problem}\\[0.3em]
 Continuous atmospheric radiation surveillance networks are operated worldwide by regulatory authorities to provide immediate detection of clandestine nuclear testing, industrial accidents, and radiological dispersion events. In the United States, the Environmental Protection Agency (EPA) operates RadNet, an extensive nationwide real-time monitoring infrastructure comprising over 140 stationary air monitors. Each monitoring unit continuously draws ambient air through a particulate filter and records gamma-ray emission rates using thallium-doped sodium iodide ($\text{NaI(Tl)}$) scintillation detectors. 
 
-While automated alarm threshold algorithms are engineered to identify sharp increases in measured radiation levels, their operational reliability is severely challenged by naturally occurring meteorological phenomena. Atmospheric precipitation scavenges airborne daughter radionuclides of radon-222 ($^{222}\text{Rn}$), primarily lead-214 ($^{214}\text{Pb}$) and bismuth-214 ($^{214}\text{Bi}$), depositing them directly onto the ground surface and particulate filter media. This phenomenon, known as radon washout, causes gross gamma count rates to surge by $+40\%$ to $+180\%$ above the dry baseline within 1 to 3 hours, persisting for several hours before radioactive decay restores nominal background levels.
+While automated alarm threshold algorithms are engineered to identify sharp increases in measured radiation levels, their operational reliability is severely challenged by naturally occurring meteorological phenomena. Atmospheric precipitation scavenges airborne daughter radionuclides of radon-222 ($^{222}\text{Rn}$), primarily lead-214 ($^{214}\text{Pb}$) and bismuth-214 ($^{214}\text{Bi}$), depositing them directly onto the ground surface and particulate filter media. This phenomenon, known as radon washout, produces gross gamma count rate perturbations with an empirical median increase of +6.9\%, with the 90th percentile reaching +41.4\% and severe convective thunderstorms surging up to +196.7\% above baseline. In coastal regimes, maritime air masses can induce slight count depressions. The resulting count elevation persists for several hours before radioactive decay restores nominal background levels.
 
 \vspace{0.6em}
 \refstepcounter{subsection}
 \addcontentsline{toc}{subsection}{1.2 Problem Statement}
 \noindent\textbf{1.2 Problem Statement}\\[0.3em]
-Conventional automated radiation monitoring networks rely on static or rolling baseline thresholds (e.g., $3\sigma$ or $5\sigma$ deviations above a 168-hour moving average). Because gross count rate monitors cannot differentiate between the gamma emissions of natural radon progeny and those of anthropogenic fission products, precipitation events routinely trigger spurious radiological emergency alerts. In humid and temperate climates, such as the southeastern United States, standard $3\sigma$ threshold algorithms produce between 53 and 83 false alarm episodes per station-year, with over 32\% of these false alarms occurring synchronously with rainfall events. 
+Conventional automated radiation monitoring networks rely on static or rolling baseline thresholds, typically 3 or 5 standard deviations above a 168-hour moving average. Because gross count rate monitors cannot differentiate between the gamma emissions of natural radon progeny and those of anthropogenic fission products, precipitation events routinely trigger spurious radiological emergency alerts. In humid and temperate climates, standard $3\sigma$ threshold algorithms produce between 52.9 and 82.6 false alarm episodes per station-year, with over 32\% of these false alarms occurring synchronously with rainfall events. 
 
-Conversely, raising the alert threshold to conservative levels (such as $5\sigma$) suppresses false alarms but severely degrades detection capability, dropping release detection probability below 10\% for low-to-moderate activity plumes. There is currently an acute lack of computationally efficient, causally sound methods capable of suppressing precipitation-induced false alarms while preserving rapid, highly sensitive detection of genuine radiological releases in real-time continuous surveillance.
+Conversely, raising the alert threshold to conservative levels such as $5\sigma$ suppresses false alarms to 23.5 per station-year but severely degrades detection capability, dropping release detection probability to 6.0\% for moderate activity plumes. There is currently an acute lack of computationally efficient, causally sound methods capable of suppressing precipitation-induced false alarms while preserving rapid, highly sensitive detection of genuine radiological releases in continuous real-time surveillance.
 
 \vspace{0.6em}
 \refstepcounter{subsection}
@@ -176,9 +178,9 @@ The operational vulnerability created by weather-induced false alarms has substa
 \noindent\textbf{1.4 Clear Aim and Objectives of the Project}\\[0.3em]
 The primary aim of this project is to develop, validate, and benchmark an automated, physics-informed machine learning framework that discriminates precipitation-induced radon washout spikes from genuine anthropogenic radiological anomalies in near-real-time environmental surveillance networks. Specific technical objectives include:
 \begin{enumerate}
-    \item Harmonize and process longitudinal multi-channel gamma spectrometry from EPA RadNet and contemporaneous surface meteorology from the NOAA Integrated Surface Dataset (ISD) across five climatologically distinct monitoring stations spanning nine full calendar years (2017--2025).
-    \item Engineer a strictly causal real-time feature space that captures differential gamma spectral peak ratios ($^{214}\text{Pb}$, $^{214}\text{Bi}$ vs. $^{137}\text{Cs}$, $^{131}\text{I}$, $^{60}\text{Co}$) and antecedent precipitation dynamics without future lookahead bias.
-    \item Formulate a three-class gradient boosted decision tree (LightGBM) architecture to continuously categorize observations into dry background, radon washout, or anthropogenic release.
+    \item Harmonize longitudinal multi-channel gamma spectrometry from EPA RadNet and contemporaneous surface meteorology from the NOAA Integrated Surface Dataset across five climatologically distinct monitoring stations spanning nine full calendar years from 2017 through 2025.
+    \item Engineer a strictly causal real-time feature space that captures differential gamma spectral peak ratios and antecedent precipitation dynamics without future lookahead bias.
+    \item Formulate a multi-tier machine learning architecture to continuously categorize observations into dry background, radon washout, or anthropogenic release.
     \item Conduct a multi-seed benchmark against conventional statistical baselines and rain-masked control rules over 450 synthetic radiological releases to prove false alarm reduction at matched detection power.
 \end{enumerate}
 
@@ -186,9 +188,9 @@ The primary aim of this project is to develop, validate, and benchmark an automa
 \refstepcounter{subsection}
 \addcontentsline{toc}{subsection}{1.5 Scope and Boundaries of the Study}
 \noindent\textbf{1.5 Scope and Boundaries of the Study}\\[0.3em]
-The scope of this project encompasses five EPA RadNet monitoring stations selected across distinct Köppen climate zones: Birmingham, AL (humid subtropical, primary testbed); Little Rock, AR; Boise, ID (semi-arid); Concord, NH (humid continental); and Honolulu, HI (tropical). The temporal boundary spans January 1, 2017, through December 31, 2025, providing 324,550 synchronous station-hours. 
+The scope of this project encompasses five EPA RadNet monitoring stations selected across distinct Köppen climate zones: Birmingham, AL; Washington, DC; San Diego, CA; Dallas, TX; and Tampa, FL. The temporal boundary spans January 1, 2017, through December 31, 2025, providing 324,550 synchronous station-hours. 
 
-The study is bounded by operational real-time constraints: feature extraction is strictly causal, relying exclusively on contemporaneous and historical observations. Sensor inputs are restricted to standard 8-channel $\text{NaI(Tl)}$ energy bins ($100 - 2200\text{ keV}$) and standard NOAA meteorological observations. Source releases are evaluated through 450 synthetic plume injections calibrated to historical atmospheric dispersion physics, covering $^{137}\text{Cs}$, $^{131}\text{I}$, $^{134}\text{Cs}$, and $^{60}\text{Co}$.
+The study is bounded by operational real-time constraints: feature extraction is strictly causal, relying exclusively on contemporaneous and historical observations. Sensor inputs are restricted to standard 8-channel sodium iodide energy bins from 100 to 2200 keV and standard NOAA meteorological observations. Source releases are evaluated through 450 synthetic plume injections calibrated to atmospheric dispersion physics and particulate filter accumulation kinetics, covering $^{137}\text{Cs}$, $^{131}\text{I}$, $^{134}\text{Cs}$, and $^{60}\text{Co}$. Detection metrics reflect performance conditional on these synthetic spectral templates rather than observed historical releases.
 \end{framed}
 
 \newpage
@@ -203,39 +205,39 @@ The study is bounded by operational real-time constraints: feature extraction is
 \refstepcounter{subsection}
 \addcontentsline{toc}{subsection}{2.1 Key Theories, Models, Concepts, and Definitions}
 \noindent\textbf{2.1 Key Theories, Models, Concepts, and Definitions}\\[0.3em]
-Radon-222 is an inert, noble gas daughter of radium-226 ($^{226}\text{Ra}$) in the primordial uranium-238 ($^{238}\text{U}$) decay series. Radon emanates continuously from soils and rocks into the atmospheric boundary layer. Because radon is chemically inert and has a half-life of 3.82 days, it diffuses into the lower troposphere, where it undergoes alpha decay into a sequence of short-lived particulate progeny:
+Radon-222 is an inert noble gas daughter of radium-226 ($^{226}\text{Ra}$) in the primordial uranium-238 ($^{238}\text{U}$) decay series. Radon emanates continuously from soils and rocks into the atmospheric boundary layer. Because radon has a half-life of 3.82 days, it diffuses into the lower troposphere, where it undergoes alpha decay into a sequence of short-lived particulate progeny:
 \begin{equation}
     ^{222}\text{Rn} \xrightarrow[\alpha]{3.82\text{ d}} {}^{218}\text{Po} \xrightarrow[\alpha]{3.10\text{ m}} {}^{214}\text{Pb} \xrightarrow[\beta^-]{26.8\text{ m}} {}^{214}\text{Bi} \xrightarrow[\beta^-]{19.9\text{ m}} {}^{214}\text{Po} \xrightarrow[\alpha]{164.3\ \mu\text{s}} {}^{210}\text{Pb}
 \end{equation}
 
-Lead-214 ($^{214}\text{Pb}$) and bismuth-214 ($^{214}\text{Bi}$) rapidly attach to submicron ambient aerosol particles ($0.1 - 1.0\ \mu\text{m}$). During rainfall events, these radioactive aerosols are captured via in-cloud rainout (condensation nucleation) and below-cloud washout (impaction and interception by falling raindrops). The precipitation deposits these radionuclides directly onto the particulate filter medium of ambient air monitors. 
+Lead-214 ($^{214}\text{Pb}$) and bismuth-214 ($^{214}\text{Bi}$) rapidly attach to submicron ambient aerosol particles. During rainfall events, these radioactive aerosols are captured via in-cloud rainout and below-cloud washout. The precipitation deposits these radionuclides directly onto the particulate filter medium of ambient air monitors. 
 
-Because $^{214}\text{Pb}$ emits prominent gamma lines at $295.2\text{ keV}$ (18.4\% yield) and $351.9\text{ keV}$ (35.6\% yield), and $^{214}\text{Bi}$ emits high-energy gammas at $609.3\text{ keV}$ (45.5\%), $1120.3\text{ keV}$ (14.9\%), and $1764.5\text{ keV}$ (15.3\%), their sudden accumulation elevates the local gamma radiation field by tens to hundreds of counts per minute (CPM). Following the cessation of rain, the activity decay curve of the deposited progeny is governed by the effective half-life of the $^{214}\text{Pb}/^{214}\text{Bi}$ pair ($\sim 30 - 50\text{ minutes}$), returning to nominal baseline within 2 to 4 hours.
+Because $^{214}\text{Pb}$ emits prominent gamma lines at 295.2 and 351.9 keV, and $^{214}\text{Bi}$ emits high-energy gammas at 609.3, 1120.3, and 1764.5 keV, their sudden accumulation elevates the local gamma radiation field by tens to hundreds of counts per minute. Following the cessation of rain, the activity decay curve of the deposited progeny is governed by the effective half-life of the $^{214}\text{Pb}/^{214}\text{Bi}$ decay chain, returning to nominal baseline within 2 to 4 hours.
 
 \vspace{0.6em}
 \refstepcounter{subsection}
 \addcontentsline{toc}{subsection}{2.2 Relevant Technical Background: Scintillation Spectrometry}
 \noindent\textbf{2.2 Relevant Technical Background: Scintillation Spectrometry}\\[0.3em]
-EPA RadNet deployable monitoring stations utilize thallium-activated sodium iodide ($\text{NaI(Tl)}$) scintillation crystals. When incident gamma rays interact with the crystal via the photoelectric effect, Compton scattering, or pair production, scintillation light is generated proportionally to deposited energy and converted to voltage pulses by a photomultiplier tube. While $\text{NaI(Tl)}$ detectors exhibit modest energy resolution ($\sim 7\%$ FWHM at $662\text{ keV}$), they are rugged, thermally stable, and well-suited for long-term field deployment.
+EPA RadNet deployable monitoring stations utilize thallium-activated sodium iodide ($\text{NaI(Tl)}$) scintillation crystals. When incident gamma rays interact with the crystal via the photoelectric effect, Compton scattering, or pair production, scintillation light is generated proportionally to deposited energy and converted to voltage pulses by a photomultiplier tube. While sodium iodide detectors exhibit modest energy resolution of approximately 7\% full width at half maximum at 662 keV, they are rugged, thermally stable, and well-suited for long-term field deployment.
 
-RadNet digitizes scintillation pulses into discrete energy channels (designated R01 through R09). Channel R01 records gross count rates, while channels R02 through R09 record counts within specific spectral windows. The physical correspondence of these channels to natural radon progeny lines and target anthropogenic isotopes is detailed in Table~\ref{tab:energy_channels}.
+RadNet digitizes scintillation pulses into discrete energy channels designated R01 through R09. Channel R01 records gross count rates, while channels R02 through R09 record counts within specific spectral windows. The physical correspondence of these channels to natural radon progeny lines and target anthropogenic isotopes is detailed in Table~\ref{tab:energy_channels}.
 
 \begin{center}
-\captionof{table}{EPA RadNet Discrete Gamma Energy Channel Energy Boundaries}
+\captionof{table}{EPA RadNet Discrete Gamma Energy Channel Boundaries}
 \label{tab:energy_channels}
 \small
 \begin{tabularx}{\textwidth}{l c X X}
 \toprule
-\textbf{Channel} & \textbf{Energy Range (keV)} & \textbf{Principal Radon Progeny Lines} & \textbf{Target Anthropogenic Lines} \\
+\textbf{Channel} & \textbf{Energy Range [keV]} & \textbf{Principal Radon Progeny Lines} & \textbf{Target Anthropogenic Lines} \\
 \midrule
 \textbf{R02} & $101 - 200$ & Compton continuum & Low-energy scatter \\
-\textbf{R03} & $201 - 400$ & $^{214}\text{Pb}$ ($295.2, 351.9\text{ keV}$) & $^{131}\text{I}$ ($364.5\text{ keV}$) \\
-\textbf{R04} & $401 - 600$ & Compton continuum & Annihilation ($511\text{ keV}$) \\
-\textbf{R05} & $601 - 800$ & $^{214}\text{Bi}$ ($609.3\text{ keV}$) & $^{137}\text{Cs}$ ($661.7\text{ keV}$) \\
+\textbf{R03} & $201 - 400$ & $^{214}\text{Pb}$ [295.2, 351.9 keV] & $^{131}\text{I}$ [364.5 keV] \\
+\textbf{R04} & $401 - 600$ & Compton continuum & Annihilation [511 keV] \\
+\textbf{R05} & $601 - 800$ & $^{214}\text{Bi}$ [609.3 keV] & $^{137}\text{Cs}$ [661.7 keV] \\
 \textbf{R06} & $801 - 1000$ & Compton scatter & Multi-line cascade \\
-\textbf{R07} & $1001 - 1400$ & $^{214}\text{Bi}$ ($1120.3\text{ keV}$) & $^{60}\text{Co}$ ($1173.2, 1332.5$), $^{134}\text{Cs}$ \\
-\textbf{R08} & $1401 - 1800$ & $^{214}\text{Bi}$ ($1764.5$), $^{40}\text{K}$ ($1460.8$) & Terrestrial background \\
-\textbf{R09} & $1801 - 2200$ & High-energy background & Cosmic rays / actinide daughters \\
+\textbf{R07} & $1001 - 1400$ & $^{214}\text{Bi}$ [1120.3 keV] & $^{60}\text{Co}$ [1173.2, 1332.5 keV], $^{134}\text{Cs}$ \\
+\textbf{R08} & $1401 - 1800$ & $^{214}\text{Bi}$ [1764.5 keV], $^{40}\text{K}$ [1460.8 keV] & Terrestrial background \\
+\textbf{R09} & $1801 - 2200$ & High-energy background & Cosmic rays and actinide daughters \\
 \bottomrule
 \end{tabularx}
 \end{center}
@@ -246,16 +248,16 @@ RadNet digitizes scintillation pulses into discrete energy channels (designated 
 \noindent\textbf{2.3 Review of Relevant Previous Studies}\\[0.3em]
 The challenge of suppressing meteorological radon interference in environmental monitoring networks has been addressed through three primary research paradigms:
 \begin{enumerate}
-    \item \textbf{Statistical Moving-Average Baselines:} Classical networks evaluate gross count deviations against moving baselines (Vieira et al., 2019). While computationally trivial, these methods are intrinsically blind to spectral morphology and trigger excessive false alarms during convective precipitation.
-    \item \textbf{Analytical Meteorological Transfer Functions:} Huang et al. (2020) demonstrated that radon washout spikes correlate with precipitation intensity and cloud condensation lifting condensation levels. However, deterministic washout equations require high-resolution atmospheric sounding data rarely available at ground sensor sites.
-    \item \textbf{Spectral Energy Ratio Heuristics:} Das et al. (2021) examined spectral ratios to differentiate radon progeny from industrial gamma sources, demonstrating that $^{214}\text{Pb}$ photopeaks in channel R03 exhibit distinct intensity ratios relative to channel R05 during washout events.
+    \item \textbf{Statistical Moving-Average Baselines:} Classical networks evaluate gross count deviations against moving baselines (Burnett et al., 2010; Melintescu et al., 2018). While computationally straightforward, these methods are intrinsically blind to spectral morphology and trigger excessive false alarms during convective precipitation.
+    \item \textbf{Analytical Meteorological Transfer Functions:} Mercier et al. (2009) and Paatero (2000) demonstrated that radon washout spikes correlate with precipitation intensity and atmospheric scavenging. However, deterministic washout equations require high-resolution atmospheric sounding data rarely available at ground sensor sites (Takeuchi and Katase, 1982).
+    \item \textbf{Spectral Energy Deconvolution:} Breitkreutz et al. (2023) and Frankemölle et al. (2025) examined spectral decomposition to differentiate natural radon progeny from anthropogenic gamma sources, demonstrating that $^{214}\text{Pb}$ photopeaks in low-energy channels exhibit distinct intensity ratios relative to high-energy lines during washout events.
 \end{enumerate}
 
 \vspace{0.6em}
 \refstepcounter{subsection}
 \addcontentsline{toc}{subsection}{2.4 Gaps in Literature and Systematic Comparison}
 \noindent\textbf{2.4 Gaps in Literature and Systematic Comparison}\\[0.3em]
-Existing literature exhibits three critical shortcomings: (1) \textit{Gross count over-simplification:} Most operational networks discard multi-channel spectrometry and evaluate only total counts; (2) \textit{Synthetic release validation deficits:} Previous machine learning models were tested on uncalibrated synthetic data without accounting for air filter accumulation physics; and (3) \textit{Lack of honest control baselines:} Prior studies rarely compare complex models against simple meteorological masking rules. This project overcomes these gaps by fusing multi-channel spectral ratios with multi-scale weather data and benchmarking against both statistical and rain-masked baselines under frozen validation thresholds.
+Existing literature exhibits three critical shortcomings: first, gross count over-simplification, where operational networks discard multi-channel spectrometry and evaluate only total counts; second, synthetic release validation deficits, where previous machine learning models were tested on uncalibrated synthetic data without accounting for air filter accumulation kinetics; and third, lack of control baselines, where prior studies rarely benchmark complex models against meteorological masking heuristics. This project addresses these gaps by fusing multi-channel spectral ratios with multi-scale weather data and benchmarking against both statistical and rain-masked baselines under frozen validation thresholds.
 \end{framed}
 
 \newpage
@@ -270,7 +272,7 @@ Existing literature exhibits three critical shortcomings: (1) \textit{Gross coun
 \refstepcounter{subsection}
 \addcontentsline{toc}{subsection}{3.1 System Description and Processing Pipeline}
 \noindent\textbf{3.1 System Description and Processing Pipeline}\\[0.3em]
-The end-to-end computational pipeline developed in this project is illustrated in Figure~\ref{fig:architecture}. The framework ingests synchronous hourly observations from radiation and meteorological sensor networks, performs causal feature engineering, and feeds a gradient boosted decision tree classifier that assigns probabilities for three operational regimes: \textit{Clean Dry Background}, \textit{Radon Washout Anomaly}, and \textit{Anthropogenic Radiological Release}.
+The computational pipeline developed in this project is illustrated in Figure~\ref{fig:architecture}. The framework ingests synchronous hourly observations from radiation and meteorological sensor networks, performs causal feature engineering, and feeds a gradient boosted decision tree classifier that assigns probabilities for three operational regimes: clean dry background, radon washout anomaly, and anthropogenic radiological release.
 
 \begin{center}
     \includegraphics[width=0.86\textwidth]{reports/figures/environmental_engineering_synthesis.png}
@@ -282,15 +284,15 @@ The end-to-end computational pipeline developed in this project is illustrated i
 \refstepcounter{subsection}
 \addcontentsline{toc}{subsection}{3.2 Main Assumptions and Operational Boundaries}
 \noindent\textbf{3.2 Main Assumptions and Operational Boundaries}\\[0.3em]
-The computational architecture adheres to four rigorous operational boundaries:
+The computational architecture adheres to four operational boundaries:
 \begin{enumerate}
-    \item \textbf{Strict Real-Time Causality:} To prevent data leakage, all rolling window statistics (e.g., 24h, 168h means) are computed using closed-left intervals ($[t-W, t]$). No centered or forward-looking filters are permitted.
-    \item \textbf{Air Filter Accumulation Dynamics:} Airborne particulate monitors draw air through a filter that is replaced periodically (nominally bi-weekly). An injection plume accumulates activity proportionally to total volume drawn, attenuating according to radioactive decay:
+    \item \textbf{Strict Real-Time Causality:} To prevent data leakage, all rolling window statistics are computed using closed-left intervals $[t-W, t]$. No centered or forward-looking filters are permitted.
+    \item \textbf{Air Filter Accumulation Dynamics:} Airborne particulate monitors draw air through a filter that is replaced periodically on a bi-weekly cycle. An injection plume accumulates activity proportionally to total volume drawn, attenuating according to radioactive decay:
     \begin{equation}
         A_{\text{filter}}(t) = \int_{t_{\text{start}}}^t Q \cdot C_{\text{air}}(\tau) \cdot e^{-\lambda(t-\tau)} \, d\tau
     \end{equation}
-    where $Q$ is volumetric flow rate ($\sim 1.0\text{ m}^3/\text{min}$), $C_{\text{air}}$ is ambient radionuclide concentration, and $\lambda$ is decay constant.
-    \item \textbf{Detector Geometry and Efficiencies:} Geometric photopeak efficiencies for $\text{NaI(Tl)}$ crystals are calibrated using standard MCNP Monte Carlo transfer factors from Knoll (2010).
+    where $Q$ is volumetric flow rate of approximately $1.0\text{ m}^3/\text{min}$, $C_{\text{air}}$ is ambient radionuclide concentration, and $\lambda$ is the decay constant.
+    \item \textbf{Detector Geometry and Efficiencies:} Geometric photopeak efficiencies for sodium iodide crystals are calibrated using standard Monte Carlo transfer factors from Knoll (2010).
 \end{enumerate}
 
 \vspace{0.6em}
@@ -299,46 +301,47 @@ The computational architecture adheres to four rigorous operational boundaries:
 \noindent\textbf{3.3 Input Data and Data Sources}\\[0.3em]
 Data ingestion leverages two primary US federal repositories:
 \begin{itemize}
-    \item \textbf{EPA RadNet Air Monitoring Network:} Hourly gamma spectrometry records across 8 discrete energy bins ($100 - 2200\text{ keV}$) and total gross count rates. Data were retrieved via EPA public APIs and FTP archives spanning 2017 through 2025 across five stations: Birmingham, AL; Little Rock, AR; Boise, ID; Concord, NH; and Honolulu, HI.
-    \item \textbf{NOAA Integrated Surface Dataset (ISD):} Contemporaneous hourly meteorological observations from colocated automated surface observing stations (ASOS) at municipal airports. Variables include precipitation accumulation ($1\text{h}$, $3\text{h}$, $6\text{h}$), dry-bulb temperature, dew point, relative humidity, barometric pressure, wind speed, and present weather codes.
+    \item \textbf{EPA RadNet Air Monitoring Network:} Hourly gamma spectrometry records across 8 discrete energy bins from 100 to 2200 keV and gross count rates. Data were retrieved via EPA public repositories spanning 2017 through 2025 across five stations: Birmingham, AL; Washington, DC; San Diego, CA; Dallas, TX; and Tampa, FL.
+    \item \textbf{NOAA Integrated Surface Dataset:} Contemporaneous hourly meteorological observations from colocated automated surface observing stations. Variables include precipitation accumulation over 1, 3, 6, 12, and 24 hours, dry-bulb temperature, dew point, relative humidity, barometric pressure, and wind speed.
 \end{itemize}
 
 \vspace{0.6em}
 \refstepcounter{subsection}
 \addcontentsline{toc}{subsection}{3.4 Calculation Procedure and Causal Feature Engineering}
 \noindent\textbf{3.4 Calculation Procedure and Causal Feature Engineering}\\[0.3em]
-Radiological and meteorological records are joined on UTC timestamp rounded to the hour. The causal feature engineering engine extracts 28 dimensional variables organized into three tiers:
+Radiological and meteorological records are joined on UTC timestamp rounded to the hour. The causal feature engineering engine extracts 59 dimensional variables organized into four operational tiers:
 \begin{enumerate}
-    \item \textbf{Gross Count Dynamics (Tier 1):} Ratio of instantaneous count rate to trailing 168-hour moving baseline ($R_{\text{gross}} = C(t) / \mu_{168\text{h}}$), rolling 3-hour rate of change ($dC/dt$), and z-score relative to local dry background ($\sigma_{\text{dry}}$).
-    \item \textbf{Spectral Energy Ratios (Tier 2):} Normalized channel ratios capturing radon decay lines vs. fission product channels. Specifically:
+    \item \textbf{Gross Count Dynamics (Tier 1):} Ratio of instantaneous count rate to trailing 168-hour moving baseline, rolling 3-hour rate of change, and z-score relative to local dry background standard deviation.
+    \item \textbf{Spectral Energy Ratios (Tier 2):} Normalized channel ratios capturing radon decay lines versus fission product channels:
     \begin{equation}
         \text{Ratio}_{\text{radon}} = \frac{R03 + R05}{R01 + \epsilon}, \quad \text{Ratio}_{\text{fission}} = \frac{R04 + R06 + R07}{R01 + \epsilon}
     \end{equation}
-    Lead-214 ($352\text{ keV}$) concentrates heavily in R03, while bismuth-214 ($609\text{ keV}$) concentrates in R05. Anthropogenic releases ($^{137}\text{Cs}$ at $662\text{ keV}$, $^{134}\text{Cs}$ at $605, 796\text{ keV}$, $^{60}\text{Co}$ at $1173, 1332\text{ keV}$) alter these ratios markedly.
-    \item \textbf{Multi-Scale Weather Fusion (Tier 3):} Cumulative precipitation over 1, 3, 6, 12, and 24 hours, hours elapsed since last detected rainfall ($h_{\text{since\_rain}}$), barometric pressure change ($dP/dt$), and saturation vapor pressure deficit calculated from temperature and dew point.
+    Lead-214 concentrates in channel R03, while bismuth-214 concentrates in R05. Anthropogenic releases ($^{137}\text{Cs}$, $^{134}\text{Cs}$, $^{60}\text{Co}$) alter these ratios markedly.
+    \item \textbf{Multi-Scale Weather Fusion (Tier 3):} Cumulative precipitation over 1, 3, 6, 12, and 24 hours, elapsed time since last detected rainfall ($h_{\text{since\_rain}}$), barometric pressure trends, and saturation vapor pressure deficit.
+    \item \textbf{Physics-Informed Nuclear Features (Tier 4):} Non-negative spectral stripping residuals projecting measured excess onto empirical fit-fold radon basis vectors, ambient dose equivalent coupling $H^*(10)$, and multi-stage Bateman decay chain residuals.
 \end{enumerate}
+
+Feature importance evaluation reveals that elapsed time since rain is the single most influential predictor with an importance gain of 822,620, serving as a primary gating variable for meteorological transients. This is followed by local radon stripping residual with gain 629,970 and global dry z-score with gain 535,931. Bateman ODE decay residuals and dose conversion residuals rank in the intermediate tier with gains of approximately 51,000, acting as fine-tuning regularizers during extended washout decay.
 
 \vspace{0.6em}
 \refstepcounter{subsection}
-\addcontentsline{toc}{subsection}{3.5 Synthetic Release Injections: 450 Plumes}
-\noindent\textbf{3.5 Synthetic Release Injections: 450 Plumes}\\[0.3em]
-Because real environmental data contains natural radon washout but fortunately zero lethal nuclear releases, genuine detection performance must be evaluated using synthetic injections. A library of 450 synthetic radiological plumes was generated across four target isotopes ($^{137}\text{Cs}$, $^{131}\text{I}$, $^{134}\text{Cs}$, $^{60}\text{Co}$) and three profile types (Gaussian puff, square wave, and asymmetric exponentially decaying plume with duration 3 to 24 hours). 
+\addcontentsline{toc}{subsection}{3.5 Synthetic Release Injections and Template Sensitivity}
+\noindent\textbf{3.5 Synthetic Release Injections and Template Sensitivity}\\[0.3em]
+Because real operational data contains zero hazardous radiological releases, detection sensitivity is evaluated using 450 synthetic release plumes covering $^{137}\text{Cs}$, $^{131}\text{I}$, $^{134}\text{Cs}$, and $^{60}\text{Co}$ across Gaussian puff, square wave, and exponentially decaying profiles with durations from 3 to 24 hours.
 
-Synthetic plumes are scaled to signal-to-noise ratios ($\text{SNR} = \Delta C / \sigma_{\text{dry}}$) ranging from subtle ($0.5\sigma$ to $1.5\sigma$) to prominent ($2.0\sigma$ to $6.0\sigma$). Spectral counts are allocated across channels R02--R09 using calibrated photopeak and Compton continuum fractions, and added directly to real RadNet background series during both dry and rain-washout periods.
+Synthetic plumes are scaled across signal-to-noise ratios from subtle ($0.5\sigma$ to $1.5\sigma$) to prominent ($2.0\sigma$ to $6.0\sigma$). Spectral counts are allocated across channels R02 through R09 using calibrated photopeak and Compton continuum fractions, and added to real RadNet background during dry and rain periods. Because training and testing share the same spectral template parameters, detection at low signal-to-noise ratios (<1$\sigma$) is partially conditional on template alignment. In sensitivity experiments where photopeak fractions are perturbed by $\pm 20\%$, realized detection varies moderately between 85.2\% and 94.8\%, indicating robust yet template-dependent response.
 
 \vspace{0.6em}
 \refstepcounter{subsection}
 \addcontentsline{toc}{subsection}{3.6 Multi-Tier Model Formulation and Validation Freezing}
 \noindent\textbf{3.6 Multi-Tier Model Formulation and Validation Freezing}\\[0.3em]
-The machine learning framework utilizes LightGBM gradient boosted decision trees (Ke et al., 2017) configured with multi-class objective (\textit{multiclass}, 3 classes). Hyperparameters: 150 trees, max depth 6, learning rate 0.05, min child samples 20, colsample 0.8. 
-
-\textit{Strict Validation Threshold Freezing:} Models are trained on historical data (2017--2021). The decision threshold $\tau$ for triggering an alert is calibrated on the validation split (2022) to satisfy a target detection probability (e.g., 90\% or 95\%) and frozen. The model and frozen threshold are evaluated strictly on the out-of-sample test split (2023--2025).
+The machine learning framework utilizes gradient boosted decision trees configured with a multi-class objective across 150 trees with maximum depth 6, learning rate 0.05, and minimum child samples of 20. Models are fitted strictly on historical data from 2017 through 2020. Decision thresholds $\tau$ are calibrated on the held-out 2021--2022 validation split to satisfy target detection rates and frozen. The models and frozen thresholds are evaluated on the out-of-sample 2023--2025 test split.
 
 \vspace{0.6em}
 \refstepcounter{subsection}
-\addcontentsline{toc}{subsection}{3.7 Benchmark Evaluation across 20 Random Seeds}
-\noindent\textbf{3.7 Benchmark Evaluation across 20 Random Seeds}\\[0.3em]
-A 20-seed multi-model benchmark evaluation (seeds 42 to 61) was executed on the 2023--2025 test dataset. Performance metrics are summarized in Table~\ref{tab:benchmark_results}.
+\addcontentsline{toc}{subsection}{3.7 Benchmark Evaluation and Uncertainty Analysis}
+\noindent\textbf{3.7 Benchmark Evaluation and Uncertainty Analysis}\\[0.3em]
+Benchmark performance across 20 random seeds on the 2023--2025 test dataset is summarized in Table~\ref{tab:benchmark_results}.
 
 \begin{center}
 \captionof{table}{Benchmark Evaluation on 2023--2025 Test Split across 20 Random Seeds}
@@ -347,34 +350,63 @@ A 20-seed multi-model benchmark evaluation (seeds 42 to 61) was executed on the 
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{l c c c c}
 \toprule
-\textbf{Model / Rule Architecture} & \textbf{False Alarms / Stn-Yr} & \textbf{Rain-Coincident FA} & \textbf{Realized Det. (\%)} & \textbf{Delay (h)} \\
+\textbf{Model / Rule Architecture} & \textbf{False Alarms / Stn-Yr} & \textbf{Rain-Coincident FA} & \textbf{Realized Det.} & \textbf{Median Delay} \\
 \midrule
-\textbf{Standard Baseline ($3\sigma_{168\text{h}}$)} & 82.62 & 32.5\% & 52.50\% & 10.0 \\
-\textbf{Global Dry Baseline ($3\sigma_{\text{dry}}$)} & 52.86 & 24.9\% & 56.50\% & 9.0 \\
-\textbf{Conservative Baseline ($5\sigma_{168\text{h}}$)} & 23.51 & 57.6\% & 6.00\% & 8.5 \\
-\textbf{Tier 1: Gross GBDT (95\% target)} & $169.36 \pm 23.53$ & 17.3\% & $92.22 \pm 0.72\%$ & 6.7 \\
-\textbf{Tier 1b: Gross + Weather GBDT} & $38.64 \pm 14.37$ & 0.0\% & $87.92 \pm 2.74\%$ & 9.1 \\
-\textbf{Tier 2: Spectral GBDT} & $27.97 \pm 28.27$ & 1.9\% & $93.20 \pm 1.45\%$ & 4.0 \\
-\textbf{Tier 3: Weather Fusion GBDT (Schema 2)} & $3.89 \pm 1.25$ & 0.2\% & $90.72 \pm 1.73\%$ & 4.0 \\
-\textbf{Tier 4: Physics-Informed Nuclear GBDT (Schema 3)} & $\mathbf{2.71 \pm 1.39}$ & $\mathbf{0.0\%}$ & $\mathbf{94.00 \pm 0.93\%}$ & $\mathbf{4.4}$ \\
-\textbf{Tier 4: Physics-Informed Nuclear (90\% target)} & $\mathbf{2.63 \pm 1.49}$ & $\mathbf{0.0\%}$ & $\mathbf{93.82 \pm 1.24\%}$ & $\mathbf{4.5}$ \\
-\textbf{Tier 3: Multi-Layer Perceptron} & $60.75 \pm 22.86$ & 3.8\% & $90.30 \pm 2.75\%$ & 3.4 \\
+\textbf{Standard Baseline (Rolling 7d $3\sigma$)} & 82.62 & 32.5\% & 52.50\% & 10.0 h \\
+\textbf{Global Dry Baseline (Global $3\sigma_{\text{dry}}$)} & 52.86 & 24.9\% & 56.50\% & 9.0 h \\
+\textbf{Conservative Baseline (Rolling 7d $5\sigma$)} & 23.51 & 57.6\% & 6.00\% & 8.5 h \\
+\textbf{Tier 1: Gross Radiation GBDT} & $169.36 \pm 23.53$ & 17.3\% & $92.22 \pm 0.72\%$ & 6.7 h \\
+\textbf{Tier 1b: Gross Radiation + Weather GBDT} & $38.64 \pm 14.37$ & 0.0\% & $87.92 \pm 2.74\%$ & 9.1 h \\
+\textbf{Tier 2: Spectral GBDT} & $27.97 \pm 28.27$ & 1.9\% & $93.20 \pm 1.45\%$ & 4.0 h \\
+\textbf{Tier 3: Weather Fusion GBDT} & $3.89 \pm 1.25$ & 0.2\% & $90.72 \pm 1.73\%$ & 4.0 h \\
+\textbf{Tier 4: Physics-Informed Nuclear GBDT} & $\mathbf{2.71 \pm 1.39}$ & $\mathbf{0.0\%}$ & $\mathbf{94.00 \pm 0.93\%}$ & $\mathbf{4.4\text{ h}}$ \\
+\textbf{Tier 4: Physics-Informed Nuclear (90\% Target)} & $\mathbf{2.63 \pm 1.49}$ & $\mathbf{0.0\%}$ & $\mathbf{93.82 \pm 1.24\%}$ & $\mathbf{4.5\text{ h}}$ \\
+\textbf{Tier 3: Multi-Layer Perceptron} & $60.75 \pm 22.86$ & 3.8\% & $90.30 \pm 2.75\%$ & 3.4 h \\
 \bottomrule
 \end{tabular}%
 }
 \end{center}
 
+Station-month block bootstrap 95\% confidence intervals for false alarm rates are [1.17, 4.58] for Tier 4 and [1.67, 5.41] for Tier 3, with overlapping intervals. Across 20 algorithmic seeds on identical data, Tier 4 produced lower false alarms in 12 of 20 seeds. The primary contribution of the physics-informed features is not an overwhelming reduction in aggregate test-set false alarms over meteorological fusion, but rather higher detection sensitivity (+3.3 percentage points) and improved domain adaptation under geographic transfer.
+
 \begin{center}
     \includegraphics[width=0.86\textwidth]{reports/figures/rigorous_matched_roc_curves.png}
-    \captionof{figure}{Receiver Operating Characteristic (ROC) matched detection curves comparing baseline rules against machine learning tiers on the test split.}
+    \captionof{figure}{Receiver Operating Characteristic matched detection curves comparing baseline rules against machine learning tiers on the test split.}
     \label{fig:roc_curves}
 \end{center}
 
 \vspace{0.6em}
 \refstepcounter{subsection}
-\addcontentsline{toc}{subsection}{3.8 The Rain-Masked Baseline Control Experiment}
-\noindent\textbf{3.8 The Rain-Masked Baseline Control Experiment}\\[0.3em]
-To rigorously answer whether complex machine learning is necessary or if a simple heuristic rule muting alarms during rainfall suffices, an explicit control experiment was developed (\url{src/evaluate_rain_masked_baseline.py}). The results at matched detection targets are summarized in Table~\ref{tab:control_experiment}.
+\addcontentsline{toc}{subsection}{3.8 Leave-One-Station-Out Spatial Generalization}
+\noindent\textbf{3.8 Leave-One-Station-Out Spatial Generalization}\\[0.3em]
+To assess spatial generalizability across distinct climates without local fine-tuning, models were evaluated in a leave-one-station-out cross-validation framework where each station was held out completely during training and threshold calibration. Results are reported in Table~\ref{tab:loso_results}.
+
+\begin{center}
+\captionof{table}{Leave-One-Station-Out Spatial Generalization across Five Climate Regimes}
+\label{tab:loso_results}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l l c c c c}
+\toprule
+\textbf{Held-Out Station} & \textbf{Climate Regime} & \textbf{Tier 3 Det.} & \textbf{Tier 4 Det.} & \textbf{Tier 3 FA/yr} & \textbf{Tier 4 FA/yr} \\
+\midrule
+\textbf{San Diego, CA} & Coastal Mediterranean & 70.0\% & 80.0\% & 0.00 & 1.40 \\
+\textbf{Birmingham, AL} & Humid Subtropical & 85.0\% & 95.0\% & 0.00 & 0.00 \\
+\textbf{Dallas, TX} & Continental Convective & 92.5\% & 95.0\% & 0.57 & 0.00 \\
+\textbf{Washington, DC} & Mid-Atlantic Temperate & 95.0\% & 95.0\% & 1.18 & 0.00 \\
+\textbf{Tampa, FL} & Subtropical Convective & 90.0\% & 97.5\% & 1151.30 & 169.42 \\
+\bottomrule
+\end{tabular}%
+}
+\end{center}
+
+Across Birmingham, Dallas, Washington, and San Diego, Tier 4 achieves excellent zero-shot spatial transfer, maintaining $\le 1.40$ false alarms per station-year while detecting 80.0\% to 95.0\% of synthetic releases. In Tampa, however, severe maritime convective thunderstorms cause unadapted zero-shot models to experience 169.42 false alarms per year for Tier 4. While this represents an 85.3\% reduction relative to Tier 3 (1,151.30 false alarms per year), it demonstrates that site-specific baseline calibration is essential when deploying models to extreme subtropical convective microclimates.
+
+\vspace{0.6em}
+\refstepcounter{subsection}
+\addcontentsline{toc}{subsection}{3.9 The Rain-Masked Baseline Control Experiment}
+\noindent\textbf{3.9 The Rain-Masked Baseline Control Experiment}\\[0.3em]
+To determine whether machine learning is necessary or if a simple heuristic muting alarms during rainfall suffices, a control experiment was evaluated across varying holdoff windows $H$. Results at matched detection targets are summarized in Table~\ref{tab:control_experiment}.
 
 \begin{center}
 \captionof{table}{Rain-Masked Baseline Control Experiment at Matched Detection Targets}
@@ -383,21 +415,21 @@ To rigorously answer whether complex machine learning is necessary or if a simpl
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{l c c c}
 \toprule
-\textbf{Baseline / Mask Rule} & \textbf{Lowest FA/yr at $\ge 87.12\%$ Det.} & \textbf{Lowest FA/yr at $\ge 91.88\%$ Det.} & \textbf{Max Det. (\%)} \\
+\textbf{Baseline / Mask Rule} & \textbf{Lowest FA/yr at $\ge 87.12\%$ Det.} & \textbf{Lowest FA/yr at $\ge 91.88\%$ Det.} & \textbf{Max Det.} \\
 \midrule
 \textbf{Unmasked ($H = \text{none}$)} & 215.48 ($k=1.40$) & 303.03 ($k=0.75$) & 92.50\% \\
 \textbf{Rain Mask: Rain only ($H = 0\text{h}$)} & 197.47 ($k=1.35$) & 285.77 ($k=0.75$) & 92.50\% \\
 \textbf{Rain Mask: Rain + 3h ($H = 3\text{h}$)} & 179.80 ($k=1.30$) & 251.65 ($k=0.75$) & 92.50\% \\
 \textbf{Rain Mask: Rain + 6h ($H = 6\text{h}$)} & 181.77 ($k=1.25$) & 245.98 ($k=0.75$) & 92.50\% \\
 \textbf{Rain Mask: Rain + 12h ($H = 12\text{h}$)} & 177.49 ($k=1.25$) & 238.66 ($k=0.75$) & 92.00\% \\
-\textbf{Tier 3 ML (Weather Fusion, Schema 2)} & $3.89$ & $3.89$ & $96.50\%$ \\
-\textbf{Tier 4 ML (Nuclear Physics, Schema 3)} & $\mathbf{2.63}$ & $\mathbf{2.71}$ & $\mathbf{98.00\%}$ \\
+\textbf{Tier 3: Weather Fusion GBDT} & 3.89 & 3.89 & 96.50\% \\
+\textbf{Tier 4: Physics-Informed Nuclear GBDT} & \textbf{2.63} & \textbf{2.71} & \textbf{98.00\%} \\
 \bottomrule
 \end{tabular}%
 }
 \end{center}
 
-The control experiment demonstrates that simply suppressing alarms during rain fails. To reach $\ge 91.88\%$ detection without spectral analysis, the gross threshold must drop to $k=0.75\sigma$, causing 238.66 false alarms/year from baseline noise. Tier 3 machine learning achieves a 97.6\% false alarm reduction over the best rain-mask heuristic, confirming the scientific necessity of multi-channel spectral and weather fusion.
+The control experiment demonstrates that simply suppressing alarms during rain is insufficient. To reach $\ge 91.88\%$ detection without spectral analysis, the gross threshold must drop to $k=0.75\sigma$, triggering 238.66 false alarms per year from baseline noise alone. Tier 4 machine learning achieves a 98.9\% false alarm reduction over the best rain-mask heuristic, confirming the necessity of multi-channel spectral and weather fusion.
 \end{framed}
 
 \newpage

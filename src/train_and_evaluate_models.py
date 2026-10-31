@@ -68,7 +68,7 @@ def load_and_prepare_train_data(feature_cols: list[str], data_dir: Path | None =
         feats = compute_features_for_series(df_raw, st_id, use_injected=True)
 
         valid = feats["has_radnet_obs"] & feats["rad_complete_channels"] & (feats["label"].isin(LABEL_MAP.keys()))
-        # BUG-1 fix: fit ONLY on 2017-2020; 2021-2022 is the threshold-tuning fold.
+        # fit ONLY on 2017-2020; 2021-2022 is the threshold-tuning fold.
         valid = valid & (feats["dt"] < "2021-01-01")
         sub = feats[valid].copy()
 
@@ -96,7 +96,7 @@ def load_and_prepare_train_data_loso(feature_cols: list[str], holdout_id: str) -
         feats = compute_features_for_series(df_raw, st_id, use_injected=True)
 
         valid = feats["has_radnet_obs"] & feats["rad_complete_channels"] & (feats["label"].isin(LABEL_MAP.keys()))
-        # BUG-1 fix: fit ONLY on 2017-2020; 2021-2022 is the threshold-tuning fold.
+        # fit ONLY on 2017-2020; 2021-2022 is the threshold-tuning fold.
         valid = valid & (feats["dt"] < "2021-01-01")
         sub = feats[valid].copy()
 
@@ -271,7 +271,7 @@ def evaluate_tier_pipeline():
     total_station_years = total_clean_observed_hours / 8766.0
     print(f"Total network clean observed hours: {total_clean_observed_hours} ({total_station_years:.2f} station-years)")
 
-    # 6b. Validation fold (2021-2022) for operating-threshold selection (BUG-1 fix).
+    # 6b. Validation fold (2021-2022) for operating-threshold selection.
     print("\nBuilding 2021-2022 validation fold for threshold selection (no test tuning)...")
     val_series = {}
     val_obs_hours = 0

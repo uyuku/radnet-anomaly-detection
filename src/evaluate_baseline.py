@@ -7,8 +7,7 @@ Implements explicit threshold baseline rules:
 1. Global Gross CPM Sigma: Threshold = mu_dry + k * sigma_dry (k = 3.0, 4.0, 5.0)
 2. Rolling 7-Day Mean + Global Sigma: Threshold(t) = rolling_mean_168h(t) + k * sigma_dry (k = 3.0, 4.0, 5.0)
    (NOTE: distinct from the "Rolling 7d Local Z-Score" rule
-    Z = (gross - mu_168)/sigma_168 >= k used in train_and_evaluate_rigorous.py.
-    BUG-12 fix (2026-10-06): the two formulas were previously both called
+    Z = (gross - mu_168)/sigma_168 >= k used in train_and_evaluate_rigorous.py. the two formulas were previously both called
     "Rolling 7-day k-sigma" despite being different rules.)
 3. Global Dose Rate Sigma: Threshold = mu_dose_dry + k * sigma_dose_dry (k = 3.0, 4.0, 5.0)
 

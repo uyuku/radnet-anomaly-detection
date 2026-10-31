@@ -34,7 +34,7 @@ def detect_filter_drops(df: pd.DataFrame, drop_threshold: float) -> pd.DataFrame
     valid_t3 = valid_t.shift(3, fill_value=False)
     
     # 2. No KNOWN rain: 24h precipitation at t is 0.0, and no recorded rain at
-    # t-1, t-2, t-3.  BUG-3-aware (2026-10-06): hours with UNKNOWN precipitation
+    # t-1, t-2, t-3. hours with UNKNOWN precipitation
     # (NaN) are tolerated here. They never certify dry anywhere else, but this
     # guard rejects washout-decay false positives, which require RECORDED rain —
     # and NaN comparisons would otherwise discard real step drops adjacent to
@@ -53,7 +53,7 @@ def detect_filter_drops(df: pd.DataFrame, drop_threshold: float) -> pd.DataFrame
         return pd.DataFrame()
 
     # Deduplicate consecutive hours belonging to the same step drop (min 24h separation).
-    # BUG-8 fix (2026-10-06): compare each candidate against the last KEPT drop,
+    # compare each candidate against the last KEPT drop,
     # not against the previous candidate (which may itself have been rejected).
     kept_dts = []
     last_kept = None

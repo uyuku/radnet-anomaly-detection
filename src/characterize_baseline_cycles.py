@@ -134,7 +134,7 @@ def analyze_filter_replacement_cycles():
     filter_changes = sub[sub["cpm_diff_3h"] < drop_threshold].copy()
 
     # Cluster consecutive hours of the same drop (keep against last KEPT drop;
-    # BUG-8 fix: previous version also silently dropped the first candidate)
+    # previous version also silently dropped the first candidate)
     kept_dts = []
     last_kept = None
     for cand_dt in filter_changes["dt"]:

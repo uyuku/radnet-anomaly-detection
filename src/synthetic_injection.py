@@ -54,7 +54,7 @@ with open(CONFIG_PATH, "r") as f:
 
 RANDOM_SEED = config.get("random_seed", 42)
 
-# Frozen train-only dry baselines (2017-2022) — used for washout labeling (BUG-4 fix).
+# Frozen train-only dry baselines (2017-2022) — used for washout labeling.
 _BASELINES_FILE = Path(__file__).resolve().parent.parent / "data" / "processed" / "station_dry_baselines_train_only.json"
 if not _BASELINES_FILE.exists():
     raise FileNotFoundError(
