@@ -19,11 +19,11 @@ legacy_v1_hand_templates,Tier 3 (Weather Fusion),1.0_2.0_sigma,51,1.54,0.71,83.9
 legacy_v1_hand_templates,Tier 3 (Weather Fusion),2.0_3.0_sigma,38,2.49,0.7,96.97,3.0,Standard multi-sigma gross and spectral excess.
 legacy_v1_hand_templates,Tier 3 (Weather Fusion),3.0_5.0_sigma,58,3.98,0.54,96.29,5.0,Standard multi-sigma gross and spectral excess.
 legacy_v1_hand_templates,Tier 3 (Weather Fusion),>=5.0_sigma,35,6.88,0.6,94.71,5.0,Standard multi-sigma gross and spectral excess.
-legacy_v1_hand_templates,Tier 4 (Physics-Informed Nuclear),<1.0_sigma,18,0.79,1.15,68.33,5.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
-legacy_v1_hand_templates,Tier 4 (Physics-Informed Nuclear),1.0_2.0_sigma,51,1.54,0.71,90.29,4.0,Standard multi-sigma gross and spectral excess.
-legacy_v1_hand_templates,Tier 4 (Physics-Informed Nuclear),2.0_3.0_sigma,38,2.49,0.7,99.61,4.0,Standard multi-sigma gross and spectral excess.
-legacy_v1_hand_templates,Tier 4 (Physics-Informed Nuclear),3.0_5.0_sigma,58,3.98,0.54,98.28,5.0,Standard multi-sigma gross and spectral excess.
-legacy_v1_hand_templates,Tier 4 (Physics-Informed Nuclear),>=5.0_sigma,35,6.88,0.6,100.0,5.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 4 (Physics-Motivated Nuclear),<1.0_sigma,18,0.79,1.15,68.33,5.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
+legacy_v1_hand_templates,Tier 4 (Physics-Motivated Nuclear),1.0_2.0_sigma,51,1.54,0.71,90.29,4.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 4 (Physics-Motivated Nuclear),2.0_3.0_sigma,38,2.49,0.7,99.61,4.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 4 (Physics-Motivated Nuclear),3.0_5.0_sigma,58,3.98,0.54,98.28,5.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 4 (Physics-Motivated Nuclear),>=5.0_sigma,35,6.88,0.6,100.0,5.0,Standard multi-sigma gross and spectral excess.
 realistic_v2_derived_templates,Tier 1 (Gross),<1.0_sigma,18,0.79,0.97,80.0,6.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
 realistic_v2_derived_templates,Tier 1 (Gross),1.0_2.0_sigma,46,1.57,0.63,74.02,5.0,Standard multi-sigma gross and spectral excess.
 realistic_v2_derived_templates,Tier 1 (Gross),2.0_3.0_sigma,45,2.5,0.67,88.44,8.0,Standard multi-sigma gross and spectral excess.
@@ -44,8 +44,8 @@ realistic_v2_derived_templates,Tier 3 (Weather Fusion),1.0_2.0_sigma,46,1.57,0.6
 realistic_v2_derived_templates,Tier 3 (Weather Fusion),2.0_3.0_sigma,45,2.5,0.67,89.0,5.0,Standard multi-sigma gross and spectral excess.
 realistic_v2_derived_templates,Tier 3 (Weather Fusion),3.0_5.0_sigma,51,3.98,0.44,98.04,6.0,Standard multi-sigma gross and spectral excess.
 realistic_v2_derived_templates,Tier 3 (Weather Fusion),>=5.0_sigma,40,6.55,0.44,99.88,6.0,Standard multi-sigma gross and spectral excess.
-realistic_v2_derived_templates,Tier 4 (Physics-Informed Nuclear),<1.0_sigma,18,0.79,0.97,60.83,5.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
-realistic_v2_derived_templates,Tier 4 (Physics-Informed Nuclear),1.0_2.0_sigma,46,1.57,0.63,92.83,4.0,Standard multi-sigma gross and spectral excess.
-realistic_v2_derived_templates,Tier 4 (Physics-Informed Nuclear),2.0_3.0_sigma,45,2.5,0.67,95.22,5.0,Standard multi-sigma gross and spectral excess.
-realistic_v2_derived_templates,Tier 4 (Physics-Informed Nuclear),3.0_5.0_sigma,51,3.98,0.44,99.51,5.0,Standard multi-sigma gross and spectral excess.
-realistic_v2_derived_templates,Tier 4 (Physics-Informed Nuclear),>=5.0_sigma,40,6.55,0.44,99.88,6.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 4 (Physics-Motivated Nuclear),<1.0_sigma,18,0.79,0.97,60.83,5.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
+realistic_v2_derived_templates,Tier 4 (Physics-Motivated Nuclear),1.0_2.0_sigma,46,1.57,0.63,92.83,4.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 4 (Physics-Motivated Nuclear),2.0_3.0_sigma,45,2.5,0.67,95.22,5.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 4 (Physics-Motivated Nuclear),3.0_5.0_sigma,51,3.98,0.44,99.51,5.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 4 (Physics-Motivated Nuclear),>=5.0_sigma,40,6.55,0.44,99.88,6.0,Standard multi-sigma gross and spectral excess.

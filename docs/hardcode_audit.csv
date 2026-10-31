@@ -1,0 +1,262 @@
+file,line,category,code_snippet,sample_floats
+scripts/compute_fukushima_physics.py,174,PARAMETER_OR_CONSTANT,out_summary = {,"[30.0, 40.0]"
+scripts/compute_fukushima_physics.py,188,PARAMETER_OR_CONSTANT,"""filter_accumulation"": {","[30.0, 40.0]"
+scripts/compute_fukushima_physics.py,190,REAL_PHYSICS_CONSTANT,"""flow_rate_range_cfm"": [30.0, 40.0],","[30.0, 40.0]"
+scripts/diagnose_val_test_gap.py,73,PARAMETER_OR_CONSTANT,records.append({,[0.01]
+scripts/diagnose_val_test_gap.py,36,PARAMETER_OR_CONSTANT,"df_eval = df_bmd[df_bmd[""val_target_detection_pct""].isin([90.0, 95.0])].copy()","[90.0, 95.0]"
+scripts/generate_alarm_review_sheet.py,131,PARAMETER_OR_CONSTANT,review_rows.append({,"[0.0, 168.0]"
+scripts/generate_alarm_review_sheet.py,63,AUTHORIZED_CONFIG_GRID,"fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(11, 8.5), sharex=True, gridspec_kw={""height_ratio","[2.2, 1.5, 1.3]"
+scripts/generate_alarm_review_sheet.py,63,AUTHORIZED_CONFIG_GRID,"fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(11, 8.5), sharex=True, gridspec_kw={""height_ratio","[2.2, 1.5, 1.3]"
+scripts/generate_post_hoc_matched_analysis.py,42,PARAMETER_OR_CONSTANT,MODELS = [,"[2.5, 2.0, 1.8]"
+scripts/generate_post_hoc_matched_analysis.py,43,PARAMETER_OR_CONSTANT,{,[2.5]
+scripts/generate_post_hoc_matched_analysis.py,51,PARAMETER_OR_CONSTANT,{,[2.0]
+scripts/generate_post_hoc_matched_analysis.py,59,PARAMETER_OR_CONSTANT,{,[1.8]
+scripts/generate_post_hoc_matched_analysis.py,67,PARAMETER_OR_CONSTANT,{,[2.0]
+scripts/generate_post_hoc_matched_analysis.py,75,PARAMETER_OR_CONSTANT,{,[1.8]
+scripts/generate_post_hoc_matched_analysis.py,83,PARAMETER_OR_CONSTANT,{,[1.6]
+scripts/generate_post_hoc_matched_analysis.py,91,PARAMETER_OR_CONSTANT,{,[1.6]
+scripts/generate_post_hoc_matched_analysis.py,199,PARAMETER_OR_CONSTANT,"fa_budgets = [5.0, 10.0, 50.0]","[5.0, 10.0, 50.0]"
+scripts/generate_post_hoc_matched_analysis.py,148,PARAMETER_OR_CONSTANT,blocks.append({,[8760.0]
+scripts/make_manuscript_tables.py,111,PARAMETER_OR_CONSTANT,"budgets = [1.0, 2.0, 5.0, 10.0]","[1.0, 2.0, 5.0]"
+src/adjudicate_clean_alarms.py,40,AUTHORIZED_CONFIG_GRID,FROZEN_THRESHOLDS = {,"[0.8719, 0.8726, 0.9475]"
+src/adjudicate_clean_alarms.py,319,PARAMETER_OR_CONSTANT,summary_rows.append({,"[100.0, 100.0, 100.0]"
+src/adjudicate_clean_alarms.py,180,PARAMETER_OR_CONSTANT,all_candidate_alarms.append({,"[0.0001, 1013.25, 20.0]"
+src/analyze_filter_cycles_multi_station.py,17,PARAMETER_OR_CONSTANT,STATIONS = [,"[450.0, 300.0, 300.0]"
+src/analyze_filter_cycles_multi_station.py,18,PARAMETER_OR_CONSTANT,"{""id"": ""ca_san_diego"", ""name"": ""San Diego, CA"", ""threshold"": -450.0},",[450.0]
+src/analyze_filter_cycles_multi_station.py,19,PARAMETER_OR_CONSTANT,"{""id"": ""tx_dallas"", ""name"": ""Dallas, TX"", ""threshold"": -300.0},",[300.0]
+src/analyze_filter_cycles_multi_station.py,20,PARAMETER_OR_CONSTANT,"{""id"": ""al_birmingham"", ""name"": ""Birmingham, AL"", ""threshold"": -300.0},",[300.0]
+src/analyze_filter_cycles_multi_station.py,21,PARAMETER_OR_CONSTANT,"{""id"": ""dc_washington"", ""name"": ""Washington, DC"", ""threshold"": -250.0},",[250.0]
+src/analyze_filter_cycles_multi_station.py,22,PARAMETER_OR_CONSTANT,"{""id"": ""fl_tampa"", ""name"": ""Tampa, FL"", ""threshold"": -300.0},",[300.0]
+src/analyze_pilot_stations.py,197,PARAMETER_OR_CONSTANT,missingness_row = {,[100.0]
+src/analyze_rain_washout_distribution.py,88,PARAMETER_OR_CONSTANT,"qs = [0.10, 0.25, 0.50, 0.75, 0.90, 0.95, 0.99]","[0.1, 0.25, 0.5]"
+src/analyze_rain_washout_distribution.py,90,PARAMETER_OR_CONSTANT,return {,"[0.1, 0.25, 0.5]"
+src/analyze_rain_washout_distribution.py,77,AUTHORIZED_CONFIG_GRID,"bins=[-np.inf, 1.0, 5.0, np.inf],","[1.0, 5.0]"
+src/analyze_washout_spectrum.py,65,PARAMETER_OR_CONSTANT,"ci_low, ci_high = np.percentile(boot_ratios, [2.5, 97.5])","[2.5, 97.5]"
+src/artifact_tests.py,990,PARAMETER_OR_CONSTANT,"for g_shift, fwhm_ov, label_cond in [","[0.05, 0.1, 0.0]"
+src/artifact_tests.py,207,PARAMETER_OR_CONSTANT,"empirical_fano_cpm = np.array([0.402, 0.680, 0.223, 0.170, 0.061, 0.140, 0.061, 0.027], dtype=float)","[0.402, 0.68, 0.223]"
+src/artifact_tests.py,253,PARAMETER_OR_CONSTANT,rows.append({,"[0.6, 1.5]"
+src/artifact_tests.py,446,PARAMETER_OR_CONSTANT,test_data[st_id] = {,"[0.0, 0.0]"
+src/audit_injection_catalog.py,203,PARAMETER_OR_CONSTANT,summary_records.append({,[20.0]
+src/baselines.py,222,PARAMETER_OR_CONSTANT,gross_pipe = Pipeline([,[10.0]
+src/baselines.py,228,PARAMETER_OR_CONSTANT,dose_pipe = Pipeline([,[10.0]
+src/baselines.py,235,PARAMETER_OR_CONSTANT,gross_pipe = Pipeline([,[1.0]
+src/baselines.py,240,PARAMETER_OR_CONSTANT,dose_pipe = Pipeline([,[1.0]
+src/baselines.py,456,PARAMETER_OR_CONSTANT,pipe = Pipeline([,"[0.02, 0.001, 1.0]"
+src/baselines.py,500,PARAMETER_OR_CONSTANT,pipe = Pipeline([,[1.0]
+src/compute_train_only_baselines.py,38,PARAMETER_OR_CONSTANT,DEFAULT_SLOPES = {,"[0.01389, 0.01668, 0.02359]"
+src/detector_response.py,74,PARAMETER_OR_CONSTANT,"RADNET_WINDOWS_9: list[tuple[str, float, float]] = [","[0.0, 100.0, 100.0]"
+src/detector_response.py,88,PARAMETER_OR_CONSTANT,"NUCLIDE_GAMMA_LINES: dict[str, list[tuple[float, float]]] = {","[661.657, 0.851, 475.365]"
+src/detector_response.py,89,PARAMETER_OR_CONSTANT,"""Cs-137"": [","[661.657, 0.851]"
+src/detector_response.py,92,PARAMETER_OR_CONSTANT,"""Cs-134"": [","[475.365, 0.01479, 563.246]"
+src/detector_response.py,103,PARAMETER_OR_CONSTANT,"""I-131"": [","[80.185, 0.0262, 284.305]"
+src/detector_response.py,110,PARAMETER_OR_CONSTANT,"""Co-60"": [","[1173.228, 0.9985, 1332.492]"
+src/detector_response.py,114,PARAMETER_OR_CONSTANT,"""Te-132"": [","[49.72, 0.15, 228.16]"
+src/detector_response.py,118,PARAMETER_OR_CONSTANT,"""I-132"": [","[522.65, 0.16, 630.19]"
+src/detector_response.py,127,PARAMETER_OR_CONSTANT,"""Ru-103"": [","[497.085, 0.91, 610.333]"
+src/detector_response.py,131,PARAMETER_OR_CONSTANT,"""Zr-95"": [","[724.192, 0.4427, 756.725]"
+src/detector_response.py,135,PARAMETER_OR_CONSTANT,"""Nb-95"": [","[765.803, 0.9981]"
+src/detector_response.py,138,PARAMETER_OR_CONSTANT,"""Ba-140"": [","[162.66, 0.0622, 304.849]"
+src/detector_response.py,145,PARAMETER_OR_CONSTANT,"""La-140"": [","[328.762, 0.203, 487.021]"
+src/detector_response.py,154,PARAMETER_OR_CONSTANT,"""Pb-214"": [","[241.995, 0.0725, 295.223]"
+src/detector_response.py,160,PARAMETER_OR_CONSTANT,"""Bi-214"": [","[609.32, 0.4549, 768.36]"
+src/detector_response.py,177,PARAMETER_OR_CONSTANT,"[50.0, 80.0, 100.0, 150.0, 200.0, 300.0, 400.0, 500.0, 600.0, 662.0, 800.0, 1000.0, 1250.0, 1500.0, ","[50.0, 80.0, 100.0]"
+src/detector_response.py,181,PARAMETER_OR_CONSTANT,"[10.20, 2.82, 1.50, 0.470, 0.205, 0.0630, 0.0278, 0.0150, 0.0093, 0.0072, 0.0045, 0.0026, 0.0016, 0.","[10.2, 2.82, 1.5]"
+src/detector_response.py,185,PARAMETER_OR_CONSTANT,"[0.125, 0.122, 0.118, 0.109, 0.101, 0.0886, 0.0796, 0.0726, 0.0670, 0.0641, 0.0586, 0.0524, 0.0466, ","[0.125, 0.122, 0.118]"
+src/detector_response.py,189,PARAMETER_OR_CONSTANT,"[0.368, 0.202, 0.170, 0.138, 0.122, 0.104, 0.0928, 0.0845, 0.0780, 0.0747, 0.0684, 0.0615, 0.0550, 0","[0.368, 0.202, 0.17]"
+src/detector_response.py,670,PARAMETER_OR_CONSTANT,"nuc = {""fraction_cs137"": 1.0, ""fraction_i131"": 0.0, ""fraction_co60"": 0.0, ""fraction_cs134"": 0.0}","[1.0, 0.0, 0.0]"
+src/detector_response.py,753,REAL_PHYSICS_CONSTANT,"centroid_kev = np.array([150.0, 300.0, 500.0, 700.0, 900.0, 1200.0, 1600.0, 2000.0], dtype=float)","[150.0, 300.0, 500.0]"
+src/detector_response.py,754,REAL_PHYSICS_CONSTANT,"icrp74_psv_cm2 = np.array([0.89, 1.80, 2.93, 3.92, 4.79, 5.85, 7.08, 8.15], dtype=float)","[0.89, 1.8, 2.93]"
+src/detector_response.py,801,PARAMETER_OR_CONSTANT,"empirical_fano_cpm = np.array([0.402, 0.680, 0.223, 0.170, 0.061, 0.140, 0.061, 0.027], dtype=float)","[0.402, 0.68, 0.223]"
+src/detector_response.py,674,PARAMETER_OR_CONSTANT,"nuc = {""fraction_cs137"": 0.0, ""fraction_i131"": 1.0, ""fraction_co60"": 0.0, ""fraction_cs134"": 0.0}","[0.0, 1.0, 0.0]"
+src/detector_response.py,898,PARAMETER_OR_CONSTANT,row = {,"[0.0, 1.4, 1.8]"
+src/detector_response.py,684,PARAMETER_OR_CONSTANT,"nuc = {""fraction_cs137"": f_cs137, ""fraction_i131"": f_i131, ""fraction_co60"": 0.0, ""fraction_cs134"": f",[0.0]
+src/detector_response.py,679,AUTHORIZED_CONFIG_GRID,"alpha_mix = [4.0, 3.0, 3.0] if is_family_a else [3.2, 2.8, 4.0]","[4.0, 3.0, 3.0]"
+src/detector_response.py,679,AUTHORIZED_CONFIG_GRID,"alpha_mix = [4.0, 3.0, 3.0] if is_family_a else [3.2, 2.8, 4.0]","[3.2, 2.8, 4.0]"
+src/detector_response.py,695,PARAMETER_OR_CONSTANT,"nuc = {""fraction_cs137"": 0.0, ""fraction_i131"": 0.0, ""fraction_co60"": 1.0, ""fraction_cs134"": 0.0}","[0.0, 0.0, 1.0]"
+src/detector_response.py,737,PARAMETER_OR_CONSTANT,"atten_jitter = np.exp(-np.array([0.04, 0.02, 0.01, 0.005, 0.003, 0.002, 0.001, 0.001]) * rng.normal(","[0.04, 0.02, 0.01]"
+src/detector_response.py,699,AUTHORIZED_CONFIG_GRID,"alpha_mix = [3.5, 2.5, 2.0, 2.0] if is_family_a else [3.0, 2.2, 2.6, 2.2]","[3.5, 2.5, 2.0]"
+src/detector_response.py,699,AUTHORIZED_CONFIG_GRID,"alpha_mix = [3.5, 2.5, 2.0, 2.0] if is_family_a else [3.0, 2.2, 2.6, 2.2]","[3.0, 2.2, 2.6]"
+src/detector_response.py,720,PARAMETER_OR_CONSTANT,"nuc = {""fraction_cs137"": 0.5, ""fraction_i131"": 0.5, ""fraction_co60"": 0.0, ""fraction_cs134"": 0.0}","[0.5, 0.5, 0.0]"
+src/detector_response.py,724,PARAMETER_OR_CONSTANT,"nuc = {""fraction_cs137"": 0.6, ""fraction_i131"": 0.4, ""fraction_co60"": 0.0, ""fraction_cs134"": 0.0}","[0.6, 0.4, 0.0]"
+src/detector_response.py,729,PARAMETER_OR_CONSTANT,"nuc = {""fraction_cs137"": 0.2, ""fraction_i131"": 0.5, ""fraction_co60"": 0.3, ""fraction_cs134"": 0.0}","[0.2, 0.5, 0.3]"
+src/evaluate_baseline.py,94,PARAMETER_OR_CONSTANT,rules = [,"[3.0, 4.0, 5.0]"
+src/evaluate_baseline.py,95,PARAMETER_OR_CONSTANT,"{""rule_family"": ""Global Gross CPM Sigma"", ""param"": 3.0, ""code"": ""global_cpm_3s""},",[3.0]
+src/evaluate_baseline.py,96,PARAMETER_OR_CONSTANT,"{""rule_family"": ""Global Gross CPM Sigma"", ""param"": 4.0, ""code"": ""global_cpm_4s""},",[4.0]
+src/evaluate_baseline.py,97,PARAMETER_OR_CONSTANT,"{""rule_family"": ""Global Gross CPM Sigma"", ""param"": 5.0, ""code"": ""global_cpm_5s""},",[5.0]
+src/evaluate_baseline.py,98,PARAMETER_OR_CONSTANT,"{""rule_family"": ""Rolling 7-Day Mean + Global Sigma"", ""param"": 3.0, ""code"": ""rolling_cpm_3s""},",[3.0]
+src/evaluate_baseline.py,99,PARAMETER_OR_CONSTANT,"{""rule_family"": ""Rolling 7-Day Mean + Global Sigma"", ""param"": 4.0, ""code"": ""rolling_cpm_4s""},",[4.0]
+src/evaluate_baseline.py,100,PARAMETER_OR_CONSTANT,"{""rule_family"": ""Rolling 7-Day Mean + Global Sigma"", ""param"": 5.0, ""code"": ""rolling_cpm_5s""},",[5.0]
+src/evaluate_baseline.py,101,PARAMETER_OR_CONSTANT,"{""rule_family"": ""Global Dose Rate Sigma"", ""param"": 3.0, ""code"": ""dose_rate_3s""},",[3.0]
+src/evaluate_baseline.py,102,PARAMETER_OR_CONSTANT,"{""rule_family"": ""Global Dose Rate Sigma"", ""param"": 4.0, ""code"": ""dose_rate_4s""},",[4.0]
+src/evaluate_baseline.py,103,PARAMETER_OR_CONSTANT,"{""rule_family"": ""Global Dose Rate Sigma"", ""param"": 5.0, ""code"": ""dose_rate_5s""},",[5.0]
+src/evaluate_baseline.py,231,PARAMETER_OR_CONSTANT,"ax.set_xticks([3.0, 4.0, 5.0])","[3.0, 4.0, 5.0]"
+src/evaluate_baselines.py,92,PARAMETER_OR_CONSTANT,"DETECTION_TARGETS = [80.0, 90.0, 95.0]","[80.0, 90.0, 95.0]"
+src/evaluate_baselines.py,93,PARAMETER_OR_CONSTANT,"FA_BUDGETS = [5.0, 10.0, 50.0]","[5.0, 10.0, 50.0]"
+src/evaluate_baselines.py,328,PARAMETER_OR_CONSTANT,summary = {,"[0.0, 100.0, 100.0]"
+src/evaluate_baselines.py,839,PARAMETER_OR_CONSTANT,plot_specs = [,"[1.6, 1.6, 1.8]"
+src/evaluate_baselines.py,409,PARAMETER_OR_CONSTANT,val_data[st_id] = {,"[0.0, 0.0]"
+src/evaluate_baselines.py,418,PARAMETER_OR_CONSTANT,test_data[st_id] = {,"[0.0, 0.0]"
+src/evaluate_baselines.py,695,PARAMETER_OR_CONSTANT,roc_curve_rows.append({,"[100.0, 100.0]"
+src/evaluate_generalization.py,1440,AUTHORIZED_CONFIG_GRID,"for sid, color, lw, lbl in [","[2.4, 1.3, 1.3]"
+src/evaluate_generalization.py,440,PARAMETER_OR_CONSTANT,test_data[st_id] = {,"[0.0, 0.0]"
+src/evaluate_generalization.py,479,AUTHORIZED_CONFIG_GRID,"grid = np.unique(np.concatenate([np.linspace(0.50, 0.98, 49), np.linspace(0.981, 0.999, 37)]))","[0.5, 0.98, 0.981]"
+src/evaluate_generalization.py,237,PARAMETER_OR_CONSTANT,row.update({,"[1.0, 1.0]"
+src/evaluate_generalization.py,636,PARAMETER_OR_CONSTANT,cat_summary_rows.append({,[100.0]
+src/evaluate_generalization.py,910,PARAMETER_OR_CONSTANT,"for b_lbl, b_val in [(""Zero_Local_FA_Ceiling"", 0.0), (""Local_FA_Budget_1_per_yr"", 1.0), (""Local_FA_B","[0.0, 1.0, 5.0]"
+src/evaluate_generalization.py,1093,PARAMETER_OR_CONSTANT,hfa_rows.append({,[100.0]
+src/evaluate_generalization.py,1275,PARAMETER_OR_CONSTANT,temp_st_year_rows.append({,[100.0]
+src/evaluate_rain_masked_baseline.py,63,PARAMETER_OR_CONSTANT,series[st_id] = {,[0.0]
+src/evaluate_rain_masked_baseline.py,122,PARAMETER_OR_CONSTANT,rows.append({,"[0.0, 100.0, 100.0]"
+src/evaluate_real_event.py,90,AUTHORIZED_CONFIG_GRID,FROZEN_THRESHOLDS = {,"[0.8719, 0.8726, 0.9475]"
+src/evaluate_real_event.py,246,PARAMETER_OR_CONSTANT,return {,"[0.0, 2.5, 0.01344]"
+src/evaluate_real_event.py,251,PARAMETER_OR_CONSTANT,"""radon_washout_basis"": [0.48, 0.22, 0.12, 0.08, 0.04, 0.03, 0.02, 0.01],","[0.48, 0.22, 0.12]"
+src/evaluate_real_event.py,302,PARAMETER_OR_CONSTANT,"s_rn = np.array([0.48, 0.22, 0.12, 0.08, 0.04, 0.03, 0.02, 0.01])","[0.48, 0.22, 0.12]"
+src/evaluate_threshold_diagnosis.py,72,PARAMETER_OR_CONSTANT,"FA_BUDGETS_5 = [1.0, 2.0, 5.0, 10.0, 20.0]","[1.0, 2.0, 5.0]"
+src/evaluate_threshold_diagnosis.py,807,PARAMETER_OR_CONSTANT,configs = [,"[1.0, 2.0, 5.0]"
+src/evaluate_threshold_diagnosis.py,458,PARAMETER_OR_CONSTANT,"for op_label, tau_val in [","[5.0, 10.0, 0.95]"
+src/evaluate_threshold_diagnosis.py,114,PARAMETER_OR_CONSTANT,val_series[st_id] = pd.DataFrame({,"[0.0, 1.0, 0.0]"
+src/evaluate_threshold_diagnosis.py,125,PARAMETER_OR_CONSTANT,test_series[st_id] = pd.DataFrame({,"[0.0, 1.0, 0.0]"
+src/evaluate_threshold_diagnosis.py,809,PARAMETER_OR_CONSTANT,"(""Mild_Fission_Boost ({0:1, 1:2, 2:5})"", {0: 1.0, 1: 2.0, 2: 5.0}, None),","[1.0, 2.0, 5.0]"
+src/evaluate_threshold_diagnosis.py,810,PARAMETER_OR_CONSTANT,"(""Moderate_Fission_Boost ({0:1, 1:5, 2:15})"", {0: 1.0, 1: 5.0, 2: 15.0}, None),","[1.0, 5.0, 15.0]"
+src/evaluate_threshold_diagnosis.py,844,PARAMETER_OR_CONSTANT,rows.append({,[1e-09]
+src/evaluate_threshold_diagnosis.py,256,PARAMETER_OR_CONSTANT,"for tgt_pct, r_cal in [(90.0, r90), (95.0, r95)]:","[90.0, 95.0]"
+src/evaluate_threshold_diagnosis.py,595,PARAMETER_OR_CONSTANT,"for budget in [2.0, 5.0, 10.0, 20.0]:","[2.0, 5.0, 10.0]"
+src/evaluate_threshold_diagnosis.py,654,PARAMETER_OR_CONSTANT,"for budget in [2.0, 5.0, 10.0, 20.0]:","[2.0, 5.0, 10.0]"
+src/evaluate_threshold_diagnosis.py,666,PARAMETER_OR_CONSTANT,cal_comp_rows.append({,"[0.5, 0.5, 0.5]"
+src/evaluate_uncertainty.py,126,PARAMETER_OR_CONSTANT,specs = [,"[90.0, 90.0, 95.0]"
+src/evaluate_uncertainty.py,377,PARAMETER_OR_CONSTANT,"test_probs = [0.16, 0.16, 0.16, 0.17, 0.17, 0.06, 0.06, 0.06]","[0.16, 0.16, 0.16]"
+src/evaluate_uncertainty.py,839,PARAMETER_OR_CONSTANT,"det_err = [np.maximum(0.0, np.array(det_pt) - np.array(det_lo)), np.maximum(0.0, np.array(det_hi) - ","[0.0, 0.0]"
+src/evaluate_uncertainty.py,848,PARAMETER_OR_CONSTANT,"fa_err = [np.maximum(0.0, np.array(fa_pt) - np.array(fa_lo)), np.maximum(0.0, np.array(fa_hi) - np.a","[0.0, 0.0]"
+src/evaluate_uncertainty.py,581,PARAMETER_OR_CONSTANT,"for mode, tgt_val, op_label in [","[0.9, 0.95, 5.0]"
+src/evaluate_uncertainty.py,692,AUTHORIZED_CONFIG_GRID,"grid_c = np.unique(np.concatenate([np.linspace(0.50, 0.98, 49), np.linspace(0.981, 0.999, 37)]))","[0.5, 0.98, 0.981]"
+src/evaluate_uncertainty_protocol.py,381,PARAMETER_OR_CONSTANT,primary_eval_models = {,"[3.0, 3.0, 4.0]"
+src/evaluate_uncertainty_protocol.py,767,PARAMETER_OR_CONSTANT,model_eval_specs = [,"[3.0, 0.95, 0.95]"
+src/evaluate_uncertainty_protocol.py,867,PARAMETER_OR_CONSTANT,"for tgt_det in [0.90, 0.95, 0.98]:","[0.9, 0.95, 0.98]"
+src/evaluate_uncertainty_protocol.py,109,PARAMETER_OR_CONSTANT,pipe = Pipeline([,"[0.0001, 0.001]"
+src/evaluate_uncertainty_protocol.py,235,PARAMETER_OR_CONSTANT,test_series[st_id] = {,[0.0]
+src/evaluate_uncertainty_protocol.py,317,AUTHORIZED_CONFIG_GRID,thresholds = np.concatenate([,"[0.01, 0.95, 0.96]"
+src/evaluate_uncertainty_protocol.py,382,PARAMETER_OR_CONSTANT,"""Baseline: Global Dry 3-sigma"": {",[3.0]
+src/evaluate_uncertainty_protocol.py,387,PARAMETER_OR_CONSTANT,"""Baseline: Rolling 7d 3-sigma"": {",[3.0]
+src/evaluate_uncertainty_protocol.py,391,PARAMETER_OR_CONSTANT,"""Baseline: Rolling 7d 4-sigma"": {",[4.0]
+src/evaluate_uncertainty_protocol.py,395,PARAMETER_OR_CONSTANT,"""Baseline: Rolling 7d 5-sigma"": {",[5.0]
+src/evaluate_uncertainty_protocol.py,399,PARAMETER_OR_CONSTANT,"""Tier 1: Gross Radiation GBDT (95% target)"": {",[0.95]
+src/evaluate_uncertainty_protocol.py,404,PARAMETER_OR_CONSTANT,"""Tier 2: Radiation + Spectrometry GBDT (95% target)"": {",[0.95]
+src/evaluate_uncertainty_protocol.py,409,PARAMETER_OR_CONSTANT,"""Tier 3: Full Weather Fusion GBDT (95% target)"": {",[0.95]
+src/evaluate_uncertainty_protocol.py,414,PARAMETER_OR_CONSTANT,"""Tier 3: Full Weather Fusion GBDT (90% target)"": {",[0.9]
+src/evaluate_uncertainty_protocol.py,419,REAL_PHYSICS_CONSTANT,"""Tier 4: Physics-Motivated Nuclear GBDT (95% target)"": {",[0.95]
+src/evaluate_uncertainty_protocol.py,424,REAL_PHYSICS_CONSTANT,"""Tier 4: Physics-Motivated Nuclear GBDT (90% target)"": {",[0.9]
+src/evaluate_uncertainty_protocol.py,429,PARAMETER_OR_CONSTANT,"""Tier 3: Weather-Fused Neural Net (MLP) (95% target)"": {",[0.95]
+src/evaluate_uncertainty_protocol.py,673,PARAMETER_OR_CONSTANT,delay_records.append({,"[0.25, 0.75, 0.9]"
+src/evaluate_uncertainty_protocol.py,873,PARAMETER_OR_CONSTANT,mlp_comp_records.append({,[0.0]
+src/evaluate_uncertainty_protocol.py,319,PARAMETER_OR_CONSTANT,"np.array([0.96, 0.97, 0.98, 0.985, 0.990, 0.991, 0.992, 0.993, 0.994, 0.995, 0.996, 0.997, 0.998, 0.","[0.96, 0.97, 0.98]"
+src/evaluate_uncertainty_protocol.py,691,PARAMETER_OR_CONSTANT,delay_records.append({,"[0.25, 0.75, 0.9]"
+src/evaluate_uncertainty_protocol.py,709,PARAMETER_OR_CONSTANT,delay_records.append({,"[0.25, 0.75, 0.9]"
+src/evaluate_uncertainty_protocol.py,727,PARAMETER_OR_CONSTANT,delay_records.append({,"[0.25, 0.75, 0.9]"
+src/generalization_tampa.py,252,PARAMETER_OR_CONSTANT,summary = {,[100.0]
+src/generalization_tampa.py,421,PARAMETER_OR_CONSTANT,np.concatenate([,"[0.3, 0.99, 0.9]"
+src/generalization_tampa.py,424,PARAMETER_OR_CONSTANT,"[float(np.max(p_valid)) + 1e-5],",[1e-05]
+src/nuclear_physics.py,32,REAL_PHYSICS_CONSTANT,"CHANNEL_CENTROID_MEV = np.array([0.15, 0.30, 0.50, 0.70, 0.90, 1.20, 1.60, 2.00], dtype=float)","[0.15, 0.3, 0.5]"
+src/nuclear_physics.py,35,REAL_PHYSICS_CONSTANT,"ICRP74_H10_PSV_CM2 = np.array([0.89, 1.80, 2.93, 3.92, 4.79, 5.85, 7.08, 8.15], dtype=float)","[0.89, 1.8, 2.93]"
+src/nuclear_physics.py,38,PARAMETER_OR_CONSTANT,"NAI_INTRINSIC_EFFICIENCY = np.array([0.92, 0.68, 0.48, 0.38, 0.32, 0.26, 0.21, 0.18], dtype=float)","[0.92, 0.68, 0.48]"
+src/nuclear_physics.py,45,PARAMETER_OR_CONSTANT,"[0.4227, 0.3375, 0.0916, 0.0605, 0.0249, 0.0388, 0.0173, 0.0067],","[0.4227, 0.3375, 0.0916]"
+src/nuclear_physics.py,51,PARAMETER_OR_CONSTANT,"TEMPLATE_I131 = np.array([0.23, 0.62, 0.06, 0.06, 0.015, 0.008, 0.005, 0.002], dtype=float)","[0.23, 0.62, 0.06]"
+src/nuclear_physics.py,54,PARAMETER_OR_CONSTANT,"TEMPLATE_CS137 = np.array([0.21, 0.16, 0.14, 0.46, 0.015, 0.008, 0.005, 0.002], dtype=float)","[0.21, 0.16, 0.14]"
+src/nuclear_physics.py,57,PARAMETER_OR_CONSTANT,"TEMPLATE_CO60 = np.array([0.16, 0.15, 0.15, 0.14, 0.10, 0.27, 0.025, 0.005], dtype=float)","[0.16, 0.15, 0.15]"
+src/nuclear_physics.py,520,PARAMETER_OR_CONSTANT,"sig = np.array([120.0, 95.0, 35.0, 25.0, 15.0, 15.0, 10.0, 8.0], dtype=float)","[120.0, 95.0, 35.0]"
+src/nuclear_physics.py,431,PARAMETER_OR_CONSTANT,alloc = np.array([,"[0.3, 0.15, 0.1]"
+src/nuclear_physics.py,447,PARAMETER_OR_CONSTANT,alloc = np.array([,"[0.3, 0.3, 0.2]"
+src/nuclear_physics.py,433,PARAMETER_OR_CONSTANT,"[0.30, 0.15, 0.10, 0.20, 0.25],  # R02: Compton + backscatter","[0.3, 0.15, 0.1]"
+src/nuclear_physics.py,434,REAL_PHYSICS_CONSTANT,"[0.62, 0.23, 0.03, 0.05, 0.07],  # R03: I-131 (364 keV) + Te-132 (228 keV)","[0.62, 0.23, 0.03]"
+src/nuclear_physics.py,435,REAL_PHYSICS_CONSTANT,"[0.20, 0.05, 0.25, 0.25, 0.25],  # R04: Compton + I-132 (523 keV)","[0.2, 0.05, 0.25]"
+src/nuclear_physics.py,436,PARAMETER_OR_CONSTANT,"[0.05, 0.00, 0.22, 0.33, 0.40],  # R05: Cs-137 (662) + Cs-134 (605) + I-132 (667/773)","[0.05, 0.0, 0.22]"
+src/nuclear_physics.py,437,PARAMETER_OR_CONSTANT,"[0.04, 0.00, 0.26, 0.60, 0.10],  # R06: Cs-134 (796/802) + I-132 (955)","[0.04, 0.0, 0.26]"
+src/nuclear_physics.py,438,REAL_PHYSICS_CONSTANT,"[0.02, 0.00, 0.13, 0.80, 0.05],  # R07: Cs-134 (1168/1365 keV) + I-132 (1399 keV)","[0.02, 0.0, 0.13]"
+src/nuclear_physics.py,439,PARAMETER_OR_CONSTANT,"[0.05, 0.00, 0.15, 0.65, 0.15],  # R08: high-energy tail","[0.05, 0.0, 0.15]"
+src/nuclear_physics.py,440,PARAMETER_OR_CONSTANT,"[0.05, 0.00, 0.15, 0.65, 0.15],  # R09: high-energy tail","[0.05, 0.0, 0.15]"
+src/nuclear_physics.py,449,PARAMETER_OR_CONSTANT,"[0.30, 0.30, 0.20, 0.20],  # R02","[0.3, 0.3, 0.2]"
+src/nuclear_physics.py,450,REAL_PHYSICS_CONSTANT,"[0.72, 0.10, 0.08, 0.10],  # R03: I-131 364 keV photopeak","[0.72, 0.1, 0.08]"
+src/nuclear_physics.py,451,PARAMETER_OR_CONSTANT,"[0.18, 0.32, 0.25, 0.25],  # R04","[0.18, 0.32, 0.25]"
+src/nuclear_physics.py,452,REAL_PHYSICS_CONSTANT,"[0.06, 0.54, 0.30, 0.10],  # R05: Cs-137 662 keV & Cs-134 605 keV","[0.06, 0.54, 0.3]"
+src/nuclear_physics.py,453,REAL_PHYSICS_CONSTANT,"[0.04, 0.12, 0.54, 0.30],  # R06: Cs-134 796 keV & Co-60 Compton","[0.04, 0.12, 0.54]"
+src/nuclear_physics.py,454,REAL_PHYSICS_CONSTANT,"[0.02, 0.03, 0.25, 0.70],  # R07: Co-60 1173/1332 keV & Cs-134 1168/1365 keV","[0.02, 0.03, 0.25]"
+src/nuclear_physics.py,455,PARAMETER_OR_CONSTANT,"[0.02, 0.03, 0.20, 0.75],  # R08: Co-60 high-energy tail","[0.02, 0.03, 0.2]"
+src/nuclear_physics.py,456,PARAMETER_OR_CONSTANT,"[0.02, 0.03, 0.20, 0.75],  # R09","[0.02, 0.03, 0.2]"
+src/operating_threshold.py,39,AUTHORIZED_CONFIG_GRID,THRESHOLD_GRID = np.concatenate([,"[0.01, 0.95, 0.96]"
+src/operating_threshold.py,41,PARAMETER_OR_CONSTANT,"[0.96, 0.97, 0.98, 0.985, 0.990, 0.991, 0.992, 0.993, 0.994,","[0.96, 0.97, 0.98]"
+src/operating_threshold.py,45,AUTHORIZED_CONFIG_GRID,FINE_THRESHOLD_GRID = np.unique(np.concatenate([,"[0.01, 0.9, 0.901]"
+src/operating_threshold.py,361,PARAMETER_OR_CONSTANT,return {,"[0.0, 0.0, 0.0]"
+src/plot_baseline_timeline.py,37,AUTHORIZED_CONFIG_GRID,"fig, axes = plt.subplots(2, 1, figsize=(14, 8), sharex=True, gridspec_kw={""height_ratios"": [2.5, 1]}",[2.5]
+src/plot_baseline_timeline.py,37,AUTHORIZED_CONFIG_GRID,"fig, axes = plt.subplots(2, 1, figsize=(14, 8), sharex=True, gridspec_kw={""height_ratios"": [2.5, 1]}",[2.5]
+src/plot_environmental_engineering_synthesis.py,24,PARAMETER_OR_CONSTANT,plt.rcParams.update({,"[10.5, 11.5, 9.5]"
+src/plot_environmental_engineering_synthesis.py,44,AUTHORIZED_CONFIG_GRID,"gs = GridSpec(3, 2, figure=fig, height_ratios=[1.0, 1.1, 1.1], hspace=0.38, wspace=0.24)","[1.0, 1.1, 1.1]"
+src/plot_model_evaluation.py,345,PARAMETER_OR_CONSTANT,"ax4.set_yticks([0.55, 1.55])","[0.55, 1.55]"
+src/plot_model_evaluation.py,294,AUTHORIZED_CONFIG_GRID,"fig, axes = plt.subplots(4, 1, figsize=(14, 11), sharex=True, gridspec_kw={""height_ratios"": [1, 1.8,","[1.8, 1.8, 1.2]"
+src/plot_model_evaluation.py,294,AUTHORIZED_CONFIG_GRID,"fig, axes = plt.subplots(4, 1, figsize=(14, 11), sharex=True, gridspec_kw={""height_ratios"": [1, 1.8,","[1.8, 1.8, 1.2]"
+src/plot_rain_events.py,72,AUTHORIZED_CONFIG_GRID,"fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(12, 10), sharex=True, gridspec_kw={""height_ratios",[1.5]
+src/plot_rain_events.py,72,AUTHORIZED_CONFIG_GRID,"fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(12, 10), sharex=True, gridspec_kw={""height_ratios",[1.5]
+src/plot_rigorous_evaluation.py,30,PARAMETER_OR_CONSTANT,plt.rcParams.update({,"[2.0, 0.35]"
+src/plot_rigorous_evaluation.py,100,PARAMETER_OR_CONSTANT,tier_styles = {,"[1.8, 2.0, 2.2]"
+src/plot_rigorous_evaluation.py,101,AUTHORIZED_CONFIG_GRID,"""Tier 1 (Gross)"": {""col"": ""#7f8c8d"", ""ls"": ""-"", ""lw"": 1.8, ""name"": ""Tier 1: Gross Only""},",[1.8]
+src/plot_rigorous_evaluation.py,102,AUTHORIZED_CONFIG_GRID,"""Tier 1b (Gross+Weather)"": {""col"": ""#e67e22"", ""ls"": ""-"", ""lw"": 2.0, ""name"": ""Tier 1b: Gross + Weathe",[2.0]
+src/plot_rigorous_evaluation.py,103,AUTHORIZED_CONFIG_GRID,"""Tier 2 (Spectral)"": {""col"": ""#2980b9"", ""ls"": ""-"", ""lw"": 2.2, ""name"": ""Tier 2: Spectral Only""},",[2.2]
+src/plot_rigorous_evaluation.py,104,AUTHORIZED_CONFIG_GRID,"""Tier 3 (Weather Fusion)"": {""col"": ""#27ae60"", ""ls"": ""-"", ""lw"": 2.4, ""name"": ""Tier 3: Weather Fusion ",[2.4]
+src/plot_rigorous_evaluation.py,105,REAL_PHYSICS_CONSTANT,"""Tier 4 (Physics-Motivated Nuclear)"": {""col"": ""#0d47a1"", ""ls"": ""-"", ""lw"": 3.0, ""name"": ""Tier 4: Phys",[3.0]
+src/plot_rigorous_evaluation.py,106,REAL_PHYSICS_CONSTANT,"""Tier 4 (Physics-Motivated Nuclear)"": {""col"": ""#0d47a1"", ""ls"": ""-"", ""lw"": 3.0, ""name"": ""Tier 4: Phys",[3.0]
+src/plot_rigorous_evaluation.py,107,AUTHORIZED_CONFIG_GRID,"""Tier 3 MLP"": {""col"": ""#8e44ad"", ""ls"": ""--"", ""lw"": 1.8, ""name"": ""Tier 3: MLP Neural Net""},",[1.8]
+src/plot_synthetic_injections.py,113,PARAMETER_OR_CONSTANT,"w_cs137 = [20.0, 15.0, 20.0, 43.0, 1.5, 0.9, 0.4, 0.0]","[20.0, 15.0, 20.0]"
+src/plot_synthetic_injections.py,114,PARAMETER_OR_CONSTANT,"w_i131 =  [25.0, 63.0, 5.0,  5.0,  1.5, 0.8, 0.5, 0.0]","[25.0, 63.0, 5.0]"
+src/plot_synthetic_injections.py,115,PARAMETER_OR_CONSTANT,"w_co60 =  [15.0, 15.0, 15.0, 15.0, 10.0, 28.0, 2.0, 0.0]","[15.0, 15.0, 15.0]"
+src/plot_synthetic_injections.py,116,PARAMETER_OR_CONSTANT,"w_cs134 = [18.0, 20.0, 15.0, 35.0, 6.0,  4.5, 0.5, 0.0]","[18.0, 20.0, 15.0]"
+src/plot_synthetic_injections.py,89,AUTHORIZED_CONFIG_GRID,"ax1.plot([d, d], [1.0, 0.0], color=""#ff7f0e"", linestyle=""--"", linewidth=2.0)","[1.0, 0.0]"
+src/plot_synthetic_injections.py,90,AUTHORIZED_CONFIG_GRID,"ax1.plot([d, d + 4], [0.0, 0.0], color=""#ff7f0e"", linestyle=""-"", linewidth=2.0)","[0.0, 0.0]"
+src/plot_synthetic_injections.py,289,AUTHORIZED_CONFIG_GRID,"fig, axes = plt.subplots(4, 1, figsize=(14, 12), sharex=True, gridspec_kw={""height_ratios"": [1, 2.2,","[2.2, 1.8, 1.8]"
+src/plot_synthetic_injections.py,289,AUTHORIZED_CONFIG_GRID,"fig, axes = plt.subplots(4, 1, figsize=(14, 12), sharex=True, gridspec_kw={""height_ratios"": [1, 2.2,","[2.2, 1.8, 1.8]"
+src/plot_uncertainty_evaluation.py,25,PARAMETER_OR_CONSTANT,plt.rcParams.update({,"[2.0, 0.35]"
+src/plot_uncertainty_evaluation.py,230,PARAMETER_OR_CONSTANT,model_specs = [,"[3.0, 2.5, 2.2]"
+src/synthetic_injection.py,72,PARAMETER_OR_CONSTANT,STATIONS = [,"[300.0, 250.0, 300.0]"
+src/synthetic_injection.py,81,PARAMETER_OR_CONSTANT,DOSE_COUPLING_SLOPES = {,"[0.01389, 0.01668, 0.02359]"
+src/synthetic_injection.py,73,PARAMETER_OR_CONSTANT,"{""id"": ""al_birmingham"", ""name"": ""Birmingham, AL"", ""drop_thresh"": -300.0},",[300.0]
+src/synthetic_injection.py,74,PARAMETER_OR_CONSTANT,"{""id"": ""dc_washington"", ""name"": ""Washington, DC"", ""drop_thresh"": -250.0},",[250.0]
+src/synthetic_injection.py,75,PARAMETER_OR_CONSTANT,"{""id"": ""ca_san_diego"", ""name"": ""San Diego, CA"", ""drop_thresh"": -300.0},",[300.0]
+src/synthetic_injection.py,76,PARAMETER_OR_CONSTANT,"{""id"": ""tx_dallas"", ""name"": ""Dallas, TX"", ""drop_thresh"": -300.0},",[300.0]
+src/synthetic_injection.py,77,PARAMETER_OR_CONSTANT,"{""id"": ""fl_tampa"", ""name"": ""Tampa, FL"", ""drop_thresh"": -300.0},",[300.0]
+src/synthetic_injection.py,215,PARAMETER_OR_CONSTANT,"nuc = {""fraction_cs137"": 1.0, ""fraction_i131"": 0.0, ""fraction_co60"": 0.0, ""fraction_cs134"": 0.0}","[1.0, 0.0, 0.0]"
+src/synthetic_injection.py,214,PARAMETER_OR_CONSTANT,"w = np.array([comp[0], comp[1], comp[2], p_r05, tail_r06, tail_r07, tail_r08, 0.0])",[0.0]
+src/synthetic_injection.py,224,PARAMETER_OR_CONSTANT,"nuc = {""fraction_cs137"": 0.0, ""fraction_i131"": 1.0, ""fraction_co60"": 0.0, ""fraction_cs134"": 0.0}","[0.0, 1.0, 0.0]"
+src/synthetic_injection.py,213,PARAMETER_OR_CONSTANT,"comp = rng.dirichlet([2.5, 2.0, 2.0]) * rem","[2.5, 2.0, 2.0]"
+src/synthetic_injection.py,223,PARAMETER_OR_CONSTANT,"w = np.array([comp_r02, p_r03, p_r04, comp_r05, tail_r06, tail_r07, tail_r08, 0.0])",[0.0]
+src/synthetic_injection.py,236,PARAMETER_OR_CONSTANT,"nuc = {""fraction_cs137"": 0.40, ""fraction_i131"": 0.30, ""fraction_co60"": 0.0, ""fraction_cs134"": 0.30}","[0.4, 0.3, 0.0]"
+src/synthetic_injection.py,235,PARAMETER_OR_CONSTANT,"w = np.array([comp[0], p_r03 + comp[1], comp[2], p_r05, p_r06, p_r07_cs134, tail_r08, 0.0])",[0.0]
+src/synthetic_injection.py,245,PARAMETER_OR_CONSTANT,"nuc = {""fraction_cs137"": 0.0, ""fraction_i131"": 0.0, ""fraction_co60"": 1.0, ""fraction_cs134"": 0.0}","[0.0, 0.0, 1.0]"
+src/synthetic_injection.py,256,PARAMETER_OR_CONSTANT,"nuc = {""fraction_cs137"": 0.35, ""fraction_i131"": 0.25, ""fraction_co60"": 0.20, ""fraction_cs134"": 0.20}","[0.35, 0.25, 0.2]"
+src/synthetic_injection.py,234,PARAMETER_OR_CONSTANT,"comp = rng.dirichlet([2.5, 2.0, 2.0]) * rem","[2.5, 2.0, 2.0]"
+src/synthetic_injection.py,244,PARAMETER_OR_CONSTANT,"w = np.array([comp[0], comp[1], comp[2], comp[3], comp[4], p_r07, tail_high, 0.0])",[0.0]
+src/synthetic_injection.py,255,PARAMETER_OR_CONSTANT,"w = np.array([comp[0], p_r03, comp[1], p_r05, comp[2], p_r07, tail_high, 0.0])",[0.0]
+src/synthetic_injection.py,749,PARAMETER_OR_CONSTANT,entry = {,"[700.0, 1200.0]"
+src/synthetic_injection.py,802,PARAMETER_OR_CONSTANT,entry = {,"[250.0, 600.0]"
+src/synthetic_injection.py,243,PARAMETER_OR_CONSTANT,"comp = rng.dirichlet([2.0, 2.0, 2.0, 2.0, 1.5]) * rem","[2.0, 2.0, 2.0]"
+src/synthetic_injection.py,254,PARAMETER_OR_CONSTANT,"comp = rng.dirichlet([2.0, 2.0, 2.0, 1.5]) * rem","[2.0, 2.0, 2.0]"
+src/train_and_evaluate_models.py,362,PARAMETER_OR_CONSTANT,"for base_rule, k_val in [","[3.0, 4.0, 5.0]"
+src/train_and_evaluate_models.py,411,PARAMETER_OR_CONSTANT,"target_det_rates = [0.90, 0.95, 0.98]","[0.9, 0.95, 0.98]"
+src/train_and_evaluate_rigorous.py,82,AUTHORIZED_CONFIG_GRID,THRESHOLD_GRID = np.concatenate([,"[0.01, 0.95, 0.96]"
+src/train_and_evaluate_rigorous.py,479,PARAMETER_OR_CONSTANT,"targets = [0.90, 0.95, 0.98]","[0.9, 0.95, 0.98]"
+src/train_and_evaluate_rigorous.py,687,PARAMETER_OR_CONSTANT,comparisons = [,"[95.0, 95.0, 90.0]"
+src/train_and_evaluate_rigorous.py,948,PARAMETER_OR_CONSTANT,"matched_levels = [80.0, 85.0, 90.0, 92.0, 95.0]","[80.0, 85.0, 90.0]"
+src/train_and_evaluate_rigorous.py,1161,PARAMETER_OR_CONSTANT,"for factor in [0.80, 0.90, 1.00, 1.10, 1.20]:","[0.8, 0.9, 1.0]"
+src/train_and_evaluate_rigorous.py,1247,PARAMETER_OR_CONSTANT,"for delta in [-0.10, -0.05, 0.00, +0.05, +0.10]:","[0.0, 0.1, 0.05]"
+src/train_and_evaluate_rigorous.py,157,PARAMETER_OR_CONSTANT,pipe = Pipeline([,"[0.0001, 0.001]"
+src/train_and_evaluate_rigorous.py,372,PARAMETER_OR_CONSTANT,test_series[st_id] = {,[0.0]
+src/train_and_evaluate_rigorous.py,890,PARAMETER_OR_CONSTANT,"for tgt in [90.0, 95.0, 98.0]:","[90.0, 95.0, 98.0]"
+src/train_and_evaluate_rigorous.py,84,PARAMETER_OR_CONSTANT,"np.array([0.96, 0.97, 0.98, 0.985, 0.990, 0.991, 0.992, 0.993, 0.994, 0.995, 0.996, 0.997, 0.998, 0.","[0.96, 0.97, 0.98]"
+src/train_and_evaluate_rigorous.py,507,AUTHORIZED_CONFIG_GRID,"tier_seed_episodes = {(t, tgt): np.zeros((len(SEEDS), n_station_months)) for t in tier_configs for t","[90.0, 95.0, 98.0]"
+src/train_and_evaluate_rigorous.py,508,AUTHORIZED_CONFIG_GRID,"tier_seed_det = {(t, tgt): np.zeros((len(SEEDS), len(test_inj_slices))) for t in tier_configs for tg","[90.0, 95.0, 98.0]"
+src/train_and_evaluate_rigorous.py,509,AUTHORIZED_CONFIG_GRID,"tier_seed_del = {(t, tgt): np.full((len(SEEDS), len(test_inj_slices)), np.nan) for t in tier_configs","[90.0, 95.0, 98.0]"
+src/train_and_evaluate_rigorous.py,721,PARAMETER_OR_CONSTANT,stat_records.append({,"[0.05, 0.05]"
+src/train_and_evaluate_rigorous.py,1229,PARAMETER_OR_CONSTANT,sens_records.append({,[1.0]
+src/uncertainty.py,312,PARAMETER_OR_CONSTANT,return {,"[0.0, 0.0, 0.0]"
+src/uncertainty.py,669,PARAMETER_OR_CONSTANT,rows.append({,"[100.0, 92.5, 98.0]"
+src/uncertainty.py,456,PARAMETER_OR_CONSTANT,res.update({,"[0.0, 0.0, 0.0]"
+src/uncertainty.py,581,PARAMETER_OR_CONSTANT,rows.append({,"[100.0, 92.5, 98.0]"
+src/uncertainty.py,592,PARAMETER_OR_CONSTANT,rows.append({,"[100.0, 92.5, 98.5]"
+src/uncertainty.py,631,PARAMETER_OR_CONSTANT,rows.append({,"[100.0, 92.5, 98.0]"
+src/uncertainty.py,642,PARAMETER_OR_CONSTANT,rows.append({,"[100.0, 92.5, 98.5]"

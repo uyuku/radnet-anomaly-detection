@@ -246,7 +246,7 @@
         "rain_coincident_mean": 3.9,
         "median_delay_mean": 3.0
       },
-      "Tier 4 (Physics-Informed Nuclear)@90": {
+      "Tier 4 (Physics-Motivated Nuclear)@90": {
         "frozen_tau_mean": 0.996,
         "det_total_mean": 93.82,
         "det_total_std": 1.24,
@@ -256,7 +256,7 @@
         "rain_coincident_mean": 1.1,
         "median_delay_mean": 4.4
       },
-      "Tier 4 (Physics-Informed Nuclear)@95": {
+      "Tier 4 (Physics-Motivated Nuclear)@95": {
         "frozen_tau_mean": 0.996,
         "det_total_mean": 94.0,
         "det_total_std": 0.93,
@@ -266,7 +266,7 @@
         "rain_coincident_mean": 1.2,
         "median_delay_mean": 4.4
       },
-      "Tier 4 (Physics-Informed Nuclear)@98": {
+      "Tier 4 (Physics-Motivated Nuclear)@98": {
         "frozen_tau_mean": 0.986,
         "det_total_mean": 97.3,
         "det_total_std": 1.03,
@@ -354,23 +354,23 @@
         "det_pct": 90.0,
         "fa_per_year": 1151.3
       },
-      "Tier 4 (Physics-Informed Nuclear):ca_san_diego": {
+      "Tier 4 (Physics-Motivated Nuclear):ca_san_diego": {
         "det_pct": 80.0,
         "fa_per_year": 1.4
       },
-      "Tier 4 (Physics-Informed Nuclear):al_birmingham": {
+      "Tier 4 (Physics-Motivated Nuclear):al_birmingham": {
         "det_pct": 95.0,
         "fa_per_year": 0.0
       },
-      "Tier 4 (Physics-Informed Nuclear):tx_dallas": {
+      "Tier 4 (Physics-Motivated Nuclear):tx_dallas": {
         "det_pct": 95.0,
         "fa_per_year": 0.0
       },
-      "Tier 4 (Physics-Informed Nuclear):dc_washington": {
+      "Tier 4 (Physics-Motivated Nuclear):dc_washington": {
         "det_pct": 95.0,
         "fa_per_year": 0.0
       },
-      "Tier 4 (Physics-Informed Nuclear):fl_tampa": {
+      "Tier 4 (Physics-Motivated Nuclear):fl_tampa": {
         "det_pct": 97.5,
         "fa_per_year": 169.42
       }

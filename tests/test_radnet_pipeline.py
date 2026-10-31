@@ -105,7 +105,7 @@ def test_station_dry_baselines_strictly_train_only_no_test_leakage():
         st_id = st["id"]
         df_tr = pd.read_csv(PROJECT_ROOT / f"data/processed/labeled_{st_id}_train.csv.gz")
         df_tr["dt"] = pd.to_datetime(df_tr["dt"])
-        df_tr = df_tr.sort_values("dt").reset_index(drop=True)
+        df_tr = df_tr[df_tr["dt"] < "2021-01-01"].sort_values("dt").reset_index(drop=True)
         precip_24h = df_tr["precip_1h_mm"].rolling(24, min_periods=12).sum()
         valid_dry = (
             df_tr["has_radnet_obs"].fillna(False).astype(bool)

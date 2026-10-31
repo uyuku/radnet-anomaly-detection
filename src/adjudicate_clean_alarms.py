@@ -38,7 +38,7 @@ from src.merge_radnet_weather import CHANNEL_KEYS
 from src.train_and_evaluate_rigorous import STATIONS, load_dataset_folds, train_lgb
 
 FROZEN_THRESHOLDS = {
-    "Tier 4 (Physics-Informed Nuclear)": 0.8719,
+    "Tier 4 (Physics-Motivated Nuclear)": 0.8719,
     "Tier 3 (Weather Fusion)": 0.8726,
     "Tier 2 (Spectral)": 0.9475,
     "Tier 1 (Gross)": 0.9238,
@@ -71,7 +71,7 @@ def main():
         "Tier 1 (Gross)": TIER_1_FEATURES,
         "Tier 2 (Spectral)": TIER_2_FEATURES,
         "Tier 3 (Weather Fusion)": TIER_3_FEATURES,
-        "Tier 4 (Physics-Informed Nuclear)": TIER_4_NUCLEAR_FEATURES,
+        "Tier 4 (Physics-Motivated Nuclear)": TIER_4_NUCLEAR_FEATURES,
     }
     models = {}
     for tname, fcols in tiers.items():
@@ -117,7 +117,7 @@ def main():
         sub_df = df_raw[clean_mask].copy().reset_index(drop=True)
         sub_feats = feats[clean_mask].copy().reset_index(drop=True)
 
-        t4_sub = preds["Tier 4 (Physics-Informed Nuclear)"][clean_mask.values]
+        t4_sub = preds["Tier 4 (Physics-Motivated Nuclear)"][clean_mask.values]
         t3_sub = preds["Tier 3 (Weather Fusion)"][clean_mask.values]
         t2_sub = preds["Tier 2 (Spectral)"][clean_mask.values]
         t1_sub = preds["Tier 1 (Gross)"][clean_mask.values]
@@ -125,7 +125,7 @@ def main():
         zr_sub = z_roll[clean_mask.values].values
 
         is_alm = (
-            (t4_sub >= FROZEN_THRESHOLDS["Tier 4 (Physics-Informed Nuclear)"])
+            (t4_sub >= FROZEN_THRESHOLDS["Tier 4 (Physics-Motivated Nuclear)"])
             | (t3_sub >= FROZEN_THRESHOLDS["Tier 3 (Weather Fusion)"])
             | (t2_sub >= FROZEN_THRESHOLDS["Tier 2 (Spectral)"])
             | (t1_sub >= FROZEN_THRESHOLDS["Tier 1 (Gross)"])
@@ -147,7 +147,7 @@ def main():
             zr = float(zr_sub[i])
 
             alms = []
-            if t4_p >= FROZEN_THRESHOLDS["Tier 4 (Physics-Informed Nuclear)"]:
+            if t4_p >= FROZEN_THRESHOLDS["Tier 4 (Physics-Motivated Nuclear)"]:
                 alms.append("Tier 4 Nuclear")
             if t3_p >= FROZEN_THRESHOLDS["Tier 3 (Weather Fusion)"]:
                 alms.append("Tier 3 WeatherFusion")

@@ -42,7 +42,7 @@
 4. **Reserve DOI**:
    - Click **"Reserve DOI"** at the top right of the upload page.
    - Copy the generated DOI string (e.g., `10.5281/zenodo.1234567`).
-   - Replace the `[DOI PLACEHOLDER]` in `docs/statements_draft.md` and the manuscript `report/interim_report.tex`.
+   - Replace the `[DOI PLACEHOLDER]` in the manuscript and repository metadata.
 
 5. **Publish**:
    - When ready, click **"Publish"** to mint the persistent DOI.

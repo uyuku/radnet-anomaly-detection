@@ -1,0 +1,173 @@
+{
+  "dataset_name": "RadNet Out-of-Sample Test Detector Scores",
+  "generated_at_utc": "2026-10-31T21:00:11.884703Z",
+  "description": "Continuous hourly and per-plume out-of-sample detector scores on 2023-2025 RadNet test observations",
+  "splits": {
+    "training_period": "2017-01-01 to 2020-12-31 (4 years)",
+    "validation_period": "2021-01-01 to 2022-12-31 (2 years)",
+    "test_period": "2023-01-01 to 2025-12-31 (3 years, 12.16 station-years observed across 5 pilot stations)"
+  },
+  "model_parameters": {
+    "random_seed": 42,
+    "training_plume_family": "Family A (Analytic detector response templates)",
+    "test_plume_family": "Family B (Independent MCNP/Monte Carlo response templates)",
+    "total_test_plumes": 200,
+    "tuning_on_test": false
+  },
+  "files": {
+    "hourly_scores": "data/processed/test_scores_hourly.csv.gz",
+    "per_plume_scores": "data/processed/test_scores_per_plume.csv.gz"
+  },
+  "detectors": [
+    {
+      "detector_id": "B1a_Rolling168h_Z",
+      "detector_name": "B1a: Rolling 168h Gross Z-Score",
+      "category": "B1_Gross_Sigma",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B1b_GlobalDry_Z",
+      "detector_name": "B1b: Global Dry Gross Z-Score (2017-2020)",
+      "category": "B1_Gross_Sigma",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B2a_RainMasked_Holdoff6h",
+      "detector_name": "B2a: Rain-Masked Dry Z (H=6h Holdoff)",
+      "category": "B2_Rain_Masked",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B2b_RainMasked_Holdoff12h",
+      "detector_name": "B2b: Rain-Masked Dry Z (H=12h Holdoff)",
+      "category": "B2_Rain_Masked",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B3a_WeatherRegression_Linear",
+      "detector_name": "B3a: Weather Regression Residual (Linear)",
+      "category": "B3_Weather_Regression",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B3b_WeatherRegression_SplineGAM",
+      "detector_name": "B3b: Weather Regression Residual (Spline GAM)",
+      "category": "B3_Weather_Regression",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B4a_RadonProjection_Global",
+      "detector_name": "B4a: Radon-Direction Projection (Global Dry Basis)",
+      "category": "B4_Radon_Projection",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B4b_RadonProjection_Local168h",
+      "detector_name": "B4b: Radon-Direction Projection (Local 168h Basis)",
+      "category": "B4_Radon_Projection",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B4c_RadonProjection_Combined",
+      "detector_name": "B4c: Radon Projection + Stripped Channel Peak Z",
+      "category": "B4_Radon_Projection",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B5a_PCA_Subspace_Mahalanobis",
+      "detector_name": "B5a: Background PCA Subspace (Mahalanobis + Recon)",
+      "category": "B5_Background_Subspace",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B5b_NMF_Background_Reconstruction",
+      "detector_name": "B5b: Background NMF 2-Component Reconstruction",
+      "category": "B5_Background_Subspace",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B6a_IsolationForest_Tier3_BgOnly",
+      "detector_name": "B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",
+      "category": "B6_Unsupervised_ML",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B6b_IsolationForest_Tier4_BgOnly",
+      "detector_name": "B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",
+      "category": "B6_Unsupervised_ML",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B6c_OneClassSVM_Tier4_BgOnly",
+      "detector_name": "B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",
+      "category": "B6_Unsupervised_ML",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "B7a_LogisticRegression_Tier3",
+      "detector_name": "B7a: Supervised Logistic Regression (Tier 3)",
+      "category": "B7_Simple_Supervised",
+      "uses_synthetic_plumes_in_training": true
+    },
+    {
+      "detector_id": "B7b_DecisionTreeDepth3_Tier3",
+      "detector_name": "B7b: Supervised Depth-3 Decision Tree (Tier 3)",
+      "category": "B7_Simple_Supervised",
+      "uses_synthetic_plumes_in_training": true
+    },
+    {
+      "detector_id": "B8_Operational_Screening_Approx_UNVERIFIED",
+      "detector_name": "B8: Operational Screening Approximation (Approximate EPA Threshold)",
+      "category": "B8_Operational_Rule",
+      "uses_synthetic_plumes_in_training": false
+    },
+    {
+      "detector_id": "ML_Tier1_Gross",
+      "detector_name": "Tier 1: Gross GBDT (12 features)",
+      "category": "ML_Main_Tier",
+      "uses_synthetic_plumes_in_training": true
+    },
+    {
+      "detector_id": "ML_Tier1b_GrossWeather",
+      "detector_name": "Tier 1b: Gross + Weather GBDT (29 features)",
+      "category": "ML_Main_Tier",
+      "uses_synthetic_plumes_in_training": true
+    },
+    {
+      "detector_id": "ML_Tier2_Spectral",
+      "detector_name": "Tier 2: Spectral GBDT (30 features)",
+      "category": "ML_Main_Tier",
+      "uses_synthetic_plumes_in_training": true
+    },
+    {
+      "detector_id": "ML_Tier3_WeatherFusion",
+      "detector_name": "Tier 3: Weather Fusion GBDT (48 features)",
+      "category": "ML_Main_Tier",
+      "uses_synthetic_plumes_in_training": true
+    },
+    {
+      "detector_id": "ML_Tier4_PhysicsNuclear",
+      "detector_name": "Tier 4: Physics-Motivated Nuclear GBDT (59 features)",
+      "category": "ML_Main_Tier",
+      "uses_synthetic_plumes_in_training": true
+    },
+    {
+      "detector_id": "Ablation_Tier4_NoWeather",
+      "detector_name": "Ablation: Tier 4 without Weather/Bateman (39 features)",
+      "category": "ML_Ablation",
+      "uses_synthetic_plumes_in_training": true
+    },
+    {
+      "detector_id": "Ablation_Tier3_PlusStrippingOnly",
+      "detector_name": "Ablation: Tier 3 + Radon Stripping Only (57 features)",
+      "category": "ML_Ablation",
+      "uses_synthetic_plumes_in_training": true
+    },
+    {
+      "detector_id": "Ablation_Tier3_PlusBatemanOnly",
+      "detector_name": "Ablation: Tier 3 + Bateman Washout ODE Only (50 features)",
+      "category": "ML_Ablation",
+      "uses_synthetic_plumes_in_training": true
+    }
+  ]
+}

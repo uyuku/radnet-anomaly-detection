@@ -2,6 +2,6 @@ tier_name,calibration_method,val_clean_hours_total,val_clean_hours_p_ge_099,val_
 Tier 3 (Weather Fusion),raw,74199,0.0,3.0,27.0,1418.0,0.018531,0.083381,0.03185,0.121778
 Tier 3 (Weather Fusion),platt,74199,,,,,0.004711,0.02619,0.012336,0.043484
 Tier 3 (Weather Fusion),isotonic,74199,,,,,0.004627,0.026997,0.012306,0.038123
-Tier 4 (Physics-Informed Nuclear),raw,74199,0.0,7.0,34.0,675.0,0.01155,0.059345,0.022418,0.093495
-Tier 4 (Physics-Informed Nuclear),platt,74199,,,,,0.003161,0.019272,0.000872,0.011502
-Tier 4 (Physics-Informed Nuclear),isotonic,74199,,,,,0.00311,0.018827,8.1e-05,0.003708
+Tier 4 (Physics-Motivated Nuclear),raw,74199,0.0,7.0,34.0,675.0,0.01155,0.059345,0.022418,0.093495
+Tier 4 (Physics-Motivated Nuclear),platt,74199,,,,,0.003161,0.019272,0.000872,0.011502
+Tier 4 (Physics-Motivated Nuclear),isotonic,74199,,,,,0.00311,0.018827,8.1e-05,0.003708

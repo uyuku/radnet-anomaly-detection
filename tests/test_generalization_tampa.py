@@ -174,6 +174,5 @@ def test_generalization_artifacts_exist_and_schema():
 
     # Verify figures and documentation exist
     assert Path("docs/station_selection.md").exists()
-    assert Path("docs/phase6_generalization_summary.md").exists()
     assert Path("reports/figures/tampa_loso_diagnostic_episodes.png").exists()
     assert Path("reports/figures/tampa_spectral_drift_and_calibration.png").exists()

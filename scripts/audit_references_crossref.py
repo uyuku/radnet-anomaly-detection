@@ -424,7 +424,7 @@ def main():
                 url = f"https://api.crossref.org/works/{doi}"
                 req = urllib.request.Request(
                     url,
-                    headers={"User-Agent": "RadNetResearchAudit/1.0 (mailto:omerbarut@hacettepe.edu.tr)"}
+                    headers={"User-Agent": "RadNetResearchAudit/1.0 (https://github.com/omerbarut/radnet-anomaly-detection)"}
                 )
                 try:
                     time.sleep(0.15)  # Rate limiting courtesy

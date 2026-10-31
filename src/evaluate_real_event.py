@@ -88,7 +88,7 @@ WINDOW_POST = ("2011-05-01 00:00:00", "2011-06-30 23:59:00")
 
 # Frozen operating thresholds (from validation calibration, 5 FA/yr budget operating points)
 FROZEN_THRESHOLDS = {
-    "Tier 4 (Physics-Informed Nuclear)": 0.8719,
+    "Tier 4 (Physics-Motivated Nuclear)": 0.8719,
     "Tier 3 (Weather Fusion)": 0.8726,
     "Tier 2 (Spectral)": 0.9475,
     "Tier 1 (Gross)": 0.9238,
@@ -266,7 +266,7 @@ def main():
         "Tier 1 (Gross)": TIER_1_FEATURES,
         "Tier 2 (Spectral)": TIER_2_FEATURES,
         "Tier 3 (Weather Fusion)": TIER_3_FEATURES,
-        "Tier 4 (Physics-Informed Nuclear)": TIER_4_NUCLEAR_FEATURES,
+        "Tier 4 (Physics-Motivated Nuclear)": TIER_4_NUCLEAR_FEATURES,
     }
 
     models = {}
@@ -328,14 +328,14 @@ def main():
             "score_t1": preds["Tier 1 (Gross)"],
             "score_t2": preds["Tier 2 (Spectral)"],
             "score_t3": preds["Tier 3 (Weather Fusion)"],
-            "score_t4": preds["Tier 4 (Physics-Informed Nuclear)"],
+            "score_t4": preds["Tier 4 (Physics-Motivated Nuclear)"],
             "score_b1": z_global,
             "score_b2": z_roll,
             "score_b4c": z_radon_proj,
             "alarm_t1": (preds["Tier 1 (Gross)"] >= FROZEN_THRESHOLDS["Tier 1 (Gross)"]).astype(int),
             "alarm_t2": (preds["Tier 2 (Spectral)"] >= FROZEN_THRESHOLDS["Tier 2 (Spectral)"]).astype(int),
             "alarm_t3": (preds["Tier 3 (Weather Fusion)"] >= FROZEN_THRESHOLDS["Tier 3 (Weather Fusion)"]).astype(int),
-            "alarm_t4": (preds["Tier 4 (Physics-Informed Nuclear)"] >= FROZEN_THRESHOLDS["Tier 4 (Physics-Informed Nuclear)"]).astype(int),
+            "alarm_t4": (preds["Tier 4 (Physics-Motivated Nuclear)"] >= FROZEN_THRESHOLDS["Tier 4 (Physics-Motivated Nuclear)"]).astype(int),
             "alarm_b1": (z_global >= FROZEN_THRESHOLDS["Baseline: Global Dry 3-sigma"]).astype(int),
             "alarm_b2": (z_roll >= FROZEN_THRESHOLDS["Baseline: Rolling 7d 3-sigma"]).astype(int),
             "alarm_b3": (z_roll >= FROZEN_THRESHOLDS["Baseline: Rolling 7d 4-sigma"]).astype(int),
@@ -352,7 +352,7 @@ def main():
         hrs_post = m_post.sum()
 
         detector_keys = [
-            ("Tier 4 (Physics-Informed Nuclear)", "alarm_t4", "score_t4"),
+            ("Tier 4 (Physics-Motivated Nuclear)", "alarm_t4", "score_t4"),
             ("Tier 3 (Weather Fusion)", "alarm_t3", "score_t3"),
             ("Tier 2 (Spectral)", "alarm_t2", "score_t2"),
             ("Tier 1 (Gross)", "alarm_t1", "score_t1"),
@@ -471,7 +471,7 @@ def main():
 
     # Print summary highlights
     print("\n--- SUMMARY OF PRE-REGISTERED REAL EVENT EVALUATION ---")
-    t4_summary = summary_df[summary_df["detector"] == "Tier 4 (Physics-Informed Nuclear)"]
+    t4_summary = summary_df[summary_df["detector"] == "Tier 4 (Physics-Motivated Nuclear)"]
     print(t4_summary[["station_name", "pre_event_fa_per_yr", "event_fa_per_yr", "post_event_fa_per_yr", "detected_any_alarm_in_event", "event_rain_coincident_pct"]])
 
 

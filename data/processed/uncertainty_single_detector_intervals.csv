@@ -169,8 +169,8 @@ ML_Tier3_WeatherFusion,Tier 3 (Weather Fusion),fa_budget_per_yr,2.0,0.909179,Tru
 ML_Tier3_WeatherFusion,Tier 3 (Weather Fusion),fa_budget_per_yr,5.0,0.883493,True,200,194,97.0,1.13,94.5,99.0,93.58,98.89,164,1077,12.1638,88.54,15.65,59.02,120.25,83.33,93.99
 ML_Tier3_WeatherFusion,Tier 3 (Weather Fusion),fa_budget_per_yr,10.0,0.863465,True,200,196,98.0,0.94,96.0,99.5,94.96,99.45,164,1332,12.1638,109.51,19.04,73.41,147.98,103.7,115.55
 ML_Tier3_WeatherFusion,Tier 3 (Weather Fusion),fa_budget_per_yr,20.0,0.801814,True,200,198,99.0,0.67,97.5,100.0,96.43,99.88,164,2023,12.1638,166.31,28.14,112.87,222.24,159.14,173.72
-ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Informed Nuclear),fa_budget_per_yr,1.0,0.948079,True,200,197,98.5,0.84,96.5,100.0,95.68,99.69,164,201,12.1638,16.52,3.7,10.05,24.51,14.32,18.97
-ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Informed Nuclear),fa_budget_per_yr,2.0,0.919854,True,200,197,98.5,0.84,96.5,100.0,95.68,99.69,164,320,12.1638,26.31,4.78,17.55,36.32,23.5,29.35
-ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Informed Nuclear),fa_budget_per_yr,5.0,0.871205,True,200,198,99.0,0.68,97.5,100.0,96.43,99.88,164,480,12.1638,39.46,6.56,27.33,52.91,36.01,43.15
-ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Informed Nuclear),fa_budget_per_yr,10.0,0.782899,True,200,199,99.5,0.47,98.5,100.0,97.25,99.99,164,711,12.1638,58.45,9.22,41.27,77.06,54.23,62.91
-ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Informed Nuclear),fa_budget_per_yr,20.0,0.641518,True,200,199,99.5,0.47,98.5,100.0,97.25,99.99,164,1015,12.1638,83.44,11.8,61.47,107.59,78.39,88.74
+ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Motivated Nuclear),fa_budget_per_yr,1.0,0.948079,True,200,197,98.5,0.84,96.5,100.0,95.68,99.69,164,201,12.1638,16.52,3.7,10.05,24.51,14.32,18.97
+ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Motivated Nuclear),fa_budget_per_yr,2.0,0.919854,True,200,197,98.5,0.84,96.5,100.0,95.68,99.69,164,320,12.1638,26.31,4.78,17.55,36.32,23.5,29.35
+ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Motivated Nuclear),fa_budget_per_yr,5.0,0.871205,True,200,198,99.0,0.68,97.5,100.0,96.43,99.88,164,480,12.1638,39.46,6.56,27.33,52.91,36.01,43.15
+ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Motivated Nuclear),fa_budget_per_yr,10.0,0.782899,True,200,199,99.5,0.47,98.5,100.0,97.25,99.99,164,711,12.1638,58.45,9.22,41.27,77.06,54.23,62.91
+ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Motivated Nuclear),fa_budget_per_yr,20.0,0.641518,True,200,199,99.5,0.47,98.5,100.0,97.25,99.99,164,1015,12.1638,83.44,11.8,61.47,107.59,78.39,88.74

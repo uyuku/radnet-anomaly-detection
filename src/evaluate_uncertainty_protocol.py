@@ -156,7 +156,7 @@ def main():
     clf_t3 = train_lgb_model(X_tr_t3, y_tr, "Tier 3 (Weather Fusion)")
 
     X_tr_t4, _ = load_train_data(TIER_4_NUCLEAR_FEATURES)
-    clf_t4 = train_lgb_model(X_tr_t4, y_tr, "Tier 4 (Physics-Informed Nuclear)")
+    clf_t4 = train_lgb_model(X_tr_t4, y_tr, "Tier 4 (Physics-Motivated Nuclear)")
 
     pipe_mlp = train_mlp_model(X_tr_t3, y_tr)
 
@@ -416,12 +416,12 @@ def main():
             "key": "t3",
             "tau": operating_thresholds["t3"][0.90]["tau"],
         },
-        "Tier 4: Physics-Informed Nuclear GBDT (95% target)": {
+        "Tier 4: Physics-Motivated Nuclear GBDT (95% target)": {
             "type": "ml",
             "key": "t4",
             "tau": operating_thresholds["t4"][0.95]["tau"],
         },
-        "Tier 4: Physics-Informed Nuclear GBDT (90% target)": {
+        "Tier 4: Physics-Motivated Nuclear GBDT (90% target)": {
             "type": "ml",
             "key": "t4",
             "tau": operating_thresholds["t4"][0.90]["tau"],
@@ -660,7 +660,7 @@ def main():
         "Baseline: Rolling 7d 3-sigma",
         "Tier 2: Radiation + Spectrometry GBDT (95% target)",
         "Tier 3: Full Weather Fusion GBDT (95% target)",
-        "Tier 4: Physics-Informed Nuclear GBDT (95% target)",
+        "Tier 4: Physics-Motivated Nuclear GBDT (95% target)",
         "Tier 3: Weather-Fused Neural Net (MLP) (95% target)",
     ]
 
@@ -760,7 +760,7 @@ def main():
         "Tier 1: Gross Radiation GBDT": [],
         "Tier 2: Radiation + Spectrometry GBDT": [],
         "Tier 3: Full Weather Fusion GBDT": [],
-        "Tier 4: Physics-Informed Nuclear GBDT": [],
+        "Tier 4: Physics-Motivated Nuclear GBDT": [],
         "Tier 3: Weather-Fused Neural Net (MLP)": [],
     }
 
@@ -770,7 +770,7 @@ def main():
         ("Tier 1: Gross Radiation GBDT", "ml", ("t1", operating_thresholds["t1"][0.95]["tau"])),
         ("Tier 2: Radiation + Spectrometry GBDT", "ml", ("t2", operating_thresholds["t2"][0.95]["tau"])),
         ("Tier 3: Full Weather Fusion GBDT", "ml", ("t3", operating_thresholds["t3"][0.95]["tau"])),
-        ("Tier 4: Physics-Informed Nuclear GBDT", "ml", ("t4", operating_thresholds["t4"][0.95]["tau"])),
+        ("Tier 4: Physics-Motivated Nuclear GBDT", "ml", ("t4", operating_thresholds["t4"][0.95]["tau"])),
         ("Tier 3: Weather-Fused Neural Net (MLP)", "ml", ("mlp", operating_thresholds["mlp"][0.95]["tau"])),
     ]
 

@@ -7,6 +7,6 @@ Tier 1: Gross Radiation GBDT (95% target),89.5,"[85.5%, 93.5%]",99.23,"[87.49, 1
 Tier 2: Radiation + Spectrometry GBDT (95% target),91.5,"[88.0%, 95.5%]",5.01,"[3.02, 7.61]",2.8,4.0,"[4.0h, 4.0h]"
 Tier 3: Full Weather Fusion GBDT (95% target),90.0,"[86.0%, 94.0%]",3.37,"[1.67, 5.41]",0.0,4.0,"[4.0h, 5.0h]"
 Tier 3: Full Weather Fusion GBDT (90% target),90.0,"[86.0%, 94.0%]",3.37,"[1.67, 5.41]",0.0,4.0,"[4.0h, 5.0h]"
-Tier 4: Physics-Informed Nuclear GBDT (95% target),94.5,"[91.5%, 97.5%]",2.71,"[1.17, 4.58]",1.6,4.0,"[4.0h, 5.0h]"
-Tier 4: Physics-Informed Nuclear GBDT (90% target),94.5,"[91.5%, 97.5%]",2.71,"[1.17, 4.58]",1.6,4.0,"[4.0h, 5.0h]"
+Tier 4: Physics-Motivated Nuclear GBDT (95% target),94.5,"[91.5%, 97.5%]",2.71,"[1.17, 4.58]",1.6,4.0,"[4.0h, 5.0h]"
+Tier 4: Physics-Motivated Nuclear GBDT (90% target),94.5,"[91.5%, 97.5%]",2.71,"[1.17, 4.58]",1.6,4.0,"[4.0h, 5.0h]"
 Tier 3: Weather-Fused Neural Net (MLP) (95% target),87.5,"[83.0%, 92.0%]",45.79,"[33.25, 60.23]",3.6,4.0,"[3.0h, 4.0h]"

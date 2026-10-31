@@ -1,8 +1,8 @@
 """
-Multi-Nuclide Physics-Informed Synthetic Plume Injection
+Multi-Nuclide Physics-Motivated Synthetic Plume Injection
 Generator & Labeled Dataset Builder.
 
-Implements the deterministic, physics-informed synthetic injection pipeline:
+Implements the deterministic, physics-motivated synthetic injection pipeline:
 1. 100% filter synchronization: Every injection ends at a real detected physical filter replacement drop.
 2. Perfect scenario balance: Identical 20.0% scenario proportions in all training and test environments.
 3. Spectrum logging: Explicitly logs sampled 8-channel excess shares (R02-R09) at peak passage in the catalog.

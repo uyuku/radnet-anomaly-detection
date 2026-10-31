@@ -5,237 +5,237 @@ Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,100,42,0.9945,78.0,4.52
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,100,42,0.83,86.0,132.52
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,100,42,0.993,76.5,4.36
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,100,42,0.78,86.5,59.6
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,100,42,0.9905,85.0,8.96
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,100,42,0.97,88.5,14.39
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,100,42,0.9905,85.0,8.96
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,100,42,0.97,88.5,14.39
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,100,43,0.62,88.0,241.95
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,100,43,0.96,40.5,2.22
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,100,43,0.99,80.0,8.06
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,100,43,0.8,86.0,63.38
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,100,43,0.988,80.0,6.0
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,100,43,0.81,85.5,45.3
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,100,43,0.9865,85.0,10.69
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,100,43,0.96,88.5,15.7
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,100,43,0.9865,85.0,10.69
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,100,43,0.96,88.5,15.7
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,100,44,0.63,88.0,237.34
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,100,44,0.95,45.5,4.36
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,100,44,0.9875,80.5,10.03
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,100,44,0.81,86.5,122.49
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,100,44,0.988,79.5,7.15
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,100,44,0.79,85.5,63.14
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,100,44,0.987,85.5,9.45
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,100,44,0.95,90.5,17.02
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,100,44,0.987,85.5,9.45
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,100,44,0.95,90.5,17.02
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,101,42,0.62,90.5,272.04
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,101,42,0.95,43.0,4.27
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,101,42,0.9915,79.0,2.63
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,101,42,0.98,83.0,13.24
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,101,42,0.9975,69.5,0.25
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,101,42,0.97,84.0,16.44
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,101,42,0.9955,84.0,2.3
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,101,42,0.93,92.0,66.18
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,101,42,0.9955,84.0,2.3
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,101,42,0.93,92.0,66.18
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,101,43,0.59,92.0,302.54
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,101,43,0.95,44.0,4.03
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,101,43,0.988,81.5,3.7
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,101,43,0.96,85.5,79.5
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,101,43,0.9875,81.0,2.3
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,101,43,0.95,84.5,47.68
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,101,43,0.9965,80.5,1.64
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,101,43,0.93,91.5,90.51
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,101,43,0.9965,80.5,1.64
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,101,43,0.93,91.5,90.51
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,101,44,0.63,90.5,263.65
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,101,44,0.95,43.0,4.11
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,101,44,0.9925,78.0,0.9
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,101,44,0.98,84.0,7.97
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,101,44,0.992,79.5,2.47
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,101,44,0.98,82.5,16.52
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,101,44,0.9915,85.0,6.17
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,101,44,0.91,92.0,72.02
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,101,44,0.9915,85.0,6.17
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,101,44,0.91,92.0,72.02
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,102,42,0.68,86.5,211.61
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,102,42,0.95,47.0,3.04
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,102,42,0.997,68.5,1.97
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,102,42,0.97,82.5,20.31
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,102,42,0.98,78.5,11.84
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,102,42,0.88,86.5,154.39
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,102,42,0.99,83.0,6.25
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,102,42,0.96,90.0,13.07
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,102,42,0.99,83.0,6.25
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,102,42,0.96,90.0,13.07
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,102,43,0.69,85.0,207.09
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,102,43,0.95,45.0,3.29
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,102,43,0.997,69.5,1.48
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,102,43,0.96,85.0,34.2
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,102,43,0.984,78.5,5.84
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,102,43,0.89,86.0,94.05
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,102,43,0.987,86.0,7.15
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,102,43,0.92,91.5,19.73
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,102,43,0.987,86.0,7.15
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,102,43,0.92,91.5,19.73
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,102,44,0.69,85.0,203.72
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,102,44,0.95,46.5,3.29
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,102,44,0.9975,68.0,1.48
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,102,44,0.97,83.0,15.87
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,102,44,0.9925,74.5,3.45
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,102,44,0.91,86.0,108.27
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,102,44,0.984,86.5,9.62
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,102,44,0.94,91.0,19.48
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,102,44,0.984,86.5,9.62
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,102,44,0.94,91.0,19.48
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,103,42,0.6,90.5,251.57
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,103,42,0.96,35.0,2.06
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,103,42,0.9815,77.5,4.19
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,103,42,0.96,81.5,63.96
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,103,42,0.96,80.0,8.22
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,103,42,0.87,84.5,83.94
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,103,42,0.995,78.0,3.04
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,103,42,0.88,94.5,52.94
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,103,42,0.995,78.0,3.04
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,103,42,0.88,94.5,52.94
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,103,43,0.6,91.0,249.51
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,103,43,0.96,36.0,2.22
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,103,43,0.994,74.5,1.73
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,103,43,0.981,78.0,13.32
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,103,43,0.96,80.0,7.81
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,103,43,0.89,83.0,66.51
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,103,43,0.994,80.0,3.37
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,103,43,0.86,95.5,36.42
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,103,43,0.994,80.0,3.37
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,103,43,0.86,95.5,36.42
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,103,44,0.61,90.0,248.11
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,103,44,0.96,36.0,2.14
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,103,44,0.996,72.0,0.33
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,103,44,0.95,83.0,16.2
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,103,44,0.98,78.0,5.18
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,103,44,0.9,83.5,69.47
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,103,44,0.993,79.5,3.12
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,103,44,0.86,96.0,43.98
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,103,44,0.993,79.5,3.12
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,103,44,0.86,96.0,43.98
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,104,42,0.63,88.5,231.34
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,104,42,0.95,45.0,4.03
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,104,42,0.97,84.0,21.54
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,104,42,0.93,87.0,129.07
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,104,42,0.985,80.0,15.29
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,104,42,0.88,87.5,143.7
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,104,42,0.9885,88.5,6.91
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,104,42,0.97,91.0,12.58
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,104,42,0.9885,88.5,6.91
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,104,42,0.97,91.0,12.58
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,104,43,0.61,89.0,255.59
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,104,43,0.95,44.5,3.21
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,104,43,0.98,82.5,13.65
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,104,43,0.91,87.5,190.98
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,104,43,0.98,82.0,15.78
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,104,43,0.89,89.5,162.53
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,104,43,0.992,87.0,4.85
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,104,43,0.96,92.0,16.52
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,104,43,0.992,87.0,4.85
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,104,43,0.96,92.0,16.52
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,104,44,0.62,90.0,243.18
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,104,44,0.95,45.0,4.19
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,104,44,0.9825,81.0,15.95
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,104,44,0.89,87.5,146.5
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,104,44,0.98,82.5,16.36
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,104,44,0.87,89.0,176.34
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,104,44,0.993,88.5,5.51
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,104,44,0.97,92.5,16.2
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,104,44,0.993,88.5,5.51
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,104,44,0.97,92.5,16.2
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,105,42,0.61,91.0,250.83
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,105,42,0.95,45.5,4.03
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,105,42,0.992,78.5,5.92
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,105,42,0.98,85.0,10.11
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,105,42,0.9885,80.0,7.15
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,105,42,0.97,86.0,30.99
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,105,42,0.982,91.0,8.47
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,105,42,0.84,96.0,30.91
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,105,42,0.982,91.0,8.47
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,105,42,0.84,96.0,30.91
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,105,43,0.55,91.5,312.48
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,105,43,0.95,46.0,4.27
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,105,43,0.9855,82.0,6.91
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,105,43,0.96,87.5,12.99
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,105,43,0.9875,81.0,10.03
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,105,43,0.96,87.5,89.12
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,105,43,0.97,93.0,10.77
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,105,43,0.85,96.0,23.68
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,105,43,0.97,93.0,10.77
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,105,43,0.85,96.0,23.68
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,105,44,0.58,91.0,285.11
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,105,44,0.95,43.5,3.95
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,105,44,0.994,78.0,4.11
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,105,44,0.984,83.0,9.04
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,105,44,0.986,81.5,10.11
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,105,44,0.97,84.0,23.02
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,105,44,0.98,91.0,9.37
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,105,44,0.87,96.0,28.28
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,105,44,0.98,91.0,9.37
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,105,44,0.87,96.0,28.28
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,106,42,0.65,88.5,222.3
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,106,42,0.96,38.0,1.64
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,106,42,0.98,80.0,7.89
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,106,42,0.94,84.0,79.17
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,106,42,0.984,77.0,4.69
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,106,42,0.92,85.0,70.95
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,106,42,0.993,81.0,4.44
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,106,42,0.97,87.5,12.25
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,106,42,0.993,81.0,4.44
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,106,42,0.97,87.5,12.25
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,106,43,0.64,89.0,226.08
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,106,43,0.96,36.0,1.48
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,106,43,0.97,82.0,37.57
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,106,43,0.95,83.0,96.02
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,106,43,0.98,78.0,6.08
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,106,43,0.94,84.5,43.08
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,106,43,0.994,80.0,3.12
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,106,43,0.94,89.0,17.51
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,106,43,0.994,80.0,3.12
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,106,43,0.94,89.0,17.51
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,106,44,0.66,88.0,213.09
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,106,44,0.96,37.5,1.48
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,106,44,0.97,81.5,8.3
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,106,44,0.94,83.0,37.08
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,106,44,0.9825,78.0,5.34
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,106,44,0.93,84.5,54.51
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,106,44,0.9935,82.0,4.85
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,106,44,0.93,91.5,22.85
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,106,44,0.9935,82.0,4.85
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,106,44,0.93,91.5,22.85
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,107,42,0.6,94.5,266.53
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,107,42,0.96,37.0,2.14
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,107,42,0.994,76.5,2.8
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,107,42,0.98,83.0,6.33
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,107,42,0.9885,80.0,3.95
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,107,42,0.96,84.5,13.24
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,107,42,0.981,89.0,9.62
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,107,42,0.91,92.0,25.16
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,107,42,0.981,89.0,9.62
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,107,42,0.91,92.0,25.16
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,107,43,0.59,93.5,277.46
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,107,43,0.96,35.5,2.06
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,107,43,0.988,80.0,4.93
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,107,43,0.97,85.0,8.47
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,107,43,0.98,82.5,5.59
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,107,43,0.95,85.0,19.98
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,107,43,0.9935,85.0,5.51
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,107,43,0.9,91.5,22.11
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,107,43,0.9935,85.0,5.51
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,107,43,0.9,91.5,22.11
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,107,44,0.6,94.0,264.8
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,107,44,0.96,36.0,2.47
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,107,44,0.9855,80.5,5.67
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,107,44,0.97,85.5,8.71
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,107,44,0.9905,80.0,3.78
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,107,44,0.92,87.5,68.4
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,107,44,0.987,85.5,8.06
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,107,44,0.93,90.5,20.14
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,107,44,0.987,85.5,8.06
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,107,44,0.93,90.5,20.14
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,108,42,0.63,89.0,253.13
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,108,42,0.96,41.5,4.77
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,108,42,0.98,78.5,20.47
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,108,42,0.9,83.5,161.79
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,108,42,0.981,76.5,22.53
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,108,42,0.84,84.5,128.58
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,108,42,0.991,81.0,6.58
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,108,42,0.95,89.0,14.14
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,108,42,0.991,81.0,6.58
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,108,42,0.95,89.0,14.14
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,108,43,0.64,89.0,247.62
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,108,43,0.97,33.0,2.55
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,108,43,0.982,79.0,42.01
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,108,43,0.9,83.5,171.9
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,108,43,0.996,70.0,2.06
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,108,43,0.86,84.5,126.93
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,108,43,0.9905,81.0,6.58
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,108,43,0.93,91.0,18.74
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,108,43,0.9905,81.0,6.58
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,108,43,0.93,91.0,18.74
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,108,44,0.61,89.0,275.08
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,108,44,0.97,33.5,2.47
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,108,44,0.9975,68.5,1.81
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,108,44,0.91,75.5,44.56
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,108,44,0.989,75.0,21.95
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,108,44,0.87,84.0,148.39
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,108,44,0.994,78.0,6.08
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,108,44,0.91,93.0,21.87
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,108,44,0.994,78.0,6.08
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,108,44,0.91,93.0,21.87
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,109,42,0.57,89.5,300.73
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,109,42,0.96,40.5,2.88
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,109,42,0.982,79.5,9.87
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,109,42,0.88,88.0,194.43
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,109,42,0.9825,79.0,7.48
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,109,42,0.89,87.5,160.8
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,109,42,0.99,84.5,8.06
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,109,42,0.86,94.0,34.28
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,109,42,0.99,84.5,8.06
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,109,42,0.86,94.0,34.28
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,109,43,0.57,89.5,298.84
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,109,43,0.96,39.5,2.96
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,109,43,0.9915,77.5,21.46
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,109,43,0.9,86.0,80.48
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,109,43,0.987,78.0,4.93
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,109,43,0.87,86.5,183.17
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,109,43,0.9925,82.5,6.08
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,109,43,0.83,95.0,36.58
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,109,43,0.9925,82.5,6.08
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,109,43,0.83,95.0,36.58
 Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,109,44,0.57,91.0,296.78
 Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,109,44,0.96,38.5,3.12
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,109,44,0.992,77.0,14.88
 Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,109,44,0.89,82.5,56.56
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,109,44,0.991,77.5,4.11
 Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,109,44,0.9,85.5,201.25
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,109,44,0.9875,85.5,8.96
-Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,109,44,0.84,95.0,41.6
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,109,44,0.9875,85.5,8.96
+Tier 4 (Physics-Motivated Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,109,44,0.84,95.0,41.6

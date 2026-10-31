@@ -1,31 +1,31 @@
 stratum,tier_name,n_injections,detection_total_pct,detection_le_6h_pct,detection_le_12h_pct,detection_le_24h_pct,median_delay_hours
 All Test Injections,Tier 2 (Spectral),200,93.2,76.25,90.95,93.08,4.0
 All Test Injections,Tier 3 (Weather Fusion),200,90.72,68.22,85.85,89.75,4.0
-All Test Injections,Tier 4 (Physics-Informed Nuclear),200,94.0,72.12,91.1,93.55,4.4
+All Test Injections,Tier 4 (Physics-Motivated Nuclear),200,94.0,72.12,91.1,93.55,4.4
 Strictly Dry Environments,Tier 2 (Spectral),100,89.3,79.9,87.75,89.15,3.1
 Strictly Dry Environments,Tier 3 (Weather Fusion),100,86.4,75.15,85.15,86.4,3.1
-Strictly Dry Environments,Tier 4 (Physics-Informed Nuclear),100,91.3,78.1,90.2,91.3,3.7
+Strictly Dry Environments,Tier 4 (Physics-Motivated Nuclear),100,91.3,78.1,90.2,91.3,3.7
 Rain-Coincident Environments,Tier 2 (Spectral),100,97.1,72.6,94.15,97.0,4.5
 Rain-Coincident Environments,Tier 3 (Weather Fusion),100,95.05,61.3,86.55,93.1,5.1
-Rain-Coincident Environments,Tier 4 (Physics-Informed Nuclear),100,96.7,66.15,92.0,95.8,5.2
+Rain-Coincident Environments,Tier 4 (Physics-Motivated Nuclear),100,96.7,66.15,92.0,95.8,5.2
 Standard Plume Regime,Tier 2 (Spectral),100,98.5,71.15,96.0,98.35,5.0
 Standard Plume Regime,Tier 3 (Weather Fusion),100,97.5,61.0,93.35,97.35,5.3
-Standard Plume Regime,Tier 4 (Physics-Informed Nuclear),100,100.0,64.9,97.3,99.8,5.6
+Standard Plume Regime,Tier 4 (Physics-Motivated Nuclear),100,100.0,64.9,97.3,99.8,5.6
 Stress Plume Regime,Tier 2 (Spectral),100,87.9,81.35,85.9,87.8,3.0
 Stress Plume Regime,Tier 3 (Weather Fusion),100,83.95,75.45,78.35,82.15,3.0
-Stress Plume Regime,Tier 4 (Physics-Informed Nuclear),100,88.0,79.35,84.9,87.3,3.8
+Stress Plume Regime,Tier 4 (Physics-Motivated Nuclear),100,88.0,79.35,84.9,87.3,3.8
 Low-SNR (< 1.0 sigma),Tier 2 (Spectral),25,69.8,64.4,66.4,69.6,3.8
 Low-SNR (< 1.0 sigma),Tier 3 (Weather Fusion),25,68.8,60.8,64.8,66.8,4.0
-Low-SNR (< 1.0 sigma),Tier 4 (Physics-Informed Nuclear),25,69.4,67.2,68.8,69.4,3.8
+Low-SNR (< 1.0 sigma),Tier 4 (Physics-Motivated Nuclear),25,69.4,67.2,68.8,69.4,3.8
 Standard Strictly Dry,Tier 2 (Spectral),50,97.2,79.9,94.1,96.9,4.6
 Standard Strictly Dry,Tier 3 (Weather Fusion),50,96.4,74.0,93.9,96.4,4.8
-Standard Strictly Dry,Tier 4 (Physics-Informed Nuclear),50,100.0,73.7,97.8,100.0,4.9
+Standard Strictly Dry,Tier 4 (Physics-Motivated Nuclear),50,100.0,73.7,97.8,100.0,4.9
 Stress Strictly Dry,Tier 2 (Spectral),50,81.4,79.9,81.4,81.4,2.0
 Stress Strictly Dry,Tier 3 (Weather Fusion),50,76.4,76.3,76.4,76.4,2.0
-Stress Strictly Dry,Tier 4 (Physics-Informed Nuclear),50,82.6,82.5,82.6,82.6,2.1
+Stress Strictly Dry,Tier 4 (Physics-Motivated Nuclear),50,82.6,82.5,82.6,82.6,2.1
 Standard Rain,Tier 2 (Spectral),50,99.8,62.4,97.9,99.8,5.8
 Standard Rain,Tier 3 (Weather Fusion),50,98.6,48.0,92.8,98.3,6.8
-Standard Rain,Tier 4 (Physics-Informed Nuclear),50,100.0,56.1,96.8,99.6,6.1
+Standard Rain,Tier 4 (Physics-Motivated Nuclear),50,100.0,56.1,96.8,99.6,6.1
 Stress Rain,Tier 2 (Spectral),50,94.4,82.8,90.4,94.2,3.9
 Stress Rain,Tier 3 (Weather Fusion),50,91.5,74.6,80.3,87.9,4.0
-Stress Rain,Tier 4 (Physics-Informed Nuclear),50,93.4,76.2,87.2,92.0,4.9
+Stress Rain,Tier 4 (Physics-Motivated Nuclear),50,93.4,76.2,87.2,92.0,4.9

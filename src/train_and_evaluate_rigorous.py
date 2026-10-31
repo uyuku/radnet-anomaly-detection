@@ -472,7 +472,7 @@ def main():
         "Tier 1b (Gross+Weather)": {"features": TIER_1B_FEATURES, "is_mlp": False},
         "Tier 2 (Spectral)": {"features": TIER_2_FEATURES, "is_mlp": False},
         "Tier 3 (Weather Fusion)": {"features": TIER_3_FEATURES, "is_mlp": False},
-        "Tier 4 (Physics-Informed Nuclear)": {"features": TIER_4_NUCLEAR_FEATURES, "is_mlp": False},
+        "Tier 4 (Physics-Motivated Nuclear)": {"features": TIER_4_NUCLEAR_FEATURES, "is_mlp": False},
         "Tier 3 MLP": {"features": TIER_3_FEATURES, "is_mlp": True},
     }
 
@@ -685,9 +685,9 @@ def main():
 
     # Comparisons list: (comp_name, base_tier, base_tgt, fus_tier, fus_tgt, is_matched)
     comparisons = [
-        ("Tier 4 vs Tier 3 (Matched 95% Target)", "Tier 3 (Weather Fusion)", 95.0, "Tier 4 (Physics-Informed Nuclear)", 95.0, True),
-        ("Tier 4 vs Tier 3 (Matched 90% Target)", "Tier 3 (Weather Fusion)", 90.0, "Tier 4 (Physics-Informed Nuclear)", 90.0, True),
-        ("Tier 4 vs Tier 2 (Matched 95% Target)", "Tier 2 (Spectral)", 95.0, "Tier 4 (Physics-Informed Nuclear)", 95.0, True),
+        ("Tier 4 vs Tier 3 (Matched 95% Target)", "Tier 3 (Weather Fusion)", 95.0, "Tier 4 (Physics-Motivated Nuclear)", 95.0, True),
+        ("Tier 4 vs Tier 3 (Matched 90% Target)", "Tier 3 (Weather Fusion)", 90.0, "Tier 4 (Physics-Motivated Nuclear)", 90.0, True),
+        ("Tier 4 vs Tier 2 (Matched 95% Target)", "Tier 2 (Spectral)", 95.0, "Tier 4 (Physics-Motivated Nuclear)", 95.0, True),
         ("Tier 3 vs Tier 2 (Matched 95% Target)", "Tier 2 (Spectral)", 95.0, "Tier 3 (Weather Fusion)", 95.0, True),
         ("Tier 3 vs Tier 2 (90% Target - Unmatched)", "Tier 2 (Spectral)", 90.0, "Tier 3 (Weather Fusion)", 90.0, False),
         ("Tier 3 vs Tier 2 (98% Target)", "Tier 2 (Spectral)", 98.0, "Tier 3 (Weather Fusion)", 98.0, False),
@@ -965,7 +965,7 @@ def main():
             ("Tier 1b (Gross+Weather)", "t1b_gross_weather"),
             ("Tier 2 (Spectral)", "t2_spectral"),
             ("Tier 3 (Weather Fusion)", "t3_fusion"),
-            ("Tier 4 (Physics-Informed Nuclear)", "t4_nuclear"),
+            ("Tier 4 (Physics-Motivated Nuclear)", "t4_nuclear"),
             ("Tier 3 MLP", "mlp_fusion"),
         ]:
             t_sub = cont_roc_df[(cont_roc_df["tier_name"] == t_name) & (cont_roc_df["detection_rate_pct"] >= target_level)]
@@ -1024,7 +1024,7 @@ def main():
 
     for loso_tier_name, loso_feat_cols in [
         ("Tier 3 (Weather Fusion)", TIER_3_FEATURES),
-        ("Tier 4 (Physics-Informed Nuclear)", TIER_4_NUCLEAR_FEATURES),
+        ("Tier 4 (Physics-Motivated Nuclear)", TIER_4_NUCLEAR_FEATURES),
     ]:
         for held_info in loso_stations:
             held_id = held_info["id"]
@@ -1337,7 +1337,7 @@ def main():
 
     for stratum_name, m_strat in strata_definitions.items():
         n_strat = int(m_strat.sum())
-        for t_label in ["Tier 2 (Spectral)", "Tier 3 (Weather Fusion)", "Tier 4 (Physics-Informed Nuclear)"]:
+        for t_label in ["Tier 2 (Spectral)", "Tier 3 (Weather Fusion)", "Tier 4 (Physics-Motivated Nuclear)"]:
             D_sub = tier_seed_det[(t_label, 95.0)][:, m_strat]
             L_sub = tier_seed_del[(t_label, 95.0)][:, m_strat]
 

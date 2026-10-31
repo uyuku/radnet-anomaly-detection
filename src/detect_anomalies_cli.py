@@ -48,7 +48,7 @@ TIER_FEATURE_MAP = {
     "tier1b": (TIER_1B_FEATURES, "Tier 1b (Gross + Weather)"),
     "tier2": (TIER_2_FEATURES, "Tier 2 (Spectral)"),
     "tier3": (TIER_3_FEATURES, "Tier 3 (Weather Fusion)"),
-    "tier4": (TIER_4_NUCLEAR_FEATURES, "Tier 4 (Physics-Informed Nuclear)"),
+    "tier4": (TIER_4_NUCLEAR_FEATURES, "Tier 4 (Physics-Motivated Nuclear)"),
 }
 
 

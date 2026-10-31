@@ -1,5 +1,5 @@
 """
-Feature Engineering Pipeline: Physics-Informed Hierarchy for Anomaly Detection.
+Feature Engineering Pipeline: Physics-Motivated Hierarchy for Anomaly Detection.
 
 Constructs strictly causal (no forward-looking leakage) feature representations
 on the continuous hourly calendar grid for both clean and injected series:
@@ -7,7 +7,7 @@ on the continuous hourly calendar grid for both clean and injected series:
 - Tier 1: Gross radiation features (rolling means, diffs, Z-scores, dose rate).
 - Tier 2: Radiation + NaI(Tl) spectral energy shares & physical photopeak ratios.
 - Tier 3 (Schema 2): Radiation + spectral + multi-scale NOAA weather fusion & cross-domain interactions (48 features).
-- Tier 4 / Physics-Informed Nuclear (Schema 3): Extends Tier 3 with causal 8-channel
+- Tier 4 / Physics-Motivated Nuclear (Schema 3): Extends Tier 3 with causal 8-channel
   Radon Spectral Stripping (unmixing s_Rn from global dry and local 168h rolling baselines),
   coupled 3-stage Bateman radon progeny washout ODE residuals (Po-218 -> Pb-214 -> Bi-214),
   post-rain persistence anomalies, and channel-resolved energy-weighted dose consistency.
@@ -118,13 +118,13 @@ TIER_4_NUCLEAR_FEATURES = TIER_3_FEATURES + NUCLEAR_PHYSICS_FEATURES
 
 # Naming migration constants and backward-compatible aliases
 TIER_4_CANONICAL_NAME = "Tier 4 (Physics-Motivated Nuclear)"
-TIER_4_LEGACY_NAME = "Tier 4 (Physics-Informed Nuclear)"
+TIER_4_LEGACY_NAME = "Tier 4 (Physics-Motivated Nuclear)"
 TIER_4_NAME = TIER_4_CANONICAL_NAME
 
 TIER_NAME_ALIASES = {
     TIER_4_LEGACY_NAME: TIER_4_CANONICAL_NAME,
-    "Tier 4: Physics-Informed Nuclear GBDT": "Tier 4: Physics-Motivated Nuclear GBDT",
-    "Tier 4 Physics-Informed": "Tier 4 Physics-Motivated",
+    "Tier 4: Physics-Motivated Nuclear GBDT": "Tier 4: Physics-Motivated Nuclear GBDT",
+    "Tier 4 Physics-Motivated": "Tier 4 Physics-Motivated",
 }
 
 
@@ -145,7 +145,7 @@ with open(_BASELINES_FILE, "r") as _f:
 
 def compute_features_for_series(df_input: pd.DataFrame, station_id: str, use_injected: bool = True) -> pd.DataFrame:
     """
-    Computes all Tier 1, 2, 3, and 4 (Physics-Informed Nuclear) features for a given station dataframe.
+    Computes all Tier 1, 2, 3, and 4 (Physics-Motivated Nuclear) features for a given station dataframe.
 
     Parameters
     ----------
@@ -333,7 +333,7 @@ def compute_features_for_series(df_input: pd.DataFrame, station_id: str, use_inj
     )
 
     # -------------------------------------------------------------
-    # Tier 4 (Schema 3): Physics-Informed Spectral Stripping & Bateman Washout ODE
+    # Tier 4 (Schema 3): Physics-Motivated Spectral Stripping & Bateman Washout ODE
     # -------------------------------------------------------------
     ch_series = [r02, r03, r04, r05, r06, r07, r08, r09]
     c_mat = np.column_stack([s.to_numpy(dtype=float) for s in ch_series])

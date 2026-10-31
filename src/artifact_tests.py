@@ -71,7 +71,7 @@ TIER_DEFS: list[tuple[str, list[str]]] = [
     ("Tier 1b (Gross+Weather)", TIER_1B_FEATURES),
     ("Tier 2 (Spectral)", TIER_2_FEATURES),
     ("Tier 3 (Weather Fusion)", TIER_3_FEATURES),
-    ("Tier 4 (Physics-Informed Nuclear)", TIER_4_NUCLEAR_FEATURES),
+    ("Tier 4 (Physics-Motivated Nuclear)", TIER_4_NUCLEAR_FEATURES),
 ]
 
 
@@ -862,11 +862,11 @@ def run_all_artifact_evaluations() -> None:
     # D.1 Filter-age leakage
     leak_old = evaluate_filter_age_leakage(
         cat_legacy, merged_by_station, "legacy_filter_terminated",
-        tier4_onset_scores=old_results["Tier 4 (Physics-Informed Nuclear)"]["onset_age_scores"]
+        tier4_onset_scores=old_results["Tier 4 (Physics-Motivated Nuclear)"]["onset_age_scores"]
     )
     leak_new = evaluate_filter_age_leakage(
         cat_realistic, merged_by_station, "realistic_continuous_arbitrary_end",
-        tier4_onset_scores=new_results["Tier 4 (Physics-Informed Nuclear)"]["onset_age_scores"]
+        tier4_onset_scores=new_results["Tier 4 (Physics-Motivated Nuclear)"]["onset_age_scores"]
     )
     pd.DataFrame([leak_old, leak_new]).to_csv("data/processed/artifact_filter_age_leakage.csv", index=False)
     print("Wrote data/processed/artifact_filter_age_leakage.csv")
@@ -878,9 +878,9 @@ def run_all_artifact_evaluations() -> None:
 
     # D.3 Dose circularity: compare (0) circular dose, (a) dose_spectral_residual_z removed, (b) kept with independent dose
     tier4_no_dose_cols = [c for c in TIER_4_NUCLEAR_FEATURES if c != "dose_spectral_residual_z"]
-    res_t4_circ = ab2_results["Tier 4 (Physics-Informed Nuclear)"]
+    res_t4_circ = ab2_results["Tier 4 (Physics-Motivated Nuclear)"]
     res_t4_removed = _evaluate_tier_on_prepared_data(tr_new, te_new, tier4_no_dose_cols, seeds=SEEDS_20, target_det=0.95)
-    res_t4_indep = new_results["Tier 4 (Physics-Informed Nuclear)"]
+    res_t4_indep = new_results["Tier 4 (Physics-Motivated Nuclear)"]
     dose_rows = [
         {
             "condition": "0_circular_dose_coupling (same k_dose_channel in generator and feature)",
@@ -940,7 +940,7 @@ def run_all_artifact_evaluations() -> None:
         tr_loso_scen = {}
         for st_id, tr_d in train_data_with_excluded_scenario(cat_realistic, tr_new, held_scen).items():
             tr_loso_scen[st_id] = tr_d
-        for t_name, f_cols in [("Tier 2 (Spectral)", TIER_2_FEATURES), ("Tier 3 (Weather Fusion)", TIER_3_FEATURES), ("Tier 4 (Physics-Informed Nuclear)", TIER_4_NUCLEAR_FEATURES)]:
+        for t_name, f_cols in [("Tier 2 (Spectral)", TIER_2_FEATURES), ("Tier 3 (Weather Fusion)", TIER_3_FEATURES), ("Tier 4 (Physics-Motivated Nuclear)", TIER_4_NUCLEAR_FEATURES)]:
             res = _evaluate_tier_on_prepared_data(
                 tr_loso_scen, te_new, f_cols, seeds=SEEDS_3, target_det=0.95, only_test_scenario=held_scen
             )
@@ -973,7 +973,7 @@ def run_all_artifact_evaluations() -> None:
             cat_unseen, merged_by_station, clean_feats_cache, train_baselines,
             add_counting_noise=True, independent_dose=True, seed=42
         )
-        for t_name, f_cols in [("Tier 2 (Spectral)", TIER_2_FEATURES), ("Tier 3 (Weather Fusion)", TIER_3_FEATURES), ("Tier 4 (Physics-Informed Nuclear)", TIER_4_NUCLEAR_FEATURES)]:
+        for t_name, f_cols in [("Tier 2 (Spectral)", TIER_2_FEATURES), ("Tier 3 (Weather Fusion)", TIER_3_FEATURES), ("Tier 4 (Physics-Motivated Nuclear)", TIER_4_NUCLEAR_FEATURES)]:
             res = _evaluate_tier_on_prepared_data(tr_new, te_unseen, f_cols, seeds=SEEDS_3, target_det=0.95)
             holdout_rows.append({
                 "holdout_category": "ii_unseen_test_radionuclide",
@@ -1001,7 +1001,7 @@ def run_all_artifact_evaluations() -> None:
             add_counting_noise=True, independent_dose=True,
             test_gain_shift=g_shift, test_fwhm_override=fwhm_ov, seed=42
         )
-        for t_name, f_cols in [("Tier 3 (Weather Fusion)", TIER_3_FEATURES), ("Tier 4 (Physics-Informed Nuclear)", TIER_4_NUCLEAR_FEATURES)]:
+        for t_name, f_cols in [("Tier 3 (Weather Fusion)", TIER_3_FEATURES), ("Tier 4 (Physics-Motivated Nuclear)", TIER_4_NUCLEAR_FEATURES)]:
             res = _evaluate_tier_on_prepared_data(tr_new, te_pert, f_cols, seeds=SEEDS_3, target_det=0.95)
             holdout_rows.append({
                 "holdout_category": "iii_test_time_gain_or_resolution_perturbation",

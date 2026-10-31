@@ -7,7 +7,7 @@ Implements:
    - Tier 1: Gross Radiation Only
    - Tier 2: Radiation + Spectral Ratios
    - Tier 3: Full Weather Fusion (Schema 2)
-   - Tier 4: Physics-Informed Nuclear (Schema 3)
+   - Tier 4: Physics-Motivated Nuclear (Schema 3)
 3. Multi-class LightGBM modeling (normal vs radon_washout vs fission_product).
 4. Continuous threshold sweep on P(fission) to benchmark against fixed-threshold baselines:
    - Event-level detection probability on injected test series.
@@ -167,7 +167,7 @@ def evaluate_tier_pipeline():
     clf_t1 = train_tier_model(X_tr_t1, y_tr, "Tier 1 (Gross Only)")
     clf_t2 = train_tier_model(X_tr_t2, y_tr, "Tier 2 (Spectral)")
     clf_t3 = train_tier_model(X_tr_t3, y_tr, "Tier 3 (Weather Fusion)")
-    clf_t4 = train_tier_model(X_tr_t4, y_tr, "Tier 4 (Physics-Informed Nuclear)")
+    clf_t4 = train_tier_model(X_tr_t4, y_tr, "Tier 4 (Physics-Motivated Nuclear)")
 
     # 4. Train LOSO Model (Holdout San Diego)
     X_tr_loso, y_tr_loso = load_and_prepare_train_data_loso(TIER_3_FEATURES, "ca_san_diego")
@@ -417,7 +417,7 @@ def evaluate_tier_pipeline():
             ("t1", "Tier 1 (Gross Only)"),
             ("t2", "Tier 2 (Spectral)"),
             ("t3", "Tier 3 (Weather Fusion)"),
-            ("t4", "Tier 4 (Physics-Informed Nuclear)"),
+            ("t4", "Tier 4 (Physics-Motivated Nuclear)"),
             ("loso", "Tier 3 LOSO (Held-out SD)"),
         ]:
             sub = val_roc_df[val_roc_df[f"{tier_key}_event_det_rate"] >= target_det]

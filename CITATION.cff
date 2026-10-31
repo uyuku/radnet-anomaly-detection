@@ -3,20 +3,16 @@ message: "If you use this benchmark, code, or methodology in your research, plea
 authors:
   - family-names: "Barut"
     given-names: "Necdet Ömer"
-    affiliation: "Department of Environmental Engineering, Hacettepe University, Ankara, Turkey"
-  - family-names: "Ergün"
-    given-names: "Şule"
-    affiliation: "Hacettepe University, Ankara, Turkey"
 title: "Physics-Motivated Environmental Radiation Anomaly Detection via Multi-Scale Weather Fusion and Multi-Channel Gamma Spectrometry"
 version: 1.0.0
 date-released: 2026-10-31
 license: "MIT"
-repository-code: "https://github.com/TODO_AUTHOR/radnet-anomaly-detection"
+repository-code: "https://github.com/omerbarut/radnet-anomaly-detection"
 keywords:
   - "radiation anomaly detection"
   - "radnet"
   - "gamma spectrometry"
   - "radon washout"
   - "weather fusion"
-  - "physics-informed machine learning"
+  - "physics-motivated machine learning"
   - "lightgbm"

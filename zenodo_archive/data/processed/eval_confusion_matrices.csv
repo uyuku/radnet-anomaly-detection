@@ -44,15 +44,15 @@ Tier 3: Full Weather Fusion GBDT,radon_washout,fission_product,0,0.0,0.0
 Tier 3: Full Weather Fusion GBDT,fission_product,normal,2420,0.2427,0.0247
 Tier 3: Full Weather Fusion GBDT,fission_product,radon_washout,221,0.0222,0.1839
 Tier 3: Full Weather Fusion GBDT,fission_product,fission_product,7331,0.7352,0.992
-Tier 4: Physics-Informed Nuclear GBDT,normal,normal,95665,0.9987,0.9815
-Tier 4: Physics-Informed Nuclear GBDT,normal,radon_washout,77,0.0008,0.0706
-Tier 4: Physics-Informed Nuclear GBDT,normal,fission_product,44,0.0005,0.0055
-Tier 4: Physics-Informed Nuclear GBDT,radon_washout,normal,5,0.0057,0.0001
-Tier 4: Physics-Informed Nuclear GBDT,radon_washout,radon_washout,865,0.9943,0.7929
-Tier 4: Physics-Informed Nuclear GBDT,radon_washout,fission_product,0,0.0,0.0
-Tier 4: Physics-Informed Nuclear GBDT,fission_product,normal,1795,0.18,0.0184
-Tier 4: Physics-Informed Nuclear GBDT,fission_product,radon_washout,149,0.0149,0.1366
-Tier 4: Physics-Informed Nuclear GBDT,fission_product,fission_product,8028,0.8051,0.9945
+Tier 4: Physics-Motivated Nuclear GBDT,normal,normal,95665,0.9987,0.9815
+Tier 4: Physics-Motivated Nuclear GBDT,normal,radon_washout,77,0.0008,0.0706
+Tier 4: Physics-Motivated Nuclear GBDT,normal,fission_product,44,0.0005,0.0055
+Tier 4: Physics-Motivated Nuclear GBDT,radon_washout,normal,5,0.0057,0.0001
+Tier 4: Physics-Motivated Nuclear GBDT,radon_washout,radon_washout,865,0.9943,0.7929
+Tier 4: Physics-Motivated Nuclear GBDT,radon_washout,fission_product,0,0.0,0.0
+Tier 4: Physics-Motivated Nuclear GBDT,fission_product,normal,1795,0.18,0.0184
+Tier 4: Physics-Motivated Nuclear GBDT,fission_product,radon_washout,149,0.0149,0.1366
+Tier 4: Physics-Motivated Nuclear GBDT,fission_product,fission_product,8028,0.8051,0.9945
 Tier 3: Weather-Fused Neural Net (MLP),normal,normal,82246,0.8586,0.9845
 Tier 3: Weather-Fused Neural Net (MLP),normal,radon_washout,1361,0.0142,0.5594
 Tier 3: Weather-Fused Neural Net (MLP),normal,fission_product,12179,0.1271,0.5898

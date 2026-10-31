@@ -1,5 +1,5 @@
 """
-Unit Tests for Nuclear Engineering & Physics-Informed Spectrometry.
+Unit Tests for Nuclear Engineering & Physics-Motivated Spectrometry.
 
 Verifies:
 1. Analytical Bateman 2-step (Te-132 -> I-132) and 3-step (Po-218 -> Pb-214 -> Bi-214)

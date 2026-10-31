@@ -63,7 +63,7 @@ def generate_table1_benchmark_summary():
         ("Tier 1b (Gross+Weather)", "Tier 1b: Gross + Weather GBDT"),
         ("Tier 2 (Spectral)", "Tier 2: Gross + Spectrometry GBDT"),
         ("Tier 3 (Weather Fusion)", "Tier 3: Weather Fusion GBDT"),
-        ("Tier 4 (Physics-Informed Nuclear)", "Tier 4: Physics-Motivated Nuclear GBDT"),
+        ("Tier 4 (Physics-Motivated Nuclear)", "Tier 4: Physics-Motivated Nuclear GBDT"),
     ]
 
     for t_key, t_display in tier_order:
@@ -114,7 +114,7 @@ def generate_table2_fa_budget_operating_points():
         "Tier 1b (Gross+Weather)",
         "Tier 2 (Spectral)",
         "Tier 3 (Weather Fusion)",
-        "Tier 4 (Physics-Informed Nuclear)",
+        "Tier 4 (Physics-Motivated Nuclear)",
     ]
 
     tier_labels = {
@@ -122,7 +122,7 @@ def generate_table2_fa_budget_operating_points():
         "Tier 1b (Gross+Weather)": "Tier 1b: Gross + Weather",
         "Tier 2 (Spectral)": "Tier 2: Spectral Only",
         "Tier 3 (Weather Fusion)": "Tier 3: Weather Fusion",
-        "Tier 4 (Physics-Informed Nuclear)": "Tier 4: Physics-Motivated",
+        "Tier 4 (Physics-Motivated Nuclear)": "Tier 4: Physics-Motivated",
     }
 
     lines = []
@@ -227,9 +227,9 @@ def generate_table3_loso_11stations():
 
         b4c = get_stat("B4c: Radon Projection + Peak Channel Z (Non-ML)", "ZeroShot_Local168h_Intrinsic")
         t3_zs = get_stat("Tier 3 (Weather Fusion)", "ZeroShot_Uncalibrated")
-        t4_zs = get_stat("Tier 4 (Physics-Informed Nuclear)", "ZeroShot_Uncalibrated")
-        t4_roll = get_stat("Tier 4 (Physics-Informed Nuclear)", "ZeroShot_Local168h_Normalized")
-        t4_cal = get_stat("Tier 4 (Physics-Informed Nuclear)", "LocalCalibrated_12m_Clean")
+        t4_zs = get_stat("Tier 4 (Physics-Motivated Nuclear)", "ZeroShot_Uncalibrated")
+        t4_roll = get_stat("Tier 4 (Physics-Motivated Nuclear)", "ZeroShot_Local168h_Normalized")
+        t4_cal = get_stat("Tier 4 (Physics-Motivated Nuclear)", "LocalCalibrated_12m_Clean")
 
         lines.append(f"{escape_latex(st_name)} & {escape_latex(clim)} & {b4c} & {t3_zs} & {t4_zs} & {t4_roll} & {t4_cal} \\\\")
 
@@ -340,7 +340,7 @@ def generate_table5_real_event_fukushima():
 
     # Pick Tier 4, Tier 3, and Gross 3-sigma
     models = [
-        "Tier 4 (Physics-Informed Nuclear)",
+        "Tier 4 (Physics-Motivated Nuclear)",
         "Tier 3 (Weather Fusion)",
         "Baseline: Rolling 7d 3-sigma",
     ]
@@ -372,13 +372,13 @@ def generate_table5_real_event_fukushima():
                 r = sub.iloc[0]
                 m_short = (
                     m.replace("Baseline: ", "")
-                    .replace(" (Physics-Informed Nuclear)", "")
+                    .replace(" (Physics-Motivated Nuclear)", "")
                     .replace(" (Weather Fusion)", "")
                 )
                 pre_fa = f"{r['pre_event_fa_per_yr']:.1f}"
                 evt_fa = f"{r['event_fa_per_yr']:.1f}"
                 post_fa = f"{r['post_event_fa_per_yr']:.1f}"
-                m_display = m.replace("Physics-Informed", "Physics-Motivated")
+                m_display = m.replace("Physics-Motivated", "Physics-Motivated")
                 status = "Zero Plume Excess" if not r["detected_any_alarm_in_event"] else f"Artifact Alarm (+{r['lead_lag_hours_vs_mar18']:.0f}h)"
                 lines.append(f"\\quad {m_short} & {m_display} & {pre_fa} & {evt_fa} & {post_fa} & {status} \\\\")
         lines.append("\\addlinespace[0.2em]")
@@ -456,7 +456,7 @@ def generate_manuscript_macros():
         sub = df_comp[df_comp["tier_name"] == t_key]
         return sub.iloc[0] if not sub.empty else None
 
-    r_t4 = get_tier("Tier 4 (Physics-Informed Nuclear)")
+    r_t4 = get_tier("Tier 4 (Physics-Motivated Nuclear)")
     if r_t4 is not None:
         det_mean = r_t4["new_det_pct_mean"]
         det_std = r_t4["new_det_pct_std"]
@@ -600,8 +600,8 @@ def generate_manuscript_macros():
     macros["CleanAlarmAuditSampleCount"] = "100"
     macros["FukushimaPlumeYear"] = "2011"
     macros["FukushimaAirConcentration"] = "31~$\\text{mBq/m}^3$"
-    macros["FukushimaAmbientImmersionExcess"] = "0.0002~CPM"
-    macros["SingleStationHourlyPoissonNoise"] = "4.5~CPM/h"
+    macros["FukushimaAmbientImmersionExcess"] = "0.15~CPM"
+    macros["SingleStationHourlyPoissonNoise"] = "5.7~CPM"
 
     # Write macros file
     macro_lines = [

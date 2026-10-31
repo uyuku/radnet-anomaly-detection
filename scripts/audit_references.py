@@ -246,7 +246,7 @@ REFERENCES_DB = [
         "volume": "218",
         "pages": "111562",
         "doi": "10.1016/j.anucene.2025.111562",
-        "in_text_role": "Introduction: Physics-informed and physics-enhanced machine learning in nuclear engineering"
+        "in_text_role": "Introduction: Physics-motivated and physics-enhanced machine learning in nuclear engineering"
     },
     {
         "key": "Masson2011",
@@ -439,6 +439,9 @@ REFERENCES_DB = [
 
 
 def audit_references():
+    tex_path = REPO_ROOT / "report" / "manuscript_mdpi.tex"
+    tex_text = tex_path.read_text(encoding="utf-8") if tex_path.exists() else ""
+
     rows = []
     for ref in REFERENCES_DB:
         doi = ref["doi"]
@@ -447,6 +450,11 @@ def audit_references():
         if doi.startswith("ISBN") or "epa.gov" in doi or "nndc.bnl.gov" in doi or "neurips.cc" in doi:
             status = "VERIFIED"
             notes = "Publisher official repository / database verified"
+
+        # Check citation in manuscript text
+        is_cited = ref["key"] in tex_text
+        if not is_cited and tex_text:
+            notes += " (uncited in current text)"
         
         rows.append({
             "citation_key": ref["key"],

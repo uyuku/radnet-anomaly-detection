@@ -357,11 +357,11 @@
 \ifdef{\AddToHook}{
 \DeclareHookRule{begindocument}{hyperref}{before}{mdpi}
 	\AddToHook{begindocument/before}{ 
-		\hyperrefpackage
+		%\hyperrefpackage
 		\RequirePackage[capitalise,noabbrev]{cleveref}
 		}
 	}{
-	\hyperrefpackage
+	%\hyperrefpackage
 	\RequirePackage[capitalise,noabbrev]{cleveref}
 }
 %% To have the possibility to change the urlcolor
@@ -757,7 +757,7 @@
 			\OR \equal{\@arttype}{Monograph}}{}{%
 				\ifthenelse{\equal{\@status}{submit}}{%	
 					\hfill \href{https://www.mdpi.com}{%
-					\includegraphics[height=1cm]{pics/logo-mdpi}}%
+					\includegraphics[height=1cm]{pics/logo-mdpi.eps}}%
 					}{
 					\href{https://www.mdpi.com/journal/\@journal}{
 					\includegraphics[height=1.2cm]{\@journal-logo.eps}}%
@@ -768,7 +768,7 @@
 						\ifthenelse{\equal{\@journal}{scipharm}}{%
 							\href{https://www.mdpi.com}{\includegraphics[height=1cm]{logo-mdpi-scipharm.eps}}%
 							}{%
-							\href{https://www.mdpi.com}{\includegraphics[height=1cm]{logo-mdpi}}%
+							\href{https://www.mdpi.com}{\includegraphics[height=1cm]{logo-mdpi.eps}}%
 							}%
 						}%
 					}%
@@ -1664,7 +1664,7 @@
 				\ifthenelse{\equal{\@journal}{ijtpp}}{%
 					\includegraphics[width=2 cm]{logo-ccby-nc-nd.eps}%
 					}{%
-					\includegraphics[width=2 cm]{logo-ccby}
+					\includegraphics[width=2 cm]{logo-ccby.eps}
 					}
 				}\\
 				{\justifying\textbf{Copyright:} \copyright \ {\@copyrightyear} by the \@authornum.\linebreak%

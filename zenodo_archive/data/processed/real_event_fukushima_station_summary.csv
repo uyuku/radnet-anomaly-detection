@@ -1,5 +1,5 @@
 station_id,station_name,is_pacific,detector,pre_event_hours,event_hours,post_event_hours,pre_event_alarms,event_alarms,post_event_alarms,pre_event_fa_per_yr,event_fa_per_yr,post_event_fa_per_yr,detected_any_alarm_in_event,first_alarm_utc,lead_lag_hours_vs_mar18,event_rain_coincident_pct
-hi_honolulu,"Honolulu, HI",True,Tier 4 (Physics-Informed Nuclear),1594,1192,1350,0,2,0,0.0,14.71,0.0,True,2011-03-21 07:00:00,79.0,0.0
+hi_honolulu,"Honolulu, HI",True,Tier 4 (Physics-Motivated Nuclear),1594,1192,1350,0,2,0,0.0,14.71,0.0,True,2011-03-21 07:00:00,79.0,0.0
 hi_honolulu,"Honolulu, HI",True,Tier 3 (Weather Fusion),1594,1192,1350,0,0,0,0.0,0.0,0.0,False,None,,
 hi_honolulu,"Honolulu, HI",True,Tier 2 (Spectral),1594,1192,1350,0,0,0,0.0,0.0,0.0,False,None,,
 hi_honolulu,"Honolulu, HI",True,Tier 1 (Gross),1594,1192,1350,0,0,0,0.0,0.0,0.0,False,None,,
@@ -7,7 +7,7 @@ hi_honolulu,"Honolulu, HI",True,Baseline: Global Dry 3-sigma,1594,1192,1350,0,0,
 hi_honolulu,"Honolulu, HI",True,Baseline: Rolling 7d 3-sigma,1594,1192,1350,0,3,0,0.0,22.06,0.0,True,2011-03-12 07:00:00,-137.0,0.0
 hi_honolulu,"Honolulu, HI",True,Baseline: Rolling 7d 4-sigma,1594,1192,1350,0,0,0,0.0,0.0,0.0,False,None,,
 hi_honolulu,"Honolulu, HI",True,Baseline: Radon Projection 3-sigma,1594,1192,1350,0,4,0,0.0,29.42,0.0,True,2011-03-12 07:00:00,-137.0,0.0
-ca_san_diego,"San Diego, CA",True,Tier 4 (Physics-Informed Nuclear),0,768,1417,0,0,0,0.0,0.0,0.0,False,None,,
+ca_san_diego,"San Diego, CA",True,Tier 4 (Physics-Motivated Nuclear),0,768,1417,0,0,0,0.0,0.0,0.0,False,None,,
 ca_san_diego,"San Diego, CA",True,Tier 3 (Weather Fusion),0,768,1417,0,0,0,0.0,0.0,0.0,False,None,,
 ca_san_diego,"San Diego, CA",True,Tier 2 (Spectral),0,768,1417,0,0,0,0.0,0.0,0.0,False,None,,
 ca_san_diego,"San Diego, CA",True,Tier 1 (Gross),0,768,1417,0,0,0,0.0,0.0,0.0,False,None,,
@@ -15,7 +15,7 @@ ca_san_diego,"San Diego, CA",True,Baseline: Global Dry 3-sigma,0,768,1417,0,0,0,
 ca_san_diego,"San Diego, CA",True,Baseline: Rolling 7d 3-sigma,0,768,1417,0,19,13,0.0,216.87,80.42,True,2011-03-20 03:00:00,51.0,0.0
 ca_san_diego,"San Diego, CA",True,Baseline: Rolling 7d 4-sigma,0,768,1417,0,8,5,0.0,91.31,30.93,True,2011-03-20 03:00:00,51.0,0.0
 ca_san_diego,"San Diego, CA",True,Baseline: Radon Projection 3-sigma,0,768,1417,0,16,7,0.0,182.62,43.3,True,2011-03-20 03:00:00,51.0,0.0
-ak_anchorage,"Anchorage, AK",True,Tier 4 (Physics-Informed Nuclear),1487,1149,1423,0,0,0,0.0,0.0,0.0,False,None,,
+ak_anchorage,"Anchorage, AK",True,Tier 4 (Physics-Motivated Nuclear),1487,1149,1423,0,0,0,0.0,0.0,0.0,False,None,,
 ak_anchorage,"Anchorage, AK",True,Tier 3 (Weather Fusion),1487,1149,1423,0,0,0,0.0,0.0,0.0,False,None,,
 ak_anchorage,"Anchorage, AK",True,Tier 2 (Spectral),1487,1149,1423,0,0,0,0.0,0.0,0.0,False,None,,
 ak_anchorage,"Anchorage, AK",True,Tier 1 (Gross),1487,1149,1423,0,0,0,0.0,0.0,0.0,False,None,,
@@ -23,7 +23,7 @@ ak_anchorage,"Anchorage, AK",True,Baseline: Global Dry 3-sigma,1487,1149,1423,5,
 ak_anchorage,"Anchorage, AK",True,Baseline: Rolling 7d 3-sigma,1487,1149,1423,15,8,6,88.43,61.03,36.96,True,2011-03-17 12:00:00,-12.0,37.5
 ak_anchorage,"Anchorage, AK",True,Baseline: Rolling 7d 4-sigma,1487,1149,1423,7,1,0,41.27,7.63,0.0,True,2011-04-10 17:00:00,569.0,0.0
 ak_anchorage,"Anchorage, AK",True,Baseline: Radon Projection 3-sigma,1487,1149,1423,11,5,7,64.85,38.15,43.12,True,2011-03-28 16:00:00,256.0,20.0
-tx_dallas,"Dallas, TX",False,Tier 4 (Physics-Informed Nuclear),1629,1169,1420,6,0,0,32.29,0.0,0.0,False,None,,
+tx_dallas,"Dallas, TX",False,Tier 4 (Physics-Motivated Nuclear),1629,1169,1420,6,0,0,32.29,0.0,0.0,False,None,,
 tx_dallas,"Dallas, TX",False,Tier 3 (Weather Fusion),1629,1169,1420,0,0,0,0.0,0.0,0.0,False,None,,
 tx_dallas,"Dallas, TX",False,Tier 2 (Spectral),1629,1169,1420,0,0,0,0.0,0.0,0.0,False,None,,
 tx_dallas,"Dallas, TX",False,Tier 1 (Gross),1629,1169,1420,1,0,0,5.38,0.0,0.0,False,None,,

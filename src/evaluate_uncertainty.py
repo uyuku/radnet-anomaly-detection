@@ -460,7 +460,7 @@ def run_uncertainty_pipeline() -> None:
         ("Tier 1b (Gross+Weather)", "ML_Tier1b_GrossWeather", TIER_1B_FEATURES),
         ("Tier 2 (Spectral)", "ML_Tier2_Spectral", TIER_2_FEATURES),
         ("Tier 3 (Weather Fusion)", "ML_Tier3_WeatherFusion", TIER_3_FEATURES),
-        ("Tier 4 (Physics-Informed Nuclear)", "ML_Tier4_PhysicsNuclear", TIER_4_NUCLEAR_FEATURES),
+        ("Tier 4 (Physics-Motivated Nuclear)", "ML_Tier4_PhysicsNuclear", TIER_4_NUCLEAR_FEATURES),
     ]:
         clf = lgb.LGBMClassifier(
             objective="multiclass",
@@ -664,7 +664,7 @@ def run_uncertainty_pipeline() -> None:
                     ("Tier 1 (Gross)", "ML_Tier1_Gross", TIER_1_FEATURES),
                     ("Tier 2 (Spectral)", "ML_Tier2_Spectral", TIER_2_FEATURES),
                     ("Tier 3 (Weather Fusion)", "ML_Tier3_WeatherFusion", TIER_3_FEATURES),
-                    ("Tier 4 (Physics-Informed Nuclear)", "ML_Tier4_PhysicsNuclear", TIER_4_NUCLEAR_FEATURES),
+                    ("Tier 4 (Physics-Motivated Nuclear)", "ML_Tier4_PhysicsNuclear", TIER_4_NUCLEAR_FEATURES),
                 ]:
                     clf_c = lgb.LGBMClassifier(
                         objective="multiclass",

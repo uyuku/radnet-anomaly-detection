@@ -24,7 +24,7 @@ data/processed/*.csv.gz
 *.zip
 repo.bundle
 
-# LaTeX build artifacts
+# LaTeX build artifacts and PDFs
 *.aux
 *.log
 *.out
@@ -33,3 +33,11 @@ repo.bundle
 *.lof
 *.synctex.gz
 missfont.log
+*.pdf
+report/*.pdf
+
+# Review and draft working docs
+docs/phase*.md
+docs/author_response*.md
+docs/statements_draft.md
+docs/repository_hygiene*.md

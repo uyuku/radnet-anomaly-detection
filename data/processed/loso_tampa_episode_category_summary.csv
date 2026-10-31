@@ -5,9 +5,9 @@ Tier 3 (Weather Fusion),instrument glitch,1,0.06,1.0,0.9697,ratio_r03_r07
 Tier 3 (Weather Fusion),missing-data adjacent,208,11.88,1.0,0.9736,share_r07_roll_6h
 Tier 3 (Weather Fusion),post-rain,326,18.62,1.0,0.9636,share_r07_roll_6h
 Tier 3 (Weather Fusion),rain-coincident,213,12.16,4.0,0.9796,share_r07_roll_6h
-Tier 4 (Physics-Informed Nuclear),baseline or gain drift,80,29.2,1.0,0.9825,ratio_r05_r03
-Tier 4 (Physics-Informed Nuclear),filter-change adjacent,103,37.59,2.0,0.9882,ratio_r05_r03
-Tier 4 (Physics-Informed Nuclear),instrument glitch,4,1.46,1.0,0.9758,diff_share_r05_3h
-Tier 4 (Physics-Informed Nuclear),missing-data adjacent,15,5.47,1.0,0.983,diff_share_r05_3h
-Tier 4 (Physics-Informed Nuclear),post-rain,44,16.06,1.0,0.986,ratio_r05_r03
-Tier 4 (Physics-Informed Nuclear),rain-coincident,28,10.22,1.0,0.9859,stripped_excess_r05_z
+Tier 4 (Physics-Motivated Nuclear),baseline or gain drift,80,29.2,1.0,0.9825,ratio_r05_r03
+Tier 4 (Physics-Motivated Nuclear),filter-change adjacent,103,37.59,2.0,0.9882,ratio_r05_r03
+Tier 4 (Physics-Motivated Nuclear),instrument glitch,4,1.46,1.0,0.9758,diff_share_r05_3h
+Tier 4 (Physics-Motivated Nuclear),missing-data adjacent,15,5.47,1.0,0.983,diff_share_r05_3h
+Tier 4 (Physics-Motivated Nuclear),post-rain,44,16.06,1.0,0.986,ratio_r05_r03
+Tier 4 (Physics-Motivated Nuclear),rain-coincident,28,10.22,1.0,0.9859,stripped_excess_r05_z

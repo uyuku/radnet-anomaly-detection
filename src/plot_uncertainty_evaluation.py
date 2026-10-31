@@ -56,8 +56,8 @@ def plot_bootstrap_uncertainty():
         "Tier 2: Radiation + Spectrometry GBDT (95% target)": "Tier 2: Spectral GBDT (95% target)",
         "Tier 3: Full Weather Fusion GBDT (95% target)": "Tier 3: Weather Fusion GBDT (95% target)",
         "Tier 3: Full Weather Fusion GBDT (90% target)": "Tier 3: Weather Fusion GBDT (90% target)",
-        "Tier 4: Physics-Informed Nuclear GBDT (95% target)": "Tier 4: Nuclear Physics GBDT (95% target)",
-        "Tier 4: Physics-Informed Nuclear GBDT (90% target)": "Tier 4: Nuclear Physics GBDT (90% target)",
+        "Tier 4: Physics-Motivated Nuclear GBDT (95% target)": "Tier 4: Nuclear Physics GBDT (95% target)",
+        "Tier 4: Physics-Motivated Nuclear GBDT (90% target)": "Tier 4: Nuclear Physics GBDT (90% target)",
         "Tier 4: Physics-Motivated Nuclear GBDT (95% target)": "Tier 4: Nuclear Physics GBDT (95% target)",
         "Tier 4: Physics-Motivated Nuclear GBDT (90% target)": "Tier 4: Nuclear Physics GBDT (90% target)",
         "Tier 3: Weather-Fused Neural Net (MLP) (95% target)": "Tier 3: Neural Net MLP (95% target)",
@@ -96,7 +96,7 @@ def plot_bootstrap_uncertainty():
             colors.append("#337ab7")  # Blue for Tier 2
         elif "Tier 3: Full Weather Fusion" in m:
             colors.append("#2e7d32")  # Deep Green for Tier 3 GBDT
-        elif "Tier 4: Physics-Informed Nuclear" in m:
+        elif "Tier 4: Physics-Motivated Nuclear" in m:
             colors.append("#0d47a1")  # Deep Navy for Tier 4 Nuclear GBDT
         else:
             colors.append("#7b1fa2")  # Purple for MLP
@@ -123,7 +123,7 @@ def plot_bootstrap_uncertainty():
         y_p = y_pos[i]
         ci_h = df_plot["fa_ci_high"].iloc[i]
         text_x = ci_h * 1.25 if ci_h > 5 else ci_h + 1.8
-        is_bold = ("Weather Fusion" in df_plot["model_name"].iloc[i]) or ("Physics-Informed Nuclear" in df_plot["model_name"].iloc[i])
+        is_bold = ("Weather Fusion" in df_plot["model_name"].iloc[i]) or ("Physics-Motivated Nuclear" in df_plot["model_name"].iloc[i])
         ax1.text(
             text_x,
             y_p,
@@ -145,7 +145,7 @@ def plot_bootstrap_uncertainty():
     ax1.axvline(0, color="gray", linestyle="-", linewidth=0.8)
 
     # Highlight Tier 4 row (or Tier 3 if Tier 4 not present)
-    t4_match = df_plot[df_plot["model_name"].str.contains(r"Tier 4: Physics-Informed Nuclear GBDT \(95%", regex=True)]
+    t4_match = df_plot[df_plot["model_name"].str.contains(r"Tier 4: Physics-Motivated Nuclear GBDT \(95%", regex=True)]
     if not t4_match.empty:
         t4_idx = t4_match.index[0]
         ax1.axhspan(t4_idx - 0.45, t4_idx + 0.45, color="#e3f2fd", alpha=0.6, zorder=1)
@@ -180,7 +180,7 @@ def plot_bootstrap_uncertainty():
             label_x = ci_h + 2.0
             ha_align = "left"
 
-        is_bold = ("Weather Fusion" in df_plot["model_name"].iloc[i]) or ("Physics-Informed Nuclear" in df_plot["model_name"].iloc[i])
+        is_bold = ("Weather Fusion" in df_plot["model_name"].iloc[i]) or ("Physics-Motivated Nuclear" in df_plot["model_name"].iloc[i])
         ax2.text(
             label_x,
             y_p,
@@ -229,7 +229,7 @@ def plot_detection_delay_distributions():
 
     model_specs = [
         (
-            "Tier 4: Physics-Informed Nuclear GBDT (95% target)",
+            "Tier 4: Physics-Motivated Nuclear GBDT (95% target)",
             "Tier 4: Nuclear Physics GBDT",
             "#0d47a1", "-", 3.0,
         ),
@@ -275,7 +275,7 @@ def plot_detection_delay_distributions():
             label=f"{m_label} (Total {tot_det_pct:.1f}%)",
             color=col, linestyle=style, linewidth=lw,
         )
-        if "Physics-Informed Nuclear GBDT" in full_name:
+        if "Physics-Motivated Nuclear GBDT" in full_name:
             t4_6h_pct = float(cdf[time_hours == 6.0][0])
             t4_12h_pct = float(cdf[time_hours == 12.0][0])
             det_only = sub_ev.loc[sub_ev["detected"] == 1, "delay_h"]
@@ -319,7 +319,7 @@ def plot_detection_delay_distributions():
         ("Baseline: Rolling 7d 3-sigma", "Rolling 3σ", "#d9534f"),
         ("Tier 2: Radiation + Spectrometry GBDT (95% target)", "Tier 2 (Spectral)", "#337ab7"),
         ("Tier 3: Full Weather Fusion GBDT (95% target)", "Tier 3 (Weather Fusion)", "#2e7d32"),
-        ("Tier 4: Physics-Informed Nuclear GBDT (95% target)", "Tier 4 (Nuclear Physics)", "#0d47a1"),
+        ("Tier 4: Physics-Motivated Nuclear GBDT (95% target)", "Tier 4 (Nuclear Physics)", "#0d47a1"),
     ]
 
     scenarios = ["fission_reactor_fukushima", "fission_pure_cs137", "activation_orphan_co60", "mixed_fission_activation", "fission_pure_i131"]
@@ -393,7 +393,7 @@ def plot_confusion_matrices():
         sub = df[df["model_name"] == m_id]
         if sub.empty and "Physics-Motivated" in m_id:
             # Fallback to legacy CSV naming
-            sub = df[df["model_name"] == m_id.replace("Physics-Motivated", "Physics-Informed")]
+            sub = df[df["model_name"] == m_id.replace("Physics-Motivated", "Physics-Motivated")]
         mat_recall = np.zeros((3, 3))
         mat_counts = np.zeros((3, 3), dtype=int)
 

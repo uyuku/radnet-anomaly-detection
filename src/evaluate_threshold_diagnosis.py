@@ -76,7 +76,7 @@ TIER_CONFIGS = [
     ("Tier 1b (Gross+Weather)", "ML_Tier1b_GrossWeather", TIER_1B_FEATURES),
     ("Tier 2 (Spectral)", "ML_Tier2_Spectral", TIER_2_FEATURES),
     ("Tier 3 (Weather Fusion)", "ML_Tier3_WeatherFusion", TIER_3_FEATURES),
-    ("Tier 4 (Physics-Informed Nuclear)", "ML_Tier4_PhysicsNuclear", TIER_4_NUCLEAR_FEATURES),
+    ("Tier 4 (Physics-Motivated Nuclear)", "ML_Tier4_PhysicsNuclear", TIER_4_NUCLEAR_FEATURES),
 ]
 
 
@@ -520,7 +520,7 @@ def _run_histograms_and_cross_fitted_calibration(
     diag_rows = []
     cal_comp_rows = []
 
-    for idx_t, tier_name in enumerate(["Tier 3 (Weather Fusion)", "Tier 4 (Physics-Informed Nuclear)"]):
+    for idx_t, tier_name in enumerate(["Tier 3 (Weather Fusion)", "Tier 4 (Physics-Motivated Nuclear)"]):
         val_ser = seed42_val_series[tier_name]
         test_ser = seed42_test_series[tier_name]
 

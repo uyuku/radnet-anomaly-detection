@@ -103,7 +103,7 @@ def plot_matched_roc_curves():
         "Tier 2 (Spectral)": {"col": "#2980b9", "ls": "-", "lw": 2.2, "name": "Tier 2: Spectral Only"},
         "Tier 3 (Weather Fusion)": {"col": "#27ae60", "ls": "-", "lw": 2.4, "name": "Tier 3: Weather Fusion (Schema 2)"},
         "Tier 4 (Physics-Motivated Nuclear)": {"col": "#0d47a1", "ls": "-", "lw": 3.0, "name": "Tier 4: Physics-Motivated Nuclear (Schema 3)"},
-        "Tier 4 (Physics-Informed Nuclear)": {"col": "#0d47a1", "ls": "-", "lw": 3.0, "name": "Tier 4: Physics-Motivated Nuclear (Schema 3)"},
+        "Tier 4 (Physics-Motivated Nuclear)": {"col": "#0d47a1", "ls": "-", "lw": 3.0, "name": "Tier 4: Physics-Motivated Nuclear (Schema 3)"},
         "Tier 3 MLP": {"col": "#8e44ad", "ls": "--", "lw": 1.8, "name": "Tier 3: MLP Neural Net"},
     }
 
@@ -174,7 +174,7 @@ def plot_ablation_seeds():
         "Tier 1b (Gross+Weather)",
         "Tier 2 (Spectral)",
         "Tier 3 (Weather Fusion)",
-        "Tier 4 (Physics-Informed Nuclear)",
+        "Tier 4 (Physics-Motivated Nuclear)",
         "Tier 3 MLP",
     ]
     tier_order = [t for t in tier_order if t in sub_agg["tier_name"].values]
@@ -189,7 +189,7 @@ def plot_ablation_seeds():
         "Tier 1b (Gross+Weather)": "#e67e22",
         "Tier 2 (Spectral)": "#2980b9",
         "Tier 3 (Weather Fusion)": "#27ae60",
-        "Tier 4 (Physics-Informed Nuclear)": "#0d47a1",
+        "Tier 4 (Physics-Motivated Nuclear)": "#0d47a1",
         "Tier 3 MLP": "#8e44ad",
     }
     colors = [color_map.get(t, "#333333") for t in tier_order]
@@ -208,7 +208,7 @@ def plot_ablation_seeds():
         "Tier 1b (Gross+Weather)": "Tier 1b\n(Gross+Weather)",
         "Tier 2 (Spectral)": "Tier 2\n(Spectral Ratios)",
         "Tier 3 (Weather Fusion)": "Tier 3\n(Weather Fusion)",
-        "Tier 4 (Physics-Informed Nuclear)": "Tier 4\n(Nuclear Physics)",
+        "Tier 4 (Physics-Motivated Nuclear)": "Tier 4\n(Nuclear Physics)",
         "Tier 3 MLP": "Tier 3\n(MLP Neural Net)",
     }
     ax.set_xticks(x)
@@ -239,7 +239,7 @@ def plot_detection_deadlines():
         return
 
     strat_df = pd.read_csv(strat_file)
-    target_tier = "Tier 4 (Physics-Informed Nuclear)" if "Tier 4 (Physics-Informed Nuclear)" in strat_df["tier_name"].values else "Tier 3 (Weather Fusion)"
+    target_tier = "Tier 4 (Physics-Motivated Nuclear)" if "Tier 4 (Physics-Motivated Nuclear)" in strat_df["tier_name"].values else "Tier 3 (Weather Fusion)"
     t_strat = strat_df[strat_df["tier_name"] == target_tier].copy()
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5.5))
@@ -252,7 +252,7 @@ def plot_detection_deadlines():
             "Tier 1b (Gross+Weather)",
             "Tier 2 (Spectral)",
             "Tier 3 (Weather Fusion)",
-            "Tier 4 (Physics-Informed Nuclear)",
+            "Tier 4 (Physics-Motivated Nuclear)",
             "Tier 3 MLP",
         ] if t in sub.index
     ]
@@ -260,7 +260,7 @@ def plot_detection_deadlines():
         "Tier 1b (Gross+Weather)": "Tier 1b\n(Gross+Wx)",
         "Tier 2 (Spectral)": "Tier 2\n(Spectral)",
         "Tier 3 (Weather Fusion)": "Tier 3\n(Wx Fusion)",
-        "Tier 4 (Physics-Informed Nuclear)": "Tier 4\n(Nuclear)",
+        "Tier 4 (Physics-Motivated Nuclear)": "Tier 4\n(Nuclear)",
         "Tier 3 MLP": "Tier 3\n(MLP)",
     }
     labels = [label_map[t] for t in tiers]
@@ -412,7 +412,7 @@ def plot_loso_multistation():
         idx_col = "held_out_station" if "held_out_station" in loso_df.columns else "heldout_station"
         desc_col = "station_description" if "station_description" in loso_df.columns else "station_name"
         t3_df = loso_df[loso_df["tier_name"] == "Tier 3 (Weather Fusion)"].set_index(idx_col)
-        t4_df = loso_df[loso_df["tier_name"] == "Tier 4 (Physics-Informed Nuclear)"].set_index(idx_col)
+        t4_df = loso_df[loso_df["tier_name"] == "Tier 4 (Physics-Motivated Nuclear)"].set_index(idx_col)
         stations = list(t4_df.index)
         x = np.arange(len(stations))
         width = 0.35
@@ -420,7 +420,7 @@ def plot_loso_multistation():
         b1 = ax1.bar(x - width/2, t3_df.loc[stations, "realized_detection_rate_pct"], width,
                      label="Tier 3 (Weather Fusion)", color="#27ae60", alpha=0.85, edgecolor="black")
         b2 = ax1.bar(x + width/2, t4_df.loc[stations, "realized_detection_rate_pct"], width,
-                     label="Tier 4 (Physics-Informed Nuclear)", color="#0d47a1", alpha=0.88, edgecolor="black")
+                     label="Tier 4 (Physics-Motivated Nuclear)", color="#0d47a1", alpha=0.88, edgecolor="black")
         ax1.set_ylabel("Realized Detection Rate (%)")
         ax1.set_ylim(0, 115)
         ax1.set_xticks(x)
@@ -436,7 +436,7 @@ def plot_loso_multistation():
         b3 = ax2.bar(x - width/2, t3_df.loc[stations, "clean_false_alarms_per_year"], width,
                      label="Tier 3 (Weather Fusion)", color="#e67e22", alpha=0.85, edgecolor="black")
         b4 = ax2.bar(x + width/2, t4_df.loc[stations, "clean_false_alarms_per_year"], width,
-                     label="Tier 4 (Physics-Informed Nuclear)", color="#d9534f", alpha=0.88, edgecolor="black")
+                     label="Tier 4 (Physics-Motivated Nuclear)", color="#d9534f", alpha=0.88, edgecolor="black")
         ax2.set_yscale("symlog", linthresh=1.0)
         ax2.set_ylim(-0.1, 2500)
         ax2.set_ylabel("Clean False Alarms / Station-Year (Symlog Scale)")

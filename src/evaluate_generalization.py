@@ -601,7 +601,7 @@ def run_generalization_pipeline() -> None:
 
     for t_name, f_cols in [
         ("Tier 3 (Weather Fusion)", TIER_3_FEATURES),
-        ("Tier 4 (Physics-Informed Nuclear)", TIER_4_NUCLEAR_FEATURES),
+        ("Tier 4 (Physics-Motivated Nuclear)", TIER_4_NUCLEAR_FEATURES),
     ]:
         clf = _train_lgbm(x_tr_no_tampa[f_cols], y_tr_no_tampa, seed=42)
         vp_cln = {s: clf.predict_proba(tr_all[s]["feats_cln"][f_cols])[tr_all[s]["m_val_calendar"], 2] for s in non_tampa_ids}
@@ -684,7 +684,7 @@ def run_generalization_pipeline() -> None:
     )
 
     hyp_rows = []
-    for t_name in ("Tier 3 (Weather Fusion)", "Tier 4 (Physics-Informed Nuclear)"):
+    for t_name in ("Tier 3 (Weather Fusion)", "Tier 4 (Physics-Motivated Nuclear)"):
         clf, f_cols, tau_loso, p_cln_raw, p_inj_raw = tampa_models_and_scores[t_name]
         m_raw = evaluate_station_test_metrics_with_exact_cis(p_cln_raw, p_inj_raw, tampa_vm, tampa_test_slices, tau_loso)
         hyp_rows.append({"tier_name": t_name, "intervention": "1_Unmodified_HeldOut_Tampa", **m_raw})
@@ -797,7 +797,7 @@ def run_generalization_pipeline() -> None:
     for variant in ("global_baseline", "local_168h_baseline", "station_standardized"):
         for t_name, f_cols in [
             ("Tier 3 (Weather Fusion)", TIER_3_FEATURES),
-            ("Tier 4 (Physics-Informed Nuclear)", TIER_4_NUCLEAR_FEATURES),
+            ("Tier 4 (Physics-Motivated Nuclear)", TIER_4_NUCLEAR_FEATURES),
         ]:
             for held_st in PILOT_STATIONS:
                 held_id = held_st["id"]
@@ -859,7 +859,7 @@ def run_generalization_pipeline() -> None:
 
         for t_name, f_cols in [
             ("Tier 3 (Weather Fusion)", TIER_3_FEATURES),
-            ("Tier 4 (Physics-Informed Nuclear)", TIER_4_NUCLEAR_FEATURES),
+            ("Tier 4 (Physics-Motivated Nuclear)", TIER_4_NUCLEAR_FEATURES),
         ]:
             clf_b = _train_lgbm(x_tr_b[f_cols], y_tr_b, seed=42)
             vp_cln = {s: clf_b.predict_proba(tr_all[s]["feats_cln"][f_cols])[tr_all[s]["m_val_calendar"], 2] for s in train_ids}
@@ -989,7 +989,7 @@ def run_generalization_pipeline() -> None:
 
         for t_name, det_short, f_cols in [
             ("Tier 3 (Weather Fusion)", "Tier3", TIER_3_FEATURES),
-            ("Tier 4 (Physics-Informed Nuclear)", "Tier4", TIER_4_NUCLEAR_FEATURES),
+            ("Tier 4 (Physics-Motivated Nuclear)", "Tier4", TIER_4_NUCLEAR_FEATURES),
         ]:
             clf_11 = _train_lgbm(x_tr_11[f_cols], y_tr_11, seed=42)
             vp_cln = {s: clf_11.predict_proba(tr_all[s]["feats_cln"][f_cols])[tr_all[s]["m_val_calendar"], 2] for s in train_ids}
@@ -1116,7 +1116,7 @@ def run_generalization_pipeline() -> None:
 
         for t_name, f_cols in [
             ("Tier 3 (Weather Fusion)", TIER_3_FEATURES),
-            ("Tier 4 (Physics-Informed Nuclear)", TIER_4_NUCLEAR_FEATURES),
+            ("Tier 4 (Physics-Motivated Nuclear)", TIER_4_NUCLEAR_FEATURES),
         ]:
             clf_c = _train_lgbm(x_tr_c[f_cols], y_tr_c, seed=42)
             vp_cln = {s: clf_c.predict_proba(tr_all[s]["feats_cln"][f_cols])[tr_all[s]["m_val_calendar"], 2] for s in train_ids}
@@ -1209,7 +1209,7 @@ def run_generalization_pipeline() -> None:
     for t_name, f_cols in [
         ("Tier 2 (Spectral)", TIER_2_FEATURES),
         ("Tier 3 (Weather Fusion)", TIER_3_FEATURES),
-        ("Tier 4 (Physics-Informed Nuclear)", TIER_4_NUCLEAR_FEATURES),
+        ("Tier 4 (Physics-Motivated Nuclear)", TIER_4_NUCLEAR_FEATURES),
     ]:
         clf_5 = _train_lgbm(x_tr_5[f_cols], y_tr_5, seed=42)
         vp_c = {s: clf_5.predict_proba(tr_all[s]["feats_cln"][f_cols])[tr_all[s]["m_val_calendar"], 2] for s in pilot_ids}
@@ -1342,9 +1342,9 @@ def _plot_tampa_diagnostic_episodes(
     feats = tampa_test_pack["feats_cln"]
     dts = pd.to_datetime(df["dt"])
     _, _, tau_t3, p_t3, _ = tampa_models_and_scores["Tier 3 (Weather Fusion)"]
-    _, _, tau_t4, p_t4, _ = tampa_models_and_scores["Tier 4 (Physics-Informed Nuclear)"]
+    _, _, tau_t4, p_t4, _ = tampa_models_and_scores["Tier 4 (Physics-Motivated Nuclear)"]
 
-    t4_eps = df_tampa_eps[df_tampa_eps["tier_name"] == "Tier 4 (Physics-Informed Nuclear)"].copy()
+    t4_eps = df_tampa_eps[df_tampa_eps["tier_name"] == "Tier 4 (Physics-Motivated Nuclear)"].copy()
     # Select 6 representative episodes spanning distinct categories/dates
     selected = []
     for cat in ("rain-coincident", "post-rain", "filter-change adjacent", "missing-data adjacent", "baseline or gain drift"):
@@ -1453,9 +1453,9 @@ def _plot_tampa_spectral_drift_and_calibration(
     axes[1].grid(True, alpha=0.3)
 
     # Panel C: 11-Station Tier 4 LOSO False-Alarm Rate (Zero-Shot vs Local-168h vs 12m Local Calibration)
-    t4_zs = df_loso_11[(df_loso_11["detector_name"] == "Tier 4 (Physics-Informed Nuclear)") & (df_loso_11["transfer_mode"] == "ZeroShot_Uncalibrated")].set_index("held_out_station")
-    t4_168 = df_loso_11[(df_loso_11["detector_name"] == "Tier 4 (Physics-Informed Nuclear)") & (df_loso_11["transfer_mode"] == "ZeroShot_Local168h_Normalized")].set_index("held_out_station")
-    t4_lc = df_loso_11[(df_loso_11["detector_name"] == "Tier 4 (Physics-Informed Nuclear)") & (df_loso_11["transfer_mode"] == "LocalCalibrated_12m_Clean")].set_index("held_out_station")
+    t4_zs = df_loso_11[(df_loso_11["detector_name"] == "Tier 4 (Physics-Motivated Nuclear)") & (df_loso_11["transfer_mode"] == "ZeroShot_Uncalibrated")].set_index("held_out_station")
+    t4_168 = df_loso_11[(df_loso_11["detector_name"] == "Tier 4 (Physics-Motivated Nuclear)") & (df_loso_11["transfer_mode"] == "ZeroShot_Local168h_Normalized")].set_index("held_out_station")
+    t4_lc = df_loso_11[(df_loso_11["detector_name"] == "Tier 4 (Physics-Motivated Nuclear)") & (df_loso_11["transfer_mode"] == "LocalCalibrated_12m_Clean")].set_index("held_out_station")
     st_order = list(t4_zs.index)
     y_pos = np.arange(len(st_order))
     axes[2].barh(y_pos - 0.25, t4_zs["fa_per_yr"], height=0.25, color="#D55E00", label="Zero-Shot Uncalibrated")

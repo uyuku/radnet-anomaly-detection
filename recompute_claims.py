@@ -262,30 +262,48 @@ def verify_documents_and_audit(
         if sub not in readme_text:
             errors.append(f"README.md missing expected verified value: {sub!r}")
 
-    required_report_substrings = [
-        "324,550",
-        "15,602",
-        "82.62",
-        "52.86",
-        "57.00\\%",
-        "13.5 h",
-        "23.51",
-        "8.0 h",
-        "102.83 \\pm 9.30",
-        "89.98 \\pm 0.94\\%",
-        "10.39 \\pm 2.62",
-        "79.62 \\pm 1.47\\%",
-        "27.97 \\pm 28.27",
-        "3.89 \\pm 1.25",
-        "2.71 \\pm 1.39",
-        "2.63 \\pm 1.49",
-        "57.10 \\pm 23.67",
-        "89.62 \\pm 2.93\\%",
-        "minimum child samples of 50",
-    ]
+    if "manuscript_mdpi.tex" in report_path.name:
+        required_report_substrings = [
+            r"\BenchmarkPlumeInjections{}",
+            r"\TierFourDet{}",
+            r"\TierFourFA{}",
+            r"\BaselineRollingThreeSigmaDet{}",
+            r"\BaselineRollingThreeSigmaFA{}",
+            r"\BaselineNonMLRadonDet{}",
+            r"\BaselineNonMLRadonFA{}",
+            r"\BenchmarkPlumesTrain{}",
+            r"\BenchmarkPlumesTest{}",
+            "106,628",
+            "12.16",
+            r"+6.9\%",
+            r"+41.4\%",
+            r"+196.7\%",
+        ]
+    else:
+        required_report_substrings = [
+            "324,550",
+            "15,602",
+            "82.62",
+            "52.86",
+            r"57.00\%",
+            "13.5 h",
+            "23.51",
+            "8.0 h",
+            r"102.83 \pm 9.30",
+            r"89.98 \pm 0.94\%",
+            r"10.39 \pm 2.62",
+            r"79.62 \pm 1.47\%",
+            r"27.97 \pm 28.27",
+            r"3.89 \pm 1.25",
+            r"2.71 \pm 1.39",
+            r"2.63 \pm 1.49",
+            r"57.10 \pm 23.67",
+            r"89.62 \pm 2.93\%",
+            "minimum child samples of 50",
+        ]
     for sub in required_report_substrings:
         if sub not in report_text:
-            errors.append(f"report/interim_report.tex missing expected verified value: {sub!r}")
+            errors.append(f"{report_path.name} missing expected verified value: {sub!r}")
 
     # 2. Check prohibited stale/contradicted claims
     prohibited_readme = [
@@ -319,7 +337,7 @@ def verify_documents_and_audit(
     ]
     for bad in prohibited_report:
         if bad in report_text:
-            errors.append(f"report/interim_report.tex still contains contradicted/unsupported string: {bad!r}")
+            errors.append(f"{report_path.name} still contains contradicted/unsupported string: {bad!r}")
 
     # 3. Check claims_audit.csv structure and resolution
     if not audit_csv_path.exists():
@@ -355,7 +373,7 @@ def main() -> int:
     root = Path(__file__).resolve().parent
     data_dir = root / "data" / "processed"
     readme_path = root / "README.md"
-    report_path = root / "report" / "interim_report.tex"
+    report_path = root / "report" / "manuscript_mdpi.tex" if (root / "report" / "manuscript_mdpi.tex").exists() else root / "report" / "interim_report.tex"
     audit_csv_path = root / "docs" / "claims_audit.csv"
 
     summary = {

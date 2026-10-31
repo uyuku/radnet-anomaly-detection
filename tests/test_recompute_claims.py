@@ -19,7 +19,7 @@ from recompute_claims import (
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "data" / "processed"
 README_PATH = ROOT_DIR / "README.md"
-REPORT_PATH = ROOT_DIR / "report" / "interim_report.tex"
+REPORT_PATH = ROOT_DIR / "report" / "manuscript_mdpi.tex" if (ROOT_DIR / "report" / "manuscript_mdpi.tex").exists() else ROOT_DIR / "report" / "interim_report.tex"
 AUDIT_CSV_PATH = ROOT_DIR / "docs" / "claims_audit.csv"
 
 
@@ -49,7 +49,7 @@ def test_recompute_washout_surges() -> None:
 
 def test_recompute_benchmark_metrics() -> None:
     bm = recompute_benchmark_metrics(DATA_DIR)
-    t4_95 = bm["tiers"]["Tier 4 (Physics-Informed Nuclear)@95"]
+    t4_95 = bm["tiers"]["Tier 4 (Physics-Motivated Nuclear)@95"]
     assert t4_95["fa_per_year_mean"] == pytest.approx(2.71, abs=0.01)
     assert t4_95["fa_per_year_std"] == pytest.approx(1.39, abs=0.01)
     assert t4_95["det_total_mean"] == pytest.approx(94.00, abs=0.01)
@@ -63,7 +63,7 @@ def test_recompute_benchmark_metrics() -> None:
     assert t1b_95["fa_per_year_mean"] == pytest.approx(10.39, abs=0.01)
     assert t1b_95["det_total_mean"] == pytest.approx(79.62, abs=0.01)
 
-    assert bm["loso"]["Tier 4 (Physics-Informed Nuclear):fl_tampa"]["fa_per_year"] == pytest.approx(169.42, abs=0.01)
+    assert bm["loso"]["Tier 4 (Physics-Motivated Nuclear):fl_tampa"]["fa_per_year"] == pytest.approx(169.42, abs=0.01)
     assert bm["loso"]["Tier 3 (Weather Fusion):fl_tampa"]["fa_per_year"] == pytest.approx(1151.30, abs=0.01)
 
 

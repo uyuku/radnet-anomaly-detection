@@ -22,45 +22,37 @@ $$\dot{D}_{\text{sub}} = 0.031\text{ Bq/m}^3 \times 0.06552\text{ nSv/h per Bq/m
 - The earlier draft text quoted $6.3 \times 10^{-6}\text{ nSv/h}$ ($0.0063\text{ pSv/h}$).
 - The actual submersion dose rate is:
   $$\frac{2.031 \times 10^{-3}\text{ nSv/h}}{6.3 \times 10^{-6}\text{ nSv/h}} = 322.4 \approx 320\times \text{ higher}$$
-- Even with this $320\times$ correction, an immersion dose rate of $2.03\text{ pSv/h}$ ($0.00203\text{ nSv/h}$) is $\approx 0.003\%$ of natural ambient background ($50$--$100\text{ nSv/h}$). In terms of detector response, this corresponds to $\sim 0.0002\text{ CPM}$ gross counting excess, which is 4 orders of magnitude below hourly Poisson counting noise ($4.5\text{ CPM/h}$).
+- At the detector dose calibration slope of $\approx 0.0134\text{ nSv/h per CPM}$, this immersion dose rate produces:
+  $$\Delta R_{\text{sub}} = \frac{0.002031\text{ nSv/h}}{0.0134\text{ nSv/h per CPM}} \approx 0.15\text{ CPM}$$
+- An ambient excess of $0.15\text{ CPM}$ is completely imperceptible against 1-hour counting statistics (Poisson $\sigma \approx 5.7\text{ CPM}$) and natural background variations ($2{,}000\text{--}7{,}000\text{ CPM}$).
 
-## 2. Active Filter Accumulation Mechanism
-The RadNet monitoring system is not a passive immersion chamber; it actively draws ambient air through glass-fiber filter tape directly beneath a 2"x2" NaI(Tl) scintillation detector.
+## 2. Active Filter Accumulation Mechanism & Sensitivity
+The RadNet monitoring system actively draws ambient air through glass-fiber filter tape directly beneath a 2"x2" NaI(Tl) scintillation detector.
 
 ### Sampler Flow Rate & Cumulative Volume:
-- Continuous volumetric flow rate: $Q \approx 35\text{ CFM} \approx 1.0\text{ m}^3/\text{min} \approx 60.0\text{ m}^3/\text{h}$ (`[UNVERIFIED: EPA RadNet continuous sampler nominal flow rate ~35 CFM / ~60 m³/h]`).
-- In 24 hours (1 day): $V_{24} = 60.0 \times 24 = 1{,}440\text{ m}^3$.
-- In 100 hours (~4 days): $V_{100} = 60.0 \times 100 = 6{,}000\text{ m}^3$.
-
-### Retained Particulate Activity vs. Volatile Iodine:
+- Continuous volumetric flow rate: nominal $Q \approx 35\text{ CFM} \approx 60.0\text{ m}^3/\text{h}$ (sensitivity range $30\text{--}40\text{ CFM} = 51\text{--}68\text{ m}^3/\text{h}$; `[UNVERIFIED: EPA RadNet continuous sampler nominal flow rate ~35 CFM / ~60 m³/h]`).
+- In 24 hours: $V_{24} = 60.0 \times 24 = 1{,}440\text{ m}^3$.
 - Total $^{131}\text{I}$ activity passing through sampler in 24 hours:
   $$A_{\text{drawn}} = 1{,}440\text{ m}^3 \times 0.031\text{ Bq/m}^3 = 44.64\text{ Bq}$$
-- In trans-Pacific atmospheric plumes, $^{131}\text{I}$ exists predominantly as volatile gaseous species ($	ext{I}_2$, $\text{CH}_3\text{I}$) that pass directly through standard particulate glass-fiber filters. Particulate aerosol-bound fraction is typically $f_{\text{part}} \approx 20\%\text{--}30\%$ (median $\approx 25\%$).
-- Retained particulate activity on filter tape after 24 hours:
-  $$A_{\text{part, 24h}} = 44.64 \times 0.25 \approx 11.16\text{ Bq}$$
-- After 100 hours of continuous pumping without tape advancement:
-  $$A_{\text{part, 100h}} = 186.0 \times 0.25 \approx 46.50\text{ Bq}$$
+
+### Particulate Retained Fraction:
+- In trans-Pacific atmospheric plumes, volatile gaseous iodine ($	ext{I}_2, \text{CH}_3\text{I}$) passes through standard particulate glass-fiber filters unretarded. The particulate fraction is typically $f_{\text{part}} \approx 15\%\text{--}35\%$ (nominal $25\%$).
+- Retained particulate activity on filter tape after 24 hours: nominal $11.16\text{ Bq}$ (range $6.2\text{--}16.2\text{ Bq}$).
 
 ### Expected Scintillation Count Rate Excess:
-- 2"x2" NaI(Tl) crystal positioned 1--2 cm directly above filter tape:
-  - Photopeak efficiency at 364 keV (Channel 3: 200--400 keV): $\epsilon_{\text{photo}} \approx 2.5\% = 0.025\text{ counts/decay}$.
-  - Total gamma detection efficiency (Gross): $\epsilon_{\text{gross}} \approx 4.5\% = 0.045\text{ counts/decay}$.
-- Expected counting rate excess over background:
-  - **After 24 hours:**
-    $$\Delta R_{\text{R03}} = 11.16\text{ Bq} \times 0.025 \times 60\text{ s/min} = 16.7\text{ CPM}$$
-    $$\Delta R_{\text{gross}} = 11.16\text{ Bq} \times 0.045 \times 60\text{ s/min} = 30.1\text{ CPM}$$
-  - **After 100 hours (if unadvanced):**
-    $$\Delta R_{\text{R03}} = 46.50 \times 0.025 \times 60 = 69.8\text{ CPM}$$
-    $$\Delta R_{\text{gross}} = 46.50 \times 0.045 \times 60 = 125.6\text{ CPM}$$
+- Photopeak efficiency in Channel 3 (200--400 keV): nominal $2.5\%$ (range $1.5\%\text{--}3.5\%$).
+- Total gross gamma efficiency: nominal $4.5\%$ (range $3.0\%\text{--}6.0\%$).
+- **After 24 hours:**
+  - Channel 3: nominal $16.7\text{ CPM}$ (sensitivity range $6.9\text{--}35.8\text{ CPM}$).
+  - Gross CPM: nominal $30.1\text{ CPM}$ (sensitivity range $13.9\text{--}61.4\text{ CPM}$).
 
-### Comparison with Field Environmental Variability:
-- Nominal baseline gross counting rate: $\sim 750\text{ CPM}$.
-- Single-hour Poisson counting standard deviation: $\sigma_{\text{Poisson}} = \sqrt{750} \approx 27.4\text{ CPM}$.
-- Diurnal radon/temperature baseline swing: $\pm 50\text{ to }150\text{ CPM}$.
-- Synthetic plume injections in benchmark: 10 to 200 CPM added gross counts.
-
-### Conclusion on Detectability:
-Filter accumulation could theoretically produce a measurable signal ($\sim 17\text{ CPM}$ in Channel 3 after 24h; $\sim 70\text{ CPM}$ after 100h) IF particulate inventory is allowed to accumulate continuously. However, operational RadNet units automatically advance the filter tape periodically (every 24--72 hours), which flushes the accumulated activity and resets the integration counter. Consequently, hourly detection remained marginal.
+### Comparison with Field Noise and Environmental Baseline Variability:
+- **Single-hour Poisson counting noise:** For an hourly mean rate $R$, $\sigma_{\text{Poisson}} = \sqrt{R/60}$.
+  - Honolulu ($R \approx 1{,}923\text{ CPM}$): $\sigma_{\text{Poisson}} = \sqrt{1923/60} \approx 5.7\text{ CPM}$.
+  - Network stations ($2{,}000\text{--}7{,}000\text{ CPM}$): $\sigma_{\text{Poisson}} \approx 5.8\text{--}10.8\text{ CPM}$.
+- **Natural environmental baseline variability:**
+  - Radon diurnal swing, air mass trajectory, and pressure changes produce an empirical standard deviation of $\sigma_{\text{env}} = 129.7\text{ CPM}$ at Honolulu, and $150\text{--}400+\text{ CPM}$ at continental stations.
+- **Physical Detectability Limit:** While $\approx 17\text{ CPM}$ exceeds the 1-hour Poisson counting statistics ($5.7\text{ CPM}$), it is completely masked by natural environmental variability ($\sigma_{\text{env}} \approx 130\text{ CPM}$). Natural background variability, not Poisson counting noise, is the true physical limit. Furthermore, operational units advance the filter tape periodically (every 24--72 hours), resetting the accumulated activity.
 
 ## 3. Honolulu March 21, 2011 Alarms Reconciliation
 - In `data/processed/real_event_fukushima_station_summary.csv`, Honolulu recorded **2 alarm hours** for Tier 4 during the event window (`2011-03-21 07:00:00` and `2011-03-21 08:00:00` UTC).

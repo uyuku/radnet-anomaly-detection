@@ -4,4 +4,4 @@ ML_Tier1_Gross,Tier 1 (Gross),0.629564,2179,12.1638,179.14,164,8.27,163.01,195.3
 ML_Tier1b_GrossWeather,Tier 1b (Gross+Weather),0.719485,851,12.1638,69.96,164,6.25,58.09,82.57,707,4.53,61.31,79.02,65.34,74.82
 ML_Tier2_Spectral,Tier 2 (Spectral),0.993985,15,12.1638,1.23,164,0.39,0.57,2.05,707,0.36,0.58,1.99,0.69,2.03
 ML_Tier3_WeatherFusion,Tier 3 (Weather Fusion),0.965832,158,12.1638,12.99,164,3.42,7.04,20.3,707,1.9,9.5,16.84,11.04,15.18
-ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Informed Nuclear),0.973951,120,12.1638,9.87,164,2.79,5.1,15.97,707,1.72,6.65,13.41,8.18,11.8
+ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Motivated Nuclear),0.973951,120,12.1638,9.87,164,2.79,5.1,15.97,707,1.72,6.65,13.41,8.18,11.8

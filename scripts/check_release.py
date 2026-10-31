@@ -25,6 +25,8 @@ from pathlib import Path
 import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 REPORT_DIR = REPO_ROOT / "report"
 MANUSCRIPT_TEX = REPORT_DIR / "manuscript_mdpi.tex"
 MACROS_TEX = REPORT_DIR / "manuscript_macros.tex"
@@ -197,7 +199,7 @@ def main() -> int:
 
     all_errors = []
 
-    print("[1/4] Scanning codebase for forbidden tokens (Prompt , BUG-, TODO(author), UNVERIFIED)...")
+    print("[1/5] Scanning codebase for forbidden tokens (Prompt , BUG-, TODO(author), UNVERIFIED)...")
     token_errors = check_forbidden_strings()
     if token_errors:
         print(f"  FAILED: Found {len(token_errors)} forbidden token violations:")
@@ -209,7 +211,7 @@ def main() -> int:
     else:
         print("  PASSED: 0 forbidden tokens found across codebase.")
 
-    print("[2/4] Verifying manuscript macros and cross-document number consistency...")
+    print("[2/5] Verifying manuscript macros and cross-document number consistency...")
     macro_errors = check_manuscript_macros()
     if macro_errors:
         print(f"  FAILED: Found {len(macro_errors)} macro/document drift errors:")
@@ -219,7 +221,7 @@ def main() -> int:
     else:
         print("  PASSED: All macros match underlying CSVs, abstract, and README.")
 
-    print("[3/4] Verifying 1-to-1 citation correspondence in manuscript...")
+    print("[3/5] Verifying 1-to-1 citation correspondence in manuscript...")
     cite_errors = check_citations()
     if cite_errors:
         print(f"  FAILED: Found {len(cite_errors)} citation errors:")
@@ -229,7 +231,7 @@ def main() -> int:
     else:
         print("  PASSED: 1-to-1 citation correspondence verified (0 missing, 0 unused bibitems).")
 
-    print("[4/4] Verifying manuscript figures and captions...")
+    print("[4/5] Verifying manuscript figures and captions...")
     fig_errors = check_figures()
     if fig_errors:
         print(f"  FAILED: Found {len(fig_errors)} figure errors:")
@@ -238,6 +240,13 @@ def main() -> int:
         all_errors.extend(fig_errors)
     else:
         print("  PASSED: All figure files exist and have valid captions.")
+
+    print("[5/5] Auditing codebase for hardcoded results and verified data reading...")
+    from scripts.audit_hardcoded_results import audit_repository
+    if not audit_repository():
+        all_errors.append("Repository hardcode audit failed: found unauthorized hardcoded results or missing data readers.")
+    else:
+        print("  PASSED: 0 unauthorized hardcoded results found; all results scripts read data.")
 
     print("-" * 70)
     if all_errors:

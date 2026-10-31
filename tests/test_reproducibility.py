@@ -54,7 +54,7 @@ def test_zenodo_archive_completeness():
 
 
 def test_reproducibility_documentation_and_license_deliverables():
-    """Verifies LICENSE, CITATION.cff, CHANGELOG, and statement drafts exist."""
+    """Verifies LICENSE, CITATION.cff, CHANGELOG, and open science deliverables exist."""
     required = [
         Path("LICENSE"),
         Path("CITATION.cff"),
@@ -64,8 +64,6 @@ def test_reproducibility_documentation_and_license_deliverables():
         Path(".github/workflows/ci.yml"),
         Path("docs/data_licenses_and_terms.md"),
         Path("docs/zenodo_upload_instructions.md"),
-        Path("docs/statements_draft.md"),
-        Path("docs/repository_hygiene_audit.md"),
     ]
     for p in required:
         assert p.exists(), f"Missing required file: {p}"

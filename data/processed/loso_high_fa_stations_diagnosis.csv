@@ -5,17 +5,17 @@ Tier 3 (Weather Fusion),ne_omaha,missing-data adjacent,3,5.88,ratio_r05_r03
 Tier 3 (Weather Fusion),hi_honolulu,baseline or gain drift,105,86.07,ratio_r05_r03
 Tier 3 (Weather Fusion),hi_honolulu,missing-data adjacent,5,4.1,ratio_r05_r03
 Tier 3 (Weather Fusion),hi_honolulu,post-rain,12,9.84,ratio_r05_r03
-Tier 4 (Physics-Informed Nuclear),hi_honolulu,baseline or gain drift,97,80.83,stripped_excess_r07_z
-Tier 4 (Physics-Informed Nuclear),hi_honolulu,filter-change adjacent,3,2.5,stripped_excess_r07_z
-Tier 4 (Physics-Informed Nuclear),hi_honolulu,instrument glitch,1,0.83,stripped_excess_r07_z
-Tier 4 (Physics-Informed Nuclear),hi_honolulu,missing-data adjacent,13,10.83,stripped_excess_r07_z
-Tier 4 (Physics-Informed Nuclear),hi_honolulu,post-rain,6,5.0,stripped_excess_r07_z
+Tier 4 (Physics-Motivated Nuclear),hi_honolulu,baseline or gain drift,97,80.83,stripped_excess_r07_z
+Tier 4 (Physics-Motivated Nuclear),hi_honolulu,filter-change adjacent,3,2.5,stripped_excess_r07_z
+Tier 4 (Physics-Motivated Nuclear),hi_honolulu,instrument glitch,1,0.83,stripped_excess_r07_z
+Tier 4 (Physics-Motivated Nuclear),hi_honolulu,missing-data adjacent,13,10.83,stripped_excess_r07_z
+Tier 4 (Physics-Motivated Nuclear),hi_honolulu,post-rain,6,5.0,stripped_excess_r07_z
 Tier 3 (Weather Fusion),ak_anchorage,baseline or gain drift,19,40.43,ratio_r05_r03
 Tier 3 (Weather Fusion),ak_anchorage,filter-change adjacent,5,10.64,share_r07
 Tier 3 (Weather Fusion),ak_anchorage,missing-data adjacent,11,23.4,ratio_r05_r03
 Tier 3 (Weather Fusion),ak_anchorage,post-rain,11,23.4,ratio_r05_r03
 Tier 3 (Weather Fusion),ak_anchorage,rain-coincident,1,2.13,ratio_r05_r03
-Tier 4 (Physics-Informed Nuclear),ak_anchorage,baseline or gain drift,9,52.94,stripped_excess_r07_z
-Tier 4 (Physics-Informed Nuclear),ak_anchorage,filter-change adjacent,1,5.88,stripped_excess_r07_z
-Tier 4 (Physics-Informed Nuclear),ak_anchorage,missing-data adjacent,4,23.53,stripped_excess_r07_z
-Tier 4 (Physics-Informed Nuclear),ak_anchorage,post-rain,3,17.65,stripped_excess_r07_z
+Tier 4 (Physics-Motivated Nuclear),ak_anchorage,baseline or gain drift,9,52.94,stripped_excess_r07_z
+Tier 4 (Physics-Motivated Nuclear),ak_anchorage,filter-change adjacent,1,5.88,stripped_excess_r07_z
+Tier 4 (Physics-Motivated Nuclear),ak_anchorage,missing-data adjacent,4,23.53,stripped_excess_r07_z
+Tier 4 (Physics-Motivated Nuclear),ak_anchorage,post-rain,3,17.65,stripped_excess_r07_z

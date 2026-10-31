@@ -50,7 +50,7 @@ def test_macro_values_match_underlying_csvs():
     assert comp_csv.exists(), "benchmark_realism_comparison.csv must exist"
     df_comp = pd.read_csv(comp_csv)
 
-    r_t4 = df_comp[df_comp["tier_name"] == "Tier 4 (Physics-Informed Nuclear)"].iloc[0]
+    r_t4 = df_comp[df_comp["tier_name"] == "Tier 4 (Physics-Motivated Nuclear)"].iloc[0]
     assert macro_map["TierFourDet"] == f"{r_t4['new_det_pct_mean']:.1f}\\%"
     assert macro_map["TierFourFA"] == f"{r_t4['new_fa_per_yr_mean']:.2f}"
 

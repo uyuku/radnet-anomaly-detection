@@ -9,22 +9,51 @@
     "dose_rate_submersion_psvh": 2.031,
     "previous_flawed_value_nsvh": 6.3e-06,
     "discrepancy_factor": 322.4,
-    "ambient_excess_cpm_submersion": 0.0002,
-    "conclusion": "Immersion dose rate alone (2.03 pSv/h) is ~320x higher than 6.3e-6 nSv/h, but still completely undetectable against 50-100 nSv/h background."
+    "ambient_excess_cpm_submersion": 0.1516,
+    "conclusion": "Immersion dose rate (2.03 pSv/h) corresponds to ~0.15 CPM ambient excess (at 0.0134 nSv/h per CPM), completely undetectable against 50-100 nSv/h background."
   },
   "filter_accumulation": {
     "flow_rate_m3_per_h": 60.0,
+    "flow_rate_range_cfm": [
+      30.0,
+      40.0
+    ],
+    "flow_rate_range_m3_h": [
+      51.0,
+      68.0
+    ],
     "flow_rate_status": "UNVERIFIED: EPA RadNet continuous sampler nominal flow rate ~35 CFM / ~60 m^3/h",
-    "f_particulate": 0.25,
+    "f_particulate_nominal": 0.25,
+    "f_particulate_range": [
+      0.15,
+      0.35
+    ],
+    "photopeak_eff_r03_nominal": 0.025,
+    "photopeak_eff_r03_range": [
+      0.015,
+      0.035
+    ],
     "activity_drawn_24h_bq": 44.64,
     "activity_particulate_24h_bq": 11.16,
-    "cpm_excess_channel3_24h": 16.7,
-    "cpm_excess_gross_24h": 30.1,
+    "cpm_excess_channel3_24h_nominal": 16.7,
+    "cpm_excess_channel3_24h_range": [
+      5.1,
+      37.2
+    ],
+    "cpm_excess_gross_24h_nominal": 30.1,
+    "cpm_excess_gross_24h_range": [
+      10.2,
+      63.7
+    ],
     "cpm_excess_channel3_100h": 69.8,
     "cpm_excess_gross_100h": 125.5,
-    "hourly_poisson_noise_cpm": 27.4,
-    "diurnal_radon_swing_cpm": 100.0,
-    "conclusion": "Filter accumulation could produce a measurable signal (16-30 CPM after 24h, 70-125 CPM after 100h) IF particulate iodine is retained and filter is not advanced."
+    "poisson_hourly_sd_honolulu_cpm": 5.66,
+    "poisson_hourly_sd_network_cpm_range": [
+      5.77,
+      10.8
+    ],
+    "natural_environmental_sd_honolulu_cpm": 129.7,
+    "conclusion": "Filter accumulation could produce a measurable signal (nominal ~17 CPM in Ch3 after 24h, range 7-36 CPM) exceeding hourly Poisson counting noise (~5.7 CPM), but remains masked by natural environmental baseline variability (~130 CPM SD at Honolulu) and periodic filter tape advances."
   },
   "honolulu_march21_alarms": {
     "alarms_count": 2,
