@@ -1,0 +1,6 @@
+tier_name,filter_terminated_det_pct,filter_terminated_fa_per_yr,filter_terminated_delay_hrs,continuous_arbitrary_end_det_pct,continuous_arbitrary_end_fa_per_yr,continuous_arbitrary_end_delay_hrs,delta_det_pct_continuous_minus_filter_terminated,n_test_plumes_crossing_filter_drop
+Tier 1 (Gross),90.6,153.47,8.2,87.95,206.47,8.2,-2.65,62
+Tier 1b (Gross+Weather),86.7,52.91,9.4,83.42,55.43,10.15,-3.28,62
+Tier 2 (Spectral),87.9,6.51,5.0,82.92,0.33,6.12,-4.98,62
+Tier 3 (Weather Fusion),86.5,3.32,5.2,85.83,1.23,5.9,-0.67,62
+Tier 4 (Physics-Informed Nuclear),88.9,2.15,5.6,93.6,7.19,5.0,4.7,62

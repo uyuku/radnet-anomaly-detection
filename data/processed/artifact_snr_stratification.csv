@@ -1,0 +1,51 @@
+benchmark,tier_name,snr_bin,n_test_plumes,mean_gross_snr_sigma,mean_onset_channel_stripped_z,realized_detection_pct,median_delay_hours,explanation
+legacy_v1_hand_templates,Tier 1 (Gross),<1.0_sigma,18,0.79,1.15,80.56,4.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
+legacy_v1_hand_templates,Tier 1 (Gross),1.0_2.0_sigma,51,1.54,0.71,85.59,6.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 1 (Gross),2.0_3.0_sigma,38,2.49,0.7,84.08,5.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 1 (Gross),3.0_5.0_sigma,58,3.98,0.54,94.91,7.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 1 (Gross),>=5.0_sigma,35,6.88,0.6,100.0,7.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 1b (Gross+Weather),<1.0_sigma,18,0.79,1.15,60.28,7.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
+legacy_v1_hand_templates,Tier 1b (Gross+Weather),1.0_2.0_sigma,51,1.54,0.71,66.57,6.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 1b (Gross+Weather),2.0_3.0_sigma,38,2.49,0.7,75.39,7.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 1b (Gross+Weather),3.0_5.0_sigma,58,3.98,0.54,91.64,10.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 1b (Gross+Weather),>=5.0_sigma,35,6.88,0.6,91.29,10.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 2 (Spectral),<1.0_sigma,18,0.79,1.15,74.17,4.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
+legacy_v1_hand_templates,Tier 2 (Spectral),1.0_2.0_sigma,51,1.54,0.71,89.51,3.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 2 (Spectral),2.0_3.0_sigma,38,2.49,0.7,99.21,3.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 2 (Spectral),3.0_5.0_sigma,58,3.98,0.54,97.93,4.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 2 (Spectral),>=5.0_sigma,35,6.88,0.6,95.86,5.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 3 (Weather Fusion),<1.0_sigma,18,0.79,1.15,65.28,4.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
+legacy_v1_hand_templates,Tier 3 (Weather Fusion),1.0_2.0_sigma,51,1.54,0.71,83.92,3.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 3 (Weather Fusion),2.0_3.0_sigma,38,2.49,0.7,96.97,3.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 3 (Weather Fusion),3.0_5.0_sigma,58,3.98,0.54,96.29,5.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 3 (Weather Fusion),>=5.0_sigma,35,6.88,0.6,94.71,5.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 4 (Physics-Informed Nuclear),<1.0_sigma,18,0.79,1.15,68.33,5.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
+legacy_v1_hand_templates,Tier 4 (Physics-Informed Nuclear),1.0_2.0_sigma,51,1.54,0.71,90.29,4.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 4 (Physics-Informed Nuclear),2.0_3.0_sigma,38,2.49,0.7,99.61,4.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 4 (Physics-Informed Nuclear),3.0_5.0_sigma,58,3.98,0.54,98.28,5.0,Standard multi-sigma gross and spectral excess.
+legacy_v1_hand_templates,Tier 4 (Physics-Informed Nuclear),>=5.0_sigma,35,6.88,0.6,100.0,5.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 1 (Gross),<1.0_sigma,18,0.79,0.97,80.0,6.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
+realistic_v2_derived_templates,Tier 1 (Gross),1.0_2.0_sigma,46,1.57,0.63,74.02,5.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 1 (Gross),2.0_3.0_sigma,45,2.5,0.67,88.44,8.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 1 (Gross),3.0_5.0_sigma,51,3.98,0.44,93.43,10.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 1 (Gross),>=5.0_sigma,40,6.55,0.44,100.0,11.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 1b (Gross+Weather),<1.0_sigma,18,0.79,0.97,63.06,7.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
+realistic_v2_derived_templates,Tier 1b (Gross+Weather),1.0_2.0_sigma,46,1.57,0.63,64.89,9.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 1b (Gross+Weather),2.0_3.0_sigma,45,2.5,0.67,86.33,8.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 1b (Gross+Weather),3.0_5.0_sigma,51,3.98,0.44,91.76,12.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 1b (Gross+Weather),>=5.0_sigma,40,6.55,0.44,100.0,12.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 2 (Spectral),<1.0_sigma,18,0.79,0.97,32.5,3.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
+realistic_v2_derived_templates,Tier 2 (Spectral),1.0_2.0_sigma,46,1.57,0.63,71.52,5.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 2 (Spectral),2.0_3.0_sigma,45,2.5,0.67,86.78,5.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 2 (Spectral),3.0_5.0_sigma,51,3.98,0.44,96.67,6.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 2 (Spectral),>=5.0_sigma,40,6.55,0.44,96.88,7.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 3 (Weather Fusion),<1.0_sigma,18,0.79,0.97,36.67,5.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
+realistic_v2_derived_templates,Tier 3 (Weather Fusion),1.0_2.0_sigma,46,1.57,0.63,76.2,4.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 3 (Weather Fusion),2.0_3.0_sigma,45,2.5,0.67,89.0,5.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 3 (Weather Fusion),3.0_5.0_sigma,51,3.98,0.44,98.04,6.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 3 (Weather Fusion),>=5.0_sigma,40,6.55,0.44,99.88,6.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 4 (Physics-Informed Nuclear),<1.0_sigma,18,0.79,0.97,60.83,5.0,"Sub-1-sigma gross plumes concentrate 38-68% of counts in a single photopeak channel (R03/R05/R07) whose dry SD is ~18% of gross SD, yielding >2 sigma channel excess."
+realistic_v2_derived_templates,Tier 4 (Physics-Informed Nuclear),1.0_2.0_sigma,46,1.57,0.63,92.83,4.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 4 (Physics-Informed Nuclear),2.0_3.0_sigma,45,2.5,0.67,95.22,5.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 4 (Physics-Informed Nuclear),3.0_5.0_sigma,51,3.98,0.44,99.51,5.0,Standard multi-sigma gross and spectral excess.
+realistic_v2_derived_templates,Tier 4 (Physics-Informed Nuclear),>=5.0_sigma,40,6.55,0.44,99.88,6.0,Standard multi-sigma gross and spectral excess.

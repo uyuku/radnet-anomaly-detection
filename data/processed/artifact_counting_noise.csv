@@ -1,0 +1,9 @@
+channel,old_noiseless_hf_variance_cpm2,pure_60min_poisson_variance_cpm2,target_empirical_overdispersed_variance_cpm2,new_noisy_injected_variance_cpm2,old_to_target_variance_ratio,new_to_target_variance_ratio,old_verdict,new_verdict
+cpm_r02,10.1201,1.8203,43.9058,42.5138,0.2305,0.9683,ARTIFACT_DETECTED (noise-free deterministic injection),PASS (matches Poisson + empirical overdispersion)
+cpm_r03,48.6678,3.7172,151.6632,150.6655,0.3209,0.9934,ARTIFACT_DETECTED (noise-free deterministic injection),PASS (matches Poisson + empirical overdispersion)
+cpm_r04,2.705,0.9845,13.1732,12.9838,0.2053,0.9856,ARTIFACT_DETECTED (noise-free deterministic injection),PASS (matches Poisson + empirical overdispersion)
+cpm_r05,12.0883,1.8053,18.4136,18.9792,0.6565,1.0307,ARTIFACT_DETECTED (noise-free deterministic injection),PASS (matches Poisson + empirical overdispersion)
+cpm_r06,0.7867,0.3838,1.4047,1.3106,0.56,0.933,ARTIFACT_DETECTED (noise-free deterministic injection),PASS (matches Poisson + empirical overdispersion)
+cpm_r07,3.7706,0.7492,6.293,6.4987,0.5992,1.0327,ARTIFACT_DETECTED (noise-free deterministic injection),PASS (matches Poisson + empirical overdispersion)
+cpm_r08,0.0059,0.0261,0.0957,0.0973,0.0617,1.0169,ARTIFACT_DETECTED (noise-free deterministic injection),PASS (matches Poisson + empirical overdispersion)
+cpm_r09,0.0,0.0001,0.0002,0.0002,0.0002,0.965,ARTIFACT_DETECTED (noise-free deterministic injection),PASS (matches Poisson + empirical overdispersion)

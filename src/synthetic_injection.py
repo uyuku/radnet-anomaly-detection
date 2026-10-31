@@ -35,6 +35,11 @@ import pandas as pd
 import yaml
 
 from src.analyze_filter_cycles_multi_station import detect_filter_drops
+from src.detector_response import (
+    apply_counting_noise,
+    compute_independent_injected_dose_rate,
+    sample_derived_spectrum,
+)
 from src.nuclear_physics import (
     CHANNELS,
     DEFAULT_RADON_BASIS,
@@ -166,15 +171,38 @@ def compute_physical_injection_profile(
     return profile
 
 
-def sample_operational_spectrum(rng: np.random.RandomState, scenario: str) -> tuple[np.ndarray, dict]:
+def classify_snr_bin(snr_val: float) -> str:
+    """Classifies plume SNR = peak_cpm / local_168h_sigma into standard bins."""
+    if snr_val < 1.0:
+        return "<1.0_sigma"
+    if snr_val < 2.0:
+        return "1.0_2.0_sigma"
+    if snr_val < 3.0:
+        return "2.0_3.0_sigma"
+    if snr_val < 5.0:
+        return "3.0_5.0_sigma"
+    return ">=5.0_sigma"
+
+
+def sample_operational_spectrum(
+    rng: np.random.RandomState,
+    scenario: str,
+    family: str = "A",
+    legacy_hand_written: bool = False,
+) -> tuple[np.ndarray, dict]:
     """
     Samples channel energy branching shares across R02-R09 under operational radiological scenarios.
-    Uses continuous uniform/Dirichlet draws for photopeak fractions, Compton continuum, and
-    high-energy scatter floor to ensure models encounter wide spectral variety.
+    By default (`legacy_hand_written=False`), uses derived detector-response templates from
+    `src/detector_response.py`:
+      - Family A ('A'): Analytic disk-to-cylinder + XCOM + Klein-Nishina model (training plumes)
+      - Family B ('B'): 3D Monte Carlo multi-scatter photon transport model (test plumes)
 
-    Includes Cs-134 high-energy lines (1168 & 1365 keV) in R07 for Fukushima-like reactor release,
-    producing an R07+R08 share that directly spans the empirical radon washout band.
+    When `legacy_hand_written=True`, reproduces the v1 hand-written uniform/Dirichlet draws
+    for comparison against the realistic benchmark.
     """
+    if not legacy_hand_written:
+        return sample_derived_spectrum(rng, scenario, family=family)
+
     tail_r06 = rng.uniform(0.005, 0.025)
     tail_r07 = rng.uniform(0.004, 0.012)
     tail_r08 = rng.uniform(0.002, 0.008)
@@ -234,7 +262,159 @@ def sample_operational_spectrum(rng: np.random.RandomState, scenario: str) -> tu
     return w, nuc
 
 
-def generate_revised_injection_catalog() -> pd.DataFrame:
+def _enrich_catalog_with_snr_and_resets(
+    df_catalog: pd.DataFrame,
+    timing_mode: str = "filter_terminated",
+    use_derived_templates: bool = True,
+    seed: int = RANDOM_SEED,
+) -> pd.DataFrame:
+    """
+    Enriches a catalog DataFrame with:
+    - derived detector-response spectra (`Family A` analytic for train, `Family B` Monte Carlo for test)
+      when `use_derived_templates=True`
+    - continuous arbitrary-end timing (`timing_mode='continuous_arbitrary_end'`) that shifts or places
+      plumes without anchoring ends to filter drops and logs intermediate `filter_reset_steps`
+    - local 168-hour background standard deviation `bg_sigma_168h_cpm`, `peak_snr_168h`, and `snr_bin`.
+    """
+    rng = np.random.RandomState(seed + 101)
+    cat = df_catalog.copy()
+    share_cols = [f"share_r0{i}" for i in range(2, 10)]
+
+    for st in STATIONS:
+        st_id = st["id"]
+        csv_file = Path(f"data/processed/merged_{st_id}_2017_2025.csv.gz")
+        df = pd.read_csv(csv_file)
+        df["dt"] = pd.to_datetime(df["utc_hour"])
+        df = df.sort_values("dt").reset_index(drop=True)
+        df["sigma_168h"] = df["gross_cpm"].rolling(168, min_periods=24).std().bfill().fillna(100.0)
+        df["precip_24h"] = df["precip_1h_mm"].rolling(24, min_periods=12).sum()
+        valid = df["has_radnet_obs"].fillna(False).astype(bool) & df["rad_complete_channels"].fillna(False).astype(bool)
+
+        drops_df = detect_filter_drops(df, st["drop_thresh"])
+        detected_drop_indices = sorted(drops_df.index.tolist()) if not drops_df.empty else []
+        detected_drop_set = set(detected_drop_indices)
+
+        def get_hours_since_drop(start_idx: int) -> int:
+            priors = [d for d in detected_drop_indices if d < start_idx]
+            return int(start_idx - priors[-1]) if priors else int(start_idx)
+
+        st_mask = cat["station_id"] == st_id
+        st_indices = cat[st_mask].index.tolist()
+
+        if timing_mode == "continuous_arbitrary_end":
+            # Shift each plume forward across its filter drop (or by an arbitrary offset)
+            # while maintaining the 48h buffer, split boundary, and dry/rain constraints,
+            # so plumes can span a filter change and end at arbitrary times.
+            occupied_count = np.zeros(len(df), dtype=int)
+            for idx_row in st_indices:
+                orig_s = int(cat.loc[idx_row, "start_index"])
+                orig_e = orig_s + int(cat.loc[idx_row, "duration_hours"]) - 1
+                occupied_count[orig_s : orig_e + 1] += 1
+
+            for idx_row in st_indices:
+                row = cat.loc[idx_row]
+                orig_start = int(row["start_index"])
+                dur = int(row["duration_hours"])
+                orig_end = orig_start + dur - 1
+                occupied_count[orig_start : orig_end + 1] -= 1
+
+                t_pass = int(row["t_passage_hours"])
+                env = str(row["environment"])
+                split_name = str(row["split"])
+                split_min = 168 if split_name == "train" else int(df[df["dt"] >= "2023-01-01"].index[0])
+                split_max = int(df[df["dt"] < "2023-01-01"].index[-1]) if split_name == "train" else len(df) - 1
+
+                # Candidate shifts around orig_start (+4h to +28h spans the filter drop at orig_end;
+                # also test arbitrary negative/positive offsets so ends are not at filter drops)
+                nonzero_shifts = list(range(4, 28, 2)) + list(range(-36, -2, 3)) + list(range(28, 72, 4))
+                rng.shuffle(nonzero_shifts)
+                candidate_shifts = nonzero_shifts + [0]
+                chosen_start = orig_start
+                rain_p_thresh = 0.5 if (st_id == "ca_san_diego" and split_name == "test") else 1.0
+
+                for sh in candidate_shifts:
+                    cand_s = orig_start + sh
+                    cand_e = cand_s + dur - 1
+                    if cand_s < split_min or cand_e > split_max:
+                        continue
+                    if sh != 0 and (cand_e in detected_drop_set):
+                        continue
+                    b_s = max(0, cand_s - 48)
+                    b_e = min(len(df), cand_e + 49)
+                    if (occupied_count[b_s:b_e] > 0).any():
+                        continue
+                    if "strictly_dry" in env:
+                        if not valid.loc[cand_s:cand_e].all():
+                            continue
+                        if (df.loc[cand_s:cand_e, "precip_1h_mm"] > 0.0).any():
+                            continue
+                        if df.loc[cand_s, "precip_24h"] > 0.0:
+                            continue
+                    else:
+                        max_miss = 1 if split_name == "train" else 2
+                        if int((~valid.loc[cand_s:cand_e]).sum()) > max_miss:
+                            continue
+                        if int((df.loc[cand_s : cand_s + t_pass - 1, "precip_1h_mm"] >= rain_p_thresh).sum()) < 1:
+                            continue
+                    chosen_start = cand_s
+                    break
+
+                chosen_end = chosen_start + dur - 1
+                occupied_count[chosen_start : chosen_end + 1] += 1
+                cat.loc[idx_row, "start_index"] = int(chosen_start)
+                cat.loc[idx_row, "start_utc"] = str(df.loc[chosen_start, "dt"])
+                cat.loc[idx_row, "end_utc"] = str(df.loc[chosen_end, "dt"])
+                cat.loc[idx_row, "hours_since_last_detected_drop"] = get_hours_since_drop(chosen_start)
+                cat.loc[idx_row, "truncated_by_filter_change"] = bool(chosen_end in detected_drop_set)
+                if "strictly_dry" not in env:
+                    cat.loc[idx_row, "washout_overlap_hours"] = int((df.loc[chosen_start:chosen_end, "precip_1h_mm"] >= 1.0).sum())
+                    cat.loc[idx_row, "rise_washout_overlap_hours"] = int(
+                        (df.loc[chosen_start : chosen_start + t_pass - 1, "precip_1h_mm"] >= 1.0).sum()
+                    )
+
+        # Compute filter resets crossed, SNR, and derived templates (Family A train, Family B test)
+        for idx_row in st_indices:
+            row = cat.loc[idx_row]
+            s_idx = int(row["start_index"])
+            dur = int(row["duration_hours"])
+            e_idx = s_idx + dur - 1
+            split_name = str(row["split"])
+            scen = str(row["nuclide_scenario"])
+
+            crossed = [int(d - s_idx) for d in detected_drop_indices if s_idx < d < e_idx]
+            cat.loc[idx_row, "filter_reset_steps"] = ",".join(str(x) for x in crossed)
+            cat.loc[idx_row, "n_filter_resets_crossed"] = len(crossed)
+            cat.loc[idx_row, "timing_mode"] = timing_mode
+
+            bg_sig = max(10.0, float(df.loc[s_idx, "sigma_168h"]))
+            pk_cpm = float(row["peak_cpm"])
+            snr_val = round(pk_cpm / bg_sig, 3)
+            cat.loc[idx_row, "bg_sigma_168h_cpm"] = round(bg_sig, 2)
+            cat.loc[idx_row, "peak_snr_168h"] = snr_val
+            cat.loc[idx_row, "snr_bin"] = classify_snr_bin(snr_val)
+
+            if use_derived_templates:
+                fam = "A" if split_name == "train" else "B"
+                spec, nuc = sample_operational_spectrum(rng, scen, family=fam, legacy_hand_written=False)
+                for ch_i, col in enumerate(share_cols):
+                    cat.loc[idx_row, col] = round(float(spec[ch_i]), 6)
+                cat.loc[idx_row, "fraction_cs137"] = nuc["fraction_cs137"]
+                cat.loc[idx_row, "fraction_i131"] = nuc["fraction_i131"]
+                cat.loc[idx_row, "fraction_co60"] = nuc["fraction_co60"]
+                cat.loc[idx_row, "fraction_cs134"] = nuc["fraction_cs134"]
+                cat.loc[idx_row, "template_family"] = "A_analytic" if fam == "A" else "B_monte_carlo"
+            else:
+                cat.loc[idx_row, "template_family"] = "legacy_hand_written"
+
+    return cat
+
+
+def generate_revised_injection_catalog(
+    timing_mode: str = "filter_terminated",
+    use_derived_templates: bool = True,
+    seed: int = RANDOM_SEED,
+    save_path: Path | None = Path("data/processed/synthetic_injection_catalog.csv"),
+) -> pd.DataFrame:
     """
     Generates deterministic, non-overlapping synthetic injection catalog across all 5 pilot stations:
     - 50 train injections per station (250 total, 2017-2022): 15 rain-coincident, 35 strictly dry.
@@ -242,11 +422,11 @@ def generate_revised_injection_catalog() -> pd.DataFrame:
         - 20 standard duration (36-80h), Band B [700, 1200] CPM (10 rain, 10 dry).
         - 20 hard-regime stress test (8-20h dry, 25-45h rain), Band A [250, 600] CPM (10 rain, 10 dry).
 
-    All 450 injections strictly end at real physical filter replacement drops (0 synthetic cliffs).
-    Strict 48-hour buffer enforced across all injection branches.
-    Balanced 20.0% scenario proportions in all environments.
+    Supports both `timing_mode='filter_terminated'` and `timing_mode='continuous_arbitrary_end'`,
+    and both derived detector-response templates (`Family A` train / `Family B` test) and legacy
+    hand-written templates.
     """
-    rng = np.random.RandomState(RANDOM_SEED)
+    rng = np.random.RandomState(seed)
     catalog = []
     injection_id = 1
 
@@ -314,7 +494,7 @@ def generate_revised_injection_catalog() -> pd.DataFrame:
                 peak_cpm = round(rng.uniform(250.0, 600.0) if mag_band == "Band_A_Low" else rng.uniform(1400.0, 2500.0), 1)
 
                 scen = train_rain_scenarios[placed_tr_rain]
-                spec, nuc = sample_operational_spectrum(rng, scen)
+                spec, nuc = sample_operational_spectrum(rng, scen, legacy_hand_written=True)
                 k_dose = round(float(rng.normal(k_dose_mean, 0.0015)), 5)
                 k_dose = max(0.010, min(0.026, k_dose))
 
@@ -392,7 +572,7 @@ def generate_revised_injection_catalog() -> pd.DataFrame:
                 peak_cpm = round(rng.uniform(250.0, 600.0) if mag_band == "Band_A_Low" else rng.uniform(1400.0, 2500.0), 1)
 
                 scen = train_dry_scenarios[placed_tr_dry]
-                spec, nuc = sample_operational_spectrum(rng, scen)
+                spec, nuc = sample_operational_spectrum(rng, scen, legacy_hand_written=True)
                 k_dose = round(float(rng.normal(k_dose_mean, 0.0015)), 5)
                 k_dose = max(0.010, min(0.026, k_dose))
                 hours_since_drop = get_hours_since_drop(start)
@@ -500,7 +680,7 @@ def generate_revised_injection_catalog() -> pd.DataFrame:
                 else:
                     continue
 
-                spec, nuc = sample_operational_spectrum(rng, scen)
+                spec, nuc = sample_operational_spectrum(rng, scen, legacy_hand_written=True)
                 k_dose = round(float(rng.normal(k_dose_mean, 0.0015)), 5)
                 k_dose = max(0.010, min(0.026, k_dose))
 
@@ -560,7 +740,7 @@ def generate_revised_injection_catalog() -> pd.DataFrame:
                         shape = rng.choice(["sigmoidal", "exponential"])
                         rise_p = rng.uniform(0.8, 1.8) if shape == "sigmoidal" else rng.uniform(1.0, 2.5)
                         scen = test_std_dry_scenarios[placed_std_dry]
-                        spec, nuc = sample_operational_spectrum(rng, scen)
+                        spec, nuc = sample_operational_spectrum(rng, scen, legacy_hand_written=True)
                         k_dose = round(float(rng.normal(k_dose_mean, 0.0015)), 5)
                         k_dose = max(0.010, min(0.026, k_dose))
                         hours_since_drop = get_hours_since_drop(start)
@@ -613,7 +793,7 @@ def generate_revised_injection_catalog() -> pd.DataFrame:
                         shape = rng.choice(["sigmoidal", "exponential"])
                         rise_p = rng.uniform(0.6, 1.4) if shape == "sigmoidal" else rng.uniform(0.8, 1.8)
                         scen = test_stress_dry_scenarios[placed_stress_dry]
-                        spec, nuc = sample_operational_spectrum(rng, scen)
+                        spec, nuc = sample_operational_spectrum(rng, scen, legacy_hand_written=True)
                         k_dose = round(float(rng.normal(k_dose_mean, 0.0015)), 5)
                         k_dose = max(0.010, min(0.026, k_dose))
                         hours_since_drop = get_hours_since_drop(start)
@@ -660,21 +840,33 @@ def generate_revised_injection_catalog() -> pd.DataFrame:
         )
 
     df_catalog = pd.DataFrame(catalog)
-    out_csv = Path("data/processed/synthetic_injection_catalog.csv")
-    df_catalog.to_csv(out_csv, index=False)
-    print(f"\nGenerated revised synthetic injection catalog ({len(df_catalog)} injections) to {out_csv}")
+    df_catalog = _enrich_catalog_with_snr_and_resets(
+        df_catalog, timing_mode=timing_mode, use_derived_templates=use_derived_templates, seed=seed
+    )
+    if save_path is not None:
+        df_catalog.to_csv(save_path, index=False)
+        print(f"\nGenerated synthetic injection catalog ({len(df_catalog)} injections) to {save_path}")
     return df_catalog
 
 
-def build_and_save_labeled_datasets(catalog: pd.DataFrame) -> pd.DataFrame:
+def build_and_save_labeled_datasets(
+    catalog: pd.DataFrame,
+    add_counting_noise: bool = True,
+    independent_dose: bool = True,
+    seed: int = RANDOM_SEED,
+    save_files: bool = True,
+) -> pd.DataFrame:
     """
     Applies synthetic injections using multi-nuclide time-evolving spectra (including
-    Bateman Te-132 -> I-132 progeny kinetics) and 8-channel energy-weighted dose
-    coupling sum_{k=2..9} k_dose_channel[k] * Delta C_k(t).
+    Bateman Te-132 -> I-132 progeny kinetics), intermediate filter resets when spanning
+    real filter changes (`filter_reset_steps`), Poisson + overdispersed counting noise
+    (`add_counting_noise`), and independent ICRP-74 + detector-geometry dose coupling
+    (`independent_dose`).
     """
     with open(_BASELINES_FILE, "r") as f:
         train_baselines = json.load(f)
 
+    rng = np.random.RandomState(seed + 777)
     reconciliation_rows = []
 
     for st in STATIONS:
@@ -722,7 +914,7 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame) -> pd.DataFrame:
             )
             sub.loc[washout_condition, "label"] = "radon_washout"
 
-            # 3. Apply synthetic injections with multi-nuclide time-evolving spectra & channel-resolved dose
+            # 3. Apply synthetic injections
             st_injections = catalog[(catalog["station_id"] == st_id) & (catalog["split"] == split_name)]
             for _, row in st_injections.iterrows():
                 inj_start = pd.to_datetime(row["start_utc"])
@@ -735,6 +927,8 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame) -> pd.DataFrame:
 
                 spec = np.array([float(row[f"share_r0{ch_i+2}"]) for ch_i in range(8)], dtype=float)
                 k_dose = float(row["k_dose"])
+                resets_raw = str(row.get("filter_reset_steps", "") or "").strip()
+                reset_steps = [int(x) for x in resets_raw.split(",") if x.strip().isdigit()] if resets_raw else None
 
                 gross_prof, ch_prof = compute_multinuclide_injection_timeseries(
                     shape_family=str(row["shape_family"]),
@@ -748,8 +942,16 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame) -> pd.DataFrame:
                     f_i131=float(row["fraction_i131"]),
                     f_co60=float(row["fraction_co60"]),
                     f_cs134=float(row["fraction_cs134"]),
+                    filter_reset_steps=reset_steps,
                 )
-                dose_prof = compute_injected_dose_rate(ch_prof, k_dose, s_rn)
+
+                if add_counting_noise:
+                    gross_prof, ch_prof = apply_counting_noise(ch_prof, rng=rng, include_overdispersion=True)
+
+                if independent_dose:
+                    dose_prof = compute_independent_injected_dose_rate(ch_prof, rng=rng)
+                else:
+                    dose_prof = compute_injected_dose_rate(ch_prof, k_dose, s_rn)
 
                 for step_i, idx_sub in enumerate(indices):
                     s_val = float(gross_prof[step_i])
@@ -763,9 +965,10 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame) -> pd.DataFrame:
                             sub.loc[idx_sub, f"inj_{ch}"] += float(ch_prof[step_i, ch_idx])
                         sub.loc[idx_sub, "label"] = "fission_product"
 
-            out_file = Path(f"data/processed/labeled_{st_id}_{split_name}.csv.gz")
-            sub.to_csv(out_file, index=False, compression="gzip")
-            print(f"Saved: {out_file} (N={len(sub)})")
+            if save_files:
+                out_file = Path(f"data/processed/labeled_{st_id}_{split_name}.csv.gz")
+                sub.to_csv(out_file, index=False, compression="gzip")
+                print(f"Saved: {out_file} (N={len(sub)})")
 
             counts = sub["label"].value_counts().to_dict()
             reconciliation_rows.append({
@@ -780,11 +983,12 @@ def build_and_save_labeled_datasets(catalog: pd.DataFrame) -> pd.DataFrame:
             })
 
     df_recon = pd.DataFrame(reconciliation_rows)
-    recon_csv = Path("data/processed/labeled_dataset_reconciliation_summary.csv")
-    df_recon.to_csv(recon_csv, index=False)
-    print(f"\nSaved labeled dataset reconciliation to {recon_csv}")
-    print("\n=== Labeled Dataset Reconciled Calendar Accounting ===")
-    print(df_recon.to_string(index=False))
+    if save_files:
+        recon_csv = Path("data/processed/labeled_dataset_reconciliation_summary.csv")
+        df_recon.to_csv(recon_csv, index=False)
+        print(f"\nSaved labeled dataset reconciliation to {recon_csv}")
+        print("\n=== Labeled Dataset Reconciled Calendar Accounting ===")
+        print(df_recon.to_string(index=False))
 
     return df_recon
 

@@ -1,0 +1,4 @@
+condition,dose_spectral_residual_z_included,dose_generator_model,det_pct_mean,det_pct_std,fa_per_yr_mean,fa_per_yr_std,median_delay_hrs,verdict
+0_circular_dose_coupling (same k_dose_channel in generator and feature),True,radon_anchored_k_dose_channel,92.9,2.22,3.5,1.18,5.2,CIRCULAR_BASELINE (generator and feature share k_dose_channel)
+a_dose_spectral_residual_z_removed,False,independent_icrp74_crystal_efficiency,93.75,0.46,7.7,1.32,5.0,PASS (feature removal changes detection by < 1 pp)
+b_kept_with_independent_dose_coupling,True,independent_icrp74_crystal_efficiency,93.6,1.03,7.19,1.17,5.0,PASS (independent coupling eliminates circularity with minimal impact)
