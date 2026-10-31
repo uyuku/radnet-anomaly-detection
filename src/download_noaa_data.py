@@ -23,7 +23,7 @@ NOAA_PILOT_STATIONS = {
 }
 
 YEARS = list(range(2017, 2026))
-BASE_URL = "https://www.ncei.noaa.gov/data/global-hourly/access"
+BASE_URL = "https://noaa-global-hourly-pds.s3.amazonaws.com"
 
 
 def update_manifest(filename: str, sha256_hash: str):

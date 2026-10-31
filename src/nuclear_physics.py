@@ -1,5 +1,5 @@
 """
-Nuclear Engineering & Physics-Informed Spectrometry Core Module.
+Nuclear Engineering & Physics-Motivated Spectrometry Core Module.
 
 Provides strictly causal, physically grounded models for:
 1. 8-channel NaI(Tl) energy-weighted ambient dose equivalent response vector
@@ -138,6 +138,11 @@ LAMBDA_CS134 = np.log(2.0) / (2.065 * 8766.0)   # T_1/2 = 2.065 y
 LAMBDA_CO60 = np.log(2.0) / (5.27 * 8766.0)     # T_1/2 = 5.27 y
 LAMBDA_TE132 = np.log(2.0) / 76.9               # T_1/2 = 76.9 h
 LAMBDA_I132 = np.log(2.0) / 2.295               # T_1/2 = 2.295 h
+LAMBDA_RU103 = np.log(2.0) / (39.247 * 24.0)    # T_1/2 = 39.247 d
+LAMBDA_ZR95 = np.log(2.0) / (64.032 * 24.0)     # T_1/2 = 64.032 d
+LAMBDA_NB95 = np.log(2.0) / (34.991 * 24.0)     # T_1/2 = 34.991 d
+LAMBDA_BA140 = np.log(2.0) / (12.752 * 24.0)    # T_1/2 = 12.752 d
+LAMBDA_LA140 = np.log(2.0) / (1.678 * 24.0)     # T_1/2 = 40.27 h
 
 # Natural Rn-222 short-lived particulate progeny decay constants (h^-1)
 LAMBDA_PO218 = np.log(2.0) / (3.10 / 60.0)      # T_1/2 = 3.10 min (0.05167 h)
@@ -249,49 +254,89 @@ def bateman_te132_i132_activity_kernel(
     return np.maximum(0.0, a_te), np.maximum(0.0, a_i)
 
 
-def _single_nuclide_filter_accumulation(c_deposition: np.ndarray, t_retention: int, lam: float) -> np.ndarray:
+def _single_nuclide_filter_accumulation(
+    c_deposition: np.ndarray,
+    t_retention: int,
+    lam: float,
+    filter_reset_steps: list[int] | None = None,
+) -> np.ndarray:
     """
     Computes filter-trapped activity trajectory over D = t_passage + t_retention hours
-    for a single decay constant lam (h^-1), normalized to 1.0 at t = t_passage - 1.
+    for a single decay constant lam (h^-1), normalized to 1.0 at peak passage.
+    If `filter_reset_steps` is provided (continuous timing variant),
+    the deposited filter activity resets at each real filter advance step r_step and
+    continues accumulating from ongoing airborne concentration (with an atmospheric
+    dispersion tail after t_passage).
     """
     t_passage = len(c_deposition)
     d = t_passage + t_retention
+    # Construct full airborne concentration curve c_full(u) over 0..d-1
+    c_full = np.zeros(d, dtype=float)
+    c_full[:t_passage] = c_deposition
+    if filter_reset_steps:
+        # In the continuous plume variant, airborne concentration has a dispersion tail
+        # so that if a filter change occurs mid-plume, fresh activity still deposits
+        tail_idx = np.arange(t_retention, dtype=float) + 1.0
+        c_full[t_passage:] = c_deposition[-1] * np.exp(-tail_idx / max(3.0, 0.35 * t_passage))
+
+    resets = sorted([int(r) for r in (filter_reset_steps or []) if 0 < int(r) < d])
+
+    # First compute unreset peak at t_passage - 1 for consistent peak_cpm scaling
+    u_peak = np.arange(t_passage)
+    peak_unreset = float(np.sum(c_deposition * np.exp(-lam * ((t_passage - 1) - u_peak))))
+    if peak_unreset <= 0.0:
+        peak_unreset = 1.0
+
     prof = np.zeros(d, dtype=float)
-    for i in range(t_passage):
-        u = np.arange(i + 1)
-        prof[i] = float(np.sum(c_deposition[: i + 1] * np.exp(-lam * (i - u))))
-    peak = prof[t_passage - 1]
-    if peak > 0.0:
-        prof[:t_passage] /= peak
-    for i in range(t_passage, d):
-        dt_ret = i - (t_passage - 1)
-        prof[i] = prof[t_passage - 1] * np.exp(-lam * dt_ret)
+    last_reset = 0
+    for i in range(d):
+        for r in resets:
+            if r <= i:
+                last_reset = max(last_reset, r)
+        u = np.arange(last_reset, i + 1)
+        prof[i] = float(np.sum(c_full[last_reset : i + 1] * np.exp(-lam * (i - u)))) / peak_unreset
     return prof
 
 
-def _te132_i132_filter_accumulation(c_deposition: np.ndarray, t_retention: int) -> tuple[np.ndarray, np.ndarray]:
+def _te132_i132_filter_accumulation(
+    c_deposition: np.ndarray,
+    t_retention: int,
+    filter_reset_steps: list[int] | None = None,
+) -> tuple[np.ndarray, np.ndarray]:
     """
     Computes filter-trapped Te-132 and daughter I-132 activity trajectories via
     analytical Bateman convolution over D = t_passage + t_retention hours,
-    normalized to 1.0 at t = t_passage - 1.
+    normalized to 1.0 at peak passage, supporting intermediate filter resets.
     """
     t_passage = len(c_deposition)
     d = t_passage + t_retention
+    c_full = np.zeros(d, dtype=float)
+    c_full[:t_passage] = c_deposition
+    if filter_reset_steps:
+        tail_idx = np.arange(t_retention, dtype=float) + 1.0
+        c_full[t_passage:] = c_deposition[-1] * np.exp(-tail_idx / max(3.0, 0.35 * t_passage))
+
+    resets = sorted([int(r) for r in (filter_reset_steps or []) if 0 < int(r) < d])
+
+    u_peak = np.arange(t_passage)
+    a_te_pk, a_i_pk = bateman_te132_i132_activity_kernel(float(t_passage - 1) - u_peak, initial_i132_to_te132_activity_ratio=0.80)
+    pk_te = max(1e-12, float(np.sum(c_deposition * a_te_pk)))
+    pk_i = max(1e-12, float(np.sum(c_deposition * a_i_pk)))
+
     prof_te = np.zeros(d, dtype=float)
     prof_i = np.zeros(d, dtype=float)
 
+    last_reset = 0
     for i in range(d):
-        max_u = min(i, t_passage - 1)
-        u = np.arange(max_u + 1)
+        for r in resets:
+            if r <= i:
+                last_reset = max(last_reset, r)
+        u = np.arange(last_reset, i + 1)
         dt = float(i) - u
         a_te, a_i = bateman_te132_i132_activity_kernel(dt, initial_i132_to_te132_activity_ratio=0.80)
-        prof_te[i] = float(np.sum(c_deposition[: max_u + 1] * a_te))
-        prof_i[i] = float(np.sum(c_deposition[: max_u + 1] * a_i))
+        prof_te[i] = float(np.sum(c_full[last_reset : i + 1] * a_te)) / pk_te
+        prof_i[i] = float(np.sum(c_full[last_reset : i + 1] * a_i)) / pk_i
 
-    if prof_te[t_passage - 1] > 0.0:
-        prof_te /= prof_te[t_passage - 1]
-    if prof_i[t_passage - 1] > 0.0:
-        prof_i /= prof_i[t_passage - 1]
     return prof_te, prof_i
 
 
@@ -328,6 +373,7 @@ def compute_multinuclide_injection_timeseries(
     f_i131: float = 0.0,
     f_co60: float = 0.0,
     f_cs134: float = 0.0,
+    filter_reset_steps: list[int] | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """
     Computes multi-nuclide, time-evolving 8-channel count excesses Delta C_k(t)
@@ -340,11 +386,7 @@ def compute_multinuclide_injection_timeseries(
       - Cs-134 (T_1/2 = 2.065 y, photopeaks in R05 [605 keV], R06 [796 keV], R07 [1168/1365 keV])
       - Co-60 (T_1/2 = 5.27 y, photopeaks in R07 [1173 & 1332 keV] and Compton in R02..R06)
       - Cs-137 (T_1/2 = 30.17 y, photopeak in R05 [662 keV])
-
-    At peak passage (t = t_passage - 1), the 8-channel excess shares match
-    `spectrum_at_peak` and sum to `peak_cpm`. During filter retention (t >= t_passage),
-    short-lived I-131 and Te-132/I-132 decay relative to long-lived Cs-137/Cs-134/Co-60,
-    causing the 8-channel spectrum to evolve dynamically in time.
+      - Plus hold-out test nuclides: Ru-103, Zr-95/Nb-95, Ba-140/La-140.
 
     Returns
     -------
@@ -358,29 +400,30 @@ def compute_multinuclide_injection_timeseries(
 
     c_dep = compute_deposition_rate_curve(shape_family, t_passage, rise_param)
 
-    # Nuclide-specific normalized time profiles (all equal 1.0 at t = t_passage - 1)
-    p_i131 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_I131)
-    p_cs137 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_CS137)
-    p_cs134 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_CS134)
-    p_co60 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_CO60)
-    p_te132, p_i132 = _te132_i132_filter_accumulation(c_dep, t_retention)
+    # Nuclide-specific normalized time profiles (all equal 1.0 at t = t_passage - 1 when unreset)
+    p_i131 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_I131, filter_reset_steps)
+    p_cs137 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_CS137, filter_reset_steps)
+    p_cs134 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_CS134, filter_reset_steps)
+    p_co60 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_CO60, filter_reset_steps)
+    p_te132, p_i132 = _te132_i132_filter_accumulation(c_dep, t_retention, filter_reset_steps)
 
-    # Construct channel-specific nuclide weightings that sum exactly to `w` at t = t_passage - 1:
-    # Each channel k in R02..R09 is partitioned across the active nuclides according to
-    # their physical gamma emission windows:
-    # - R02 (101-200 keV): Compton scatter from all active nuclides + Te-132 low-energy
-    # - R03 (201-400 keV): dominated by I-131 (364 keV) & Te-132 (228 keV) when volatile iodine/tellurium present
-    # - R04 (401-600 keV): Compton continuum + I-132 / Cs-134 weak lines
-    # - R05 (601-800 keV): Cs-137 (662 keV), Cs-134 (605 keV), and I-132 (667/773 keV)
-    # - R06 (801-1000 keV): Cs-134 (796/802 keV) and I-132 (955 keV)
-    # - R07 (1001-1400 keV): Co-60 (1173/1332 keV) and Cs-134 (1168/1365 keV)
-    # - R08, R09 (>1400 keV): high-energy scatter / Co-60 / Cs-134 sum peaks
     if scenario == "fission_pure_cs137":
         channel_profiles = np.outer(p_cs137, w) * float(peak_cpm)
     elif scenario == "fission_pure_i131":
         channel_profiles = np.outer(p_i131, w) * float(peak_cpm)
     elif scenario == "activation_orphan_co60":
         channel_profiles = np.outer(p_co60, w) * float(peak_cpm)
+    elif scenario == "fission_pure_ru103":
+        p_ru103 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_RU103, filter_reset_steps)
+        channel_profiles = np.outer(p_ru103, w) * float(peak_cpm)
+    elif scenario == "fission_zr95_nb95":
+        p_zr95 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_ZR95, filter_reset_steps)
+        p_nb95 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_NB95, filter_reset_steps)
+        channel_profiles = np.outer(0.5 * (p_zr95 + p_nb95), w) * float(peak_cpm)
+    elif scenario == "fission_ba140_la140":
+        p_ba140 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_BA140, filter_reset_steps)
+        p_la140 = _single_nuclide_filter_accumulation(c_dep, t_retention, LAMBDA_LA140, filter_reset_steps)
+        channel_profiles = np.outer(0.45 * p_ba140 + 0.55 * p_la140, w) * float(peak_cpm)
     elif scenario == "fission_reactor_fukushima":
         # Fresh reactor core release: includes short-lived Te-132 -> I-132 pair via Bateman kinetics,
         # I-131 (8.025 d), Cs-134 (2.065 y), and Cs-137 (30.17 y).

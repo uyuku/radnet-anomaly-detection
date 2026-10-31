@@ -1,10 +1,10 @@
 """
 Master Environmental Engineering Synthesis Visualization.
 
-Directly addresses the 3 core tasks from the prompt specification:
-1. Task 1: Design an environmental monitoring strategy (Physical Station & Dual-Stream Architecture).
-2. Task 2: Identify relevant meteorological and environmental parameters (Physical Forcing Mechanisms).
-3. Task 3: Develop methods for environmental data processing and interpretation (Multi-Tier ML Discrimination).
+Synthesizes the complete RadNet anomaly detection framework:
+1. Physical Station & Dual-Stream Architecture.
+2. Meteorological Forcing Mechanisms (Washout & Boundary Layer Inversion).
+3. Multi-Tier Decision Paradigm & Operational Trade-Offs.
 """
 
 import sys
@@ -52,8 +52,8 @@ def generate_engineering_synthesis_figure():
     ax_t1.axis("off")
 
     ax_t1.set_title(
-        "TASK 1: ENVIRONMENTAL MONITORING STRATEGY & STATION ARCHITECTURE\n"
-        "Continuous High-Volume Particulate Filter Tape & Dual-Stream Radiometric/Spectrometric Acquisition",
+        "CONTINUOUS AIR MONITORING STRATEGY & DUAL-STREAM ACQUISITION ARCHITECTURE\n"
+        "Continuous High-Volume Particulate Filter Tape & Dual-Stream Radiometric/Spectrometric Telemetry",
         fontweight="bold", fontsize=12, pad=12, loc="left"
     )
 
@@ -158,7 +158,7 @@ def generate_engineering_synthesis_figure():
     )
 
     ax_t2_rain.set_title(
-        "TASK 2A: METEOROLOGICAL PARAMETER 1 — PRECIPITATION (EMPIRICAL STORM)\n"
+        "PRECIPITATION-INDUCED RADON WASHOUT DYNAMICS (EMPIRICAL STORM PROFILE)\n"
         "Observed Wet Scavenging Washout Surge vs. Natural Progeny Decay (Birmingham, AL)",
         fontweight="bold", fontsize=10.5, pad=8
     )
@@ -230,8 +230,8 @@ def generate_engineering_synthesis_figure():
     )
 
     ax_t2_inv.set_title(
-        "TASK 2B: METEOROLOGICAL PARAMETER 2 — BOUNDARY LAYER & INVERSION (EMPIRICAL)\n"
-        "Observed 24-Hour Dry-Weather Gross CPM vs. Ambient Temperature Cycle",
+        "DIURNAL PLANETARY BOUNDARY LAYER INVERSION DYNAMICS (EMPIRICAL CYCLE)\n"
+        "Observed 24-Hour Dry-Weather Gross CPM vs. Ambient Temperature Oscillation",
         fontweight="bold", fontsize=10.5, pad=8
     )
 
@@ -300,8 +300,8 @@ def generate_engineering_synthesis_figure():
     ax_t3_perf.set_xticklabels(methods, fontsize=9)
 
     ax_t3_perf.set_title(
-        "TASK 3A: ENVIRONMENTAL DATA PROCESSING METHODOLOGY (20-SEED MEAN)\n"
-        "Multi-Tier Paradigm: Confound Suppression vs. Radiological Sensitivity",
+        "OPERATIONAL DETECTION BENCHMARK & FALSE ALARM SUPPRESSION\n"
+        "Multi-Tier Decision Paradigm: Confound Suppression vs. Radiological Sensitivity",
         fontweight="bold", fontsize=10.5, pad=8
     )
 
@@ -316,8 +316,8 @@ def generate_engineering_synthesis_figure():
     ax_t3_matrix.axis("off")
 
     ax_t3_matrix.set_title(
-        "TASK 3B: OPERATIONAL INTERPRETATION & DECISION LOGIC\n"
-        "How Weather-Aware GBDT Processing Solves False Alarm Paralysis",
+        "DECISION LOGIC & INTERPRETABILITY ARCHITECTURE\n"
+        "How Weather & Nuclear Fusion Processing Resolves Operational Alarm Floods",
         fontweight="bold", fontsize=10.5, pad=8
     )
 

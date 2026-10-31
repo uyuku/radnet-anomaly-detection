@@ -31,6 +31,7 @@ from src.nuclear_physics import (
 )
 
 FEATURE_SCHEMA_VERSION = 3
+_BATEMAN_ODE_CACHE: dict[tuple, np.ndarray] = {}
 
 
 TIER_1_FEATURES = [
@@ -114,6 +115,22 @@ NUCLEAR_PHYSICS_FEATURES = [
 ]
 
 TIER_4_NUCLEAR_FEATURES = TIER_3_FEATURES + NUCLEAR_PHYSICS_FEATURES
+
+# Naming migration constants and backward-compatible aliases
+TIER_4_CANONICAL_NAME = "Tier 4 (Physics-Motivated Nuclear)"
+TIER_4_LEGACY_NAME = "Tier 4 (Physics-Informed Nuclear)"
+TIER_4_NAME = TIER_4_CANONICAL_NAME
+
+TIER_NAME_ALIASES = {
+    TIER_4_LEGACY_NAME: TIER_4_CANONICAL_NAME,
+    "Tier 4: Physics-Informed Nuclear GBDT": "Tier 4: Physics-Motivated Nuclear GBDT",
+    "Tier 4 Physics-Informed": "Tier 4 Physics-Motivated",
+}
+
+
+def canonicalize_tier_name(name: str) -> str:
+    """Map legacy naming variants to canonical physics-motivated terminology."""
+    return TIER_NAME_ALIASES.get(name, name)
 
 _BASELINES_FILE = Path(__file__).resolve().parent.parent / "data" / "processed" / "station_dry_baselines_train_only.json"
 if not _BASELINES_FILE.exists():
@@ -363,8 +380,22 @@ def compute_features_for_series(df_input: pd.DataFrame, station_id: str, use_inj
     ).rolling(3, min_periods=1).mean()
 
     # 4C. Coupled 3-stage Bateman Radon Progeny Washout ODE Residuals (strictly NaN-propagating)
-    bateman_ode = solve_bateman_washout_ode(precip_1h, beta=0.65, memory_hours=6)
-    bateman_idx = pd.Series(bateman_ode["bateman_expected_index"], index=df.index)
+    p_arr = precip_1h.to_numpy(dtype=float)
+    ode_key = (
+        station_id,
+        len(p_arr),
+        float(np.nan_to_num(p_arr, nan=-999.0).sum()),
+        int(np.isnan(p_arr).sum()),
+        str(df["dt"].iloc[0]),
+    )
+    if len(p_arr) >= 1000 and ode_key in _BATEMAN_ODE_CACHE:
+        bateman_expected_arr = _BATEMAN_ODE_CACHE[ode_key]
+    else:
+        bateman_ode = solve_bateman_washout_ode(precip_1h, beta=0.65, memory_hours=6)
+        bateman_expected_arr = bateman_ode["bateman_expected_index"]
+        if len(p_arr) >= 1000:
+            _BATEMAN_ODE_CACHE[ode_key] = bateman_expected_arr
+    bateman_idx = pd.Series(bateman_expected_arr, index=df.index)
 
     # Ratio of local excess Z-score to theoretical Bateman washout index
     feats["bateman_washout_residual_ratio"] = feats["z_score_168h"] / (bateman_idx + 0.1)

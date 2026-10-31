@@ -1,0 +1,379 @@
+{
+  "accounting": {
+    "total_grid_hours": 394440,
+    "valid_radnet_hours": 334567,
+    "synchronous_hours": 324550,
+    "test_observed_hours": 106628,
+    "test_station_years": 12.16,
+    "total_plumes": 450,
+    "train_plumes": 250,
+    "test_plumes": 200,
+    "passage_hours_min": 3,
+    "passage_hours_max": 28,
+    "duration_hours_min": 8,
+    "duration_hours_max": 164
+  },
+  "washout_surges": {
+    "rain_hours": 15602,
+    "pooled_mean_pct": 12.05,
+    "pooled_median_pct": 6.9,
+    "pooled_p90_pct": 41.4,
+    "pooled_p99_pct": 97.88,
+    "pooled_max_pct": 196.72,
+    "san_diego_median_pct": -8.65
+  },
+  "filter_cycles": {
+    "window_2021_2024": {
+      "median_interval_days_min": 2.92,
+      "median_interval_days_max": 4.54,
+      "mean_interval_days_min": 3.97,
+      "mean_interval_days_max": 5.43,
+      "mean_step_drop_cpm_min": 342.6,
+      "mean_step_drop_cpm_max": 716.9,
+      "detected_drops_min": 158,
+      "detected_drops_max": 339
+    },
+    "per_station_2017_2025": {
+      "al_birmingham": {
+        "detected_drops_total": 641,
+        "all_interval_median_days": 2.5,
+        "plausible_interval_median_days": 3.92,
+        "plausible_interval_mean_days": 4.85
+      },
+      "dc_washington": {
+        "detected_drops_total": 357,
+        "all_interval_median_days": 4.17,
+        "plausible_interval_median_days": 4.15,
+        "plausible_interval_mean_days": 5.32
+      },
+      "ca_san_diego": {
+        "detected_drops_total": 1295,
+        "all_interval_median_days": 1.75,
+        "plausible_interval_median_days": 2.27,
+        "plausible_interval_mean_days": 3.34
+      },
+      "tx_dallas": {
+        "detected_drops_total": 601,
+        "all_interval_median_days": 2.12,
+        "plausible_interval_median_days": 3.08,
+        "plausible_interval_mean_days": 4.35
+      },
+      "fl_tampa": {
+        "detected_drops_total": 512,
+        "all_interval_median_days": 3.71,
+        "plausible_interval_median_days": 4.04,
+        "plausible_interval_mean_days": 5.16
+      }
+    }
+  },
+  "baseline_rates": {
+    "pooled_test_2023_2025_rolling_7d_local_3s": 82.62,
+    "pooled_test_2023_2025_global_dry_3s": 52.86,
+    "per_station_2017_2025_rolling_cpm_3s": {
+      "al_birmingham": {
+        "episodes_per_year": 53.57,
+        "episode_rain_3h_pct": 69.54
+      },
+      "dc_washington": {
+        "episodes_per_year": 52.98,
+        "episode_rain_3h_pct": 88.52
+      },
+      "ca_san_diego": {
+        "episodes_per_year": 20.91,
+        "episode_rain_3h_pct": 0.0
+      },
+      "tx_dallas": {
+        "episodes_per_year": 62.91,
+        "episode_rain_3h_pct": 70.5
+      },
+      "fl_tampa": {
+        "episodes_per_year": 6.59,
+        "episode_rain_3h_pct": 27.66
+      }
+    },
+    "per_station_test_2023_2025": {
+      "al_birmingham": {
+        "observed_hours": 24413,
+        "station_years": 2.78,
+        "local_168h_3s_episodes_per_year": 86.54,
+        "global_dry_3s_episodes_per_year": 74.33
+      },
+      "dc_washington": {
+        "observed_hours": 22266,
+        "station_years": 2.54,
+        "local_168h_3s_episodes_per_year": 86.22,
+        "global_dry_3s_episodes_per_year": 75.98
+      },
+      "ca_san_diego": {
+        "observed_hours": 24964,
+        "station_years": 2.85,
+        "local_168h_3s_episodes_per_year": 66.37,
+        "global_dry_3s_episodes_per_year": 50.92
+      },
+      "tx_dallas": {
+        "observed_hours": 15478,
+        "station_years": 1.77,
+        "local_168h_3s_episodes_per_year": 82.69,
+        "global_dry_3s_episodes_per_year": 62.3
+      },
+      "fl_tampa": {
+        "observed_hours": 19507,
+        "station_years": 2.23,
+        "local_168h_3s_episodes_per_year": 96.17,
+        "global_dry_3s_episodes_per_year": 13.48
+      }
+    }
+  },
+  "benchmark_metrics": {
+    "tiers": {
+      "Tier 1 (Gross)@90": {
+        "frozen_tau_mean": 0.825,
+        "det_total_mean": 84.2,
+        "det_total_std": 0.68,
+        "det_12h_mean": 60.02,
+        "fa_per_year_mean": 44.3,
+        "fa_per_year_std": 3.69,
+        "rain_coincident_mean": 34.5,
+        "median_delay_mean": 8.0
+      },
+      "Tier 1 (Gross)@95": {
+        "frozen_tau_mean": 0.698,
+        "det_total_mean": 89.98,
+        "det_total_std": 0.94,
+        "det_12h_mean": 74.53,
+        "fa_per_year_mean": 102.83,
+        "fa_per_year_std": 9.3,
+        "rain_coincident_mean": 25.8,
+        "median_delay_mean": 6.1
+      },
+      "Tier 1 (Gross)@98": {
+        "frozen_tau_mean": 0.646,
+        "det_total_mean": 91.8,
+        "det_total_std": 0.99,
+        "det_12h_mean": 78.85,
+        "fa_per_year_mean": 134.44,
+        "fa_per_year_std": 15.97,
+        "rain_coincident_mean": 23.4,
+        "median_delay_mean": 5.8
+      },
+      "Tier 1b (Gross+Weather)@90": {
+        "frozen_tau_mean": 0.959,
+        "det_total_mean": 74.35,
+        "det_total_std": 1.01,
+        "det_12h_mean": 49.58,
+        "fa_per_year_mean": 4.47,
+        "fa_per_year_std": 0.56,
+        "rain_coincident_mean": 0.0,
+        "median_delay_mean": 9.8
+      },
+      "Tier 1b (Gross+Weather)@95": {
+        "frozen_tau_mean": 0.926,
+        "det_total_mean": 79.62,
+        "det_total_std": 1.47,
+        "det_12h_mean": 59.9,
+        "fa_per_year_mean": 10.39,
+        "fa_per_year_std": 2.62,
+        "rain_coincident_mean": 0.0,
+        "median_delay_mean": 8.1
+      },
+      "Tier 1b (Gross+Weather)@98": {
+        "frozen_tau_mean": 0.832,
+        "det_total_mean": 88.8,
+        "det_total_std": 1.04,
+        "det_12h_mean": 73.78,
+        "fa_per_year_mean": 34.55,
+        "fa_per_year_std": 5.5,
+        "rain_coincident_mean": 0.0,
+        "median_delay_mean": 7.0
+      },
+      "Tier 2 (Spectral)@90": {
+        "frozen_tau_mean": 0.995,
+        "det_total_mean": 89.55,
+        "det_total_std": 1.52,
+        "det_12h_mean": 86.35,
+        "fa_per_year_mean": 5.54,
+        "fa_per_year_std": 6.15,
+        "rain_coincident_mean": 3.8,
+        "median_delay_mean": 4.0
+      },
+      "Tier 2 (Spectral)@95": {
+        "frozen_tau_mean": 0.989,
+        "det_total_mean": 93.2,
+        "det_total_std": 1.45,
+        "det_12h_mean": 90.95,
+        "fa_per_year_mean": 27.97,
+        "fa_per_year_std": 28.27,
+        "rain_coincident_mean": 5.5,
+        "median_delay_mean": 4.0
+      },
+      "Tier 2 (Spectral)@98": {
+        "frozen_tau_mean": 0.768,
+        "det_total_mean": 89.1,
+        "det_total_std": 3.27,
+        "det_12h_mean": 87.8,
+        "fa_per_year_mean": 105.34,
+        "fa_per_year_std": 32.88,
+        "rain_coincident_mean": 4.4,
+        "median_delay_mean": 3.0
+      },
+      "Tier 3 (Weather Fusion)@90": {
+        "frozen_tau_mean": 0.992,
+        "det_total_mean": 90.72,
+        "det_total_std": 1.73,
+        "det_12h_mean": 85.85,
+        "fa_per_year_mean": 3.89,
+        "fa_per_year_std": 1.25,
+        "rain_coincident_mean": 0.3,
+        "median_delay_mean": 4.0
+      },
+      "Tier 3 (Weather Fusion)@95": {
+        "frozen_tau_mean": 0.992,
+        "det_total_mean": 90.72,
+        "det_total_std": 1.73,
+        "det_12h_mean": 85.85,
+        "fa_per_year_mean": 3.89,
+        "fa_per_year_std": 1.25,
+        "rain_coincident_mean": 0.3,
+        "median_delay_mean": 4.0
+      },
+      "Tier 3 (Weather Fusion)@98": {
+        "frozen_tau_mean": 0.721,
+        "det_total_mean": 91.72,
+        "det_total_std": 2.54,
+        "det_12h_mean": 89.68,
+        "fa_per_year_mean": 102.84,
+        "fa_per_year_std": 14.03,
+        "rain_coincident_mean": 3.9,
+        "median_delay_mean": 3.0
+      },
+      "Tier 4 (Physics-Informed Nuclear)@90": {
+        "frozen_tau_mean": 0.996,
+        "det_total_mean": 93.82,
+        "det_total_std": 1.24,
+        "det_12h_mean": 90.78,
+        "fa_per_year_mean": 2.63,
+        "fa_per_year_std": 1.49,
+        "rain_coincident_mean": 1.1,
+        "median_delay_mean": 4.4
+      },
+      "Tier 4 (Physics-Informed Nuclear)@95": {
+        "frozen_tau_mean": 0.996,
+        "det_total_mean": 94.0,
+        "det_total_std": 0.93,
+        "det_12h_mean": 91.1,
+        "fa_per_year_mean": 2.71,
+        "fa_per_year_std": 1.39,
+        "rain_coincident_mean": 1.2,
+        "median_delay_mean": 4.4
+      },
+      "Tier 4 (Physics-Informed Nuclear)@98": {
+        "frozen_tau_mean": 0.986,
+        "det_total_mean": 97.3,
+        "det_total_std": 1.03,
+        "det_12h_mean": 96.92,
+        "fa_per_year_mean": 10.72,
+        "fa_per_year_std": 3.57,
+        "rain_coincident_mean": 3.3,
+        "median_delay_mean": 4.0
+      },
+      "Tier 3 MLP@90": {
+        "frozen_tau_mean": 0.991,
+        "det_total_mean": 89.58,
+        "det_total_std": 2.96,
+        "det_12h_mean": 86.48,
+        "fa_per_year_mean": 57.6,
+        "fa_per_year_std": 23.38,
+        "rain_coincident_mean": 3.5,
+        "median_delay_mean": 3.7
+      },
+      "Tier 3 MLP@95": {
+        "frozen_tau_mean": 0.991,
+        "det_total_mean": 89.62,
+        "det_total_std": 2.93,
+        "det_12h_mean": 86.52,
+        "fa_per_year_mean": 57.1,
+        "fa_per_year_std": 23.67,
+        "rain_coincident_mean": 3.5,
+        "median_delay_mean": 3.6
+      },
+      "Tier 3 MLP@98": {
+        "frozen_tau_mean": 0.892,
+        "det_total_mean": 89.58,
+        "det_total_std": 2.65,
+        "det_12h_mean": 87.92,
+        "fa_per_year_mean": 86.18,
+        "fa_per_year_std": 54.93,
+        "rain_coincident_mean": 3.6,
+        "median_delay_mean": 3.0
+      }
+    },
+    "baselines": {
+      "Baseline: Global Dry 3-sigma": {
+        "realized_detection_pct": 57.0,
+        "false_alarms_per_station_year": 52.86,
+        "rain_coincident_alarm_pct": 24.9,
+        "median_detection_delay_hours": 13.5
+      },
+      "Baseline: Rolling 7d 3-sigma": {
+        "realized_detection_pct": 52.5,
+        "false_alarms_per_station_year": 82.62,
+        "rain_coincident_alarm_pct": 32.5,
+        "median_detection_delay_hours": 10.0
+      },
+      "Baseline: Rolling 7d 4-sigma": {
+        "realized_detection_pct": 22.5,
+        "false_alarms_per_station_year": 42.26,
+        "rain_coincident_alarm_pct": 47.3,
+        "median_detection_delay_hours": 9.0
+      },
+      "Baseline: Rolling 7d 5-sigma": {
+        "realized_detection_pct": 6.0,
+        "false_alarms_per_station_year": 23.51,
+        "rain_coincident_alarm_pct": 57.6,
+        "median_detection_delay_hours": 8.0
+      }
+    },
+    "loso": {
+      "Tier 3 (Weather Fusion):ca_san_diego": {
+        "det_pct": 70.0,
+        "fa_per_year": 0.0
+      },
+      "Tier 3 (Weather Fusion):al_birmingham": {
+        "det_pct": 85.0,
+        "fa_per_year": 0.0
+      },
+      "Tier 3 (Weather Fusion):tx_dallas": {
+        "det_pct": 92.5,
+        "fa_per_year": 0.57
+      },
+      "Tier 3 (Weather Fusion):dc_washington": {
+        "det_pct": 95.0,
+        "fa_per_year": 1.18
+      },
+      "Tier 3 (Weather Fusion):fl_tampa": {
+        "det_pct": 90.0,
+        "fa_per_year": 1151.3
+      },
+      "Tier 4 (Physics-Informed Nuclear):ca_san_diego": {
+        "det_pct": 80.0,
+        "fa_per_year": 1.4
+      },
+      "Tier 4 (Physics-Informed Nuclear):al_birmingham": {
+        "det_pct": 95.0,
+        "fa_per_year": 0.0
+      },
+      "Tier 4 (Physics-Informed Nuclear):tx_dallas": {
+        "det_pct": 95.0,
+        "fa_per_year": 0.0
+      },
+      "Tier 4 (Physics-Informed Nuclear):dc_washington": {
+        "det_pct": 95.0,
+        "fa_per_year": 0.0
+      },
+      "Tier 4 (Physics-Informed Nuclear):fl_tampa": {
+        "det_pct": 97.5,
+        "fa_per_year": 169.42
+      }
+    }
+  }
+}

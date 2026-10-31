@@ -139,6 +139,8 @@ def train_lgb(X: pd.DataFrame, y: pd.Series, seed: int) -> lgb.LGBMClassifier:
         colsample_bytree=0.8,
         class_weight="balanced",
         random_state=seed,
+        deterministic=True,
+        force_row_wise=True,
         n_jobs=1,
         verbose=-1,
     )

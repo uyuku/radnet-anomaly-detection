@@ -102,7 +102,8 @@ def plot_matched_roc_curves():
         "Tier 1b (Gross+Weather)": {"col": "#e67e22", "ls": "-", "lw": 2.0, "name": "Tier 1b: Gross + Weather"},
         "Tier 2 (Spectral)": {"col": "#2980b9", "ls": "-", "lw": 2.2, "name": "Tier 2: Spectral Only"},
         "Tier 3 (Weather Fusion)": {"col": "#27ae60", "ls": "-", "lw": 2.4, "name": "Tier 3: Weather Fusion (Schema 2)"},
-        "Tier 4 (Physics-Informed Nuclear)": {"col": "#0d47a1", "ls": "-", "lw": 3.0, "name": "Tier 4: Physics-Informed Nuclear (Schema 3)"},
+        "Tier 4 (Physics-Motivated Nuclear)": {"col": "#0d47a1", "ls": "-", "lw": 3.0, "name": "Tier 4: Physics-Motivated Nuclear (Schema 3)"},
+        "Tier 4 (Physics-Informed Nuclear)": {"col": "#0d47a1", "ls": "-", "lw": 3.0, "name": "Tier 4: Physics-Motivated Nuclear (Schema 3)"},
         "Tier 3 MLP": {"col": "#8e44ad", "ls": "--", "lw": 1.8, "name": "Tier 3: MLP Neural Net"},
     }
 
@@ -147,7 +148,7 @@ def plot_matched_roc_curves():
     ax.set_ylim(-0.2, 600)
     ax.set_xlabel("Test Event Detection Probability (%) on Synthetic Plumes (2023–2025)", fontweight="bold")
     ax.set_ylabel("Clean Operational False Alarms per Station-Year (Symlog Scale)", fontweight="bold")
-    ax.set_title("Operational Detection vs. False Alarm Pareto Trade-Off (Test Split 2023–2025)\nDemonstrating False Alarm Suppression via Weather & Physics-Informed Nuclear Fusion", fontweight="bold", pad=12)
+    ax.set_title("Operational Detection vs. False Alarm Pareto Trade-Off (Test Split 2023–2025)\nDemonstrating False Alarm Suppression via Weather & Physics-Motivated Nuclear Fusion", fontweight="bold", pad=12)
     ax.grid(True, which="both", alpha=0.35)
     ax.legend(loc="upper left", framealpha=0.95, fontsize=9.0)
 
