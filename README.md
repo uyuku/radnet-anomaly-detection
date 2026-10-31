@@ -8,7 +8,7 @@
 
 When it rains, natural radon daughters ($^{214}\text{Pb}$, $^{214}\text{Bi}$) wash out of the atmosphere onto EPA RadNet particulate filters. Across 15,602 observed rain hours in this dataset, precipitation produces a median gross gamma count surge of +6.9\% (+7.2\% during active events), with the 90th percentile reaching +41.4\% and peak convective thunderstorm surges reaching +196.7\%. Coastal maritime stations like San Diego experience slight count depressions (-8.7\% median) due to clean oceanic air masses.
 
-Conventional fixed and rolling $3\sigma$ thresholds fail under precipitation: across humid U.S. stations they trigger **52.9 to 82.6 false alarm episodes per station-year**, with over 32\% of alarm episodes coinciding with rain.
+Conventional fixed and rolling $3\sigma$ thresholds fail under precipitation: across the five-station network on the 2023–2025 test split, rolling 7-day $3\sigma$ triggers **82.62 false alarm episodes per station-year** (and global dry $3\sigma$ triggers **52.86**). Across long-term multi-year observations in humid continental climates (Birmingham, Washington, Dallas), rolling $3\sigma$ generates **53.0 to 62.9 false alarm episodes per station-year**, with over 69\% of alarm episodes coinciding with rainfall.
 
 This research project combines **8-channel EPA RadNet gamma spectrometry** with **NOAA ISD surface weather telemetry**, **causal radon spectral stripping**, and **Bateman progeny washout ODE dynamics** using LightGBM. Across a 20-seed evaluation, the full physics-informed nuclear and weather-fused model (`Tier 4: Physics-Informed Nuclear`) yields **2.71 ± 1.39 false alarm episodes per station-year** (station-month block bootstrap 95\% CI: **[1.17, 4.58]**) at the 95\% validation target (**2.63 ± 1.49** at the 90\% target; a **96.7\% reduction** over rolling $3\sigma$) and **94.00 ± 0.93\% detection of synthetic plumes** (with **91.10\%** detected within $\le 12\text{ hours}$). These are simulation-benchmark results on synthetic release templates, not demonstrated detection rates for real releases.
 
@@ -70,7 +70,7 @@ Evaluated across **334,567 valid RadNet hours** (**324,550 synchronous radiation
 
 *Source: [rigorous_loso_summary.csv](data/processed/rigorous_loso_summary.csv).*
 
-**Cross-Station Generalization Takeaway:** In 4 of 5 stations, Tier 4 zero-shot transfer yields $\le 1.40$ FA/yr and 80–95% detection. In Tampa, FL (extreme subtropical convective thunderstorms), uncalibrated zero-shot transfer yields 169.42 FA/yr for Tier 4 (an 85.3% reduction compared to Tier 3's 1,151.30 FA/yr). This highlights that local baseline calibration is operationally necessary for extreme convective microclimates.
+**Cross-Station Generalization Takeaway:** In 4 of 5 stations, Tier 4 zero-shot transfer yields $\le 1.40$ FA/yr and 80–95% detection. In Tampa, FL (extreme subtropical convective thunderstorms), uncalibrated zero-shot transfer yields 169.42 FA/yr for Tier 4 (an 85.3% reduction compared to Tier 3's 1,151.30 FA/yr). This demonstrates that unadapted zero-shot transfer across distinct convective microclimates remains an open challenge, and whether local calibration or adaptive thresholding resolves this discrepancy remains an untested hypothesis for future investigation.
 
 ![ROC Performance Curves](reports/figures/rigorous_matched_roc_curves.png)
 

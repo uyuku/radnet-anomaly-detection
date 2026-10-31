@@ -200,7 +200,7 @@ def block_bootstrap_false_alarms(
         val_m = sdata["valid"]
         al = (pd.Series(test_p_cln[st_id]) >= frozen_tau) & val_m
         yms = sdata["year_month"]
-        # count episode STARTS on the full series, then bin by month.
+        # Count episode starts on the continuous series, then aggregate by month.
         ep_start = al & (~al.shift(1, fill_value=False))
         for ym in yms.unique():
             m_sub = (yms == ym).values
@@ -598,9 +598,7 @@ def main():
                 test_fa_rate = te_episodes / test_station_years
                 rain_pct = (rain_al_hrs / al_hrs * 100.0) if al_hrs > 0 else 0.0
 
-                # Record monthly episodes for this seed: count episode
-                # STARTS on the full series, then bin by month. Counting inside
-                # month slices double-counts episodes crossing month boundaries.)
+                # Count episode starts on the continuous series, then aggregate by month.
                 ep_starts_by_st = {}
                 for s_id, sdata in test_series.items():
                     al_full = (pd.Series(test_p_cln[s_id]) >= frozen_tau) & sdata["valid"]
@@ -954,10 +952,7 @@ def main():
         if not roll_sub.empty:
             roll_pt = roll_sub.sort_values("false_alarms_per_year").iloc[0]
         else:
-            # target unreachable for this detector — fall
-            # back to its HIGHEST-detection point. (The previous code took
-            # .iloc[-1] = highest k = lowest detection and recorded it as the
-            # matched point, silently producing garbage reduction columns.)
+            # If target is unreachable for this detector, select its highest detection point.
             roll_pt = base_roc_df[base_roc_df["baseline_type"] == "rolling_7d_local_z"].sort_values("detection_rate_pct").iloc[-1]
         row_dict["rolling_7d_k"] = roll_pt["k_multiplier"]
         row_dict["rolling_7d_realized_det"] = roll_pt["detection_rate_pct"]
@@ -975,7 +970,7 @@ def main():
             if not t_sub.empty:
                 t_pt = t_sub.sort_values("false_alarms_per_year").iloc[0]
             else:
-                # highest-detection fallback (was .iloc[-1] = lowest)
+                # Fall back to highest detection operating point if target is unreachable.
                 t_pt = cont_roc_df[cont_roc_df["tier_name"] == t_name].sort_values("detection_rate_pct").iloc[-1]
             row_dict[f"{short_col}_tau"] = t_pt["tau_threshold"]
             row_dict[f"{short_col}_det"] = t_pt["detection_rate_pct"]
@@ -987,8 +982,7 @@ def main():
         t3_fa = row_dict["t3_fusion_fa"]
         base_fa = row_dict["rolling_7d_fa"]
 
-        # reduction columns are only meaningful when every compared
-        # point actually reached the matched detection target.
+        # Reduction comparisons require that every compared tier reached the target.
         det_cols = ["rolling_7d_realized_det", "t1_gross_det", "t1b_gross_weather_det",
                     "t2_spectral_det", "t3_fusion_det", "mlp_fusion_det"]
         target_met = all(row_dict[c] >= target_level for c in det_cols)

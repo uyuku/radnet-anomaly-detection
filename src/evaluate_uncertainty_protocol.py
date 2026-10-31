@@ -69,8 +69,8 @@ def load_train_data(feature_cols: list[str]) -> tuple[pd.DataFrame, pd.Series]:
             df_raw = pd.read_csv(csv_file)
             feats = compute_features_for_series(df_raw, st_id, use_injected=True)
             valid = feats["has_radnet_obs"] & feats["rad_complete_channels"] & (feats["label"].isin(LABEL_MAP.keys()))
-            # fit ONLY on the 2017-2020 fold. 2021-2022 is the
-            # validation fold used for threshold selection and must not be trained on.
+            # Fit on historical 2017-2020 fold. The 2021-2022 validation fold is
+            # reserved for threshold calibration.
             valid = valid & (feats["dt"] < "2021-01-01")
             _TRAIN_SUB_CACHE[st_id] = feats[valid]
         sub = _TRAIN_SUB_CACHE[st_id]
@@ -220,7 +220,7 @@ def main():
         probs_clean_t4 = clf_t4.predict_proba(feats_clean[TIER_4_NUCLEAR_FEATURES])
         probs_clean_mlp = pipe_mlp.predict_proba(feats_clean[TIER_3_FEATURES])
 
-        st_base = STATION_DRY_BASELINES[st_id]  # no silent fabricated defaults
+        st_base = STATION_DRY_BASELINES[st_id]
         base_3s_thresh = st_base["mu"] + 3.0 * st_base["sigma"]
         base_4s_thresh = st_base["mu"] + 4.0 * st_base["sigma"]
         base_5s_thresh = st_base["mu"] + 5.0 * st_base["sigma"]
@@ -258,9 +258,8 @@ def main():
     print(f"Total clean observed hours: {total_clean_observed_hours} ({total_station_years:.2f} station-years)")
 
     # 3. Find Operating Thresholds at 90%, 95%, 98% Detection
-    # Thresholds are selected on the 2021-2022 VALIDATION fold only (held out
-    # of model fitting), then frozen and applied to the 2023-2025 test split.
-    # The previous version selected thresholds on the test split itself.
+    # Operating thresholds are calibrated on the 2021-2022 validation fold,
+    # then frozen and evaluated on the out-of-sample 2023-2025 test split.
     # Detection uses the net-alarm criterion (alarm on the injected series AND
     # NOT on the clean series), consistent with train_and_evaluate_rigorous.py.
     # ------------------------------------------------------------------------

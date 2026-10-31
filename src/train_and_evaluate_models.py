@@ -68,7 +68,7 @@ def load_and_prepare_train_data(feature_cols: list[str], data_dir: Path | None =
         feats = compute_features_for_series(df_raw, st_id, use_injected=True)
 
         valid = feats["has_radnet_obs"] & feats["rad_complete_channels"] & (feats["label"].isin(LABEL_MAP.keys()))
-        # fit ONLY on 2017-2020; 2021-2022 is the threshold-tuning fold.
+        # Fit models on 2017-2020 historical fold; 2021-2022 is the validation fold.
         valid = valid & (feats["dt"] < "2021-01-01")
         sub = feats[valid].copy()
 
@@ -96,7 +96,7 @@ def load_and_prepare_train_data_loso(feature_cols: list[str], holdout_id: str) -
         feats = compute_features_for_series(df_raw, st_id, use_injected=True)
 
         valid = feats["has_radnet_obs"] & feats["rad_complete_channels"] & (feats["label"].isin(LABEL_MAP.keys()))
-        # fit ONLY on 2017-2020; 2021-2022 is the threshold-tuning fold.
+        # Fit models on 2017-2020 historical fold; 2021-2022 is the validation fold.
         valid = valid & (feats["dt"] < "2021-01-01")
         sub = feats[valid].copy()
 

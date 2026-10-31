@@ -33,13 +33,9 @@ def detect_filter_drops(df: pd.DataFrame, drop_threshold: float) -> pd.DataFrame
     valid_t = df["has_radnet_obs"] & df["rad_complete_channels"] & df["gross_cpm"].notna()
     valid_t3 = valid_t.shift(3, fill_value=False)
     
-    # 2. No KNOWN rain: 24h precipitation at t is 0.0, and no recorded rain at
-    # t-1, t-2, t-3. hours with UNKNOWN precipitation
-    # (NaN) are tolerated here. They never certify dry anywhere else, but this
-    # guard rejects washout-decay false positives, which require RECORDED rain —
-    # and NaN comparisons would otherwise discard real step drops adjacent to
-    # missing weather telemetry (12 of 450 frozen injections lost their drop
-    # anchor under the stricter reading).
+    # 2. No recorded rain: 24h precipitation at t is 0.0, and no recorded rain at
+    # t-1, t-2, t-3. Missing precipitation observations (NaN) are tolerated here
+    # to avoid discarding legitimate filter step-drops adjacent to gaps in weather telemetry.
     known_rain = (df["precip_1h_mm"] > 0.0)
     no_known_rain_4h = ~(known_rain.rolling(4, min_periods=1).sum() > 0)
     no_known_rain_24h = ~(known_rain.rolling(24, min_periods=1).sum() > 0)
@@ -53,8 +49,7 @@ def detect_filter_drops(df: pd.DataFrame, drop_threshold: float) -> pd.DataFrame
         return pd.DataFrame()
 
     # Deduplicate consecutive hours belonging to the same step drop (min 24h separation).
-    # compare each candidate against the last KEPT drop,
-    # not against the previous candidate (which may itself have been rejected).
+    # Compare each candidate against the last kept drop.
     kept_dts = []
     last_kept = None
     for cand_dt in candidate_drops["dt"]:
