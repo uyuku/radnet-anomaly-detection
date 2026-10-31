@@ -1,0 +1,10 @@
+metric_family,method,true_parameter,n_units,n_trials,nominal_coverage_pct,empirical_coverage_pct,mean_interval_width,passes_nominal_band
+Detection_Proportion,Stratified_Plume_Cluster_Bootstrap,80.0,200,500,95.0,95.8,10.68,True
+Detection_Proportion,Exact_Clopper_Pearson,80.0,200,500,95.0,97.2,11.48,True
+Detection_Proportion,Stratified_Plume_Cluster_Bootstrap,90.0,200,500,95.0,97.0,8.03,True
+Detection_Proportion,Exact_Clopper_Pearson,90.0,200,500,95.0,97.4,8.78,True
+False_Alarm_Rate_Poisson,Station_Month_Block_Bootstrap,5.0,180,500,95.0,94.2,2.24,True
+False_Alarm_Rate_Poisson,Exact_Garwood_Poisson,5.0,180,500,95.0,95.2,2.33,True
+False_Alarm_Rate_Poisson,Station_Month_Block_Bootstrap,10.0,180,500,95.0,95.0,3.15,True
+False_Alarm_Rate_Poisson,Exact_Garwood_Poisson,10.0,180,500,95.0,96.2,3.25,True
+False_Alarm_Rate_Block_Clustered_Overdispersed,Station_Month_Block_Bootstrap,10.0,180,500,95.0,96.4,3.26,True

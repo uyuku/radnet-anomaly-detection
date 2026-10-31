@@ -1,0 +1,17 @@
+tier_name,detector_id,operating_point,metric,n_catalogs,n_model_seeds,grand_mean,var_catalog,var_model_seed,var_total,sd_catalog,sd_model_seed,sd_total,pct_var_catalog,pct_var_model_seed,catalog_min_mean,catalog_max_mean
+Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,test_detection_pct,10,3,89.633,5.15401,0.44167,5.59568,2.27,0.665,2.366,92.1,7.9,85.5,94.0
+Tier 1 (Gross),ML_Tier1_Gross,Val_Target_95pct,test_fa_per_yr,10,3,255.611,735.04359,196.57768,931.62127,27.112,14.021,30.522,78.9,21.1,207.47,298.78
+Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,test_detection_pct,10,3,40.683,16.55617,3.525,20.08117,4.069,1.877,4.481,82.4,17.6,35.67,46.17
+Tier 1 (Gross),ML_Tier1_Gross,Val_FA_Budget_5_per_yr,test_fa_per_yr,10,3,3.032,0.62533,0.36477,0.9901,0.791,0.604,0.995,63.2,36.8,1.53,4.14
+Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,test_detection_pct,10,3,77.783,13.78241,6.28333,20.06574,3.712,2.507,4.479,68.7,31.3,68.67,82.5
+Tier 2 (Spectral),ML_Tier2_Spectral,Val_Target_95pct,test_fa_per_yr,10,3,9.559,31.9193,76.25141,108.17072,5.65,8.732,10.401,29.5,70.5,1.64,21.43
+Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,test_detection_pct,10,3,84.133,2.92963,4.63333,7.56296,1.712,2.153,2.75,38.7,61.3,80.83,87.33
+Tier 2 (Spectral),ML_Tier2_Spectral,Val_FA_Budget_5_per_yr,test_fa_per_yr,10,3,67.572,2316.09402,1626.95563,3943.04964,48.126,40.336,62.794,58.7,41.3,7.84,155.52
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,test_detection_pct,10,3,78.467,3.1608,6.625,9.7858,1.778,2.574,3.128,32.3,67.7,73.83,81.5
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_Target_95pct,test_fa_per_yr,10,3,7.736,15.52418,16.84281,32.36699,3.94,4.104,5.689,48.0,52.0,1.67,15.81
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,test_detection_pct,10,3,85.5,1.94444,1.0,2.94444,1.394,1.0,1.716,66.0,34.0,83.67,88.67
+Tier 3 (Weather Fusion),ML_Tier3_WeatherFusion,Val_FA_Budget_5_per_yr,test_fa_per_yr,10,3,89.01,2926.51661,472.1031,3398.61971,54.097,21.728,58.298,86.1,13.9,26.88,181.74
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,test_detection_pct,10,3,84.4,13.79815,2.35,16.14815,3.715,1.533,4.018,85.4,14.6,79.17,91.67
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_Target_95pct,test_fa_per_yr,10,3,6.519,4.98542,1.96842,6.95384,2.233,1.403,2.637,71.7,28.3,3.18,9.7
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,test_detection_pct,10,3,92.133,5.37716,1.21667,6.59383,2.319,1.103,2.568,81.5,18.5,89.17,96.0
+Tier 4 (Physics-Informed Nuclear),ML_Tier4_PhysicsNuclear,Val_FA_Budget_5_per_yr,test_fa_per_yr,10,3,29.228,359.84648,32.74919,392.59567,18.97,5.723,19.814,91.7,8.3,15.1,76.24

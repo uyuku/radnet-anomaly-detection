@@ -58,6 +58,8 @@ def plot_bootstrap_uncertainty():
         "Tier 3: Full Weather Fusion GBDT (90% target)": "Tier 3: Weather Fusion GBDT (90% target)",
         "Tier 4: Physics-Informed Nuclear GBDT (95% target)": "Tier 4: Nuclear Physics GBDT (95% target)",
         "Tier 4: Physics-Informed Nuclear GBDT (90% target)": "Tier 4: Nuclear Physics GBDT (90% target)",
+        "Tier 4: Physics-Motivated Nuclear GBDT (95% target)": "Tier 4: Nuclear Physics GBDT (95% target)",
+        "Tier 4: Physics-Motivated Nuclear GBDT (90% target)": "Tier 4: Nuclear Physics GBDT (90% target)",
         "Tier 3: Weather-Fused Neural Net (MLP) (95% target)": "Tier 3: Neural Net MLP (95% target)",
     }
     df["display_name"] = df["model_name"].map(lambda x: display_names.get(x, x))
@@ -378,7 +380,7 @@ def plot_confusion_matrices():
         ("Baseline: Rolling 7d 3-sigma", "(a) Baseline: Rolling 7d 3σ"),
         ("Tier 2: Radiation + Spectrometry GBDT", "(b) Tier 2: Radiation + Spectrometry"),
         ("Tier 3: Full Weather Fusion GBDT", "(c) Tier 3: Full Weather Fusion GBDT"),
-        ("Tier 4: Physics-Informed Nuclear GBDT", "(d) Tier 4: Physics-Informed Nuclear GBDT"),
+        ("Tier 4: Physics-Motivated Nuclear GBDT", "(d) Tier 4: Physics-Motivated Nuclear GBDT"),
     ]
 
     fig, axes = plt.subplots(2, 2, figsize=(12, 10))
@@ -389,6 +391,9 @@ def plot_confusion_matrices():
 
     for ax, (m_id, title) in zip(axes, panels):
         sub = df[df["model_name"] == m_id]
+        if sub.empty and "Physics-Motivated" in m_id:
+            # Fallback to legacy CSV naming
+            sub = df[df["model_name"] == m_id.replace("Physics-Motivated", "Physics-Informed")]
         mat_recall = np.zeros((3, 3))
         mat_counts = np.zeros((3, 3), dtype=int)
 

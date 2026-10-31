@@ -1,0 +1,176 @@
+detector_id,detector_name,operating_point_type,operating_target,threshold_tau,val_target_met,n_test_plumes,n_detected,det_pct_point,det_boot_se_pct,det_boot_ci_low_pct,det_boot_ci_high_pct,det_clopper_pearson_low_pct,det_clopper_pearson_high_pct,n_test_station_months,total_test_episodes,exposure_station_years,fa_per_yr_point,fa_boot_se_per_yr,fa_boot_ci_low_per_yr,fa_boot_ci_high_per_yr,fa_poisson_ci_low_per_yr,fa_poisson_ci_high_per_yr
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,matched_detection_pct,80.0,2.009822,True,200,146,73.0,2.63,68.0,78.0,66.28,79.02,164,1897,12.1638,155.95,3.46,149.24,162.91,149.01,163.13
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,matched_detection_pct,90.0,1.314065,True,200,168,84.0,2.26,79.5,88.5,78.17,88.79,164,2762,12.1638,227.07,4.09,219.12,235.09,218.68,235.7
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,matched_detection_pct,95.0,1.067768,True,200,173,86.5,2.04,82.5,90.5,80.97,90.91,164,3097,12.1638,254.61,4.14,246.61,262.77,245.72,263.74
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,matched_fa_budget,5.0,7.658573,True,200,4,2.0,0.95,0.5,4.0,0.55,5.04,164,68,12.1638,5.59,0.75,4.18,7.14,4.34,7.09
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,matched_fa_budget,10.0,6.377889,True,200,10,5.0,1.42,2.5,8.0,2.42,9.0,164,136,12.1638,11.18,1.05,9.17,13.32,9.38,13.23
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,matched_fa_budget,50.0,4.019025,True,200,55,27.5,2.8,22.0,33.0,21.44,34.24,164,509,12.1638,41.85,2.18,37.56,46.13,38.29,45.64
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),matched_detection_pct,80.0,2.825762,True,200,114,57.0,2.41,52.5,62.0,49.83,63.96,164,747,12.1638,61.41,4.92,52.17,71.43,57.09,65.98
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),matched_detection_pct,90.0,1.011746,False,200,164,82.0,2.19,77.5,86.0,75.96,87.06,164,1966,12.1638,161.63,9.89,142.83,181.48,154.56,168.93
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),matched_detection_pct,95.0,1.011746,False,200,164,82.0,2.19,77.5,86.0,75.96,87.06,164,1966,12.1638,161.63,9.89,142.83,181.48,154.56,168.93
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),matched_fa_budget,5.0,8.903384,True,200,20,10.0,1.87,6.5,13.5,6.22,15.02,164,41,12.1638,3.37,0.74,2.04,4.92,2.42,4.57
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),matched_fa_budget,10.0,7.523845,True,200,27,13.5,2.09,9.5,17.5,9.09,19.03,164,71,12.1638,5.84,0.91,4.15,7.69,4.56,7.36
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),matched_fa_budget,50.0,4.09339,True,200,85,42.5,2.58,37.5,47.5,35.56,49.67,164,345,12.1638,28.36,2.59,23.5,33.6,25.45,31.52
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),matched_detection_pct,80.0,2.825759,True,200,102,51.0,2.62,46.0,56.0,43.85,58.12,164,438,12.1638,36.01,4.42,27.64,45.07,32.71,39.54
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),matched_detection_pct,90.0,1.0164,False,200,159,79.5,2.22,75.0,84.0,73.23,84.87,164,1437,12.1638,118.14,9.47,100.1,137.16,112.11,124.41
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),matched_detection_pct,95.0,1.0164,False,200,159,79.5,2.22,75.0,84.0,73.23,84.87,164,1437,12.1638,118.14,9.47,100.1,137.16,112.11,124.41
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),matched_fa_budget,5.0,5.920691,True,200,33,16.5,2.29,12.0,21.0,11.64,22.38,164,42,12.1638,3.45,0.89,1.85,5.33,2.49,4.67
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),matched_fa_budget,10.0,5.364962,True,200,39,19.5,2.37,15.0,24.5,14.25,25.68,164,61,12.1638,5.01,1.12,3.02,7.41,3.84,6.44
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),matched_fa_budget,50.0,3.104537,True,200,96,48.0,2.68,42.5,53.5,40.9,55.16,164,351,12.1638,28.86,3.69,21.81,36.46,25.92,32.04
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),matched_detection_pct,80.0,2.805717,True,200,100,50.0,2.69,44.5,55.5,42.87,57.13,164,435,12.1638,35.76,4.44,27.43,44.8,32.48,39.29
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),matched_detection_pct,90.0,1.010779,False,200,158,79.0,2.33,74.5,83.5,72.69,84.43,164,1402,12.1638,115.26,9.36,97.4,134.11,109.3,121.45
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),matched_detection_pct,95.0,1.010779,False,200,158,79.0,2.33,74.5,83.5,72.69,84.43,164,1402,12.1638,115.26,9.36,97.4,134.11,109.3,121.45
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),matched_fa_budget,5.0,5.613552,True,200,36,18.0,2.32,13.5,22.5,12.94,24.04,164,50,12.1638,4.11,0.98,2.37,6.19,3.05,5.42
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),matched_fa_budget,10.0,4.901869,True,200,50,25.0,2.48,20.5,30.0,19.16,31.6,164,82,12.1638,6.74,1.33,4.32,9.5,5.36,8.37
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),matched_fa_budget,50.0,2.986092,True,200,97,48.5,2.67,43.0,54.0,41.39,55.65,164,383,12.1638,31.49,4.01,23.87,39.74,28.41,34.8
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),matched_detection_pct,80.0,2.914857,True,200,107,53.5,2.46,48.5,58.5,46.33,60.56,164,388,12.1638,31.9,3.19,25.84,38.43,28.8,35.24
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),matched_detection_pct,90.0,1.900687,True,200,132,66.0,2.45,61.0,70.5,58.98,72.53,164,857,12.1638,70.45,6.33,58.42,83.39,65.82,75.33
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),matched_detection_pct,95.0,1.687643,False,200,144,72.0,2.17,67.5,76.0,65.23,78.1,164,1027,12.1638,84.43,7.44,70.33,99.61,79.35,89.76
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),matched_fa_budget,5.0,6.704327,True,200,24,12.0,2.09,8.0,16.0,7.84,17.33,164,54,12.1638,4.44,0.76,3.04,6.01,3.34,5.79
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),matched_fa_budget,10.0,5.343346,True,200,36,18.0,2.39,13.5,22.5,12.94,24.04,164,103,12.1638,8.47,1.13,6.33,10.76,6.91,10.27
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),matched_fa_budget,50.0,2.914857,True,200,107,53.5,2.46,48.5,58.5,46.33,60.56,164,388,12.1638,31.9,3.19,25.84,38.43,28.8,35.24
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),matched_detection_pct,80.0,2.833523,True,200,107,53.5,2.44,48.5,58.0,46.33,60.56,164,431,12.1638,35.43,3.55,28.72,42.57,32.17,38.94
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),matched_detection_pct,90.0,1.914994,True,200,131,65.5,2.38,61.0,70.0,58.47,72.06,164,879,12.1638,72.26,6.65,59.76,85.72,67.56,77.2
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),matched_detection_pct,95.0,1.475227,False,200,153,76.5,2.11,72.5,80.5,70.0,82.19,164,1234,12.1638,101.45,8.45,85.21,118.4,95.87,107.27
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),matched_fa_budget,5.0,6.837497,True,200,25,12.5,2.16,8.5,17.0,8.26,17.9,164,50,12.1638,4.11,0.75,2.73,5.66,3.05,5.42
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),matched_fa_budget,10.0,5.324975,True,200,38,19.0,2.41,14.5,24.0,13.81,25.13,164,104,12.1638,8.55,1.16,6.37,10.87,6.99,10.36
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),matched_fa_budget,50.0,3.164429,True,200,104,52.0,2.47,47.0,57.0,44.84,59.1,164,334,12.1638,27.46,2.78,22.22,33.14,24.59,30.57
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),matched_detection_pct,80.0,0.351589,True,200,118,59.0,2.62,54.0,64.0,51.84,65.89,164,4872,12.1638,400.53,20.05,361.95,440.56,389.36,411.94
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),matched_detection_pct,90.0,0.281791,True,200,137,68.5,2.69,63.0,73.5,61.57,74.87,164,5286,12.1638,434.57,18.86,398.65,472.37,422.93,446.44
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),matched_detection_pct,95.0,0.250802,False,200,144,72.0,2.66,66.5,77.0,65.23,78.1,164,5431,12.1638,446.49,18.76,410.78,484.43,434.69,458.52
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),matched_fa_budget,5.0,0.680828,True,200,60,30.0,2.95,24.49,36.0,23.74,36.86,164,171,12.1638,14.06,4.04,7.03,22.9,12.03,16.33
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),matched_fa_budget,10.0,0.680828,True,200,60,30.0,2.95,24.49,36.0,23.74,36.86,164,171,12.1638,14.06,4.04,7.03,22.9,12.03,16.33
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),matched_fa_budget,50.0,0.595805,True,200,81,40.5,3.06,34.5,46.5,33.63,47.65,164,2438,12.1638,200.43,25.53,151.7,251.51,192.55,208.55
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),matched_detection_pct,80.0,0.429785,True,200,133,66.5,3.13,60.0,72.5,59.5,73.0,164,400,12.1638,32.88,7.04,20.63,48.06,29.74,36.27
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),matched_detection_pct,90.0,0.386673,True,200,154,77.0,2.69,71.5,82.01,70.54,82.64,164,576,12.1638,47.35,7.77,33.72,64.11,43.56,51.38
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),matched_detection_pct,95.0,0.363151,True,200,164,82.0,2.47,77.0,86.5,75.96,87.06,164,722,12.1638,59.36,8.41,44.28,77.08,55.11,63.85
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),matched_fa_budget,5.0,0.639965,True,200,35,17.5,2.56,12.5,22.5,12.5,23.49,164,115,12.1638,9.45,3.37,3.78,16.78,7.81,11.35
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),matched_fa_budget,10.0,0.565106,True,200,62,31.0,3.07,25.0,37.0,24.67,37.91,164,181,12.1638,14.88,4.86,6.61,25.55,12.79,17.21
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),matched_fa_budget,50.0,0.384938,True,200,154,77.0,2.71,71.5,82.0,70.54,82.64,164,587,12.1638,48.26,7.95,34.19,65.43,44.43,52.32
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,matched_detection_pct,80.0,1.580063,True,200,133,66.5,2.98,60.5,72.0,59.5,73.0,164,8,12.1638,0.66,0.28,0.16,1.25,0.28,1.3
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,matched_detection_pct,90.0,1.492275,True,200,140,70.0,2.94,64.0,75.5,63.14,76.26,164,9,12.1638,0.74,0.32,0.24,1.42,0.34,1.4
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,matched_detection_pct,95.0,1.155291,True,200,160,80.0,2.63,75.0,85.0,73.78,85.31,164,28,12.1638,2.3,1.04,0.72,4.69,1.53,3.33
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,matched_fa_budget,5.0,0.888908,True,200,178,89.0,2.01,85.0,93.0,83.82,92.98,164,79,12.1638,6.49,1.88,3.29,10.64,5.14,8.09
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,matched_fa_budget,10.0,0.888908,True,200,178,89.0,2.01,85.0,93.0,83.82,92.98,164,79,12.1638,6.49,1.88,3.29,10.64,5.14,8.09
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,matched_fa_budget,50.0,0.504658,True,200,191,95.5,1.3,93.0,98.0,91.63,97.92,164,440,12.1638,36.17,3.93,29.16,44.35,32.87,39.72
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),matched_detection_pct,80.0,22.444474,True,200,102,51.0,2.87,45.5,56.5,43.85,58.12,164,699,12.1638,57.47,14.96,31.32,89.43,53.28,61.89
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),matched_detection_pct,90.0,16.154241,True,200,131,65.5,2.58,60.5,70.5,58.47,72.06,164,1623,12.1638,133.43,20.5,95.69,175.96,127.02,140.08
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),matched_detection_pct,95.0,12.698235,True,200,139,69.5,2.7,64.0,74.5,62.61,75.8,164,1724,12.1638,141.73,18.79,106.34,179.8,135.12,148.58
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),matched_fa_budget,5.0,16.154241,True,200,131,65.5,2.58,60.5,70.5,58.47,72.06,164,1623,12.1638,133.43,20.5,95.69,175.96,127.02,140.08
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),matched_fa_budget,10.0,16.154241,True,200,131,65.5,2.58,60.5,70.5,58.47,72.06,164,1623,12.1638,133.43,20.5,95.69,175.96,127.02,140.08
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),matched_fa_budget,50.0,9.513824,True,200,145,72.5,2.72,67.0,77.5,65.76,78.56,164,1286,12.1638,105.72,13.17,81.11,132.39,100.02,111.66
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,matched_detection_pct,80.0,17.939073,True,200,112,56.0,2.91,50.5,61.5,48.83,62.99,164,614,12.1638,50.48,11.51,29.8,75.02,46.56,54.63
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,matched_detection_pct,90.0,10.604447,True,200,159,79.5,2.43,74.5,84.0,73.23,84.87,164,1580,12.1638,129.89,18.01,95.68,166.59,123.57,136.46
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,matched_detection_pct,95.0,6.985358,False,200,160,80.0,2.44,75.0,84.5,73.78,85.31,164,3367,12.1638,276.8,31.36,217.63,341.15,267.53,286.32
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,matched_fa_budget,5.0,21.585581,True,200,93,46.5,2.93,40.5,52.0,39.44,53.67,164,28,12.1638,2.3,0.73,1.0,3.87,1.53,3.33
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,matched_fa_budget,10.0,17.065521,True,200,114,57.0,2.91,51.5,62.5,49.83,63.96,164,1347,12.1638,110.74,24.67,65.89,162.52,104.9,116.81
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,matched_fa_budget,50.0,12.647326,True,200,145,72.5,2.63,67.5,77.5,65.76,78.56,164,1232,12.1638,101.28,15.93,71.4,133.62,95.71,107.1
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",matched_detection_pct,80.0,0.059341,True,200,101,50.5,2.71,45.0,56.0,43.36,57.63,164,558,12.1638,45.87,4.4,37.41,54.73,42.15,49.84
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",matched_detection_pct,90.0,0.004609,True,200,139,69.5,2.33,65.0,74.0,62.61,75.8,164,1057,12.1638,86.9,4.93,77.21,96.76,81.74,92.3
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",matched_detection_pct,95.0,-0.068554,False,200,156,78.0,1.22,75.5,80.5,71.61,83.54,164,3272,12.1638,268.99,16.45,237.81,302.44,259.86,278.37
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",matched_fa_budget,5.0,0.152166,True,200,32,16.0,2.34,11.5,20.5,11.21,21.83,164,99,12.1638,8.14,1.52,5.39,11.33,6.61,9.91
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",matched_fa_budget,10.0,0.130922,True,200,58,29.0,2.55,24.0,34.0,22.82,35.82,164,270,12.1638,22.2,3.62,15.46,29.52,19.63,25.01
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",matched_fa_budget,50.0,0.05513,True,200,101,50.5,2.68,45.5,56.0,43.36,57.63,164,572,12.1638,47.02,4.26,38.77,55.58,43.25,51.04
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",matched_detection_pct,80.0,0.078733,True,200,137,68.5,2.43,64.0,73.5,61.57,74.87,164,674,12.1638,55.41,7.68,41.1,71.07,51.31,59.76
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",matched_detection_pct,90.0,0.02918,True,200,170,85.0,1.84,81.5,88.5,79.28,89.65,164,1607,12.1638,132.11,16.99,100.42,166.39,125.73,138.73
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",matched_detection_pct,95.0,0.000186,True,200,162,81.0,2.12,77.0,85.0,74.87,86.19,164,1162,12.1638,95.53,5.15,85.49,105.91,90.11,101.18
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",matched_fa_budget,5.0,0.149957,True,200,57,28.5,2.69,23.0,34.0,22.36,35.29,164,92,12.1638,7.56,1.36,5.04,10.38,6.1,9.28
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",matched_fa_budget,10.0,0.1275,True,200,82,41.0,2.64,36.0,46.0,34.11,48.16,164,205,12.1638,16.85,2.57,12.08,22.07,14.63,19.32
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",matched_fa_budget,50.0,0.058327,True,200,152,76.0,2.14,71.5,80.0,69.47,81.74,164,1077,12.1638,88.54,12.14,65.71,113.35,83.33,93.99
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",matched_detection_pct,80.0,0.002197,True,200,115,57.5,2.98,51.5,63.5,50.33,64.44,164,27,12.1638,2.22,0.58,1.15,3.43,1.46,3.23
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",matched_detection_pct,90.0,0.002148,True,200,172,86.0,1.87,82.5,89.5,80.41,90.49,164,1253,12.1638,103.01,18.8,67.3,140.95,97.39,108.88
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",matched_detection_pct,95.0,0.002058,True,200,157,78.5,2.17,74.5,83.0,72.15,83.98,164,504,12.1638,41.43,4.91,32.06,51.29,37.9,45.21
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",matched_fa_budget,5.0,0.002197,True,200,115,57.5,2.98,51.5,63.5,50.33,64.44,164,27,12.1638,2.22,0.58,1.15,3.43,1.46,3.23
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",matched_fa_budget,10.0,0.002197,True,200,144,72.0,2.6,67.0,77.0,65.23,78.1,164,113,12.1638,9.29,1.6,6.32,12.62,7.66,11.17
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",matched_fa_budget,50.0,0.002058,True,200,157,78.5,2.17,74.5,83.0,72.15,83.98,164,504,12.1638,41.43,4.91,32.06,51.29,37.9,45.21
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),matched_detection_pct,80.0,0.995381,True,200,123,61.5,2.63,56.5,66.5,54.38,68.28,164,297,12.1638,24.42,4.63,15.71,33.69,21.72,27.36
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),matched_detection_pct,90.0,0.995381,True,200,123,61.5,2.63,56.5,66.5,54.38,68.28,164,297,12.1638,24.42,4.63,15.71,33.69,21.72,27.36
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),matched_detection_pct,95.0,0.959578,True,200,141,70.5,2.35,66.0,75.0,63.66,76.72,164,287,12.1638,23.59,4.31,15.37,32.3,20.94,26.49
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),matched_fa_budget,5.0,0.959578,True,200,141,70.5,2.35,66.0,75.0,63.66,76.72,164,287,12.1638,23.59,4.31,15.37,32.3,20.94,26.49
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),matched_fa_budget,10.0,0.947074,True,200,143,71.5,2.4,67.0,76.0,64.71,77.64,164,294,12.1638,24.17,4.31,15.94,32.82,21.49,27.1
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),matched_fa_budget,50.0,0.947074,True,200,143,71.5,2.4,67.0,76.0,64.71,77.64,164,294,12.1638,24.17,4.31,15.94,32.82,21.49,27.1
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),matched_detection_pct,80.0,0.963628,True,200,152,76.0,2.73,70.5,81.0,69.47,81.74,164,724,12.1638,59.52,7.94,44.41,75.18,55.26,64.02
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),matched_detection_pct,90.0,0.963628,False,200,152,76.0,2.73,70.5,81.0,69.47,81.74,164,724,12.1638,59.52,7.94,44.41,75.18,55.26,64.02
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),matched_detection_pct,95.0,0.963628,False,200,152,76.0,2.73,70.5,81.0,69.47,81.74,164,724,12.1638,59.52,7.94,44.41,75.18,55.26,64.02
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),matched_fa_budget,5.0,0.963865,True,200,125,62.5,3.21,56.0,68.5,55.39,69.23,164,82,12.1638,6.74,1.55,3.93,9.95,5.36,8.37
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),matched_fa_budget,10.0,0.963865,True,200,125,62.5,3.21,56.0,68.5,55.39,69.23,164,82,12.1638,6.74,1.55,3.93,9.95,5.36,8.37
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),matched_fa_budget,50.0,0.963865,True,200,125,62.5,3.21,56.0,68.5,55.39,69.23,164,82,12.1638,6.74,1.55,3.93,9.95,5.36,8.37
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),matched_detection_pct,80.0,0.3437,False,200,124,62.0,3.0,56.0,68.0,54.89,68.75,164,2475,12.1638,203.47,23.65,158.45,251.13,195.53,211.65
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),matched_detection_pct,90.0,0.3437,False,200,124,62.0,3.0,56.0,68.0,54.89,68.75,164,2475,12.1638,203.47,23.65,158.45,251.13,195.53,211.65
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),matched_detection_pct,95.0,0.3437,False,200,124,62.0,3.0,56.0,68.0,54.89,68.75,164,2475,12.1638,203.47,23.65,158.45,251.13,195.53,211.65
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),matched_fa_budget,5.0,6.963986,True,200,7,3.5,1.2,1.5,6.0,1.42,7.08,164,43,12.1638,3.54,0.69,2.29,4.96,2.56,4.76
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),matched_fa_budget,10.0,5.314111,True,200,22,11.0,2.01,7.0,15.0,7.02,16.18,164,95,12.1638,7.81,1.08,5.81,10.03,6.32,9.55
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),matched_fa_budget,50.0,2.308649,True,200,73,36.5,2.81,31.0,42.0,29.82,43.58,164,408,12.1638,33.54,3.29,27.25,40.17,30.37,36.96
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),matched_detection_pct,80.0,0.815348,True,200,152,76.0,2.11,72.0,80.0,69.47,81.74,164,541,12.1638,44.48,3.22,38.31,50.9,40.81,48.39
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),matched_detection_pct,90.0,0.711777,True,200,165,82.5,1.95,78.5,86.0,76.51,87.5,164,1324,12.1638,108.85,6.09,96.97,120.55,103.06,114.87
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),matched_detection_pct,95.0,0.629564,True,200,173,86.5,1.69,83.0,89.5,80.97,90.91,164,2179,12.1638,179.14,8.27,163.01,195.39,171.69,186.82
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),matched_fa_budget,5.0,0.933575,True,200,104,52.0,2.71,46.5,57.0,44.84,59.1,164,52,12.1638,4.27,0.71,2.95,5.71,3.19,5.61
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),matched_fa_budget,10.0,0.90883,True,200,123,61.5,2.61,56.5,66.5,54.38,68.28,164,103,12.1638,8.47,1.21,6.24,10.94,6.91,10.27
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),matched_fa_budget,50.0,0.826346,True,200,150,75.0,2.14,71.0,79.0,68.4,80.84,164,485,12.1638,39.87,3.03,34.09,45.92,36.4,43.58
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),matched_detection_pct,80.0,0.939116,True,200,123,61.5,2.59,56.5,66.5,54.38,68.28,164,75,12.1638,6.17,1.01,4.3,8.26,4.85,7.73
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),matched_detection_pct,90.0,0.85516,True,200,153,76.5,2.12,72.5,80.5,70.0,82.19,164,302,12.1638,24.83,3.07,19.12,31.1,22.11,27.79
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),matched_detection_pct,95.0,0.719485,True,200,170,85.0,1.9,81.0,88.5,79.28,89.65,164,851,12.1638,69.96,6.25,58.09,82.57,65.34,74.82
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),matched_fa_budget,5.0,0.966994,True,200,95,47.5,2.66,42.5,52.5,40.41,54.66,164,24,12.1638,1.97,0.49,1.08,3.01,1.26,2.94
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),matched_fa_budget,10.0,0.947968,True,200,112,56.0,2.64,51.0,61.0,48.83,62.99,164,57,12.1638,4.69,0.85,3.14,6.45,3.55,6.07
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),matched_fa_budget,50.0,0.846367,True,200,153,76.5,2.12,72.5,80.5,70.0,82.19,164,336,12.1638,27.62,3.32,21.47,34.41,24.75,30.74
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),matched_detection_pct,80.0,0.993985,True,200,173,86.5,1.87,83.0,90.0,80.97,90.91,164,15,12.1638,1.23,0.39,0.57,2.05,0.69,2.03
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),matched_detection_pct,90.0,0.993985,True,200,173,86.5,1.87,83.0,90.0,80.97,90.91,164,15,12.1638,1.23,0.39,0.57,2.05,0.69,2.03
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),matched_detection_pct,95.0,0.993985,True,200,173,86.5,1.87,83.0,90.0,80.97,90.91,164,15,12.1638,1.23,0.39,0.57,2.05,0.69,2.03
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),matched_fa_budget,5.0,0.980436,True,200,185,92.5,1.57,89.5,95.5,87.93,95.74,164,419,12.1638,34.45,7.48,20.58,50.04,31.23,37.91
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),matched_fa_budget,10.0,0.922117,True,200,190,95.0,1.38,92.0,97.5,91.0,97.58,164,2105,12.1638,173.05,32.7,111.47,240.17,165.74,180.61
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),matched_fa_budget,50.0,0.515915,True,200,178,89.0,1.49,86.0,92.0,83.82,92.98,164,2756,12.1638,226.57,29.28,171.73,286.44,218.19,235.19
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),matched_detection_pct,80.0,0.965832,True,200,187,93.5,1.41,90.5,96.0,89.14,96.49,164,158,12.1638,12.99,3.42,7.04,20.3,11.04,15.18
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),matched_detection_pct,90.0,0.965832,True,200,187,93.5,1.41,90.5,96.0,89.14,96.49,164,158,12.1638,12.99,3.42,7.04,20.3,11.04,15.18
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),matched_detection_pct,95.0,0.965832,True,200,187,93.5,1.41,90.5,96.0,89.14,96.49,164,158,12.1638,12.99,3.42,7.04,20.3,11.04,15.18
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),matched_fa_budget,5.0,0.8977,True,200,193,96.5,1.19,94.0,98.5,92.92,98.58,164,889,12.1638,73.09,13.43,47.96,100.08,68.36,78.05
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),matched_fa_budget,10.0,0.868608,True,200,195,97.5,1.05,95.5,99.5,94.26,99.18,164,1261,12.1638,103.67,18.04,69.5,140.45,98.02,109.55
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),matched_fa_budget,50.0,0.592932,True,200,197,98.5,0.79,97.0,100.0,95.68,99.69,164,2431,12.1638,199.85,26.33,149.59,253.65,191.99,207.96
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),matched_detection_pct,80.0,0.973951,True,200,193,96.5,1.23,94.0,98.5,92.92,98.58,164,120,12.1638,9.87,2.79,5.1,15.97,8.18,11.8
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),matched_detection_pct,90.0,0.973951,True,200,193,96.5,1.23,94.0,98.5,92.92,98.58,164,120,12.1638,9.87,2.79,5.1,15.97,8.18,11.8
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),matched_detection_pct,95.0,0.973951,True,200,193,96.5,1.23,94.0,98.5,92.92,98.58,164,120,12.1638,9.87,2.79,5.1,15.97,8.18,11.8
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),matched_fa_budget,5.0,0.973951,True,200,193,96.5,1.23,94.0,98.5,92.92,98.58,164,120,12.1638,9.87,2.79,5.1,15.97,8.18,11.8
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),matched_fa_budget,10.0,0.973951,True,200,193,96.5,1.23,94.0,98.5,92.92,98.58,164,120,12.1638,9.87,2.79,5.1,15.97,8.18,11.8
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),matched_fa_budget,50.0,0.973951,True,200,193,96.5,1.23,94.0,98.5,92.92,98.58,164,120,12.1638,9.87,2.79,5.1,15.97,8.18,11.8
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),matched_detection_pct,80.0,0.992956,True,200,186,93.0,1.66,89.5,96.0,88.53,96.12,164,77,12.1638,6.33,2.41,2.31,11.63,5.0,7.91
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),matched_detection_pct,90.0,0.992956,True,200,186,93.0,1.66,89.5,96.0,88.53,96.12,164,77,12.1638,6.33,2.41,2.31,11.63,5.0,7.91
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),matched_detection_pct,95.0,0.992956,True,200,186,93.0,1.66,89.5,96.0,88.53,96.12,164,77,12.1638,6.33,2.41,2.31,11.63,5.0,7.91
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),matched_fa_budget,5.0,0.992956,True,200,186,93.0,1.66,89.5,96.0,88.53,96.12,164,77,12.1638,6.33,2.41,2.31,11.63,5.0,7.91
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),matched_fa_budget,10.0,0.992956,True,200,186,93.0,1.66,89.5,96.0,88.53,96.12,164,77,12.1638,6.33,2.41,2.31,11.63,5.0,7.91
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),matched_fa_budget,50.0,0.992956,True,200,186,93.0,1.66,89.5,96.0,88.53,96.12,164,77,12.1638,6.33,2.41,2.31,11.63,5.0,7.91
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),matched_detection_pct,80.0,0.989272,True,200,191,95.5,1.39,92.5,98.0,91.63,97.92,164,91,12.1638,7.48,2.35,3.51,12.62,6.02,9.19
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),matched_detection_pct,90.0,0.989272,True,200,191,95.5,1.39,92.5,98.0,91.63,97.92,164,91,12.1638,7.48,2.35,3.51,12.62,6.02,9.19
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),matched_detection_pct,95.0,0.989272,True,200,191,95.5,1.39,92.5,98.0,91.63,97.92,164,91,12.1638,7.48,2.35,3.51,12.62,6.02,9.19
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),matched_fa_budget,5.0,0.989272,True,200,191,95.5,1.39,92.5,98.0,91.63,97.92,164,91,12.1638,7.48,2.35,3.51,12.62,6.02,9.19
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),matched_fa_budget,10.0,0.989272,True,200,191,95.5,1.39,92.5,98.0,91.63,97.92,164,91,12.1638,7.48,2.35,3.51,12.62,6.02,9.19
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),matched_fa_budget,50.0,0.989272,True,200,191,95.5,1.39,92.5,98.0,91.63,97.92,164,91,12.1638,7.48,2.35,3.51,12.62,6.02,9.19
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),matched_detection_pct,80.0,0.97478,True,200,183,91.5,1.71,88.0,95.0,86.74,94.97,164,47,12.1638,3.86,0.78,2.43,5.5,2.84,5.14
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),matched_detection_pct,90.0,0.97478,True,200,183,91.5,1.71,88.0,95.0,86.74,94.97,164,47,12.1638,3.86,0.78,2.43,5.5,2.84,5.14
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),matched_detection_pct,95.0,0.97478,True,200,183,91.5,1.71,88.0,95.0,86.74,94.97,164,47,12.1638,3.86,0.78,2.43,5.5,2.84,5.14
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),matched_fa_budget,5.0,0.908806,True,200,193,96.5,1.18,94.0,98.5,92.92,98.58,164,301,12.1638,24.75,4.29,16.85,33.61,22.03,27.7
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),matched_fa_budget,10.0,0.908806,True,200,193,96.5,1.18,94.0,98.5,92.92,98.58,164,301,12.1638,24.75,4.29,16.85,33.61,22.03,27.7
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),matched_fa_budget,50.0,0.575653,True,200,200,100.0,0.0,100.0,100.0,98.17,100.0,164,2695,12.1638,221.56,25.87,171.38,274.32,213.27,230.08
+ML_Tier1_Gross,Tier 1 (Gross),fa_budget_per_yr,1.0,0.951268,True,200,87,43.5,2.67,38.0,48.5,36.52,50.67,164,21,12.1638,1.73,0.44,0.91,2.66,1.07,2.64
+ML_Tier1_Gross,Tier 1 (Gross),fa_budget_per_yr,2.0,0.945563,True,200,91,45.5,2.71,40.0,51.0,38.46,52.67,164,26,12.1638,2.14,0.48,1.26,3.14,1.4,3.13
+ML_Tier1_Gross,Tier 1 (Gross),fa_budget_per_yr,5.0,0.924444,True,200,110,55.0,2.65,49.99,60.0,47.82,62.02,164,71,12.1638,5.84,0.88,4.2,7.63,4.56,7.36
+ML_Tier1_Gross,Tier 1 (Gross),fa_budget_per_yr,10.0,0.905265,True,200,127,63.5,2.61,58.5,68.5,56.42,70.18,164,120,12.1638,9.87,1.26,7.55,12.44,8.18,11.8
+ML_Tier1_Gross,Tier 1 (Gross),fa_budget_per_yr,20.0,0.878716,True,200,137,68.5,2.38,64.0,73.0,61.57,74.87,164,233,12.1638,19.16,1.73,15.91,22.6,16.77,21.78
+ML_Tier1b_GrossWeather,Tier 1b (Gross+Weather),fa_budget_per_yr,1.0,0.982735,True,200,77,38.5,2.53,33.5,43.5,31.72,45.62,164,9,12.1638,0.74,0.29,0.25,1.37,0.34,1.4
+ML_Tier1b_GrossWeather,Tier 1b (Gross+Weather),fa_budget_per_yr,2.0,0.978879,True,200,82,41.0,2.41,36.5,45.5,34.11,48.16,164,11,12.1638,0.9,0.31,0.33,1.56,0.45,1.62
+ML_Tier1b_GrossWeather,Tier 1b (Gross+Weather),fa_budget_per_yr,5.0,0.965946,True,200,95,47.5,2.66,42.5,52.5,40.41,54.66,164,24,12.1638,1.97,0.49,1.08,3.01,1.26,2.94
+ML_Tier1b_GrossWeather,Tier 1b (Gross+Weather),fa_budget_per_yr,10.0,0.947887,True,200,112,56.0,2.64,51.0,61.0,48.83,62.99,164,58,12.1638,4.77,0.85,3.22,6.54,3.62,6.16
+ML_Tier1b_GrossWeather,Tier 1b (Gross+Weather),fa_budget_per_yr,20.0,0.919619,True,200,132,66.0,2.54,61.0,71.0,58.98,72.53,164,133,12.1638,10.93,1.62,7.93,14.26,9.15,12.96
+ML_Tier2_Spectral,Tier 2 (Spectral),fa_budget_per_yr,1.0,0.974236,True,200,185,92.5,1.57,89.5,95.5,87.93,95.74,164,876,12.1638,72.02,14.95,43.84,102.58,67.33,76.95
+ML_Tier2_Spectral,Tier 2 (Spectral),fa_budget_per_yr,2.0,0.962636,True,200,187,93.5,1.53,90.5,96.5,89.14,96.49,164,1749,12.1638,143.79,29.09,88.9,203.08,137.13,150.69
+ML_Tier2_Spectral,Tier 2 (Spectral),fa_budget_per_yr,5.0,0.939792,True,200,191,95.5,1.29,93.0,98.0,91.63,97.92,164,2328,12.1638,191.39,37.36,120.88,267.44,183.69,199.32
+ML_Tier2_Spectral,Tier 2 (Spectral),fa_budget_per_yr,10.0,0.920865,True,200,191,95.5,1.29,93.0,98.0,91.63,97.92,164,2080,12.1638,171.0,32.29,110.12,237.29,163.73,178.51
+ML_Tier2_Spectral,Tier 2 (Spectral),fa_budget_per_yr,20.0,0.884339,True,200,188,94.0,1.41,91.0,96.5,89.75,96.86,164,1437,12.1638,118.14,19.95,80.7,159.1,112.11,124.41
+ML_Tier3_WeatherFusion,Tier 3 (Weather Fusion),fa_budget_per_yr,1.0,0.933541,True,200,192,96.0,1.23,93.5,98.5,92.27,98.26,164,452,12.1638,37.16,7.49,23.39,52.67,33.81,40.75
+ML_Tier3_WeatherFusion,Tier 3 (Weather Fusion),fa_budget_per_yr,2.0,0.909179,True,200,192,96.0,1.23,93.5,98.5,92.27,98.26,164,737,12.1638,60.59,11.46,39.24,84.11,56.29,65.13
+ML_Tier3_WeatherFusion,Tier 3 (Weather Fusion),fa_budget_per_yr,5.0,0.883493,True,200,194,97.0,1.13,94.5,99.0,93.58,98.89,164,1077,12.1638,88.54,15.65,59.02,120.25,83.33,93.99
+ML_Tier3_WeatherFusion,Tier 3 (Weather Fusion),fa_budget_per_yr,10.0,0.863465,True,200,196,98.0,0.94,96.0,99.5,94.96,99.45,164,1332,12.1638,109.51,19.04,73.41,147.98,103.7,115.55
+ML_Tier3_WeatherFusion,Tier 3 (Weather Fusion),fa_budget_per_yr,20.0,0.801814,True,200,198,99.0,0.67,97.5,100.0,96.43,99.88,164,2023,12.1638,166.31,28.14,112.87,222.24,159.14,173.72
+ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Informed Nuclear),fa_budget_per_yr,1.0,0.948079,True,200,197,98.5,0.84,96.5,100.0,95.68,99.69,164,201,12.1638,16.52,3.7,10.05,24.51,14.32,18.97
+ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Informed Nuclear),fa_budget_per_yr,2.0,0.919854,True,200,197,98.5,0.84,96.5,100.0,95.68,99.69,164,320,12.1638,26.31,4.78,17.55,36.32,23.5,29.35
+ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Informed Nuclear),fa_budget_per_yr,5.0,0.871205,True,200,198,99.0,0.68,97.5,100.0,96.43,99.88,164,480,12.1638,39.46,6.56,27.33,52.91,36.01,43.15
+ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Informed Nuclear),fa_budget_per_yr,10.0,0.782899,True,200,199,99.5,0.47,98.5,100.0,97.25,99.99,164,711,12.1638,58.45,9.22,41.27,77.06,54.23,62.91
+ML_Tier4_PhysicsNuclear,Tier 4 (Physics-Informed Nuclear),fa_budget_per_yr,20.0,0.641518,True,200,199,99.5,0.47,98.5,100.0,97.25,99.99,164,1015,12.1638,83.44,11.8,61.47,107.59,78.39,88.74
