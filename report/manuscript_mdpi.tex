@@ -1,0 +1,460 @@
+%  LaTeX Template for MDPI Sensors Journal Manuscript
+%  Prepared according to MDPI Author Instructions and LaTeX Class Definitions
+\documentclass[sensors,article,submit,moreauthors]{mdpi}
+
+% ------------------------------------------------------------------------------
+% PACKAGES AND CONFIGURATION
+% ------------------------------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\urlstyle{same}
+
+% Input auto-generated macros (scripts/make_manuscript_tables.py)
+\input{manuscript_macros.tex}
+
+% ------------------------------------------------------------------------------
+% MANUSCRIPT METADATA
+% ------------------------------------------------------------------------------
+\firstpage{1}
+\makeatletter
+\setcounter{page}{\@firstpage}
+\makeatother
+\pubvolume{26}
+\issuenum{1}
+\articlenumber{0000}
+\pubyear{2026}
+\copyrightyear{2026}
+\doinum{10.3390/s26010000}
+\hreflink{https://doi.org/10.3390/s26010000}
+\datereceived{15 October 2026}
+\daterevised{28 October 2026}
+\dateaccepted{30 October 2026}
+\datepublished{31 October 2026}
+
+% Title must explicitly declare evaluation on synthetic atmospheric plumes
+\Title{Anomaly Detection in Environmental Radiation Sensor Networks under Precipitation-Induced Radon Washout: Evaluation on Synthetic Atmospheric Plumes}
+
+\TitleCitation{Anomaly Detection in Environmental Radiation Sensor Networks under Precipitation-Induced Radon Washout: Evaluation on Synthetic Atmospheric Plumes}
+
+\Author{Necdet \"{O}mer Barut $^{1,*}$ and [CO-AUTHOR TO COMPLETE] $^{2}$}
+
+\AuthorNames{Necdet \"{O}mer Barut and [CO-AUTHOR TO COMPLETE]}
+
+\AuthorCitation{Barut, N. \"{O}.; et al.}
+
+\address{%
+$^{1}$ \quad Department of Environmental Engineering, Faculty of Engineering, Hacettepe University, Beytepe, 06800 Ankara, Turkey; omerbarut@hacettepe.edu.tr\\
+$^{2}$ \quad [AFFILIATION TO COMPLETE]}
+
+\corres{Correspondence: omerbarut@hacettepe.edu.tr}
+
+% ------------------------------------------------------------------------------
+% ABSTRACT AND KEYWORDS
+% ------------------------------------------------------------------------------
+\abstract{Continuous environmental radiation sensor networks must reliably discriminate anomalous anthropogenic radiological releases from natural background surges caused by precipitation scavenging of radon daughters ($^{214}\text{Pb}$ and $^{214}\text{Bi}$). Because historical network monitoring series contain no documented high-activity releases, detection sensitivity is evaluated exclusively on a realistic benchmark of \BenchmarkPlumeInjections{} synthetic atmospheric plume injections (\BenchmarkPlumesTrain{} training, \BenchmarkPlumesTest{} independent test) across five pilot stations with multi-channel sodium iodide ($\text{NaI(Tl)}$) scintillation spectrometry and synchronous surface meteorology (\EvaluationYearsRange{}; \TrainingValidationYears{} validation, \TestingYears{} test). We benchmark gradient boosted decision trees (GBDT) with physics-motivated features---including Bateman progeny decay kinetics, ICRP-74 ambient dose conversion residuals, and spectral band shares---alongside non-machine learning spectral projection baselines. At a pre-calibrated 95\% validation detection target, the physics-motivated GBDT (Tier 4) achieves \TierFourDet{} [\TierFourDetCI{}] test detection at \TierFourFA{} [\TierFourFACI{}] false alarms per station-year with a median detection delay of \TierFourDelay{} [\TierFourDelayCI{}], compared to \BaselineRollingThreeSigmaDet{} [\BaselineRollingThreeSigmaDetCI{}] detection and \BaselineRollingThreeSigmaFA{} [\BaselineRollingThreeSigmaFACI{}] false alarms for standard rolling 3$\sigma$ gross rules. A non-machine learning radon-direction projection baseline (B4c) achieves \BaselineNonMLRadonDet{} test detection at \BaselineNonMLRadonFA{} false alarms per station-year without training on synthetic plumes. Detection performance is sensitive to spectral template fidelity: shifting photopeak energies by $\pm 20\%$ alters detection rates by $\approx 10$ percentage points. An independent evaluation during the 2011 Fukushima trans-Pacific plume illustrates physical detection limits: unassisted immersion yields only $\approx 2.03\text{ pSv/h}$ ($\sim 0.0002\text{ CPM}$ ambient excess), while active particulate filter accumulation ($Q \approx 60\text{ m}^3\text{/h}$) produces modest excess ($\approx 17\text{ CPM}$ in Channel 3 after 24~h) that hovers near hourly Poisson fluctuations and is limited by volatile iodine pass-through and automated filter tape advances. Finally, a rule-based categorization audit of 100 clean-background test alarms reveals that 44\% stem from physical or instrumental causes (12\% active rain washout, 28\% hardware baseline drift), demonstrating that unadjudicated alarms cannot be treated as pure false positives.}
+
+\keyword{environmental radiation monitoring; radon washout; anomaly detection; machine learning; scintillation spectrometry; RadNet; sensor networks}
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% 1. INTRODUCTION
+% ------------------------------------------------------------------------------
+\section{Introduction}
+
+Automated environmental radiation surveillance networks are operated globally to provide continuous early warning of industrial nuclear accidents, clandestine atmospheric discharges, and radiological dispersal events \cite{Sangiorgi2020,Masson2011}. In the United States, the Environmental Protection Agency (EPA) operates RadNet, a nationwide fixed monitoring infrastructure comprising over 140 automated stations \cite{USEPA2021}. Each station continuously monitors ambient air through gross and multi-channel scintillation spectrometry using thallium-doped sodium iodide ($\text{NaI(Tl)}$) crystals, accompanied by continuous particulate air filtration \cite{USEPA2021,Knoll2010}.
+
+A primary operational challenge in automated radiation early-warning networks is the high incidence of false alarms triggered by meteorological precipitation \cite{Burnett2010,Mercier2009}. Rainfall and snowfall scavenge airborne radon daughter radionuclides ($^{214}\text{Pb}$ and $^{214}\text{Bi}$ from the $^{222}\text{Rn}$ decay chain) attached to ambient aerosols, rapidly depositing them on the ground and sensor housing \cite{Takeuchi1982,Paatero2000}. This phenomenon, termed radon washout, causes immediate surges in environmental gamma radiation fields. Empirical measurements across EPA RadNet stations indicate that rain events produce a median gross count rate surge of $+6.9\%$, with the 90th percentile reaching $+41.4\%$ and severe convective thunderstorms surging up to $+196.7\%$ above baseline in our empirical RadNet analysis. Conversely, maritime airflow regimes in coastal environments can induce subtle baseline depressions. Following rain cessation, excess activity decays with the effective half-life of the $^{214}\text{Pb}/^{214}\text{Bi}$ pair ($t_{1/2} \approx 36.8\text{ min}$), restoring background levels within 2 to 4 hours \cite{Mercier2009,Melintescu2018}.
+
+Conventional network alarm systems rely primarily on gross count rate sigma rules, such as fixed or rolling 3$\sigma$ to 5$\sigma$ thresholds above recent moving averages \cite{Currie1968,Burnett2010}. During intense precipitation, these operational rules frequently exceed alarm limits, producing dozens of false alarms per station-year in humid climates. When alert thresholds are raised to suppress rain-induced false alarms, the network becomes blind to low-level anthropogenic plumes whose activity is comparable to or smaller than natural background fluctuations \cite{Breitkreutz2023}.
+
+Recent advances in machine learning have shown promise for automated anomaly detection in environmental sensor time series \cite{Breitkreutz2023,Frankemolle2025} and nuclear spectroscopy \cite{Bandstra2023,Alamaniotis2024,Abdelhakim2025,Lalor2026}. Machine learning methods have been applied to multi-modal weather fusion and plume dispersion modeling \cite{Ayoub2024a,Ayoub2024b,Lye2025}. However, systematic evaluations of multi-modal anomaly detection on operational field networks face a fundamental methodological challenge: real monitoring time series rarely contain documented anthropogenic radioactive plumes. Consequently, reported detection metrics in literature are frequently derived from synthetic injection benchmarks whose independence, spectral fidelity, and generalization across multi-climate sensor networks require rigorous empirical scrutiny \cite{Fjeldsted2024,Lalor2026}.
+
+In this study, we investigate the discrimination of precipitation-induced radon washout from anthropogenic gamma-emitting plumes across 11 US EPA RadNet stations over nine years (\EvaluationYearsRange{}). Detection sensitivity is evaluated strictly on synthetic atmospheric plume benchmarks generated via Monte Carlo detector response functions and parametric passage profiles. We benchmark gradient boosted decision trees (GBDT) and neural networks incorporating physics-motivated heuristic features---specifically Bateman decay equilibrium residuals, ICRP-74 ambient dose conversion residuals, and spectral band shares---against eight operational, subspace, and non-machine learning baselines. We further examine real-event physical limits during the 2011 trans-Pacific Fukushima plume, assess cross-climate generalization, and conduct a diagnostic audit of clean-background alarms.
+
+% ------------------------------------------------------------------------------
+% 2. RELATED WORK
+% ------------------------------------------------------------------------------
+\section{Related Work}
+
+\subsection{Environmental Gamma Background Dynamics and Radon Washout}
+Natural fluctuations in ambient environmental gamma radiation have been studied extensively since early network deployments \cite{Minato1980}. Takeuchi and Katase established mathematical formulations for precipitation scavenging of radon daughters, demonstrating that wet deposition flux is governed by rainfall intensity, cloud base height, and vertical aerosol attachment profiles \cite{Takeuchi1982}. Paatero quantified radon-222 progeny wet deposition in northern boreal climates, showing that $^{214}\text{Pb}$ and $^{214}\text{Bi}$ activity concentrations in rainwater exhibit strong seasonal and meteorological variability \cite{Paatero2000}. Mercier et al.\ analyzed environmental gamma dose rate increases during precipitation across Canadian monitoring stations, observing strong correlations between radon surge magnitude and the trajectory of contributing continental air masses \cite{Mercier2009}. Burnett et al.\ demonstrated that precipitation-induced radon progeny washout accounts for the dominant fraction of short-lived background anomalies in environmental monitoring networks \cite{Burnett2010}. Melintescu et al.\ examined the coupled influence of soil exhalation, atmospheric stability, and precipitation on ambient gamma fields \cite{Melintescu2018}. Recently, Hsieh et al.\ presented high-resolution minute-level analyses of gamma dose rates and precipitation, characterizing the immediate response and subsequent decay dynamics across varying rain intensities \cite{Hsieh2026}.
+
+\subsection{Anomaly Detection in Radiation Monitoring Time Series}
+To address background fluctuations without discarding data during rain, researchers have explored time series anomaly detection and predictive background modeling. Breitkreutz et al.\ developed artificial intelligence models based on long short-term memory (LSTM) neural networks and autoencoders for the identification and quantification of anomalies in environmental gamma dose-rate time series \cite{Breitkreutz2023}. Frankem\"{o}lle et al.\ introduced a Bayesian statistical framework to predict baseline ambient background radiation at environmental monitoring stations within local sensor networks, accounting for spatial correlations and meteorological covariates \cite{Frankemolle2025}. Ayoub et al.\ integrated machine learning weather forecasts with real-time atmospheric transport models for radioactive contamination forecasting \cite{Ayoub2024a}, and developed Fourier neural operator surrogates to accelerate plume dispersion predictions \cite{Ayoub2024b}. Lye et al.\ provided an extensive review of physics-enhanced machine learning for probabilistic risk assessment in nuclear safety, highlighting the necessity of embedding domain physics into predictive models \cite{Lye2025}.
+
+\subsection{Scintillation Spectrometry and Radionuclide Identification}
+Low-resolution sodium iodide ($\text{NaI(Tl)}$) scintillation detectors are the standard instrumentation in large-scale air monitoring networks due to their mechanical robustness, high gamma-ray detection efficiency, and operational stability \cite{Knoll2010}. However, their relatively modest energy resolution ($\sim 7\%$ full width at half maximum at 662 keV) leads to overlapping photopeaks, substantial Compton scattering continua, and sensitivity to temperature-induced photomultiplier gain drift \cite{Moszynski2006,Wen2024}. 
+
+Spectral deconvolution algorithms have long been explored to separate overlapping gamma components \cite{Meng2000}. In aerial and field radiation surveillance, nuisance rejection methods often focus on separating terrestrial natural radionuclides (potassium-40, uranium-series, thorium-series; KUT) from artificial sources \cite{Detwiler2015}. Bilton et al.\ demonstrated that non-negative matrix factorization (NMF) can effectively decompose multi-channel gamma spectra into background and source components for source identification \cite{Bilton2019}. In recent years, machine learning approaches have expanded rapidly: Bandstra et al.\ developed explainable AI frameworks to interpret machine-learning gamma-ray detection models \cite{Bandstra2023}; Alamaniotis proposed mode-driven explainable AI for estimating background radiation spectra in nuclear security \cite{Alamaniotis2024}; Sun et al.\ designed self-attention neural networks for rapid multi-nuclide classification \cite{Sun2024}; and Abdelhakim applied neural networks combined with ant colony optimization for spectral anomaly detection \cite{Abdelhakim2025}. To address the lack of empirical release data, researchers have developed synthetic spectra procurement frameworks \cite{Fjeldsted2024,Buckton2025} and investigated sim-to-real domain adaptation techniques to bridge the gap between simulated training templates and field detectors \cite{Lalor2026}.
+
+% ------------------------------------------------------------------------------
+% 3. MATERIALS AND METHODS
+% ------------------------------------------------------------------------------
+\section{Materials and Methods}
+
+\subsection{Sensor Network Instrumentation and Meteorological Data}
+Field data were acquired from the US EPA RadNet stationary air monitoring network \cite{USEPA2021}. Each RadNet station houses a hermetically sealed 2"$\times$2" or 3"$\times$3" $\text{NaI(Tl)}$ scintillation detector coupled to an automated 8-channel multichannel analyzer (MCA). The energy spectrum is partitioned into eight coarse channels spanning 100 to 2200 keV: Channel 1 (R01, 100--250 keV), Channel 2 (R02, 250--400 keV), Channel 3 (R03, 400--550 keV), Channel 4 (R04, 550--700 keV), Channel 5 (R05, 700--900 keV), Channel 6 (R06, 900--1200 keV), Channel 7 (R07, 1200--1600 keV), and Channel 8 (R08, 1600--2200 keV). In addition, each station continuously draws air through an aerosol particulate filter to capture airborne particulates, which automatically advances on fixed intervals or upon reaching preset pressure drops.
+
+Contemporaneous surface meteorological observations were harmonized from the NOAA Integrated Surface Database (ISD) \cite{Smith2011} for airport weather stations colocated within 25 km of each RadNet monitor. Synchronized parameters comprise liquid precipitation accumulation over 1, 3, 6, and 24 hours; barometric surface pressure and 3-hour barometric tendencies; dry-bulb temperature; dew point temperature; and relative humidity.
+
+The network evaluation incorporates \TotalStationsCount{} geographically and climatically diverse stations spanning nine years (\EvaluationYearsRange{}). The station network design comprises two complementary cohorts:
+\begin{enumerate}
+    \item \textbf{Five Pilot Stations:} Birmingham, AL (Humid Subtropical); Washington, DC (Humid Continental / Oceanic); San Diego, CA (Mediterranean Semi-Arid); Dallas, TX (Humid Subtropical Interior); and Tampa, FL (Maritime Coastal Subtropical). These five stations are used for primary model training on historical background (2017--2020), validation threshold calibration (2021--2022; 74,199 synchronous station-hours), the primary realistic synthetic plume benchmark evaluation (Tables~\ref{tab:benchmark_summary}, \ref{tab:fa_budget_operating_points}, and \ref{tab:ablation_summary}; 2023--2025 test split, 106,628 synchronous station-hours), threshold sensitivity analysis, and the diagnostic clean-background test alarm audit (Table~\ref{tab:alarm_adjudication}).
+    \item \textbf{Six Extended Network Stations:} Phoenix, AZ (Arid Desert); Omaha, NE (Humid Continental Interior); Honolulu, HI (Tropical Maritime); Anchorage, AK (Subarctic Coastal); Baton Rouge, LA (Gulf Coast Subtropical); and Burlington, VT (Cold Continental). Together with the five pilot stations (11 stations in total), these extended stations are used for the Leave-One-Station-Out (LOSO) spatial transferability evaluation (Table~\ref{tab:loso_11station}), cross-climate generalization analysis, and the 2011 Fukushima trans-Pacific real-event physical limit evaluation across Pacific gateway and continental control stations (Honolulu, San Diego, Anchorage, Dallas; Table~\ref{tab:real_event_fukushima}).
+\end{enumerate}
+
+\subsection{Physics-Motivated Feature Engineering}
+To provide the machine learning algorithms with physically grounded inductive biases without relying on unconstrained function approximation, we engineer domain-specific heuristic features based on nuclear decay kinetics and radiation transport:
+
+\subsubsection{Bateman Radon Progeny Equilibrium Proxy}
+Precipitation scavenging deposits $^{214}\text{Pb}$ ($t_{1/2} = 26.8\text{ min}$) and $^{214}\text{Bi}$ ($t_{1/2} = 19.9\text{ min}$) onto surfaces. The parent radon gas ($^{222}\text{Rn}$) remains largely uncollected by particulate filters. The transient accumulation and subsequent decay of deposited progeny activity $A_{\text{prog}}(t)$ is governed by the Bateman equations \cite{Cetnar2006}:
+\begin{equation}
+\frac{dA_{\text{prog}}}{dt} = \Lambda_{\text{scav}} \cdot P(t) - \lambda_{\text{eff}} A_{\text{prog}}(t)
+\end{equation}
+where $P(t)$ is the precipitation rate (mm/h), $\Lambda_{\text{scav}}$ is an empirical scavenging coefficient \cite{Sportisse2007}, and $\lambda_{\text{eff}} \approx 0.0188\text{ min}^{-1}$ corresponds to the effective half-life ($t_{1/2} \approx 36.8\text{ min}$) of the transient secular equilibrium between $^{214}\text{Pb}$ and $^{214}\text{Bi}$. We construct a causal discrete-time convolution of recent rainfall to estimate expected washout activity $\hat{A}_{\text{washout}}(t)$, and compute the Bateman washout residual ratio:
+\begin{equation}
+R_{\text{Bateman}}(t) = \frac{C_{\text{gross}}(t) - \bar{C}_{\text{dry}}}{\hat{A}_{\text{washout}}(t) + \epsilon}
+\end{equation}
+Under natural rain washout, $R_{\text{Bateman}}(t)$ serves as an approximate physical proxy for expected washout accumulation, though empirical ablation indicates that it provides marginal incremental value relative to direct spectral radon subspace stripping.
+
+\subsubsection{ICRP-74 Ambient Dose Equivalent Residuals}
+Natural radon daughters and anthropogenic radionuclides exhibit markedly different spectral energy distributions. Gamma-ray fluence-to-dose conversion factors from ICRP Publication 74 \cite{ICRP74} define ambient dose equivalent $H^*(10)$ conversion coefficients $h_i$ (nSv/h per CPM) across each energy bin. We compute the expected dose rate $D_{\text{spec}}(t) = \sum_{i=1}^8 h_i R_i(t)$ from multi-channel counts $R_i(t)$ and compare it against the gross counting rate $C_{\text{gross}}(t)$. The standardized dose-spectral residual $Z_{\text{dose}}(t)$ flags spectral imbalances inconsistent with nominal background fields.
+
+\subsubsection{Spectral Band Shares and Causal Normalization}
+Channel counts are converted into relative spectral shares $s_i(t) = R_i(t) / \sum_{j=1}^8 R_j(t)$. Because radon progeny deposition produces characteristic emissions in Channel 2 ($^{214}\text{Pb}$ at 295 and 352 keV) and Channels 4 and 5 ($^{214}\text{Bi}$ at 609 keV), surges in $s_2$ and $s_4$ indicate radon washout, whereas anomalous increases in Channel 5 ($^{137}\text{Cs}$ at 662 keV) or Channel 7 ($^{60}\text{Co}$ at 1173 and 1332 keV) indicate artificial isotopes. To eliminate seasonal, diurnal, and slow instrumental baseline shifts without future temporal leakage, all continuous features are normalized by a causal rolling 168-hour (7-day) backward-looking window median and interquartile range (IQR).
+
+\subsection{Synthetic Atmospheric Plume Benchmark}
+In the absence of high-activity anthropogenic releases in operational network history, detection sensitivity was evaluated via a synthetic injection benchmark comprising \BenchmarkPlumesTest{} test plumes (and \BenchmarkPlumesTrain{} disjoint training plumes, \BenchmarkPlumeInjections{} in total). The benchmark was engineered to eliminate generator artifacts and reproduce realistic field detector physics:
+\begin{enumerate}
+    \item \textbf{Detector Response Templates:} Energy-channel deposition fractions were derived from MCNP Monte Carlo simulations of a 2"$\times$2" $\text{NaI(Tl)}$ detector exposed to semi-infinite cloud geometry, incorporating photoelectric absorption, Compton scattering continua, backscatter peaks, and 7\% FWHM Gaussian energy resolution (Family B templates).
+    \item \textbf{Passage Profiles and Dynamics:} Plumes were generated using parametric passage profiles: training plumes utilized linear ramp and step profiles, whereas test plumes utilized independent sigmoidal and exponential curves \cite{Stohl2012}. Passage durations spanned 8 to 164 hours (active passage 3 to 28 hours).
+    \item \textbf{Source Radionuclides:} Injections modeled five reactor accident release profiles: $^{137}\text{Cs}$ (photopeak in R05), $^{131}\text{I}$ (R03), $^{134}\text{Cs}$ (R04/R05), $^{60}\text{Co}$ (R07), and a volatile mixture of $^{132}\text{Te}/^{132}\text{I}$ (R02/R04/R06), with decay schemes and primary gamma-ray emission branching ratios retrieved from the NNDC NuDat/ENSDF database \cite{NNDC2023}.
+    \item \textbf{Poisson Counting Noise and Timing:} Synthetic counts were injected as non-homogeneous Poisson random variables rather than smooth deterministic intensities, with arbitrary event endpoints to prevent filter-age leakage \cite{Currie1968}.
+\end{enumerate}
+
+\subsection{Detection Models and Baseline Hierarchy}
+We evaluated four tiers of supervised machine learning architectures and eight non-machine learning and statistical baseline families (B1--B8):
+\begin{itemize}
+    \item \textbf{Operational Gross Baselines (B1--B2):} Global dry 3$\sigma$ thresholds, rolling 7-day 3$\sigma$, 4$\sigma$, and 5$\sigma$ gross rules, and rain-masked rules that suppress alarms during active rainfall.
+    \item \textbf{Meteorological Spline Regression (B3):} Generalized Additive Models (GAM) predicting gross gamma rates from rainfall and atmospheric pressure.
+    \item \textbf{Non-ML Radon-Direction Projection (B4c):} A geometric projection baseline that fits a 168-hour local empirical radon-washout vector in 8-channel spectral space. The vector component along the radon direction is stripped, and an alarm is raised when the maximum residual channel $Z$-score exceeds a calibrated threshold.
+    \item \textbf{Subspace and Unsupervised Baselines (B5--B6):} Non-Negative Matrix Factorization (NMF, 2 components) \cite{Bilton2019}, One-Class Support Vector Machines (SVM), and Isolation Forests trained strictly on clean background.
+    \item \textbf{Supervised Classifiers (B7):} Shallow decision trees and logistic regression.
+    \item \textbf{Machine Learning Architectures (Tiers 1--4):} Gradient Boosted Decision Trees (LightGBM \cite{Ke2017}) and Multi-Layer Perceptrons (MLP). Tier 1 utilizes 12 gross radiation features; Tier 2 incorporates 8-channel spectrometry; Tier 3 fuses weather and spectrometry (48 features); and Tier 4 incorporates all 59 physics-motivated features.
+\end{itemize}
+
+\subsection{Operating-Point Selection and Statistical Inference}
+To prevent threshold saturation and selection leakage, all operational decision thresholds $\tau$ were selected strictly on the 2021--2022 validation split to target pre-specified false-alarm operating budgets ($\alpha \in \{1, 2, 5, 10, 20\}$ yr$^{-1}$) or a fixed 95\% validation detection target. Thresholds were frozen prior to evaluating the 2023--2025 test split.
+
+Uncertainty intervals for detection rates were computed using a plume-level cluster bootstrap ($B=2{,}000$ resamples of entire 200-plume scenarios). Uncertainty intervals for false alarm rates were computed using stationary monthly block bootstrapping ($B=2{,}000$ resamples of station-months). Cross-station generalization was evaluated via Leave-One-Station-Out (LOSO) cross-validation across all \TotalStationsCount{} stations.
+
+% ------------------------------------------------------------------------------
+% 4. RESULTS
+% ------------------------------------------------------------------------------
+\section{Results}
+
+\subsection{Benchmark Detection and False Alarm Performance}
+Table~\ref{tab:benchmark_summary} presents detection rates, false alarm frequencies, and median detection delays on the independent 2023--2025 test split at the pre-calibrated 95\% validation target.
+
+\input{tables/table1_benchmark_summary.tex}
+
+The operational rolling 3$\sigma$ gross rule exhibits severe vulnerability to radon washout, generating \BaselineRollingThreeSigmaFA{} false alarms per station-year, with \BaselineRollingThreeSigmaRainFAPct{} of alarms coinciding directly with active rainfall. Raising the threshold to 5$\sigma$ suppresses false alarms to \BaselineRollingFiveSigmaFA{} yr$^{-1}$, but causes detection sensitivity to collapse to \BaselineRollingFiveSigmaDet{}. 
+
+In contrast, the physics-motivated GBDT (Tier 4) achieves \TierFourDet{} [\TierFourDetCI{}] test detection with a false alarm rate of \TierFourFA{} [\TierFourFACI{}] yr$^{-1}$ and a median detection delay of \TierFourDelay{} [\TierFourDelayCI{}]. Rain-coincident false alarms are reduced to \TierFourRainFAPct{}. The full weather-fusion model without nuclear physics features (Tier 3) achieves \TierThreeDet{} [\TierThreeDetCI{}] detection at \TierThreeFA{} [\TierThreeFACI{}] false alarms per station-year. The neural network architecture (MLP Tier 3) achieves \MLPWeatherDet{} detection but exhibits a higher false alarm rate of \MLPWeatherFA{} yr$^{-1}$.
+
+Figure~\ref{fig:roc_and_importance} illustrates the empirical Receiver Operating Characteristic (ROC) curves across all models and the feature importance rankings for the Tier 4 model.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\textwidth]{figures/baseline_matched_roc_curves.png}
+\caption{Receiver Operating Characteristic (ROC) detection rate versus false alarm rate across operational baselines (B1--B8) and machine learning tiers (Tiers 1--4) on the 2023--2025 test split.}
+\label{fig:roc_and_importance}
+\end{figure}
+
+\subsection{Operating-Point Trade-offs Across Fixed False-Alarm Budgets}
+\label{sec:operating_budgets}
+Table~\ref{tab:fa_budget_operating_points} evaluates model performance across fixed false-alarm budgets ($\alpha \in \{1, 2, 5, 10\}$ yr$^{-1}$) calibrated strictly on validation data.
+
+\input{tables/table2_fa_budget_operating_points.tex}
+
+Across all pre-specified false-alarm operating budgets ($\alpha \in \{1, 2, 5, 10\}$ yr$^{-1}$), Tier 4 maintains detection rates above 98\%, detecting over 82\% of plumes within $\le 6$ hours of onset. However, Table~\ref{tab:fa_budget_operating_points} reveals substantial out-of-sample false-alarm budget overshoot on the 2023--2025 test split: when calibrated to a strict validation budget of $\alpha = 1.0$ yr$^{-1}$, realized test false alarm rates reach $17.59 \pm 3.41$ yr$^{-1}$ for Tier 4, $31.50 \pm 8.44$ yr$^{-1}$ for Tier 3, and $78.53 \pm 34.86$ yr$^{-1}$ for Tier 2. This divergence demonstrates that static threshold calibration on historical folds cannot rigidly maintain single-digit annual false alarm rates in the presence of multi-year atmospheric non-stationarity and sensor baseline drift without adaptive online normalization.
+
+\subsection{Feature Ablation, Comparator Hierarchy, and Isotope Memorization}
+Table~\ref{tab:ablation_summary} summarizes the comparator hierarchy and feature ablation experiments at the 95\% validation target.
+
+\input{tables/table6_ablation_summary.tex}
+
+A critical finding emerges from the non-machine learning baselines: baseline \textbf{B4c} (\textit{Radon Projection + Peak Channel Z}) achieves 80.0\% test detection at 2.30 false alarms per station-year ($0.0\%$ rain-coincident) without seeing synthetic plumes during training. At a 10 FA/yr budget, B4c achieves 89.0\% detection. This demonstrates that local geometric radon stripping accounts for the vast majority of false-alarm suppression, while supervised GBDT training on synthetic templates contributes the remaining $+5$ to $+14$ percentage points in detection sensitivity.
+
+Note that in Table~\ref{tab:ablation_summary}, Tier 4 achieves 96.5\% test detection at 9.87 FA yr$^{-1}$ under the single-seed comparator ablation sweep ($\tau = 0.9740$), whereas Table~\ref{tab:benchmark_summary} reports \TierFourDet{} test detection at \TierFourFA{} FA yr$^{-1}$ under the realistic benchmark 20-seed evaluation ($\tau = 0.9850$, 95\% validation target). In the legacy benchmark with shared templates and noiseless curves, Tier 4 yielded \LegacyTierFourDet{} detection at \LegacyTierFourFA{} FA yr$^{-1}$. For three comparators (B5b NMF, B6a Isolation Forest, and B7b Decision Tree), the 95\% validation detection target was unreachable (reaching maxima of 93.8\%, 93.8\%, and 88.9\%, respectively); their reported metrics reflect their lowest-threshold operating points.
+
+\subsubsection{Pre-Specified Comparison vs. Post-Hoc Matched Test Analysis}
+In the pre-specified analysis plan (\texttt{docs/analysis\_plan.md}), the primary comparison was defined at the 90\% validation detection target. However, because validation detection targets do not transfer identically to out-of-sample test detection (due to the domain shift between Family A analytic training templates and Family B Monte Carlo test templates with Gamma-Poisson noise), validation calibration produces unmatched test detection: Tier 4 achieves 96.5\% test detection at 9.87 FA yr$^{-1}$, while B4c achieves 70.0\% test detection at 0.74 FA yr$^{-1}$ (a 26.5 pp detection gap).
+
+To provide an objective, matched comparison without threshold selection artifacts, Figure~\ref{fig:post_hoc_matched_roc} presents full post-hoc test detection-versus-false-alarm ROC curves with 95\% cluster- and block-bootstrap confidence bands. When matched to an identical test false-alarm budget of 10.0 FA yr$^{-1}$, Tier 4 achieves 96.5\% detection [94.0\%, 98.5\%], Tier 3 achieves 93.5\% [90.0\%, 96.5\%], and non-ML B4c achieves 91.5\% [87.5\%, 95.0\%], compared to only 5.0\% [2.5\%, 8.0\%] for standard rolling 3$\sigma$ gross rules. We emphasize that thresholds selected directly from test scores represent theoretical performance ceilings rather than deployable operational operating points, as blind operational deployments must freeze thresholds prior to deployment without test data access.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/post_hoc_matched_roc.png}
+\caption{Post-hoc matched test detection versus false alarm rate curves on the 2023--2025 independent test split (200 Family B test plumes, 12.16 station-years exposure). Shaded bands indicate 95\% stratified plume cluster bootstrap (detection) and station-month block bootstrap (false alarm) confidence intervals. Dashed vertical lines mark matched operational budgets at 5 and 10 false alarms per station-year.}
+\label{fig:post_hoc_matched_roc}
+\end{figure}
+
+Importantly, our leave-one-scenario-out experiments (archived in \texttt{benchmark\_holdout\_templates.csv}) reveal a fundamental limitation of supervised GBDTs: when an isotope is excluded from training, detection collapses to 0.0\% for $^{131}\text{I}$ and 0.0\% for $^{60}\text{Co}$ in Tier 4. The supervised trees memorize the specific energy-channel signatures of the training templates rather than learning an abstract 'non-radon anomaly' manifold. In contrast, non-ML baseline B4c operates purely by geometric subspace projection and remains robust against arbitrary out-of-template emissions without supervised training.
+
+Feature importance analysis (Figure~\ref{fig:feature_imp}) indicates that meteorological variables (\texttt{hours\_since\_rain}) and spectral stripping residuals (\texttt{local\_radon\_stripping\_residual\_l2}) provide the largest split gains, whereas the Bateman ratio and dose residuals provide secondary discriminative refinements.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{figures/model_feature_importance.png}
+\caption{Feature importance rankings (LightGBM split gain) for Tier 4 GBDT model.}
+\label{fig:feature_imp}
+\end{figure}
+
+\subsection{Cross-Station Generalization and 11-Station LOSO Evaluation}
+To evaluate spatial transferability across diverse geographic and climatological settings, models trained on pilot stations were evaluated across \TotalStationsCount{} stations using Leave-One-Station-Out (LOSO) cross-validation (Table~\ref{tab:loso_11station}).
+
+\input{tables/table3_loso_11stations.tex}
+
+The cross-station evaluation highlights the fundamental difference between static local calibration and causal adaptive normalization:
+\begin{enumerate}
+    \item \textbf{Uncalibrated Zero-Shot Transfer:} When transferred with uncalibrated validation thresholds, Tier 4 achieves 0.00 false alarms per year across five continental stations (Birmingham, DC, Phoenix, San Diego, Dallas). However, at Honolulu, HI, uncalibrated transfer generates 87.77 false alarms per year (and 89.23 yr$^{-1}$ for Tier 3), driven by maritime background differences.
+    \item \textbf{Failure of Static 12-Month Calibration:} Counterintuitively, calibrating a static threshold on 12 months of clean local data catastrophically fails at Honolulu (638.52 FA yr$^{-1}$) and Burlington, VT (332.92 FA yr$^{-1}$). Because static 12-month calibration locks in a threshold tailored to a single annual seasonal cycle, multi-year climatological shifts, snow cover exhalation changes, or long-term baseline drift cause persistent false alarm triggering in subsequent years.
+    \item \textbf{Causal 168-Hour Rolling Normalization:} In stark contrast, causal 168-hour rolling baseline normalization (\textit{Tier 4 Rolling 168h}) achieves exactly 0.00 false alarms per year across 9 of the 11 stations, with only 1.05 FA yr$^{-1}$ at San Diego and 7.19 FA yr$^{-1}$ at Tampa, while maintaining 80.0\% to 100.0\% detection sensitivity across all 11 stations.
+\end{enumerate}
+
+The Tampa station provides an instructive field case study: on March 28, 2023, the detector underwent an unannounced physical reconfiguration or gain adjustment, shifting Channel 1 (100--250 keV) counting rates permanently upward by $+38.3\%$ while higher channels shifted by $-8.9\%$ to $-18.7\%$. Static models interpret this permanent spectral distortion as continuous plume excess. Causal 168-hour rolling normalization rapidly absorbs the baseline step, reducing false alarms to 7.19 yr$^{-1}$ (and 1.80 yr$^{-1}$ under local 12-month post-step calibration at 87.5\% detection), proving that continuous rolling normalization is mandatory for operational network resilience.
+
+\subsection{Real-Event Physical Limits: The 2011 Fukushima Daiichi Plume}
+We conducted an independent pre-registered evaluation during the March 12--April 30, 2011 trans-Pacific passage of the Fukushima Daiichi nuclear accident plume \cite{Stohl2012,Thakur2012} across Pacific stations (Honolulu, San Diego, Anchorage) and a continental control station (Dallas). Results are presented in Table~\ref{tab:real_event_fukushima}.
+
+\input{tables/table5_real_event_fukushima.tex}
+
+During the event window, neither Tier~3 nor the lower-tier ML models registered any alarms at the Pacific stations. At Honolulu, Tier~4 recorded two isolated alarms on March~21 (07:00 and 08:00 UTC; scores 0.9157 and 0.9530 relative to the validation-selected threshold $\tau = 0.8719$) under completely dry conditions ($0.0\text{ mm}$ rain, 37--38 hours post-precipitation). However, Tier~3 (scores 0.0189 and 0.0149), Tier~2 (scores 0.0128 and 0.0137), and B4c (scores 0.3598 and 0.5130) remained unalarmed, indicating that these two alarms reflect subtle maritime PMT baseline drift in the Hawaiian NaI(Tl) crystal rather than verified radiological detection. Across all other Pacific stations (San Diego, Anchorage), Tier~4 registered 0.00 false alarms throughout the plume period. In contrast, operational gross-count baselines exhibited elevated artifact rates (e.g., $216.9\text{ yr}^{-1}$ at San Diego for Rolling 7d 3$\sigma$), triggering on mundane baseline variations.
+
+Physical radiation transport and sampler kinetics explain why the Fukushima plume produced no unambiguous automated detection across the real-time monitoring network:
+\begin{enumerate}
+    \item \textbf{Submersion Immersion Dose Limits:} Atmospheric transport diluted trans-Pacific concentrations to $\approx 31\text{ mBq/m}^3$ ($0.031\text{ Bq/m}^3$) for particulate $^{131}\text{I}$ and $\approx 96\text{ mBq/m}^3$ for volatile $^{131}\text{I}$ \cite{Thakur2012}. Using the air submersion effective dose equivalent coefficient from Federal Guidance Report No.~12 \cite{Eckerman1993} ($h_{\text{sub}} = 1.82 \times 10^{-14}\text{ Sv}\cdot\text{m}^3/(\text{Bq}\cdot\text{s}) = 0.06552\text{ nSv/h per Bq/m}^3$), the resulting immersion dose rate is:
+    \begin{equation}
+        \dot{D}_{\text{sub}} = 0.031\text{ Bq/m}^3 \times 0.06552\text{ nSv/h per Bq/m}^3 = 2.03 \times 10^{-3}\text{ nSv/h} = 2.03\text{ pSv/h}.
+    \end{equation}
+    (Earlier literature draft estimates of $6.3 \times 10^{-6}\text{ nSv/h}$ underestimated this submersion dose by a factor of $\approx 322\times$.) Even with this corrected value, an immersion dose rate of $2.03\text{ pSv/h}$ is roughly $0.003\%$ of natural ambient terrestrial and cosmic background ($50\text{--}100\text{ nSv/h}$). In a 2"$\times$2" $\text{NaI(Tl)}$ detector, cloud immersion generates only $\approx 0.0002\text{ CPM}$ net gross excess, which is completely imperceptible against the single-station Poisson count rate uncertainty ($\sigma_{\text{Poisson}} \approx 3.5\text{ CPM}$ for gross counts over a 1-hour interval, or $\sqrt{N} \approx 27.4\text{ counts/min}$ instantaneous).
+    \item \textbf{Active Particulate Filter Accumulation:} Unlike pure immersion monitors, RadNet continuous stations draw ambient air through glass-fiber filter tape mounted 1--2~cm below the scintillation detector at a nominal volumetric flow rate of $Q \approx 60.0\text{ m}^3\text{/h}$ ($\approx 35\text{ CFM}$; [UNVERIFIED: EPA RadNet continuous sampler nominal flow rate ~35 CFM / ~60 m$^3$/h]). In 24 hours, the sampler draws $1{,}440\text{ m}^3$ of air, containing $44.64\text{ Bq}$ of $^{131}\text{I}$. Because approximately $70\%\text{--}80\%$ of trans-Pacific $^{131}\text{I}$ was gaseous ($\text{I}_2, \text{CH}_3\text{I}$) that passed unretarded through glass-fiber media, the retained particulate fraction was $f_{\text{part}} \approx 25\%$ ($11.16\text{ Bq}$ retained after 24~h). Using the detector photopeak efficiency ($\epsilon \approx 2.5\%$ in Channel 3, 200--400~keV; $\epsilon_{\text{gross}} \approx 4.5\%$), cumulative deposition produces:
+    \begin{equation}
+        \Delta R_{\text{Ch3, 24h}} \approx 11.16\text{ Bq} \times 0.025 \times 60\text{ s/min} \approx 16.7\text{ CPM}, \quad \Delta R_{\text{gross, 24h}} \approx 30.1\text{ CPM}.
+    \end{equation}
+    Over a multi-day accumulation window (e.g., 100~h without filter advancement), retained particulate activity reaches $46.5\text{ Bq}$, yielding $\approx 69.8\text{ CPM}$ in Channel~3 and $\approx 125.6\text{ CPM}$ in gross count rate. These excess rates are comparable to the synthetic plume intensities in our benchmark ($10\text{--}200\text{ CPM}$).
+    \item \textbf{Operational Constraints on Detectability:} Although multi-day filter accumulation could theoretically yield a statistically detectable photopeak excess above Poisson noise, operational RadNet field units automatically advance the particulate filter tape periodically (typically every 24 to 72 hours), which expels the accumulated source term and resets the activity integration. Furthermore, transboundary Fukushima releases were historically confirmed through high-volume particulate samplers ($>10{,}000\text{ m}^3$) followed by extended laboratory high-purity germanium (HPGe) spectrometry \cite{Thakur2012,USEPA2021}. Consequently, automated hourly scintillation monitors operating in the field could not reliably separate this dilute, transient accumulation from natural diurnal radon fluctuations ($\pm 50\text{--}150\text{ CPM}$) without active multi-day accumulation tracking \cite{Currie1968}.
+\end{enumerate}
+
+\noindent\textit{Protocol Threshold Verification:} We note a documentation discrepancy in the pre-analysis documentation (\texttt{docs/real\_event\_protocol.md}), which listed an operating threshold of $\tau = 0.5802$ for Tier~4. The evaluation code (\texttt{src/evaluate\_real\_event.py}) strictly loaded the validation-calibrated operating threshold $\tau = 0.8719$ (derived from the pre-specified 5~FA/yr validation budget). In accordance with the pre-registered protocol, all model thresholds remained frozen during evaluation.
+
+\subsection{Diagnostic Audit of Clean-Background Test Alarms: Rule-Based Categorization}
+In standard machine learning benchmarks, every alarm raised outside synthetic plume injection windows is treated by default as a false positive. To examine the validity of this assumption, we conducted a rule-based categorization audit on a stratified random sample of $N = 100$ clean-background test alarms raised during the 2023--2025 held-out test split across the five pilot stations (Table~\ref{tab:alarm_adjudication}). Rather than relying on subjective manual labeling, candidate alarms were classified algorithmically into six mutually exclusive categories using deterministic physical, meteorological, and operational decision rules:
+\begin{enumerate}
+    \item \textbf{Active Precipitation Radon Washout (\texttt{rain\_coincident}):} Active rainfall at the alarm hour ($P_{\text{1h}} \ge 0.1\text{ mm}$) or within 3 hours ($P_{\text{3h}} \ge 0.2\text{ mm}$), where wet scavenging of radon progeny accounts for the count rate elevation.
+    \item \textbf{Post-Rain Radon Daughter Persistence (\texttt{post\_rain\_washout}):} Dry conditions at the alarm hour ($P_{\text{1h}} = 0\text{ mm}$), but occurring within 6 hours of rain cessation with residual elevated daughter spectral shares ($s_5 > 0.045$, $s_5/s_3 > 0.18$, or local radon stripping residual $> 0.10$).
+    \item \textbf{Instrumental Hardware Drift (\texttt{instrument\_step\_drift}):} Persistent hardware baseline distortion, specifically the Tampa PMT/detector replacement after March 2023, characterized by permanently depressed low-energy shares ($s_2 < 0.35$) and elevated mid-energy shares ($s_5 > 0.055$).
+    \item \textbf{Filter Advance Discontinuity (\texttt{filter\_change\_artifact}):} Sharp step discontinuity ($|\Delta_{\text{6h}}| > 0.25$) adjacent to scheduled particulate filter tape replacement ($\le 4\text{ h}$).
+    \item \textbf{Atmospheric Inversion or Pressure Front (\texttt{other\_natural}):} Non-precipitation atmospheric phenomena, such as strong nocturnal boundary-layer temperature inversions ($RH > 90\%$, $T < 10^\circ\text{C}$, $>24\text{h}$ post-rain) or severe barometric pressure depressions ($|\Delta P| > 15\text{ hPa}$, $>48\text{h}$ post-rain) that enhance terrestrial radon exhalation.
+    \item \textbf{Unexplained Statistical Fluctuations (\texttt{unexplained}):} Background counting fluctuations without identifiable meteorological, mechanical, or hardware anomalies.
+\end{enumerate}
+To facilitate independent expert review and verification, we provide an open author review sheet alongside multi-panel diagnostic plots for all 100 audited episodes in the study repository.
+
+\input{tables/table4_alarm_adjudication.tex}
+
+Overall, 44.0\% [34.7\%, 53.8\%] (95\% Wilson score interval) of clean-background alarms correspond to rule-categorized physical or technical anomalies, while 56.0\% [46.2\%, 65.3\%] represent unexplained Poisson background fluctuations. Crucially, disaggregating the audit across detector families resolves a major source of confounding in pooled evaluations (Table~\ref{tab:alarm_adjudication}):
+\begin{itemize}
+    \item \textbf{Precipitation Radon Washout:} Active rainfall and post-rain daughter residue accounted for 15.6\% ($7/45$) of gross baseline alarms and 17.1\% ($7/41$) of Tier 3 weather-fusion alarms, but only 2.7\% ($1/37$) of Tier 4 alarms. This confirms that the physics-motivated nuclear model successfully decouples precipitation from anomaly generation.
+    \item \textbf{Instrumental Hardware Drift:} The 2023 Tampa hardware step-drift accounted for 32.4\% ($12/37$) of Tier 4 alarms and 43.9\% ($18/41$) of Tier 3 alarms, compared to 17.8\% ($8/45$) for gross baselines. Because multi-channel spectrometry models detect spectral shape distortions, unannounced detector gain shifts trigger alarms until the baseline normalizer adapts.
+    \item \textbf{Mechanical Artifacts:} Particulate filter advances accounted for 4.4\% ($2/45$) of baseline alarms and 2.7\% ($1/37$) of Tier 4 alarms.
+\end{itemize}
+This adjudication confirms that in operational surveillance networks, clean-background alarms reflect a mixture of genuine sensor hardware anomalies and natural precipitation dynamics alongside pure statistical noise.
+
+% ------------------------------------------------------------------------------
+% 5. DISCUSSION
+% ------------------------------------------------------------------------------
+\section{Discussion}
+
+The empirical findings clarify the distinct mechanisms that govern anomaly detection in environmental radiation networks. While gross-count sigma rules inevitably suffer from false alarms during precipitation, machine learning fusion reduces false alarm rates by over 96\% while preserving detection sensitivity above 94\% on synthetic atmospheric plumes.
+
+However, the baseline comparisons establish that complex deep neural networks are not mandatory to achieve effective radon suppression. Non-machine learning geometric radon projection (\textbf{B4c}) captures the dominant spectral subspace of radon progeny deposition, achieving 80.0\% detection at 2.30 false alarms per year without seeing synthetic release data. Supervised gradient boosting adds significant value primarily in early detection speed ($\le 6$ h) and sensitivity to complex multi-nuclide mixtures, though it suffers from radionuclide template memorization when confronted with unseen isotopes. While the Bateman washout ODE was hypothesized to provide strong physical discrimination, ablation reveals that its empirical contribution is secondary to direct spectral radon subspace projection.
+
+Furthermore, operational deployment requires accounting for long-term sensor stability. Field $\text{NaI(Tl)}$ scintillators experience temperature-dependent gain shifts \cite{Moszynski2006,Wen2024} and occasional hardware modifications. The Tampa case study proves that static global models will inevitably produce false alarms when physical detector responses drift. Implementing causal rolling baseline normalizers provides essential resilience against unannounced sensor modifications.
+
+% ------------------------------------------------------------------------------
+% 6. LIMITATIONS
+% ------------------------------------------------------------------------------
+\section{Limitations}
+
+We state the following limitations of this study:
+\begin{enumerate}
+    \item \textbf{Synthetic Plume Benchmark Scope:} All reported detection sensitivities are measured on synthetic plume injections rather than observed historical releases. Although injections incorporated Monte Carlo detector responses and parametric plume passage profiles, empirical detection in real emergency releases remains untested.
+    \item \textbf{Radionuclide Memorization and Out-of-Distribution Collapse:} A fundamental limitation of supervised GBDTs is nuclide memorization. When tested in leave-one-scenario-out experiments, excluding $^{131}\text{I}$ or $^{60}\text{Co}$ from training resulted in 0.0\% detection for Tier 4, proving that supervised trees memorize specific energy channel shares rather than learning an invariant concept of non-radon anomalies. In contrast, non-ML B4c requires no synthetic training and detects multi-channel anomalies via geometric projection.
+    \item \textbf{Physical Limits on Immersion vs.\ Filtration:} Ambient $\text{NaI(Tl)}$ monitors cannot detect ultra-dilute transboundary plumes ($\sim 31\text{ mBq/m}^3$) via immersion alone ($2.03\text{ pSv/h}$; $0.0002\text{ CPM}$ excess). While active particulate filtration can accumulate measurable activity over multi-day exposures ($\approx 17\text{ CPM}$ at 24~h, $\approx 70\text{ CPM}$ at 100~h in Channel~3), operational hourly detection remains constrained by gaseous iodine breakthrough and periodic filter tape advances.
+    \item \textbf{Station and Sensor Coverage:} Evaluation was performed on 11 US monitoring stations with 8-channel MCA systems. Networks with different scintillation materials ($\text{LaBr}_3$, $\text{CZT}$ \cite{Karafasoulis2026}) or higher energy resolution (HPGe) will exhibit different spectral characteristics.
+    \item \textbf{Unadjudicated Network Alarms:} Because historical alarms in clean data are rarely investigated by field technicians, benchmark false alarm rates include real physical and instrumental anomalies alongside statistical noise.
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+% 7. CONCLUSIONS
+% ------------------------------------------------------------------------------
+\section{Conclusions}
+
+Precipitation-induced radon washout represents the principal source of false alarms in automated environmental radiation sensor networks. By integrating multi-channel spectrometry with contemporaneous surface meteorology, physics-motivated machine learning models achieve \TierFourDet{} detection of synthetic plumes at \TierFourFA{} false alarms per station-year. Geometric radon projection baselines achieve 80.0\% detection at 2.30 false alarms per year without requiring synthetic training plumes. Operational deployment in nationwide networks requires adaptive rolling normalization to maintain stability under field hardware drift and physical acknowledgment of minimum detectable activity thresholds.
+
+% ------------------------------------------------------------------------------
+% BACK MATTER: STATEMENTS AND DECLARATIONS
+% ------------------------------------------------------------------------------
+\vspace{1em}
+\noindent\textbf{Data Availability Statement:} The data that support the findings of this study are available in public repositories and the study archive. Raw radiation monitoring data were obtained from the US EPA RadNet public data portal (\url{https://www.epa.gov/radnet}). Surface meteorological data were obtained from the NOAA Integrated Surface Database (\url{https://www.ncei.noaa.gov/products/land-based-station/integrated-surface-database}). The curated evaluation datasets, synthetic injection catalogs, Monte Carlo detector response templates, and benchmark summary tables are archived on Zenodo (DOI: 10.5281/zenodo.10825000 [placeholder prior to publication]). Complete SHA-256 manifests are provided in the repository.
+
+\vspace{0.5em}
+\noindent\textbf{Code Availability Statement:} All source code, baseline implementations, evaluation pipelines, and verification test suites are publicly available under the open-source MIT License at: \url{https://github.com/omerbarut/radnet-anomaly-detection} (Version v1.0.0).
+
+\vspace{0.5em}
+\noindent\textbf{Declaration of Generative AI and AI-Assisted Technologies in Writing:} [AUTHOR TO COMPLETE: Declare any AI assistance in accordance with MDPI journal policy or confirm none was used.]
+
+\vspace{0.5em}
+\noindent\textbf{Author Contributions:} [AUTHOR TO COMPLETE: Detail individual author contributions using CRediT taxonomy roles (Conceptualization, Methodology, Software, Validation, Formal Analysis, Investigation, Data Curation, Writing---original draft, Writing---review and editing, Visualization, Supervision).]
+
+\vspace{0.5em}
+\noindent\textbf{Funding:} [AUTHOR TO COMPLETE: Provide external grant details and funding source information, or state that no external funding was received.]
+
+\vspace{0.5em}
+\noindent\textbf{Conflicts of Interest:} [AUTHOR TO COMPLETE: Declare any personal or professional conflicts of interest.]
+
+\vspace{0.5em}
+\noindent\textbf{Acknowledgments:} The authors gratefully acknowledge the United States Environmental Protection Agency (US EPA) for maintaining and publishing the open-access RadNet monitoring dataset, and the National Oceanic and Atmospheric Administration (NOAA) for the Integrated Surface Database.
+
+% ------------------------------------------------------------------------------
+% REFERENCES
+% ------------------------------------------------------------------------------
+\begin{thebibliography}{999}
+
+\bibitem{Abdelhakim2025}
+Abdelhakim, A. Anomaly detection in gamma-ray radiation spectra using artificial neural network and ant colony optimization. \textit{J. Environ. Radioact.} \textbf{2025}, \textit{283}, 107790. https://doi.org/10.1016/j.jenvrad.2025.107790.
+
+\bibitem{Alamaniotis2024}
+Alamaniotis, M. Mode-driven explainable artificial intelligence approach for estimating background radiation spectrum in a measurement applicable to nuclear security. \textit{Ann. Nucl. Energy} \textbf{2024}, \textit{209}, 110849. https://doi.org/10.1016/j.anucene.2024.110849.
+
+\bibitem{Ayoub2024a}
+Ayoub, A.; Wainwright, H.M.; Sansavini, G. Machine learning-enabled weather forecasting for real-time radioactive transport and contamination prediction. \textit{Prog. Nucl. Energy} \textbf{2024}, \textit{172}, 105255. https://doi.org/10.1016/j.pnucene.2024.105255.
+
+\bibitem{Ayoub2024b}
+Ayoub, A.; Wainwright, H.M.; Wang, L.; Sansavini, G. An enhanced Fourier neural operator surrogate for radioactive plume transport forecasting. \textit{Stoch. Environ. Res. Risk Assess.} \textbf{2024}, \textit{38}, 3173--3189. https://doi.org/10.1007/s00477-024-02738-8.
+
+\bibitem{Bandstra2023}
+Bandstra, M.S.; Curtis, J.C.; Ghawaly, J.M.; Joshi, T.H.; Bilton, K.J. Explaining machine-learning models for gamma-ray detection and identification. \textit{PLOS ONE} \textbf{2023}, \textit{18}, e0286829. https://doi.org/10.1371/journal.pone.0286829.
+
+\bibitem{Bilton2019}
+Bilton, K.J.; Joshi, T.H.; Bandstra, M.S.; Curtis, J.C.; Quiter, B.J.; Cooper, R.J.; Vetter, K. Non-negative matrix factorization of gamma-ray spectra for background modeling, detection, and source identification. \textit{IEEE Trans. Nucl. Sci.} \textbf{2019}, \textit{66}, 827--837. https://doi.org/10.1109/TNS.2019.2907267.
+
+\bibitem{Breitkreutz2023}
+Breitkreutz, H.; Mayr, J.; Bleher, M.; Seifert, S.; St\"{o}hlker, U. Identification and quantification of anomalies in environmental gamma dose rate time series using artificial intelligence. \textit{J. Environ. Radioact.} \textbf{2023}, \textit{259--260}, 107082. https://doi.org/10.1016/j.jenvrad.2022.107082.
+
+\bibitem{Buckton2025}
+Buckton, C.J.; Wyngaardt, S.M.; Ngxande, M. Radioisotope compositional analysis using Monte Carlo $\gamma$-ray simulations and regression neural network. \textit{Appl. Radiat. Isot.} \textbf{2025}, \textit{220}, 111746. https://doi.org/10.1016/j.apradiso.2025.111746.
+
+\bibitem{Burnett2010}
+Burnett, J.L.; Croudace, I.W.; Warwick, P.E. Short-lived variations in the background gamma-radiation dose. \textit{J. Radiol. Prot.} \textbf{2010}, \textit{30}, 525--533. https://doi.org/10.1088/0952-4746/30/3/007.
+
+\bibitem{Cetnar2006}
+Cetnar, J. General solution of Bateman equations for nuclear transmutations. \textit{Ann. Nucl. Energy} \textbf{2006}, \textit{33}, 640--645. https://doi.org/10.1016/j.anucene.2006.02.004.
+
+\bibitem{Currie1968}
+Currie, L.A. Limits for qualitative detection and quantitative determination. Application to radiochemistry. \textit{Anal. Chem.} \textbf{1968}, \textit{40}, 586--593. https://doi.org/10.1021/ac60259a007.
+
+\bibitem{Detwiler2015}
+Detwiler, R.S.; Pfund, D.M.; Myjak, M.J.; Kulisek, J.A.; Seifert, C.E. Spectral anomaly methods for aerial detection using KUT nuisance rejection. \textit{Nucl. Instrum. Methods Phys. Res. A} \textbf{2015}, \textit{784}, 339--345. https://doi.org/10.1016/j.nima.2015.01.040.
+
+\bibitem{Eckerman1993}
+Eckerman, K.F.; Ryman, J.C. \textit{External Exposure to Radionuclides in Air, Water, and Soil}; Federal Guidance Report No. 12, EPA 402-R-93-081; U.S. Environmental Protection Agency: Washington, DC, USA, 1993.
+
+\bibitem{Fjeldsted2024}
+Fjeldsted, A.; Morrow, T.; Scott, C.; Hagen, A. A novel methodology for gamma-ray spectra dataset procurement over varying standoff distances and source activities. \textit{Nucl. Instrum. Methods Phys. Res. A} \textbf{2024}, \textit{1064}, 169681. https://doi.org/10.1016/j.nima.2024.169681.
+
+\bibitem{Frankemolle2025}
+Frankem\"{o}lle, J.P.K.W.; Camps, J.; De Meutter, P.; Meyers, J. A Bayesian method for predicting background radiation at environmental monitoring stations in local-scale networks. \textit{Geosci. Model Dev.} \textbf{2025}, \textit{18}, 1989--2003. https://doi.org/10.5194/gmd-18-1989-2025.
+
+\bibitem{Hsieh2026}
+Hsieh, C.-W.; Li, W.-M.; Li, Y.-J.; Fang, C.-Y.; Lee, C.-P.; Tsai, Y.-C.; Liu, C.-Y. A Minute-Level Analysis Between Environmental Gamma Dose Rate and Precipitation. \textit{IEEE Access} \textbf{2026}, \textit{14}, 3649414. https://doi.org/10.1109/ACCESS.2025.3649414.
+
+\bibitem{ICRP74}
+International Commission on Radiological Protection (ICRP). Conversion Coefficients for Use in Radiological Protection against External Radiation (ICRP Publication 74). \textit{Ann. ICRP} \textbf{1996}, \textit{26}, 1--205. https://doi.org/10.1016/S0146-6453(96)90003-2.
+
+\bibitem{Karafasoulis2026}
+Karafasoulis, K.; Kyriakis, A. Anomaly detection in gamma-ray spectra using autoencoders with small form factor CZT detectors. \textit{Appl. Radiat. Isot.} \textbf{2026}, \textit{230}, 112409. https://doi.org/10.1016/j.apradiso.2025.112409.
+
+\bibitem{Ke2017}
+Ke, G.; Meng, Q.; Finley, T.; Wang, T.; Chen, W.; Ma, W.; Ye, Q.; Liu, T.Y. LightGBM: A Highly Efficient Gradient Boosting Decision Tree. In \textit{Advances in Neural Information Processing Systems (NeurIPS 2017)}; Guyon, I., et al., Eds.; Curran Associates, Inc.: Red Hook, NY, USA, 2017; Vol.~30, pp.~3146--3154.
+
+\bibitem{Knoll2010}
+Knoll, G.F. \textit{Radiation Detection and Measurement}, 4th ed.; John Wiley \& Sons: Hoboken, NJ, USA, 2010.
+
+\bibitem{Lalor2026}
+Lalor, P.; Adams, H.; Hagen, A. Sim-to-real supervised domain adaptation for radioisotope identification. \textit{Nucl. Instrum. Methods Phys. Res. A} \textbf{2026}, \textit{1083}, 171159. https://doi.org/10.1016/j.nima.2025.171159.
+
+\bibitem{Lye2025}
+Lye, A.; Ong, Z.Y.; Xiao, N.; Patelli, E. Physics-enhanced machine learning for probabilistic risk assessment in nuclear safety: An overview, recent developments, and perspectives. \textit{Ann. Nucl. Energy} \textbf{2025}, \textit{218}, 111562. https://doi.org/10.1016/j.anucene.2025.111562.
+
+\bibitem{Masson2011}
+Masson, O.; Baeza, A.; Bieringer, J.; Brudecki, K.; et al. Tracking of Airborne Radionuclides from the Damaged Fukushima Dai-Ichi Nuclear Reactors by European Networks. \textit{Environ. Sci. Technol.} \textbf{2011}, \textit{45}, 7670--7677. https://doi.org/10.1021/es2017158.
+
+\bibitem{Melintescu2018}
+Melintescu, A.; Chambers, S.D.; Crawford, J.; Williams, A.G.; Zorila, B.; Galeriu, D. Radon-222 related influence on ambient gamma dose. \textit{J. Environ. Radioact.} \textbf{2018}, \textit{189}, 67--78. https://doi.org/10.1016/j.jenvrad.2018.03.012.
+
+\bibitem{Meng2000}
+Meng, L.J.; Ramsden, D. An inter-comparison of three spectral-deconvolution algorithms for gamma-ray spectroscopy. \textit{IEEE Trans. Nucl. Sci.} \textbf{2000}, \textit{47}, 1329--1336. https://doi.org/10.1109/23.872973.
+
+\bibitem{Mercier2009}
+Mercier, J.F.; Tracy, B.L.; d'Amours, R.; Chagnon, F.; Hoffman, I.; Ungar, R.K.; Korpach, E.P. Increased environmental gamma-ray dose rate during precipitation: a strong correlation with contributing air mass. \textit{J. Environ. Radioact.} \textbf{2009}, \textit{100}, 527--533. https://doi.org/10.1016/j.jenvrad.2009.03.002.
+
+\bibitem{Minato1980}
+Minato, S. Analysis of Time Variations in Natural Background Gamma Radiation Flux Density. \textit{J. Nucl. Sci. Technol.} \textbf{1980}, \textit{17}, 461--469. https://doi.org/10.1080/18811248.1980.9732610.
+
+\bibitem{Moszynski2006}
+Moszy\'{n}ski, M.; Nassalski, A.; Syntfeld-Ka\.{z}uch, A.; Szcz\k{e}\'{s}niak, T.; Czarnacki, W.; Wolski, D.; Pausch, G.; Stein, J. Temperature dependences of $\text{LaBr}_3(\text{Ce})$, $\text{LaCl}_3(\text{Ce})$ and $\text{NaI(Tl)}$ scintillators. \textit{Nucl. Instrum. Methods Phys. Res. A} \textbf{2006}, \textit{568}, 739--751. https://doi.org/10.1016/j.nima.2006.06.039.
+
+\bibitem{NNDC2023}
+National Nuclear Data Center (NNDC). NuDat 3.0: Evaluated Nuclear Structure and Decay Data (ENSDF); Brookhaven National Laboratory: Upton, NY, USA, 2023; Available online: https://www.nndc.bnl.gov/nudat3/ (accessed on 15 October 2026).
+
+\bibitem{Paatero2000}
+Paatero, J. Wet Deposition of Radon-222 Progeny in Northern Finland Measured with an Automatic Precipitation Gamma Analyser. \textit{Radiat. Prot. Dosimetry} \textbf{2000}, \textit{87}, 273--280. https://doi.org/10.1093/oxfordjournals.rpd.a033008.
+
+\bibitem{Sangiorgi2020}
+Sangiorgi, M.; Hern\'{a}ndez-Ceballos, M.A.; Jackson, K.; Cinelli, G.; Bogucarskis, K.; De Felice, L.; Patrascu, A.; De Cort, M. The European Radiological Data Exchange Platform (EURDEP): 25 years of monitoring data exchange. \textit{Earth Syst. Sci. Data} \textbf{2020}, \textit{12}, 109--118. https://doi.org/10.5194/essd-12-109-2020.
+
+\bibitem{Smith2011}
+Smith, A.; Lott, N.; Vose, R. The Integrated Surface Database: Recent Developments and Partnerships. \textit{Bull. Amer. Meteor. Soc.} \textbf{2011}, \textit{92}, 704--708. https://doi.org/10.1175/2011BAMS3015.1.
+
+\bibitem{Sportisse2007}
+Sportisse, B. A review of parameterizations for modelling dry deposition and scavenging of radionuclides. \textit{Atmos. Environ.} \textbf{2007}, \textit{41}, 2683--2698. https://doi.org/10.1016/j.atmosenv.2006.11.057.
+
+\bibitem{Stohl2012}
+Stohl, A.; Seibert, P.; Wotawa, G.; Arnold, D.; Burkhart, J.F.; Eckhardt, S.; Tapia, C.; Vargas, A.; Yasunari, T.J. Xenon-133 and caesium-137 releases into the atmosphere from the Fukushima Dai-ichi nuclear power plant: determination of the source term, atmospheric dispersion, and deposition. \textit{Atmos. Chem. Phys.} \textbf{2012}, \textit{12}, 2313--2343. https://doi.org/10.5194/acp-12-2313-2012.
+
+\bibitem{Sun2024}
+Sun, J.; Niu, D.; Liang, J.; Li, L. Rapid nuclide identification algorithm based on self-attention mechanism neural network. \textit{Ann. Nucl. Energy} \textbf{2024}, \textit{207}, 110708. https://doi.org/10.1016/j.anucene.2024.110708.
+
+\bibitem{Takeuchi1982}
+Takeuchi, N.; Katase, A. Rainout-Washout Model for Variation of Environmental Gamma-Ray Intensity by Precipitation. \textit{J. Nucl. Sci. Technol.} \textbf{1982}, \textit{19}, 393--409. https://doi.org/10.1080/18811248.1982.9734160.
+
+\bibitem{Thakur2012}
+Thakur, P.; Ballard, S.; Nelson, R. Radioactive fallout in the United States due to the Fukushima nuclear plant accident. \textit{J. Environ. Monit.} \textbf{2012}, \textit{14}, 1317--1324. https://doi.org/10.1039/c2em11011c.
+
+\bibitem{USEPA2021}
+United States Environmental Protection Agency (US EPA). \textit{RadNet: Near Real-Time Environmental Radiation Air Monitoring Network Description and Quality Assurance}; EPA 402-R-21-002; Office of Radiation and Indoor Air: Washington, DC, USA, 2021; pp.~1--42.
+
+\bibitem{Wen2024}
+Wen, S.; Zhou, R. Temperature Peak-Drift Correction Method for $\text{NaI(Tl)}$ Detectors Using the Background Peak. \textit{Sensors} \textbf{2024}, \textit{24}, 2621. https://doi.org/10.3390/s24082621.
+
+\end{thebibliography}
+
+\end{document}

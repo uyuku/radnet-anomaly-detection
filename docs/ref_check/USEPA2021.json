@@ -1,0 +1,13 @@
+{
+  "key": "USEPA2021",
+  "type": "non_doi_reference",
+  "metadata": {
+    "first_author": "US EPA",
+    "year": 2021,
+    "title": "RadNet: Near Real-Time Environmental Radiation Air Monitoring Network Description and Quality Assurance",
+    "journal": "EPA 402-R-21-002",
+    "volume": "",
+    "pages": "1--42",
+    "doi": "EPA-402-R-21-002"
+  }
+}

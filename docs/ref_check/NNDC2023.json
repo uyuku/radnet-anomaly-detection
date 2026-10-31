@@ -1,0 +1,13 @@
+{
+  "key": "NNDC2023",
+  "type": "non_doi_reference",
+  "metadata": {
+    "first_author": "NNDC",
+    "year": 2023,
+    "title": "NuDat 3.0: Evaluated Nuclear Structure and Decay Data (ENSDF)",
+    "journal": "Brookhaven National Laboratory",
+    "volume": "",
+    "pages": "",
+    "doi": "https://www.nndc.bnl.gov/nudat3/"
+  }
+}

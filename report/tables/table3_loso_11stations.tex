@@ -1,0 +1,25 @@
+% Table 3: 11-Station Leave-One-Station-Out (LOSO) Generalization
+\begin{table}[H]
+\caption{Leave-one-station-out (LOSO) cross-validation across 11 geographically and climatically diverse EPA RadNet stations (40 test plumes per held-out station). Comparison between non-ML spectral projection (B4c), uncalibrated zero-shot transfer, causal 168-hour rolling baseline normalization, and 12-month clean local threshold calibration.}
+\label{tab:loso_11station}
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}l X c c c c c@{}}
+\toprule
+\multirow{2}{*}{\textbf{Station}} & \multirow{2}{*}{\textbf{Climate Group}} & \textbf{Non-ML B4c} & \textbf{Tier 3 Zero-Shot} & \textbf{Tier 4 Zero-Shot} & \textbf{Tier 4 Rolling 168h} & \textbf{Tier 4 Static 12m} \\
+ & & Det / FA & Det / FA & Det / FA & Det / FA & Det / FA \\
+\midrule
+Birmingham, AL & Humid Subtrop. & 78\% / 0.0 & 72\% / 0.0 & 92\% / 0.0 & 95\% / 0.0 & 100\% / 1.4 \\
+Washington, DC & Temperate Mid-Atl. & 75\% / 0.0 & 95\% / 0.0 & 95\% / 0.0 & 92\% / 0.0 & 100\% / 0.0 \\
+San Diego, CA & Coastal Medit. & 60\% / 1.4 & 58\% / 0.0 & 58\% / 0.0 & 80\% / 1.1 & 90\% / 6.3 \\
+Dallas, TX & Convective Plains & 62\% / 0.0 & 85\% / 0.0 & 78\% / 0.0 & 95\% / 0.0 & 100\% / 0.0 \\
+Tampa, FL & Subtrop. Gulf (Drift) & 62\% / 1.8 & 75\% / 3.1 & 40\% / 0.0 & 90\% / 7.2 & 88\% / 1.8 \\
+Phoenix, AZ & Arid Interior & 58\% / 0.0 & 62\% / 0.0 & 68\% / 0.0 & 82\% / 0.0 & 95\% / 29.0 \\
+Omaha, NE & Cold Continental & 50\% / 0.0 & 68\% / 18.2 & 72\% / 0.4 & 88\% / 0.0 & 82\% / 1.4 \\
+Honolulu, HI & Tropical Maritime & 89\% / 3.7 & 86\% / 89.2 & 97\% / 87.8 & 100\% / 0.0 & 80\% / 638.5 \\
+Anchorage, AK & Subarctic Coastal & 85\% / 0.8 & 100\% / 18.5 & 98\% / 6.7 & 98\% / 0.0 & 88\% / 0.8 \\
+Baton Rouge, LA & Subtrop. Gulf & 75\% / 0.5 & 85\% / 0.0 & 78\% / 0.0 & 100\% / 0.0 & 98\% / 1.8 \\
+Burlington, VT & Cold Continental & 72\% / 0.0 & 98\% / 4.7 & 95\% / 0.8 & 100\% / 0.0 & 100\% / 332.9 \\
+\bottomrule
+\end{tabularx}
+\end{table}

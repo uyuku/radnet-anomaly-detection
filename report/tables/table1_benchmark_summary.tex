@@ -1,0 +1,25 @@
+% Table 1: Benchmark Detection and False Alarm Rates (2023-2025 Test Split, Realistic Benchmark)
+\begin{table}[H]
+\caption{Realistic benchmark detection rates, false alarm rates, and detection delays on the 2023--2025 independent test split (200 test plume injections, 5 pilot stations; 450 plumes total across network). Evaluated on the realistic benchmark with Family A training $\to$ Family B Monte Carlo test templates, Gamma-Poisson counting noise, independent ICRP-74 dose coupling, and continuous arbitrary-end timing. Bracketed intervals indicate 95\% confidence intervals across 20 training seeds (ML models) and cluster/block bootstrap intervals (baselines).}
+\label{tab:benchmark_summary}
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}X c c c c@{}}
+\toprule
+\textbf{Detector / Architecture} & \textbf{Detection (\%)} & \textbf{False Alarms (yr$^{-1}$)} & \textbf{Rain-Coincident (\%)} & \textbf{Median Delay (h)} \\
+\midrule
+\multicolumn{5}{l}{\textit{Operational Baselines (Gross-Count and Spectral Rules)}} \\[0.2em]
+Rolling 7d 3$\sigma$ Gross & 55.0\% [48.0\%, 62.0\%] & 82.95 [77.50, 88.50] & 32.4\% & 9.5h [8.0h, 11.0h] \\
+Global Dry 3$\sigma$ Gross & 57.0\% [50.0\%, 64.0\%] & 52.86 [44.09, 62.22] & 24.9\% & 13.5h [10.0h, 18.0h] \\
+Rolling 7d 5$\sigma$ Gross & 6.0\% [3.0\%, 9.5\%] & 23.51 [20.56, 26.68] & 57.6\% & 8.0h [5.0h, 11.0h] \\
+Non-ML Radon Stripping (B4c) & 80.0\% [73.8\%, 85.2\%] & 2.30 [1.52, 3.32] & 0.0\% & 4.5h [4.0h, 5.0h] \\
+\midrule
+\multicolumn{5}{l}{\textit{Machine Learning Detectors (95\% Validation Target Calibrated, Realistic Benchmark)}} \\[0.2em]
+Tier 1: Gross Only GBDT & 88.0\% [83.3\%, 92.6\%] & 206.47 [102.77, 310.17] & 13.7\% & 8.2h [7.2h, 9.2h] \\
+Tier 1b: Gross + Weather GBDT & 83.4\% [80.3\%, 86.6\%] & 55.43 [41.89, 68.97] & 1.5\% & 10.2h [9.2h, 11.2h] \\
+Tier 2: Gross + Spectrometry GBDT & 82.9\% [75.9\%, 90.0\%] & 0.33 [0.00, 1.06] & 0.0\% & 6.1h [5.1h, 7.1h] \\
+Tier 3: Weather Fusion GBDT & 85.8\% [81.0\%, 90.7\%] & 1.23 [0.00, 3.35] & 0.2\% & 5.9h [4.9h, 6.9h] \\
+Tier 4: Physics-Motivated Nuclear GBDT & 93.6\% [91.6\%, 95.6\%] & 7.19 [4.90, 9.48] & 2.6\% & 5.0h [4.0h, 6.0h] \\
+\bottomrule
+\end{tabularx}
+\end{table}
