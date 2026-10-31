@@ -32,7 +32,7 @@ from src.nuclear_physics import (
 
 STATIONS = ["al_birmingham", "dc_washington", "ca_san_diego", "tx_dallas", "fl_tampa"]
 FIT_FOLD_END = "2021-01-01"
-TRAIN_END = "2023-01-01"
+TRAIN_END = "2021-01-01"
 OUT_FILE = Path(__file__).resolve().parent.parent / "data" / "processed" / "station_dry_baselines_train_only.json"
 
 DEFAULT_SLOPES = {

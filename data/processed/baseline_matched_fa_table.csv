@@ -1,0 +1,76 @@
+detector_id,detector_name,category,uses_synthetic_plumes,val_fa_budget_per_yr,val_budget_met,val_budget_flag,threshold_tau,val_realized_detection_pct,val_fa_per_station_year,test_realized_detection_pct,test_detection_le_12h_pct,test_median_delay_hours,test_false_alarm_episodes,test_fa_per_station_year,test_rain_coincident_fa_pct
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,False,5.0,True,MET,7.658573,4.94,4.73,2.0,2.0,8.0,68,5.59,67.1
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,False,10.0,True,MET,6.377889,18.52,9.92,5.0,3.5,9.5,136,11.18,64.9
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,False,50.0,True,MET,4.019025,56.79,43.12,27.5,18.5,10.0,509,41.85,47.4
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,False,5.0,True,MET,8.903384,29.63,4.61,10.0,2.0,24.0,41,3.37,69.9
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,False,10.0,True,MET,7.523845,37.04,9.69,13.5,3.0,22.0,71,5.84,67.7
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,False,50.0,True,MET,4.09339,61.73,47.73,42.5,20.0,14.0,345,28.36,38.5
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,False,5.0,True,MET,5.920691,45.68,4.37,16.5,3.0,25.0,42,3.45,0.0
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,False,10.0,True,MET,5.364962,50.62,6.62,19.5,4.0,23.0,61,5.01,0.0
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,False,50.0,True,MET,3.104537,75.31,49.15,48.0,18.0,15.5,351,28.86,0.0
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,False,5.0,True,MET,5.613552,48.15,4.96,18.0,3.0,24.0,50,4.11,0.0
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,False,10.0,True,MET,4.901869,53.09,9.92,25.0,6.5,21.0,82,6.74,0.0
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,False,50.0,True,MET,2.986092,76.54,49.38,48.5,17.0,17.0,383,31.49,0.0
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,False,5.0,True,MET,6.704327,41.98,4.73,12.0,2.5,28.0,54,4.44,61.5
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,False,10.0,True,MET,5.343346,51.85,9.81,18.0,3.0,23.5,103,8.47,57.3
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,False,50.0,True,MET,2.914857,80.25,49.15,53.5,28.5,12.0,388,31.9,34.3
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,False,5.0,True,MET,6.837497,46.91,4.96,12.5,3.5,26.0,50,4.11,57.1
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,False,10.0,True,MET,5.324975,55.56,9.81,19.0,3.5,21.5,104,8.55,57.5
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,False,50.0,True,MET,3.164429,77.78,41.47,52.0,26.0,12.5,334,27.46,35.5
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,False,5.0,True,MET,0.680828,24.69,0.59,30.0,25.0,6.0,171,14.06,0.2
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,False,10.0,True,MET,0.680828,24.69,0.59,30.0,25.0,6.0,171,14.06,0.2
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,False,50.0,True,MET,0.595805,34.57,49.03,40.5,38.5,5.0,2438,200.43,1.9
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,False,5.0,True,MET,0.639965,40.74,4.02,17.5,11.0,7.0,115,9.45,0.0
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,False,10.0,True,MET,0.565106,58.02,9.92,31.0,21.5,7.5,181,14.88,0.1
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,False,50.0,True,MET,0.384938,91.36,48.56,77.0,59.5,6.0,587,48.26,0.9
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,False,5.0,True,MET,0.888908,97.53,2.84,89.0,81.5,7.0,79,6.49,0.0
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,False,10.0,True,MET,0.888908,97.53,2.84,89.0,81.5,7.0,79,6.49,0.0
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,False,50.0,True,MET,0.504658,100.0,31.78,95.5,92.5,6.0,440,36.17,1.8
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,False,5.0,True,MET,16.154241,90.12,3.07,65.5,53.5,7.0,1623,133.43,3.4
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,False,10.0,True,MET,16.154241,90.12,3.07,65.5,53.5,7.0,1623,133.43,3.4
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,False,50.0,True,MET,9.513824,96.3,36.39,72.5,68.0,5.0,1286,105.72,3.4
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,False,5.0,True,MET,21.585581,77.78,1.3,46.5,30.0,9.0,28,2.3,2.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,False,10.0,True,MET,17.065521,83.95,8.86,57.0,45.0,8.0,1347,110.74,2.4
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,False,50.0,True,MET,12.647326,87.65,49.03,72.5,57.5,7.0,1232,101.28,3.7
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,False,5.0,True,MET,0.152166,33.33,4.96,16.0,10.0,10.0,99,8.14,78.7
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,False,10.0,True,MET,0.130922,48.15,9.57,29.0,20.0,9.5,270,22.2,51.1
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,False,50.0,True,MET,0.05513,81.48,45.72,50.5,41.0,7.0,572,47.02,7.4
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,False,5.0,True,MET,0.149957,58.02,3.78,28.5,19.5,10.0,92,7.56,60.9
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,False,10.0,True,MET,0.1275,66.67,9.57,41.0,31.5,9.0,205,16.85,50.5
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,False,50.0,True,MET,0.058327,88.89,41.0,76.0,69.5,6.0,1077,88.54,24.9
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,False,5.0,True,MET,0.002197,80.25,4.61,57.5,43.5,8.0,27,2.22,40.8
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,False,10.0,True,MET,0.002197,83.95,9.1,72.0,62.5,7.0,113,9.29,44.4
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,False,50.0,True,MET,0.002058,95.06,40.17,78.5,72.5,6.0,504,41.43,5.6
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,True,5.0,True,MET,0.959578,95.06,4.84,70.5,60.0,7.0,287,23.59,4.0
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,True,10.0,True,MET,0.947074,96.3,7.32,71.5,62.0,6.0,294,24.17,4.0
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,True,50.0,True,MET,0.947074,96.3,7.32,71.5,62.0,6.0,294,24.17,4.0
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,True,5.0,True,MET,0.963865,74.07,1.89,62.5,54.0,5.0,82,6.74,0.0
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,True,10.0,True,MET,0.963865,74.07,1.89,62.5,54.0,5.0,82,6.74,0.0
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,True,50.0,True,MET,0.963865,74.07,1.89,62.5,54.0,5.0,82,6.74,0.0
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,False,5.0,True,MET,6.963986,19.75,4.84,3.5,1.5,14.0,43,3.54,81.7
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,False,10.0,True,MET,5.314111,32.1,9.92,11.0,3.0,24.5,95,7.81,84.4
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,False,50.0,True,MET,2.308649,64.2,46.08,36.5,20.5,11.0,408,33.54,70.7
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,True,5.0,True,MET,0.933575,56.79,3.31,52.0,7.5,28.0,52,4.27,33.8
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,True,10.0,True,MET,0.90883,65.43,8.98,61.5,14.0,24.0,103,8.47,28.9
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,True,50.0,True,MET,0.826346,79.01,47.49,75.0,30.0,14.0,485,39.87,22.6
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,True,5.0,True,MET,0.966994,66.67,4.37,47.5,14.0,17.0,24,1.97,0.0
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,True,10.0,True,MET,0.947968,75.31,9.81,56.0,22.5,15.0,57,4.69,0.0
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,True,50.0,True,MET,0.846367,91.36,49.97,76.5,42.5,11.0,336,27.62,0.6
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,True,5.0,True,MET,0.980436,96.3,0.47,92.5,88.5,5.0,419,34.45,10.4
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,True,10.0,True,MET,0.922117,97.53,9.69,95.0,89.0,4.0,2105,173.05,4.7
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,True,50.0,True,MET,0.515915,100.0,43.12,89.0,85.0,3.0,2756,226.57,3.6
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,True,5.0,True,MET,0.8977,97.53,2.72,96.5,93.5,4.0,889,73.09,10.1
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,True,10.0,True,MET,0.868608,98.77,8.39,97.5,94.0,4.0,1261,103.67,8.7
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,True,50.0,True,MET,0.592932,100.0,40.05,98.5,92.0,3.0,2431,199.86,4.3
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,True,5.0,True,MET,0.973951,100.0,0.0,96.5,94.0,4.0,120,9.87,1.9
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,True,10.0,True,MET,0.973951,100.0,0.0,96.5,94.0,4.0,120,9.87,1.9
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,True,50.0,True,MET,0.973951,100.0,0.0,96.5,94.0,4.0,120,9.87,1.9
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,True,5.0,True,MET,0.992956,100.0,0.0,93.0,89.5,5.0,77,6.33,0.4
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,True,10.0,True,MET,0.992956,100.0,0.0,93.0,89.5,5.0,77,6.33,0.4
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,True,50.0,True,MET,0.992956,100.0,0.0,93.0,89.5,5.0,77,6.33,0.4
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,True,5.0,True,MET,0.989272,100.0,0.0,95.5,91.0,5.0,91,7.48,1.7
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,True,10.0,True,MET,0.989272,100.0,0.0,95.5,91.0,5.0,91,7.48,1.7
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,True,50.0,True,MET,0.989272,100.0,0.0,95.5,91.0,5.0,91,7.48,1.7
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,True,5.0,True,MET,0.908806,98.77,0.59,96.5,92.5,4.0,301,24.75,8.1
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,True,10.0,True,MET,0.908806,98.77,0.59,96.5,92.5,4.0,301,24.75,8.1
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,True,50.0,True,MET,0.575653,100.0,38.04,100.0,96.5,3.0,2695,221.56,7.6

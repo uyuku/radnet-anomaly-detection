@@ -1,0 +1,1501 @@
+detector_id,detector_name,category,threshold_tau,val_detection_pct,val_fa_per_yr,test_detection_pct,test_fa_per_yr
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,-1.897961,2.47,236.4,4.0,184.4
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,-1.113922,27.16,310.71,34.0,271.05
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,-0.904099,32.1,369.9,51.5,326.05
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,-0.75485,43.21,421.06,66.5,364.11
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,-0.63561,51.85,450.83,74.5,397.0
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,-0.527014,61.73,467.25,84.0,425.77
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,-0.411989,71.6,477.41,85.5,440.16
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,-0.311858,72.84,479.54,86.0,434.73
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,-0.190153,82.72,466.42,89.0,425.36
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,-0.055692,90.12,449.65,90.5,415.25
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,0.093974,91.36,428.15,91.5,396.42
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,0.248148,93.83,400.5,90.5,374.96
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,0.402192,93.83,366.59,91.0,353.34
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,0.573923,93.83,340.6,89.5,328.35
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,0.756766,93.83,306.46,88.5,302.29
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,0.95922,93.83,281.77,88.0,269.9
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,1.173626,91.36,253.06,85.0,241.7
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,1.345187,88.89,230.02,84.0,223.53
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,1.565976,86.42,204.5,83.0,196.81
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,1.792559,83.95,177.33,79.0,176.18
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,1.987277,80.25,159.73,74.5,158.42
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.240694,76.54,136.69,69.0,136.22
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.275116,75.31,133.62,67.5,132.94
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.313018,75.31,130.07,66.0,129.73
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.353018,72.84,127.95,65.5,126.28
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.393133,72.84,124.76,64.5,122.58
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.431028,72.84,121.8,63.5,119.04
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.478295,72.84,119.44,62.0,115.26
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.532175,71.6,114.72,61.5,111.07
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.580966,69.14,111.88,60.5,107.7
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.639021,69.14,109.28,60.0,103.01
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.701148,69.14,104.56,56.0,98.0
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.753338,67.9,100.18,57.0,95.86
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.812914,67.9,95.69,56.5,92.9
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.879709,67.9,90.5,56.5,89.45
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,2.953281,67.9,87.42,56.0,85.58
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,3.018795,66.67,83.29,55.0,81.96
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,3.098865,65.43,79.27,53.5,78.02
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,3.18017,66.67,75.49,49.0,74.4
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,3.26147,69.14,70.06,47.0,70.7
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,3.34491,66.67,65.69,45.0,67.08
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,3.445902,65.43,62.02,41.0,62.48
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,3.56212,60.49,57.06,38.0,56.81
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,3.698822,58.02,52.69,35.5,52.37
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,3.832444,55.56,49.27,32.0,47.85
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,3.991125,56.79,44.66,29.0,42.75
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,4.110227,51.85,40.17,26.5,39.46
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,4.298781,46.91,36.51,23.0,34.94
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,4.516784,44.44,32.37,21.0,31.49
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,4.727604,39.51,28.0,15.5,26.8
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,4.978272,38.27,23.51,12.5,24.01
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,5.291056,33.33,19.73,11.5,19.24
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,5.666398,29.63,15.95,8.5,15.04
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,6.093292,23.46,12.29,5.0,12.66
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,6.640696,14.81,8.03,2.5,9.62
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,7.326544,6.17,5.91,2.0,6.49
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,8.180333,3.7,3.43,0.0,3.37
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,9.081556,1.23,2.01,0.5,1.15
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,10.077643,0.0,0.71,0.0,0.66
+B1a_Rolling168h_Z,B1a: Rolling 168h Gross Z-Score,B1_Gross_Sigma,11.121164,0.0,0.0,0.5,0.0
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,-2.528832,1.23,240.06,12.5,182.1
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,-1.108539,13.58,281.41,43.0,265.46
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,-0.901918,24.69,318.75,56.0,287.66
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,-0.751128,29.63,353.6,67.0,299.17
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,-0.636426,37.04,375.93,73.0,303.61
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,-0.520445,43.21,386.56,77.5,299.99
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,-0.412745,50.62,395.3,80.5,293.82
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,-0.312659,60.49,399.32,81.5,287.82
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,-0.211471,61.73,398.37,85.5,278.94
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,-0.092535,71.6,392.23,87.0,266.45
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,0.037318,75.31,385.73,89.5,252.06
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,0.176148,81.48,371.79,89.0,241.62
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,0.319958,83.95,354.54,88.5,229.53
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,0.535682,85.19,324.65,87.0,208.98
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,0.751129,86.42,293.7,84.0,189.25
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,0.991885,87.65,258.85,83.0,162.86
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,1.246423,83.95,227.19,78.0,147.4
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,1.574662,85.19,186.19,73.5,122.66
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,2.001317,83.95,150.51,68.0,98.24
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,2.329846,83.95,127.0,60.5,80.24
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,2.645385,82.72,105.03,59.5,68.15
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,2.690478,82.72,102.07,59.0,66.02
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,2.747154,82.72,99.95,57.5,64.21
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,2.810728,81.48,97.94,57.0,61.58
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,2.865742,77.78,94.4,56.0,60.1
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,2.930977,77.78,91.44,55.5,58.21
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,2.990905,77.78,88.72,55.0,56.4
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,3.061248,76.54,85.89,54.0,54.01
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,3.126368,75.31,82.34,53.0,51.38
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,3.186508,75.31,79.27,53.0,49.74
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,3.262779,74.07,76.32,51.5,47.27
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,3.33682,72.84,72.78,51.0,45.46
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,3.437028,67.9,68.76,49.0,42.5
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,3.527215,67.9,65.92,48.5,40.04
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,3.624286,65.43,61.67,48.0,37.41
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,3.730889,64.2,58.95,47.5,34.94
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,3.836425,62.96,56.47,45.5,32.72
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,3.959197,62.96,52.45,43.5,31.65
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,4.063327,61.73,49.27,42.5,29.18
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,4.183577,59.26,44.42,41.5,27.05
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,4.333834,58.02,40.05,38.5,24.99
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,4.497856,58.02,36.62,37.5,22.69
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,4.712981,58.02,32.13,34.0,20.06
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,4.92027,55.56,29.89,31.5,18.42
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,5.145899,55.56,27.05,29.5,16.69
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,5.378361,55.56,23.39,25.0,14.96
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,5.704457,49.38,19.85,22.5,12.82
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,6.088538,45.68,16.42,22.5,10.61
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,6.532352,43.21,12.88,18.0,9.04
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,6.921068,41.98,11.58,16.5,7.32
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,7.523845,37.04,9.69,13.5,5.84
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,8.09055,33.33,7.21,12.5,4.69
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,8.671666,29.63,5.43,10.5,3.54
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,9.423978,24.69,3.54,7.5,3.04
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,10.422265,16.05,2.95,4.0,2.22
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,11.435769,12.35,1.89,2.5,1.23
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,12.725683,6.17,1.54,1.5,0.66
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,14.448385,2.47,0.95,1.5,0.49
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,16.319017,1.23,0.35,0.5,0.16
+B1b_GlobalDry_Z,B1b: Global Dry Gross Z-Score (2017-2020),B1_Gross_Sigma,18.438162,0.0,0.0,0.0,0.08
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,-10.0,0.0,231.2,0.0,174.21
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,-1.136718,12.35,307.05,40.0,270.31
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,-0.889805,23.46,336.94,56.5,284.2
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,-0.730312,30.86,361.4,67.0,283.3
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,-0.613393,35.8,371.79,71.5,280.42
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,-0.494668,43.21,373.21,77.5,272.12
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,-0.378288,53.09,374.63,79.0,259.7
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,-0.288829,58.02,371.56,80.0,248.61
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,-0.187123,60.49,364.47,85.5,238.74
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,-0.066114,70.37,356.08,86.0,223.45
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,0.066495,75.31,342.85,89.0,205.45
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,0.211703,80.25,320.4,88.0,190.73
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,0.382108,81.48,296.89,86.5,174.95
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,0.592838,83.95,266.76,85.5,157.6
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,0.816469,86.42,227.9,82.0,135.81
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,1.066461,85.19,198.36,78.5,115.67
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,1.381402,83.95,161.85,74.0,97.5
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,1.803336,83.95,121.21,67.0,72.84
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.21822,83.95,92.5,58.0,54.75
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.260961,83.95,90.5,58.0,53.44
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.296675,83.95,86.72,58.0,52.2
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.344934,83.95,84.12,56.5,50.97
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.398902,83.95,82.7,56.5,49.33
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.449979,82.72,78.92,55.5,47.93
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.500083,82.72,75.97,55.5,46.28
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.550187,83.95,73.72,55.0,44.23
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.59027,82.72,69.94,54.0,42.75
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.642526,81.48,66.16,54.0,41.43
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.690478,81.48,63.44,53.5,39.63
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.760624,81.48,61.2,51.5,38.06
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.829818,79.01,58.36,51.0,35.84
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.895905,77.78,55.76,50.5,34.45
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,2.975998,76.54,53.28,50.0,32.47
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,3.048187,75.31,51.27,49.5,30.25
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,3.118562,74.07,48.08,48.0,28.77
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,3.195314,72.84,44.78,47.0,27.38
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,3.276111,71.6,42.53,46.0,25.57
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,3.380064,69.14,38.51,44.5,23.84
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,3.500396,65.43,35.32,41.5,20.88
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,3.637444,62.96,31.54,41.0,18.33
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,3.757489,62.96,29.89,41.0,16.44
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,3.879398,61.73,26.82,38.0,15.78
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,4.01962,60.49,24.1,36.0,14.22
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,4.173556,59.26,20.2,35.0,12.25
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,4.370481,56.79,17.13,31.5,10.28
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,4.589789,55.56,13.7,28.0,8.71
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,4.841798,53.09,11.93,25.5,7.15
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,5.151884,50.62,9.45,22.5,5.51
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,5.517677,49.38,6.38,18.5,4.44
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,6.013439,44.44,4.13,16.0,3.45
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,6.616385,40.74,2.84,10.5,2.71
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,7.199979,37.04,2.01,9.5,1.73
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,8.028433,33.33,1.06,6.5,1.15
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,8.705269,29.63,0.95,4.0,0.99
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,9.551313,23.46,0.47,1.0,0.82
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,10.566565,14.81,0.47,0.0,0.66
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,11.751027,11.11,0.24,0.0,0.25
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,13.020093,3.7,0.12,0.0,0.08
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,14.712181,1.23,0.0,0.0,0.08
+B2a_RainMasked_Holdoff6h,B2a: Rain-Masked Dry Z (H=6h Holdoff),B2_Rain_Masked,16.488873,0.0,0.0,0.0,0.0
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,-10.0,0.0,231.2,0.0,174.21
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,-1.101784,11.11,286.38,40.5,258.88
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,-0.856884,22.22,317.21,55.0,266.86
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,-0.699024,29.63,344.03,67.0,268.75
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,-0.57515,35.8,348.75,73.0,263.49
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,-0.459175,41.98,352.06,78.5,254.53
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,-0.346021,53.09,350.17,78.5,246.8
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,-0.250463,61.73,348.16,81.5,232.16
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,-0.131553,65.43,337.77,83.5,223.12
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,-0.007638,70.37,329.85,87.0,204.95
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,0.135972,77.78,309.77,87.5,190.73
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,0.275536,80.25,291.93,87.0,180.29
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,0.488023,81.48,264.76,85.0,159.82
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,0.700098,85.19,231.44,83.0,143.05
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,0.969385,86.42,196.94,79.5,118.06
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,1.241569,82.72,167.29,75.0,102.85
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,1.617691,83.95,126.88,67.5,80.57
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.138471,82.72,91.56,60.0,56.56
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.175833,82.72,89.55,58.0,55.08
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.21449,82.72,86.13,57.5,53.27
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.259584,82.72,84.12,56.5,52.04
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.299667,82.72,80.93,56.0,50.81
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.347307,82.72,78.56,55.0,49.66
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.399827,82.72,77.03,55.0,48.18
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.440511,81.48,73.72,54.5,46.94
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.495073,81.48,71.0,54.0,45.54
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.546919,82.72,68.76,54.0,43.49
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.59027,81.48,64.86,53.0,41.93
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.637127,80.25,62.14,53.0,40.86
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.693747,80.25,58.83,51.5,38.56
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.763415,80.25,56.35,50.5,37.32
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.832315,77.78,54.23,50.0,35.27
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.905935,76.54,51.51,49.0,33.3
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,2.986092,76.54,49.38,48.5,31.49
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,3.073413,75.31,47.73,47.0,29.76
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,3.135228,72.84,44.19,46.5,28.28
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,3.216552,72.84,41.11,46.0,26.72
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,3.298531,71.6,38.04,44.5,24.91
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,3.407787,66.67,34.73,42.5,23.18
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,3.532225,65.43,31.54,40.5,20.14
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,3.677399,62.96,28.24,39.5,17.59
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,3.813454,62.96,26.94,38.0,15.95
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,3.926163,61.73,23.63,36.5,15.46
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,4.084209,60.49,20.56,34.5,12.91
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,4.254136,58.02,16.78,33.0,11.43
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,4.489602,56.79,13.11,29.5,9.29
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,4.771916,54.32,10.99,26.0,7.65
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,5.044374,50.62,8.98,23.5,5.67
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,5.439753,49.38,5.91,18.0,4.6
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,5.902797,44.44,3.9,16.5,3.54
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,6.537219,39.51,2.6,10.5,2.8
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,7.142894,35.8,2.13,9.5,1.73
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,7.992344,32.1,1.18,6.5,1.23
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,8.716802,27.16,0.95,4.0,0.9
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,9.582504,22.22,0.47,1.0,0.82
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,10.626395,13.58,0.47,0.0,0.58
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,11.815884,11.11,0.24,0.0,0.25
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,13.090335,3.7,0.12,0.0,0.08
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,14.704641,1.23,0.0,0.0,0.08
+B2b_RainMasked_Holdoff12h,B2b: Rain-Masked Dry Z (H=12h Holdoff),B2_Rain_Masked,16.488873,0.0,0.0,0.0,0.0
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,-1.934661,2.47,252.59,27.5,247.04
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,-0.98397,20.99,370.61,59.0,360.82
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,-0.751257,27.16,446.22,67.0,364.77
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,-0.582209,32.1,495.13,74.0,347.51
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,-0.442844,48.15,513.33,75.5,338.71
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,-0.315516,58.02,535.42,78.5,327.36
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,-0.19421,60.49,522.78,83.0,324.73
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,-0.093697,66.67,515.69,83.5,321.2
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,0.017404,65.43,514.27,85.5,311.17
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,0.126531,69.14,504.11,87.5,304.02
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,0.249079,76.54,469.61,87.5,283.55
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,0.378858,80.25,438.19,86.5,259.62
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,0.524852,87.65,389.16,86.0,226.66
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,0.675204,90.12,340.48,86.0,205.86
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,0.859735,90.12,286.85,83.0,171.49
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,1.096597,91.36,230.49,79.0,140.5
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,1.358766,92.59,179.69,77.5,109.51
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,1.634131,92.59,139.88,72.0,87.97
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,1.878554,90.12,112.59,66.5,71.61
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,1.917781,88.89,109.64,65.5,69.71
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,1.948322,88.89,106.68,65.0,68.73
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,1.985584,88.89,103.96,64.0,67.17
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.022437,87.65,100.66,63.0,65.03
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.060841,86.42,97.94,62.5,62.56
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.100837,86.42,95.22,61.5,60.34
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.140311,86.42,90.73,61.5,59.03
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.190889,85.19,87.31,60.0,57.05
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.23209,85.19,84.12,60.0,55.0
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.274989,83.95,82.23,59.0,53.44
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.323937,83.95,80.22,58.0,51.46
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.369961,83.95,75.49,57.5,49.57
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.424758,83.95,72.66,57.5,47.11
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.482106,83.95,69.59,57.5,45.3
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.536463,83.95,66.16,56.0,43.33
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.610186,80.25,62.62,55.0,41.35
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.677089,80.25,58.36,54.5,39.21
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.756693,80.25,54.46,54.0,36.91
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.856845,80.25,51.39,53.5,33.95
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,2.955404,77.78,47.37,53.0,31.08
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,3.067246,76.54,43.83,52.0,29.1
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,3.17238,74.07,40.05,50.5,28.12
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,3.322828,71.6,35.44,48.0,25.16
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,3.489226,67.9,31.43,45.0,22.85
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,3.667023,66.67,26.46,43.0,20.14
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,3.922125,62.96,21.74,40.5,17.92
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,4.172639,62.96,18.19,34.0,15.37
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,4.505397,59.26,15.0,30.0,12.58
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,4.877326,55.56,12.4,24.5,10.69
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,5.318195,51.85,9.92,18.0,8.8
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,5.839384,48.15,7.09,18.5,6.25
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,6.373732,45.68,5.67,15.0,5.43
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,6.867456,39.51,4.25,10.5,4.36
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,7.443298,30.86,2.84,7.5,3.04
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,8.167341,27.16,2.13,4.0,2.14
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,8.847468,22.22,1.77,3.5,1.64
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,9.638706,12.35,1.3,2.0,1.23
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,10.696791,4.94,0.71,0.5,0.9
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,12.548439,2.47,0.47,0.5,0.41
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,14.400086,2.47,0.12,1.0,0.25
+B3a_WeatherRegression_Linear,B3a: Weather Regression Residual (Linear),B3_Weather_Regression,16.428082,0.0,0.0,0.5,0.08
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,-1.989051,2.47,252.59,26.5,239.81
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,-0.987872,20.99,373.09,58.0,364.36
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,-0.753595,28.4,457.68,68.5,373.32
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,-0.597925,43.21,504.7,73.5,357.45
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,-0.456758,54.32,533.17,77.0,344.63
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,-0.331086,59.26,540.14,81.5,335.09
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,-0.215985,61.73,540.73,84.0,333.37
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,-0.102131,65.43,531.99,85.0,327.78
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,0.003652,67.9,527.62,87.5,319.39
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,0.121359,72.84,513.33,87.5,307.22
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,0.244588,79.01,475.87,88.5,290.78
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,0.375702,83.95,438.42,88.0,268.34
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,0.503769,85.19,400.85,87.0,241.21
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,0.661425,87.65,349.7,85.5,209.72
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,0.858715,91.36,286.61,84.5,176.34
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,1.104741,91.36,232.74,79.5,139.18
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,1.372692,92.59,183.0,78.0,110.98
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,1.656391,92.59,141.53,73.5,85.99
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,1.90735,90.12,116.13,66.0,73.0
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,1.940824,88.89,114.01,65.5,71.61
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,1.972183,88.89,110.7,65.5,69.55
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.008292,87.65,107.27,65.0,67.66
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.041389,87.65,104.2,64.0,65.93
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.074261,87.65,99.48,63.0,64.45
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.118842,87.65,96.29,62.5,62.07
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.161935,86.42,92.27,62.5,60.1
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.204832,86.42,89.91,62.0,57.55
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.250238,86.42,88.37,61.5,55.66
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.29922,85.19,85.65,60.0,52.94
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.343759,83.95,82.11,59.0,51.38
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.384789,83.95,79.39,58.0,49.82
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.440371,83.95,74.43,56.0,47.27
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.493603,83.95,69.94,55.5,44.97
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.553993,83.95,65.69,56.0,43.16
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.619059,83.95,62.85,55.0,41.85
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.695097,81.48,58.6,55.0,40.04
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.796383,80.25,54.35,53.5,36.5
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.902915,77.78,50.56,54.0,33.62
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,2.992433,77.78,47.14,53.0,30.99
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,3.106752,77.78,43.0,52.0,29.18
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,3.229904,76.54,40.05,50.5,27.29
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,3.362295,70.37,34.26,49.0,25.32
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,3.564665,67.9,30.48,46.0,21.79
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,3.763228,65.43,26.82,42.5,20.06
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,4.001228,62.96,22.33,40.5,17.76
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,4.253755,62.96,18.55,33.5,14.96
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,4.614383,58.02,15.36,29.0,12.09
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,4.962749,55.56,12.4,25.5,10.52
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,5.421584,54.32,9.69,18.5,8.3
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,5.939337,50.62,7.32,18.0,6.25
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,6.528537,46.91,6.03,14.5,4.77
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,7.045546,40.74,4.13,10.0,3.78
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,7.665275,30.86,2.84,7.5,3.04
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,8.344486,28.4,2.13,3.5,2.06
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,9.01352,22.22,1.77,3.0,1.64
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,9.8494,13.58,1.3,2.0,1.15
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,10.939472,4.94,0.95,0.5,0.66
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,12.841156,2.47,0.47,0.5,0.41
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,14.74284,2.47,0.12,1.0,0.25
+B3b_WeatherRegression_SplineGAM,B3b: Weather Regression Residual (Spline GAM),B3_Weather_Regression,16.825637,0.0,0.0,0.5,0.08
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.0,0.0,231.32,0.0,174.21
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.060777,64.2,567.67,62.0,414.92
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.092428,72.84,639.5,66.0,444.76
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.122742,81.48,680.73,73.5,462.68
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.156475,88.89,672.23,78.5,474.69
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.186039,90.12,662.66,80.0,465.89
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.218253,93.83,661.71,77.5,466.79
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.245399,93.83,630.64,73.0,449.86
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.276171,90.12,612.92,70.0,439.66
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.309634,87.65,580.31,65.5,419.03
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.330214,83.95,563.54,62.5,414.67
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.350445,81.48,530.22,59.0,400.12
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.374907,77.78,474.81,59.5,380.72
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.392395,76.54,432.4,59.0,344.63
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.406362,76.54,389.75,56.0,326.95
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.425111,71.6,345.45,53.0,303.61
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.448503,67.9,302.68,51.5,280.92
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.467615,66.67,262.98,49.5,260.28
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.486767,59.26,225.06,47.5,237.26
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.506043,53.09,191.63,44.5,223.86
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.52708,48.15,158.9,44.0,222.55
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.551677,43.21,118.14,45.5,224.6
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.553839,43.21,114.12,45.5,221.72
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.556529,41.98,111.53,44.5,220.9
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.558713,39.51,107.75,44.0,217.69
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.561387,38.27,103.49,44.0,214.32
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.563644,38.27,99.36,43.5,212.68
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.565913,38.27,91.56,42.5,209.64
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.568279,39.51,86.6,42.5,207.34
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.570973,38.27,81.05,42.5,216.3
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.573475,37.04,77.26,42.5,212.27
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.576709,37.04,72.66,42.5,206.43
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.579962,37.04,67.1,42.0,203.64
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.583072,35.8,62.97,42.0,201.99
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.586733,35.8,57.42,41.5,200.35
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.5915,34.57,52.45,40.5,205.61
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.596255,34.57,49.03,40.5,201.58
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.603227,29.63,44.89,40.0,198.79
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.609737,29.63,44.19,39.0,195.99
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.617029,29.63,39.46,38.0,188.43
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.624232,28.4,37.45,37.5,175.6
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.631773,27.16,33.55,36.5,158.09
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.639964,27.16,31.66,36.5,134.25
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.646999,27.16,27.53,35.0,87.31
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.652923,27.16,26.11,34.5,80.65
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.655688,27.16,23.51,33.5,69.39
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.657201,27.16,22.33,33.5,69.39
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.65866,25.93,15.24,33.0,49.98
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.659879,24.69,12.64,33.0,49.33
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.661145,24.69,8.39,33.0,49.08
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.665427,24.69,3.19,32.0,41.68
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.693035,22.22,0.71,28.5,9.04
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.716165,19.75,0.47,24.5,5.43
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.744578,14.81,0.24,17.5,3.29
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.77908,11.11,0.0,12.5,1.56
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.813581,8.64,0.0,10.5,0.0
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.852142,6.17,0.0,6.5,0.0
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.890702,2.47,0.0,3.5,0.0
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.931292,1.23,0.0,1.5,0.0
+B4a_RadonProjection_Global,B4a: Radon-Direction Projection (Global Dry Basis),B4_Radon_Projection,0.957676,0.0,0.0,0.0,0.0
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.0,0.0,231.32,0.0,174.21
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.018445,62.96,460.99,83.5,416.23
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.036014,70.37,502.22,90.0,459.23
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.053335,77.78,540.85,91.5,486.28
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.068403,87.65,555.98,94.0,498.86
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.082903,88.89,559.05,96.5,500.5
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.100411,92.59,539.2,98.0,485.13
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.118791,95.06,503.4,98.5,457.92
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.140186,97.53,455.91,98.5,415.08
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.169409,98.77,380.89,98.0,342.74
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.200384,98.77,295.0,96.5,258.64
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.234259,97.53,220.1,96.0,191.14
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.274863,100.0,147.09,94.5,135.4
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.297722,100.0,118.61,92.5,110.98
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.302192,100.0,115.42,92.0,106.63
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.305552,100.0,110.46,90.5,103.34
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.309492,100.0,107.04,90.0,98.98
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.313017,98.77,102.67,89.5,94.38
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.317278,98.77,97.94,89.5,89.61
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.32142,97.53,93.57,88.5,86.81
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.325909,98.77,88.72,87.5,83.53
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.331298,98.77,84.71,87.5,79.09
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.336585,97.53,80.57,86.5,75.55
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.342006,96.3,76.91,85.5,73.09
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.347109,95.06,72.42,84.0,68.65
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.352063,95.06,68.4,83.0,65.52
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.357825,95.06,64.39,83.0,61.99
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.363531,93.83,60.84,82.0,58.78
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.370143,92.59,57.65,81.0,55.41
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.376045,92.59,53.05,80.5,52.04
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.382334,91.36,50.09,77.0,49.24
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.388512,88.89,46.67,76.0,46.53
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.396391,88.89,43.71,73.5,42.17
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.404124,87.65,40.4,73.0,40.2
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.412461,86.42,37.69,70.0,37.49
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.421677,82.72,34.38,67.5,34.69
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.430425,79.01,31.31,66.5,32.8
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.441227,79.01,27.88,63.0,29.84
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.451587,77.78,24.81,61.5,26.72
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.462982,74.07,21.86,55.5,24.66
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.480046,74.07,19.61,52.0,22.44
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.49136,71.6,17.84,49.0,20.39
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.503321,67.9,16.3,47.0,18.99
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.516746,64.2,15.24,43.5,17.68
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.528558,62.96,14.18,41.5,17.02
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.541056,60.49,12.88,37.5,16.44
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.553707,58.02,11.34,34.0,15.7
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.567987,58.02,9.92,31.0,14.72
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.581528,51.85,9.57,30.0,13.32
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.595207,46.91,8.39,27.0,12.25
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.611147,43.21,6.97,22.5,11.43
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.627678,40.74,5.08,19.5,10.36
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.644245,38.27,3.66,18.0,9.04
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.662415,33.33,2.13,16.0,7.15
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.688467,28.4,1.54,12.0,5.59
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.723614,20.99,1.18,8.5,3.04
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.760836,14.81,0.35,6.0,1.07
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.810046,11.11,0.0,4.5,0.16
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.853467,4.94,0.0,4.0,0.0
+B4b_RadonProjection_Local168h,B4b: Radon-Direction Projection (Local 168h Basis),B4_Radon_Projection,0.905573,0.0,0.0,1.5,0.0
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.0,0.0,231.32,0.0,174.21
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.005289,50.62,342.61,65.5,306.89
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.014922,56.79,348.28,76.5,316.59
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.030221,61.73,356.32,83.0,323.83
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.049244,67.9,359.39,86.5,330.9
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.068639,77.78,361.87,91.0,335.01
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.090127,86.42,355.61,93.0,330.41
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.108849,91.36,343.79,94.5,316.35
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.131631,93.83,316.15,96.0,292.75
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.155538,95.06,280.82,97.0,258.96
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.187482,97.53,237.23,97.5,216.13
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.229021,100.0,187.37,98.0,168.37
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.292946,100.0,128.42,97.0,114.11
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.367885,100.0,75.97,97.0,74.73
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.372527,100.0,74.31,97.0,72.59
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.377499,100.0,71.48,97.0,71.28
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.382915,100.0,69.11,97.0,69.47
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.38826,100.0,66.87,97.0,67.58
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.39415,100.0,65.1,97.0,64.7
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.400016,100.0,62.85,97.0,62.48
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.406377,100.0,59.78,97.5,60.1
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.412725,100.0,57.06,97.5,58.29
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.418739,100.0,54.94,97.5,56.15
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.426596,100.0,51.63,97.0,53.85
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.434803,100.0,49.03,97.0,51.55
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.442372,100.0,46.08,97.0,49.16
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.452406,100.0,43.95,96.5,47.27
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.461579,100.0,41.59,96.5,45.87
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.473185,100.0,38.75,96.0,43.57
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.483559,100.0,35.92,96.0,40.78
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.496209,100.0,33.32,95.5,37.9
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.508839,98.77,30.72,95.5,35.52
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.52291,98.77,28.12,95.5,32.64
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.538238,98.77,25.87,95.5,29.51
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.553218,98.77,22.21,95.5,27.54
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.575936,98.77,18.9,95.5,24.83
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.601238,98.77,15.59,94.5,22.36
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.633695,97.53,13.0,94.0,18.42
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.671718,97.53,11.46,93.0,15.29
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.713766,97.53,8.51,91.5,12.41
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.769118,97.53,5.08,90.0,9.87
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.858874,97.53,3.31,89.0,7.15
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,0.96698,96.3,1.54,86.5,4.77
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,1.062868,96.3,1.3,83.0,3.12
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,1.178517,93.83,0.95,79.5,2.14
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,1.298564,93.83,0.47,76.0,1.73
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,1.410385,92.59,0.24,73.0,0.9
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,1.530144,91.36,0.12,67.5,0.74
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,1.655992,85.19,0.0,62.5,0.49
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,1.814331,80.25,0.0,59.0,0.33
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,2.002197,79.01,0.0,53.5,0.25
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,2.18848,77.78,0.0,45.0,0.16
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,2.368544,70.37,0.0,37.0,0.08
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,2.589898,64.2,0.0,30.0,0.0
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,2.813937,60.49,0.0,19.5,0.0
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,3.075716,51.85,0.0,10.0,0.0
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,3.359074,40.74,0.0,2.0,0.0
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,3.692989,28.4,0.0,0.0,0.0
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,4.06872,18.52,0.0,0.0,0.0
+B4c_RadonProjection_Combined,B4c: Radon Projection + Stripped Channel Peak Z,B4_Radon_Projection,4.578642,0.0,0.0,0.0,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,-0.453777,12.35,301.73,6.0,203.23
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,0.169461,48.15,594.13,13.0,300.32
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,0.4508,62.96,816.01,16.0,343.07
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,0.657736,71.6,963.21,17.5,365.18
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,0.823169,76.54,1040.12,20.5,379.32
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,0.977154,79.01,1075.68,21.5,387.87
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,1.129957,81.48,1066.82,24.0,397.08
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,1.294612,85.19,1017.91,26.0,407.6
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,1.487711,86.42,949.62,29.5,420.43
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,1.707554,90.12,864.8,32.5,436.29
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,1.978435,91.36,738.5,35.0,460.22
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,2.331893,91.36,577.48,40.0,475.76
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,2.828634,92.59,383.25,44.5,491.13
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,3.958814,92.59,148.98,48.5,418.7
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,6.775523,97.53,83.64,74.0,212.27
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,8.448011,97.53,62.02,73.0,102.52
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,8.584133,97.53,58.48,73.0,103.17
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,8.739685,96.3,53.05,73.0,103.42
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,8.896459,96.3,48.08,73.0,104.08
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,9.064129,96.3,44.54,73.0,104.57
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,9.236973,96.3,41.7,73.0,105.15
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,9.46459,96.3,36.51,72.5,105.39
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,9.697487,95.06,31.78,72.0,106.13
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,9.998994,95.06,26.58,72.0,105.56
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,10.470256,93.83,20.67,71.0,108.35
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,11.104689,93.83,18.9,71.5,113.29
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,11.833184,93.83,13.23,71.0,120.6
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,12.74356,95.06,11.46,69.5,143.05
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,13.202741,93.83,16.07,69.5,172.31
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,13.447692,93.83,23.51,68.5,188.02
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,13.596925,92.59,29.89,69.0,199.77
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,13.72413,92.59,37.69,68.5,210.46
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,13.822456,91.36,40.88,68.5,217.28
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,13.908213,91.36,42.41,68.5,226.9
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,13.999693,91.36,41.23,67.0,234.3
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,14.098521,91.36,37.81,66.5,243.34
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,14.189592,90.12,33.2,67.0,247.78
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,14.311656,90.12,26.7,67.0,254.69
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,14.477704,90.12,18.78,67.5,261.35
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,14.71097,90.12,10.51,68.5,261.43
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,15.3153,90.12,7.32,67.5,229.2
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,15.981886,90.12,5.2,66.0,154.56
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,17.742444,87.65,0.71,62.0,47.27
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,24.017037,80.25,0.35,49.0,53.03
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,31.218284,74.07,0.59,39.0,43.82
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,33.99669,70.37,0.12,39.0,62.07
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,40.020374,66.67,0.0,28.5,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,47.026513,59.26,0.0,21.0,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,55.256652,54.32,0.0,14.0,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,64.37301,46.91,0.0,9.0,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,78.234397,40.74,0.0,4.0,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,94.74933,35.8,0.0,2.5,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,107.881553,30.86,0.0,1.0,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,114.684786,29.63,0.0,0.0,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,126.644466,19.75,0.0,0.0,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,138.808518,13.58,0.0,0.0,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,163.09605,7.41,0.0,0.0,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,188.915922,4.94,0.0,0.0,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,215.023829,3.7,0.0,0.0,0.0
+B5a_PCA_Subspace_Mahalanobis,B5a: Background PCA Subspace (Mahalanobis + Recon),B5_Background_Subspace,240.555666,0.0,0.0,0.0,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,-1.45507,8.64,281.41,0.0,174.21
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,-0.994403,25.93,384.32,6.5,202.73
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,-0.69738,46.91,496.67,16.0,318.24
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,-0.493456,61.73,636.31,20.5,418.78
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,-0.321205,66.67,720.9,25.0,474.69
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,-0.150613,70.37,769.34,29.5,506.09
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,0.027272,76.54,785.05,35.0,496.23
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,0.190137,83.95,778.55,36.5,470.58
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,0.382757,83.95,728.82,38.0,425.77
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,0.597173,86.42,671.75,39.0,380.06
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,0.843833,86.42,579.84,39.0,343.72
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,1.185644,91.36,444.33,41.0,320.13
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,1.583145,92.59,333.63,43.0,283.38
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,2.202903,91.36,214.07,52.5,260.03
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,3.869055,91.36,98.06,53.0,125.62
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,7.031544,93.83,81.05,80.5,269.65
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,10.659778,90.12,56.0,79.5,127.59
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,11.011104,90.12,57.3,78.0,113.04
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,11.280622,90.12,58.01,77.0,107.12
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,11.486315,88.89,58.83,77.5,103.67
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,11.650177,88.89,60.37,77.5,101.78
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,11.7847,88.89,59.43,77.5,100.63
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,11.947045,88.89,58.83,78.0,99.15
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,12.093547,88.89,56.47,77.0,98.41
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,12.237476,87.65,55.41,74.0,98.74
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,12.37212,87.65,54.35,73.0,99.56
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,12.525211,87.65,50.68,72.5,99.89
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,12.676181,86.42,48.08,72.5,101.12
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,12.840147,86.42,46.67,71.5,101.94
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,13.020059,86.42,44.78,70.5,102.27
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,13.211287,86.42,41.23,69.0,105.15
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,13.410989,86.42,37.92,68.5,108.19
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,13.647767,86.42,36.51,69.0,113.37
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,13.899206,86.42,32.84,68.0,113.86
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,14.149961,85.19,29.65,68.0,116.58
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,14.405436,85.19,29.42,68.0,118.22
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,14.682258,85.19,24.57,67.5,117.56
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,15.027009,83.95,22.09,67.0,118.71
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,15.345006,83.95,18.78,66.0,120.85
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,15.772342,83.95,15.71,65.5,125.95
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,16.29176,83.95,12.05,64.5,130.3
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,17.065521,83.95,8.86,57.0,110.74
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,18.03349,80.25,8.27,55.5,44.89
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,19.256319,77.78,3.9,52.0,11.26
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,20.569145,77.78,2.36,49.5,3.7
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,22.799386,74.07,0.24,44.0,1.07
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,30.268451,66.67,0.0,32.5,0.08
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,36.959244,62.96,0.0,25.5,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,44.785978,54.32,0.0,16.5,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,58.712953,41.98,0.0,9.0,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,73.758605,37.04,0.0,4.5,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,91.516975,34.57,0.0,1.5,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,103.867174,28.4,0.0,1.0,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,123.939553,23.46,0.0,0.5,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,138.927894,18.52,0.0,0.5,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,155.72082,14.81,0.0,0.0,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,187.502087,8.64,0.0,0.0,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,211.005564,7.41,0.0,0.0,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,237.683034,3.7,0.0,0.0,0.0
+B5b_NMF_Background_Reconstruction,B5b: Background NMF 2-Component Reconstruction,B5_Background_Subspace,264.446207,0.0,0.0,0.0,0.0
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.152478,2.47,267.0,3.0,189.58
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.144858,25.93,396.48,14.5,275.82
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.139955,33.33,464.77,25.5,323.25
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.135675,48.15,503.99,30.5,352.11
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.131279,55.56,524.79,38.5,357.7
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.126789,64.2,527.74,46.5,371.76
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.122161,65.43,488.63,55.0,387.54
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.116258,66.67,439.01,60.0,407.19
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.108434,71.6,382.19,69.5,418.54
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.099386,77.78,368.96,75.0,372.99
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.091156,87.65,369.43,77.0,331.23
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.083458,90.12,351.94,77.0,312.98
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.073437,92.59,298.78,77.0,288.73
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.053792,92.59,223.41,82.0,230.85
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.034089,91.36,184.3,81.5,171.66
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,-0.015365,90.12,156.77,75.0,117.32
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.002908,90.12,125.94,71.0,88.79
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.014177,88.89,108.81,67.0,75.47
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.015239,88.89,109.64,66.0,74.24
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.016334,88.89,107.98,65.5,73.66
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.017282,88.89,105.62,65.5,72.67
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.018497,88.89,102.31,65.5,71.77
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.01972,88.89,98.53,65.0,71.03
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.021028,88.89,95.22,64.5,70.37
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.022355,88.89,91.8,63.5,69.39
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.023826,87.65,90.02,63.0,69.14
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.025536,87.65,86.48,63.0,67.17
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.027023,86.42,83.76,62.0,66.1
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.028626,86.42,80.1,61.0,64.45
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.030534,86.42,76.56,60.5,63.38
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.032896,86.42,71.71,60.5,61.74
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.035102,86.42,66.99,61.5,58.86
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.037144,86.42,65.21,61.0,57.71
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.039464,85.19,61.91,59.5,55.82
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.042315,82.72,57.65,58.0,53.85
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.045416,82.72,55.53,58.5,51.05
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.048552,81.48,52.1,56.5,49.41
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.052164,81.48,49.03,54.0,48.09
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.056196,80.25,44.66,51.0,46.86
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.060971,76.54,40.52,50.0,45.54
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.065482,75.31,36.98,48.5,48.83
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.070862,72.84,32.37,49.0,63.88
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.076905,67.9,29.42,48.5,97.34
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.082284,65.43,27.29,47.0,132.03
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.088059,65.43,24.57,47.5,149.3
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.093341,64.2,22.8,46.0,139.43
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.098376,61.73,21.38,44.5,118.88
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.103529,60.49,19.02,43.0,98.41
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.108473,59.26,17.13,41.0,79.5
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.114203,56.79,15.59,37.0,59.03
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.11955,54.32,13.11,33.5,43.9
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.125843,50.62,11.11,31.5,30.66
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.132844,44.44,9.22,27.0,19.9
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.142144,40.74,7.68,21.0,13.07
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.151122,33.33,5.08,16.0,8.39
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.161282,27.16,3.54,11.0,6.33
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.175812,19.75,2.13,7.5,4.19
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.193769,11.11,1.18,4.5,1.89
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.216214,2.47,0.35,1.5,0.58
+B6a_IsolationForest_Tier3_BgOnly,"B6a: Unsupervised Isolation Forest (Tier 3, Bg Only)",B6_Unsupervised_ML,0.239782,0.0,0.0,0.0,0.16
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.158179,4.94,276.57,1.0,178.73
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.150467,22.22,395.89,10.5,230.93
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.145239,34.57,467.84,17.0,285.44
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.140946,49.38,501.75,26.0,329.09
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.136842,56.79,509.07,36.0,363.46
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.132159,61.73,498.79,41.0,385.73
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.126368,67.9,464.42,47.5,405.71
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.120012,71.6,425.9,56.5,404.97
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.113301,79.01,425.43,68.5,425.2
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.10673,88.89,422.24,73.5,431.77
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.098449,88.89,398.37,76.0,400.2
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.087826,93.83,336.47,84.0,343.31
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.071757,96.3,265.11,85.5,288.23
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.047701,96.3,194.93,85.5,184.07
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.021777,93.83,171.66,84.0,128.33
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.006085,96.3,151.1,81.5,103.83
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.007782,93.83,116.96,80.0,87.8
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.00886,93.83,113.42,80.5,86.98
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.010056,93.83,108.57,80.5,86.07
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.011422,92.59,106.09,80.0,84.43
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.01304,91.36,101.6,80.0,84.6
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.014836,91.36,98.29,81.5,84.68
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.016531,91.36,96.52,82.0,85.66
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.018362,91.36,93.92,81.5,87.31
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.02032,91.36,89.91,81.5,92.49
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.021924,90.12,88.25,81.0,98.24
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.024002,90.12,83.29,83.0,109.75
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.02572,90.12,79.51,82.0,118.3
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.028232,90.12,74.55,84.0,129.15
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.031092,88.89,71.12,84.5,138.94
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.033757,88.89,68.05,84.0,147.08
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.037217,88.89,63.8,82.5,148.88
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.03995,88.89,60.37,81.5,143.87
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.043079,88.89,56.59,80.0,134.42
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.046204,88.89,53.99,79.5,122.99
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.049509,88.89,49.86,79.0,114.93
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.054116,88.89,45.96,76.5,100.63
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.058327,88.89,41.0,76.0,88.54
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.063488,87.65,37.21,74.0,77.85
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.068899,85.19,34.26,72.5,68.56
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.073528,82.72,31.66,70.5,62.64
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.078733,80.25,28.71,68.5,55.41
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.083866,76.54,26.94,66.5,50.4
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.090348,75.31,23.63,64.5,42.01
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.097029,74.07,20.79,60.0,36.01
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.103846,72.84,17.96,58.5,31.57
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.109672,71.6,15.48,54.0,26.39
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.115681,70.37,12.88,47.0,22.85
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.122773,69.14,10.99,44.5,19.07
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.130813,62.96,8.98,39.0,14.88
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.13717,61.73,7.44,35.0,11.35
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.145066,58.02,4.96,29.5,8.39
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.152771,56.79,3.19,25.5,6.82
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.160594,50.62,2.13,24.0,4.77
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.169942,46.91,1.42,19.0,3.21
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.179505,38.27,1.18,13.0,2.14
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.189331,30.86,0.83,10.5,1.23
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.203144,20.99,0.35,6.0,0.58
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.219691,8.64,0.24,2.0,0.33
+B6b_IsolationForest_Tier4_BgOnly,"B6b: Unsupervised Isolation Forest (Tier 4, Bg Only)",B6_Unsupervised_ML,0.244511,0.0,0.0,0.0,0.08
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.008778,0.0,263.57,6.5,185.06
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.00694,35.8,402.27,31.0,267.51
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.006259,53.09,498.56,40.0,332.71
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.00584,64.2,567.79,51.5,381.05
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.005511,69.14,624.38,56.5,421.66
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.00523,76.54,640.92,61.0,456.11
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.004988,77.78,648.6,64.5,468.11
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.004749,83.95,634.42,67.5,485.37
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.004522,86.42,615.4,70.5,482.83
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.004284,91.36,576.06,74.5,495.4
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.004034,91.36,526.68,80.0,501.16
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.003753,91.36,476.23,82.5,485.05
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.003417,91.36,408.06,85.5,444.52
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.003009,92.59,318.27,86.5,379.57
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.002326,96.3,215.96,87.0,261.35
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,-0.000883,97.53,140.71,86.5,134.25
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.000556,97.53,113.18,84.5,84.35
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001571,96.3,95.58,81.5,56.97
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001589,97.53,93.92,81.0,56.23
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001608,97.53,91.68,81.0,55.49
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001627,97.53,88.02,81.0,55.08
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001648,97.53,86.01,81.0,54.59
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001668,96.3,82.7,81.0,53.93
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001691,96.3,81.16,80.5,53.03
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001712,96.3,77.15,80.0,52.45
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001736,96.3,74.19,80.0,51.46
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001759,96.3,71.0,80.0,50.89
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001785,96.3,68.76,79.5,50.07
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001812,96.3,66.16,79.0,49.0
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001839,96.3,63.21,79.0,47.44
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001868,96.3,61.08,79.0,45.54
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.0019,96.3,59.07,79.0,43.49
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001921,96.3,59.19,78.5,42.59
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001941,96.3,55.05,78.5,42.17
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001964,95.06,51.75,78.5,41.6
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.001986,95.06,49.74,77.5,40.94
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002011,95.06,46.78,77.5,39.87
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002038,95.06,43.48,76.5,39.38
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002061,93.83,39.34,78.5,41.93
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002083,93.83,37.1,80.0,49.49
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002105,92.59,33.43,83.5,70.37
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002131,90.12,30.72,86.0,106.79
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002141,90.12,30.13,86.0,113.12
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002146,90.12,28.94,86.0,105.64
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002151,88.89,27.65,86.0,89.2
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002157,88.89,27.29,86.0,67.25
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002162,88.89,24.81,85.5,47.93
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002167,88.89,23.98,85.5,36.01
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002173,88.89,23.16,85.0,30.75
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002178,88.89,21.86,84.5,26.64
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002183,88.89,20.08,85.0,22.11
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002188,88.89,18.43,84.5,20.31
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002192,87.65,16.66,80.5,17.68
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002195,86.42,13.7,81.0,15.37
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002196,83.95,11.46,80.0,12.74
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002197,83.95,9.22,72.5,9.54
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002197,80.25,7.21,65.0,6.41
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002197,80.25,5.43,61.0,3.21
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002197,74.07,3.19,49.5,1.73
+B6c_OneClassSVM_Tier4_BgOnly,"B6c: Unsupervised One-Class SVM (Tier 4, Bg Only)",B6_Unsupervised_ML,0.002198,0.0,0.0,0.0,0.0
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.001887,11.11,259.32,29.0,336.08
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.010722,32.1,459.93,57.0,496.39
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.016091,40.74,593.07,62.5,548.76
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.021681,49.38,662.07,71.0,573.59
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.02733,55.56,690.66,74.0,571.61
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.03398,59.26,696.68,75.5,538.15
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.04188,64.2,689.59,77.5,500.75
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.052827,71.6,679.32,80.0,450.76
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.065719,80.25,654.39,83.5,409.25
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.081396,82.72,618.12,82.5,371.02
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.101023,83.95,585.39,84.0,329.83
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.126908,88.89,534.83,86.0,285.19
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.163415,92.59,458.98,85.5,235.7
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.212672,96.3,379.94,85.5,185.47
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.283012,97.53,292.16,85.0,136.88
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.401903,100.0,195.52,84.0,82.05
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.555037,98.77,124.29,81.5,47.02
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.564278,98.77,118.61,81.5,45.79
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.573232,98.77,113.18,81.5,44.56
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.583632,98.77,109.04,81.5,43.0
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.59282,98.77,105.97,80.5,41.11
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.601634,98.77,103.96,80.5,40.53
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.613274,98.77,99.59,80.5,39.13
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.623278,98.77,98.41,80.5,37.57
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.632864,98.77,95.58,80.5,36.75
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.645532,98.77,92.39,80.5,36.5
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.656221,98.77,90.38,80.5,35.43
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.66757,97.53,84.71,80.5,34.04
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.67868,97.53,79.63,80.0,33.3
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.691323,97.53,75.97,80.0,32.56
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.704987,97.53,73.84,80.0,31.73
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.717473,97.53,71.0,80.0,31.16
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.728234,97.53,67.7,80.0,30.58
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.740935,96.3,62.38,80.0,30.5
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.755979,96.3,58.01,79.0,29.43
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.772866,96.3,54.35,78.5,28.03
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.788765,96.3,49.38,78.5,27.46
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.805633,96.3,45.72,78.5,27.13
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.822578,96.3,41.0,78.0,27.13
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.837687,96.3,35.21,78.0,26.64
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.850746,96.3,30.72,77.5,26.14
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.860254,96.3,27.53,77.0,25.9
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.870439,96.3,24.1,76.5,25.57
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.881504,96.3,21.5,76.0,25.32
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.892611,96.3,18.43,76.5,24.66
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.902571,96.3,16.66,76.0,24.33
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.912936,96.3,14.89,75.0,24.25
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.924337,96.3,11.34,74.0,24.09
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.937811,96.3,8.74,73.0,24.17
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.951286,95.06,6.62,71.5,24.01
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.963283,93.83,4.25,69.5,23.35
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.977198,93.83,2.13,68.0,23.1
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.98978,91.36,1.06,65.0,23.59
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.99741,90.12,0.59,60.0,25.49
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.999566,83.95,0.83,50.5,38.89
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.999938,81.48,2.13,48.0,124.22
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,0.99999,77.78,0.95,43.5,128.17
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,1.0,67.9,0.12,35.0,1.97
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,1.0,61.73,0.0,21.5,0.49
+B7a_LogisticRegression_Tier3,B7a: Supervised Logistic Regression (Tier 3),B7_Simple_Supervised,1.000001,0.0,0.0,0.0,0.0
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.015588,0.0,231.32,0.0,174.21
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.218643,88.89,190.68,73.0,152.75
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.963628,88.89,56.83,76.0,59.52
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.964101,74.07,1.89,62.5,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.96481,74.07,1.89,62.5,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.965519,74.07,1.89,62.5,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.965992,74.07,1.89,62.5,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.966701,74.07,1.89,62.5,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.967411,74.07,1.89,62.5,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.967884,74.07,1.89,62.5,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.968593,74.07,1.89,62.5,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.969302,74.07,1.89,62.5,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.969775,74.07,1.89,62.5,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.970484,74.07,1.89,62.5,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.971193,74.07,1.89,62.5,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.97143,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.972139,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.972612,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.973321,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.97403,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.974503,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.975212,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.975922,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.976395,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.977104,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.977813,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.978286,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.978995,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.979704,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.980177,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.980886,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.981359,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.982068,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.982778,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.983251,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.98396,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.984669,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.985142,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.985851,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.98656,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.987033,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.987742,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.988452,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.988925,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.989634,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.990107,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.990816,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.991525,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.991998,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.992707,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.993416,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.993889,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.994598,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.995308,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.995781,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.99649,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.997199,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.997672,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.998381,74.07,1.89,62.0,6.74
+B7b_DecisionTreeDepth3_Tier3,B7b: Supervised Depth-3 Decision Tree (Tier 3),B7_Simple_Supervised,0.998854,0.0,0.0,0.0,0.0
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-25.102693,0.0,231.32,0.0,174.21
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-13.835786,0.0,231.32,0.0,174.21
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-1.960976,7.41,264.52,38.5,320.54
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-1.213024,14.81,354.78,46.5,293.74
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-0.93576,24.69,466.42,54.5,258.31
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-0.779327,32.1,561.17,59.0,250.09
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-0.646396,37.04,639.15,63.0,252.96
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-0.544113,40.74,671.75,65.5,266.45
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-0.450763,43.21,678.61,63.0,276.64
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-0.367161,49.38,667.74,65.0,288.31
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-0.273173,51.85,654.15,64.5,294.56
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-0.192299,59.26,640.68,64.5,304.76
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-0.1028,60.49,601.11,64.0,302.13
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,-0.014782,62.96,557.51,64.0,301.06
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,0.071406,69.14,515.57,64.0,282.56
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,0.183599,69.14,446.58,63.0,250.33
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,0.306525,71.6,376.52,62.0,213.17
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,0.468437,71.6,300.2,62.0,168.45
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,0.70041,72.84,219.86,58.5,120.93
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,0.961126,67.9,156.89,58.0,86.98
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.165894,69.14,123.1,53.5,73.33
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.191642,69.14,119.56,54.0,71.36
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.22254,69.14,116.25,53.0,68.98
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.253328,69.14,112.83,53.0,66.34
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.285521,67.9,109.87,53.0,64.21
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.318252,67.9,107.27,52.5,62.15
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.351168,67.9,102.9,50.5,60.59
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.383554,66.67,98.77,50.0,59.19
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.42528,66.67,96.17,49.5,57.3
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.464648,66.67,92.39,48.5,54.92
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.506046,64.2,89.79,48.0,52.45
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.554813,64.2,85.77,47.5,50.56
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.604823,64.2,82.23,47.5,49.0
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.655357,62.96,78.45,46.0,47.11
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.713958,62.96,73.13,45.5,46.04
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.779353,64.2,69.35,45.5,44.31
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.851492,64.2,65.33,44.0,42.26
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,1.928414,66.67,60.25,43.0,40.61
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,2.012134,64.2,56.47,42.0,39.13
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,2.105404,65.43,53.52,39.0,37.57
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,2.223336,64.2,49.74,38.0,35.6
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,2.362188,61.73,44.89,36.0,32.8
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,2.510984,54.32,41.59,35.0,30.42
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,2.70201,51.85,36.98,32.0,27.62
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,2.901484,49.38,33.08,30.0,25.32
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,3.153462,48.15,28.0,27.5,22.44
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,3.423071,45.68,24.34,24.5,19.98
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,3.74038,44.44,20.56,20.5,16.77
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,4.169459,40.74,17.37,17.5,13.98
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,4.653401,39.51,14.41,16.0,11.35
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,5.012049,33.33,12.05,12.5,9.37
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,5.566723,28.4,9.22,10.5,6.58
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,6.167118,23.46,6.38,5.5,4.6
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,6.70542,20.99,5.08,3.5,3.86
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,7.30637,16.05,4.13,3.0,2.96
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,8.36125,8.64,2.72,3.5,1.32
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,9.845843,0.0,1.18,1.5,0.82
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,11.679751,0.0,0.24,0.5,0.41
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,13.688318,0.0,0.24,0.5,0.33
+B8_Operational_Screening_Approx_UNVERIFIED,B8: Operational Screening Approximation (UNVERIFIED EPA Threshold),B8_Operational_Rule,15.696885,0.0,0.0,0.5,0.16
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.004678,12.35,255.66,20.0,262.01
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.020576,30.86,365.77,56.0,427.42
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.031651,44.44,509.19,71.5,526.64
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.043152,55.56,618.83,85.0,624.31
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.05479,69.14,748.66,91.5,739.98
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.066578,71.6,849.56,94.5,814.96
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.079558,80.25,936.86,94.5,875.79
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.092168,88.89,1005.98,95.0,900.54
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.107272,88.89,1048.27,96.0,909.99
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.126041,90.12,1051.93,96.5,887.39
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.149925,91.36,1024.64,96.5,855.98
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.179834,95.06,970.53,98.0,810.52
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.221102,98.77,898.94,98.0,749.44
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.269547,98.77,825.81,97.5,680.05
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.322659,98.77,738.62,97.0,593.23
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.376902,97.53,641.39,95.5,503.38
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.440754,98.77,533.17,96.0,413.6
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.504774,100.0,426.61,93.5,327.45
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.571755,96.3,321.23,89.5,240.39
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.602183,96.3,279.64,88.0,208.98
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.607955,95.06,273.5,88.0,202.24
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.613895,95.06,264.16,87.5,196.81
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.620347,95.06,256.25,87.0,189.17
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.627601,95.06,245.85,86.5,181.52
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.634726,93.83,236.4,86.0,173.14
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.641668,93.83,227.9,86.0,166.72
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.648442,92.59,220.1,86.0,160.97
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.655441,92.59,210.88,86.0,152.99
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.66278,92.59,201.2,85.5,146.66
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.66915,91.36,192.57,85.5,140.66
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.676676,91.36,182.29,85.0,134.25
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.685569,91.36,173.79,84.5,126.61
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.694863,91.36,163.39,83.5,119.95
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.70298,88.89,154.88,83.0,114.52
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.711777,90.12,143.9,82.5,108.85
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.721557,87.65,134.33,82.5,103.42
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.731922,87.65,124.76,81.5,95.04
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.743489,86.42,114.83,80.5,86.81
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.75218,86.42,104.2,80.5,81.39
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.762705,86.42,93.45,80.0,75.72
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.774573,86.42,83.76,79.0,67.33
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.787949,82.72,73.01,77.0,58.21
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.800118,81.48,63.68,76.0,51.46
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.810114,80.25,56.59,76.0,46.28
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.822222,79.01,49.86,75.5,41.27
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.83322,77.78,43.12,75.0,36.75
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.843393,77.78,36.98,74.0,33.05
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.855174,76.54,30.48,72.0,27.46
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.868868,75.31,25.16,70.0,21.62
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.879961,70.37,19.14,68.5,18.74
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.892919,67.9,13.94,65.5,13.56
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.906496,65.43,9.22,63.0,9.37
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.921156,60.49,5.91,58.0,6.41
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.93495,55.56,3.31,51.5,4.03
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.94871,51.85,1.3,45.0,1.97
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.963819,41.98,0.47,35.5,1.07
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.975881,33.33,0.12,29.0,0.25
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.988564,25.93,0.0,14.5,0.08
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.995438,16.05,0.0,3.5,0.0
+ML_Tier1_Gross,Tier 1: Gross GBDT (12 features),ML_Main_Tier,0.999562,0.0,0.0,0.0,0.0
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.002624,8.64,252.94,12.5,215.23
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.009772,28.4,369.78,50.0,401.03
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.016493,40.74,456.26,63.0,503.95
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.023772,48.15,554.2,75.5,564.46
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.031271,66.67,635.25,80.5,620.12
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.039138,72.84,716.77,86.5,661.72
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.048379,79.01,766.98,93.0,688.11
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.05884,86.42,813.64,94.5,699.29
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.072426,88.89,835.62,95.5,701.84
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.088401,92.59,833.25,96.0,690.24
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.107163,93.83,819.79,96.0,663.94
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.134121,96.3,784.93,97.5,615.6
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.168815,97.53,726.1,98.0,555.5
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.215153,98.77,669.51,96.0,481.51
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.268777,98.77,575.11,94.5,405.46
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.347666,98.77,470.44,93.5,314.05
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.442973,97.53,360.69,93.0,231.51
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.572721,96.3,244.79,90.0,143.54
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.593045,96.3,228.01,88.0,130.22
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.602576,96.3,219.86,88.0,124.8
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.610121,96.3,214.9,88.0,120.77
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.619155,96.3,207.93,88.0,116.16
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.628382,95.06,200.01,87.5,111.72
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.636745,95.06,192.93,88.0,108.27
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.646561,95.06,186.55,88.0,103.83
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.655261,95.06,180.28,87.5,98.98
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.665121,95.06,172.84,86.5,94.3
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.674351,96.3,164.34,86.5,89.69
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.684787,96.3,157.6,86.5,84.35
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.696617,95.06,149.69,85.5,79.17
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.707668,95.06,140.59,85.0,74.65
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.719213,95.06,132.32,85.0,69.88
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.732564,93.83,123.81,84.5,64.86
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.743806,93.83,114.48,84.5,60.92
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.757216,93.83,106.33,83.0,56.56
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.771843,93.83,97.59,80.0,50.48
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.784401,93.83,88.25,79.5,46.53
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.798264,92.59,80.34,79.0,42.59
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.811764,92.59,71.95,78.5,37.82
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.826691,92.59,62.26,77.0,32.56
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.838422,92.59,54.46,76.5,29.27
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.847388,90.12,49.5,76.5,27.29
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.85738,88.89,44.19,76.0,24.09
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.868482,88.89,39.22,75.5,21.62
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.879585,87.65,34.73,73.0,19.32
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.890687,87.65,29.65,72.5,17.1
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.901789,85.19,26.11,71.0,13.73
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.913638,81.48,22.33,67.5,11.59
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.924629,80.25,17.84,65.0,9.78
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.93622,80.25,13.59,63.5,6.99
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.947309,75.31,9.92,56.5,4.77
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.958411,71.6,6.85,51.0,2.96
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.969514,64.2,3.78,47.0,1.48
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.979402,60.49,1.77,40.5,0.82
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.987567,59.26,0.83,31.0,0.33
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.992501,49.38,0.35,19.0,0.08
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.995925,41.98,0.12,9.0,0.0
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.997404,33.33,0.0,3.0,0.0
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.99838,20.99,0.0,1.5,0.0
+ML_Tier1b_GrossWeather,Tier 1b: Gross + Weather GBDT (29 features),ML_Main_Tier,0.99949,0.0,0.0,0.0,0.0
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.001802,9.88,271.84,13.5,222.63
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.007482,37.04,432.99,35.5,390.42
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.012323,56.79,576.53,48.0,506.09
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.016665,65.43,723.5,58.5,577.78
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.020539,76.54,860.07,62.0,610.25
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.024453,85.19,960.02,64.0,616.17
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.028576,88.89,1012.83,65.5,626.69
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.033409,92.59,1030.55,68.0,619.95
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.038677,93.83,1009.4,70.0,598.09
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.045628,93.83,936.16,72.5,569.89
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.055627,95.06,829.24,74.0,522.94
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.068826,95.06,696.33,74.0,464.33
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.090307,96.3,521.48,76.5,390.01
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.13706,97.53,312.13,80.0,330.0
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.244633,98.77,124.29,85.5,313.47
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.255118,98.77,115.54,85.5,313.55
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.264838,98.77,107.04,86.0,312.81
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.279121,100.0,96.64,86.0,313.8
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.294793,100.0,88.96,86.0,308.13
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.310084,100.0,80.45,86.5,305.17
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.329225,100.0,72.3,86.5,302.45
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.352667,100.0,66.75,87.0,294.97
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.373767,100.0,60.02,87.0,287.66
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.400246,100.0,53.28,87.5,275.82
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.430373,100.0,48.56,88.0,266.45
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.465107,100.0,45.37,89.0,250.25
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.498557,100.0,44.3,89.0,234.3
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.537217,100.0,44.07,89.0,217.69
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.568497,100.0,44.66,89.0,202.73
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.604633,100.0,45.96,89.0,183.17
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.636517,100.0,46.19,88.5,167.55
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.663533,100.0,47.02,89.5,154.06
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.693892,100.0,47.61,90.5,137.7
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.723019,100.0,47.73,91.0,122.49
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.7499,98.77,45.72,90.5,109.75
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.777702,98.77,41.0,90.5,98.41
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.799715,98.77,39.46,91.0,91.99
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.812458,98.77,36.27,91.5,92.24
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.826845,98.77,33.55,91.5,92.57
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.841581,98.77,29.65,93.5,94.95
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.855808,98.77,25.4,93.5,99.56
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.871372,98.77,22.57,94.0,107.04
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.887971,97.53,19.26,94.5,123.15
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.902677,97.53,15.12,95.0,145.92
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.919334,97.53,10.16,95.5,169.35
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.935131,96.3,6.26,95.5,189.66
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.954976,96.3,2.48,94.5,172.81
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.977659,96.3,0.59,92.5,50.07
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.994321,95.06,0.0,86.5,1.15
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.998031,95.06,0.0,78.0,0.0
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.998823,91.36,0.0,68.5,0.0
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.99913,86.42,0.0,61.0,0.0
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.999334,81.48,0.0,50.5,0.0
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.99949,75.31,0.0,40.5,0.0
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.999583,72.84,0.0,27.0,0.0
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.999651,61.73,0.0,19.5,0.0
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.99969,54.32,0.0,17.5,0.0
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.999729,50.62,0.0,14.5,0.0
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.999773,38.27,0.0,8.0,0.0
+ML_Tier2_Spectral,Tier 2: Spectral GBDT (30 features),ML_Main_Tier,0.999875,0.0,0.0,0.0,0.0
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.000637,14.81,265.58,12.5,199.53
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.005099,28.4,405.58,33.0,342.16
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.008687,40.74,532.82,43.0,432.43
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.012246,53.09,645.29,49.5,490.88
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.01571,65.43,736.5,54.0,513.57
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.019526,76.54,827.11,59.5,524.75
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.023523,81.48,877.68,62.5,541.44
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.027895,83.95,896.58,64.5,549.01
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.033564,90.12,878.38,68.0,543.99
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.040594,92.59,831.6,68.5,539.96
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.049487,95.06,766.27,72.5,510.94
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.062257,96.3,663.84,73.5,465.73
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.082183,97.53,511.91,79.0,404.56
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.118989,98.77,336.82,81.5,327.69
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.217289,100.0,155.71,86.5,290.04
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.22655,100.0,148.15,87.0,289.3
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.234137,100.0,141.65,87.5,289.3
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.244855,100.0,134.33,87.5,288.31
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.253862,100.0,126.41,87.5,285.35
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.265539,100.0,121.1,88.0,281.74
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.275785,100.0,114.36,88.0,277.46
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.286727,100.0,105.15,88.5,275.41
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.300937,100.0,97.35,89.0,271.13
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.316423,100.0,91.21,89.5,264.72
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.333665,100.0,84.71,90.0,258.88
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.356391,100.0,78.33,91.5,251.24
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.376415,100.0,73.48,92.5,245.32
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.398363,100.0,68.05,93.0,237.34
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.421057,100.0,61.2,93.5,228.3
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.447142,100.0,55.64,95.0,223.29
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.477495,100.0,51.86,95.5,214.32
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.517488,100.0,47.85,97.0,202.32
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.552029,100.0,44.66,98.5,199.53
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.58854,100.0,40.76,98.5,200.59
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.629029,98.77,38.16,99.0,201.33
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.665489,98.77,34.73,99.0,202.81
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.694739,98.77,33.55,99.0,203.97
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.714752,98.77,32.25,99.0,205.36
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.733755,98.77,30.72,99.0,201.33
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.754856,98.77,27.88,99.0,195.91
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.775087,98.77,24.34,99.0,185.3
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.796737,98.77,21.03,99.0,169.85
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.81813,98.77,18.19,99.0,154.72
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.840232,98.77,13.23,98.5,135.24
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.865762,98.77,9.45,98.0,107.37
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.891709,97.53,3.9,97.0,79.09
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.925378,96.3,1.18,96.0,44.56
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.963703,96.3,0.12,93.5,14.3
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.991201,95.06,0.0,86.5,0.99
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.99708,95.06,0.0,80.5,0.0
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.998503,93.83,0.0,71.0,0.0
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.998993,87.65,0.0,63.5,0.0
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.999293,81.48,0.0,57.5,0.0
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.999467,76.54,0.0,48.5,0.0
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.999573,70.37,0.0,38.5,0.0
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.99966,66.67,0.0,32.0,0.0
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.999725,58.02,0.0,26.0,0.0
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.999774,51.85,0.0,17.0,0.0
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.999817,39.51,0.0,5.5,0.0
+ML_Tier3_WeatherFusion,Tier 3: Weather Fusion GBDT (48 features),ML_Main_Tier,0.999899,0.0,0.0,0.0,0.0
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.000741,14.81,266.17,15.0,216.13
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.003974,33.33,439.61,39.5,383.1
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.006403,48.15,596.97,50.0,463.59
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.008644,56.79,737.56,57.0,528.29
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.011007,65.43,856.53,63.5,577.53
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.013313,75.31,947.73,68.5,614.2
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.016038,83.95,1001.72,74.0,644.78
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.019006,87.65,1037.4,78.5,669.61
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.022997,90.12,1022.64,82.5,687.86
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.027851,95.06,962.86,86.0,691.23
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.034331,97.53,872.24,91.5,686.38
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.042864,100.0,735.31,94.0,667.14
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.0582,100.0,559.16,97.5,626.28
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.089504,100.0,344.15,99.5,527.3
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.151734,100.0,180.17,100.0,358.11
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.156659,100.0,171.78,100.0,346.52
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.161974,100.0,162.44,100.0,336.0
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.168874,100.0,155.24,100.0,322.19
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.175892,100.0,151.1,100.0,309.77
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.182827,100.0,143.78,100.0,297.19
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.189514,100.0,138.46,100.0,285.27
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.197104,100.0,132.79,100.0,275.98
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.205936,100.0,128.07,100.0,264.88
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.216508,100.0,121.8,100.0,248.69
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.226229,100.0,114.95,100.0,237.26
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.238496,100.0,108.1,100.0,222.63
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.253168,100.0,101.37,100.0,209.14
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.268397,100.0,95.34,100.0,195.33
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.284765,100.0,88.84,100.0,183.58
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.302179,100.0,81.52,100.0,172.73
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.322702,100.0,74.78,100.0,162.04
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.342231,100.0,68.88,100.0,151.84
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.369709,100.0,61.43,99.5,141.49
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.402527,100.0,53.87,99.5,130.47
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.435415,100.0,49.03,99.5,120.77
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.478797,100.0,41.23,99.5,112.46
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.50735,100.0,37.33,99.5,107.53
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.541082,100.0,31.54,99.5,99.97
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.573056,100.0,27.17,99.5,94.95
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.608911,100.0,22.92,99.5,89.28
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.649985,100.0,19.38,99.5,81.96
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.690225,100.0,15.71,99.5,76.29
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.737474,100.0,13.35,99.5,68.32
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.779468,100.0,10.16,99.5,59.27
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.828462,100.0,7.21,99.5,50.15
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.877456,100.0,4.49,99.0,37.41
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.92645,100.0,1.54,98.5,24.33
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.976322,100.0,0.0,96.5,9.45
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.996509,97.53,0.0,89.5,3.29
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.998914,93.83,0.0,76.0,0.25
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.999313,88.89,0.0,64.5,0.16
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.999489,82.72,0.0,58.0,0.08
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.999605,80.25,0.0,49.5,0.08
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.999679,76.54,0.0,41.5,0.08
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.999734,70.37,0.0,38.5,0.0
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.999771,66.67,0.0,32.0,0.0
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.999805,54.32,0.0,25.5,0.0
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.99984,44.44,0.0,13.5,0.0
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.999869,32.1,0.0,7.5,0.0
+ML_Tier4_PhysicsNuclear,Tier 4: Physics-Motivated Nuclear GBDT (59 features),ML_Main_Tier,0.999941,0.0,0.0,0.0,0.0
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.001499,12.35,273.73,18.0,241.13
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.006456,45.68,470.68,43.5,434.65
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.009337,65.43,717.12,48.5,528.21
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.011564,79.01,889.13,56.0,574.41
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.014069,81.48,1020.86,61.0,605.73
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.01656,88.89,1096.36,62.0,610.25
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.019322,91.36,1137.94,63.5,616.83
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.022526,91.36,1123.53,65.0,610.99
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.026471,92.59,1088.91,69.0,604.58
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.031266,95.06,1007.39,73.0,578.19
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.038356,96.3,878.38,75.0,552.7
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.048141,96.3,717.95,79.0,519.08
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.066341,98.77,525.26,87.0,481.18
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.106931,98.77,319.81,94.5,500.99
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.179785,98.77,180.05,99.0,468.36
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.185391,98.77,174.38,99.5,461.62
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.191708,100.0,168.0,99.5,457.09
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.19774,100.0,160.55,100.0,448.46
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.204383,100.0,155.95,100.0,438.68
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.211136,100.0,147.91,100.0,429.39
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.219014,100.0,141.42,100.0,418.21
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.226868,100.0,135.04,100.0,408.01
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.236105,100.0,130.43,100.0,397.41
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.244847,100.0,124.76,100.0,386.64
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.255497,100.0,118.14,100.0,371.02
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.267403,100.0,110.94,100.0,354.91
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.277796,100.0,105.15,100.0,340.02
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.292021,100.0,99.48,100.0,323.01
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.307522,100.0,91.21,100.0,304.67
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.324387,100.0,83.76,100.0,284.86
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.340541,100.0,76.91,100.0,266.94
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.360657,100.0,70.41,100.0,245.48
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.39026,100.0,65.21,100.0,216.95
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.417044,100.0,58.36,99.5,198.21
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.453013,100.0,52.1,99.5,172.81
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.486642,100.0,44.07,99.5,152.25
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.515818,100.0,39.22,99.5,136.96
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.543381,100.0,35.09,99.5,123.56
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.577567,100.0,30.83,99.5,112.79
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.613832,100.0,27.41,99.5,105.64
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.646798,100.0,22.68,99.5,99.06
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.679261,100.0,18.19,99.5,92.41
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.721114,100.0,12.52,99.5,84.76
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.767953,100.0,9.69,99.5,78.1
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.816416,100.0,6.5,99.0,68.98
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.875262,100.0,3.54,99.0,57.14
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.930648,100.0,1.3,99.0,35.27
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.98143,100.0,0.12,97.0,10.52
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.997723,97.53,0.0,89.0,3.04
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.999061,95.06,0.0,76.0,0.66
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.999373,88.89,0.0,65.0,0.08
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.99949,86.42,0.0,60.0,0.0
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.999577,77.78,0.0,53.0,0.0
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.999639,74.07,0.0,43.5,0.0
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.999684,70.37,0.0,35.5,0.0
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.999722,66.67,0.0,27.0,0.0
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.999749,59.26,0.0,21.5,0.0
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.999779,49.38,0.0,15.0,0.0
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.999812,29.63,0.0,7.0,0.0
+Ablation_Tier4_NoWeather,Ablation: Tier 4 without Weather/Bateman (39 features),ML_Ablation,0.999879,0.0,0.0,0.5,0.0
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.000757,13.58,266.29,16.0,218.68
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.00405,33.33,443.5,39.0,393.46
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.006482,45.68,599.33,47.0,462.35
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.008788,58.02,736.38,56.0,522.7
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.01099,69.14,857.59,62.0,565.86
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.013337,75.31,947.38,67.5,603.92
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.01599,80.25,1006.57,71.0,623.98
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.01893,83.95,1029.25,74.0,636.15
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.022719,90.12,1009.64,76.5,635.98
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.027585,92.59,947.73,79.0,624.64
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.03374,93.83,856.88,82.0,597.1
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.042981,97.53,711.69,87.0,563.31
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.05861,100.0,538.37,92.0,533.47
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.092245,100.0,331.39,96.5,486.94
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.157706,100.0,178.75,99.5,404.07
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.163009,100.0,171.66,99.5,395.76
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.169069,100.0,163.86,100.0,385.49
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.174709,100.0,156.54,100.0,380.06
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.180477,100.0,149.45,100.0,372.09
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.187719,100.0,143.54,100.0,362.14
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.196675,100.0,136.93,100.0,352.6
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.204631,100.0,130.78,100.0,342.41
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.213431,100.0,124.88,100.0,329.5
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.22348,100.0,118.73,100.0,316.92
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.233946,100.0,110.11,100.0,305.0
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.246617,100.0,104.2,100.0,291.6
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.260675,100.0,99.71,99.5,276.97
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.274709,100.0,94.4,99.5,263.73
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.291938,100.0,87.78,99.5,248.77
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.309936,100.0,81.16,99.5,232.08
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.331506,100.0,73.37,99.5,216.13
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.352424,100.0,66.16,99.5,198.79
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.378264,100.0,58.83,99.5,180.54
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.410599,100.0,52.57,99.5,161.54
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.446296,100.0,46.67,99.5,145.43
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.48471,100.0,39.22,99.5,130.55
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.518904,100.0,34.5,99.5,120.52
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.551354,100.0,31.43,99.5,111.4
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.589179,100.0,26.94,99.5,103.83
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.626975,100.0,24.34,99.5,95.28
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.661899,100.0,20.44,99.5,86.49
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.709238,100.0,17.13,99.5,75.47
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.751301,100.0,14.18,99.5,64.86
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.792021,100.0,11.11,99.5,59.36
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.835282,100.0,8.98,99.0,49.82
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.882821,100.0,5.2,98.5,40.2
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.927257,100.0,1.54,98.5,29.02
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.975706,100.0,0.24,97.0,12.09
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.996795,97.53,0.0,89.5,2.8
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.998839,93.83,0.0,79.0,0.49
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.99928,88.89,0.0,67.5,0.25
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.999491,82.72,0.0,55.5,0.16
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.999604,79.01,0.0,49.0,0.08
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.999673,75.31,0.0,43.5,0.08
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.999718,69.14,0.0,38.5,0.08
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.999765,64.2,0.0,30.0,0.0
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.999801,53.09,0.0,21.0,0.0
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.999837,39.51,0.0,14.5,0.0
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.999867,28.4,0.0,8.5,0.0
+Ablation_Tier3_PlusStrippingOnly,Ablation: Tier 3 + Radon Stripping Only (57 features),ML_Ablation,0.99993,0.0,0.0,0.0,0.0
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.00067,13.58,264.64,14.0,203.55
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.005234,28.4,399.08,33.0,336.33
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.009084,41.98,527.38,42.0,435.55
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.012563,55.56,646.35,48.5,478.39
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.016221,61.73,744.88,51.5,508.39
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.019824,75.31,828.76,58.0,521.3
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.023927,81.48,893.39,63.5,535.93
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.02874,85.19,908.16,65.5,547.28
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.034337,91.36,883.7,68.0,554.1
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.04158,95.06,842.47,70.0,542.84
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.050824,95.06,771.35,72.0,512.34
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.064657,95.06,663.6,75.5,464.9
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.086488,97.53,511.91,79.5,397.16
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.124557,100.0,349.7,86.5,345.7
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.217832,100.0,177.8,94.5,381.29
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.224416,100.0,172.72,94.5,384.09
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.231102,100.0,165.52,94.5,388.69
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.238639,100.0,158.55,95.0,392.31
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.246469,100.0,152.99,95.5,396.83
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.254756,100.0,148.03,95.5,401.03
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.263119,100.0,141.42,96.0,402.51
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.272341,100.0,134.68,96.0,405.46
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.282665,100.0,127.71,97.0,408.26
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.293697,100.0,121.21,97.5,410.89
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.306138,100.0,113.77,98.0,415.17
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.317556,100.0,108.69,99.0,415.74
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.330798,100.0,102.43,99.5,413.6
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.345238,100.0,96.64,99.5,411.8
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.361816,100.0,90.14,100.0,401.44
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.377661,100.0,84.12,100.0,393.3
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.397003,100.0,77.03,100.0,376.69
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.419197,100.0,68.4,100.0,357.21
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.440377,100.0,64.03,100.0,340.68
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.462512,100.0,59.07,100.0,325.39
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.494913,100.0,52.57,100.0,296.62
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.525189,100.0,47.61,100.0,269.57
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.547523,100.0,44.78,100.0,248.11
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.568059,100.0,39.46,100.0,228.55
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.592669,98.77,35.21,100.0,207.01
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.617452,98.77,30.6,99.5,184.23
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.646897,98.77,24.46,99.5,160.89
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.679053,98.77,19.14,99.0,136.72
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.713936,98.77,14.77,99.0,113.78
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.749541,98.77,10.16,99.0,91.67
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.7907,98.77,6.38,99.0,71.93
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.839691,98.77,2.95,98.0,53.85
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.893098,98.77,0.95,96.5,31.4
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.949647,96.3,0.24,94.5,10.85
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.9902,95.06,0.0,87.0,0.49
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.997139,95.06,0.0,79.0,0.0
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.998577,92.59,0.0,69.0,0.0
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.999011,88.89,0.0,62.5,0.0
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.999259,83.95,0.0,56.5,0.0
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.999441,79.01,0.0,48.5,0.0
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.999559,72.84,0.0,41.5,0.0
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.999643,70.37,0.0,35.0,0.0
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.999704,62.96,0.0,28.0,0.0
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.999766,48.15,0.0,15.0,0.0
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.999817,30.86,0.0,6.5,0.0
+Ablation_Tier3_PlusBatemanOnly,Ablation: Tier 3 + Bateman Washout ODE Only (50 features),ML_Ablation,0.999912,0.0,0.0,0.0,0.0
