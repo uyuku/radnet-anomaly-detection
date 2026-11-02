@@ -179,7 +179,7 @@ def main():
         gross = f"{r['gross_cpm']:.0f}"
         rain = f"{r['precip_1h_mm']:.1f}"
         trig = r["triggering_models"][:35] + ("..." if len(r["triggering_models"]) > 35 else "")
-        plot_link = f"[{alm_id} Plot](file:///{REPO_ROOT}/{r['plot_relative_path']})"
+        plot_link = f"[{alm_id} Plot](../{r['plot_relative_path']})"
         md_lines.append(f"| {alm_id} | {st} | {t} | {gross} | {rain} | {trig} | {plot_link} | | | |")
 
     review_md_path = DOCS_DIR / "alarm_review_sheet.md"
